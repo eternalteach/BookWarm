@@ -9,6 +9,7 @@ public interface Calculator {
 	public double mul(double first, double second); // HR
 		//dkssudgktpdy? wntjrdldpdy
 	// try again
+	// request try
 	public double mod(double first, double second); // GB
 
 }
