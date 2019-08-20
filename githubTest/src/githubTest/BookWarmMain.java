@@ -10,5 +10,6 @@ public class BookWarmMain {
 		System.out.println(cal.mod(336, 6));
 		System.out.println(cal.min(336, 6));
 		// 현재 마스터로 머지했습니다.
+		// GB로 마스터를 불러와서 이 주석을 추가했습니다.
 	}
 }
