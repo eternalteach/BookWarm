@@ -23,7 +23,8 @@ public class CalculatorImpl implements Calculator {
 	@Override
 	public double mul(double first, double second) {
 		// TODO Auto-generated method stub
-		return 0;
+		
+		return first * second;
 	}
 
 	@Override
