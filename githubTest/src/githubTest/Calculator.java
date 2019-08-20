@@ -8,6 +8,7 @@ public interface Calculator {
 	public double min(double first, double second); // TH
 	public double mul(double first, double second); // HR
 		//dkssudgktpdy? wntjrdldpdy
+	// try again
 	public double mod(double first, double second); // GB
 
 }
