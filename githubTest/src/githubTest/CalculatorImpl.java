@@ -11,8 +11,7 @@ public class CalculatorImpl implements Calculator {
 	@Override
 	public double div(double first, double second) {
 		// TODO Auto-generated method stub
-		
-		return first/second;
+		return 0;
 	}
 
 	@Override
