@@ -16,7 +16,7 @@ public class CalculatorImpl implements Calculator {
 
 	@Override
 	public double min(double first, double second) {
-		//Å×½ºÆ®
+		//test
 		return first-second;
 	}
 
