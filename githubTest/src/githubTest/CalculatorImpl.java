@@ -27,8 +27,7 @@ public class CalculatorImpl implements Calculator {
 
 	@Override
 	public double mod(double first, double second) {
-		// TODO Auto-generated method stub
-		return 0;
+		return first%second;
 	}
 
 }
