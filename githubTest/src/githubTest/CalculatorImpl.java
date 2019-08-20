@@ -4,6 +4,8 @@ public class CalculatorImpl implements Calculator {
 
 	@Override
 	public double add(double first, double second) {
+		System.out.println("즐거운 덧셈공부");
+
 		return first+second;
 	}
 
@@ -12,10 +14,13 @@ public class CalculatorImpl implements Calculator {
 		// TODO Auto-generated method stub
 		
 		return first/second;
+
+		// 주석
 	}
 
 	@Override
 	public double min(double first, double second) {
+		//test
 		return first-second;
 	}
 
