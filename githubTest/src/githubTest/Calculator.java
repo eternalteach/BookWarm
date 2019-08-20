@@ -2,9 +2,9 @@ package githubTest;
 
 public interface Calculator {
 
-	public double add(double first, double second); // 경운
-	public double div(double first, double second); // 지현
-	public double min(double first, double second); // 태호
-	public double mul(double first, double second); // 해랑
-	public double mod(double first, double second); // 기범
+	public double add(double first, double second); // KY
+	public double div(double first, double second); // JH
+	public double min(double first, double second); // TH
+	public double mul(double first, double second); // HR
+	public double mod(double first, double second); // GB
 }
