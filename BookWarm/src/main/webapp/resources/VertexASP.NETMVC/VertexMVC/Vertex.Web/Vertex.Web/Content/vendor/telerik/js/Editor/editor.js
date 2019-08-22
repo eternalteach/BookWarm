@@ -62,11 +62,13 @@ function initializeContentElement(editor) {
         .bind({
             keydown: function (e) {
                 if (e.keyCode === 121) {
-                    //Using the timeout to avoid the default IE menu when F10 is pressed
+                    // Using the timeout to avoid the default IE menu when F10
+					// is pressed
                     setTimeout(function() {
                         var tabIndex = $(editor.element).attr("tabIndex");
     
-                        //Chrome can't focus something which has already been focused
+                        // Chrome can't focus something which has already been
+						// focused
                         $(editor.element).attr("tabIndex", tabIndex || 0).focus().find(focusable).first().focus();
     
                         if (!tabIndex && tabIndex !== 0) {
@@ -158,7 +160,10 @@ function initializeContentElement(editor) {
 }
 
 $t.editor = function (element, options) {
-    /* suppress initialization in mobile webkit devices (w/o proper contenteditable support) */
+    /*
+	 * suppress initialization in mobile webkit devices (w/o proper
+	 * contenteditable support)
+	 */
     if (/Mobile.*Safari/.test(navigator.userAgent))
         return;
 
@@ -300,7 +305,8 @@ $t.editor = function (element, options) {
         .bind('DOMNodeInserted', function(e) {
             if ($.contains(e.target, self.element) || self.element == e.target) {
                 // preserve updated value before re-initializing
-                // don't use update() to prevent the editor from encoding the content too early
+                // don't use update() to prevent the editor from encoding the
+				// content too early
                 self.textarea.value = self.value();
                 $(self.element).find('iframe').remove();
                 initializeContentElement(self);
@@ -396,7 +402,8 @@ $t.editor.prototype = {
 
         this.pendingFormats.clear();
 
-        // Some browsers do not allow setting CDATA sections through innerHTML so we encode them as comments
+        // Some browsers do not allow setting CDATA sections through innerHTML
+		// so we encode them as comments
         html = html.replace(/<!\[CDATA\[(.*)?\]\]>/g, '<!--[CDATA[$1]]-->');
 
         // Encode script tags to avoid execution and lost content (IE)
@@ -434,7 +441,8 @@ $t.editor.prototype = {
         } else {
             body.innerHTML = html;
             if ($.browser.msie) {
-                // having unicode characters creates denormalized DOM tree in IE9
+                // having unicode characters creates denormalized DOM tree in
+				// IE9
                 normalize(body);
             }
         }
@@ -745,4 +753,4 @@ $.fn.tEditor.defaults = {
         backColor: new ColorTool({cssAttr:'background-color', domAttr: 'backgroundColor', name:'backColor'})
     }
 }
-})(jQuery);
+(jQuery);

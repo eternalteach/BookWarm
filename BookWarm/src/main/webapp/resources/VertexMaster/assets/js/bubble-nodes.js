@@ -1549,22 +1549,22 @@ Strut = {
                 e = void 0,
                 r && r.enter()
             };
-            if (c)
+            if (c){
                 n = function() {
                     a.nextTick(s)
                 }
-                ;
+                ;}
             else if (!o || r.navigator && r.navigator.standalone)
                 if (u && u.resolve) {
                     var f = u.resolve(void 0);
                     n = function() {
                         f.then(s)
                     }
-                } else
+                } else{
                     n = function() {
                         i.call(r, s)
                     }
-                    ;
+                    ;}
             else {
                 var l = !0
                   , d = document.createTextNode("");
@@ -1584,7 +1584,7 @@ Strut = {
                 t || (t = i,
                 n()),
                 e = i
-            }
+            };
         }
     },
     149: function(t, e, n) {
