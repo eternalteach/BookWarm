@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Tooltips &amp; Icons </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">-->
+    
+
+    <!--[if lte IE 9]>
+    	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>    
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-3">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-comments"></i>Tooltips + Icons </h4>
+          </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="contact">
+            	<div class="form-body">
+                
+                    <div class="section">
+                    	<p class="small-text fine-grey">Tooltips on Checkboxes and Radios</p>
+                    </div><!-- end section -->                
+                
+                	<div class="frm-row">
+                        <div class="section colm colm6">
+                            <div class="option-group field">
+                                <label class="option block">
+                                    <input type="checkbox" name="languages" value="FR">
+                                    <span class="checkbox"></span> Fluent french
+                                    <b class="tooltip"><em> This is a checkbox tooltip </em></b>             
+                                </label>
+                                <label class="option block spacer-t10">
+                                    <input type="checkbox" name="languages" value="EN">
+                                    <span class="checkbox"></span> Fluent english
+                                    <b class="tooltip"><em> This is a checkbox tooltip </em></b>              
+                                </label>
+                                <label class="option block spacer-t10">
+                                    <input type="checkbox" name="languages" value="CH">
+                                    <span class="checkbox"></span> Fluent chinese
+                                    <b class="tooltip"><em> This is a checkbox tooltip </em></b>             
+                                </label>
+                            </div><!-- end .option-group section -->
+                        </div><!-- end section -->
+                        <div class="section colm colm6">
+                            <div class="option-group field">
+                                <label class="option block">
+                                    <input type="radio" name="payment" checked>
+                                    <span class="radio"></span> Credit Card
+                                    <b class="tooltip"><em> This is a radio tooltip </em></b>                  
+                                </label>
+                                <label class="option block spacer-t10">
+                                    <input type="radio" name="payment">
+                                    <span class="radio"></span> Paypal Credit
+                                    <b class="tooltip"><em> This is a radio tooltip </em></b>                   
+                                </label>
+                                <label class="option block spacer-t10">
+                                    <input type="radio" name="payment">
+                                    <span class="radio"></span> Payoneer
+                                    <b class="tooltip"><em> This is a radio tooltip </em></b>                   
+                                </label>
+                            </div><!-- end .option-group section -->
+                        </div><!-- end section -->                 
+                    </div><!-- end frm-row section -->
+                    
+                    <div class="section">
+                    	<p class="small-text fine-grey">Tooltips on rating widgets</p>
+                    </div><!-- end section -->                    
+                    
+                    <div class="section">
+                    
+                        <div class="rating block">
+                            <span class="lbl-text">Customization</span>
+                            <div class="rating-wrapper">
+                                <input class="rating-input" id="r5" type="radio"  name="custom" checked>
+                                <label class="rating-star" for="r5"><i class="fa fa-star"></i><span>Excellent</span></label>
+                                <input class="rating-input" id="r4" type="radio"  name="custom">
+                                <label class="rating-star" for="r4"><i class="fa fa-star"></i><span>Good</span></label>
+                                <input class="rating-input" id="r3" type="radio"  name="custom">
+                                <label class="rating-star" for="r3"><i class="fa fa-star"></i><span>Tried</span></label>
+                                <input class="rating-input" id="r2" type="radio"  name="custom">
+                                <label class="rating-star" for="r2"><i class="fa fa-star"></i><span>Fair</span></label>
+                                <input class="rating-input" id="r1" type="radio"  name="custom">
+                                <label class="rating-star" for="r1"><i class="fa fa-star"></i><span>Poor</span></label>
+                            </div>
+                        </div><!-- end rating section -->
+                        
+                        <div class="rating block">
+                            <span class="lbl-text">Reliability</span>
+                            <div class="rating-wrapper">
+                                <input class="rating-input" id="rr5" type="radio"  name="reliable">
+                                <label class="rating-star" for="rr5"><i class="fa fa-star"></i><span>Excellent</span></label>
+                                <input class="rating-input" id="rr4" type="radio"  name="reliable" checked>
+                                <label class="rating-star" for="rr4"><i class="fa fa-star"></i><span>Good</span></label>
+                                <input class="rating-input" id="rr3" type="radio"  name="reliable">
+                                <label class="rating-star" for="rr3"><i class="fa fa-star"></i><span>Tried</span></label>
+                                <input class="rating-input" id="rr2" type="radio"  name="reliable">
+                                <label class="rating-star" for="rr2"><i class="fa fa-star"></i><span>Fair</span></label>
+                                <input class="rating-input" id="rr1" type="radio"  name="reliable">
+                                <label class="rating-star" for="rr1"><i class="fa fa-star"></i><span>Poor</span></label>
+                            </div>
+                        </div><!-- end rating section -->
+                        
+                        <div class="rating block">
+                            <span class="lbl-text">Relevance</span>
+                            <div class="rating-wrapper">
+                                <input class="rating-input" id="rx5" type="radio"  name="relevance">
+                                <label class="rating-star" for="rx5"><i class="fa fa-star"></i><span>Excellent</span></label>
+                                <input class="rating-input" id="rx4" type="radio"  name="relevance">
+                                <label class="rating-star" for="rx4"><i class="fa fa-star"></i><span>Good</span></label>
+                                <input class="rating-input" id="rx3" type="radio"  name="relevance" checked>
+                                <label class="rating-star" for="rx3"><i class="fa fa-star"></i><span>Tried</span></label>
+                                <input class="rating-input" id="rx2" type="radio"  name="relevance">
+                                <label class="rating-star" for="rx2"><i class="fa fa-star"></i><span>Fair</span></label>
+                                <input class="rating-input" id="rx1" type="radio"  name="relevance">
+                                <label class="rating-star" for="rx1"><i class="fa fa-star"></i><span>Poor</span></label>
+                            </div>
+                        </div><!-- end rating section -->
+                        
+                    </div><!-- end  section -->                    
+                    
+                    <div class="section">
+                    	<p class="small-text fine-grey">Tooltips and icons on selects</p>
+                    </div><!-- end section -->                                    
+                
+                   <div class="section">
+                        <label class="field select">
+                            <select id="s1" name="s1">
+                                <option value="">Select tooltip left</option>
+                                <option value="AL">Albania</option>
+                                <option value="DZ">Algeria</option>
+                            </select>
+                            <i class="arrow double"></i>
+                            <b class="tooltip tip-left"><em> Hey buddy! iam a top left tooltip.</em></b>                    
+                        </label>  
+                    </div><!-- end section --> 
+                    
+                    <div class="section">
+                        <label class="field select">
+                            <select id="s2" name="s2">
+                                <option value="">Select tooltip right</option>
+                                <option value="AL">Albania</option>
+                                <option value="DZ">Algeria</option>
+                            </select>
+                            <i class="arrow double"></i>
+                            <b class="tooltip tip-right"><em> Hey buddy! iam a right tooltip.</em></b>                   
+                        </label>  
+                    </div><!-- end section --> 
+                    
+                    <div class="section">
+                        <label class="field select">
+                            <select id="s3" name="s3">
+                                <option value="">Select tooltip top left</option>
+                                <option value="AL">Albania</option>
+                                <option value="DZ">Algeria</option>
+                            </select>
+                            <i class="arrow double"></i>
+                            <b class="tooltip tip-left-top"><em> Hey buddy! iam a top left tooltip.</em></b>                    
+                        </label>  
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                        <label class="field select">
+                            <select id="s4" name="s4">
+                                <option value="">Select tooltip top right</option>
+                                <option value="AL">Albania</option>
+                                <option value="DZ">Algeria</option>
+                            </select>
+                            <i class="arrow double"></i>
+                            <b class="tooltip tip-right-top"><em> Hey buddy! iam a top right tooltip.</em></b>                    
+                        </label>  
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                        <label class="field select prepend-icon">
+                            <select id="s3" name="s3">
+                                <option value="">Select with icon</option>
+                                <option value="AL">Albania</option>
+                                <option value="DZ">Algeria</option>
+                            </select>
+                            <i class="arrow double"></i>
+                            <span class="field-icon"><i class="fa fa-map-marker"></i></span>                    
+                        </label>  
+                    </div><!-- end section --> 
+                    
+                    <div class="section">
+                    	<p class="small-text fine-grey">Tooltips and icons on inputs and textareas </p>
+                    </div><!-- end section -->                                    
+                
+                	<div class="section">
+                    	<label for="names" class="field-label">Icon left + tooltip left</label>
+                    	<label class="field prepend-icon">
+                        	<input type="text" name="names" id="names" class="gui-input" placeholder="Enter name...">
+                            <b class="tooltip tip-left"><em> Hey buddy! iam a left tooltip. You notice me now huh?</em></b>
+                            <span class="field-icon"><i class="fa fa-user"></i></span>  
+                        </label>
+                    </div><!-- end section -->
+                    
+                	<div class="section">
+                    	<label for="email" class="field-label">Icon right + tooltip right</label>
+                    	<label class="field append-icon">
+                        	<input type="email" name="email" id="email" class="gui-input" placeholder="example@domain.com...">
+                            <b class="tooltip tip-right"><em> Hey buddy! iam a right tooltip.</em></b>
+                            <span class="field-icon"><i class="fa fa-envelope"></i></span>  
+                        </label>
+                    </div><!-- end section -->
+                    
+                	<div class="section">
+                    	<label for="telephone" class="field-label">Icon left + tooltip top left</label>
+                    	<label class="field prepend-icon">
+                        	<input type="tel" name="telephone" id="telephone" class="gui-input" placeholder="Enter telephone or mobile...">
+                            <b class="tooltip tip-left-top"><em> Hey buddy! iam a top left tooltip. You notice me now huh?</em></b>
+                            <span class="field-icon"><i class="fa fa-phone-square"></i></span>  
+                        </label>
+                    </div><!-- end section -->
+                    
+                	<div class="section">
+                    	<label for="subject" class="field-label">Icon right + tooltip top right</label>
+                    	<label class="field append-icon">
+                        	<input type="text" name="subject" id="subject" class="gui-input" placeholder="Enter subject...">
+                            <b class="tooltip tip-right-top"><em> Hey buddy! iam a top right tooltip. You notice me now?</em></b>
+                            <span class="field-icon"><i class="fa fa-flask"></i></span>  
+                        </label>
+                    </div><!-- end section -->                    
+                    
+                	<div class="section">
+                    	<label for="comment" class="field-label">Icon left + tooltip bottom left </label>
+                    	<label class="field prepend-icon">
+                        	<textarea class="gui-textarea" id="comment" name="comment"></textarea>
+                            <b class="tooltip tip-left-bottom"><em> Hey buddy! iam a bottom left tooltip. You notice me now?</em></b>
+                            <span class="field-icon"><i class="fa fa-comments"></i></span>
+                            <span class="input-hint"> <strong>Hint:</strong> Please enter between 80 - 300 characters.</span>   
+                        </label>
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                    	<label for="location" class="field-label">Icon right + tooltip bottom right</label>
+                    	<label class="field append-icon">
+                        	<input type="text" name="location" id="location" class="gui-input" placeholder="Enter location...">
+                            <b class="tooltip tip-right-bottom"><em> Hey buddy! iam a bottom right tooltip. You notice me now?</em></b>
+                            <span class="field-icon"><i class="fa fa-map-marker"></i></span>  
+                        </label>
+                    </div><!-- end section -->                              
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary">Submit</button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+</body>
+</html>

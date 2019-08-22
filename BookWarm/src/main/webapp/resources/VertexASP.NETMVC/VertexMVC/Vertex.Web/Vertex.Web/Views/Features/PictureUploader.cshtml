@@ -1,0 +1,120 @@
+﻿
+@{ ViewBag.Title = "Features | Picture Uploader"; }
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = false;
+    settings.StickyType = HeaderStickyType.Shrink;
+    settings.BorderBottom = HeaderBorderBottom.Light;
+})
+
+@Html.Partial("_Banner", "Picture Uploader")
+
+
+@Html.Vertex().Section().Size(SectionSize.Small).ContentTemplate(@<text>
+
+    <div class="container">
+        <div class="row justify-content-center">
+
+
+            <!--
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            | Sidebar
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            !-->
+            <div class="col-md-3">
+                <aside id="sidebar" class="sidebar sidebar-sticky">
+                    <ul class="nav nav-sidebar nav-sidebar-hero nav-sidebar-pill" data-accordion="true">
+                        <li class="nav-item"><a class="nav-link" href="#Default">Default</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#PictureId">Picture Id</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#methods">Methods</a> </li>
+                    </ul>
+                </aside>
+            </div>
+
+
+            <div class="col-md-7">
+                 
+
+                <div class="px-6 py-6 bg-gray mb-9" id="Default">
+                    <header class="mb-6">
+                        <h3>Default</h3>
+                        <hr>
+                        <p class="lead-1">Use <code>@@Html.Vertex().PictureUploader(string name)</code> method to create a picture uploader</p>
+                    </header>
+
+                    <ul class="nav nav-pills lavalamp" id="component-1" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-1-2" role="tab" aria-controls="component-1-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-1-content">
+                        <div class="tab-pane fade show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
+                            @Html.Vertex().PictureUploader("Picture1")
+                        </div>
+                        <div class="tab-pane fade" id="component-1-2" role="tabpanel" aria-labelledby="component-1-2">
+                            <pre><code class="language-markup">@@Html.Vertex().PictureUploader("Picture1")</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+                 
+                <div class="px-6 py-6 bg-gray mb-9" id="PictureId">
+                    <header class="mb-6">
+                        <h3>Picture Id</h3>
+                        <hr>
+                        <p class="lead-1">use <code>.PictureUploader(int pictureId)</code> method to set prefix</p>
+                    </header>
+
+                    <ul class="nav nav-pills lavalamp" id="component-2" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-2-1" role="tab" aria-controls="component-2-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-2-2" role="tab" aria-controls="component-2-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-2-content">
+                        <div class="tab-pane fade show active" id="component-2-1" role="tabpanel" aria-labelledby="component-2-1"> 
+                            @Html.Vertex().PictureUploader("Picture2").PictureId(1002)
+                        </div>
+                        <div class="tab-pane fade" id="component-2-2" role="tabpanel" aria-labelledby="component-2-2">
+                            <pre><code class="language-markup">@@Html.Vertex().PictureUploader("Picture2").PictureId(1002)</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+                 
+
+
+                <div id="methods" class="mb-9">
+                    <h2 class="h4">Methods <a class="anchorjs-link" href="#methods" aria-label="Anchor" data-anchorjs-icon="#"></a></h2>
+
+                    <table class="table table-bordered bg-white">
+                        <thead>
+                            <tr>
+                                <th  style="width:35%">Method</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> <p><code class="highlighter-rouge">.Method(bool value)</code></p> </td>
+                                <td>Comming soon.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</text>)
+
+
+@Html.Vertex().Footer()

@@ -1,0 +1,43 @@
+﻿@model List<CommentListModel>
+
+
+<div class="border mb-5">
+    <div class="border-top bg-gray py-3 px-4">
+        <h5 class="h6 mb-0 mt-1">Latest Comments <span class="badge badge-success float-right">@Model.Count Comments</span></h5>
+    </div>
+    <div class="bg-white pb-0 pt-0">
+        @foreach (var comment in Model)
+        {
+            <div class="media align-items-center hover-shadow-2 pl-2 pr-4 border-top dashboard-list-item">
+                <div class="w-60px mr-2 text-center">
+                    <i class="icon-bubble-conversation-2 fs-30 text-muted"></i>
+                </div>
+                <div class="media-body">
+                    <span>
+                        <a href="#" class="text-dark anim-link-2 fs-13 text-dark fw-600">@comment.FullName</a>
+                        <span class="text-muted fs-13">says</span>
+                    </span>
+                    <a class="text-dark anim-link-2 text-style-italic fs-13 m-0 p-0" style="line-height:19px;" href="@Url.Action("Edit", "Post", new { Id = comment.PostId })">
+                        @comment.Comment.Truncate(55, "...")
+                    </a>
+                    <div class="time fs-12 text-muted"> @comment.CreateDate</div>
+                </div>
+            </div>
+        }
+        @if (Model.Count == 0)
+        {
+            <div class="py-3 px-3 text-center border-top">
+                <p class="fs-14 text-muted m-0">
+                    No any comments to list.
+                    <a href="@Url.Action("List", "ApplyJob")" class="anim-link-2 anim-link-2-primary">go to list</a>
+                </p>
+            </div>
+        }
+        else
+        {
+            <div class="py-3 px-3 text-center border-top">
+                <a href="@Url.Action("List", "ApplyJob")" class="fs-14 anim-link-2 anim-link-2-primary">View all comments</a>
+            </div>
+        }
+    </div>
+</div>

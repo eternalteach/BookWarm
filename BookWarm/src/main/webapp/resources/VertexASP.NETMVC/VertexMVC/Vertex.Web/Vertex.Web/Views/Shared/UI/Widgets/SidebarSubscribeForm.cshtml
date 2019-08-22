@@ -1,0 +1,37 @@
+﻿@model SubscriberModel
+
+<div class="px-6 py-7 rounded text-white custom-section-4">
+    <h3 class="h5 mb-4">Subscribe to the best creative feed.</h3>
+
+    @using (Ajax.BeginForm("Subscribe", "Page", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnBegin", OnComplete = "OnComplete", UpdateTargetId = "divResult2" }, new { @class = "input-round", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group input-group input-group-borderless bg-white shadow-4">
+            @*<input type="text" class="form-control form-control-sm height-inherit pl-4" placeholder="Enter your email">*@
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control form-control-sm height-inherit pl-4", @placeholder = "Enter your email" })
+
+            <div class="spinner-border d-none mt-3" role="status">
+                <span class="sr-only"></span>
+            </div>
+
+            <div class="input-group-append">
+
+                <button class="btn btn-white text-primary" type="submit"><span class="fas fa-paper-plane"></span></button>
+            </div>
+        </div>
+
+        <div id="divResult2"></div>
+    }
+    <p class="small">Don't worry, we don't <a class="m-link-light" href="#">spam</a> </p>
+</div>
+
+<script type="text/javascript">
+    function OnBegin() {
+        $(".spinner-border").addClass("d-block")
+        $(".spinner-border").removeClass("d-none")
+    }
+    function OnComplete() {
+        $(".spinner-border").removeClass("d-block")
+        $(".spinner-border").addClass("d-none")
+    }
+</script>

@@ -1,0 +1,75 @@
+﻿@model AddCommentModel
+@using Microsoft.AspNet.Identity
+
+@{
+    var isAuthenticated = Request.IsAuthenticated;
+}
+
+<div class="row clearfix mt-8 mb-4 add-comment-wrap">
+    <div class="col-md-12">
+        <h3 class="h5 mb-4">
+            @if (isAuthenticated)
+            {
+                <span class="m-link mr-1">@User.Identity.GetUserName() </span>
+            }
+            Leave a comment
+        </h3>
+    </div>
+
+    <div class="col-md-12">
+        @using (Ajax.BeginForm("Comment", "Blog", null, new AjaxOptions
+        {
+            HttpMethod = "POST",
+            OnFailure = "OnCommentAddFailure",
+            OnSuccess = "OnCommentAddSuccess"
+        }, new { role = "form" }))
+        {
+            if (!isAuthenticated)
+            {
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>Your name <span class="required">*</span></label>
+                            @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", @placeholder = "Your name*" })
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Your email address <span class="required">*</span></label>
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email*", @type = "email" })
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-12">
+                        @Html.TextAreaFor(model => model.Content, new { @class = "form-control", @rows = "4", @placeholder = "Comment*", @style = "resize:none" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Post Comment" class="btn btn-primary btn-sm btn-wide transition-hover" />
+                <a class="comment-cancel d-none m-link ml-3" href="#">Cancel</a>
+
+                @*@if (!isAuthenticated)
+                {
+                    <span class="small text-light ml-3">
+                        Your email address will not be published.
+                    </span>
+                }*@
+
+                @if (!Model.ApproveComment)
+                {
+                    <span class="small text-light ml-3">
+                        <i class="fas fa-info-circle mr-1 fs-11"></i> Your comment will publish after approval for this post
+                    </span>
+                }
+            </div>
+
+            @Html.HiddenFor(model => model.PostId)
+            @Html.HiddenFor(model => model.ParentId)
+            @Html.HiddenFor(model => model.UserId)
+
+        }
+
+    </div>
+</div>

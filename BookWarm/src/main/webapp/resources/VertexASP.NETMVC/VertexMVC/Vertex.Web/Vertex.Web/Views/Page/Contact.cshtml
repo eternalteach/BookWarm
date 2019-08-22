@@ -1,0 +1,235 @@
+﻿@model ContactModel
+ 
+
+@Html.Vertex().Page().Title("Contact").Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+    settings.Transparency = HeaderTransparency.Transparent;
+    settings.Nav.IsLightText = true;
+    settings.Topbar.IsLightText = true;
+    settings.Logo.WhiteLogoOnSticky = true;
+})
+
+
+
+@Html.Vertex().Section().Overlay(2).Size(SectionSize.Largest).BgColor(BootstrapColor.Primary).ContentTemplate(@<text>
+    <div class="container z-index-10">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="clearfix">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-transparent pr-0 pl-0 mb-0">
+                            <li class="breadcrumb-item"><a class="text-white-50 anim-link-2 anim-link-2-white" href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a class="text-white-50 anim-link-2 anim-link-2-white" href="#">Page</a></li>
+                            <li class="breadcrumb-item active text-white-50 o-4" aria-current="page">Contact Us</li>
+                        </ol>
+                    </nav>
+                    <h2 class="fs-50 text-white">
+                        Get In Touch.
+                    </h2>
+                    <p class="mt-3 mb-4 text-white-50">
+                        You can display a google map element anywhere you like. Here we are using the map <br />
+                        to display a google map element with multiple locations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="custom-section-3">
+        <img src="/Content/img/sectionbg.png" alt="vertex">
+    </div>
+</text>)
+
+
+<section class="m-gab-3-bottom" style="margin-top:-150px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <ul class="nav nav-tabs border-bottom-0 justify-content-center m-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#mtab1" role="tab" aria-controls="home" aria-selected="true">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#mtab2" role="tab" aria-controls="profile" aria-selected="false">Map</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="mtab1" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row shadow-4 rounded bg-white justify-content-center">
+                            <div class="col-sm-12 col-md-5 bg-primary p-0 text-white">
+
+                                <div class="card border-0 rounded text-white bg-img p-3 py-4 h-100" style="background-image: url(/Content/img/career-bg.jpg);" data-overlay="4">
+                                    <div class="row h-100 p-5">
+                                        <div class="col-12">
+                                            <p class="text-uppercase small o-7 font-weight-bold">Contact us</p>
+                                            <h5>Twitter, Inc.</h5>
+                                            <br>
+                                            <div class="media align-items-center mb-3">
+                                                <i class="icon-headphone fs-20 o-7 mr-3"></i>
+                                                <div class="media-body">@Html.Raw(Setting("general.site.address").Value)</div>
+                                            </div>
+                                            <div class="media align-items-center mb-3">
+                                                <i class="icon-mail-2 fs-20 o-7 mr-3"></i>
+                                                <div class="media-body"><a href="#" class="anim-link-2 media-body"> @Setting("general.site.email").Value </a> </div>
+                                            </div>
+                                            <div class="media align-items-center mb-3">
+                                                <i class="icon-headphone fs-20 o-7 mr-3"></i>
+                                                <div class="media-body">@Setting("general.site.phonenumber").Value </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 align-self-end">
+                                            <div>
+                                                <h6>Follow Us</h6>
+                                                <div class="social social-bg-dark">
+                                                    <a class="social-twitter" href="#"><i class="fab fa-twitter"></i></a>
+                                                    <a class="social-facebook" href="#"><i class="fab fa-facebook"></i></a>
+                                                    <a class="social-instagram" href="#"><i class="fab fa-instagram"></i></a>
+                                                    <a class="social-dribbble" href="#"><i class="fab fa-dribbble"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-7 p-8 py-7">
+                                <h3 class="h4 mb-8">Send Us a Message</h3>
+
+                                @if (!string.IsNullOrEmpty(Model.UserMessage))
+                                {
+                                    <p class="text-success">@Model.UserMessage</p>
+                                }
+                                @using (Ajax.BeginForm("Contact", "Page", null, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "contactFormResult2" }, new { @class = "input-line", role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                                    <div class="mt-3" id="contactFormResult2"></div>
+
+                                    <div class="form-row">
+                                        <div class="form-group input-group col-md-12">
+                                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "Full Name" })
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group input-group col-md-12">
+                                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "E-mail" })
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group input-group col">
+                                            @Html.TextBoxFor(x => x.Subject, new { @class = "form-control", @placeholder = "Subject" })
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group input-group col">
+                                            @Html.TextAreaFor(x => x.Message, new { @class = "form-control", @placeholder = "Message", @rows = "5" })
+                                        </div>
+                                    </div>
+                                    <div class="form-row mt-2">
+                                        <div class="col">
+                                            <input type="submit" value="Send Message" class="btn btn-primary btn-block transition-hover" data-loading-text="Loading...">
+                                        </div>
+                                    </div> 
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="mtab2" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="h-500"
+                             data-provide="map"
+                             data-lat="41.0187429"
+                             data-lng="28.6390396"
+                             data-marker-lat="41.0187429"
+                             data-marker-lng="28.6390396"
+                             data-info="Üçevler mah, Urfalılar Cd. No:71/C, 34513 Esenyurt/İstanbul"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="section pt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-4">
+                <div class="media mb-6 mb-lg-0">
+                    <div class="mr-4 mt-2">
+                        <i class="icon-address-1 fs-44 p-3 btn-pill btn-sleek-primary"></i>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="h5 mb-3">Address</h3>
+                        <p class="fs-15">
+                            1355 Market St, Suite 900 <br />
+                            San Francisco, CA 94103<br />
+                            P: (123) 456-7890
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4">
+                <div class="media mb-6 mb-lg-0">
+                    <div class="mr-4 mt-2">
+                        <i class="icon-phone-vibration fs-44 p-3 btn-pill btn-sleek-primary"></i>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="h5 mb-3">Phone</h3>
+                        <ul class="list-unstyled fs-15">
+                            <li>
+                                <span class="d-inline-block text-color-dark w-80px fw-600">Office <span class="custom-text-color-1 float-right">:</span></span>
+                                <span class="value">
+                                    <a href="tel:+18001234567" class="underline">800 123 4567</a>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="d-inline-block text-color-dark w-80px fw-600">Sale <span class="custom-text-color-1 float-right">:</span></span>
+                                <span class="value">
+                                    <a href="tel:+18001234567" class="underline">800 123 4568</a>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="d-inline-block text-color-dark w-80px fw-600">Admin <span class="custom-text-color-1 float-right">:</span></span>
+                                <span class="value">
+                                    <a href="tel:+18001234567" class="underline">800 123 4569</a>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4">
+                <div class="media mb-6 mb-lg-0">
+                    <div class="mr-4 mt-2">
+                        <i class="icon-clock-2 fs-44 p-3 btn-pill btn-sleek-primary"></i>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="h5 mb-3">Office Hour</h3>
+                        <ul class="list-unstyled fs-15">
+                            <li><strong>Monday-Friday: 	</strong>9am to 5pm	 </li>
+                            <li><strong>Saturday: 	</strong>10am to 2pm</li>
+                            <li><strong>Sunday: 	</strong>Closed		 </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="section text-center border-top">
+    <div class="container">
+        <h2 class="mb-4">Join over 5,000+ companies that trust us.</h2>
+        <p class="lead text-muted">Try it yourself 30 days free. No credit card required!</p>
+        <hr class="w-5 my-5">
+        <a class="btn btn-round btn-primary btn-wide" href="#">Design your site now</a>
+    </div>
+</section>
+
+
+
+@Html.Vertex().Footer()

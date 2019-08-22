@@ -1,0 +1,29 @@
+﻿@model PortfolioCategoryModel
+ 
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+})
+
+
+@Html.Partial("_Breadcrumb", "Edit Portfolio Category")
+
+<section class="section pt-8 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-3">
+                @Html.Partial("_LeftNav")
+            </div>
+            <div class="col-md-9">
+
+                @Html.Partial("_CreateOrUpdate", Model)
+                
+            </div>
+        </div>
+    </div>
+</section>
+ 
+
+@Html.Vertex().Footer()

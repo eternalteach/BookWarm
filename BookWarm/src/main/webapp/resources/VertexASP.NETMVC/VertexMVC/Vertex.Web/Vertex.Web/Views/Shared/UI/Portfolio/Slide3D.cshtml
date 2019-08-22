@@ -1,0 +1,36 @@
+﻿@model PortfolioView
+
+
+<div class="list-wrapper @Model.GetCssClass()" @Model.GetStyle() @Model.GetHtmlAtributes()>
+    <div class="grid-item type-list type-list-box">
+        <div class="type-list__buttons">
+            <button class="list_button list_button-left">
+                <span class="list_button_arrow">
+                    <i class="fas fa-chevron-left text-white"></i>
+                </span>
+            </button>
+            <button class="list_button list_button-right">
+                <span class="list_button_arrow">
+                    <i class="fas fa-chevron-right text-white"></i>
+                </span>
+            </button>
+        </div>
+
+        <div class="type-list__items ui-list">
+            <figure class="ui-list__items">
+
+                @foreach (var item in Model.Items)
+                {
+                    <a class="card bookmarkable" href="@item.Url">
+                        <img src="@item.Picture.FilePath" alt="@item.Title">
+
+                        <div class="caption-wrap text-center p-3">
+                            <h2 class="h6 mb-0 text-dark"> <span class="anim-link-2">@item.Title</span> </h2>
+                            <p class="m-0">@item.Category.Name</p>
+                        </div>
+                    </a>
+                }
+            </figure>
+        </div>
+    </div>
+</div>

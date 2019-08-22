@@ -1,0 +1,158 @@
+﻿
+@{ ViewBag.Title = "Features | Blog Posts"; }
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = false;
+    settings.StickyType = HeaderStickyType.Shrink;
+    settings.BorderBottom = HeaderBorderBottom.Light;
+})
+
+@Html.Partial("_Banner", "Blog Posts")
+
+
+<section class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <!--
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            | Sidebar
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            !-->
+            <div class="col-md-3">
+                <aside id="sidebar" class="sidebar sidebar-sticky">
+                    <ul class="nav nav-sidebar nav-sidebar-hero nav-sidebar-pill" data-accordion="true">
+                        <li class="nav-item"><a class="nav-link" href="#Default">Default</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#Pageable">Pageable</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#ToSlider">To Slider</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#methods">Methods</a> </li>
+                    </ul>
+                </aside>
+            </div>
+
+
+            <div class="col-md-8">
+                <div class="mb-9 pb-6" id="Default">
+                    <header class="mb-6 mx-auto">
+                        <h4>Portfolio</h4>
+                        <p class="lead-1">
+                            Use <code>@@Html.Vertex().Portfolio(PortfolioViewName viewName)</code> method to list portfolios.<br />
+                            There are 4 different views <code>PortfolioViewName.Agency</code>, <code>PortfolioViewName.AwesomeWork</code>, 
+                            <code>PortfolioViewName.Masonry</code> and <code>PortfolioViewName.Slide3D</code>
+                        </p>
+                    </header>
+                     
+
+                    <div class="mb-9 pb-9 border-bottom">
+                        <h5 class="mb-4">Agency View</h5>
+                        @Html.Vertex().Portfolio(PortfolioViewName.Agency).DisplayCount(10)
+
+                        <br />
+                       <pre class="mb-0"><code class="language-csharp">@@Html.Vertex().Portfolio(PortfolioViewName.Agency)</code> </pre> 
+                    </div>
+
+
+                    <div class="mb-9 pb-9 border-bottom">
+                        <h5 class="mb-4">AwesomeWork View</h5>
+                        @Html.Vertex().Portfolio(PortfolioViewName.AwesomeWork).DisplayCount(10)
+
+                        <br />
+                       <pre class="mb-0"><code class="language-csharp">@@Html.Vertex().Portfolio(PortfolioViewName.AwesomeWork)</code> </pre> 
+                    </div>
+
+
+                    <div class="mb-9 pb-9 border-bottom">
+                        <h5 class="mb-4">Masonry View</h5>
+                        @Html.Vertex().Portfolio(PortfolioViewName.Masonry).DisplayCount(10)
+
+                        <br /><br />
+                       <pre class="mb-0"><code class="language-csharp">@@Html.Vertex().Portfolio(PortfolioViewName.Masonry)</code> </pre> 
+                    </div>
+
+
+                    <div class="mb-9 pb-9 border-bottom">
+                        <h5 class="mb-4">Slide3D View</h5> <br />
+                        @Html.Vertex().Portfolio(PortfolioViewName.Slide3D).DisplayCount(10)
+
+                       <pre class="mb-0"><code class="language-csharp">@@Html.Vertex().Portfolio(PortfolioViewName.Slide3D)</code> </pre> 
+                    </div>
+
+                </div>
+
+                <div class="mb-9 pb-2" id="Pageable">
+                    <header class="mb-6 mx-auto">
+                        <h4>Pageable</h4>
+                        <p class="lead-1">
+                            Use <code>.Pageable(string pageQueryName, int pageSize)</code> method to make pageable.
+                        </p>
+                    </header>
+
+                    <div class="mb-9 pb-9 border-bottom">
+                        <h5 class="mb-4">Agency View</h5>
+                        @Html.Vertex().Portfolio(PortfolioViewName.Agency).Pageable("agency-page", 2)
+
+                        <br />
+                       <pre class="mb-0"><code class="language-csharp">@@Html.Vertex().Portfolio(PortfolioViewName.Agency).Pageable("agency-page", 2)</code> </pre> 
+                    </div>
+
+                </div>
+
+                <div class="mb-9" id="ToSlider">
+                    <header class="mb-6 mx-auto">
+                        <h4>To Slider</h4>
+                        <p class="lead-1">
+                            Use <code>.ToSlider(Action[SliderBuilder] action)</code> method to make slider. 
+                            
+                        </p>
+                    </header>
+
+                    <div class="mb-9 pb-9 border-bottom">
+                        <h5>Grid View</h5>
+                        @Html.Vertex().Portfolio(PortfolioViewName.Agency).DisplayCount(10).ToSlider(slider => {
+                                   slider.SlidesToShow(2);
+                                   slider.Dots();
+                               })
+
+                        <br />
+                       <pre class="mb-0"><code class="language-csharp">@@Html.Vertex().Portfolio(PortfolioViewName.Agency)
+    .ToSlider(slider => {
+        slider.SlidesToShow(2);
+        slider.Dots();
+    })</code> </pre> 
+
+                    </div>
+
+                </div>
+
+
+
+                <div id="methods" class="mb-9">
+                    <h2 class="h4">Methods <a class="anchorjs-link" href="#methods" aria-label="Anchor" data-anchorjs-icon="#"></a></h2>
+
+                    <table class="table table-bordered bg-white">
+                        <thead>
+                            <tr>
+                                <th style="width:35%">Method</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> <p><code class="highlighter-rouge">.Method(bool value)</code></p> </td>
+                                <td>Comming soon.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+ 
+
+
+
+@Html.Vertex().Footer()

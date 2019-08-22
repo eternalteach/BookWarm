@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> Smart Forms - Clone Elements </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/smart-addons.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/dropzone.min.js"></script>-->
+    
+    
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+    <script type="text/javascript">
+        jQuery(document).ready(function($){
+                        
+            var myDropzone = new Dropzone("#myDropzone",{ 
+                url: '/',
+                autoProcessQueue: false,
+                uploadMultiple: true,
+                parallelUploads: 5,
+                maxFiles: 5,
+                maxFilesize: 5,
+                dictDefaultMessage: '',
+                acceptedFiles: ".jpeg,.jpg,.png,.gif,.psd,.pdf",
+                addRemoveLinks: true,
+				dictRemoveFile: '&#215;'
+            });
+			
+        });				
+    </script>
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-cloud-upload"></i> Dropzone.js </h4>
+            </div><!-- end .form-header section -->
+            
+            <form id="smart-form" enctype="multipart/form-data" method="POST">
+
+            	<div class="form-body"> 
+                
+                    <div class="section">
+                        <div class="dropzone" id="myDropzone">
+                            <h3 class="dz-drop-title"> Drop files here or </h3>
+                            <p class="dz-clicker"> <span> Browse File </span> </p>                                                            
+                            <div class="fallback">
+                                <input name="file" type="file">
+                            </div>
+                        </div>                        
+                    </div><!-- end section -->
+                        
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Send Form </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+
+</body>
+</html>

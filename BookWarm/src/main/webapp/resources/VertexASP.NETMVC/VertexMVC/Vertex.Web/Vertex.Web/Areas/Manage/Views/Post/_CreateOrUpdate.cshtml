@@ -1,0 +1,264 @@
+﻿@model PostModel
+
+@{ bool isNew = !(Model != null && Model.Id > 0); }
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <ul class="nav nav-pills" id="component-1" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active show" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="true">
+                <i class="fas fa-pencil-alt fs-14 mr-1"></i> General
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#component-1-2" role="tab" aria-controls="component-1-2" aria-selected="false">
+                <i class="fa fa-comments fs-14 mr-1"></i> Comments
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#component-1-3" role="tab" aria-controls="component-1-3" aria-selected="false">
+                <i class="fa fa-info-circle fs-14 mr-1"></i> Info
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content mt-4" id="component-1-content">
+        <div class="tab-pane fade show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
+            @if (!isNew)
+            {
+                <div class="mb-4">
+                    @Html.LabelFor(x => x.Url, new { @class = "m-0 fs-14 mr-2" })
+                    <a href="/@Model.Url" target="_blank" class="m-link">@Model.Url</a> 
+                    <i class="fas fa-external-link-alt ml-1 mr-1 fs-13 text-primary"></i>
+                </div>
+            }
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-pencil-alt mr-3 fs-14"></i>
+                        @Html.LabelFor(x => x.Title, new { @class = "m-0 fs-14" })
+                    </span>
+                </div>
+                @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <span class="text-danger">@Html.ValidationMessageFor(x => x.FullContent)</span>
+                @Html.Vertex().HtmlEditorFor(x => x.FullContent)
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-eye mr-3 fs-14"></i>
+                                @Html.LabelFor(x => x.ViewName, new { @class = "m-0 fs-14" })
+                            </span>
+                        </div>
+                        @Html.DropDownListFor(x => x.ViewName, new SelectList(Model.AvailableViewNames), "Select", new { @class = "form-control", })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-pencil-alt mr-3 fs-14"></i>
+                                @Html.LabelFor(x => x.PostFormat, new { @class = "m-0 fs-14" })
+                            </span>
+                        </div>
+
+                        @Html.DropDownListFor(x => x.PostFormat, new SelectList(Model.PostFormats), "Select", new { @class = "form-control", })
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3" id="postFormatValueWrap" style="display:none">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-pencil-alt mr-3 fs-14"></i>
+                        @Html.LabelFor(x => x.PostFormatValue, new { @class = "m-0 fs-14", @id = "postFormatValueLabel" })
+                    </span>
+                </div>
+                @Html.TextBoxFor(x => x.PostFormatValue, new { @class = "form-control", })
+            </div>
+            
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-pencil-alt mr-3 fs-14"></i>
+                        @Html.LabelFor(x => x.CategoryId, new { @class = "m-0 fs-14" })
+                    </span>
+                </div>
+                @Html.DropDownListFor(x => x.CategoryId, new SelectList(Model.Categories, "Id", "Name"), "Select Category", new { @class = "form-control" })
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text pr-2">
+                        <i class="fa fa-tags mr-3 fs-14"></i>
+                        @Html.LabelFor(x => x.Tags, new { @class = "m-0 fs-14" })
+                    </span>
+                </div>
+                @Html.ListBoxFor(model => model.Tags, Model.AvailableTags, new { @class = "form-control", multiple = "multiple", data_tags = "true" })
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group disabled mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-calendar-alt mr-3 fs-14"></i>
+                                @Html.LabelFor(x => x.CreateDate, new { @class = "m-0 fs-14" })
+                            </span>
+                        </div>
+                        @Html.TextBoxFor(x => x.CreateDate, new { @class = "form-control", @disabled = true })
+                    </div>
+                </div>
+                @if (!isNew)
+                {
+                    <div class="col-md-6">
+                        <div class="input-group disabled mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-calendar-alt mr-3 fs-14"></i>
+                                    @Html.LabelFor(x => x.UpdateDate, new { @class = "m-0 fs-14" })
+                                </span>
+                            </div>
+                            @Html.TextBoxFor(x => x.UpdateDate, new { @class = "form-control", @disabled = true })
+                        </div>
+                    </div>
+                }
+            </div>
+            
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            @Html.CheckBoxFor(m => m.IsActive, new { @class = "custom-control-input" })
+                            @Html.LabelFor(m => m.IsActive, new { @class = "custom-control-label" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            @Html.CheckBoxFor(m => m.AllowComment, new { @class = "custom-control-input" })
+                            @Html.LabelFor(m => m.AllowComment, new { @class = "custom-control-label" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            @Html.CheckBoxFor(m => m.ApproveComment, new { @class = "custom-control-input" })
+                            @Html.LabelFor(m => m.ApproveComment, new { @class = "custom-control-label" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group mb-3 mt-2">
+                <p class="mb-1">Poster/Picture</p>
+                @(Html.Vertex().PictureUploaderFor(x => x.PictureId).EntityName("Post").Circle(false).Width("320px").Height("150px").DefaultPictureUrl(""))
+            </div>
+
+            <div class="row">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="form-group mt-4 pt-4 border-top">
+                        <button type="submit" name="action:@(isNew ? "Create": "Edit")" class="btn btn-primary btn-sm btn-wide transition-hover mr-2">
+                            <i class="fa fa-save mr-1 fs-14"></i> Save
+                        </button>
+
+                        @if (!isNew)
+                        {
+                            @(Html.Vertex().ConfirmModal("Delete", "Post", new { @id = Model.Id })
+                                        .Title("Confirm Delete")
+                                        .Content("Are you sure do you want to delete ?")
+                                        .For(Html.Vertex().Button().Text("Delete").Color(BootstrapColor.Secondary).Size(ButtonSize.Small))
+                            )
+                        }
+
+                        <div class="d-inline-block">
+                            <span class="mx-2 text-light font-weight-light fs-15">or</span>
+                            <i class="fas fa-long-arrow-alt-left fs-13 text-primary o-8"></i>
+                            <a href="@Url.Action("List", "Post")" class="m-link fs-15"> Back to list</a>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="component-1-2" role="tabpanel" aria-labelledby="component-1-2">
+            <div class="row">
+                <div class="col-md-12">
+                    @(Html.Telerik().Grid<CommentListModel>()
+                        .Name("SocialIcons")
+                        .BindTo(Model.Comments)
+                        .DataKeys(keys => { keys.Add(x => x.Id); })
+                        .DataBinding(dataBinding =>
+                        {
+                            dataBinding.Ajax()
+                                .Select("CommentList", "Post", new { postId = Model.Id })
+                                .Update("CommentUpdate", "Post", new { postId = Model.Id })
+                                .Delete("CommentDelete", "Post");
+                        })
+                        .Columns(columns =>
+                        {
+                            columns.Bound(x => x.IsMember).Centered();
+                            columns.Bound(x => x.FullName).Width("20%");
+                            columns.Bound(x => x.Comment).Width("42%");
+                            columns.Bound(x => x.Approved).Centered().Width("6%");
+                            columns.Command(commands => {
+                                              commands.Edit();
+                                              commands.Delete();
+                                          }).HtmlAttributes(new { align = "right" }).Width("27%");
+                        })
+                    )
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="component-1-3" role="tabpanel" aria-labelledby="component-1-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        View Count: <strong class="text-dark">@Model.ViewCount</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#PostFormat").change(togglePostFormat);
+        togglePostFormat();
+    });
+
+    function togglePostFormat() {
+        var selectedPostFormat = $("#PostFormat").val();
+
+        if (selectedPostFormat == 'Standard') {
+            $('#postFormatValueWrap').hide();
+        }
+        else {
+            $('#postFormatValueWrap').show();
+            if (selectedPostFormat == '@Vertex.Core.Entities.PostFormat.Video') {
+                $('#postFormatValueLabel').text("Video Embed");
+            } else if (selectedPostFormat == '@Vertex.Core.Entities.PostFormat.Audio') {
+                $('#postFormatValueLabel').text("Audio URL");
+            } else if (selectedPostFormat == '@Vertex.Core.Entities.PostFormat.Quote') {
+                $('#postFormatValueLabel').text("Quote");
+            }
+        }
+    }
+</script>

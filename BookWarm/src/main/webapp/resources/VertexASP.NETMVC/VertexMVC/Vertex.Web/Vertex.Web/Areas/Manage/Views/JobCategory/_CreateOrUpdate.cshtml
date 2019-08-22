@@ -1,0 +1,67 @@
+﻿@model JobCategoryModel
+
+@{ bool isNew = !(Model != null && Model.Id > 0); }
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fas fa-pencil-alt mr-3 fs-14"></i>
+                @Html.LabelFor(x => x.Name, new { @class = "m-0 fs-14" })
+            </span>
+        </div>
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    </div>
+
+    if (!isNew)
+    {
+        <div class="row">
+            <div class="col-md-4">
+                <div class="input-group disabled mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-info-circle mr-3 fs-14"></i>
+                            @Html.LabelFor(x => x.JobCount, new { @class = "m-0 fs-14 text-light" })
+                        </span>
+                    </div>
+                    @Html.TextBoxFor(x => x.JobCount, new { @class = "form-control", @disabled = true })
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="form-group">
+        <div class="custom-control custom-checkbox">
+            @Html.CheckBoxFor(m => m.IsActive, new { @class = "custom-control-input" })
+            @Html.LabelFor(m => m.IsActive, new { @class = "custom-control-label" })
+        </div>
+    </div>
+
+    <div class="form-group mt-6">
+        <div class="form-group mt-4 pt-4 border-top">
+            <button type="submit" name="action:@(isNew ? "Create": "Edit")" class="btn btn-primary btn-sm btn-wide transition-hover mr-2">
+                <i class="fa fa-save mr-1 fs-14"></i> Save
+            </button>
+
+            @if (!isNew)
+            {
+                @(Html.Vertex().ConfirmModal("Delete", "JobCategory", new { @id = Model.Id })
+                            .Title("Confirm Delete")
+                            .Content("Are you sure do you want to delete ?")
+                            .For(Html.Vertex().Button().Text("Delete").Color(BootstrapColor.Secondary).Size(ButtonSize.Small))
+                )
+            }
+
+            <div class="d-inline-block">
+                <span class="mx-2 text-light font-weight-light fs-15">or</span>
+                <i class="fas fa-long-arrow-alt-left fs-13 text-primary o-8"></i>
+                <a href="@Url.Action("List", "JobCategory")" class="m-link fs-15">  Back to list</a>
+            </div>
+        </div> 
+    </div>
+}

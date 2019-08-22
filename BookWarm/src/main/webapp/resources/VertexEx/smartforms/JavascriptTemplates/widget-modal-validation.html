@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart forms - Modal form </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/smart-addons.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+ 
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="js/additional-methods.min.js"></script>
+    <script type="text/javascript" src="js/smartforms-modal.min.js"></script>-->     
+    <script type="text/javascript">
+		jQuery(document).ready(function($){
+			$( "#smart-form" ).validate({
+					errorClass: "state-error",
+					validClass: "state-success",
+					errorElement: "em",
+					onkeyup: false,
+					onclick: false,
+					rules: {
+							firstname: {
+									required: true,
+									minlength: 2
+							},
+							lastname: {
+									required: true,
+									minlength: 2
+							},									
+							emailaddress: {
+									required: true,
+									email: true
+							},							
+							sendermessage: {
+									required: true,
+									minlength: 10
+							}
+					},
+					messages:{
+							firstname: {
+									required: 'Enter your first name',
+									minlength: 'Enter at least 2 characters'
+							},
+							lastname: {
+									required: 'Enter your last name',
+									minlength: 'Enter at least 2 characters'
+							},											
+							emailaddress: {
+									required: 'Enter your email address',
+									email: 'Enter a VALID email address'
+							},													
+							sendermessage: {
+									required: 'Please enter your message',
+									minlength: 'Message must be at least 10 characters'
+							}
+					},
+					highlight: function(element, errorClass, validClass) {
+							$(element).closest('.field').addClass(errorClass).removeClass(validClass);
+					},
+					unhighlight: function(element, errorClass, validClass) {
+							$(element).closest('.field').removeClass(errorClass).addClass(validClass);
+					},
+					errorPlacement: function(error, element) {
+					   if (element.is(":radio") || element.is(":checkbox")) {
+								element.closest('.option-group').after(error);
+					   } else {
+								error.insertAfter(element.parent());
+					   }
+					}
+			});		
+	
+		}); 
+    </script>     
+    
+
+    <!--[if lte IE 9]>
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+       
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smartforms-px">
+    	<a href="#" data-smart-modal="#smart-modal-validation" class="smartforms-modal-trigger">Modal Validation</a>
+    </div>
+    
+    <div id="smart-modal-validation" class="smartforms-modal" role="alert">
+        <div class="smartforms-modal-container">
+        
+            <div class="smartforms-modal-header">
+                <h3>Contact Form</h3>
+                <a href="#" class="smartforms-modal-close">&times;</a>            
+            </div><!-- .smartforms-modal-header -->
+            
+            <div class="smartforms-modal-body">
+                <div class="smart-wrap">
+                    <div class="smart-forms smart-container wrap-full">
+                        <div class="form-body">
+                            <form method="post" action="" id="smart-form">
+                                <div class="frm-row">
+                                    <div class="section colm colm6">
+                                        <label class="field prepend-icon">
+                                            <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="First name">
+                                            <span class="field-icon"><i class="fa fa-user"></i></span>  
+                                        </label>
+                                    </div><!-- end section -->
+                                    <div class="section colm colm6">
+                                        <label class="field prepend-icon">
+                                            <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Last name">
+                                            <span class="field-icon"><i class="fa fa-user"></i></span>  
+                                        </label>
+                                    </div><!-- end section -->
+                                </div><!-- end .frm-row section -->
+                                <div class="frm-row">
+                                    <div class="section colm colm6">
+                                        <label class="field prepend-icon">
+                                            <input type="email" name="emailaddress" id="emailaddress" class="gui-input" placeholder="Email address">
+                                            <span class="field-icon"><i class="fa fa-envelope"></i></span>  
+                                        </label>
+                                    </div><!-- end section -->
+                                    <div class="section colm colm6">
+                                        <label class="field prepend-icon">
+                                            <input type="tel" name="telephone" id="telephone" class="gui-input" placeholder="Telephone number">
+                                            <span class="field-icon"><i class="fa fa-phone-square"></i></span>  
+                                        </label>
+                                    </div><!-- end section -->
+                                </div><!-- end .frm-row section -->
+                                <div class="frm-row">
+                                    <div class="section colm colm6">
+                                        <label class="field prepend-icon">
+                                            <input type="text" name="address" id="address" class="gui-input" placeholder="Physical address">
+                                            <span class="field-icon"><i class="fa fa-map-marker"></i></span>  
+                                        </label>
+                                    </div><!-- end section -->
+                                    <div class="section colm colm6">
+                                        <label class="field select">
+                                            <select name="departments" id="departments">
+                                                <option value="">Select Department</option>
+                                                <option value="Sales">Sales and Marketing</option>
+                                                <option value="Techical">Techical</option>
+                                                <option value="Management">Management</option>
+                                                <option value="ICT">ICT</option>
+                                            </select>
+                                            <i class="arrow double"></i>
+                                        </label>
+                                    </div><!-- end section -->
+                                </div><!-- end .frm-row section -->
+                                <div class="section">
+                                    <label class="field prepend-icon">
+                                        <textarea class="gui-textarea" id="sendermessage" name="sendermessage" placeholder="Your message"></textarea>
+                                        <span class="field-icon"><i class="fa fa-comments"></i></span>
+                                        <span class="input-hint"> 
+                                            <strong>DO NOT:</strong> Be negative or off topic, we expect a great comment... 
+                                        </span>   
+                                    </label>
+                                </div><!-- end section -->
+                                <div class="smartforms-modal-footer">
+                                    <button type="submit" class="button btn-primary"> Send Form </button>
+                                    <button type="reset" class="button"> Cancel </button>
+                                </div><!-- end .form-footer section -->                                                          
+                            </form>                                                                                   
+                        </div><!-- end .form-body section -->
+                    </div><!-- end .smart-forms section -->
+                </div><!-- end .smart-wrap section -->            
+            </div><!-- .smartforms-modal-body -->
+        </div><!-- .smartforms-modal-container -->
+    </div><!-- .smartforms-modal -->
+</body>
+</html>

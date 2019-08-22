@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart forms - multi-steps form </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/smart-addons.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+ 
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.steps.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-custom.min.js"></script>    
+    <script type="text/javascript" src="js/jquery-ui-slider-pips.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-touch-punch.min.js"></script>
+    <script type="text/javascript" src="js/jquery.formShowHide.min.js"></script>-->    
+
+    <script type="text/javascript">
+	
+		jQuery(document).ready(function($){
+			/* Form Steps
+			----------------------------------------------- */		
+			$("#smart-form").steps({
+				headerTag: "h2",
+				bodyTag: "fieldset",
+				transitionEffect: "slideLeft",
+				autoFocus: true,
+				labels: {
+					finish: "Submit Form",
+					next: "Continue",
+					previous: "Go Back",
+					loading: "Loading..." 
+				}				
+			});	
+				
+			/* Project datepicker range
+			----------------------------------------------- */			
+			$("#start_date").datepicker({
+				defaultDate: "+1w",
+				changeMonth: false,
+				numberOfMonths: 1,
+				prevText: '<i class="fa fa-chevron-left"></i>',
+				nextText: '<i class="fa fa-chevron-right"></i>',
+				onClose: function( selectedDate ) {
+					$( "#end_date" ).datepicker( "option", "minDate", selectedDate );
+				}
+			});
+			
+			$("#end_date").datepicker({
+				defaultDate: "+1w",
+				changeMonth: false,
+				numberOfMonths: 1,
+				prevText: '<i class="fa fa-chevron-left"></i>',
+				nextText: '<i class="fa fa-chevron-right"></i>',			
+				onClose: function( selectedDate ) {
+					$( "#start_date" ).datepicker( "option", "maxDate", selectedDate );
+				}
+			});
+			
+			/* The budget slider 
+			------------------------------------------------------ */
+			$( "#budget_slider" ).slider({
+				range: "min",
+				animate: true,
+				value: 1000,
+				min: 500,
+				max: 3000,
+				step: 500,
+				slide: function(event, ui) {
+					$("#budget").val("$" + ui.value);
+				}
+			});
+						
+			$("#budget").val( "$" + $("#budget_slider").slider("value"));
+			$("#budget_slider").slider("pips", { rest: "label", prefix: "$", suffix: "" });
+			$("#budget_slider").slider("float", { prefix: "$", suffix: "", pips: true });
+			
+			/* Show hide payment options
+			------------------------------------------------------- */
+			$('.smartfm-ctrl').formShowHide();
+					
+		});    
+    </script>     
+    
+
+    <!--[if lte IE 9]>
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+       
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-1">
+        
+            	<div class="form-body stp-two">
+                 <form method="post" action="php/formprocess.php" id="smart-form">
+                            <h2>Your Details</h2>
+                            <fieldset>
+                            
+                                <div class="frm-row">
+                                    <div class="section colm colm6">
+                                        <label class="field prepend-icon">
+                                            <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="First name">
+                                            <span class="field-icon"><i class="fa fa-user"></i></span>  
+                                        </label>
+                                    </div><!-- end section -->
+                                    
+                                    <div class="section colm colm6">
+                                        <label class="field prepend-icon">
+                                            <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Last name">
+                                            <span class="field-icon"><i class="fa fa-user"></i></span>  
+                                        </label>
+                                    </div><!-- end section -->
+                                </div><!-- end .frm-row section -->
+                                
+                                <div class="frm-row">
+                                    <div class="section colm colm6">
+                                        <label class="field prepend-icon">
+                                            <input type="email" name="emailaddress" id="emailaddress" class="gui-input" placeholder="Email address">
+                                            <span class="field-icon"><i class="fa fa-envelope"></i></span>  
+                                        </label>
+                                    </div><!-- end section -->
+                                    
+                                    <div class="section colm colm6">
+                                        <label class="field prepend-icon">
+                                            <input type="tel" name="telephone" id="telephone" class="gui-input" placeholder="Telephone number">
+                                            <span class="field-icon"><i class="fa fa-phone-square"></i></span>  
+                                        </label>
+                                    </div><!-- end section -->
+                                </div><!-- end .frm-row section -->
+                                
+                                <div class="section">
+                                    <label class="field prepend-icon">
+                                        <textarea class="gui-textarea" id="selfdetails" name="selfdetails" placeholder="More personal details"></textarea>
+                                        <span class="field-icon"><i class="fa fa-comments"></i></span>
+                                        <span class="input-hint"> 
+                                            <strong>More Details:</strong> add more specific details about yourself
+                                        </span>   
+                                    </label>
+                                </div><!-- end section -->                                                                 
+
+                            </fieldset>
+            
+                            <h2>Project Details</h2>
+                            <fieldset>
+                            
+                                <div class="frm-row">
+                                    <div class="section colm colm6">
+                                        <label class="field prepend-icon">
+                                            <input type="text" name="project_title" id="project_title" class="gui-input" placeholder="Project title">
+                                            <span class="field-icon"><i class="fa fa-line-chart"></i></span>  
+                                        </label>
+                                    </div><!-- end section -->
+                                	
+                                    <div class="section colm colm6">
+                                        <label class="field prepend-icon">
+                                            <input type="text" name="contact_person" id="contact_person" class="gui-input" placeholder="Contact person">
+                                            <span class="field-icon"><i class="fa fa-male"></i></span>  
+                                        </label>
+                                    </div><!-- end section -->               
+                                </div><!-- end frm-row section -->
+                                
+                                <div class="frm-row">
+                                    <div class="section colm colm6">
+                                        <label class="field prepend-icon">
+                                            <input type="text" name="start_date" id="start_date" class="gui-input" placeholder="Project start date">
+                                            <span class="field-icon"><i class="fa fa-calendar"></i></span>  
+                                        </label>
+                                    </div><!-- end section -->
+                                	
+                                    <div class="section colm colm6">
+                                        <label class="field prepend-icon">
+                                            <input type="text" name="end_date" id="end_date" class="gui-input" placeholder="Project end date">
+                                            <span class="field-icon"><i class="fa fa-calendar-o"></i></span>  
+                                        </label>
+                                    </div><!-- end section -->               
+                                </div><!-- end frm-row section -->
+                                
+                                <div class="section spacer-b40">
+                                    <div class="spacer-b15">
+                                        <label for="amount">Project Budget:</label>
+                                        <input type="text" id="budget" class="slider-input"> 
+                                    </div><!-- end .spacer -->                   
+                                    <div class="slider-wrapper blue-slider">
+                                        <div id="budget_slider"></div>
+                                    </div><!-- end .slider-wrapper -->
+                                </div><!-- end section --> 
+                                
+                                <div class="section">
+                                    <label class="field prepend-icon">
+                                        <textarea class="gui-textarea" id="projectdetails" name="projectdetails" placeholder="Project details"></textarea>
+                                        <span class="field-icon"><i class="fa fa-comments"></i></span>
+                                        <span class="input-hint"> 
+                                            <strong>Project Details:</strong> add more project specific details
+                                        </span>   
+                                    </label>
+                                </div><!-- end section -->                                                                                               
+                                
+                            </fieldset>                    
+                    </form>                                                                                   
+                </div><!-- end .form-body section -->
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+
+</body>
+</html>

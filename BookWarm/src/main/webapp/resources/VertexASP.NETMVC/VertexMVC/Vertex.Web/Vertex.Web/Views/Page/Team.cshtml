@@ -1,0 +1,190 @@
+﻿
+@Html.Vertex().Page().Title("Team").Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = false;
+    settings.ShowSearchIcon = true;
+    settings.StickyType = HeaderStickyType.Shrink;
+    settings.Transparency = HeaderTransparency.Transparent;
+})
+
+
+
+<section class="section m-gab-4 custom-section-2">
+    <div class="container z-index-10">
+        <div class="row">
+            <div class="w-md-80 w-lg-80 text-center mb-3 mx-md-auto">
+                <h2 class="font-weight-medium"> Hello, We Are <span class="text-primary">Vertex</span> </h2>
+            </div>
+            <div class="col-md-12 text-center">
+                <p class="">
+                    Meet the passionate people that create top <br />
+                    grossing apps. <a href="#Openings" class="anim-link">Join us <span class="icon-arrow-right ml-1"></span></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="m-gab-0-top">
+    <div class="container">
+        <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-3">
+            <h5>Core Team</h5>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                @(Html.Vertex().TeamMember().DisplayCount(3))
+            </div>
+        </div>
+
+        <div class="row justify-content-center m-gab-3-top">
+            <div class="col-lg-8">
+                <div class="media">
+                    <img alt="" class="rounded-circle mr-5 mt-2" src="/Content/img/avatar/avatar3.jpg" style="width: 100px;">
+                    <div class="media-body">
+                        <h5>Message from CEO</h5>
+                        <blockquote class="blockquote">
+                            <p class="lead">
+                                "Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                                Cras purus odio vestibulum in vulputate at tempus viverra."
+                            </p>
+                            <footer class="blockquote-footer text-dark">John Doe <cite title="Source Title">CEO</cite></footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="section m-gab-2-bottom">
+    <div class="container-fluid">
+        <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-9">
+            <h2>Discover more</h2>
+            <p>
+                Get <a href="#">100+ features</a>  out of the box with Vertex’s pricing
+            </p>
+        </div>
+
+        @(Html.Vertex().TeamMember().DisplayCount(3).Variation(TeamMemberVariation.Variation3))
+    </div>
+</section>
+
+
+
+<section class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Our Values</h2>
+                        <p class="lead mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="list-unstyled">
+                            <li class="list-inline-item m-1">
+                                <div class="media border rounded-10rem p-2 px-5 align-items-center">
+                                    <i class="icon-check-2 fs-24 text-primary mr-2"></i>
+                                    <div class="media-body">
+                                        <span>Empathy</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item m-1">
+                                <div class="media border rounded-10rem p-2 px-5 align-items-center">
+                                    <i class="icon-check-2 fs-24 text-primary mr-2"></i>
+                                    <div class="media-body">
+                                        <span>Courtasy</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item m-1">
+                                <div class="media border rounded-10rem p-2 px-5 align-items-center">
+                                    <i class="icon-check-2 fs-24 text-primary mr-2"></i>
+                                    <div class="media-body">
+                                        <span>Thriving</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item m-1">
+                                <div class="media border rounded-10rem p-2 px-5 align-items-center">
+                                    <i class="icon-check-2 fs-24 text-primary mr-2"></i>
+                                    <div class="media-body">
+                                        <span>Craftsmanship</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item m-1">
+                                <div class="media border rounded-10rem p-2 px-5 align-items-center">
+                                    <i class="icon-check-2 fs-24 text-primary mr-2"></i>
+                                    <div class="media-body">
+                                        <span>Playfulness</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item m-1">
+                                <div class="media border rounded-10rem p-2 px-5 align-items-center">
+                                    <i class="icon-check-2 fs-24 text-primary mr-2"></i>
+                                    <div class="media-body">
+                                        <span>Solidarity</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item m-1">
+                                <div class="media border rounded-10rem p-2 px-5 align-items-center">
+                                    <i class="icon-check-2 fs-24 text-primary mr-2"></i>
+                                    <div class="media-body">
+                                        <span>Happiness</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section data-overlay="2" class="vertical-center" style="min-height:600px;background-image:url(/Content/img/hero/careers.jpg) ">
+    <div class="container">
+        <div class="row align-items-center text-center">
+            <div class="col-md-12">
+                <h1 class="fs-40 text-white">The Easiest Way to Get New Job</h1>
+                <p class="mb-4 text-white">
+                    Semper lacus cursus porta, feugiat primis ultrice ligula risus auctor <br />
+                    rhoncus purus ipsum primis in cubilia vitae laoreet augue
+                </p>
+                <a href="#" class="btn btn-primary transition-hover mr-3">View More</a>
+                <a href="#" class="m-link-light">or build your own app</a>
+            </div>
+        </div>
+    </div>
+    <!--<div class="oval-divider--bottom oval-divider--1"></div>-->
+</section>
+
+
+
+<section class="section bg-light" id="Openings">
+    <div class="container">
+        <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-9">
+            <h2 class="">All <span class="font-weight-semi-bold">Openings</span></h2>
+            <p>Our goal is to power innovation, wherever that may be.</p>
+        </div>
+
+        @Html.Vertex().Jobs()
+         
+    </div>
+</section>
+
+
+
+
+@Html.Vertex().Footer()

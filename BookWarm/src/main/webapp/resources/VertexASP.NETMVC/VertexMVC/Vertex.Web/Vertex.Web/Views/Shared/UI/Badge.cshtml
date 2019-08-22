@@ -1,0 +1,5 @@
+﻿@model Badge
+
+<span class="badge @Model.GetCssClass()" @Model.GetStyle() @Model.GetHtmlAtributes()>
+    @Html.Raw(Model.Text)
+</span>

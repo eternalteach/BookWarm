@@ -1,0 +1,190 @@
+﻿
+@{ ViewBag.Title = "Typing"; }
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = false;
+    settings.StickyType = HeaderStickyType.Shrink;
+    settings.BorderBottom = HeaderBorderBottom.Light;
+})
+
+@Html.Partial("_Banner", "Typing")
+
+
+@Html.Vertex().Section().Size(SectionSize.Small).ContentTemplate(@<text>
+
+    <div class="container">
+        <div class="row justify-content-center">
+
+
+            <!--
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            | Sidebar
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            !-->
+            <div class="col-md-3">
+                <aside id="sidebar" class="sidebar sidebar-sticky">
+                    <ul class="nav nav-sidebar nav-sidebar-hero nav-sidebar-pill" data-accordion="true">
+                        <li class="nav-item"><a class="nav-link" href="#Default">Default</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#Speed">Speed & BackSpeed</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#Loop">Loop</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#Delay">Delay</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#methods">Methods</a> </li>
+                    </ul>
+                </aside>
+            </div>
+
+
+            <div class="col-md-7">
+
+
+                <div class="px-6 py-6 bg-gray mb-9" id="Default">
+                    <header class="mb-6">
+                        <h3>Default</h3>
+                        <hr>
+                        <p class="lead-1">Use <code>@@Html.Vertex().Typing()</code> method to create a typing</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-1" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-1-2" role="tab" aria-controls="component-1-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-1-content">
+                        <div class="tab-pane fade show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
+                          <h5>Our template is @Html.Vertex().Typing().Text("beautiful, super fast, so clean, awesome!").AppendCssClass("text-primary") </h5> 
+                        </div>
+                        <div class="tab-pane fade" id="component-1-2" role="tabpanel" aria-labelledby="component-1-2">
+                            <pre><code class="language-csharp">@@Html.Vertex().Typing()
+    .Text("beautiful, super fast, so clean, awesome!")</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="px-6 py-6 bg-gray mb-9" id="Speed">
+                    <header class="mb-6">
+                        <h3>Speed & Back Speed</h3>
+                        <hr>
+                        <p class="lead-1">use <code>.BackSpeed(int backSpeed)</code> method to set speed</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-2" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-2-1" role="tab" aria-controls="component-2-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-2-2" role="tab" aria-controls="component-2-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-2-content">
+                        <div class="tab-pane fade show active" id="component-2-1" role="tabpanel" aria-labelledby="component-2-1">
+                            <p class="mb-0">Speed</p>
+                            <h5>Our template is @Html.Vertex().Typing().Text("beautiful, super fast, so clean, awesome!").Speed(80).AppendCssClass("text-primary") </h5> 
+                            <br />
+                            <p class="mb-0">Back Speed</p>
+                            <h5>Our template is @Html.Vertex().Typing().Text("beautiful, super fast, so clean, awesome!").BackSpeed(75).AppendCssClass("text-primary") </h5> 
+                        </div>
+                        <div class="tab-pane fade" id="component-2-2" role="tabpanel" aria-labelledby="component-2-2">
+                            <pre><code class="language-csharp">@@Html.Vertex().Typing()
+    .Text("beautiful, super fast, so clean, awesome!")
+    .Speed(80)
+
+ @@Html.Vertex().Typing()
+     .Text("beautiful, super fast, so clean, awesome!")
+     .BackSpeed(75)</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="px-6 py-6 bg-gray mb-9" id="Loop">
+                    <header class="mb-6">
+                        <h3>Loop</h3>
+                        <hr>
+                        <p class="lead-1">use <code>.Loop(bool loop)</code> method to set Loop, default value is <code>true</code> </p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-3" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-3-1" role="tab" aria-controls="component-3-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-3-2" role="tab" aria-controls="component-3-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-3-content">
+                        <div class="tab-pane fade show active" id="component-3-1" role="tabpanel" aria-labelledby="component-3-1">
+                            <h5>Our template is @Html.Vertex().Typing().Text("beautiful, super fast, so clean, awesome!").Loop(false) </h5> 
+                        </div>
+                        <div class="tab-pane fade" id="component-3-2" role="tabpanel" aria-labelledby="component-3-2">
+                            <pre><code class="language-csharp">@@Html.Vertex().Typing()
+    .Text("beautiful, super fast, so clean, awesome!")
+    .Loop(false)</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="px-6 py-6 bg-gray mb-9" id="Delay">
+                    <header class="mb-6">
+                        <h3>Delay</h3>
+                        <hr>
+                        <p class="lead-1">use <code>.Delay(int delay)</code> method to set Delay</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-4" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-4-1" role="tab" aria-controls="component-4-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-4-2" role="tab" aria-controls="component-4-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-4-content">
+                        <div class="tab-pane fade show active" id="component-4-1" role="tabpanel" aria-labelledby="component-4-1">
+                            <h5>Our template is @Html.Vertex().Typing().Text("beautiful, super fast, so clean, awesome!").Delay(2500) </h5> 
+                        </div>
+                        <div class="tab-pane fade" id="component-4-2" role="tabpanel" aria-labelledby="component-4-2">
+                            <pre><code class="language-csharp">@@Html.Vertex().Typing()
+    .Text("beautiful, super fast, so clean, awesome!")
+    .Delay(2500)</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="methods" class="mb-9">
+                    <h2 class="h4">Methods <a class="anchorjs-link" href="#methods" aria-label="Anchor" data-anchorjs-icon="#"></a></h2>
+
+                    <table class="table table-bordered bg-white">
+                        <thead>
+                            <tr>
+                                <th style="width:35%">Method</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> <p><code class="highlighter-rouge">.Method(bool value)</code></p> </td>
+                                <td>Comming soon.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</text>)
+
+
+@Html.Vertex().Footer()

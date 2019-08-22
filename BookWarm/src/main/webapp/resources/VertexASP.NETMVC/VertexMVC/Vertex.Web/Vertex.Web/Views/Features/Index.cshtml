@@ -1,0 +1,362 @@
+﻿
+@(Html.Vertex().Page()
+    .Title("Features")
+    .BgColor(BootstrapColor.Light)
+    .Footer()
+    .Header(setting => {
+        setting.Nav = DemoMenu.GetDemoMenu();
+        setting.ShowTopbar = true;
+        setting.Transparency = HeaderTransparency.Transparent;
+    }))
+
+
+
+@Html.Vertex().Section().ContentTemplate(
+    @<text>
+        <div class="container">
+            <div class="row align-items-center pt-6">
+                <div class="col-sm-12 col-lg-6">
+                    <div class="clearfix text-center text-lg-left">
+                        <h1 class="fw-300">
+                            Introducing Vertex MVC.  <br />
+                            Building your site has  <br />
+                            never been @Html.Vertex().Typing(settings => {
+                                   settings.Text = "faster,easier,better"; 
+                                   settings.AppendCssClass("text-dark fw-500");
+                               })
+                        </h1>
+                        <p class="mt-3 mb-4">Vertex is ready to use full functional <br /> ASP.Net MVC web application.  </p>
+
+                        @Html.Vertex().Button("More About Us").Sleek().TransitionHover().ActionLink(Url.Action("Team", "Page")).AppendCssClass("pr-4 pl-4")
+
+                        <span class="o-5 fs-15 mr-1 ml-2">or</span>
+
+                        <a href="@Url.Action("About", "Page")" class="anim-link-2 anim-link-2-primary fs-15">
+                            Read more →
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-6">
+                    <div class="mb-sm-8 mb-md-4 mb-lg-0">
+                        <figure class="ie-main-hero">
+                            @Html.Vertex().SvgInjector().SvgSrc("/Content/img/svg/svg3.svg").NewSrc("/Content/img/hero/svg3_1.jpg")
+
+                            <a href="https://www.youtube.com/watch?v=bmixiVwtDso" class="m-video-link video-player-centered" data-provide="lightbox">
+                                <div class="m-video-link--icon"><i class="fas fa-play"></i></div>
+                                <div class="m-video-link--text text-white">
+                                    <div>Watch</div>
+                                    <div class="font-weight-bold">INTRO VIDEO</div>
+                                </div>
+                            </a>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </text>)
+
+
+
+@Html.Vertex().Section().ContentTemplate(
+    @<text>
+        <div class="container">
+            <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-9">
+                <span class="label label--sm label--secondary mb-2">Core features</span>
+                <h2 class="fs-40">Manage all your projects with ease</h2>
+                <p>We have a streamline work process that defines business <br /> growth.</p>
+            </div>
+
+            <div class="row justify-content-center mb-9">
+                <div class="col-md-11">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-4">    
+                            <div class="text-center">
+                                <img src="~/Content/img/features/asp.net.mvc.png" class="shadow-sm hover-shadow-8 border rounded transition-hover" />
+                                <h4 class="h5 mt-4 mb-2">ASP.NET MVC5</h4>
+                                <p>Vertex written with ASP.NET MVC5. Also <br /> .NET Core version will come later.</p>
+                            </div> 
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="text-center">
+                                <img src="~/Content/img/features/sql.png" class="shadow-sm hover-shadow-8 border rounded transition-hover" />
+                                <h4 class="h5 mt-4 mb-2">MS SQL Server</h4>
+                                <p>Vertex is using MS SQL Server for the database.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="text-center">
+                                <img src="~/Content/img/features/EntityFramework.png" class="shadow-sm hover-shadow-8 border rounded transition-hover" />
+                                <h4 class="h5 mt-4 mb-2">Entity Framework</h4>
+                                <p>Vertex written with Entity Framework and also ready to use migrations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-11">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-4">    
+                            <div class="text-center">
+                                <img src="~/Content/img/features/mp.png" class="shadow hover-shadow-8 border rounded transition-hover" />
+                                <h4 class="h5 mt-4 mb-2">Manage Panel</h4>
+                                <p>Vertex has manage panel, you can easly manage your posts, portfolios, jobs and many more.</p>
+                            </div> 
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="text-center">
+                                <img src="~/Content/img/features/rtu.png" class="shadow-sm hover-shadow-8 border rounded transition-hover" />
+                                <h4 class="h5 mt-4 mb-2">Ready To Use Components</h4>
+                                <p>Vertex has ready to use custom and bootstrap components. You can create components with fluent methods.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="text-center">
+                                <img src="~/Content/img/features/ft.png" class="shadow-sm hover-shadow-8 border rounded transition-hover" />
+                                <h4 class="h5 mt-4 mb-2">Fluent Methods</h4>
+                                <p>It is very easy to create footers, headers or components with fluent methods as you see at above.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </text>)
+
+
+
+
+
+@Html.Vertex().Section().ContentTemplate(@<text>
+    <div class="container">
+        <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-9">
+            <span class="label label--sm label--secondary mb-2">features</span>
+            <h2 class="fs-40"> Why you need to use <br /> this template ? </h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-4 mb-5">
+                @(Html.Vertex().IconBox()
+                        .Icon("icon-diamond")
+                        .Title("Stunning Design")
+                        .Content("Navigation available in bootstrap share markup and styles.")
+                        .Bordered(BootstrapColor.White).HoverShadow().TransitionHover()
+                        .Align(IconBoxAlign.Center))
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 mb-5">
+                @(Html.Vertex().IconBox()
+                        .Icon("icon-chat-1-1")
+                        .Title("Super Faster <span class=\"badge badge-primary ml-2\">Best</span>")
+                        .Content("Navigation available in bootstrap share markup and styles.")
+                        .Bordered(BootstrapColor.White).HoverShadow().TransitionHover()
+                        .Align(IconBoxAlign.Center))
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 mb-5">
+                @(Html.Vertex().IconBox()
+                        .Icon("icon-firewall")
+                        .Title("Completely Secure")
+                        .Content("Navigation available in bootstrap share markup and styles.")
+                        .Bordered(BootstrapColor.White).HoverShadow().TransitionHover()
+                        .Align(IconBoxAlign.Center))
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-lg-4 mb-5">
+                @(Html.Vertex().IconBox()
+                        .Icon("icon-database-search")
+                        .Title("SEO Friendly<span class=\"badge badge-primary ml-2\">Unique</span>")
+                        .Content("Navigation available in bootstrap share markup and styles.")
+                        .Bordered(BootstrapColor.White).HoverShadow().TransitionHover()
+                        .Align(IconBoxAlign.Center)) 
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 mb-5">
+                @(Html.Vertex().IconBox()
+                        .Icon("icon-cloud-download")
+                        .Title("Regular Upload")
+                        .Content("Navigation available in bootstrap share markup and styles.")
+                        .Bordered(BootstrapColor.White).HoverShadow().TransitionHover()
+                        .Align(IconBoxAlign.Center))
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 mb-5">
+                @(Html.Vertex().IconBox()
+                        .Icon("icon-scale-tool-3")
+                        .Title("Fully Responsive")
+                        .Content("Navigation available in bootstrap share markup and styles.")
+                        .Bordered(BootstrapColor.White).HoverShadow().TransitionHover()
+                        .Align(IconBoxAlign.Center))
+            </div>
+        </div>
+    </div>
+</text>)
+
+
+
+
+
+@Html.Vertex().Section(setting => {
+    setting.SectionType = SectionType.ParallaxVideo;
+    setting.Src = "mp4:/Content/video/video_space_cover.mp4";
+    setting.AppendCssClass("text-white text-center ml-0 mr-0 ml-lg-5 mr-lg-5");
+}).ContentTemplate(@<text>
+    <div class="container">
+        <header class="section-header mb-3">
+            <img src="/Content/img/logo-white.png" />
+        </header>
+
+        <p class="white-color fs-24">
+            Our themes power more than <b class="fsx">24,000</b> <br />
+            websites all over the world
+        </p>
+
+        @(Html.Vertex().Button("More About Us")
+                    .Sleek().Color(BootstrapColor.White)
+                    .TransitionHover().Icon("icon-arrow-right-2")
+                    .AppendCssClass("mt-4 pl-4 pr-4")
+                    .ActionLink(Url.Action("About", "Page")))
+    </div>
+</text>)
+
+
+
+
+@Html.Vertex().Section().ContentTemplate(@<text>
+    <div class="container">
+        <div class="w-md-80 w-lg-75 text-center mx-md-auto mb-9">
+            <span class="label label--sm label--secondary mb-2">Manage Panel</span>
+            <h2 class="fs-35">What's include <span class="fw-500">Manage Panel</span> </h2>
+            <p>Join The Ultimate And Awesome Experience</p>
+        </div>
+
+        <div class="row mb-9">
+            <div class="col-md-3">
+                @(Html.Vertex().IconBox()
+                       .Icon("fas fa-user-edit").IconPosition(IconBoxIconPosition.Top)
+                       .Title("Manage Users").Align(IconBoxAlign.Center)
+                       .Content("You can manage users from the manage panel."))
+            </div>
+            <div class="col-md-3">
+                @(Html.Vertex().IconBox()
+                       .Icon("fas fa-user-tag").IconPosition(IconBoxIconPosition.Top)
+                       .Title("Manage Roles").Align(IconBoxAlign.Center)
+                       .Content("You can manage roles from the manage panel."))
+            </div>
+
+            <div class="col-md-3">
+                @(Html.Vertex().IconBox()
+                            .Icon("fas fa-cog").IconPosition(IconBoxIconPosition.Top)
+                            .Title("Manage Settings").Align(IconBoxAlign.Center)
+                            .Content("You can manage <strong>unlimited</strong> settings from the manage panel"))
+            </div>
+            <div class="col-md-3">
+                @(Html.Vertex().IconBox()
+                           .Icon("fas fa-share-alt").IconPosition(IconBoxIconPosition.Top)
+                           .Title("Posts & Categories").Align(IconBoxAlign.Center)
+                           .Content("You can manage post and pictures with file manager.")
+                           .ActionLink("Explore now", "BlogPost", "Features"))
+            </div>
+        </div>
+         
+        <div class="row mb-9">
+            <div class="col-md-3">
+                @(Html.Vertex().IconBox()
+                            .Icon("fas fa-comments").IconPosition(IconBoxIconPosition.Top)
+                            .Title("Post Comments").Align(IconBoxAlign.Center)
+                            .Content("You can manage post comments from the manage panel."))
+            </div>
+
+            <div class="col-md-3">
+                @(Html.Vertex().IconBox()
+                            .Icon("fas fa-briefcase").IconPosition(IconBoxIconPosition.Top)
+                            .Title("Portfolios & Categories").Align(IconBoxAlign.Center)
+                            .Content("You can manage portfolio, categories and gallery from the manage panel.")
+                            .ActionLink("Explore now", "Jobs", "Features"))
+            </div>
+
+            <div class="col-md-3">
+                @(Html.Vertex().IconBox()
+                            .Icon("fas fa-user-tie").IconPosition(IconBoxIconPosition.Top)
+                            .Title("Jobs & Categories").Align(IconBoxAlign.Center)
+                            .Content("You can manage jobs and jobs categories from the manage panel")
+                            .ActionLink("Explore now", "Portfolio", "Features"))
+            </div>
+
+            <div class="col-md-3">
+                @(Html.Vertex().IconBox()
+                            .Icon("fas fa-user-tie").IconPosition(IconBoxIconPosition.Top)
+                            .Title("Apply Jobs").Align(IconBoxAlign.Center)
+                            .Content("You can manage apllyed jobs from the manage panel."))
+            </div>
+        </div>
+         
+        <div class="row mb-9">
+  
+            <div class="col-md-3">
+                @(Html.Vertex().IconBox()
+                            .Icon("fas fa-envelope-open-text").IconPosition(IconBoxIconPosition.Top)
+                            .Title("Manage Contacts").Align(IconBoxAlign.Center)
+                            .Content("You can manage contacts from the manage panel."))
+            </div>
+
+            <div class="col-md-3">
+                @(Html.Vertex().IconBox()
+                            .Icon("fas fa-quote-right").IconPosition(IconBoxIconPosition.Top)
+                            .Title("Clients & Testimonials").Align(IconBoxAlign.Center)
+                            .Content("You can manage clients and testimonials from the manage panel.")
+                            .ActionLink("Explore now", "Portfolio", "Features"))
+            </div>
+             
+            <div class="col-md-3">
+                @(Html.Vertex().IconBox()
+                            .Icon("fas fa-users").IconPosition(IconBoxIconPosition.Top)
+                            .Title("Team Members").Align(IconBoxAlign.Center)
+                            .Content("You can manage team members from the manage panel.")
+                            .ActionLink("Explore now", "Jobs", "Features"))
+            </div>
+
+            <div class="col-md-3">
+                @(Html.Vertex().IconBox()
+                            .Icon("fas fa-at").IconPosition(IconBoxIconPosition.Top)
+                            .Title("Subscribers").Align(IconBoxAlign.Center)
+                            .Content("You can manage subscribers from the manage panel."))
+            </div> 
+
+        </div>
+
+    </div>
+</text>)
+
+
+
+@Html.Vertex().Section().Size(SectionSize.Small).SectionType(SectionType.Colored).BgColor(BootstrapColor.Secondary).AppendCssClass("border").ContentTemplate(@<text>
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-sm-6">
+                <h2 class="h4 text-white mb-0 text-right">Simple is the best!</h2>
+            </div>
+            <div class="col-sm-6">
+                    @Html.Vertex().Button("Buy Vertex").TransitionHover().Color(BootstrapColor.White).Wide()
+   
+            </div>
+        </div>
+    </div> 
+</text>)
+
+
+@Html.Vertex().Section().ContentTemplate(@<text>
+    <div class="container">
+        <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-9">
+            <span class="label label--sm label--secondary mb-2">Testimonials</span>
+            <h2 class="fs-40"> What people are saying </h2>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                @(Html.Vertex().Testimonials().DisplayCount(8) )
+            </div>
+        </div>
+    </div>
+</text>)
+
+
+
+
+ 

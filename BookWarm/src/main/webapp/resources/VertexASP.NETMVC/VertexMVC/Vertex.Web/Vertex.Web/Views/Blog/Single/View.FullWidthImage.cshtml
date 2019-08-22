@@ -1,0 +1,113 @@
+﻿@model PostDetailModel
+@{
+    ViewBag.Title = Model.Title;
+}
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+})
+
+@Html.Vertex().ShareButtons()
+
+<section data-scrim-top="9" class="bg-img m-gab-4-top m-gab-3-bottom" style="background-image:url(@Model.PicturePath);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="clearfix pb-2">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-transparent pr-0 pl-0 mb-0">
+                            <li class="breadcrumb-item"><a class="text-white-50" href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a class="text-white-50" href="#">Blog</a></li>
+                            <li class="breadcrumb-item active text-white-50 o-4" aria-current="page">Single</li>
+                        </ol>
+                    </nav>
+                    <h2 class="text-white font-weight-bold fs-50">
+                        @Html.Raw(Model.Title)
+                    </h2>
+
+                    <div class="d-flex align-items-center mb-5 mt-4">
+                        <div class="avatar mr-4">
+                            <img class="img-fluid rounded-circle" src="@Model.User.Avatar.FilePath" alt="Image Description">
+                        </div>
+                        <div class="mr-6">
+                            <div class="text-white-50">Author</div>
+                            <a href="/User/@Model.User.UserName" class="underline text-white" tabindex="0">@Model.User.UserName</a>
+                        </div>
+                        <div class="mr-6">
+                            <div class="text-white-50">Comments</div>
+                            <a href="#comments" class="underline text-white" tabindex="0">@Model.CommentCount Comments </a> <span class="icon-arrow-right ml-1 text-white"></span>
+                        </div>
+                        <div class="mr-6">
+                            <div class="text-white-50">Published</div>
+                            <a href="#" class="underline text-white" tabindex="0">@Model.CreateDate.ToRelativeFormat()</a>
+                        </div>
+                        @if (Model.UpdateDate.HasValue && Model.CreateDate.ToRelativeFormat() != Model.UpdateDate.Value.ToRelativeFormat())
+                        {
+                            <div class="mr-6">
+                                <div class="text-white-50">Updated</div>
+                                <a href="#" class="underline text-white" tabindex="0">@Model.UpdateDate.Value.ToRelativeFormat()</a>
+                            </div>
+                        }
+                        <div class="">
+                            <div class="text-white-50">Category</div>
+                            <a href="/@Model.CategoryUrl" class="underline text-white" tabindex="0">@Model.CategoryName</a>
+                        </div>
+                    </div>
+
+                    <div>
+                        @foreach (var item in Model.Tags)
+                        {
+                            <a href="#" class="label label--sm label--light mb-2">@item.Name</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="oval-divider--bottom oval-divider--10"></div>
+</section>
+
+<section id="read-all" class="section pt-9">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+
+                @Html.Raw(Model.Content)
+
+                @Html.Vertex().UserShortInfo().User(Model.User).AppendCssClass("my-9")
+
+                @Html.Partial("Single/Partials/_RelatedPosts", Model.RelatedPosts)
+
+                @if (Setting("post.comment.enabled").BoolValue && Model.AllowComment)
+                {
+                    <div class="clearfix my-9 pt-1" id="comments">
+
+                        @Html.Partial("Single/Partials/_Comments", Model.Comments)
+
+                        @Html.Partial("Single/Partials/_AddComment", new AddCommentModel() { PostId = Model.Id, ApproveComment = Model.ApproveComment } )
+
+                    </div>
+                }
+            </div>
+
+            <div class="col-lg-4">
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarSubscribeForm", new SubscriberModel())
+                </div>
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarFollowLinks")
+                </div>
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarLatestPosts")
+                </div>
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarPopularPosts")
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@Html.Vertex().Footer()

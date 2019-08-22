@@ -1,0 +1,172 @@
+﻿@model SettingModel
+
+@{
+    bool isNew = !(Model != null && Model.Id > 0);
+}
+
+@Html.Vertex().Page().Css(@<text>
+    <link href="~/Content/vendor/filemanager/css/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+    <link href="~/Content/vendor/filemanager/css/theme.css" rel="stylesheet" />
+    <link href="~/Content/vendor/filemanager/css/main.css" rel="stylesheet" />
+</text>)
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fa fa-pencil-alt mr-3 fs-14"></i>
+                @Html.LabelFor(x => x.Name, new { @class = "m-0 fs-14" })
+            </span>
+        </div>
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fas fa-pencil-alt mr-3 fs-14"></i>
+                @Html.LabelFor(x => x.Description, new { @class = "m-0 fs-14" })
+            </span>
+        </div>
+        @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+    </div>
+
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fa fa-pencil-alt mr-3 fs-14"></i>
+                @Html.LabelFor(x => x.DataType, new { @class = "m-0 fs-14" })
+            </span>
+        </div>
+        @Html.DropDownListFor(x => x.DataType, new SelectList(Model.DataTypes), "Select", new { @class = "form-control" })
+    </div>
+
+    <div class="input-group custom-textarea mb-3" id="stringValueWrap" style="display:none">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fas fa-pencil-alt mr-3 fs-14"></i>
+                @Html.LabelFor(x => x.StringValue, new { @class = "m-0 fs-14" })
+            </span>
+        </div>
+        @Html.TextAreaFor(x => x.StringValue, new { @class = "form-control", @rows = "3" })
+    </div>
+
+    <div class="input-group mb-3" id="numberValueWrap" style="display:none">
+        <div class="input-group-prepend">
+            <span class="input-group-text pr-3">
+                <i class="fas fa-pencil-alt mr-3 fs-14"></i>
+                @Html.LabelFor(x => x.NumberValue, new { @class = "m-0 fs-14" })
+            </span>
+        </div>
+        <div class="form-control p-0">
+            @Html.Telerik().IntegerTextBoxFor(x => x.NumberValue)
+        </div>
+    </div>
+
+    <div class="mb-3" id="pictureValueWrap" style="display:none">
+        @Html.Vertex().PictureUploaderFor(x => x.PictureValue)
+    </div>
+
+    <div class="input-group border-0 mb-3 switcher shadow-0" id="booleanValueWrap" style="display:none">
+        <div class="input-group-prepend mr-3">
+            <span class="input-group-text bg-transparent">
+                @Html.LabelFor(x => x.BooleanValue, new { @class = "m-0 fs-14" })
+            </span>
+        </div>
+        @Html.EditorFor(x => x.BooleanValue, new { @class = "form-control" })
+    </div>
+
+    <div class="input-group mb-3" id="dateValueWrap" style="display:none">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fas fa-pencil-alt mr-3 fs-14"></i>
+                @Html.LabelFor(x => x.DateValue, new { @class = "m-0 fs-14" })
+            </span>
+        </div>
+        <div class="form-control p-0">
+            @Html.EditorFor(x => x.DateValue, new { pickTime = true })
+        </div>
+    </div>
+
+    <div class="form-group mt-4 pt-4 border-top">
+        <button type="submit" name="action:@(isNew ? "Create": "Edit")" class="btn btn-primary btn-sm btn-wide transition-hover mr-2">
+            <i class="fa fa-save mr-1 fs-14"></i> Save
+        </button>
+
+        @if (!isNew)
+        {
+            @(Html.Vertex().ConfirmModal("Delete", "Setting", new { @id = Model.Id })
+                 .Title("Confirm Delete")
+                 .Content("Are you sure do you want to delete ?")
+                 .For(Html.Vertex().Button().Text("Delete").Color(BootstrapColor.Secondary).Size(ButtonSize.Small))
+            )
+        }
+
+        <div class="d-inline-block">
+            <span class="mx-2 text-light font-weight-light fs-15">or</span>
+            <i class="fas fa-long-arrow-alt-left fs-13 text-primary o-8"></i>
+            <a href="@Url.Action("List", "Setting")" class="m-link fs-15"> Back to list</a>
+        </div>
+    </div>  
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#DataType").change(toggleDataType);
+
+        toggleDataType();
+    });
+
+    function toggleDataType() {
+        var selectedDataType = $("#DataType").val();
+
+        if (selectedDataType == 'String') {
+            $('#stringValueWrap').show();
+            $('#numberValueWrap').hide();
+            $('#pictureValueWrap').hide();
+            $('#booleanValueWrap').hide();
+            $('#dateValueWrap').hide();
+        }
+        else if (selectedDataType == 'Number') {
+            $('#stringValueWrap').hide();
+            $('#numberValueWrap').show();
+            $('#pictureValueWrap').hide();
+            $('#booleanValueWrap').hide();
+            $('#dateValueWrap').hide();
+        }
+        else if (selectedDataType == 'Picture') {
+            $('#stringValueWrap').hide();
+            $('#numberValueWrap').hide();
+            $('#pictureValueWrap').show();
+            $('#booleanValueWrap').hide();
+            $('#dateValueWrap').hide();
+        }
+        else if (selectedDataType == 'Boolean') {
+            $('#stringValueWrap').hide();
+            $('#numberValueWrap').hide();
+            $('#pictureValueWrap').hide();
+            $('#booleanValueWrap').show();
+            $('#dateValueWrap').hide();
+        }
+        else if (selectedDataType == 'Date') {
+            $('#stringValueWrap').hide();
+            $('#numberValueWrap').hide();
+            $('#pictureValueWrap').hide();
+            $('#booleanValueWrap').hide();
+            $('#dateValueWrap').show();
+        }
+        else {
+            $('#stringValueWrap').hide();
+            $('#numberValueWrap').hide();
+            $('#pictureValueWrap').hide();
+            $('#booleanValueWrap').hide();
+            $('#dateValueWrap').hide();
+        }
+    }
+</script>

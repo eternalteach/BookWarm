@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Form validation </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="js/additional-methods.min.js"></script>-->
+    
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+    <script type="text/javascript">
+	
+		jQuery(document).ready(function($){
+		
+  				$(".errorsContainer").hide();
+				
+				$( "#contactform" ).validate({
+
+						errorClass: "state-error",
+						validClass: "state-success",
+						errorElement: "li",
+							
+						rules: {
+								firstname: {
+										required: true
+								},
+								lastname: {
+										required: true
+								},					
+								useremail: {
+										required: true,
+										email: true
+								},
+								gender:{
+										required: true
+								},
+								languages:{
+										required: true
+								}								
+																
+																									
+							
+						}, 
+						messages:{
+								firstname: {
+										required: 'Enter your first name'
+								},
+								lastname: {
+										required: 'Enter your last name'
+								},					
+								useremail: {
+										required: 'Enter your email address',
+										email: 'Enter a VALID email address'
+								},
+								gender:{
+										required: 'Please choose gender'
+								},
+								languages:{
+										required: 'Select laguages spoken'
+								}																		
+						 
+						},
+						invalidHandler: function(form, validator) {
+							$(".errorsContainer").show();
+						},						
+						highlight: function(element, errorClass, validClass) {
+							$(element).closest('.field').addClass(errorClass).removeClass(validClass);
+							if (this.numberOfInvalids() > 0) {
+								$(".errorsContainer").show();
+							}							
+						},
+						unhighlight: function(element, errorClass, validClass) {
+							$(element).closest('.field').removeClass(errorClass).addClass(validClass);
+							if (this.numberOfInvalids() == 0) {
+								$(".errorsContainer").hide();
+							}							
+						},					
+						errorPlacement: function(error, element) {
+							error.appendTo("#smartErrors");
+						}	  											
+				}); 
+		
+		});				
+    
+    </script>
+    
+    
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-pencil-square"></i>Form validation</h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="contactform">
+            	<div class="form-body">
+                
+                    <div class="spacer-b30">
+                    	<div class="tagline"><span> Advanced validation rules </span></div><!-- .tagline -->
+                    </div>
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                            <label for="firstname" class="field prepend-icon">
+                                <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="First name...">
+                                <span class="field-icon"><i class="fa fa-user"></i></span>  
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                            <label for="lastname" class="field prepend-icon">
+                                <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Last name...">
+                                <span class="field-icon"><i class="fa fa-user"></i></span>  
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section -->                                    
+                
+                	<div class="section">
+                    	<label for="useremail" class="field prepend-icon">
+                        	<input type="email" name="useremail" id="useremail" class="gui-input" placeholder="Email address">
+                            <span class="field-icon"><i class="fa fa-envelope"></i></span>  
+                        </label>
+                    </div><!-- end section -->
+                    
+                    
+                    <div class="frm-row">
+                    
+                        <div class="section colm colm6 pad-r40 bdr">
+                            <div class="option-group field">
+                                <label for="female" class="option block">
+                                    <input type="radio" name="gender" id="female" value="female">
+                                    <span class="radio"></span> Female 
+                                </label>
+                                
+                                <label for="male" class="option block spacer-t10">
+                                    <input type="radio" name="gender" id="male" value="male">
+                                    <span class="radio"></span> Male                  
+                                </label>                            
+                                
+                                <label for="other" class="option block spacer-t10">
+                                    <input type="radio" name="gender" id="other" value="other">
+                                    <span class="radio"></span> Other                  
+                                </label>
+                                
+                            </div>
+                                                
+                        </div><!-- end .section section -->                                
+    
+                        
+                        <div class="section colm colm6 pad-l40">
+                            <div class="option-group field">
+                            
+                                <label class="option block">
+                                    <input type="checkbox" name="languages" value="FR">
+                                    <span class="checkbox"></span> French            
+                                </label>
+                          
+                                <label class="option block spacer-t10">
+                                    <input type="checkbox" name="languages" value="EN">
+                                    <span class="checkbox"></span> English              
+                                </label>
+                                
+                                <label class="option block spacer-t10">
+                                    <input type="checkbox" name="languages" value="CH">
+                                    <span class="checkbox"></span> Chinese            
+                                </label>                                
+                                
+                            </div>                        
+                        </div><!-- end section -->
+                        
+                    </div> <!-- end .frm-row section -->
+                    
+                    <!-- custom errors will load here  -->
+                    <div class="notification alert-error errorsContainer">
+                    	<p>The following errors occurred:</p>
+                        <ul id="smartErrors">
+                        
+                        </ul>
+                    </div>                   
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Validate Form </button>
+                    <button type="reset" class="button"> Cancel </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+    
+    <div></div><!-- end section -->
+
+</body>
+</html>

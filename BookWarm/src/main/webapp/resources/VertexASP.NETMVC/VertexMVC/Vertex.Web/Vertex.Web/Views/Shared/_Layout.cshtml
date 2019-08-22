@@ -1,0 +1,146 @@
+﻿@using Vertex.Web.Framework.Extensions
+@using System.Web.Optimization
+
+@{
+    string title = Setting("general.meta.title").Value;
+    string description = Setting("general.meta.description").Value;
+
+    if (ViewBag.Title != null)
+    {
+        title = string.Format("{0} | {1}", ViewBag.Title, title);
+    }
+    else
+    {
+        var prefix = Html.RenderPageWrap("title").ToHtmlString();
+        title = prefix.HasValue() ? string.Format("{0} | {1}", prefix, title) : title; 
+    }
+
+    if (ViewBag.Description != null)
+    {
+        description = ViewBag.Description;
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@Html.Raw(title)</title>
+    <meta name="description" content="@Html.Raw(description)" />
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="@Html.Raw(title)" />
+    <meta itemprop="description" content="@Html.Raw(description)" />
+    <meta itemprop="headline" content="@Html.Raw(title)" />
+    <!-- Open Graph data -->
+    <meta itemprop="og:headline" content="@Html.Raw(title)" />
+    <meta property="og:title" content="@Html.Raw(title)" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="@WebHelper.GetCurrentUrl(true)" />
+    @*<meta property="og:image" content="@Html.Raw(picture)" />*@
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:description" content="@Html.Raw(description)" />
+    <meta property="og:site_name" content="Vertex.net" />
+    @if (ViewBag.CreateDate != null && ViewBag.UpdateDate != null)
+    {
+        <meta property="article:published_time" content="@ViewBag.CreateDate" />
+        <meta property="article:modified_time" content="@ViewBag.UpdateDate" />
+    }
+    <meta property="article:section" content="Personel Blog, Article" />
+    <meta property="article:tag" content="@Html.Raw(Setting("general.slogan").Value)" />
+    <meta property="fb:app_id" content="@Html.Raw(Setting("general.facebook.appid").Value)" />
+    <link rel="canonical" href="@WebHelper.GetCurrentUrl(true)" />
+    <link rel="shortcut icon" type="image/png" href="~/Content/img/favicon.png" />
+
+
+    <!-- Web Fonts  -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
+
+    <!-- Libs CSS -->
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/vendor/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/Content/vendor/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/Content/vendor/streamline-icon/css/streamline-icon.css" rel="stylesheet" />
+    <link href="~/Content/vendor/cubeportfolio/css/cubeportfolio.min.css" rel="stylesheet" />
+    @(Html.Telerik().StyleSheetRegistrar().DefaultGroup(group => group.Add("telerik.common.css")))
+    <link href="~/Content/vendor/editors/summernote/summernote-bs4.css" rel="stylesheet" />
+    <link href="~/Content/css/header.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css/utilities.css" rel="stylesheet" /> 
+
+    @*@Html.RenderCss()*@
+    @Html.RenderPageWrap("css")
+
+    <!-- Skin -->
+    <link rel="stylesheet" href="~/Content/css/skin/default.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/Content/css/custom.css">
+
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/modernizr/modernizr.js"></script>
+    <script src="~/Content/vendor/jquery/jquery-migrate.min.js"></script>
+    <script src="~/Content/vendor/jquery/jquery.visible.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/vendor/slick-slider/slick.js"></script>
+    <script src="~/Content/vendor/svg-injector/svg-injector.min.js"></script>
+
+    <script src="~/Content/js/page.js"></script>
+
+</head>
+<body @Html.RenderPageWrap("body")>
+
+    <div class="wrapper">
+
+        @Html.RenderPageWrap("header")
+
+        <main class="main-content">
+
+            @Html.RenderPageWrap("pagehader")
+
+            @RenderBody()
+
+        </main>
+
+        @Html.RenderPageWrap("footer")
+
+    </div>
+     
+    <script src="~/Content/vendor/cubeportfolio/js/jquery.cubeportfolio.js"></script>
+    <script src="~/Content/js/cubeportfolio.init.js"></script>
+    <script src="~/Content/js/other.js"></script>
+    <script src="~/Content/js/script.js"></script>
+    <script src="~/Content/js/sticky-kit.min.js"></script>
+    <script src="~/Content/js/custom.js"></script>
+
+    <script src="~/Content/js/jquery.validate.js"></script>
+    <script src="~/Content/js/jquery.unobtrusive-ajax.js"></script> 
+    <script src="~/Content/js/jquery-shims.js"></script>
+
+    <script src="~/Content/vendor/underscore/underscore.js"></script>
+    <script src="~/Content/vendor/underscore/underscore.string.js"></script>
+    <script src="~/Content/vendor/underscore/underscore.mixins.js"></script>
+    <script src="~/Content/vendor/moment/moment.js"></script>
+    <script src="~/Content/vendor/datetimepicker/js/tempusdominus-bootstrap-4.js"></script>
+
+    @(Html.Telerik().ScriptRegistrar().jQuery(false).jQueryValidation(false).Globalization(false))
+
+    @Scripts.Render("~/bundles/codemirror")
+    @Styles.Render("~/css/codemirror")
+    @Scripts.Render("~/bundles/summernote")
+    
+    <script src="~/Content/vendor/select2/js/select2.js"></script>
+    <script src="~/Content/js/theme.selectwrapper.js"></script>
+    <script src="~/Content/js/theme.common.js"></script>
+    <script src="~/Content/js/theme.system.js"></script>
+
+    @Scripts.Render("~/bundles/fileupload")
+
+    @*@Html.RenderScript()*@
+    @Html.RenderPageWrap("script")
+
+    @Html.Vertex().NotifyPopup()
+
+</body>
+</html>

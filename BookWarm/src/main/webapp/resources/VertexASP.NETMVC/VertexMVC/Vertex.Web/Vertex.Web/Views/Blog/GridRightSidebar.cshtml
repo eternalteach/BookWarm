@@ -1,0 +1,73 @@
+﻿
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+})
+
+
+
+@Html.Vertex().Section().Overlay(5).Src("../Content/img/hero/h13.jpg").SectionType(SectionType.ParallaxImage).ContentTemplate(@<text>
+
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-9 text-white">
+                <div class="clearfix">
+                    @Html.Vertex().Breadcrumb().Transparent()
+                    <h1>Card View Blog Style</h1>
+                    <p class="lead mb-5">
+                        We are going global <strong class="m-link-light">#LoveToVertex</strong> . To make it happen we are looking for fresh, ambitious talent to join our cause.
+                    </p>
+                    <a href="#read-all" class="btn btn-light btn-sm transition-hover pr-4 pl-4">Read all news</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</text>)
+
+
+
+@Html.Vertex().Section().BgColor(BootstrapColor.Light).ContentTemplate(@<text>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+
+                @Html.Vertex().BlogPosts(BlogPostViewName.Grid).Pageable(6)
+
+            </div>
+
+            <div class="col-lg-4">
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarSubscribeForm", new SubscriberModel())
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarFollowLinks")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarCategories")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarPopularPosts")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarLatestPosts")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarLatestComments")
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</text>)
+
+
+
+@Html.Vertex().Footer()

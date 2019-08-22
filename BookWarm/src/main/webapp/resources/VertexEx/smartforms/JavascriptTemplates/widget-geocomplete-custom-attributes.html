@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Clone Elements </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.geocomplete.min.js"></script>
+	<script type="text/javascript">
+        jQuery(document).ready(function($){
+        
+            $("#geocomplete").geocomplete({
+                map: "#map-2",
+                details: "form ul",
+                detailsAttribute: "data-geo"
+            });
+        
+            $("#find").click(function(){
+                $("#geocomplete").trigger("geocode");
+            });
+        });	  
+    </script> 
+       
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-map-marker"></i>Geocomplete </h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="account2">
+                <div class="form-body"> 
+                
+                    <div class="spacer-b30">
+                        <div class="tagline"><span> Custom Attributes  </span></div><!-- .tagline -->
+                    </div>
+                    
+                    <div class="section">
+                        <div class="smart-widget sm-right smr-80">
+                            <label class="field">
+                                <input type="text" class="gui-input" id="geocomplete" placeholder="Type in an address" value="Empire State Bldg" >
+                            </label>
+                            <button type="button" class="button" id="find"> Find </button>
+                        </div><!-- end .smart-widget section --> 
+                    </div><!-- end section -->
+                    
+                    <div class="map-container"><div class="map-area" id="map-2"></div></div> 
+                    
+                    <ul class="custom-block-list">
+                        <li>Location: <span data-geo="location"></span></li>
+                        <li>Route: <span data-geo="route"></span></li>
+                        <li>Street Number: <span data-geo="street_number"></span></li>
+                        <li>Postal Code: <span data-geo="postal_code"></span></li>
+                        <li>Locality: <span data-geo="locality"></span></li>
+                        <li>Country Code: <span data-geo="country_short"></span></li>
+                        <li>State: <span data-geo="administrative_area_level_1"></span></li>
+                    </ul>                                                           
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Button  </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+
+</body>
+</html>

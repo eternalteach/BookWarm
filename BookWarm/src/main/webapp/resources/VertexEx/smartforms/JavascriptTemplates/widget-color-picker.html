@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Color Picker </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/smart-addons.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.spectrum.min.js"></script>-->
+    
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+    <script type="text/javascript">
+	
+		jQuery(document).ready(function($){
+		
+		
+			/* Function for changing button color 
+			------------------------------------------------- */		
+			function updateButtons(color) {
+				var hexColor = "transparent";
+				if(color) {
+					hexColor = color.toHexString();
+				}
+				$(".btn-primary").css("background", hexColor);
+			}		
+		
+			$("#colorpicker1").spectrum({
+				color: "#FCD208"
+			});		
+		
+			$("#colorpicker2").spectrum({
+				color: "#D15ADE",
+				showInput: true,
+				showPalette: true,
+				palette: [
+					['black', 'white', 'blanchedalmond'],
+					['rgb(255, 128, 0);', 'hsv 100 70 50', 'lightyellow']
+				]
+			});
+			
+			$("#colorpicker3").spectrum({
+				color: "#4587C7",
+				clickoutFiresChange: true,
+				move: function (color) {
+						updateButtons(color);
+				},
+				hide: function (color) {
+						updateButtons(color);
+				}								
+			});		
+		
+			$("#colorpicker4").spectrum({
+				showPaletteOnly: true,
+				showPalette:true,
+				color: 'blanchedalmond',
+				palette: [
+					['black', 'white', 'blanchedalmond',
+					'rgb(255, 128, 0);', 'hsv 100 70 50'],
+					['red', 'yellow', 'green', 'blue', 'violet']
+				]
+			});	
+			
+
+			$("#colorpicker5").spectrum({
+				color: "rgba(255, 128, 0, .5)",
+				showAlpha: true,
+				change: updateButtons
+			});
+			
+			$("#colorpicker6").spectrum({
+				color: "rgba(69, 135, 199, .5)",
+				showAlpha: true,
+				showInput: true,
+				showPalette: true,
+				palette: [
+					["rgba(255, 128, 0, .9)", "rgba(255, 128, 0, .5)"],
+					["hsla(25, 50, 75, .5)", "rgba(100, .5, .5, .8)"]
+				],
+				change: updateButtons
+			});	
+			
+			$("#colorpicker7").spectrum({
+				allowEmpty:true,
+				showInitial: true,
+				showInput: true
+			});	
+			
+			$("#colorpicker8").spectrum({
+				allowEmpty:true,
+				chooseText: "Alright",
+				cancelText: "No way"
+			});									
+		
+	
+			/* Type paste - pickers
+			------------------------------------------------- */
+			$("#typepicker, #pastepicker").spectrum({ 
+				preferredFormat: "hex6",
+				showButtons: false,
+				clickoutFiresChange: true
+			});
+			
+			$("#typepicker, #pastepicker").blur(function() {
+				$(this).spectrum("set", $(this).val());
+			});		
+			
+			/* Bind event handlers for focus and mouseup
+			--------------------------------------------------------------- */		
+			$('#typepicker, #pastepicker').focus(function () { $(this).select(); });
+			$('#typepicker, #pastepicker').mouseup(function (e) { e.preventDefault(); });
+			
+			/* Show all inputs with a colorpicker || hidden by default
+			--------------------------------------------------------------- */			
+			$("#colorpicker1, #colorpicker2, #colorpicker3, #colorpicker4, #colorpicker5, #colorpicker6, #typepicker, #pastepicker").show();
+		
+		});				
+    
+    </script>
+    
+    
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-tint"></i> Color Picker </h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="smart-form">
+            	<div class="form-body">
+                
+                	<div class="frm-row">
+                        <div class="section colm colm6">
+                        	<label for="colorpicker1" class="field-label">Basic Picker</label>
+                            <label class="field sfcolor">
+                            	<input type="text" name="colorpicker1" id="colorpicker1" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                        	<label for="colorpicker2" class="field-label">Picker + Palette</label>
+                            <label class="field sfcolor">
+                            	<input type="text" name="colorpicker2" id="colorpicker2" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                    </div> <!-- end .frm-row section -->
+                    
+                	<div class="frm-row">
+                        <div class="section colm colm6">
+                        	<label for="colorpicker5" class="field-label">Alpha Transparency</label>
+                            <label class="field sfcolor">
+                            	<input type="text" name="colorpicker5" id="colorpicker5" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                        	<label for="colorpicker6" class="field-label">Alpha Pallette</label>
+                            <label class="field sfcolor">
+                            	<input type="text" name="colorpicker6" id="colorpicker6" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                    </div> <!-- end .frm-row section -->                     
+                    
+                	<div class="frm-row">
+                        <div class="section colm colm6">
+                        	<label for="colorpicker4" class="field-label">Palette Only</label>
+                            <label class="field sfcolor">
+                            	<input type="text" name="colorpicker4" id="colorpicker4" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                                            
+                        <div class="section colm colm6">
+                        	<label for="colorpicker3" class="field-label">Update Submit Button</label>
+                            <label class="field sfcolor">
+                            	<input type="text" name="colorpicker3" id="colorpicker3" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                    </div> <!-- end .frm-row section -->                      
+                                   
+                	<div class="frm-row">
+                        <div class="section colm colm6">
+                        	<label for="typepicker" class="field-label">Type HEX Color</label>
+                            <label class="field sfcolor">
+                            	<input type="text" name="typepicker" value="#ff0000" id="typepicker" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                        	<label for="pastepicker" class="field-label">Paste HEX Color</label>
+                            <label class="field sfcolor">
+                            	<input type="text" name="pastepicker" value="#16d951" id="pastepicker" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                    </div> <!-- end .frm-row section --> 
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Submit Form </button>
+                    <button type="reset" class="button"> Cancel </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+
+</body>
+</html>

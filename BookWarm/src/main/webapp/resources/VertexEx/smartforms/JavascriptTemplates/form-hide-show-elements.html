@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Contact Form </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.formShowHide.min.js"></script>--> 
+	<script type="text/javascript">
+		jQuery(document).ready(function($){
+			$('.smartfm-ctrl').formShowHide(); 
+		});    
+    </script>
+    
+    <!--[if lte IE 9]>
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-eye-slash"></i>Conditional Logic</h4>
+          </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="contact">
+            	<div class="form-body">
+                
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                                <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="First name">
+                                <span class="field-icon"><i class="fa fa-user"></i></span>  
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                                <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Last name">
+                                <span class="field-icon"><i class="fa fa-user"></i></span>  
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="spacer-b10">
+                        <p class="small-text fine-grey">Please choose a package (click radio buttons to change package) </p>
+                    </div><!-- end section -->                                    
+                
+                    <div class="section">
+                        <div class="option-group field">
+                            <label class="option">
+                                <input type="radio" name="package" class="smartfm-ctrl" value=""  data-show-id="ctr_personal">
+                                <span class="radio"></span> Personal
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="package" class="smartfm-ctrl" value="" data-show-id="ctr_business" checked>
+                                <span class="radio"></span>  Business                
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="package" class="smartfm-ctrl" value=""  data-show-id="ctr_corporate">
+                                <span class="radio"></span> Corporate               
+                            </label>                                                                   
+                        </div>
+                    </div><!-- end section -->
+                    
+                    <div id="ctr_personal" class="hiddenbox">
+                    
+                        <div class="frm-row">
+                            <div class="colm colm6">
+                                <div class="section">
+                                    <div class="price-box">                                
+                                        <h4><sup>$</sup>49<span class="per-month">/month</span></h4>
+                                        <h5> Starter </h5>
+                                        <div class="spacer spacer-t20 spacer-b20"></div>
+                                        <p>For individuals looking for something simple to get started.</p>
+                                        <div class="spacer spacer-t20 spacer-b20"></div>
+                                        <a href="#" class="button block pushed expand"> Learn more </a>
+                                    </div><!-- end .colm-box section -->
+                                </div><!-- end .section section -->
+                            </div><!-- end .colm section -->
+                            <div class="colm colm6">
+                                <div class="section">
+                                    <div class="price-box selected-box">
+                                        <div class="ribbon-large"> <div class="ribbon-inner">POPULAR</div> </div>
+                                        <h4><sup>$</sup>99<span class="per-month">/month</span></h4>
+                                        <h5> Personal Pro </h5>
+                                        <div class="spacer spacer-t20 spacer-b20"></div>
+                                        <p>For individuals selling over one million plus a year.</p>
+                                        <div class="spacer spacer-t20 spacer-b20"></div>
+                                        <a href="#" class="button btn-primary block pushed expand"> Learn more </a>
+                                    </div><!-- end .colm-box section -->
+                                </div><!-- end .section section -->
+                            </div><!-- end section -->                
+                        </div><!-- end frm-row section -->                     
+                    
+                    </div><!-- .hiddenbox -->
+                    
+                    <div id="ctr_business" class="hiddenbox">
+                    
+                        <div class="frm-row">
+                            <div class="colm colm6">
+                                <div class="section">
+                                    <div class="price-box">                                
+                                        <h4><sup>$</sup>199<span class="per-month">/month</span></h4>
+                                        <h5> Basic </h5>
+                                        <div class="spacer spacer-t20 spacer-b20"></div>
+                                        <p>For businesses looking for something simple to get started.</p>
+                                        <div class="spacer spacer-t20 spacer-b20"></div>
+                                        <a href="#" class="button block pushed expand"> Learn more </a>
+                                    </div><!-- end .colm-box section -->
+                                </div><!-- end .section section -->
+                            </div><!-- end .colm section -->
+                            <div class="colm colm6">
+                                <div class="section">
+                                    <div class="price-box selected-box">
+                                        <div class="ribbon"> <div class="ribbon-inner">HOT</div> </div>
+                                        <h4><sup>$</sup>299<span class="per-month">/month</span></h4>
+                                        <h5> Business Pro </h5>
+                                        <div class="spacer spacer-t20 spacer-b20"></div>
+                                        <p>For businesses selling over one million plus a year.</p>
+                                        <div class="spacer spacer-t20 spacer-b20"></div>
+                                        <a href="#" class="button btn-primary block pushed expand"> Learn more </a>
+                                    </div><!-- end .colm-box section -->
+                                </div><!-- end .section section -->
+                            </div><!-- end section -->                
+                        </div><!-- end frm-row section -->                     
+                    
+                    </div><!-- .hiddenbox -->
+                    
+                    <div id="ctr_corporate" class="hiddenbox">
+                    
+                        <div class="frm-row">
+                            <div class="colm colm6">
+                                <div class="section">
+                                    <div class="price-box">                                
+                                        <h4><sup>$</sup>499<span class="per-month">/month</span></h4>
+                                        <h5> Starter </h5>
+                                        <div class="spacer spacer-t20 spacer-b20"></div>
+                                        <p>For corporates looking for something to get started.</p>
+                                        <div class="spacer spacer-t20 spacer-b20"></div>
+                                        <a href="#" class="button block pushed expand"> Learn more </a>
+                                    </div><!-- end .colm-box section -->
+                                </div><!-- end .section section -->
+                            </div><!-- end .colm section -->
+                            <div class="colm colm6">
+                                <div class="section">
+                                    <div class="price-box selected-box">
+                                        <div class="ribbon"> <div class="ribbon-inner">NEW</div> </div>
+                                        <h4><sup>$</sup>799<span class="per-month">/month</span></h4>
+                                        <h5> Corporate Pro </h5>
+                                        <div class="spacer spacer-t20 spacer-b20"></div>
+                                        <p>For large enterprises selling over one million plus a year.</p>
+                                        <div class="spacer spacer-t20 spacer-b20"></div>
+                                        <a href="#" class="button btn-primary block pushed expand"> Learn more </a>
+                                    </div><!-- end .colm-box section -->
+                                </div><!-- end .section section -->
+                            </div><!-- end section -->                
+                        </div><!-- end frm-row section -->                     
+                    
+                    </div><!-- .hiddenbox --> 
+                    
+                    <div class="spacer-b10">
+                        <p class="small-text fine-grey">Please select payment (choose method to change details) </p>
+                    </div><!-- end section -->                    
+                    
+                    <div class="section colm colm6">
+                        <label class="field select">
+                            <select name="payments" id="payments">
+                                <option value="">Payment Method</option>
+                                <option value="Credit Card" class="smartfm-ctrl" data-show-id="ctr_creditcard" selected>Credit Card</option>
+                                <option value="Check" class="smartfm-ctrl" data-show-id="ctr_check">Check</option>
+                                <option value="Other" class="smartfm-ctrl" data-show-id="ctr_other">Other</option>
+                            </select>
+                            <i class="arrow double"></i>
+                        </label>
+                    </div><!-- end section -->
+                    
+                    <div id="ctr_creditcard" class="hiddenbox">
+                    
+                        <div class="frm-row">
+                            <div class="section colm colm6">
+                                <label class="field prepend-icon">
+                                    <input type="email" name="emailaddress" id="emailaddress" class="gui-input" placeholder="Email address">
+                                    <span class="field-icon"><i class="fa fa-user"></i></span>  
+                                </label>
+                            </div><!-- end section -->
+                            
+                            <div class="section colm colm6">
+                                <label class="field prepend-icon">
+                                    <input type="text" name="cardName" id="cardName" class="gui-input" placeholder="Card name">
+                                    <span class="field-icon"><i class="fa fa-user"></i></span>   
+                                </label>
+                            </div><!-- end section -->
+                        </div><!-- end frm-row section -->
+                        
+                        <div class="section">
+                            <label class="field prepend-icon">
+                                <input type="text" name="cardNumber" id="cardNumber" class="gui-input" placeholder="Card number">
+                                <span class="field-icon"><i class="fa fa-credit-card"></i></span>   
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="frm-row">
+                            <div class="section colm colm6">
+                                <label class="field prepend-icon">
+                                    <input type="text" name="expiry" id="expiry" class="gui-input" placeholder="MM/YY">
+                                    <span class="field-icon"><i class="fa fa-user"></i></span>  
+                                </label>
+                            </div><!-- end section -->
+                            <div class="section colm colm6">
+                                <label class="field prepend-icon">
+                                    <input type="text" name="CCV" id="CVV" class="gui-input" placeholder="Card Verification Value">
+                                    <b class="tooltip tip-left-top"><em> This is a 3 digit number on the back of your credit and debit cards. </em></b>
+                                    <span class="field-icon"><i class="fa fa-credit-card"></i></span>   
+                                </label>
+                            </div><!-- end section -->
+                        </div><!-- end frm-row section -->
+                    </div><!-- .hiddenbox --> 
+                    
+                    <div id="ctr_check" class="hiddenbox">
+                        <div class="frm-row">
+                            <div class="section colm colm6">
+                                <label class="field prepend-icon">
+                                    <input type="text" name="checkNumber" id="checkNumber" class="gui-input" placeholder="Check number">
+                                    <span class="field-icon"><i class="fa fa-user"></i></span>  
+                                </label>
+                            </div><!-- end section -->
+                            <div class="section colm colm6">
+                                <label class="field prepend-icon">
+                                    <input type="text" name="bank" id="bank" class="gui-input" placeholder="Bank details">
+                                    <span class="field-icon"><i class="fa fa-user"></i></span>  
+                                </label>
+                            </div><!-- end section -->
+                        </div><!-- end .frm-row section -->
+                    </div><!-- .hiddenbox --> 
+                     
+                    <div id="ctr_other" class="hiddenbox">
+                        <div class="section">
+                            <label class="field prepend-icon">
+                                <textarea class="gui-textarea" id="otherpayments" name="otherpayments" placeholder="Other payments details"></textarea>
+                                <span class="field-icon"><i class="fa fa-comments"></i></span>
+                                <span class="input-hint"> 
+                                    <strong>Other Details:</strong> please specify payment details
+                                </span>   
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- .hiddenbox -->
+                    
+                    <div class="spacer-b10">
+                        <p class="small-text fine-grey">Use a checkboxes to show notification boxes</p>
+                    </div><!-- end section -->                     
+                    
+                    <div class="section">
+                        <div class="option-group field">
+                            <label class="option">
+                                <input type="checkbox" name="xboxes" value="Error" class="smartfm-ctrl" data-show-id="box_error">
+                                <span class="checkbox"></span> Error           
+                            </label>
+                            <label class="option">
+                                <input type="checkbox" name="xboxes" value="Success" class="smartfm-ctrl" data-show-id="box_success">
+                                <span class="checkbox"></span> Success          
+                            </label>
+                            <label class="option">
+                                <input type="checkbox" name="xboxes" value="Information" class="smartfm-ctrl" data-show-id="box_info">
+                                <span class="checkbox"></span> Information            
+                            </label>
+                            <label class="option">
+                                <input type="checkbox" name="xboxes" value="warning" class="smartfm-ctrl" data-show-id="box_warning">
+                                <span class="checkbox"></span> Warning            
+                            </label>                            
+                        </div><!-- end .option-group section --> 
+                    </div><!-- end section -->                    
+                    
+                    <div class="notification alert-error spacer-t10" id="box_error">
+                        <p>Error Notification</p>                                 
+                    </div><!-- end .notification section -->
+                    
+                    <div class="notification alert-success spacer-t10" id="box_success">
+                        <p>Success Notification</p>                                 
+                    </div><!-- end .notification section -->                     
+                    
+                    <div class="notification alert-info spacer-t10"  id="box_info">
+                        <p>Info Notification </p>                                 
+                    </div><!-- end .notification section -->
+                    
+                    <div class="notification alert-warning spacer-t10" id="box_warning">
+                        <p>Warning Notification</p>                                 
+                    </div><!-- end .notification section -->                           
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary">Submit</button>
+                    <button type="reset" class="button">Cancel</button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+    
+    <div></div><!-- end section -->
+
+</body>
+</html>

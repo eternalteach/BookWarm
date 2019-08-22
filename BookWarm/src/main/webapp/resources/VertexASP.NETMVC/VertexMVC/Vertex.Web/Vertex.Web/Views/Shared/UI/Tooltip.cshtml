@@ -1,0 +1,22 @@
+﻿@model Tooltip
+
+@{
+    string value = Model.HtmlString.HasValue() ? Model.HtmlString : string.Empty;
+    string newContent = string.Empty;
+
+    var index = value.IndexOf(">");
+    if (index < 0)
+    {
+        <strong>Dear developer, this is not html string.</strong>
+        return;
+    }
+    else
+    {
+        string atr = string.Format("{0} data-original-title=\"{1}\"", Model.GetHtmlAtributes(), Model.Text);
+        newContent = value.Insert(index, string.Format(" data-toggle=\"tooltip\" {0} ", atr));
+    }
+}
+
+@Html.Raw(newContent)
+
+

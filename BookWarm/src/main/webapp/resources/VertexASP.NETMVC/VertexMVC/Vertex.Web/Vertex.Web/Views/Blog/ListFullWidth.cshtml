@@ -1,0 +1,25 @@
+﻿
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+})
+
+
+
+@Html.Vertex().Section().ContentTemplate(@<text>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+
+                @Html.Vertex().BlogPosts(BlogPostViewName.ListBottomText).Pageable(3)
+
+            </div>
+        </div>
+    </div>
+
+</text>).Size(SectionSize.Small)
+
+
+
+@Html.Vertex().Footer()

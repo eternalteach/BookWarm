@@ -1,0 +1,271 @@
+﻿
+@Html.Vertex().Page().Title("Home").Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+    settings.Transparency = HeaderTransparency.Transparent;
+    settings.Nav.IsLightText = true;
+    settings.Topbar.IsLightText = true;
+})
+
+
+
+<section class="vertical-center" style="min-height:700px">
+    <div id="svg_parent" class="col-lg-9 col-xl-7 d-none d-sm-block d-lg-block position-absolute top-0 right-0 pr-0">
+        <figure class="ie-main-hero">
+            <img class="js-svg-injector" src="/Content/img/svg/svg2.svg" alt="Image Description"
+                 data-img-info='[{"targetId": "#svg_changing_id", "src": "/Content/img/hero/hx1.jpg"}]'
+                 data-parent="#svg_parent">
+        </figure>
+    </div>
+
+    <div class="container">
+        <div class="row align-items-center pt-12">
+            <div class="col-md-8">
+                <div class="clearfix">
+                    <h2 class="fs-50">
+                        Hello, <span class="font-weight-semi-bold">@Setting("general.meta.title").Value</span> <br />
+                        makes your works <br />
+                            @Html.Vertex().Typing(settings => {
+                                   settings.Text = "beautiful, super fast, so clean, awesome!";
+                                   settings.BackSpeed = 75;
+                                   settings.AppendCssClass("text-primary");
+                               })
+                    </h2>
+
+                    <p class="mt-3 mb-4">You can put any image to right side. We are using svg injector.</p>
+
+                    @Html.Vertex().Button("Get Started").TransitionHover().ActionLink(Url.Action("Index", "Features")).AppendCssClass("pr-5 pl-5")
+
+                    <span class="o-3 fs-15 ml-2 mr-1">or</span>
+                    <a href="#" class="fs-15 anim-link-2 anim-link-2-primary">
+                        Read more →
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 offset-1">
+                <a href="#" class="m-video-link">
+                    <div class="m-video-link--icon"><i class="fas fa-play"></i></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-3 mnt-6">
+                <div class="card clearfix text-center pl-3 pr-3 pt-5 pb-4 shadow-4 mb-5 transition-hover">
+                    <div class="d-inline-block position-relative mb-3">
+                        <i class="icon-folder-search fs-40 shape-icon text-primary"> </i>
+                        <img src="/Content/img/base/icon_shape.png">
+                    </div>
+                    <h3 class="h5 mb-3 mt-2">
+                        Planing.
+                    </h3>
+                    <p>
+                        Navigation available in Bootstrap share general markup and.
+                    </p>
+                </div>
+
+                <div class="card clearfix text-center pl-3 pr-3 pt-5 pb-4 shadow-4 bg-primary text-white transition-hover">
+                    <div class="d-inline-block position-relative mb-3">
+                        <i class="icon-zoom-area fs-40 shape-icon text-white"> </i>
+                        <img src="/Content/img/base/icon_shape.png" class="brightness">
+                    </div>
+                    <h3 class="h5 mb-3 mt-2">
+                        Design.
+                    </h3>
+                    <p>
+                        Navigation available in Bootstrap share general markup and.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="card clearfix text-center text-white pl-3 pr-3 pt-5 pb-4 shadow-4 mb-5 bg-primary transition-hover">
+                    <div class="d-inline-block position-relative mb-3">
+                        <i class="icon-chat-1-1 fs-40 shape-icon text-white"> </i>
+                        <img src="/Content/img/base/icon_shape.png" class="brightness">
+                    </div>
+                    <h3 class="h5 mb-3 mt-2">
+                        Analysis.
+                    </h3>
+                    <p>
+                        Navigation available in Bootstrap share general markup and styles.
+                    </p>
+                </div>
+
+                <div class="card clearfix text-center pl-3 pr-3 pt-5 pb-4 shadow-4 transition-hover">
+                    <div class="d-inline-block position-relative mb-3">
+                        <i class="icon-setting-wrenches fs-40 shape-icon text-primary"> </i>
+                        <img src="/Content/img/base/icon_shape.png">
+                    </div>
+                    <h3 class="h5 mb-3 mt-2">
+                        Development
+                    </h3>
+                    <p>
+                        Navigation available in Bootstrap share general markup and.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-6 m-gab-2-top pl-8">
+                <span class="label label--sm label--secondary mb-2">Customers</span>
+                <h2 class="fs-40 mb-4">
+                    Over 20 Million users  <br>
+                    trust our template
+                </h2>
+                <p class="fs-16">
+                    A small river named Duden flows by their place and supplies it <br>
+                    with the necessary regelialia. It is a para country, in which <br>
+                    roasted parts of sentences fly into your mouth.
+                </p>
+
+                <blockquote class="blockquote testimonial-quote ml-8 mt-4">
+                    <p class="mb-0 text-dark fw-500 fs-16">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br> Integer posuere erat a ante.</p>
+                </blockquote>
+
+                <div class="d-flex align-items-center">
+                    <div class="avatar mr-4">
+                        <img class="img-fluid rounded-circle" src="/Content/img/avatar/avatar3.jpg" alt="Image Description">
+                    </div>
+                    <div class="mr-3">
+                        <h4 class="fs-16 mb-0">Robert Burton</h4>
+                        <small class="text-muted">Developer at Twitter</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="row mb-8">
+            <div class="col-sm-12 col-md-12 col-lg-6 text-center text-lg-right">
+                <span class="label label--sm label--secondary mb-2">Portfolio</span>
+                <h2>
+                    We have done lot's of work<br>
+                    check some from here
+                </h2>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 text-center text-lg-left">
+                <p>
+                    An enim nullam tempor sapien gravida donec enim <br /> ipsum blandit
+                    porta justo integer odio.
+                </p>
+
+                     @(Html.Vertex().Button("Custom Projects")
+                        .Size(ButtonSize.Small).IconPosition(ButtonIconPosition.Right)
+                        .TransitionHover().Icon("fas fa-angle-right").AppendCssClass("mr-2")
+                        .ActionLink(Url.Action("Contact", "Page")))
+
+
+                  @(Html.Vertex().Button("See All Works")
+                        .Size(ButtonSize.Small).IconPosition(ButtonIconPosition.Right).Sleek()
+                        .TransitionHover().Icon("fas fa-angle-right")
+                        .ActionLink(Url.Action("AwesomeWork", "Portfolio")))
+
+                @*<a href="#" class="btn btn-primary btn-sm transition-hover mr-2">Custom Projects <span class="fas fa-angle-right ml-2"></span></a>
+                <a href="#" class="btn btn-sleek-primary btn-sm transition-hover">See All Works <span class="fas fa-angle-right ml-2"></span></a>*@
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                @Html.Vertex().Portfolio(PortfolioViewName.Agency).ToSlider(slider => {
+                         slider.SlidesToShow(3);
+                         slider.Dots();
+                     }).DisplayCount(10)
+            </div>
+            
+            <div class="col-md-12 text-center mt-6">
+                <span class="label label--secondary mb-2">
+                    Request a <a class="text-primary border-bottom anim-link" href="#">demo ?</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section bg-light text-center content-center">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12 mb-9">
+                <span class="label label--sm label--secondary mb-2">Get Started</span>
+                <h2>Let's Start With Vertex</h2>
+                <p>At vero eos et accusamus et iusto odios un dignissimos ducimus qui blan nemo</p>
+            </div>
+        </div>
+
+        <div class="row text-center center-block">
+            <div class="col-md-4">
+                <div class="px-3 mb-8 mb-lg-0">
+                    <img class="mnt-1" src="/Content/img/c12.png" style="height:auto;">
+                    <h4 class="h5 mt-4">Start to design your project.</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet consec tetuer adipiscing elit sed diam nonummy.
+                    </p>
+                    <a href="#" class="anim-link-2 anim-link-2-primary">
+                        Learn More <span class="fa fa-angle-right align-middle ml-1 fs-14"></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="px-3 mb-8 mb-lg-0">
+                    <img class="img-responsive" src="/Content/img/c13.png">
+                    <h4 class="h5 mt-4">Start to design your product.</h4>
+                    <p>
+                        Beautiful cinematic designs optimized for all screen sizes and types.
+                    </p>
+                    <a href="#" class="anim-link-2 anim-link-2-primary">
+                        Learn More <span class="fa fa-angle-right align-middle ml-1 fs-14"></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="px-3">
+                    <img class="img-responsive" src="/Content/img/c14.png">
+                    <h4 class="h5 mt-4">Integrate with social media.</h4>
+                    <p>
+                        Clean and easy framework design for worry and hassle free customizations.
+                    </p>
+                    <a href="#" class="anim-link-2 anim-link-2-primary">
+                        Learn More <span class="fa fa-angle-right align-middle ml-1 fs-14"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-9">
+            <span class="label label--sm label--secondary mb-2">Our Latest News</span>
+            <h2 class="fs-35"> Lates From The Blog</h2>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-11">
+                 @(Html.Vertex().BlogPosts(BlogPostViewName.PostOnImage) 
+                             .ToSlider(slider =>
+                             {
+                                 slider.SlidesToShow(3);
+                                 slider.Dots();
+                             }).DisplayCount(6))
+            </div>
+            <div class="col-md-12 text-center mt-5">
+                <p>Interested in more ? <a class="text-primary border-bottom anim-link-2 anim-link-2-primary" href="#">Keep Reading</a> </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@Html.Vertex().Footer().ViewName("FooterDark")

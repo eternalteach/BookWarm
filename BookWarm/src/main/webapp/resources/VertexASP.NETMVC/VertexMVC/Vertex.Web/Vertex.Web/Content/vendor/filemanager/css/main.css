@@ -1,0 +1,381 @@
+
+#wraper {
+    width: 100%;
+    height: 100%;
+}
+
+#wraper,
+#dlgNewDir,
+#dlgFileProp,
+#dlgAddFile,
+#menuDir,
+#menuFile,
+#pnlRenameFile,
+#pnlLoadingDirs,
+#pnlDirName,
+#pnlLoading,
+#pnlEmptyDir,
+#pnlSearchNoFiles,
+#pnlFileProp,
+#pnlDirList ul {
+    display: none;
+}
+
+#wraper ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#pnlFileList .selected,
+#pnlFileList .selected:hover {
+    background-color: #b8d4ed !important;
+}
+
+#pnlFileList .icon {
+    float: left;
+    margin-right: 4px;
+}
+
+#pnlFileList .icon > .thumb {
+    display: none;
+}
+
+#pnlFileList li {
+    float: left;
+    padding: 4px 4px 4px 8px;
+    clear: both;
+    width: 99%;
+    cursor: pointer;
+}
+
+#pnlFileList .size {
+    float: right;
+    margin-left: 22px;
+    white-space: nowrap;
+}
+
+#pnlFileList .time {
+    float: right;
+    margin-left: 22px;
+    width: 130px;
+    white-space: nowrap;
+}
+
+#pnlFileList.thumbView {
+    padding: 3px;
+}
+
+#pnlFileList.thumbView li {
+    float: left !important;
+    clear: none;
+    margin: 3px;
+    overflow: hidden;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    position: relative;
+}
+
+#pnlFileList.thumbView li:hover {
+    background-color: #e9ecef;
+}
+
+#pnlFileList.thumbView li:hover, #pnlFileList.thumbView li.selected {
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+#pnlFileList.thumbView li .file-icon {
+    font-size: 84px;
+}
+
+#pnlFileList.thumbView li.file-image .file-icon {
+    display: none;
+}
+
+#pnlFileList.thumbView li.file-image .thumb {
+    display: inline-block;
+}
+
+#pnlFileList.thumbView .time,
+#pnlFileList.thumbView .size {
+    display: none;
+}
+
+#pnlFileList.thumbView .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 120px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    float: none;
+}
+
+#pnlFileList.thumbView .icon > img {
+    max-width: 100%;
+    height: auto;
+}
+
+#pnlFileList.thumbView .icon > img.thumb {
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+#pnlFileList.thumbView .name {
+    display: block !important;
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    bottom: 5px;
+    margin: 0;
+}
+
+.filesize {
+    font-weight: 600;
+    margin-top: 4px;
+    display: inline-block;
+}
+
+.pnlDragFile,
+.pnlDragDir {
+    background: #fff;
+    opacity: 0.8;
+    float: left;
+    width: auto !important;
+    z-index: 999999;
+    position: absolute;
+}
+
+#pnlStatus {
+    padding: 5px;
+}
+
+.scrollPane {
+    width: 100%;
+    height: 400px;
+    overflow: auto;
+    position: relative;
+}
+
+.bottomLine {
+    background: #f8f9fa;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    height: 36px;
+}
+
+input[type=text]::-ms-clear {
+    display: none;
+}
+
+td.pnlDirs {
+    width: 260px;
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+td.pnlDirs .scrollPane {
+    width: 260px;
+}
+
+#pnlDirList {
+    position: relative;
+}
+
+#pnlDirList .dir-item {
+    padding: 3px 0.4rem;
+    cursor: pointer;
+    position: relative;
+    float: left;
+    min-width: 100%;
+}
+
+#pnlDirList .dir-item .dirPlus {
+    font-size: 10px;
+    width: 12px;
+    height: 10px;
+    margin-top: 1px;
+    margin-right: 8px;
+    text-align: center;
+}
+
+#pnlDirList .dir-item .dir {
+    padding-top: 2px;
+}
+
+#pnlDirList .dir-item .name {
+    white-space: nowrap;
+    display: block;
+}
+
+#pnlDirList .dir-item:hover {
+    background-color: #e9ecef;
+}
+
+#pnlDirList .dir-item.selected, #pnlDirList .dir-item.selected:hover {
+    background-color: #b8d4ed !important;
+}
+
+#pnlDirList .dir-item.indeterm {
+    background-color: #e9ecef !important;
+}
+
+#pnlDirList .dir-item.dragover {
+    background-color: #e9ecef !important;
+}
+
+#pnlDirList ul .dir-item {
+    padding-left: 1.4rem;
+}
+
+#pnlDirList ul ul .dir-item {
+    padding-left: 2.4rem;
+}
+
+#pnlDirList ul ul ul .dir-item {
+    padding-left: 3.4rem;
+}
+
+#pnlDirList ul ul ul ul .dir-item {
+    padding-left: 4.4rem;
+}
+
+#pnlDirList ul ul ul ul ul .dir-item {
+    padding-left: 5.4rem;
+}
+
+#pnlDirList ul ul ul ul ul ul .dir-item {
+    padding-left: 6.4rem;
+}
+
+#pnlDirList ul ul ul ul ul ul ul .dir-item {
+    padding-left: 7.4rem;
+}
+
+#pnlDirList ul ul ul ul ul ul ul ul .dir-item {
+    padding-left: 8.4rem;
+}
+
+#pnlDirList ul ul ul ul ul ul ul ul ul .dir-item {
+    padding-left: 9.4rem;
+}
+
+#pnlLoadingDirs {
+    margin-left: 5px;
+}
+
+.imgPreview {
+    max-width: 300px;
+}
+
+.actions {
+    padding: 3px 0 10px 5px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.actions > .btn-group {
+    padding-right: 5px;
+    margin-right: 5px;
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.actions > .btn-group:last-child {
+    padding-right: 0;
+    margin-right: 0;
+    border-right: none;
+}
+
+#fileUploads {
+    width: 100%;
+}
+
+.uploadFilesList {
+    width: 100%;
+    height: 300px;
+    overflow: auto;
+}
+
+div.ui-tooltip {
+    max-width: 90%;
+}
+
+/* Upload dialog */
+.uploadFilesList {
+    font-size: 12px;
+}
+
+.fileUpload {
+    margin: 8px 0 0 0;
+    position: relative;
+    border: 1px solid #EEE;
+}
+
+.fileUpload .error {
+    font-weight: 600;
+}
+
+.fileName {
+    z-index: 2;
+    line-height: 20px;
+    height: 20px;
+    overflow: hidden;
+    padding: 0 13px 0 5px;
+}
+
+.progressPercent {
+    z-index: 2;
+}
+
+.stripes {
+    background: url("images/stripes.gif") repeat-x;
+    opacity: 0.40;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: relative;
+}
+
+.uploadProgress {
+    position: absolute;
+    width: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: #d3edff;
+    background: linear-gradient(to bottom, #d3edff 0%, #cbebff 47%, #a1dbff 100%);
+}
+
+.uploadError {
+    background: #ff8787;
+    background: linear-gradient(to bottom, #ff8787 0%, #ffa3a3 45%, #ff5e5e 100%);
+}
+
+.uploadComplete {
+    background: #dbff87;
+    background: linear-gradient(to bottom, #dbff87 0%, #e0f49c 45%, #bddd49 100%);
+}
+
+.uploadError .stripes, .uploadComplete .stripes {
+    display: none;
+}
+
+.removeUpload {
+    background: url(images/sprite.png) no-repeat 6px -421px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 20px;
+    cursor: pointer;
+}
+
+
+
+ 
+

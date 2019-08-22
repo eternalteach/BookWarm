@@ -1,0 +1,346 @@
+﻿
+@{ ViewBag.Title = "Popover"; }
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = false;
+    settings.StickyType = HeaderStickyType.Shrink;
+    settings.BorderBottom = HeaderBorderBottom.Light;
+})
+
+
+@Html.Partial("_Banner", "Popover")
+
+
+<section class="m-gab-2">
+
+    <div class="container">
+        <div class="row justify-content-center">
+
+
+            <!--
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            | Sidebar
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            !-->
+            <div class="col-md-3">
+                <aside id="sidebar" class="sidebar sidebar-sticky">
+                    <ul class="nav nav-sidebar nav-sidebar-hero nav-sidebar-pill" data-accordion="true">
+                        <li class="nav-item"><a class="nav-link" href="#Default">Default</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#Prefix">For any html element</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#Direction">Direction</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#methods">Methods</a> </li>
+                    </ul>
+                </aside>
+            </div>
+
+
+            <div class="col-md-7">
+
+
+                <div class="px-6 py-6 bg-gray mb-9" id="Default">
+                    <header class="mb-6">
+                        <h3>Default</h3>
+                        <hr>
+                        <p class="lead-1">Use <code>@@Html.Vertex().Popover()</code> method to create a Popover. Use <code>.For(...)</code><small>(+3 overloads)</small>
+                        method to bind any html element, html string or vertex component. </p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-1" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-1-2" role="tab" aria-controls="component-1-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-1-content">
+                        <div class="tab-pane fade show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
+
+                            <div class="d-flex align-items-center">
+                                <div class="mr-5">
+                                    @Html.Vertex().Popover().Title("Hello world").Content("popover content").For(Html.Vertex().Button("Popover example").Size(ButtonSize.Small))
+                                </div>
+                                <div>
+                                    @Html.Vertex().Popover().Content("popover content").For(@<text> <a href="#" class="m-link">Witout title</a> </text>)
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="tab-pane fade" id="component-1-2" role="tabpanel" aria-labelledby="component-1-2">
+                            <pre><code class="language-csharp">@@Html.Vertex().Popover()
+    .Title("Hello world")
+    .Content("popover content")
+    .For(Html.Vertex().Button("Popover example"))
+                                
+@@Html.Vertex().Popover()
+     .Content("popover content")
+     .For(@@&lt;text&gt; &lt;a href=&quot;#&quot;&gt;Witout title&lt;/a&gt; &lt;/text&gt;)</code>
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="px-6 py-6 bg-gray mb-9" id="Prefix">
+                    <header class="mb-6">
+                        <h3>Popover for any html element</h3>
+                        <hr>
+                        <p class="lead-1">use <code>.For(...)</code><small>(+3 overloads)</small> method to bind any html element.</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-2" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-2-1" role="tab" aria-controls="component-2-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-2-2" role="tab" aria-controls="component-2-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-2-content">
+                        <div class="tab-pane fade show active" id="component-2-1" role="tabpanel" aria-labelledby="component-2-1">
+
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td style="vertical-align:middle;">
+                                            <p class="m-0">for vertex <a href="@Url.Action("Button", "UIKit")" target="_blank" class="m-link">button</a></p>
+                                        </td>
+                                        <td style="vertical-align:middle;">
+                                            @(Html.Vertex().Popover()
+                                                .Title("Hello button")
+                                                .Content("popover content")
+                                                .For(Html.Vertex().Button("Popover Button").Size(ButtonSize.Small)))
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;">
+                                            <p class="m-0">for vertex <a href="@Url.Action("Countup", "UIKit")" target="_blank" class="m-link">countup</a></p>
+                                        </td>
+                                        <td style="vertical-align:middle;">
+                                            @(Html.Vertex().Popover()
+                                                .Title("Hello countup")
+                                                .Content("popover content")
+                                                .DismissOnNextClick(false)
+                                                .Direction(PopoverDirection.Left)
+                                                .For(Html.Vertex().Countup().FromTo(0, 850).Prefix("$").AppendCssClass("m-0")))
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;">
+                                            <p class="m-0">for vertex <a href="@Url.Action("Progress", "UIKit")" target="_blank" class="m-link">progress</a></p>
+                                        </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.Vertex().Popover().Title("Hello progress").Content("popover content").DismissOnNextClick(false).For(Html.Vertex().Progress().Value(100))
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;">
+                                            <p class="m-0">for the h3 heading</p>
+                                        </td>
+                                        <td style="vertical-align:middle;">
+                                            @(Html.Vertex().Popover()
+                                                .Title("Hello Heading")
+                                                .Content("popover content")
+                                                .DismissOnNextClick(false)
+                                                .For(@<text> <h3 class="m-0">Heading</h3> </text>).AppendStyle("display", "inline-block"))
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">for a checkbox</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.Vertex().Popover().Title("Hello checkbox").Content("popover content").Direction(PopoverDirection.Left).For(@<text>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" checked="">
+                                                    <label class="custom-control-label">Checked</label>
+                                                </div>
+                                            </text>)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">for a form control</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.Vertex().Popover().Title("Hello form control").Content("popover content").For(@<text>
+                                                <div class="form-group m-0">
+                                                    <input class="form-control form-control-sm" type="text" placeholder="First name">
+                                                </div>
+                                            </text>)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">for a link</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.Vertex().Popover().Title("Hello link").Content("popover content").For(@<text>
+                                                <a href="#" class="m-link">Popover link</a>
+                                            </text>)
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="tab-pane fade" id="component-2-2" role="tabpanel" aria-labelledby="component-2-2">
+                            <pre><code class="language-csharp">// For button 
+@@Html.Vertex().Popover()
+    .Title("Hello button")
+    .Content("popover content")
+    .For(Html.Vertex().Button("Popover Button").Size(ButtonSize.Small))
+
+// For countup 
+@@Html.Vertex().Popover()
+    .Title("Hello countup")
+    .Content("popover content")
+    .Direction(PopoverDirection.Left)
+    .For(Html.Vertex().Countup().FromTo(0, 850).Prefix("$"))
+
+// For progress 
+@@Html.Vertex().Popover()
+    .Title("Hello progress")
+    .Content("popover content")
+    .For(Html.Vertex().Progress().Value(100))
+
+// For checkbox 
+@@Html.Vertex().Popover()
+    .Title("Hello checkbox")
+    .Content("popover content")
+    .Direction(PopoverDirection.Left)
+    .For(@@&lt;text&gt;
+            &lt;div class=&quot;custom-control custom-checkbox&quot;&gt;
+              &lt;input type=&quot;checkbox&quot; class=&quot;custom-control-input&quot; checked=&quot;&quot;&gt;
+              &lt;label class=&quot;custom-control-label&quot;&gt;Checked&lt;/label&gt;
+            &lt;/div&gt;
+          &lt;/text&gt;)
+
+// For form control 
+@@Html.Vertex().Popover()
+    .Title("Hello form control")
+    .Content("popover content")
+    .For(@@&lt;text&gt;
+            &lt;div class=&quot;form-group m-0&quot;&gt;
+                &lt;input class=&quot;form-control&quot; type=&quot;text&quot; placeholder=&quot;First name&quot;&gt;
+            &lt;/div&gt;
+          &lt;/text&gt;)
+
+// For link
+@@Html.Vertex().Popover()
+    .Title("Hello link")
+    .Content("popover content")
+    .For(@@&lt;text&gt;
+            &lt;a href=&quot;#&quot; class=&quot;m-link&quot;&gt;Popover link&lt;/a&gt;
+          &lt;/text&gt;)</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="px-6 py-6 bg-gray mb-9" id="Direction">
+                    <header class="mb-6">
+                        <h3>Direction</h3>
+                        <hr>
+                        <p class="lead-1">use <code>.Direction(PopoverDirection direction)</code> method to set Popover direction</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-3" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-3-1" role="tab" aria-controls="component-3-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-3-2" role="tab" aria-controls="component-3-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-3-content">
+                        <div class="tab-pane fade show active" id="component-3-1" role="tabpanel" aria-labelledby="component-3-1">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">PopoverDirection.Top</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.Vertex().Popover().Title("Hello link").Content("popover content").For(@<text>
+                                                <a href="#" class="m-link">Top</a>
+                                            </text>).Direction(PopoverDirection.Top)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">PopoverDirection.Bottom</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.Vertex().Popover().Title("Hello link").Content("popover content").For(@<text>
+                                                <a href="#" class="m-link">Bottom</a>
+                                            </text>).Direction(PopoverDirection.Bottom)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">PopoverDirection.Left</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.Vertex().Popover().Title("Hello link").Content("popover content").For(@<text>
+                                                <a href="#" class="m-link">Left</a>
+                                            </text>).Direction(PopoverDirection.Left)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">PopoverDirection.Right</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.Vertex().Popover().Title("Hello link").Content("popover content").For(@<text>
+                                                <a href="#" class="m-link">Right</a>
+                                            </text>).Direction(PopoverDirection.Right)
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="component-3-2" role="tabpanel" aria-labelledby="component-3-2">
+                            <pre><code class="language-csharp">@@Html.Vertex().Popover()
+    .Title("Hello link")
+    .Content("popover content")
+    .Direction(PopoverDirection.Top)
+    .For(@@&lt;text&gt; &lt;a href=&quot;#&quot;&gt;Top&lt;/a&gt; &lt;/text&gt;)        
+                                
+@@Html.Vertex().Popover()
+    .Title("Hello link")
+    .Content("popover content")
+    .Direction(PopoverDirection.Bottom)
+    .For(@@&lt;text&gt; &lt;a href=&quot;#&quot;&gt;Bottom&lt;/a&gt; &lt;/text&gt;)  
+
+@@Html.Vertex().Popover()
+    .Title("Hello link")
+    .Content("popover content")
+    .Direction(PopoverDirection.Left)
+    .For(@@&lt;text&gt; &lt;a href=&quot;#&quot;&gt;Left&lt;/a&gt; &lt;/text&gt;)   
+
+@@Html.Vertex().Popover()
+    .Title("Hello link")
+    .Content("popover content")
+    .Direction(PopoverDirection.Right)
+    .For(@@&lt;text&gt; &lt;a href=&quot;#&quot;&gt;Right&lt;/a&gt; &lt;/text&gt;)</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div> 
+
+
+                <div id="methods" class="mb-9">
+                    <h2 class="h4">Methods <a class="anchorjs-link" href="#methods" aria-label="Anchor" data-anchorjs-icon="#"></a></h2>
+
+                    <table class="table table-bordered bg-white">
+                        <thead>
+                            <tr>
+                                <th style="width:35%">Method</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> <p><code class="highlighter-rouge">.Method(bool value)</code></p> </td>
+                                <td>Comming soon.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+@Html.Vertex().Footer()

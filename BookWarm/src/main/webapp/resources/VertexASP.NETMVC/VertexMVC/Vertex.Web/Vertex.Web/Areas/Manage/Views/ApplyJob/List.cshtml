@@ -1,0 +1,47 @@
+﻿@model Telerik.Web.Mvc.GridModel<ApplyJobModel>
+@using Telerik.Web.Mvc.UI
+
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+})
+
+
+@Html.Partial("_Breadcrumb", "ApplyJobs")
+
+
+<section class="section pt-8 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-3">
+                @Html.Partial("_LeftNav")
+            </div>
+            <div class="col-md-9">
+
+                @(Html.Telerik().Grid<ApplyJobModel>()
+                     .Name("ApplyJobModel-grid")
+                     .BindTo(Model.Data)
+                     .Columns(columns =>
+                     {
+                            columns.Bound(x => x.FullName).Width(200).Template(x => Html.ActionLink(x.FullName, "Edit", "ApplyJob", new { id = x.Id }, new { }));
+                            columns.Bound(x => x.JobName).Width(300).Template(x => Html.ActionLink(x.JobName, "Edit", "ApplyJob", new { id = x.Id }, new { }));
+                            columns.Bound(x => x.Email);
+                            columns.Bound(x => x.IsActive).Centered().Template(item => @Html.SymbolForBool(item.IsActive)).ClientTemplate(@Html.SymbolForBool("Published"));
+                            columns.Bound(x => x.ApplyDate);
+                            columns.Bound(x => x.Id)
+                                            .Template(x => Html.ActionLink("View", "Edit", new { id = x.Id }, new { @class = "t-button" }))
+                                            .ClientTemplate("<a href=\"ApplyJob/Edit/<#= Id #>\" class=\"t-button\">Edit</a>")
+                                            .Title(String.Empty).Width(100)
+                                            .HtmlAttributes(new { align = "right", @class = "omega" });
+                     }).Pageable(settings => settings.Total(Model.Total).PageSize(15).Position(GridPagerPosition.Both))
+                )
+
+            </div>
+        </div>
+    </div>
+</section>
+ 
+
+@Html.Vertex().Footer()

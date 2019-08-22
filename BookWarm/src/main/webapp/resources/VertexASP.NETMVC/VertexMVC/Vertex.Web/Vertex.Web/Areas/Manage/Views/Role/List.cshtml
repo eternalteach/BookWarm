@@ -1,0 +1,56 @@
+﻿@model Telerik.Web.Mvc.GridModel<ApplicationRoleModel>
+
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+})
+
+
+@Html.Partial("_Breadcrumb", "Roles")
+
+
+<section class="section pt-8 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-3">
+                @Html.Partial("_LeftNav")
+            </div>
+            <div class="col-md-9">
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <a class="btn btn-sleek-primary btn-sm pl-4 pr-4 transition-hover" href="@Url.Action("Create", "Role")">
+                            <i class="fa fa-plus mr-1 fs-12"></i> Add New
+                        </a>
+                    </div>
+                </div> 
+
+               
+                @(Html.Telerik().Grid<ApplicationRoleModel>()
+                      .Name("categories")
+                      .BindTo(Model.Data)
+                      .Columns(columns =>
+                      {
+                          columns.Bound(x => x.Name).Width(350).Template(x => Html.ActionLink(x.Name, "Edit", "Role", new { id = x.Id }, new { }));
+                          columns.Bound(x => x.UserCount).Width(120)
+                                  .Template(@<div>@Html.ActionLink("" + item.UserCount, "Comments", new { filterByNewsItemId = item.Id })</div>)
+                                      .ClientTemplate("<div><a href=\"Comments?filterByNewsItemId=<#= Id #>\">" + "<#= Comments #>" + "</a></div>");
+                          columns.Bound(x => x.Id)
+                                  .Template(x => Html.ActionLink("Edit", "RoleEdit", new { id = x.Id }, new { @class = "t-button" }))
+                                  .ClientTemplate("<a href=\"Role/Edit/<#= Id #>\" class=\"t-button\">Edit</a>")
+                                  .Title(String.Empty).Width(100)
+                                  .HtmlAttributes(new { align = "right", @class = "omega" });
+                      }).Pageable(settings => settings.Total(Model.Total).PageSize(10).Position(GridPagerPosition.Both))
+                )
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+@Html.Vertex().Footer()

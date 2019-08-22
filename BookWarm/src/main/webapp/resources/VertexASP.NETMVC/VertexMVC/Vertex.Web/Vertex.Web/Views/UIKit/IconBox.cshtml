@@ -1,0 +1,582 @@
+﻿
+@{ ViewBag.Title = "Icon box"; }
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = false;
+    settings.StickyType = HeaderStickyType.Shrink;
+    settings.BorderBottom = HeaderBorderBottom.Light;
+})
+
+
+@Html.Partial("_Banner", "Icon box")
+
+
+<section class="m-gab-2">
+
+    <div class="container">
+        <div class="row justify-content-center">
+
+
+            <!--
+    |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+    | Sidebar
+    |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+    !-->
+            <div class="col-md-3">
+                <aside id="sidebar" class="sidebar sidebar-sticky">
+                    <ul class="nav nav-sidebar nav-sidebar-hero nav-sidebar-pill" data-accordion="true">
+                        <li class="nav-item"><a class="nav-link" href="#Default">Default</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#IconPosition">Icon Position</a> </li> 
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Bordered">Bordered <i class="fas fa-chevron-right nav-angle"></i></a>
+                            <div class="nav">
+                                <a class="nav-link" href="#ChangingBgColor">Changing Bg Color</a>
+                                <a class="nav-link" href="#ChangingContentColor">Changing Content Color</a>
+                                <a class="nav-link" href="#AddingOvalDivider">Adding Oval Divider</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#ActionLink">Action Link</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#Others">Others</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#methods">Methods</a> </li>
+                    </ul>
+                </aside>
+            </div>
+
+
+            <div class="col-md-8">
+
+
+                <div class="mb-9" id="Default">
+                    <header class="mb-6">
+                        <h3>Default</h3>
+                        <hr>
+                        <p class="lead-1">Use <code>@@Html.Vertex().IconBox()</code> method to create a IconBox.</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-1" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-1-2" role="tab" aria-controls="component-1-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-1-content">
+                        <div class="tab-pane fade show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
+                            <div class="d-flex pt-4">
+                                <div class="w-50 pr-4 border-right">
+                                    @(Html.Vertex().IconBox()
+                                        .Icon("fas fa-layer-group")
+                                        .Title("Default Iconbox")
+                                        .Content("Sed quis dolor in lacuses ullam corper euis mod necet nibh. Morbi mollis, enim vitae rutrum lacus porttitor."))
+                                </div>
+                                <div class="w-50 pl-4">
+                                    @(Html.Vertex().IconBox()
+                                        .Icon("fas fa-layer-group")
+                                        .Title("Center Align")
+                                        .Content("Sed quis dolor in lacuses ullam corper euis mod necet nibh. Morbi mollis, enim vitae rutrum lacus porttitor.")
+                                        .Align(IconBoxAlign.Center))
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="component-1-2" role="tabpanel" aria-labelledby="component-1-2">
+                            <pre><code class="language-csharp">@@(Html.Vertex().IconBox()
+    .Icon("fas fa-layer-group")
+    .Title("Default Iconbox")
+    .Content("Sed quis dolor in lacuses ullam corper euis mod..."))
+                                
+@@(Html.Vertex().IconBox()
+    .Icon("fas fa-layer-group")
+    .Title("Center Align")
+    .Content("Sed quis dolor in lacuses ullam corper euis mod...")
+    .Align(IconBoxAlign.Center))</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="mb-9" id="IconPosition">
+                    <header class="mb-6">
+                        <h3>Icon Position</h3>
+                        <hr>
+                        <p class="lead-1">
+                            Use <code>.IconPosition(IconBoxIconPosition iconPosition)</code> method to set icon position. There are three type of icon position <code>Left</code>,
+                            <code>Center</code> and <code>Right</code>. Default icon positon is <code>IconBoxIconPosition.Left</code>
+                            <small>You can see on <a href="#Default" class="link-primary">default</a> exemple.</small>
+                        </p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-2" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-2-1" role="tab" aria-controls="component-2-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-2-2" role="tab" aria-controls="component-2-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-2-content">
+                        <div class="tab-pane fade show active" id="component-2-1" role="tabpanel" aria-labelledby="component-2-1">
+                            <div class="d-flex pt-4">
+                                <div class="w-50 pr-4 border-right">
+                                    @(Html.Vertex().IconBox()
+                                        .Icon("fas fa-layer-group")
+                                        .IconPosition(IconBoxIconPosition.Left)
+                                        .Title("Left Icon Position")
+                                        .Content("Sed quis dolor in lacuses ullam corper euis mod necet nibh. Morbi mollis, enim vitae."))
+                                </div>
+                                <div class="w-50 pl-4">
+                                    @(Html.Vertex().IconBox()
+                                        .Icon("fas fa-layer-group")
+                                        .IconPosition(IconBoxIconPosition.Right)
+                                        .Align(IconBoxAlign.Right)
+                                        .Title("Right Icon Position")
+                                        .Content("Sed quis dolor in lacuses ullam corper euis mod necet nibh. Morbi mollis, enim vitae.")
+                                    )
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="component-2-2" role="tabpanel" aria-labelledby="component-2-2">
+                            <pre><code class="language-csharp">@@(Html.Vertex().IconBox()
+    .Icon("fas fa-layer-group")
+    .IconPosition(IconBoxIconPosition.Left)
+    .Title("Left Icon Position")
+    .Content("Sed quis dolor in lacuses ullam corper euis mod..."))
+                                
+@@(Html.Vertex().IconBox()
+    .Icon("fas fa-layer-group")
+    .IconPosition(IconBoxIconPosition.Right)
+    .Align(IconBoxAlign.Right) // All content align
+    .Title("Right Icon Position")
+    .Content("Sed quis dolor in lacuses ullam corper euis mod..."))</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="mb-9" id="Bordered">
+                    <header class="mb-6">
+                        <h3>Bordered</h3>
+                        <hr>
+                        <p class="lead-1">
+                            Use <code>.Bordered()</code><i class="small">(+2 overloads)</i> method to use border.
+                            Other methods are <code>Bordered(BootstrapColor bgColor)</code> and <br /> <code>Bordered(BootstrapColor bgColor, OvalDividerType ovalDividerType)</code>
+                        </p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-3" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-3-1" role="tab" aria-controls="component-3-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-3-2" role="tab" aria-controls="component-3-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-3-content">
+                        <div class="tab-pane fade show active" id="component-3-1" role="tabpanel" aria-labelledby="component-3-1">
+                            <div class="d-flex">
+                                <div class="w-50 pr-3">
+                                    @(Html.Vertex().IconBox()
+                                         .Icon("fas fa-layer-group")
+                                         .Title("Bordered Iconbox")
+                                         .Content("Sed quis dolor in lacuses ullam corper euis mod necet nibh. Morbi mollis, enim vitae.")
+                                         .Bordered()
+                                    )
+                                </div>
+                                <div class="w-50 pl-3">
+                                    @(Html.Vertex().IconBox()
+                                         .Icon("fas fa-layer-group")
+                                         .Bordered()
+                                         .Align(IconBoxAlign.Center)
+                                         .Title("Bordered Iconbox")
+                                         .Content("Sed quis dolor in lacuses ullam corper euis mod necet nibh. Morbi mollis, enim vitae.")
+                                    )
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="component-3-2" role="tabpanel" aria-labelledby="component-3-2">
+                            <pre><code class="language-csharp">@@(Html.Vertex().IconBox()
+    .Icon("fas fa-layer-group") 
+    .Title("Left Icon Position")
+    .Content("Sed quis dolor in lacuses ullam corper euis mod...")
+    .Bordered())
+                                
+@@(Html.Vertex().IconBox()
+    .Icon("fas fa-layer-group")
+    .Title("Right Icon Position")
+    .Content("Sed quis dolor in lacuses ullam corper euis mod...")
+    .Bordered()
+    .Align(IconBoxAlign.Right))</code>
+                        </pre>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <br />
+                    <h5 id="ChangingBgColor" class="mt-6">Changing Bg Color</h5>
+                    <p>
+                        Use <code>.Bordered(BootstrapColor.Primary)</code> If you look at the second demo, you will see color problem. You can change color of icon, title and content
+                        by using <code>.TitleColor(BootstrapColor titleColor), .ContentColor(BootstrapColor contentColor), .IconColor(BootstrapColor iconColor) </code>
+                    </p>
+                    <ul class="nav nav-bordered" id="component-4" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-4-1" role="tab" aria-controls="component-4-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-4-2" role="tab" aria-controls="component-4-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-4-content">
+                        <div class="tab-pane fade show active" id="component-4-1" role="tabpanel" aria-labelledby="component-4-1">
+                            <div class="d-flex">
+                                <div class="w-50 pr-3">
+                                    @(Html.Vertex().IconBox()
+                                        .Icon("fas fa-layer-group")
+                                        .Title("Light Bg Iconbox")
+                                        .Bordered(BootstrapColor.Light)
+                                        .Content("Sed quis dolor in lacuses ullam corper euis mod necet nibh. Morbi mollis, enim vitae.")
+                                    )
+                                </div>
+                                <div class="w-50 pl-3">
+                                    @(Html.Vertex().IconBox()
+                                        .Icon("fas fa-layer-group")
+                                        .Bordered()
+                                        .Align(IconBoxAlign.Center)
+                                        .Bordered(BootstrapColor.Success)
+                                        .Title("Success Bg Iconbox")
+                                        .Content("Sed quis dolor in lacuses ullam corper euis mod necet nibh. Morbi mollis, enim vitae.")
+                                    )
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="component-4-2" role="tabpanel" aria-labelledby="component-4-2">
+                            <pre><code class="language-csharp">@@(Html.Vertex().IconBox()
+    .Icon("fas fa-layer-group") 
+    .Title("Light Bg Iconbox")
+    .Content("Sed quis dolor in lacuses ullam corper euis mod...")
+    .Bordered(bgColor:BootstrapColor.Light))
+                                
+@@(Html.Vertex().IconBox()
+    .Icon("fas fa-layer-group")
+    .Title("Success Bg Iconbox")
+    .Content("Sed quis dolor in lacuses ullam corper euis mod...")
+    .Bordered(bgColor:BootstrapColor.Success)
+    .Align(IconBoxAlign.Center))</code>
+                        </pre>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    <br />
+                    <h5 id="ChangingContentColor" class="mt-6">Changing Title, Content and Icon color</h5>
+                    <p>
+                        Use <code>.TitleColor(BootstrapColor titleColor)</code> to change title color, <br />
+                        Use <code>.ContentColor(BootstrapColor contentColor)</code> to change content color, <br />
+                        Use <code>.IconColor(BootstrapColor iconColor)</code> to change icon color.
+                    </p>
+                    <ul class="nav nav-bordered" id="component-5" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-5-1" role="tab" aria-controls="component-5-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-5-2" role="tab" aria-controls="component-5-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-5-content">
+                        <div class="tab-pane fade show active" id="component-5-1" role="tabpanel" aria-labelledby="component-5-1">
+                            <div class="d-flex">
+                                <div class="w-50 pr-3">
+                                    @(Html.Vertex().IconBox()
+                                        .Icon("fas fa-layer-group")
+                                        .Title("Light Bg Iconbox")
+                                        .Bordered(BootstrapColor.Primary)
+                                        .TitleColor(BootstrapColor.White)
+                                        .ContentColor(BootstrapColor.White)
+                                        .IconColor(BootstrapColor.White)
+                                        .Content("Sed quis dolor in lacuses ullam corper euis mod necet nibh. Morbi mollis, enim vitae.")
+
+                                    )
+                                </div>
+                                <div class="w-50 pl-3">
+                                    @(Html.Vertex().IconBox()
+                                        .Icon("fas fa-layer-group")
+                                        .Bordered()
+                                        .Align(IconBoxAlign.Center)
+                                        .Bordered(BootstrapColor.Success)
+                                        .TitleColor(BootstrapColor.White)
+                                        .ContentColor(BootstrapColor.White)
+                                        .IconColor(BootstrapColor.White)
+                                        .Title("Success Bg Iconbox")
+                                        .Content("Sed quis dolor in lacuses ullam corper euis mod necet nibh. Morbi mollis, enim vitae.")
+                                    )
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="component-5-2" role="tabpanel" aria-labelledby="component-5-2">
+                            <pre><code class="language-csharp">@@(Html.Vertex().IconBox()
+    .Icon("fas fa-layer-group") 
+    .Title("Light Bg Iconbox")
+    .Content("Sed quis dolor in lacuses ullam corper euis mod...")
+    .Bordered(bgColor:BootstrapColor.Primary)
+    .TitleColor(BootstrapColor.White)
+    .ContentColor(BootstrapColor.White)
+    .IconColor(BootstrapColor.White))
+                                
+@@(Html.Vertex().IconBox()
+    .Icon("fas fa-layer-group")
+    .Title("Success Bg Iconbox")
+    .Content("Sed quis dolor in lacuses ullam corper euis mod...")
+    .Bordered(bgColor:BootstrapColor.Success)
+    .TitleColor(BootstrapColor.White)
+    .ContentColor(BootstrapColor.White)
+    .IconColor(BootstrapColor.White)
+    .Align(IconBoxAlign.Center))</code>
+                        </pre>
+                        </div>
+                    </div>
+
+
+
+
+                    <br />
+                    <h5 id="AddingOvalDivider" class="mt-6">Add <a class="link-primary" href="@Url.Action("OvalDivider", "UIKit")" target="_blank">OvalDivider</a> to Iconbox</h5>
+                    <p> Use <code>.Bordered(BootstrapColor bgColor, OvalDividerType ovalDividerType)</code> method to add divider to icon box. </p>
+                    <ul class="nav nav-bordered" id="component-6" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-6-1" role="tab" aria-controls="component-6-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-6-2" role="tab" aria-controls="component-6-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-6-content">
+                        <div class="tab-pane fade show active" id="component-6-1" role="tabpanel" aria-labelledby="component-6-1">
+                            <div class="d-flex">
+                                <div class="w-50 pr-3">
+                                    @(Html.Vertex().IconBox()
+                                        .Icon("fas fa-layer-group")
+                                        .Title("Light Bg Iconbox")
+                                        .Bordered(BootstrapColor.Danger, OvalDividerType.Divider1).AppendCssClass("pb-12")
+                                        .TitleColor(BootstrapColor.White)
+                                        .ContentColor(BootstrapColor.White)
+                                        .IconColor(BootstrapColor.White)
+                                        .Content("Sed quis dolor in lacuses ullam corper euis mod necet nibh. Morbi mollis, enim vitae.")
+
+                                    )
+                                </div>
+                                <div class="w-50 pl-3">
+                                    @(Html.Vertex().IconBox()
+                                        .Icon("fas fa-layer-group")
+                                        .Bordered()
+                                        .Align(IconBoxAlign.Center)
+                                        .Bordered(BootstrapColor.Secondary, OvalDividerType.Divider10)
+                                        .TitleColor(BootstrapColor.White)
+                                        .ContentColor(BootstrapColor.White)
+                                        .IconColor(BootstrapColor.White)
+                                        .Title("Success Bg Iconbox")
+                                        .Content("Sed quis dolor in lacuses ullam corper euis mod necet nibh. Morbi mollis, enim vitae.")
+                                    )
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="component-6-2" role="tabpanel" aria-labelledby="component-6-2">
+                            <pre><code class="language-csharp">@@(Html.Vertex().IconBox()
+    .Icon("fas fa-layer-group") 
+    .Title("Light Bg Iconbox")
+    .Content("Sed quis dolor in lacuses ullam corper euis mod...")
+    .Bordered(BootstrapColor.Danger, OvalDividerType.Divider1)
+    .TitleColor(BootstrapColor.White)
+    .ContentColor(BootstrapColor.White)
+    .IconColor(BootstrapColor.White))
+                                
+@@(Html.Vertex().IconBox()
+    .Icon("fas fa-layer-group")
+    .Title("Success Bg Iconbox")
+    .Content("Sed quis dolor in lacuses ullam corper euis mod...")
+    .Bordered(BootstrapColor.Secondary, OvalDividerType.Divider10)
+    .TitleColor(BootstrapColor.White)
+    .ContentColor(BootstrapColor.White)
+    .IconColor(BootstrapColor.White)
+    .Align(IconBoxAlign.Center))</code>
+                        </pre>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+                <div class="mb-9" id="ActionLink">
+                    <header class="mb-6">
+                        <h3>Action Link</h3>
+                        <hr>
+                        <p class="lead-1">Use <code>.ActionLink(string linkText, string actionName, string controllerName)</code> method to create a action link.</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-7" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-7-1" role="tab" aria-controls="component-7-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-7-2" role="tab" aria-controls="component-7-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-7-content">
+                        <div class="tab-pane fade show active" id="component-7-1" role="tabpanel" aria-labelledby="component-7-1">
+                            <div class="d-flex">
+                                <div class="w-50 pr-3 mt-4">
+                                    @(Html.Vertex().IconBox()
+                                         .Icon("fas fa-layer-group")
+                                         .Title("Action Link Iconbox")
+                                         .Content("Sed quis dolor in lacuses ullam corper euis mod necet nibh. Morbi mollis, enim vitae.")
+                                         .ActionLink("Explore now", "Index", "Home")
+                                    )
+                                </div>
+                                <div class="w-50 pl-3">
+                                    @(Html.Vertex().IconBox()
+                                         .Icon("fas fa-layer-group")
+                                         .Bordered()
+                                         .Align(IconBoxAlign.Center)
+                                         .IconColor(BootstrapColor.Success)
+                                         .Title("Action Link Iconbox")
+                                         .Content("Sed quis dolor in lacuses ullam corper euis mod necet nibh. Morbi mollis, enim vitae.")
+                                         .TransitionHover().HoverShadow()
+                                         .ActionLink("Explore now", "Index2", "Home")
+                                    )
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="component-7-2" role="tabpanel" aria-labelledby="component-7-2">
+                            <pre><code class="language-csharp">@@(Html.Vertex().IconBox()
+      .Icon("fas fa-layer-group")
+      .Title("Action Link Iconbox")
+      .Content("Sed quis dolor in lacuses ullam corper euis mod necet nibh..")
+      .ActionLink("Explore now", "Index", "Home"))
+                                
+@@(Html.Vertex().IconBox()
+      .Icon("fas fa-layer-group")
+      .Title("Action Link Iconbox")
+      .Content("Sed quis dolor in lacuses ullam corper euis mod necet nibh..")
+      .Bordered()
+      .Align(IconBoxAlign.Center)
+      .TransitionHover().HoverShadow()
+      .IconColor(BootstrapColor.Success)
+      .ActionLink("Explore now", "Index2", "Home"))</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="mb-9" id="Others">
+                    <header class="mb-6">
+                        <h3>Others</h3>
+                        <hr>
+                        <p class="lead-1">Use <code>.TransitionHover()</code> method to create a IconBox.</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-8" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-8-1" role="tab" aria-controls="component-8-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-8-2" role="tab" aria-controls="component-8-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-8-content">
+                        <div class="tab-pane fade show active" id="component-8-1" role="tabpanel" aria-labelledby="component-8-1">
+                            <div class="d-flex">
+                                <div class="w-50 pr-3">
+                                    @(Html.Vertex().IconBox()
+                                         .Icon("fas fa-layer-group")
+                                         .Title("Bordered Iconbox")
+                                         .Content("Sed quis dolor in lacuses ullam corper euis mod necet nibh. Morbi mollis, enim vitae.")
+                                         .Bordered().TransitionHover()
+                                    )
+                                </div>
+                                <div class="w-50 pl-3">
+                                    @(Html.Vertex().IconBox()
+                                         .Icon("fas fa-layer-group")
+                                         .Bordered()
+                                         .Align(IconBoxAlign.Center)
+                                         .Title("Bordered Iconbox")
+                                         .Content("Sed quis dolor in lacuses ullam corper euis mod necet nibh. Morbi mollis, enim vitae.")
+                                         .TransitionHover().HoverShadow()
+                                    )
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="component-8-2" role="tabpanel" aria-labelledby="component-8-2">
+                            <pre><code class="language-csharp">@@(Html.Vertex().IconBox()
+    .Icon("fas fa-layer-group")
+    .Title("Default Iconbox")
+    .Content("Sed quis dolor in lacuses ullam corper euis mod..."))
+                                
+@@(Html.Vertex().IconBox()
+    .Icon("fas fa-layer-group")
+    .Title("Center Align")
+    .Content("Sed quis dolor in lacuses ullam corper euis mod...")
+    .Align(IconBoxAlign.Center))</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <div id="methods" class="mb-9">
+                    <h2 class="h4">Methods <a class="anchorjs-link" href="#methods" aria-label="Anchor" data-anchorjs-icon="#"></a></h2>
+
+                    <table class="table table-bordered bg-white">
+                        <thead>
+                            <tr>
+                                <th style="width:35%">Method</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> <p><code class="highlighter-rouge">.Method(bool value)</code></p> </td>
+                                <td>Comming soon.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+@Html.Vertex().Footer()

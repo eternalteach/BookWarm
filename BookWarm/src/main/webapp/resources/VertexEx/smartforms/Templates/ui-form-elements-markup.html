@@ -1,0 +1,1136 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - UI Elements </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">-->
+
+    <!--[if lte IE 9]>
+    	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>    
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+	<script type="text/javascript">
+	
+		function initialize() {
+				var mapOptions = {
+							zoom: 10,
+							center: new google.maps.LatLng(29.760193, -95.369390),   
+							mapTypeId: google.maps.MapTypeId.ROADMAP
+					};
+		
+				var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+				var marker = new google.maps.Marker({
+							map: map, 
+							draggable: false, 
+							position: new google.maps.LatLng(29.760193, -95.369390)
+					});
+		 }						
+		google.maps.event.addDomListener(window, 'resize', initialize);
+		google.maps.event.addDomListener(window, 'load', initialize);
+         
+    </script>    
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-flask"></i>Smart Form UI</h4>
+            </div><!-- end .form-header section -->
+   	    
+            
+            <form method="post" action="" id="form-ui">
+            	<div class="form-body">
+                
+                    <div class="spacer-b30">
+                    	<div class="tagline"><span>Form UI Elements </span></div><!-- .tagline -->
+                    </div>
+                    
+                    <div class="frm-row">
+                    
+                        <div class="colm colm6">
+                        
+                            <div class="section">
+                                <label class="field">
+                                    <input type="text" name="from" id="from" class="gui-input" placeholder="Input no icon">
+                                </label>
+                            </div><!-- end section -->                     
+                            
+                            <div class="section">
+                                <label class="field prepend-icon">
+                                    <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Text input icon left">
+                                    <span class="field-icon"><i class="fa fa-user"></i></span>  
+                                </label>
+                            </div><!-- end section -->
+                            
+                            <div class="section">
+                                <label class="field append-icon">
+                                    <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Text input icon right">
+                                    <span class="field-icon"><i class="fa fa-user"></i></span>  
+                                </label>
+                            </div><!-- end section -->
+                            
+                            <div class="section">
+                                <label class="field prepend-icon">
+                                    <input type="search" name="s" id="s" class="gui-input" placeholder="search input">
+                                    <span class="field-icon"><i class="fa fa-search"></i></span>  
+                                </label>
+                            </div><!-- end section -->                            
+                        
+                        </div><!-- end .colm6 section -->
+                                           
+                        <div class="colm colm6">
+                        
+                            <div class="section">
+                                <label class="field prepend-icon">
+                                    <input type="url" name="website" id="website" class="gui-input" placeholder="URL input">
+                                    <span class="field-icon"><i class="fa fa-globe"></i></span>  
+                                </label>
+                            </div><!-- end section -->                           
+                        
+                            <div class="section">
+                                <label class="field prepend-icon">
+                                    <input type="email" name="email" id="email" class="gui-input" placeholder="Email input">
+                                    <span class="field-icon"><i class="fa fa-envelope"></i></span>  
+                                </label>
+                            </div><!-- end section -->
+                            
+                            <div class="section">
+                                <label class="field prepend-icon">
+                                    <input type="tel" name="mobile" id="mobile" class="gui-input" placeholder="Telephone input">
+                                    <span class="field-icon"><i class="fa fa-phone-square"></i></span>  
+                                </label>
+                            </div><!-- end section -->
+                            
+                            <div class="section">
+                                <label class="field prepend-icon">
+                                    <input type="password" name="password" id="password" class="gui-input" placeholder="Password input">
+                                    <span class="field-icon"><i class="fa fa-lock"></i></span>  
+                                </label>
+                            </div><!-- end section -->                            
+                        
+                        </div><!-- end .colm6 section -->  
+                    
+                    </div><!-- end .frm-row section --> 
+                     
+                    
+                    <div class="frm-row">
+                    
+                        <div class="section colm colm6">
+                            <label class="field select">
+                                <select id="country" name="country">
+                                    <option value="">Select with single arrow</option>
+                                    <option value="AL">Albania</option>
+                                    <option value="DZ">Algeria</option>
+                                    <option value="AD">Andorra</option>
+                                    <option value="AO">Angola</option>
+                                    <option value="AI">Anguilla</option>
+                                    <option value="AG">Antigua and Barbuda</option>
+                                    <option value="AR">Argentina</option>
+                                    <option value="AM">Armenia</option>
+                                    <option value="AW">Aruba</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="AT">Austria</option>
+                                    <option value="AZ">Azerbaijan Republic</option>
+                                    <option value="BS">Bahamas</option>
+                                    <option value="BH">Bahrain</option>
+                                    <option value="BB">Barbados</option>
+                                    <option value="BE">Belgium</option>
+                                    <option value="BZ">Belize</option>
+                                    <option value="BJ">Benin</option>
+                                    <option value="BM">Bermuda</option>
+                                </select>
+                                <i class="arrow"></i>                    
+                            </label>  
+                        </div><!-- end section -->                     
+                        
+                        <div class="section colm colm6">
+                            <label class="field select">
+                                <select id="location" name="location">
+                                    <option value="">Select with double arrows</option>
+                                    <option value="AL">Albania</option>
+                                    <option value="DZ">Algeria</option>
+                                    <option value="AD">Andorra</option>
+                                    <option value="AO">Angola</option>
+                                    <option value="AI">Anguilla</option>
+                                    <option value="AG">Antigua and Barbuda</option>
+                                    <option value="AR">Argentina</option>
+                                    <option value="AM">Armenia</option>
+                                    <option value="AW">Aruba</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="AT">Austria</option>
+                                    <option value="AZ">Azerbaijan Republic</option>
+                                    <option value="BS">Bahamas</option>
+                                    <option value="BH">Bahrain</option>
+                                    <option value="BB">Barbados</option>
+                                    <option value="BE">Belgium</option>
+                                    <option value="BZ">Belize</option>
+                                    <option value="BJ">Benin</option>
+                                    <option value="BM">Bermuda</option>
+                                </select>
+                                <i class="arrow double"></i>                    
+                            </label>  
+                        </div><!-- end section --> 
+                    
+                    </div><!-- end .frm-row section -->
+                    
+                	<div class="section">
+                    	<label class="field prepend-icon">
+                        	<textarea class="gui-textarea" id="comment" name="comment" placeholder="Text area"></textarea>
+                            <span class="field-icon"><i class="fa fa-comments"></i></span>
+                            <span class="input-hint"> 
+                            	<strong>Hint:</strong> Don't be negative or off topic! just be awesome... 
+                            </span>   
+                        </label>
+                    </div><!-- end section -->                     
+                    
+                    <div class="spacer-t40 spacer-b40">
+                    	<div class="tagline"><span>File Uploaders </span></div><!-- .tagline -->
+                    </div>                    
+                    
+                    <div class="section">
+                        <label class="field prepend-icon file">
+                            <span class="button"> Choose File </span>
+                			<input type="file" class="gui-file" name="file1" id="file1" 
+                            onChange="document.getElementById('uploader1').value = this.value;">
+                            <input type="text" class="gui-input" id="uploader1" placeholder="no file selected" readonly>
+                            <span class="field-icon"><i class="fa fa-upload"></i></span>
+                        </label>
+                    </div><!-- end  section -->                     
+                    
+                    <div class="section">
+                        <label class="field prepend-icon file">
+                            <span class="button btn-primary"> Choose File </span>
+                			<input type="file" class="gui-file" name="file2" id="file2" 
+                            onChange="document.getElementById('uploader2').value = this.value;">
+                            <input type="text" class="gui-input" id="uploader2" placeholder="no file selected" readonly>
+                            <span class="field-icon"><i class="fa fa-upload"></i></span>
+                        </label>
+                    </div><!-- end  section -->
+                    
+                    <div class="spacer-t40 spacer-b40">
+                    	<div class="tagline"><span>Smart Widgets </span></div><!-- .tagline -->
+                    </div>                                          
+                    
+                    <div class="section">
+                        <div class="smart-widget sm-left sml-120">
+                            <label class="field">
+                                <input type="text" name="sm" id="sm" class="gui-input" placeholder="Smart widget left 120">
+                            </label>
+                            <label for="sm" class="button"> Public URL </label>
+                        </div><!-- end .smart-widget section --> 
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                        <div class="smart-widget sm-left sml-80">
+                            <label class="field">
+                                <input type="text" name="sm2" id="sm2" class="gui-input" placeholder="Smart widget left 80">
+                            </label>
+                            <label for="sm2" class="button"> Search </label>
+                        </div><!-- end .smart-widget section --> 
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                        <div class="smart-widget sm-left sml-50">
+                            <label class="field">
+                                <input type="text" name="sm3" id="sm3" class="gui-input" placeholder="Smart widget left 50">
+                            </label>
+                            <label for="sm3" class="button"> <i class="fa fa-search"></i> </label>
+                        </div><!-- end .smart-widget section --> 
+                    </div><!-- end section -->                                        
+                    
+                    <div class="section">
+                        <div class="smart-widget sm-right smr-50">
+                            <label class="field">
+                                <input type="text" name="sub" id="sub" class="gui-input" placeholder="Smart widget right 50">
+                            </label>
+                            <button type="submit" class="button"> <i class="fa fa-search"></i> </button>
+                        </div><!-- end .smart-widget section --> 
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                        <div class="smart-widget sm-right smr-80">
+                            <label class="field prepend-icon">
+                                <input type="text" name="sub2" id="sub2" class="gui-input" placeholder="Smart widget right 80">
+                                <span class="field-icon"><i class="fa fa-search"></i></span> 
+                            </label>
+                            <button type="submit" class="button"> Search </button>
+                        </div><!-- end .smart-widget section --> 
+                    </div><!-- end section --> 
+                    
+                    <div class="section">
+                        <div class="smart-widget sm-right smr-120">
+                            <label class="field">
+                                <input type="text" name="sub3" id="sub3" class="gui-input" placeholder="Smart widget right 120">
+                            </label>
+                            <button type="submit" class="button"> Subscribe </button>
+                        </div><!-- end .smart-widget section --> 
+                    </div><!-- end section -->                                                       
+                                               
+                    
+                    <div class="spacer-t40 spacer-b30">
+                    	<div class="tagline"><span> Block  Options </span></div><!-- .tagline -->
+                    </div> 
+                    
+                    
+                    <div class="frm-row">
+                    
+                        <div class="section colm colm4">
+                        
+                            <div class="option-group field">
+                            
+                                <label for="female" class="option block">
+                                    <input type="radio" name="gender" id="female" value="female">
+                                    <span class="radio"></span> Female specie
+                                </label>
+                                
+                                <label for="male" class="option block spacer-t10">
+                                    <input type="radio" name="gender" id="male" value="male">
+                                    <span class="radio"></span> Male specie                  
+                                </label>                            
+                                
+                                <label for="other" class="option block spacer-t10">
+                                    <input type="radio" name="gender" id="other" value="other">
+                                    <span class="radio"></span> Other specie                 
+                                </label>
+                                
+                            </div><!-- end .option-group section --> 
+                                                
+                        </div><!-- end .colm section -->
+                        
+                                                        
+                        <div class="section colm colm4">
+                        
+                            <div class="option-group field">
+                            
+                                <label class="option block">
+                                    <input type="checkbox" name="mobileos" value="FR">
+                                    <span class="checkbox"></span> Android Kitkat           
+                                </label>
+                          
+                                <label class="option block spacer-t10">
+                                    <input type="checkbox" name="mobileos" value="EN">
+                                    <span class="checkbox"></span> Windows 8 Mobile           
+                                </label>
+                                
+                                <label class="option block spacer-t10">
+                                    <input type="checkbox" name="mobileos" value="CH">
+                                    <span class="checkbox"></span> Apple IOS 7            
+                                </label>                                
+                                
+                            </div><!-- end .option-group section --> 
+                                                    
+                        </div><!-- end .colm section -->
+                            
+                        
+                        <div class="section colm colm4">
+                        
+                            <div class="option-group field">
+                            
+                                <label class="option block">
+                                    <input type="checkbox" name="languages" value="FR">
+                                    <span class="checkbox"></span> Fluent french            
+                                </label>
+                          
+                                <label class="option block spacer-t10">
+                                    <input type="checkbox" name="languages" value="EN">
+                                    <span class="checkbox"></span> Fluent english              
+                                </label>
+                                
+                                <label class="option block spacer-t10">
+                                    <input type="checkbox" name="languages" value="CH">
+                                    <span class="checkbox"></span> Fluent chinese            
+                                </label>                                
+                                
+                            </div><!-- end .option-group section --> 
+                                                    
+                        </div><!-- end .colm section -->
+                        
+                    </div> <!-- end .frm-row section -->
+                    
+                    <div class="spacer-t20 spacer-b20">
+                    	<div class="tagline"><span> Inline Options </span></div><!-- .tagline -->
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                    	<p class="small-text fine-grey align-center">Inline options - choose a method of payment below </p>
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                    
+                    	<div class="option-group field">
+                        
+                            <label class="option">
+                                <input type="radio" name="payment" checked>
+                                <span class="radio"></span> Credit Card                 
+                            </label>
+                            
+                            <label class="option">
+                                <input type="radio" name="payment">
+                                <span class="radio"></span> Paypal                  
+                            </label>
+                            
+                            <label class="option">
+                                <input type="radio" name="payment">
+                                <span class="radio"></span> Skrill                  
+                            </label>                         
+                            
+                            <label class="option">
+                                <input type="radio" name="payment">
+                                <span class="radio"></span> Gumroad                  
+                            </label>
+                            
+                             <label class="option">
+                                <input type="radio" name="payment">
+                                <span class="radio"></span> Payoneer                  
+                            </label>
+                        
+                        </div><!-- end .option-group section -->
+                        
+                    </div><!-- end section -->
+                 
+                    
+                	<div class="section">
+                        <label class="field option block">
+                            <input type="checkbox" name="terms" checked>
+                            <span class="checkbox"></span> 
+                            You must agree to our <a href="#" class="smart-link"> terms of service </a>                
+                        </label>
+                    </div><!-- end section --> 
+                    
+                    <div class="spacer-t40 spacer-b30">
+                    	<div class="tagline"><span> Toggle Switches </span></div><!-- .tagline -->
+                    </div><!-- end .spacer section --> 
+                    
+                    <div class="frm-row">
+                    
+                        <div class="section colm colm4">
+                        
+                            <label class="switch block">
+                              <input type="checkbox" name="features" id="f1" value="javascript">
+                              <span class="switch-label" data-on="ON" data-off="OFF"></span>
+                              <span> Javascript </span>
+                            </label>
+                    
+                            <label class="switch block">
+                              <input type="checkbox" name="features" id="f2" value="downloads">
+                              <span class="switch-label" data-on="ON" data-off="OFF"></span>
+                              <span> Downloads </span>
+                            </label>
+                    
+                            <label class="switch block">
+                              <input type="checkbox" name="features" id="f3" value="cookies">
+                              <span class="switch-label" data-on="ON" data-off="OFF"></span>
+                              <span> Cookies  </span>
+                            </label>
+                            
+                            <label class="switch block">
+                              <input type="checkbox" name="features" id="f4" value="popups" checked>
+                              <span class="switch-label" data-on="ON" data-off="OFF"></span>
+                              <span> Popups </span>
+                            </label>                         
+                                   
+                        </div><!-- end .colm section -->
+                        
+                        <div class="section colm colm4">
+                        
+                            <label class="switch block">
+                              <input type="checkbox" name="tools" id="t1" value="analytics">
+                              <span class="switch-label" data-on="YES" data-off="NO"></span>
+                              <span> Analytics </span>
+                            </label>
+                    
+                            <label class="switch block">
+                              <input type="checkbox" name="tools" id="t2" value="reports">
+                              <span class="switch-label" data-on="YES" data-off="NO"></span>
+                              <span> Reports  </span>
+                            </label>
+                    
+                            <label class="switch block">
+                              <input type="checkbox" name="tools" id="t3" value="social">
+                              <span class="switch-label" data-on="YES" data-off="NO"></span>
+                              <span> Social </span>
+                            </label>
+                            
+                            <label class="switch block">
+                              <input type="checkbox" name="tools" id="t4" value="admin" checked>
+                              <span class="switch-label" data-on="YES" data-off="NO"></span>
+                              <span> Access </span>
+                            </label>                         
+                                   
+                        </div><!-- end .colm section -->
+                        
+                        <div class="section colm colm4">
+                        
+                            <label class="switch switch-round block">
+                              <input type="radio" name="framework" id="fr1" value="mootols">
+                              <span class="switch-label" data-on="YES" data-off="NO"></span>
+                              <span> MooTools </span>
+                            </label>
+                    
+                            <label class="switch switch-round block">
+                              <input type="radio" name="framework" id="fr2" value="angular">
+                              <span class="switch-label" data-on="YES" data-off="NO"></span>
+                              <span> Angular JS  </span>
+                            </label>
+                    
+                            <label class="switch switch-round block">
+                              <input type="radio" name="framework" id="fr3" value="jquery">
+                              <span class="switch-label" data-on="YES" data-off="NO"></span>
+                              <span> jQuery </span>
+                            </label>
+                            
+                            <label class="switch switch-round block">
+                              <input type="radio" name="framework" id="fr4" value="dojo" checked>
+                              <span class="switch-label" data-on="YES" data-off="NO"></span>
+                              <span> Dojo </span>
+                            </label>                        
+                                   
+                        </div><!-- end .colm section -->                                                
+                    
+                    </div><!-- end .frm-row section -->
+                    
+                    
+                    <div class="spacer-t20 spacer-b20">
+                    	<div class="tagline"><span> Modern Switches </span></div><!-- .tagline -->
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                    	<p class="small-text fine-grey align-center"> Pure CSS3 Android Material + IOS Switches </p>
+                    </div><!-- end section --> 
+                    
+                    <div class="section">
+                        <label class="modern-switch">
+                            <input type="checkbox" checked>
+                            <span class="switch-toggle"></span>
+                            <span class="switch-label">Microsoft</span>                      
+                        </label>
+                        <label class="modern-switch">
+                            <input type="checkbox">
+                            <span class="switch-toggle"></span>
+                            <span class="switch-label">Google</span>                        
+                        </label>
+                        <label class="modern-switch">
+                            <input type="checkbox">
+                            <span class="switch-toggle"></span>
+                            <span class="switch-label">Samsung</span>                        
+                        </label>                        
+                        <label class="modern-switch">
+                            <input type="checkbox" disabled>
+                            <span class="switch-toggle"></span>
+                            <span class="switch-label">Apple (Disabled)</span>                        
+                        </label>
+                    </div><!-- end section -->  
+                                                             
+                    <div class="section"> 
+                        <label class="modern-switch morph-switch">
+                            <input type="radio" name="switch">
+                            <span class="switch-toggle"></span>
+                            <span class="switch-label">Microsoft</span>                        
+                        </label>
+                        <label class="modern-switch morph-switch">
+                            <input type="radio" name="switch" checked>
+                            <span class="switch-toggle"></span>
+                            <span class="switch-label">Google</span>                        
+                        </label>
+                        <label class="modern-switch morph-switch">
+                            <input type="radio" name="switch">
+                            <span class="switch-toggle"></span>
+                            <span class="switch-label">Samsung</span>                        
+                        </label>
+                        <label class="modern-switch morph-switch">
+                            <input type="radio" name="switch" disabled>
+                            <span class="switch-toggle"></span>
+                            <span class="switch-label">Apple (Disabled)</span>                        
+                        </label>                     
+                    </div><!-- end section --> 
+                                        
+                    <div class="section">
+                        <label class="modern-switch modern-ios">
+                            <input type="radio" name="switchr">
+                            <span class="switch-toggle"></span>
+                            <span class="switch-label">Microsoft</span>                        
+                        </label>
+                        <label class="modern-switch modern-ios">
+                            <input type="radio" name="switchr">
+                            <span class="switch-toggle"></span>
+                            <span class="switch-label">Google</span>                        
+                        </label>
+                        <label class="modern-switch modern-ios">
+                            <input type="radio" name="switchr" checked>
+                            <span class="switch-toggle"></span>
+                            <span class="switch-label">Samsung</span>                        
+                        </label>
+                        <label class="modern-switch modern-ios">
+                            <input type="radio" name="switchr" disabled>
+                            <span class="switch-toggle"></span>
+                            <span class="switch-label">Apple (Disabled)</span>                        
+                        </label>                        
+                    </div> <!-- end section --> 
+                    
+                    <div class="spacer-t40 spacer-b20">
+                    	<div class="tagline"><span> Smart Group Options </span></div><!-- .tagline -->
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                    	<p class="small-text fine-grey align-center"> Pure CSS3 Button Radios + Checkboxes </p>
+                    </div><!-- end section -->
+                    
+                    <div class="section">                
+                        <div class="option-group field">
+                            <div class="smart-option-group">                        
+                                <label for="city1" class="option">
+                                    <input type="radio" id="city1" name="city" checked>
+                                    <span class="smart-option smart-radio">
+                                        <span class="smart-option-ui"> <i class="iconc"></i>  New York </span>                                      
+                                    </span>                                      
+                                </label>
+                                
+                                <label for="city2" class="option">
+                                    <input type="radio" id="city2" name="city">
+                                    <span class="smart-option smart-radio">
+                                        <span class="smart-option-ui"> <i class="iconc"></i>  London </span>                                      
+                                    </span>                                      
+                                </label>
+                                
+                                <label for="city3" class="option">
+                                    <input type="radio" id="city3" name="city">
+                                    <span class="smart-option smart-radio">
+                                        <span class="smart-option-ui"> <i class="iconc"></i>  Paris </span>                                      
+                                    </span>                                      
+                                </label>
+                                
+                                <label for="city4" class="option">
+                                    <input type="radio" id="city4" name="city">
+                                    <span class="smart-option smart-radio">
+                                        <span class="smart-option-ui"> <i class="iconc"></i>  Berlin </span>                                      
+                                    </span>                                      
+                                </label>                            
+                                                             
+                             </div><!--  smart-option-group -->                           
+                        </div><!-- end .option-group section -->
+                    </div><!-- end section -->  
+                                         
+                    <div class="section">                    
+                        <div class="option-group field">
+                            <div class="smart-option-group">                                
+                                <label for="rate1" class="option">
+                                    <input type="checkbox" id="rate1" name="rate">
+                                    <span class="smart-option  smart-checkbox">
+                                        <span class="smart-option-ui"> <i class="iconc"></i> 1 Star </span>                                  
+                                    </span>                              
+                                </label>
+                                
+                                <label for="rate2" class="option">
+                                    <input type="checkbox" id="rate2" name="rate" checked>
+                                    <span class="smart-option  smart-checkbox">
+                                        <span class="smart-option-ui"> <i class="iconc"></i> 2 Star </span>                                  
+                                    </span>                              
+                                </label>
+                                
+                                <label for="rate3" class="option">
+                                    <input type="checkbox" id="rate3" name="rate">
+                                    <span class="smart-option  smart-checkbox">
+                                        <span class="smart-option-ui"> <i class="iconc"></i> 3 Star </span>                                  
+                                    </span>                              
+                                </label> 
+                                
+                                <label for="rate4" class="option">
+                                    <input type="checkbox" id="rate4" name="rate">
+                                    <span class="smart-option  smart-checkbox">
+                                        <span class="smart-option-ui"> <i class="iconc"></i> 4 Star </span>                                  
+                                    </span>                              
+                                </label>
+                                
+                                <label for="rate5" class="option">
+                                    <input type="checkbox" id="rate5" name="rate">
+                                    <span class="smart-option  smart-checkbox">
+                                        <span class="smart-option-ui"> <i class="iconc"></i> 5 Star </span>                                  
+                                    </span>                              
+                                </label>                                                                       
+                            </div><!--  smart-option-group -->                            
+                        </div><!-- end .option-group section -->
+                    </div><!-- end section --> 
+                    
+                    <div class="section">                    
+                        <div class="option-group field">
+                        
+                            <div class="smart-option-group smart-option-list left">                                
+                                <label for="group1" class="option">
+                                    <input type="checkbox" id="group1" name="group">
+                                    <span class="smart-option  smart-checkbox">
+                                        <span class="smart-option-ui"> 
+                                        	<i class="fa fa-bold" aria-hidden="true"></i> 
+                                        </span>                                  
+                                    </span>                              
+                                </label>
+                                
+                                <label for="group2" class="option">
+                                    <input type="checkbox" id="group2" name="group">
+                                    <span class="smart-option  smart-checkbox">
+                                        <span class="smart-option-ui"> 
+                                        	<i class="fa fa-align-left"></i> 
+                                        </span>                                  
+                                    </span>                              
+                                </label>
+                                
+                                <label for="group3" class="option">
+                                    <input type="checkbox" id="group3" name="group">
+                                    <span class="smart-option  smart-checkbox">
+                                        <span class="smart-option-ui"> 
+                                        	<i class="fa fa-align-center"></i> 
+                                        </span>                                  
+                                    </span>                              
+                                </label> 
+                                
+                                <label for="group4" class="option">
+                                    <input type="checkbox" id="group4" name="group" checked>
+                                    <span class="smart-option  smart-checkbox">
+                                        <span class="smart-option-ui"> 
+                                        	<i class="fa fa-align-right"></i> 
+                                        </span>                                  
+                                    </span>                              
+                                </label>
+                                
+                                <label for="group5" class="option">
+                                    <input type="checkbox" id="group5" name="group">
+                                    <span class="smart-option  smart-checkbox">
+                                        <span class="smart-option-ui"> 
+                                        	<i class="fa fa-align-justify"></i> 
+                                        </span>                                  
+                                    </span>                              
+                                </label>                                                                       
+                            </div><!--  smart-option-group -->
+                            
+                            <div class="smart-option-group smart-option-list right">                                
+                                <label for="group6" class="option">
+                                    <input type="checkbox" id="group6" name="group">
+                                    <span class="smart-option  smart-checkbox">
+                                        <span class="smart-option-ui"> 
+                                            <i class="iconc"></i> Format 
+                                            <i class="fa fa-caret-down" aria-hidden="true"></i> 
+                                        </span>                                  
+                                    </span>                              
+                                </label>
+                                
+                                <label for="group7" class="option">
+                                    <input type="checkbox" id="group7" name="group" checked>
+                                    <span class="smart-option  smart-checkbox">
+                                        <span class="smart-option-ui"> 
+                                        	<i class="fa fa-undo"></i> 
+                                        </span>                                  
+                                    </span>                              
+                                </label>
+                                
+                                <label for="group8" class="option">
+                                    <input type="checkbox" id="group8" name="group">
+                                    <span class="smart-option  smart-checkbox">
+                                        <span class="smart-option-ui"> 
+                                        	<i class="fa fa-rotate-right"></i> 
+                                        </span>                                  
+                                    </span>                              
+                                </label>
+                                
+                                <label for="group9" class="option">
+                                    <input type="checkbox" id="group9" name="group">
+                                    <span class="smart-option  smart-checkbox">
+                                        <span class="smart-option-ui"> 
+                                        	<i class="fa fa-save"></i> 
+                                        </span>                                  
+                                    </span>                              
+                                </label>                                
+                                 
+                                                                                             
+                            </div><!--  smart-option-group -->                            
+                                                        
+                        </div><!-- end .option-group section -->
+                    </div><!-- end section -->
+                    
+                    
+                    
+                    <div class="frm-row">
+                    
+                        <div class="section colm colm6">
+                        
+                            <div class="option-group field">
+                            	<div class="smart-option-group smart-option-list group-vertical"> 
+                                       
+                                    <label for="auto" class="option">
+                                        <input type="radio" name="updates" id="auto" value="Auto" checked>
+                                        <span class="smart-option smart-radio">
+                                            <span class="smart-option-ui"> 
+                                            	<i class="iconc"></i> Automatic updates
+                                            </span>                                  
+                                        </span>
+                                    </label>
+                                    
+                                    <label for="manual" class="option">
+                                        <input type="radio" name="updates" id="manual" value="Manual">
+                                        <span class="smart-option smart-radio">
+                                            <span class="smart-option-ui"> 
+                                            	<i class="iconc"></i> Manual updates
+                                            </span>                                  
+                                        </span>                  
+                                    </label>                            
+                                    
+                                    <label for="never" class="option">
+                                        <input type="radio" name="updates" id="never" value="Never">
+                                        <span class="smart-option smart-radio">
+                                            <span class="smart-option-ui"> 
+                                            	<i class="iconc"></i> No updates
+                                            </span>                                  
+                                        </span>               
+                                    </label>
+                                
+                                </div><!--  smart-option-group -->   
+                            </div><!-- end .option-group section --> 
+                                                
+                        </div><!-- end .colm section -->
+                        
+                                                        
+                        <div class="section colm colm6">
+                        
+                            <div class="option-group field">
+                            	<div class="smart-option-group smart-option-list group-vertical">
+                                 
+                                    <label class="option">
+                                        <input type="checkbox" name="mobileos" value="Android">
+                                        <span class="smart-option  smart-checkbox">
+                                            <span class="smart-option-ui"> 
+                                                <i class="fa fa-android"></i> Android 
+                                                <span class="iconc-pos"> <i class="fa fa-check"></i> </span>
+                                            </span>                                  
+                                        </span>                                               
+                                    </label>
+                              
+                                    <label class="option">
+                                        <input type="checkbox" name="mobileos" value="Windows" checked>
+                                        <span class="smart-option  smart-checkbox">
+                                            <span class="smart-option-ui"> 
+                                            	<i class="fa fa-windows"></i>  Windows
+                                                <span class="iconc-pos"> <i class="fa fa-check"></i> </span>  
+                                            </span>                                  
+                                        </span>                                               
+                                    </label>
+                                    
+                                    <label class="option">
+                                        <input type="checkbox" name="mobileos" value="IOS">
+                                        <span class="smart-option  smart-checkbox">
+                                            <span class="smart-option-ui"> 
+                                            	<i class="fa fa-apple"></i>  IOS
+                                                <span class="iconc-pos"> <i class="fa fa-check"></i> </span>   
+                                            </span>                                  
+                                        </span>                                                
+                                    </label>
+                                                                
+                                </div><!--  smart-option-group -->  
+                            </div><!-- end .option-group section --> 
+                                                    
+                        </div><!-- end .colm section -->
+                        
+                    </div> <!-- end .frm-row section -->                                                                                 
+                    
+                    
+                    <div class="spacer-t40 spacer-b40">
+                    	<div class="tagline"><span> Review &amp; Rating Widget </span></div><!-- .tagline -->
+                    </div><!-- end .spacer section -->
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6 pad-r40 bdr">
+                            <div class="rating block">
+                                <span class="lbl-text">Customization</span>
+                                <div class="rating-wrapper">
+                                    <input class="rating-input" id="r5" type="radio"  name="custom" checked>
+                                    <label class="rating-star" for="r5"><i class="fa fa-star"></i><span>Excellent</span></label>
+                                    <input class="rating-input" id="r4" type="radio"  name="custom">
+                                    <label class="rating-star" for="r4"><i class="fa fa-star"></i><span>Good</span></label>
+                                    <input class="rating-input" id="r3" type="radio"  name="custom">
+                                    <label class="rating-star" for="r3"><i class="fa fa-star"></i><span>Tried</span></label>
+                                    <input class="rating-input" id="r2" type="radio"  name="custom">
+                                    <label class="rating-star" for="r2"><i class="fa fa-star"></i><span>Fair</span></label>
+                                    <input class="rating-input" id="r1" type="radio"  name="custom">
+                                    <label class="rating-star" for="r1"><i class="fa fa-star"></i><span>Poor</span></label>
+                                </div>
+                            </div><!-- end rating section -->
+                            <div class="rating block">
+                                <span class="lbl-text">Reliability</span>
+                                <div class="rating-wrapper">
+                                    <input class="rating-input" id="rr5" type="radio"  name="reliable">
+                                    <label class="rating-star" for="rr5"><i class="fa fa-star"></i><span>Excellent</span></label>
+                                    <input class="rating-input" id="rr4" type="radio"  name="reliable" checked>
+                                    <label class="rating-star" for="rr4"><i class="fa fa-star"></i><span>Good</span></label>
+                                    <input class="rating-input" id="rr3" type="radio"  name="reliable">
+                                    <label class="rating-star" for="rr3"><i class="fa fa-star"></i><span>Tried</span></label>
+                                    <input class="rating-input" id="rr2" type="radio"  name="reliable">
+                                    <label class="rating-star" for="rr2"><i class="fa fa-star"></i><span>Fair</span></label>
+                                    <input class="rating-input" id="rr1" type="radio"  name="reliable">
+                                    <label class="rating-star" for="rr1"><i class="fa fa-star"></i><span>Poor</span></label>
+                                </div>
+                            </div><!-- end rating section -->
+                            <div class="rating block">
+                                <span class="lbl-text">Relevance</span>
+                                <div class="rating-wrapper">
+                                    <input class="rating-input" id="rx5" type="radio"  name="relevance">
+                                    <label class="rating-star" for="rx5"><i class="fa fa-star"></i><span>Excellent</span></label>
+                                    <input class="rating-input" id="rx4" type="radio"  name="relevance">
+                                    <label class="rating-star" for="rx4"><i class="fa fa-star"></i><span>Good</span></label>
+                                    <input class="rating-input" id="rx3" type="radio"  name="relevance" checked>
+                                    <label class="rating-star" for="rx3"><i class="fa fa-star"></i><span>Tried</span></label>
+                                    <input class="rating-input" id="rx2" type="radio"  name="relevance">
+                                    <label class="rating-star" for="rx2"><i class="fa fa-star"></i><span>Fair</span></label>
+                                    <input class="rating-input" id="rx1" type="radio"  name="relevance">
+                                    <label class="rating-star" for="rx1"><i class="fa fa-star"></i><span>Poor</span></label>
+                                </div>
+                            </div><!-- end rating section -->
+                        </div><!-- end  section -->
+                        
+                        <div class="section colm colm6 pad-l40">
+                            <div class="rating block">
+                                <span class="lbl-text">Our products</span>
+                                <div class="rating-wrapper">
+                                    <input class="rating-input" id="five-stars" type="radio"  name="product-rate">
+                                    <label class="rating-star" for="five-stars"><i class="fa fa-star"></i><span>Excellent</span></label>
+                                    <input class="rating-input" id="four-stars" type="radio"  name="product-rate">
+                                    <label class="rating-star" for="four-stars"><i class="fa fa-star"></i><span>Good</span></label>
+                                    <input class="rating-input" id="three-stars" type="radio"  name="product-rate" checked>
+                                    <label class="rating-star" for="three-stars"><i class="fa fa-star"></i><span>Tried</span></label>
+                                    <input class="rating-input" id="two-stars" type="radio"  name="product-rate">
+                                    <label class="rating-star" for="two-stars"><i class="fa fa-star"></i><span>Fair</span></label>
+                                    <input class="rating-input" id="one-star" type="radio"  name="product-rate">
+                                    <label class="rating-star" for="one-star"><i class="fa fa-star"></i><span>Poor</span></label>
+                                </div>
+                            </div><!-- end rating section -->
+                            <div class="rating block">
+                                <span class="lbl-text">Support team</span>
+                                <div class="rating-wrapper">
+                                    <input class="rating-input" id="5stars" type="radio"  name="support-rate">
+                                    <label class="rating-star" for="5stars"><i class="fa fa-star"></i><span>Excellent</span></label>
+                                    <input class="rating-input" id="4stars" type="radio"  name="support-rate">
+                                    <label class="rating-star" for="4stars"><i class="fa fa-star"></i><span>Good</span></label>
+                                    <input class="rating-input" id="3stars" type="radio"  name="support-rate">
+                                    <label class="rating-star" for="3stars"><i class="fa fa-star"></i><span>Tried</span></label>
+                                    <input class="rating-input" id="2stars" type="radio"  name="support-rate" checked>
+                                    <label class="rating-star" for="2stars"><i class="fa fa-star"></i><span>Fair</span></label>
+                                    <input class="rating-input" id="1star" type="radio"  name="support-rate">
+                                    <label class="rating-star" for="1star"><i class="fa fa-star"></i><span>Poor</span></label>
+                                </div>
+                            </div><!-- end rating section -->
+                            <div class="rating block">
+                                <span class="lbl-text">Response time</span>
+                                <div class="rating-wrapper">
+                                    <input class="rating-input" id="5s" type="radio"  name="response-rate">
+                                    <label class="rating-star" for="5s"><i class="fa fa-star"></i><span>Excellent</span></label>
+                                    <input class="rating-input" id="4s" type="radio"  name="response-rate">
+                                    <label class="rating-star" for="4s"><i class="fa fa-star"></i><span>Good</span></label>
+                                    <input class="rating-input" id="3s" type="radio"  name="response-rate">
+                                    <label class="rating-star" for="3s"><i class="fa fa-star"></i><span>Tried</span></label>
+                                    <input class="rating-input" id="2s" type="radio"  name="response-rate">
+                                    <label class="rating-star" for="2s"><i class="fa fa-star"></i><span>Fair</span></label>
+                                    <input class="rating-input" id="1s" type="radio"  name="response-rate" checked>
+                                    <label class="rating-star" for="1s"><i class="fa fa-star"></i><span>Poor</span></label>
+                                </div>
+                            </div><!-- end rating section -->
+                        </div><!-- end  section -->
+                    </div><!-- end .frm-row  section -->                                      
+                    
+                    <div class="spacer-t20 spacer-b40">
+                    	<div class="tagline"><span> Buttons </span></div><!-- .tagline -->
+                    </div><!-- end .spacer section -->
+                    
+                   	<div class="section button-list">
+                    
+                    	<button class="button"> <i class="fa fa-align-left"></i> </button>
+                        <button class="button"> <i class="fa fa-align-justify"></i> </button>
+                        <a href="#" class="button"><i class="fa fa-align-center"></i></a>
+                        <a href="#" class="button"><i class="fa fa-align-right"></i></a>
+                        <a href="#" class="button"><i class="fa fa-align-center"></i></a>
+                        <a href="#" class="button btn-primary"><i class="fa fa-align-right"></i></a>                        
+                    	<button class="button btn-primary"> <i class="fa fa-align-left"></i> </button>
+                        <button class="button btn-primary"> <i class="fa fa-align-justify"></i> </button>
+                        <a href="#" class="button btn-primary"><i class="fa fa-align-center"></i></a>
+                        <a href="#" class="button btn-primary"><i class="fa fa-align-right"></i></a>
+                        
+                    </div><!-- end section -->                    
+                    
+                   	<div class="section button-list">
+                    
+                        <input type="submit" value="Button normal" class="button">
+                        <button class="button btn-primary"> Button primary </button>
+                        <a href="#" class="button btn-rounded">Button rounded</a>
+                        <a href="#" class="button btn-primary btn-rounded">Primary rounded</a>                    
+                    
+                    </div><!-- end section -->
+                    
+                    
+                    
+                   	<div class="section button-list">
+                    
+                        <input type="submit" value="Pushed normal" class="button pushed">
+                        <button class="button pushed btn-primary"> Pushed primary </button>
+                        <a href="#" class="button pushed btn-rounded">Pushed round</a>
+                        <a href="#" class="button pushed btn-primary btn-rounded">Pushed round</a>                    
+                    
+                    </div><!-- end section -->                    
+                    
+                   	<div class="section button-list">
+                    
+                    	<button class="button button-left"> Button Left </button>
+                        <button class="button button-right"> Button right </button>
+                        <a href="#" class="button btn-primary button-left">Primary  Left</a>
+                        <a href="#" class="button btn-primary button-right">Primary Right</a>                    
+                    
+                    </div><!-- end section -->
+                     
+                    
+                   	<div class="section button-list">
+                    
+                    	<button class="button btn-pointed button-left"> Pointed Left </button>
+                        <button class="button btn-pointed button-right"> Pointed right </button>
+                        <a href="#" class="button btn-pointed btn-primary button-left">Pointed  Left</a>
+                        <a href="#" class="button btn-pointed  btn-primary button-right">Pointed Right</a>                    
+                    
+                    </div><!-- end section -->
+                    
+                    <div class="spacer-t40 spacer-b40">
+                    	<div class="tagline"><span> Simple Pricing Grid </span></div><!-- .tagline -->
+                    </div><!-- end .spacer section -->
+                    
+                    
+                	<div class="frm-row">
+                    
+                        <div class="colm colm6">
+                        	<div class="section">
+                            
+                            	<div class="price-box">                                
+                                	<h4><sup>$</sup>29<span class="per-month">/month</span></h4>
+                                	<h5> Starter </h5>
+                                    <div class="spacer spacer-t20 spacer-b20"></div>
+                                	<p>For those looking for something simple to get started.</p>
+                                    <div class="spacer spacer-t20 spacer-b20"></div>
+                                    <a href="#" class="button block pushed expand"> Learn more </a>
+                                </div><!-- end .price-box section -->
+                                
+                            </div><!-- end .section section -->
+                        </div><!-- end .colm section -->
+                        
+                        <div class="colm colm6">
+                        
+                        	<div class="section">
+                            
+                            	<div class="price-box selected-box">
+                                    <div class="ribbon-large"> <div class="ribbon-inner">POPULAR</div> </div>
+                                	<h4><sup>$</sup>179<span class="per-month">/month</span></h4>
+                                	<h5> Professional </h5>
+                                    <div class="spacer spacer-t20 spacer-b20"></div>
+                                	<p>For large enterprises selling over one million plus a year.</p>
+                                    <div class="spacer spacer-t20 spacer-b20"></div>
+                                    <a href="#" class="button btn-primary block pushed expand"> Learn more </a>
+                                </div><!-- end .price-box section -->
+                                
+                            </div><!-- end .section section -->
+                        </div><!-- end .colm section -->
+                                                                   
+                    </div><!-- end frm-row section -->
+                    
+                    <div class="spacer-t20 spacer-b40">
+                    	<div class="tagline"><span> Google Map </span></div><!-- .tagline -->
+                    </div><!-- end .spacer section -->                    
+                    
+                    <div class="section">
+                        <div class="map-container">
+                            <div id="map_canvas"></div>
+                        </div><!-- end .map-container -->                    
+                    </div><!-- end .section -->
+                    
+                    <div class="spacer-t40 spacer-b40">
+                    	<div class="tagline"><span> Notifications + Progress Bars </span></div><!-- .tagline -->
+                    </div><!-- end .spacer section -->
+                    
+                    <div class="section">
+                    
+                        <div class="progress-bar progress-animated bar-primary">
+                            <div class="bar"></div>
+                            <div class="percent"></div>
+                        </div> <!-- end .progress-bar -->                    
+                    
+                    	
+                        <div class="progress-bar bar-primary spacer-t10">
+                            <div class="bar"></div>
+                            <div class="percent"></div>
+                        </div> <!-- end .progress-bar -->
+                        
+                        <div class="progress-bar bar-green spacer-t10">
+                            <div class="bar"></div>
+                            <div class="percent"></div>
+                        </div> <!-- end .progress-bar -->
+                        
+                        <div class="progress-bar bar-red spacer-t10">
+                            <div class="bar"></div>
+                            <div class="percent"></div>
+                        </div> <!-- end .progress-bar -->
+                        
+                        <div class="progress-bar bar-yellow spacer-t10">
+                            <div class="bar"></div>
+                            <div class="percent"></div>
+                        </div> <!-- end .progress-bar -->
+                        
+                        <div class="progress-bar bar-purple spacer-t10">
+                            <div class="bar"></div>
+                            <div class="percent"></div>
+                        </div> <!-- end .progress-bar -->
+                        
+                        <div class="progress-bar bar-black spacer-t10">
+                            <div class="bar"></div>
+                            <div class="percent"></div>
+                        </div> <!-- end .progress-bar -->                        
+                        
+                        <div class="progress-bar bar-blue spacer-t10">
+                            <div class="bar"></div>
+                            <div class="percent"></div>
+                        </div> <!-- end .progress-bar -->                                                                                                                       
+                    
+                        <div class="notification alert-info spacer-t10">
+                            <p>Info Notification </p>
+                            <a href="#" class="close-btn">&times;</a>                                  
+                        </div><!-- end .notification section -->
+                        
+                        <div class="notification alert-success spacer-t10">
+                            <p>Success Notification</p>
+                            <a href="#" class="close-btn">&times;</a>                                  
+                        </div><!-- end .notification section -->
+                        
+                        <div class="notification alert-warning spacer-t10">
+                            <p>Warning Notification</p>
+                            <a href="#" class="close-btn">&times;</a>                                  
+                        </div><!-- end .notification section -->
+                        
+                        <div class="notification alert-error spacer-t10">
+                            <p>Error Notification</p>
+                            <a href="#" class="close-btn">&times;</a>                                  
+                        </div><!-- end .notification section -->                                                                         
+                                           
+                    </div><!-- end .section section -->                                                                                                     
+                                                                                     
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary">Proceed to confirm </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+</body>
+</html>

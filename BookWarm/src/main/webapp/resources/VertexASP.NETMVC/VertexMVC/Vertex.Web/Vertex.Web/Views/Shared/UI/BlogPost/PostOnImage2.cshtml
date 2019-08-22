@@ -1,0 +1,56 @@
+﻿@model BlogPost
+
+
+@{
+    if (Model.Slider != null)
+    {
+        foreach (var item in Model.Items)
+        {
+            Model.Slider.Add().Content(RenderItem(item).ToHtmlString());
+        }
+        @Html.Raw(Model.Slider.ToHtmlString());
+    }
+    else
+    {
+        foreach (var postItem in Model.Items)
+        {
+            @RenderItem(postItem)
+        }
+
+        <div>
+            @Html.Raw(Model.Pager)
+        </div>
+    }
+}
+
+@if (Model.Items.Count == 0)
+{
+    <div class="text-center small text-light">
+        No any blog post to list. <br />
+        Go to <a href="@Url.Action("PostCreate","Manage")" target="_blank" class="anim-link-2 anim-link-2-primary"> manage panel </a> to create new blog post.
+    </div>
+}
+
+
+@helper RenderItem(Post post)
+{
+    <div class="p-3">
+        <div class="card text-white bg-img h-400" style="background-image: url(@post.Picture.FilePath);" data-scrim-bottom="6">
+            <div class="row h-100 p-5">
+                <div class="col-12">
+                    <a class="text-white label label--sm label--dark small" href="/@post.Category.Url">@post.Category.Name</a>
+                </div>
+                <div class="col-12 align-self-end">
+                    <small class="d-block mb-2">@post.CreateDateUtc.ToRelativeFormat()</small>
+                    <h3 class="card-title h5">
+                        <a class="text-white anim-link-2" href="/@post.Url"> @post.Title </a>
+                    </h3>
+                    <div class="media align-items-center">
+                        <img class="avatar avatar-xs mr-3" src="@post.User.Avatar.FilePath" alt="@post.User.UserName">
+                        <a href="/User/@post.UserName" class="media-body"><span class="anim-link-2">@post.User.UserName</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

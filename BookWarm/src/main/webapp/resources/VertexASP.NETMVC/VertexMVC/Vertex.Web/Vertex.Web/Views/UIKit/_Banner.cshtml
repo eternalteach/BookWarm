@@ -1,0 +1,40 @@
+﻿@model string
+
+
+@(Html.Vertex().Page()
+    .Css(@<text> <link href="/Content/vendor/prism/prism.css" rel="stylesheet" /> </text>)
+    .Script(@<text> <script src="/Content/vendor/prism/prism.js"></script> </text>))
+ 
+
+<section data-overlay="5" class="bg-img" style="background-image:url(/Content/img/hero/h4.jpg); min-height:500px">
+    <div class="container border-bottom-muted">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Vertex().Breadcrumb().Transparent().TextColor(BootstrapColor.White)
+            </div>
+        </div>
+    </div>
+    <div class="container m-gab-2-top">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="clearfix">
+                    <h2 class="text-white font-weight-bold fs-40">
+                        @Model Builder
+                    </h2>
+                    <p class="text-white mt-3 mb-4">
+                        Provide contextual feedback messages for typical user actions with the handful <br /> of available and flexible alert messages.
+                    </p>
+                    <a href="#getStarted" class="btn btn-outline-light pr-5 pl-5">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://www.youtube.com/watch?v=bmixiVwtDso" class="m-video-link" data-provide="lightbox">
+                    <div class="m-video-link--icon"><i class="fas fa-play"></i></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="oval-divider--bottom oval-divider--10"></div>
+</section>

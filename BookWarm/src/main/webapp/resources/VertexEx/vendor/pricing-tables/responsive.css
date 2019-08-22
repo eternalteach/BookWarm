@@ -1,0 +1,444 @@
+/*
+CSS3 Responsive Web Pricing Tables Grids
+Updated 05.2015 – v7.0
+Copyright QuanticaLabs
+www.quanticalabs.com
+*/
+
+/* ==================== RESPONSIVE LAYOUT  ==================== */
+/* ------ mobile devices smaller than 1024px ------ */
+@media screen and (max-width:1009px)
+	{
+	/* --- global --- */
+	div.p_table,
+	div.p_table a.tooltip
+		{
+		width: 100%;
+		font-size: 12px;
+		}
+		
+	/* --- headings --- */
+	div.p_table h1
+		{
+		font-size: 48px;
+		}
+		
+	div.p_table h1 span
+		{
+		font-size: 59px;
+		}
+
+	div.p_table h2
+		{
+		font-size: 24px;
+		}
+		
+	div.p_table h3
+		{
+		font-size: 12px;
+		}
+			
+	/* --- header row 1 ---  */
+	div.p_table div.caption_column li.header_row_1 ,
+	div.p_table div.column_1 li.header_row_1,
+	div.p_table div.column_2 li.header_row_1,
+	div.p_table div.column_3 li.header_row_1,
+	div.p_table div.column_4 li.header_row_1
+		{
+		height: 37px;
+		padding-top: 5px !important;
+		}
+		
+	/* --- header row 2 ---  */
+	div.p_table div.caption_column li.header_row_2,
+	div.p_table div.column_1 li.header_row_2,
+	div.p_table div.column_2 li.header_row_2,
+	div.p_table div.column_3 li.header_row_2,
+	div.p_table div.column_4 li.header_row_2
+		{
+		padding-top: 3px !important;
+		padding-bottom: 7px !important;
+		}
+		
+	/* --- caption correction --- */
+	div.p_table div.caption_column li.header_row_2
+		{	
+		height: 85px;
+		padding: 19px 0px 6px 5px !important;
+		}
+		
+	/* --- caption column --- */
+	div.p_table div.caption_column
+		{
+		width: 20%;
+		}
+
+	/* --- column style 1 --- */
+	div.p_table div.column_1
+		{
+		width: 20%;
+		}
+		
+	/* --- column style 2 --- */
+	div.p_table div.column_2
+		{
+		width: 20%;
+		}	
+		
+	/* --- column style 3 --- */
+	div.p_table div.column_3
+		{
+		width: 20%;
+		}
+		
+	/* --- column style 4 --- */
+	div.p_table div.column_4
+		{
+		width: 20%;
+		}
+		
+	/* --- data rows --- */
+	div.p_table li.row_style_1,
+	div.p_table li.row_style_2,
+	div.p_table li.row_style_3,
+	div.p_table li.row_style_4
+		{
+		min-height: 16px;
+		padding-top: 9px !important;
+		padding-bottom: 9px !important;
+		}
+	
+	div.p_table li.row_style_1 span,
+	div.p_table li.row_style_2 span,
+	div.p_table li.row_style_3 span,
+	div.p_table li.row_style_4 span
+		{
+		padding-left: 5px !important;
+		padding-right: 5px !important;
+		}
+		
+	/* --- footer button --- */
+	div.p_table a.sign_up
+		{
+		width: 80%;
+		height: 23px;
+		padding: 7px 0px 0px 0px !important;
+		}
+		
+	/* --- button hover --- */
+	div.p_table a.sign_up:hover
+		{
+		height: 23px;
+		padding: 7px 0px 0px 0px !important;
+		}
+	}
+
+/* ------ mobile devices 480 - 768px ------ */
+@media screen and (max-width:767px)
+	{		
+	/* --- hidden labels for responsive layout ---  */
+	div.p_table li.row_style_1 span > span.hidden_caption_span,
+	div.p_table li.row_style_2 span > span.hidden_caption_span,
+	div.p_table li.row_style_3 span > span.hidden_caption_span,
+	div.p_table li.row_style_4 span > span.hidden_caption_span
+		{
+		display: block;
+		font-weight: bold;
+		margin-bottom: 5px;
+		}
+		
+	/* --- icons font --- */	
+	[class^="icon-"]::after,
+	[class*=" icon-"]::after
+		{
+		font-size: 14px !important;
+		}
+		
+	.icon-yes-7::after,
+	.icon-no-7::after
+		{
+		font-size: 13px !important;
+		}
+		
+	.icon-yes-10::after,
+	.icon-no-10::after
+		{
+		font-size: 15px !important;
+		}
+		
+	/* --- headings --- */
+	div.p_table h1
+		{
+		font-size: 40px;
+		}
+		
+	div.p_table h1 span
+		{
+		font-size: 48px;
+		}
+
+	div.p_table h2
+		{
+		font-size: 20px;
+		}
+		
+	div.p_table h3
+		{
+		margin-top: 2px;
+		}
+			
+	/* --- header row 1 ---  */
+	div.p_table div.caption_column li.header_row_1 ,
+	div.p_table div.column_1 li.header_row_1,
+	div.p_table div.column_2 li.header_row_1,
+	div.p_table div.column_3 li.header_row_1,
+	div.p_table div.column_4 li.header_row_1
+		{
+		height: 32px;
+		padding-top: 6px !important;
+		}
+		
+	/* --- header row 2 ---  */
+	div.p_table div.caption_column li.header_row_2,
+	div.p_table div.column_1 li.header_row_2,
+	div.p_table div.column_2 li.header_row_2,
+	div.p_table div.column_3 li.header_row_2,
+	div.p_table div.column_4 li.header_row_2
+		{
+		height: 85px;
+		}
+		
+	/* --- caption correction --- */
+	div.p_table div.caption_column li.header_row_2
+		{	
+		height: 73px;
+		padding: 16px 0px 6px 5px !important;
+		}
+		
+	/* --- caption column --- */
+	div.p_table div.caption_column
+		{
+		display: none;
+		}
+		
+	/* --- column style 1 --- */
+	div.p_table div.column_1
+		{
+		width: 25%;
+		}
+		
+	/* --- column style 2 --- */
+	div.p_table div.column_2
+		{
+		width: 25%;
+		}	
+		
+	/* --- column style 3 --- */
+	div.p_table div.column_3
+		{
+		width: 25%;
+		}
+		
+	/* --- column style 4 --- */
+	div.p_table div.column_4
+		{
+		width: 25%;
+		}
+		
+	/* --- column hovers, active column */
+	div.p_table div.column_1:hover,
+	div.p_table div.column_2:hover,
+	div.p_table div.column_3:hover,
+	div.p_table div.column_4:hover,
+	div.p_table div.active_column
+		{
+		left: 0;
+		top: 0;
+		/* shadow */
+		box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
+		-webkit-box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
+		-moz-box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
+		}
+		
+	div.p_table div.column_1:hover li.row_style_1,
+	div.p_table div.column_2:hover li.row_style_1,
+	div.p_table div.column_3:hover li.row_style_1,
+	div.p_table div.column_4:hover li.row_style_1,
+	div.p_table div.column_1:hover li.row_style_2,
+	div.p_table div.column_2:hover li.row_style_2,
+	div.p_table div.column_3:hover li.row_style_2,
+	div.p_table div.column_4:hover li.row_style_2,
+	div.p_table div.column_1:hover li.row_style_3,
+	div.p_table div.column_2:hover li.row_style_3,
+	div.p_table div.column_3:hover li.row_style_3,
+	div.p_table div.column_4:hover li.row_style_3,
+	div.p_table div.column_1:hover li.row_style_4,
+	div.p_table div.column_2:hover li.row_style_4,
+	div.p_table div.column_3:hover li.row_style_4,
+	div.p_table div.column_4:hover li.row_style_4,
+	div.p_table div.active_column li.row_style_1,
+	div.p_table div.active_column li.row_style_2,
+	div.p_table div.active_column li.row_style_3,
+	div.p_table div.active_column li.row_style_4
+		{
+		min-height: 16px;
+		padding: 9px 0px 9px 0px !important;
+		}
+		
+	div.p_table div.column_1:hover li.header_row_1,
+	div.p_table div.column_2:hover li.header_row_1,
+	div.p_table div.column_3:hover li.header_row_1,
+	div.p_table div.column_4:hover li.header_row_1,
+	div.p_table div.active_column li.header_row_1
+		{
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+		border-radius: 0px 0px 0px 0px;
+		-webkit-border-top-left-radius: 0px;
+		-webkit-border-top-right-radius: 0px;
+		-moz-border-radius-topleft: 0px;
+		-moz-border-radius-topright: 0px;
+		}
+
+	div.p_table div.column_1:hover li.header_row_2,
+	div.p_table div.column_2:hover li.header_row_2,
+	div.p_table div.column_3:hover li.header_row_2,
+	div.p_table div.column_4:hover li.header_row_2,
+	div.p_table div.active_column li.header_row_2
+		{
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+		}
+		
+	div.p_table div.column_1:hover li.footer_row,
+	div.p_table div.column_2:hover li.footer_row,
+	div.p_table div.column_3:hover li.footer_row,
+	div.p_table div.column_4:hover li.footer_row,
+	div.p_table div.active_column li.footer_row
+		{
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+		}
+		
+	/* --- disabled rounded corners --- */
+	div.p_table .radius5_topleft,
+	div.p_table .radius5_topright
+		{
+		border-radius: 0px;
+		-webkit-border-radius: 0px;
+		-moz-border-radius: 0px;
+		}
+	}
+
+/* ------ mobile devices up to 480px ------ */
+@media screen and (max-width:479px)
+	{
+	/* --- global --- */
+	div.p_table,
+	div.p_table a.tooltip
+		{
+		font-size: 11px;
+		}
+		
+	/* --- hidden labels for responsive layout ---  */
+	div.p_table li.row_style_1 span > span.hidden_caption_span,
+	div.p_table li.row_style_2 span > span.hidden_caption_span,
+	div.p_table li.row_style_3 span > span.hidden_caption_span,
+	div.p_table li.row_style_4 span > span.hidden_caption_span
+		{
+		margin-bottom: 3px;
+		}
+		
+	/* --- headings --- */
+	div.p_table h1
+		{
+		font-size: 34px;
+		}
+		
+	div.p_table h1 span
+		{
+		font-size: 42px;
+		}
+
+	div.p_table h2
+		{
+		font-size: 18px;
+		}
+		
+	div.p_table h3
+		{
+		font-size: 11px;
+		}
+			
+	/* --- header row 1 ---  */
+	div.p_table div.caption_column li.header_row_1 ,
+	div.p_table div.column_1 li.header_row_1,
+	div.p_table div.column_2 li.header_row_1,
+	div.p_table div.column_3 li.header_row_1,
+	div.p_table div.column_4 li.header_row_1
+		{
+		height: 30px;
+		}
+		
+	/* --- header row 2 ---  */
+	div.p_table div.caption_column li.header_row_2,
+	div.p_table div.column_1 li.header_row_2,
+	div.p_table div.column_2 li.header_row_2,
+	div.p_table div.column_3 li.header_row_2,
+	div.p_table div.column_4 li.header_row_2
+		{
+		height: 75px;
+		}
+		
+	/* --- caption correction --- */
+	div.p_table div.caption_column li.header_row_2
+		{	
+		height: 65px;
+		padding: 14px 0px 6px 5px !important;
+		}
+		
+	/* --- data rows --- */
+	div.p_table li.row_style_1,
+	div.p_table li.row_style_2,
+	div.p_table li.row_style_3,
+	div.p_table li.row_style_4
+		{
+		min-height: 15px;
+		padding-top: 6px !important;
+		padding-bottom: 6px !important;
+		}
+		
+	div.p_table li.row_style_1 span,
+	div.p_table li.row_style_2 span,
+	div.p_table li.row_style_3 span,
+	div.p_table li.row_style_4 span
+		{
+		padding-left: 2px !important;
+		padding-right: 2px !important;
+		}
+		
+	div.p_table div.column_1:hover li.row_style_1,
+	div.p_table div.column_2:hover li.row_style_1,
+	div.p_table div.column_3:hover li.row_style_1,
+	div.p_table div.column_4:hover li.row_style_1,
+	div.p_table div.column_1:hover li.row_style_2,
+	div.p_table div.column_2:hover li.row_style_2,
+	div.p_table div.column_3:hover li.row_style_2,
+	div.p_table div.column_4:hover li.row_style_2,
+	div.p_table div.column_1:hover li.row_style_3,
+	div.p_table div.column_2:hover li.row_style_3,
+	div.p_table div.column_3:hover li.row_style_3,
+	div.p_table div.column_4:hover li.row_style_3,
+	div.p_table div.column_1:hover li.row_style_4,
+	div.p_table div.column_2:hover li.row_style_4,
+	div.p_table div.column_3:hover li.row_style_4,
+	div.p_table div.column_4:hover li.row_style_4,
+	div.p_table div.active_column li.row_style_1,
+	div.p_table div.active_column li.row_style_2,
+	div.p_table div.active_column li.row_style_3,
+	div.p_table div.active_column li.row_style_4
+		{
+		min-height: 15px;
+		padding: 6px 0px 6px 0px !important;
+		}
+	}

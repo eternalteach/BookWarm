@@ -1,0 +1,46 @@
+﻿@model Popup
+
+@{
+    string id = Guid.NewGuid().ToString();
+    string value = Model.HtmlString.HasValue() ? Model.HtmlString : string.Empty;
+    string newContent = string.Empty;
+
+    var index = value.IndexOf(">");
+    if (index < 0)
+    {
+        if (Model.AutoShow == false)
+        {
+            <strong>Dear developer, this is not html string.</strong>
+            return;
+        }
+    }
+    else
+    {
+        newContent = value.Insert(index, string.Format(" data-toggle=\"popup\" data-target=\"#{0}\" ", id));
+    }
+}
+
+
+@Html.Raw(newContent)
+
+
+<div id="@id" class="popup col-6 col-md-3 @Model.GetCssClass()" @Model.GetHtmlAtributes()>
+    <button type="button" class="close" data-dismiss="popup" aria-label="Close">
+        <span class="text-white" aria-hidden="true">&times;</span>
+    </button>
+    <div class="media">
+        <img class="avatar mr-4" src="/Content/img/base/avatar.png" alt="avatar">
+        <div class="media-body text-white">
+            <h5>@Model.Title </h5>
+            <p class="mb-0">@Html.Raw(Model.Message)</p>
+        </div>
+    </div>
+</div>
+
+@*if calling from code behaind*@
+@*@if (Model.AutoShow)
+{
+    <script>
+        page.initPopup();
+    </script>
+}*@

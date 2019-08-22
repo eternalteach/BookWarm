@@ -1,0 +1,13 @@
+﻿@model Progress
+
+
+<div class="progress">
+    <div class="progress-bar @Model.GetCssClass()" @Model.GetStyle() @Model.GetHtmlAtributes()
+         role="progressbar" aria-valuemin="0" aria-valuemax="100">
+        @if (!string.IsNullOrEmpty(Model.Label))
+        {
+            @Html.Raw(Model.Label)
+        }
+    </div>
+</div>
+

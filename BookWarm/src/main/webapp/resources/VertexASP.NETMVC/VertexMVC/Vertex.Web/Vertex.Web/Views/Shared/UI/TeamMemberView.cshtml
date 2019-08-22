@@ -1,0 +1,115 @@
+﻿@model Vertex.Web.Framework.UI.TeamMemberView
+
+@{
+    if (Model.Slider != null)
+    {
+        foreach (var item in Model.Items)
+        {
+            Model.Slider.Add().Content(RenderItem(item, Model.Variation).ToHtmlString());
+        }
+        @Html.Raw(Model.Slider.ToHtmlString());
+    }
+    else
+    {
+        if (Model.Variation == TeamMemberVariation.Variation3)
+        {
+            @RenderVariation3()
+        }
+        else
+        {
+            <div class="cbp"
+                 data-layout-mode="grid"
+                 data-animation-type='slideDelay'
+                 data-caption='overlayBottomAlong'
+                 data-display-type='bottomToTop'
+                 data-display-type-speed="100"
+                 data-gap-horizontal="1"
+                 data-gap-vertical="0"
+                 data-media-queries='[{"width": 1500, "cols": 4}, {"width": 1100, "cols": 4}, {"width": 800, "cols": 4}, {"width": 480, "cols": 2}, {"width": 300, "cols": 1}]'>
+                @foreach (var memberItem in Model.Items)
+                {
+                    <div class="cbp-item identity">
+                        @RenderItem(memberItem, Model.Variation)
+                    </div>
+                }
+            </div>
+        }
+    }
+}
+
+
+
+@helper RenderItem(TeamMemberItem memberItem, TeamMemberVariation variation)
+{
+    if (variation == TeamMemberVariation.Variation1)
+    {
+        @RenderVariation1(memberItem);
+    }
+    else if (variation == TeamMemberVariation.Variation2)
+    {
+        @RenderVariation2(memberItem);
+    }
+}
+
+@helper RenderVariation1(TeamMemberItem memberItem)
+{
+
+    <div class="p-3 team-member">
+        <div class="position-relative">
+            <img class="img-fluid w-100 rounded" src="@memberItem.Image" alt="@memberItem.Name">
+            @if (memberItem.SocialNetworks.Count > 0)
+            {
+                <div class="member-social">
+                    <div class="member-social-inner">
+                        <ul class="list-inline">
+                            @foreach (var item in memberItem.SocialNetworks)
+                            {
+                                <li>
+                                    <a target="_blank" href="@item.WebAddress" class="tooltips" data-placement="top" rel="tooltip" data-original-title="@item.Name">
+                                        <i class="@AvailableSocialNetwork.Icons[item.Name].Icon"></i>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="card border-0">
+            <div class="card-body text-center p-3">
+                <h3 class="h6 mb-0">@memberItem.Name</h3>
+                <p class="font-weight-light mb-0">@memberItem.Position</p>
+            </div>
+        </div>
+    </div>
+}
+
+@helper RenderVariation2(TeamMemberItem memberItem)
+{
+    <div class="p-3">
+        comming soon
+    </div>
+}
+
+
+@helper RenderVariation3()
+{
+    <div class="hurdles hurdles-normal js-hurdles">
+        <div class="hurdles-bubbles">
+        </div>
+    </div>
+
+    string str = "{\"title\":\"{0}\", \"job\": \"{1}\", \"type\":\"blue\", \"src\":\"{2}\"},";
+    string str2 = string.Empty;
+    foreach (var item in Model.Items)
+    {
+        str2 += str.Replace("{0}", item.Name).Replace("{1}", item.Position).Replace("{2}", item.Image);
+    }
+    <script type="application/json" id="site-about-config">
+        { "bubbleNodes":[@Html.Raw(str2.TrimEnd(','))]}
+    </script>
+
+    @Html.Vertex().Page().Script(@<text>
+        <script src="~/Content/js/bubble-nodes.js"></script>
+    </text>) 
+}

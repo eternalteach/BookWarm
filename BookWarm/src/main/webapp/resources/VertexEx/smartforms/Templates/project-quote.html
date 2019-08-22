@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Project Quote Form </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">-->
+    
+
+    <!--[if lte IE 9]>
+    	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>    
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-1">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-tachometer"></i>Project quote</h4>
+          </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="quote">
+            	<div class="form-body">
+                
+                	<div class="frm-row">
+                    
+                        <div class="colm colm4">
+                        
+                            <div class="section">
+                            	<label for="fullname" class="field-label">Full name</label>
+                                <label class="field">
+                                    <input type="text" name="fullname" id="fullname" class="gui-input" placeholder="Full name">
+                                </label>
+                            </div><!-- end section -->
+                            
+                            <div class="section">
+                            	<label for="company" class="field-label">Company name</label>
+                                <label class="field">
+                                    <input type="text" name="company" id="company" class="gui-input" placeholder="Company">
+                                </label>
+                            </div><!-- end section -->
+                            
+                            <div class="section">
+                            	<label for="email" class="field-label">Email address</label>
+                                <label class="field">
+                                    <input type="email" name="email" id="email" class="gui-input" placeholder="Email address">
+                                </label>
+                            </div><!-- end section -->
+                            
+                        </div><!-- end .colm section -->
+                        
+                        <div class="colm colm4">
+
+                            <div class="section">
+                            	<label for="projectname" class="field-label">Project name</label>
+                                <label class="field">
+                                    <input type="text" name="projectname" id="projectname" class="gui-input" placeholder="Project name">
+                                </label>
+                            </div><!-- end section -->
+                            
+                            <div class="section">
+                            	<label for="website" class="field-label">Current website url</label>
+                                <label class="field">
+                                    <input type="url" name="website" id="website" class="gui-input" placeholder="Website">
+                                </label>
+                            </div><!-- end section -->
+                            
+                            <div class="section">
+                            	<label for="likewebsite" class="field-label">Websites you like</label>
+                                <label class="field">
+                                    <input type="text" name="likewebsite" id="likewebsite" class="gui-input" placeholder="Seperate with comas">
+                                </label>
+                            </div><!-- end section -->
+
+                        </div><!-- end .colm section -->
+                        
+                        <div class="colm colm4">
+                            
+                            <div class="section">
+                            	<label for="budget" class="field-label">Project budget</label>
+                                <label class="field select">
+                                    <select id="budget" name="budget">
+                                        <option value="">Select budget...</option>
+                                        <option value="500-1000"> $500 - $1000 </option>
+                                        <option value="1000-2000"> $1000 - $2000 </option>
+                                        <option value="2000-4000"> $2000 - $4000 </option>
+                                        <option value="5000+"> $5000+ </option>
+                                    </select>
+                                    <i class="arrow double"></i>                    
+                                </label>  
+                            </div><!-- end section -->
+                            
+                             <div class="section">
+                             	<label for="timeframe" class="field-label">Project time frame</label>
+                                <label class="field select">
+                                    <select id="timeframe" name="timeframe">
+                                        <option value="">Select time frame...</option>
+                                        <option value="1week">1 Week </option>
+                                        <option value="2week">2 Weeks</option>
+                                        <option value="3week">3 Weeks</option>
+                                        <option value="4week">4 Weeks</option>
+                                    </select>
+                                    <i class="arrow double"></i>                    
+                                </label>  
+                            </div><!-- end section -->                                                       
+                            
+                             <div class="section">
+                             	<label for="services" class="field-label">Services required</label>
+                                <label class="field select">
+                                    <select id="services" name="services">
+                                        <option value="">Choose a service...</option>
+                                        <option value="webdesign">Web design</option>
+                                        <option value="wordpress">Wordpress</option>
+                                        <option value="identity">Corporate identity</option>
+                                        <option value="cms">Custom CMS</option>
+                                    </select>
+                                    <i class="arrow double"></i>                    
+                                </label>  
+                            </div><!-- end section -->
+                        </div><!-- end .colm section -->                         
+                                                                   
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="frm-row">
+                    	<div class="colm colm8">
+                        
+                            <div class="section">
+                            	<label for="details" class="field-label">Project details</label>
+                                <label class="field">
+                                    <textarea class="gui-textarea" id="details" name="details"></textarea>
+                                    <span class="input-hint"> <strong>Hint:</strong> A maxmum of 3000 words.</span>   
+                                </label>
+                            </div><!-- end section -->                        
+                        
+                        </div><!-- end .colm section -->
+                        <div class="colm colm4">
+                        
+                             <div class="spacer-b10">
+                                <label class="field-label">Free addons</label>
+                            </div> 
+                            
+                            <div class="section">
+                            
+                                <label class="option block spacer-b10">
+                                    <input type="checkbox" name="services" value="Open CMS">
+                                    <span class="checkbox"></span> Open CMS              
+                                </label>
+                                
+                                <label class="option block spacer-b10">
+                                    <input type="checkbox" name="services" value="Free logo">
+                                    <span class="checkbox"></span> Free logo               
+                                </label>
+                                
+                                <label class="option block spacer-b10">
+                                    <input type="checkbox" name="services" value="Free business cards">
+                                    <span class="checkbox"></span> Free business cards            
+                                </label>                                
+                                
+                                <label class="option block">
+                                    <input type="checkbox" name="services" value="One page website">
+                                    <span class="checkbox"></span> Single page website            
+                                </label>                                                        
+                                                        
+                            </div><!-- end section -->                                                  
+                        
+                        </div><!-- end .colm section -->
+                    </div><!-- end .frm-row section -->
+
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary">Receive Quote</button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+</body>
+</html>

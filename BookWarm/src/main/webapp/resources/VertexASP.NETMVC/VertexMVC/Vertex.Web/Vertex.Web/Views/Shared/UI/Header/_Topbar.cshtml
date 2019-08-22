@@ -1,0 +1,49 @@
+﻿@model Topbar
+
+
+<div class="header-row pt-2" style="margin-bottom:-6px;">
+    <nav class="header-nav-top">
+        <ul class="nav nav-pills">
+            <li class="nav-item nav-item-anim-icon d-none d-md-block">
+                <a href="email:@Setting("general.site.email").Value" class="nav-link pl-0 m-list--link @(Model.IsLightText ? "text-white o-7": "text-primary")">
+                    <i class="icon-mail-2 mr-1"></i> @Setting("general.site.email").Value
+                </a>
+            </li>
+            <li class="nav-item nav-item-anim-icon d-none d-md-block">
+                <a href="tel:@Setting("general.site.phonenumber").Value" class="ws-nowrap m-list--link @(Model.IsLightText ? "text-white o-7": "text-success")">
+                    <i class="icon-headphone"></i> @Setting("general.site.phonenumber").Value
+                </a>
+            </li>
+            <li class="nav-item nav-item-left-border nav-item-left-border-remove nav-item-left-border-md-show">
+                <div class="social @(Model.IsLightText ? "social-light" : "social-brand") text-center">
+                    <a class="social-facebook m-0 transition-hover" href="@Setting("general.socialmedia.facebook").Value" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a class="social-twitter m-0 transition-hover" href="@Setting("general.socialmedia.twitter").Value" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div class="header-nav-features">
+        <div class="header-nav-feature header-nav-features-search d-inline-flex">
+            <a href="#" class="header-nav-features-toggle" data-focus="headerSearch">
+                <i class="fas fa-search header-nav-top-icon @(Model.IsLightText ? "text-white-50" : null)"></i>
+            </a>
+            <div class="header-nav-features-dropdown" id="headerTopSearchDropdown">
+                <form class="input-round" role="search" action="/Blog/Search" method="get">
+                    <div class="simple-search input-group">
+                        <input class="form-control form-control-sm" id="headerSearch" name="term" type="search" value="" placeholder="Search...">
+                        <span class="input-group-append">
+                            <button class="btn btn-primary btn-sm" type="submit">
+                                <i class="fa fa-search text-white"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

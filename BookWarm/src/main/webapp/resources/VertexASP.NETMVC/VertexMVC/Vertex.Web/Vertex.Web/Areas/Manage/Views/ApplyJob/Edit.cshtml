@@ -1,0 +1,25 @@
+﻿@model ApplyJobModel
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+}) 
+
+
+@Html.Partial("_Breadcrumb", "Edit ApplyJob")
+
+<section class="section pt-8 bg-light">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-3">
+                @Html.Partial("_LeftNav")
+            </div>
+            <div class="col-md-9 pl-4">
+                @Html.Partial("_CreateOrUpdate", Model) 
+            </div>
+        </div>
+    </div>
+</section>
+
+@Html.Vertex().Footer()

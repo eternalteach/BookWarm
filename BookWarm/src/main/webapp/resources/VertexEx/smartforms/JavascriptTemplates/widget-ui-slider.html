@@ -1,0 +1,496 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - UI Slider </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-touch-punch.min.js"></script>-->
+    
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+    <script type="text/javascript">
+	
+		jQuery(document).ready(function($){
+		
+				$("#slider").slider({
+					range: "min",
+					min: 10,
+					max: 100,
+					value: 80			
+				});
+				$("#slider1").slider({
+					range: true,
+					values: [17, 83]
+				});	
+				
+				$( "#slider2" ).slider({
+					range: "min",
+					value: 140,
+					min: 1,
+					max: 800,
+					slide: function(event, ui) {
+						$("#amount").val("$" + ui.value);
+					}
+				});
+				
+				$("#amount").val( 
+					"$" + $("#slider2").slider("value") 
+				);
+				
+				$("#slider3").slider({
+					range: "max",
+					min: 1,
+					max: 10,
+					value: 2,
+					slide: function(event, ui) {
+						$("#bedrooms").val(ui.value);
+					}
+				});
+				
+				$("#bedrooms").val( 
+					$("#slider3").slider("value") 
+				);
+				
+				
+				var select = $("#guests");
+				var guestnumber = $("#slider4").slider({
+					min: 1,
+					max: 10,
+					range: "min",
+					value: select[0].selectedIndex + 1,
+					slide: function(event, ui) {
+						select[0].selectedIndex = ui.value - 1;
+					}
+				});
+				
+				$("#guests").change(function() {
+					guestnumber.slider("value", this.selectedIndex + 1);
+				});
+	
+				$("#slider5").slider({
+					value:100,
+					min: 0,
+					max: 500,
+					step: 50,
+					range: "min",
+					slide: function(event, ui) {
+						$("#donation").val(ui.value);
+					}
+				});
+				
+				$("#donation").val($("#slider5").slider("value"));
+				$("#donation").blur(function() {
+						$("#slider5").slider("value", $(this).val());
+				});
+				
+				$("#slider6").slider({
+					orientation: "vertical",
+					range: "min",
+					min: 0,
+					max: 100,
+					value: 60,
+					slide: function(event, ui) {
+						$("#volume").val(ui.value);
+					}
+				});
+				
+				$("#volume").val( 
+					$("#slider6").slider("value") 
+				);
+				
+				 $("#slider7").slider({
+					orientation: "vertical",
+					range: true,
+					values: [27, 67],
+					slide: function(event, ui) {
+						$("#sales").val("$" + ui.values[0] + " - $" + ui.values[1]);
+					}
+				});
+				$("#sales").val( "$" + $("#slider7").slider("values", 0) + " - $" + $("#slider7").slider("values", 1));
+				
+				$("#eq > .sliderv-wrapper").each(function() {
+					var value = parseInt($(this).text(), 10);
+						$(this).empty().slider({
+						value: value,
+						range: "min",
+						animate: true,
+						orientation: "vertical"
+					});
+				});	
+				
+				$("#eq2 > .sliderv-wrapper").each(function() {
+					var value = parseInt($(this).text(), 10);
+						$(this).empty().slider({
+						value: value,
+						range: "min",
+						animate: true,
+						orientation: "vertical"
+					});
+				});				
+				
+				
+				$('#slider8').slider({
+					range: true,
+					values: [500, 1500],
+					min: 10,
+					max: 2000,
+					step: 10,
+					slide: function(event, ui) { 
+						$("#budget").val("$" + ui.values[0] + " - $" + ui.values[1]);
+					}			
+				});
+				
+				$("#budget").val("$" + $("#slider8").slider("values", 0) + " - $" + $("#slider8").slider("values", 1));
+				
+				var initialYear = 1980;
+				var yearTooltip = function(event, ui) {
+					var curYear = ui.value || initialYear
+					var yeartip = '<span class="slider-tip">' + curYear + '</span>';
+					$(this).find('.ui-slider-handle').html(yeartip);
+				}
+				
+				$("#slider10").slider({
+					value: initialYear,
+					range: "min",
+					min: 1950,
+					max: 2020,
+					step: 1,
+					create: yearTooltip,
+					slide: yearTooltip
+				});	
+				
+			$("#slider-range").slider({
+				range: true,
+				min: 0,
+				max: 500,
+				values: [100, 380],
+				slide: function(event, ui) {
+					$("#amounts").val("$" + ui.values[0] + " - $" + ui.values[1]);
+				}
+			});
+			
+			$("#amounts").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+			
+	
+			$("#slider11").slider({
+				min: 100,
+				max: 1000,
+				step: 10,
+				values: [300, 700],
+				range: true,
+				slide: function(event, ui) {
+					for (var i = 0; i < ui.values.length; ++i) {
+						$(".sliderValue[data-index=" + i + "]").val(ui.values[i]);
+					}
+				}
+			});
+			
+			$(".sliderValue").change(function() {
+					var $this = $(this);
+					$("#slider11").slider("values", $this.data("index"), $this.val());
+			});
+		
+		
+            var valtooltip = function(sliderObj, ui){
+                val1            = '<span class="slider-tip">'+ sliderObj.slider("values", 0) +'</span>';
+                val2            = '<span class="slider-tip">'+ sliderObj.slider("values", 1) +'</span>';
+                sliderObj.find('.ui-slider-handle:first').html(val1);
+                sliderObj.find('.ui-slider-handle:last').html(val2);		                 
+            };
+
+            $( "#slider-range2" ).slider({
+              range: true,
+              min: 0,
+              max: 500,
+              values: [180, 400],              
+			  create:function(event,ui){
+					valtooltip($(this),ui);                    
+              },
+              slide: function( event, ui ) {
+					valtooltip($(this),ui);
+					$( "#amountx" ).val("$" + ui.values[0] + " - $" + ui.values[1]); 
+              }, 
+              stop:function(event,ui){
+					valtooltip($(this),ui);             
+              }			               
+
+            });
+			
+			$( "#amountx" ).val("$" + $("#slider-range2").slider("values", 0) + " - $" + $("#slider-range2").slider("values", 1));
+			
+			var initialSpark = 60;
+			var sparkTooltip = function(event, ui) {
+				var curSpark = ui.value  || initialSpark
+				var sparktip = '<span class="slider-tip">' + curSpark + '</span>';
+				$(this).find('.ui-slider-handle').html(sparktip);
+			}			
+			
+			$("#slider9").slider({
+				orientation: "vertical",
+				range: "min",
+				min: 1,
+				max: 100,
+				step: 1,
+				value: initialSpark,
+				create: sparkTooltip,
+				slide: sparkTooltip				
+			});
+			
+
+		});				
+    
+    </script>
+    
+    
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-signal"></i> UI Slider </h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="smart-form">
+            	<div class="form-body">
+                
+                    <div class="spacer-b40">
+                    	<div class="tagline"><span> Horizontal Sliders </span></div><!-- .tagline -->
+                    </div>                 
+                    
+                    <div class="section">
+                        <div class="slider-wrapper purple-slider">
+                            <div id="slider"></div>
+                        </div><!-- end .slider-wrapper -->
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                        <div class="slider-wrapper red-slider">
+                            <div id="slider1"></div>
+                        </div><!-- end .slider-wrapper -->
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                        <div class="spacer-b15">
+                            <label for="amount">Maximum price:</label>
+                            <input type="text" id="amount" class="slider-input"> 
+                        </div><!-- end .spacer -->                   
+                        <div class="slider-wrapper yellow-slider">
+                            <div id="slider2"></div>
+                        </div><!-- end .slider-wrapper -->
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                        <div class="spacer-b15">
+                            <label for="bedrooms">Number of bedrooms:</label>
+                            <input type="text" id="bedrooms" class="slider-input"> 
+                        </div><!-- end .spacer -->                   
+                        <div class="slider-wrapper blue-slider">
+                            <div id="slider3"></div>
+                        </div><!-- end .slider-wrapper -->
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                        <div class="spacer-b15">
+                            <label for="budget">Project Budget:</label>
+                            <input type="text" id="budget" class="slider-input"> 
+                        </div><!-- end .spacer -->                     
+                        <div class="slider-wrapper purple-slider">
+                            <div id="slider8"></div>
+                        </div><!-- end .slider-wrapper -->
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                        <div class="spacer-b15">
+                            <label for="amounts">Price range:</label>
+                            <input type="text" id="amounts" class="slider-input">
+                        </div><!-- end .spacer -->            	
+                        <div class="slider-wrapper">
+                            <div id="slider-range"></div>  
+                        </div><!-- end .slider-wrapper -->
+                    </div><!-- end section -->
+                    
+                    <div class="spacer-b10">&nbsp;</div>
+                    <div class="spacer-t20 spacer-b40">
+                    	<div class="tagline"><span> Slider Tooltips </span></div><!-- .tagline -->
+                    </div> 
+                    
+                    <div class="spacer-t40 spacer-b20">&nbsp;</div>
+                    
+                    <div class="frmx">
+                        <div class="section">
+                            <div class="slider-wrapper green-slider">
+                                <div id="slider10"></div>
+                            </div><!-- end .slider-wrapper -->
+                        </div><!-- end section --> 
+                        
+                        <div class="spacer-b20">&nbsp;</div>                   
+                        
+                        <div class="section">
+                            <div class="spacer-b15">
+                                <label for="amountx">Price range:</label>
+                                <input type="text" id="amountx" class="slider-input">
+                            </div><!-- end .spacer -->            	
+                            <div class="slider-wrapper yellow-slider">
+                                <div id="slider-range2"></div>  
+                            </div><!-- end .slider-wrapper -->
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="spacer-t10 spacer-b20">&nbsp;</div> 
+                    <div class="spacer-t20 spacer-b40">
+                    	<div class="tagline"><span> Updating Values </span></div><!-- .tagline -->
+                    </div>                    
+                    
+                    <div class="section"> 
+                        <div class="space">
+                        	<div class="frm-row">
+                                <div class="colm colm6 spacer-b20">
+                                	<label class="field-label">Left slider handle value</label>
+                                    <label class="field">
+                                    	<input type="text" class="sliderValue gui-input" data-index="0" value="300" />
+                                    </label>
+                                </div>
+                                <div class="colm colm6 spacer-b20">
+                                	<label class="field-label">Right slider handle value</label>
+                                    <label class="field">
+                                    	<input type="text" class="sliderValue gui-input" data-index="1" value="700" />
+                                    </label>
+                                </div>
+                            </div>
+                        </div><!-- end .spacer -->
+                        <div class="slider-wrapper red-slider">
+                            <div id="slider11"></div>
+                        </div><!-- end .slider-wrapper -->
+                    </div><!-- end section -->
+                                     
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                            <div class="spacer-b20">
+                                <label for="guests" class="field-label">Update select value</label>
+                                <label class="field select">
+                                    <select name="guests" id="guests">
+                                        <option>1</option>
+                                        <option selected>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>                                
+                                    </select>
+                                    <i class="arrow double"></i>
+                                </label> 
+                            </div><!-- end .spacer -->                  
+                            <div class="slider-wrapper">
+                                <div id="slider4"></div>
+                            </div><!-- end .slider-wrapper -->
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                            <div class="spacer-b20">
+                                <label for="donation" class="field-label">Update input value</label>
+                                <label class="field">
+                                	<input type="text" id="donation" class="gui-input">
+                                </label> 
+                            </div><!-- end .spacer -->                   
+                            <div class="slider-wrapper black-slider">
+                                <div id="slider5"></div>
+                            </div><!-- end .slider-wrapper -->
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row -->
+                    
+                    <div class="spacer-t40 spacer-b40">
+                    	<div class="tagline"><span> Vertical Sliders </span></div><!-- .tagline -->
+                    </div>                     
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">                   
+                            <div id="eq" class="slider-group blue-slider">
+                                <div class="sliderv-wrapper"><span>100</span></div>
+                                <div class="sliderv-wrapper"><span>77</span></div>
+                                <div class="sliderv-wrapper"><span>55</span></div>
+                                <div class="sliderv-wrapper"><span>40</span></div>
+                                <div class="sliderv-wrapper"><span>55</span></div>
+                                <div class="sliderv-wrapper"><span>77</span></div>
+                                <div class="sliderv-wrapper"><span>100</span></div>
+                            </div><!-- end .slider-group -->
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">                   
+                            <div id="eq2" class="slider-group purple-slider">
+                                <div class="sliderv-wrapper"><span>100</span></div>
+                                <div class="sliderv-wrapper"><span>77</span></div>
+                                <div class="sliderv-wrapper"><span>55</span></div>
+                                <div class="sliderv-wrapper"><span>40</span></div>
+                                <div class="sliderv-wrapper"><span>55</span></div>
+                                <div class="sliderv-wrapper"><span>77</span></div>
+                                <div class="sliderv-wrapper"><span>100</span></div>
+                            </div><!-- end .slider-group -->
+                        </div><!-- end section -->
+                    </div><!-- end frm-row section -->
+                    
+                    <div class="frm-row">
+                    <div class="section colm colm4">
+                        <div class="spacer-b10">
+                            <label for="sales">Vertical Range:</label>
+                            <input type="text" id="sales" class="slider-input"> 
+                        </div><!-- end .spacer -->
+                        <div class="sliderv-wrapper green-slider">
+                            <div id="slider7"></div>
+                        </div><!-- end .slider-wrapper -->
+                    </div><!-- end section -->
+                    
+                    <div class="section colm colm4">                            
+                        <div class="spacer-b10">
+                            <label for="volume">Vertical:</label>
+                            <input type="text" id="volume" class="slider-input"> 
+                        </div><!-- end .spacer -->
+                        <div class="sliderv-wrapper black-slider">
+                            <div id="slider6"></div>
+                        </div><!-- end .slider-wrapper -->
+                    </div><!-- end section -->
+                    
+                    <div class="section colm colm4">                            
+                        <div class="spacer-b10">
+                            <label for="vtip">Vertical Tooltip:</label>
+                            <input type="text" id="vtip" class="slider-input"> 
+                        </div><!-- end .spacer -->
+                        <div class="sliderv-wrapper yellow-slider">
+                            <div id="slider9"></div>
+                        </div><!-- end .slider-wrapper -->
+                    </div><!-- end section -->
+                    </div> <!-- end frm-row section -->
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Submit Form </button>
+                    <button type="reset" class="button"> Cancel </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+    
+    <div></div><!-- end section -->
+
+</body>
+</html>

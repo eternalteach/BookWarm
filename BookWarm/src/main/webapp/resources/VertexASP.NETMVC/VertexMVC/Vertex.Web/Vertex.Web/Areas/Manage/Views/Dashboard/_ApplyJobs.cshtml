@@ -1,0 +1,44 @@
+﻿@model List<ApplyJobModel>
+
+    <div class="border mb-5">
+        <div class="border-top bg-gray py-3 px-4">
+            <h5 class="h6 mb-0 mt-1">Apply Jobs <span class="badge badge-primary float-right">@Model.Count Jobs</span></h5>
+        </div>
+        <div class="bg-white pb-1 pt-0">
+            @foreach (var applyJob in Model)
+            {
+                <div class="media align-items-center hover-shadow-2 pl-2 pr-4 border-top dashboard-list-item">
+                    <div class="w-60px mr-2 text-center">
+                        <i class="icon-bubble-conversation-2 fs-30 text-muted"></i>
+                    </div>
+                    <div class="media-body">
+                        <span>
+                            <a href="@Url.Action("Edit", "ApplyJob", new { Id = applyJob.Id })" class="text-dark anim-link-2 fs-13 text-dark fw-500">@applyJob.FullName.Truncate(40, "...") </a>
+                            <span class="text-muted fs-13">for</span>
+                        </span>
+                        <a class="text-dark fw-500 anim-link-2 fs-13 m-0 p-0" href="@Url.Action("Edit", "Job", new { Id = applyJob.JobId })">
+                            @applyJob.JobName.Truncate(55, "...")
+                        </a>
+                        <p class="text-dark fs-13 m-0" style="line-height:20px;">
+                            <span class="text-muted fs-13">says</span> @applyJob.Message.Truncate(75, "...")
+                        </p>
+                    </div>
+                </div>
+            }
+            @if (Model.Count == 0)
+            {
+                <div class="py-3 px-3 text-center border-top">
+                    <p class="fs-14 text-muted m-0">
+                        No any apply jobs to list.
+                        <a href="@Url.Action("List", "ApplyJob")" class="anim-link-2 anim-link-2-primary">go to list</a>
+                    </p>
+                </div>
+            }
+            else
+            {
+                <div class="py-3 px-3 text-center border-top">
+                    <a href="@Url.Action("List", "ApplyJob")" class="fs-14 anim-link-2 anim-link-2-primary">View all apply jobs</a>
+                </div>
+            }
+        </div>
+    </div>

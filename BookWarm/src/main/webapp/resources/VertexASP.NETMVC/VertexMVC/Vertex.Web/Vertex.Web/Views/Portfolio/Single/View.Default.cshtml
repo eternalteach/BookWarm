@@ -1,0 +1,149 @@
+﻿@model PortfolioDetailModel
+
+@{ ViewBag.Title = Model.Title; }
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+})
+
+@Html.Vertex().ShareButtons()
+
+@*@Html.Vertex().Breadcrumb().Transparent()*@
+
+<section class="section py-9">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                @if (Model.Pictures != null && Model.Pictures.Count > 1)
+                {
+                    <div data-provide="slider" data-arrows="true">
+                        @foreach (var item in Model.Pictures)
+                        {
+                            <div style="display:none"><img src="@item.FilePath"></div>
+                        }
+                    </div>
+                    <style>
+                        .slick-slide img {
+                            display: block!important;
+                        }
+                    </style>
+                }
+                else
+                {
+                    <div><img src="@Model.PicturePath"></div>
+                }
+            </div>
+            <div class="col-lg-4 pl-6">
+
+                <aside id="sidebar" class="sidebar sidebar-sticky">
+                    <h2 class="h4 mb-4">@Model.Title</h2>
+                    <p>
+                        @Html.Raw(Model.Content)
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <ul class="list-unstyled mb-0">
+                        <li class="media mb-1">
+                            <div class="d-flex w-40 w-sm-30">
+                                <h4 class="mt-0 h6 mb-1">Share</h4>
+                            </div>
+                            <div class="media-body">
+
+                                <ul class="list-inline mb-0">
+                                    <li class="list-inline-item mr-0">
+                                        <a class="btn btn-icon btn-sleek-secondary btn-bg-transparent btn-sm" href="#">
+                                            <span class="fab fa-facebook-f btn-icon__inner"></span>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item mr-0">
+                                        <a class="btn btn-icon btn-sleek-secondary btn-bg-transparent btn-sm" href="#">
+                                            <span class="fab fa-twitter btn-icon__inner"></span>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item mr-0">
+                                        <a class="btn btn-icon btn-sleek-secondary btn-bg-transparent btn-sm" href="#">
+                                            <span class="fab fa-pinterest btn-icon__inner"></span>
+                                        </a>
+                                    </li> 
+                                </ul>
+
+                                @*<div class="text-muted mb-1">
+                                    <div class="social social-hover-primary">
+                                        <a class="social-facebook" href="#"><i class="fab fa-facebook"></i></a>
+                                        <a class="social-twitter" href="#"><i class="fab fa-twitter"></i></a>
+                                        <a class="social-instagram" href="#"><i class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>*@
+                            </div>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="m-gab-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="h5 mb-6 text-center">
+                    Recent Works
+                </h4>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 p-0">
+
+                @(Html.Vertex().Portfolio(PortfolioViewName.Agency)
+                                               .CustomPortfolios(Model.RelatedPortfolios.Select(s => s.Id))
+                                               .ToSlider(slider =>
+                                               {
+                                                   slider.SlidesToShow(4);
+                                                   slider.Dots();
+                                               }))
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<section class="section bg-light py-4 border-top">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-md-5">
+                <a href="#" class="d-block">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-arrow-left mr-3"></i>
+                        <div class="d-none d-sm-block">
+                            <span class="o-4">Previous Project</span>
+                            <h4 class="h6 mb-0">Vertex Website Design</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-md-5">
+                <a href="#" class="d-block float-right">
+                    <div class="d-flex align-items-center text-right">
+                        <div class="d-none d-sm-block">
+                            <span class="o-4">Next Project</span>
+                            <h4 class="mb-0 h6">Vertex ASP.NET MVC</h4>
+                        </div>
+                        <i class="fas fa-arrow-right ml-3"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>*@
+
+
+@Html.Vertex().Footer().ViewName("FooterDark")

@@ -1,0 +1,37 @@
+﻿@model Vertex.Web.Framework.UI.Editor
+
+
+<textarea name="@Model.Name" id="@Model.Name">
+    @Model.Content
+</textarea>
+
+
+@if (Model.EditorType == EditorType.Classic)
+{
+    string toolbar = string.Join(",", Model.Toolbar.ToArray());
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#@Model.Name'), {
+                toolbar: ['ckfinder', '|', 'heading', '|', 'bold', 'italic', '|', 'undo', 'redo'],
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+}
+else
+{
+    <script>
+	    InlineEditor
+		    .create( document.querySelector( '#@Model.Name' ), {
+			    // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+		    } )
+		    .then( editor => {
+			    window.editor = editor;
+		    } )
+		    .catch( err => {
+			    console.error( err.stack );
+		    });
+    </script>
+}
+

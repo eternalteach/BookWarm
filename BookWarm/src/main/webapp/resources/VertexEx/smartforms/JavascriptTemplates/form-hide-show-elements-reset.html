@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Contact Form </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.formShowHide.min.js"></script>--> 
+    <script type="text/javascript">
+		jQuery(document).ready(function($){
+			$('.smartfm-ctrl').formShowHide({
+				resetClass: 'smartform-reset'
+			});
+		});   
+    </script>
+    
+    <!--[if lte IE 9]>
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-3">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-eye-slash"></i>Braching Quiz</h4>
+          </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="contact">
+            	<div class="form-body">
+                
+                  <div class="spacer-b10">
+                        <p class="small-text fine-grey">
+                        This is a simple quiz that shows you how braching works - on checking a radio button more information or options 
+                        are revealed - but here is the catch: when you select onother option instead of your previous selection all the options 
+                        under the previous selection are reset to their original state to avoid submitting wrong values! </p>
+                    </div><!-- end section -->                  
+                    
+                    <div class="spacer-b10">
+                        <p class="smart-link">Please choose your marital status</p>
+                    </div><!-- end section -->                                    
+                
+                    <div class="section">
+                        <div class="option-group field">
+                            <label class="option">
+                                <input type="radio" name="status" class="smartfm-ctrl" value=""  data-show-id="married">
+                                <span class="radio"></span> Married
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="status" class="smartfm-ctrl" value="" data-show-id="notmarried">
+                                <span class="radio"></span>  Still Single               
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="status" class="smartfm-ctrl" value=""  data-show-id="notsure">
+                                <span class="radio"></span> Not Sure             
+                            </label>                                                                   
+                        </div>
+                    </div><!-- end section -->
+                    
+                    <div id="married" class="hiddenbox section smartform-reset">
+                    	<p class="smart-link">How many kinds do you have?</p>
+                        <div class="section">
+                            <div class="option-group field">
+                                <label class="option">
+                                    <input type="radio" name="children" class="smartfm-ctrl" value=""  data-show-id="overten">
+                                    <span class="radio"></span> Above 10
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="children" class="smartfm-ctrl" value="" data-show-id="belowten">
+                                    <span class="radio"></span>  Below 10               
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="children" class="smartfm-ctrl" value=""  data-show-id="nonyet">
+                                    <span class="radio"></span> None Yet!              
+                                </label>                                                                   
+                            </div>
+                        </div><!-- end section -->                        
+                    </div><!-- .hiddenbox -->
+                  
+                    
+                    <div class="notification alert-error spacer-t10" id="overten">
+                        <p>Umm! Plese plan for your family!</p>                                 
+                    </div><!-- end .notification section -->
+                    
+                    <div class="notification alert-success spacer-t10" id="belowten">
+                        <p>Well thats good for you!</p>                                 
+                    </div><!-- end .notification section -->                     
+                    
+                    <div class="notification alert-info spacer-t10"  id="nonyet">
+                        <p>Err! think about it boss!</p>                                 
+                    </div><!-- end .notification section -->              
+                    
+                    
+                    <div id="notmarried" class="hiddenbox section smartform-reset">
+                    	<p class="smart-link">When do you plan on getting married?</p>
+                        <div class="section">
+                            <div class="option-group field">
+                                <label class="option">
+                                    <input type="radio" name="plan" class="smartfm-ctrl" value=""  data-show-id="fiveyears">
+                                    <span class="radio"></span> In 5 Years
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="plan" class="smartfm-ctrl" value="" data-show-id="tenyears">
+                                    <span class="radio"></span>  In 10 Years             
+                                </label>
+                                <label class="option">
+                                    <input type="radio" name="plan" class="smartfm-ctrl" value=""  data-show-id="never">
+                                    <span class="radio"></span> Never              
+                                </label>                                                                   
+                            </div>
+                        </div><!-- end section -->                          
+                    </div><!-- .hiddenbox -->
+                    
+                    <div id="fiveyears" class="hiddenbox section smartform-reset">
+                    	<p class="smart-link">Have you started saving for your wedding?</p>
+                        <div class="section">
+                            <label class="field select">
+                                <select name="savings" id="savings">
+                                    <option value="">Please select</option>
+                                    <option value="Yes" class="smartfm-ctrl" data-show-id="yes-saving">Yes saving</option>
+                                    <option value="Soon" class="smartfm-ctrl" data-show-id="soon-saving">Soon saving</option>
+                                    <option value="No" class="smartfm-ctrl" data-show-id="not-saving">Not saving</option>
+                                </select>
+                                <i class="arrow double"></i>
+                            </label>
+                        </div><!-- end section -->                          
+                    </div><!-- .hiddenbox --> 
+                    
+                    <div class="notification alert-error spacer-t10" id="yes-saving">
+                        <p>You are wise - you won't panic!</p>                                 
+                    </div><!-- end .notification section -->
+                    
+                    <div class="notification alert-success spacer-t10" id="soon-saving">
+                        <p>Please do its good for you!</p>                                 
+                    </div><!-- end .notification section -->                     
+                    
+                    <div class="notification alert-info spacer-t10"  id="not-saving">
+                        <p>You had better start before its too late</p>                                 
+                    </div><!-- end .notification section -->
+                    
+                    <div class="notification alert-info spacer-t10"  id="tenyears">
+                        <p>Start planing now you will enjoy</p>                                 
+                    </div><!-- end .notification section -->
+                    
+                    <div class="notification alert-warning spacer-t10"  id="never">
+                        <p>Never say never - it never works really!</p>                                 
+                    </div><!-- end .notification section -->                                                                                
+                    
+                    <div id="notsure" class="hiddenbox">
+                        <div class="notification alert-warning">
+                            <p>Well - we have no more questions for you!</p>                                 
+                        </div><!-- end .notification section -->
+                    </div><!-- .hiddenbox -->
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary">Submit</button>
+                    <button type="reset" class="button">Cancel</button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+    
+    <div></div><!-- end section -->
+
+</body>
+</html>

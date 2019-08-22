@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Clone Elements </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.geocomplete.min.js"></script>
+    <script type="text/javascript">
+      jQuery(document).ready(function($){
+			$(".geocomplete").geocomplete({
+				details: ".location-details",
+				detailsScope: '.location-wrapper',
+				types: ["geocode", "establishment"],
+			});
+			
+			$(".find").click(function(){
+				$(this).parents(".location-wrapper").find(".geocomplete").trigger("geocode");
+			});
+      });	  
+    </script> 
+       
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-map-marker"></i>Geocomplete </h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="account2">
+                <div class="form-body"> 
+                
+                    <div class="spacer-b30">
+                        <div class="tagline"><span> Jquery Geocomplete </span></div><!-- .tagline -->
+                    </div>
+                    
+                    <div class="location-wrapper">
+                    
+                        <div class="section">
+                            <div class="smart-widget sm-right smr-80">
+                                <label class="field">
+                                    <input type="text" class="gui-input geocomplete" placeholder="Type in an address" value="Eiffel Tower">
+                                </label>
+                                <button type="button" class="button find"> Find </button>
+                            </div><!-- end .smart-widget section --> 
+                        </div><!-- end section -->
+                        
+                        <div class="location-details">
+                            <div class="frm-row">
+                            
+                                <div class="section colm colm6">
+                                    <label for="firstname" class="field">
+                                        <input type="text" name="lat" class="gui-input" placeholder="Latitude">
+                                    </label>
+                                </div><!-- end section -->
+                                
+                                <div class="section colm colm6">
+                                    <label for="lastname" class="field">
+                                        <input type="text" name="lng" class="gui-input" placeholder="Longitude">
+                                    </label>
+                                </div><!-- end section -->
+                                
+                            </div><!-- end .frm-row section -->                         
+                        </div><!-- location-details -->
+                        
+                    </div><!-- location-wrapper -->   
+                    
+                    
+                    <div class="location-wrapper">
+                    
+                        <div class="section">
+                            <div class="smart-widget sm-right smr-80">
+                                <label class="field">
+                                    <input type="text" class="gui-input geocomplete" placeholder="Type in an address" value="Empire State Bldg">
+                                </label>
+                                <button type="button" class="button find"> Find </button>
+                            </div><!-- end .smart-widget section --> 
+                        </div><!-- end section -->
+                        
+                        <div class="location-details">
+                            <div class="frm-row">
+                            
+                                <div class="section colm colm6">
+                                    <label for="firstname" class="field">
+                                        <input type="text" name="lat" class="gui-input" placeholder="Latitude" value="">
+                                    </label>
+                                </div><!-- end section -->
+                                
+                                <div class="section colm colm6">
+                                    <label for="lastname" class="field">
+                                        <input type="text" name="lng" class="gui-input" placeholder="Longitude" value="">
+                                    </label>
+                                </div><!-- end section -->
+                                
+                            </div><!-- end .frm-row section -->                         
+                        </div><!-- location-details -->
+                        
+                    </div><!-- location-wrapper -->                                                          
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Button  </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+
+</body>
+</html>

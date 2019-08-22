@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - No Theme </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">-->
+    
+
+    <!--[if lte IE 9]>
+    	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>    
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+	<script type="text/javascript">
+	
+		function initialize() {
+				var mapOptions = {
+							zoom: 10,
+							center: new google.maps.LatLng(29.760193, -95.369390),   
+							mapTypeId: google.maps.MapTypeId.ROADMAP
+					};
+		
+				var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+				var marker = new google.maps.Marker({
+							map: map, 
+							draggable: false, 
+							position: new google.maps.LatLng(29.760193, -95.369390)
+					});
+		 }						
+		google.maps.event.addDomListener(window, 'resize', initialize);
+		google.maps.event.addDomListener(window, 'load', initialize);
+         
+    </script>    
+       
+</head>
+
+<body>
+
+	<div class="smart-wrap">
+    	<div class="smart-forms">
+        
+         <div class="form-header header-custom">
+            	<h4><i class="fa fa-comments"></i>Get in touch</h4>
+          </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="contact">
+            	<div class="form-body-custom">
+                
+                	<div class="frm-row">
+                    
+                    	<div class="colm colm6">
+                        
+                            <div class="section">
+                                <label class="field prepend-icon">
+                                    <input type="text" name="names" id="names" class="gui-input" placeholder="Enter name...">
+                                    <span class="field-icon"><i class="fa fa-user"></i></span>  
+                                </label>
+                            </div><!-- end section -->
+                            
+                            <div class="section">
+                                <label class="field prepend-icon">
+                                    <input type="email" name="email" id="email" class="gui-input" placeholder="example@domain.com...">
+                                    <span class="field-icon"><i class="fa fa-envelope"></i></span>  
+                                </label>
+                            </div><!-- end section -->
+                            
+                            <div class="section">
+                                <label class="field prepend-icon">
+                                    <input type="tel" name="telephone" id="telephone" class="gui-input" placeholder="Enter telephone or mobile...">
+                                    <span class="field-icon"><i class="fa fa-phone-square"></i></span>  
+                                </label>
+                            </div><!-- end section -->
+                            
+                            <div class="section">
+                                <label class="field prepend-icon">
+                                    <textarea class="gui-textarea" id="comment" name="comment"></textarea>
+                                    <span class="field-icon"><i class="fa fa-comments"></i></span>
+                                    <span class="input-hint"> <strong>Hint:</strong> Please enter between 80 - 300 characters.</span>   
+                                </label>
+                            </div><!-- end section -->
+                        
+                        </div><!-- end .colm6 section -->
+                        <div class="colm colm6">
+                             <div class="map-container">
+                                 <div id="map_canvas"></div>
+                             </div>                        
+                        </div><!-- end .colm6 section -->
+                    </div><!-- end .frm-row section -->                             
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer-custom">
+                	<button type="submit" class="button btn-primary">Submit</button>
+                </div><!-- end section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+</body>
+</html>

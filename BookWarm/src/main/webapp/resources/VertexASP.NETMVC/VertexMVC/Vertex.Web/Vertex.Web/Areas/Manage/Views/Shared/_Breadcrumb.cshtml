@@ -1,0 +1,33 @@
+﻿@model string
+
+@Html.Vertex().Page().Title(Model)
+
+@{ 
+    var v = ViewContext.RouteData.Values["id"];
+    var id = v != null ? v.ToString() : string.Empty;
+}
+
+<section class="bg-primary border-top-muted">
+    <div class="container border-bottom-muted">
+        <div class="row py-3 align-items-center">
+            <div class="col-md-6">
+                <h2 class="m-0 fs-21 text-white">@Model</h2>
+            </div>
+            <div class="col-md-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-transparent justify-content-end text-white pr-0 pl-0 mb-0 fs-15">
+                        @foreach (var item in WebHelper.GetCurrentPageUrl(false).Split('/'))
+                        { 
+                            if (item.HasValue() && id != item)
+                            {
+                                <li class="breadcrumb-item">
+                                    <a class="anim-link-2 anim-link-2-white" href="#">@item.ToSentence()</a>
+                                </li>
+                            }
+                        }
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>

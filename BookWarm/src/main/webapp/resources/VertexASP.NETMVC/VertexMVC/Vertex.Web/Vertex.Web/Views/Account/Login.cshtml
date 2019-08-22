@@ -1,0 +1,115 @@
+﻿@model LoginViewModel
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowLogo = false;
+    settings.ShowTopbar = false;
+    settings.ShowSearchIcon = true;
+    settings.StickyType = HeaderStickyType.Shrink;
+    settings.Transparency = HeaderTransparency.Transparent;
+})
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+<div class="d-flex align-items-center position-relative h-100vh bg-light">
+    <div class="col-lg-5 col-xl-4 d-none d-lg-flex align-items-center h-100vh px-0" data-overlay="1" style="background-image:url(../Content/img/mix/desktop-7.png); background-size:cover;">
+        <div class="w-100 p-7 text-center">
+
+            <div class="position-absolute right-0 top-0 left-0 p-5"> 
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="../Content/img/logo-white.png" width="150" />
+                </a>
+            </div>
+            <div class="text-white position-relative">
+                <h1>
+                    Join Our Community
+                </h1>
+                <p>
+                    Lorem ipsum dolor sit amet, coectetuer adipiscing
+                    elit sed diam nonummy et nibh euismod
+                </p>
+            </div>
+            <div class="position-absolute right-0 bottom-0 left-0 text-center text-white p-5">
+                <div class="row">
+                    <div class="col-6">
+                        <p class="fs-14 mb-0 mt-1">© <span class="o-7"> @Setting("general.meta.title").Value @DateTime.UtcNow.Year </span></p>
+                    </div>
+                    <div class="col-6">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item"><a class="m-list--link" href="#">Privacy</a></li>
+                            <li class="list-inline-item"><a class="m-list--link" href="#">Terms</a></li>
+                            <li class="list-inline-item"><a class="m-list--link" href="#">Securty</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-lg-7 col-xl-5 offset-md-2 offset-lg-2 offset-xl-3">
+                <div class="mb-6">
+                    <h2 class="h3 font-weight-normal mb-0">
+                        Welcome to <span class="font-weight-semi-bold text-primary">
+                            @Setting("general.meta.title").Value
+                        </span>
+                    </h2>
+                    <p>Sign in to your account.</p>
+                </div>
+
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "input-line vertex-input", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                    <div class="vertex-input-group first">
+                        <div class="apend-wrap">
+                            <i class="icon-mail-2"></i>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.UserName, new { @class = "required" })
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeHolder = "User name" })
+                            @*@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
+                    <div class="vertex-input-group last">
+                        <div class="apend-wrap">
+                            <i class="icon-lock-unlock-2"></i>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password, new { @class = "required" })
+
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeHolder = "Password" })
+                            @*@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <div class="custom-control custom-checkbox">
+                                @Html.CheckBoxFor(m => m.RememberMe, new { @class = "custom-control-input" })
+                                @Html.LabelFor(m => m.RememberMe, new { @class = "custom-control-label" })
+                            </div>
+                        </div>
+                        <div class="col-6 text-right">
+                            @Html.ActionLink("Forgot password?", "ForgotPassword", "Account", new { @class = "m-link-muted small" })
+                        </div>
+
+                        <div class="col-md-12 center">
+                            <input type="submit" class="btn btn-primary btn-block transition-hover mt-4 mb-2" value="Log In">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="text-center">
+                        <p>
+                            Don't have an account yet ? <a href="@Url.Action("Register", "Account")" class="text-primary anim-link">Register</a>
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@model Breadcrumb
+
+@{
+    Dictionary<string, string> routes = new Dictionary<string, string>();
+
+    string title = ViewBag.Title;
+
+    if (ViewContext.RouteData.Values.Count == 2)
+    {
+        var controller = ViewContext.RouteData.Values["controller"].ToString();
+        var action = ViewContext.RouteData.Values["action"].ToString();
+
+        routes.Add(Url.Action("Index", controller), controller);
+        if (!string.IsNullOrEmpty(title) && action != title.Replace(" ", string.Empty))
+        {
+            routes.Add(Url.Action(action, controller), action);
+        }
+    }
+    else if (ViewContext.RouteData.Values.Count == 4)
+    {
+        var controller = ViewContext.RouteData.Values.ElementAt(1).Value.ToString();
+        var action = ViewContext.RouteData.Values.ElementAt(0).Value.ToString();
+        var url = Request.Url.PathAndQuery;
+
+        routes.Add(Url.Action("Index", controller), controller);
+        if (!string.IsNullOrEmpty(title) && action != title.Replace(" ", string.Empty))
+        {
+            routes.Add(Url.Action(action, controller), title);
+        }
+    }
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb py-4 m-0 fs-14 @Model.GetCssClass()" @Model.GetHtmlAtributes()>
+        <li class="breadcrumb-item"><a class="anim-link-2" href="@Url.Action("Index", "Home")">Home</a></li>
+        @foreach (var item in routes)
+        {
+            <li class="breadcrumb-item"><a class="anim-link-2" href="@item.Key">@item.Value</a></li>
+        }
+        <li class="breadcrumb-item o-5" aria-current="page">@ViewBag.Title</li>
+    </ol>
+</nav>

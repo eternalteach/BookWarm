@@ -1,0 +1,45 @@
+﻿@model Vertex.Web.Framework.UI.ClientTestimonials
+
+@{
+    if (Model.Slider != null)
+    {
+        foreach (var item in Model.Items)
+        {
+            Model.Slider.Add().Content(RenderItem(item).ToHtmlString());
+        }
+        @Html.Raw(Model.Slider.ToHtmlString());
+    }
+    else
+    {
+        <div class="cbp"
+             data-layout-mode="grid"
+             data-animation-type='slideDelay'
+             data-caption='overlayBottomAlong'
+             data-display-type='bottomToTop'
+             data-display-type-speed="100"
+             data-gap-horizontal="1"
+             data-gap-vertical="0"
+             data-media-queries='[
+                    {"width": 1500, "cols": 6}, 
+                    {"width": 1100, "cols": 6}, 
+                    {"width": 800, "cols": 5}, 
+                    {"width": 480, "cols": 4}, 
+                    {"width": 300, "cols": 3}]'>
+            @foreach (var item in Model.Items)
+            {
+                <div class="cbp-item identity">
+                    @RenderItem(item)
+                </div>
+            }
+        </div>
+    }
+}
+
+@helper RenderItem(ClientTestimonialsItem item)
+{
+    <div class="clearfix p-3 @Model.GetCssClass()" @Model.GetHtmlAtributes()>
+        <a href="@item.WebsiteUrl">
+            <img src="@item.ClientLogoUrl" alt="@item.ClientName" data-toggle="tooltip" data-title="@item.ClientName" />
+        </a>
+    </div>
+} 

@@ -1,0 +1,57 @@
+  
+.pricing-section {
+	min-height: 100vh;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.pricing-section {
+	padding: 2em 0 8em;
+	min-height: 100vh;
+	position: relative;
+}
+
+.pricing-section__title {
+	font-size: 1.4em;
+	font-weight: 700;
+	margin: 3em 0 5em;
+	flex: none;
+}
+
+.pricing-section a {
+	color: #333;
+}
+
+.pricing-section a:hover, 
+.pricing-section a:focus {
+	color: #000;
+}
+
+
+
+/* Related demos */
+.content--related {
+	text-align: center;
+	font-weight: bold;
+	padding: 10em 1em;
+	background: #2C292F;
+}
+ 
+
+@media screen and (max-width: 50em) {
+	.codrops-header {
+		padding: 3em 10% 4em;
+	}
+}
+
+@media screen and (max-width: 40em) {
+	.codrops-header h1 {
+		font-size: 2.8em;
+	}
+}

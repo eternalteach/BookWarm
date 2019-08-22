@@ -1,0 +1,64 @@
+﻿@model BlogPost
+
+
+@{
+    if (Model.Slider != null)
+    {
+        foreach (var item in Model.Items)
+        {
+            Model.Slider.Add().Content(RenderItem(item).ToHtmlString());
+        }
+        @Html.Raw(Model.Slider.ToHtmlString());
+    }
+    else
+    {
+        foreach (var postItem in Model.Items)
+        {
+            @RenderItem(postItem)
+        }
+
+        <div>
+            @Html.Raw(Model.Pager)
+        </div>
+    }
+}
+
+@if (Model.Items.Count == 0)
+{
+    <div class="text-center small text-light">
+        No any blog post to list. <br />
+        Go to <a href="@Url.Action("PostCreate","Manage")" target="_blank" class="anim-link-2 anim-link-2-primary"> manage panel </a> to create new blog post.
+    </div>
+}
+
+
+@helper RenderItem(Post post)
+{
+    <div class="row mb-5">
+        <div class="col-md-6">
+            <a href="/@post.Url">
+                <img class="img-fluid rounded w-100" src="@post.Picture.FilePath" alt="@post.Title">
+            </a>
+        </div>
+        <div class="col-md-6 mt-4">
+            <div class="media">
+                <div class="media-body fs-13">
+                    <div class="text-muted mb-2">
+                        <i class="fas fa-project-diagram mr-1"></i>
+                        <a class="anim-link-2 text-light" href="/@post.Category.Url">@post.Category.Name</a>
+                    </div>
+                    <h3 class="card-title h5">
+                        <a class="text-dark anim-link-2" href="/@post.Url">@post.Title</a>
+                    </h3>
+                    <div class="d-flex">
+                        <img class="avatar avatar-xs mr-3 ml-0" src="@post.User.Avatar.FilePath" alt="@post.User.UserName">
+                        <div>
+                            <span class="text-muted">by</span> <a href="/User/@post.User.UserName" class="text-dark anim-link-2">@post.User.UserName</a><br>
+                            <span class="text-muted"> @post.CreateDateUtc.ToRelativeFormat()</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

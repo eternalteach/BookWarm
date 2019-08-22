@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Form Masking</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    
+
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.maskedinput.js"></script>-->
+    
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+    <script type="text/javascript">
+	
+		jQuery(document).ready(function($){
+		
+			/* @normal masking rules 
+			---------------------------------------------------------- */
+				
+			$.mask.definitions['f'] = "[A-Fa-f0-9]"; 	
+		  	$("#telephone").mask('(999) 999-999999', {placeholder:'X'});
+			$("#telephonext").mask('(+999) 999-9999? 99999', {placeholder:'X'}); 
+		  	$("#zipcode").mask('99999', {placeholder:'X'});
+		  	$("#dates").mask('99/99/9999', {placeholder:'_'});
+			$("#dates2").mask('99-99-9999', {placeholder:'_'});
+			$("#time").mask('99:99:99', {placeholder:'_'});
+			$("#date-time").mask('99/99/9999 99:99:99', {placeholder:'_'});
+			$("#currency").mask('999,999,999,999,999.99', {placeholder:'_'});
+			$("#ip4").mask('999.999.999.999', {placeholder:'_'});
+			$("#ip6").mask('9999:9999:9999:9:999:9999:9999:9999', {placeholder:'_'});
+			$("#isbn").mask('999-99-999-9999-9', {placeholder:'_'});
+			$("#isbn2").mask('999 99 999 9999 9', {placeholder:'_'});
+			$("#taxid").mask('99-9999999', {placeholder:'_'});
+		  	$("#serial").mask('***-****-****-****', {placeholder:'_'});
+			$("#color").mask('#ffffff', {placeholder:'_'});
+			$("#alpha").mask('aaaaaa-aaaaaa', {placeholder:'X'});
+			$("#product").mask("a*-999-a999",{placeholder:"_",
+						 completed:function(){
+						 	alert("Congraturations! Product activated the with a valid key: "+this.val());
+						 }
+			});
+			
+			/* @advanced masking rules 
+			------------------------------------------------------------------------ */	
+		    var creditcard = $("#creditcard").mask('9999-9999-9999-9999', {placeholder:'X'});
+		 	$("#cardtype").change(
+				function() {
+					switch ($(this).val()){
+						case 'amex':
+						  creditcard.unmask().mask('9999-999999-99999', {placeholder:'_'});
+						  break;
+						default:
+						  creditcard.unmask().mask('9999-9999-9999-9999', {placeholder:'X'});
+						  break;
+					  }
+				}
+			);
+		  	
+		
+		});				
+    
+    </script>
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-3">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-pencil-square"></i>Form Masking</h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="account2">
+            	<div class="form-body">
+                
+                    <div class="spacer-b30">
+                    	<div class="tagline"><span> Normal masking  </span></div><!-- .tagline -->
+                    </div>                 	
+                    
+                    <div class="section">
+                    	<label for="telephone" class="field-label">Telephone Number </label>
+                    	<label for="telephone" class="field">
+                        	<input type="text" name="telephone" id="telephone" class="gui-input" placeholder="Enter telephone">
+                        </label>
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                    	<label for="telephonext" class="field-label">Telephone With Optional Extention </label>
+                    	<label for="telephonext" class="field">
+                        	<input type="text" name="telephonext" id="telephonext" class="gui-input" placeholder="Enter telephone">
+                        </label>
+                    </div><!-- end section -->                          
+                
+                	<div class="section">
+                    	<label for="zipcode" class="field-label">Zip Code</label>
+                    	<label for="zipcode" class="field">
+                        	<input type="text" name="zipcode" id="zipcode" class="gui-input" placeholder="Zip code">
+                        </label>
+                    </div><!-- end section -->
+                    
+                	<div class="section">
+                    	<label for="color" class="field-label">HEX Color Values (A-F &amp; 0-9)</label>
+                    	<label for="color" class="field">
+                        	<input type="text" name="color" id="color" class="gui-input" placeholder="Color HEX code">
+                        </label>
+                    </div><!-- end section -->                    
+                    
+                	<div class="section">
+                    	<label for="dates" class="field-label">Date </label>
+                    	<label for="dates" class="field">
+                        	<input type="text" name="dates" id="dates" class="gui-input" placeholder="DD/MM/YYYY" >
+                        </label>
+                    </div><!-- end section -->
+                    
+                	<div class="section">
+                    	<label for="dates2" class="field-label">Date Format 2 </label>
+                    	<label for="dates2" class="field">
+                        	<input type="text" name="dates2" id="dates2" class="gui-input" placeholder="DD-MM-YYYY">
+                        </label>
+                    </div><!-- end section -->                    
+                    
+                	<div class="section">
+                    	<label for="time" class="field-label">Time </label>
+                    	<label for="time" class="field">
+                        	<input type="text" name="time" id="time" class="gui-input" placeholder="00:00:00" >
+                        </label>
+                    </div><!-- end section -->                    
+                    
+                	<div class="section">
+                    	<label for="date-time" class="field-label">Date + Time </label>
+                    	<label for="date-time" class="field">
+                        	<input type="text" name="date-time" id="date-time" class="gui-input" placeholder="DD/MM/YYYY 00:00:00">
+                        </label>
+                    </div><!-- end section --> 
+                    
+                	<div class="section">
+                    	<label for="ip4" class="field-label">IPV4 </label>
+                    	<label for="ip4" class="field">
+                        	<input type="text" name="ip4" id="ip4" class="gui-input" placeholder="192.168.110.310">
+                        </label>
+                    </div><!-- end section -->
+                    
+                	<div class="section">
+                    	<label for="ip6" class="field-label">IPV6 </label>
+                    	<label for="ip6" class="field">
+                        	<input type="text" name="ip6" id="ip6" class="gui-input" placeholder="9999:9999:9999:9:999:9999:9999:9999">
+                        </label>
+                    </div><!-- end section --> 
+                    
+                	<div class="section">
+                    	<label for="isbn" class="field-label">ISBN </label>
+                    	<label for="isbn" class="field">
+                        	<input type="text" name="isbn" id="isbn" class="gui-input" placeholder="999-99-999-9999-9">
+                        </label>
+                    </div><!-- end section -->
+                    
+                	<div class="section">
+                    	<label for="isbn2" class="field-label">ISBN 2 </label>
+                    	<label for="isbn2" class="field">
+                        	<input type="text" name="isbn2" id="isbn2" class="gui-input" placeholder="999 99 999 9999 9">
+                        </label>
+                    </div><!-- end section -->  
+                    
+                	<div class="section">
+                    	<label for="taxid" class="field-label">Tax ID </label>
+                    	<label for="taxid" class="field">
+                        	<input type="text" name="taxid" id="taxid" class="gui-input" placeholder="99-9999999">
+                        </label>
+                    </div><!-- end section -->                                                                                                     
+                    
+                	<div class="section">
+                    	<label for="currency" class="field-label">Money / Currency </label>
+                    	<label for="currency" class="field">
+                        	<input type="text" name="currency" id="currency" class="gui-input" placeholder="000,000,000,000,000.00">
+                        </label>
+                    </div><!-- end section -->                                        
+                    
+                	<div class="section">
+                    	<label for="product" class="field-label">Product Activation Key</label>
+                    	<label for="product" class="field">
+                        	<input type="text" name="product" id="product" class="gui-input" placeholder="Enter product Activation">
+                        </label>
+                    </div><!-- end section -->                    
+                    
+                	<div class="section">
+                    	<label for="serial" class="field-label">Serial Number</label>
+                    	<label for="serial" class="field">
+                        	<input type="text" name="serial" id="serial" class="gui-input" placeholder="Enter product serial">
+                        </label>
+                    </div><!-- end section -->
+                    
+                	<div class="section">
+                    	<label for="alpha" class="field-label">Alpha Characters only (A-Z)</label>
+                    	<label for="alpha" class="field">
+                        	<input type="text" name="alpha" id="alpha" class="gui-input" placeholder="Enter alpha characters">
+                        </label>
+                    </div><!-- end section -->                    
+                    
+                    <div class="spacer-t40 spacer-b40">
+                    	<div class="tagline"><span> Advanced masking  </span></div><!-- .tagline -->
+                    </div>
+                    
+                    <div class="section">
+                    	<p class="small-text fine-grey"> 1 - Select American Vertex Card Type </p>
+                        <p class="small-text fine-grey"> 2 - Notice how the card slots change from 4 to 3 </p>
+                        <p class="small-text fine-grey"> 3 - Also notice how the place holder changes from XX to __ </p>
+                    </div><!-- end section -->                                                             
+                    
+                    <div class="frm-row"> 
+                      
+                        <div class="section colm colm6">
+                        	<label for="cardtype" class="field-label">Credit Card Type</label>
+                            <label for="cardtype" class="field select">
+                              <select id="cardtype" name="cardtype">
+                                  <option value="">Choose Card Type</option>
+                                  <option value="amex">American Vertex</option>
+                                  <option value="discover">Discover</option>
+                                  <option value="mastercard">MasterCard</option>
+                                  <option value="visa">Visa</option>
+                              </select>
+                              <i class="arrow double"></i>                    
+                          </label>  
+                        </div><!-- end .section section -->
+                        
+                        <div class="section colm colm6">
+                        	<label for="creditcard" class="field-label">Credit Card Number</label>
+                            <label for="creditcard" class="field">
+                                <input type="text" id="creditcard" name="creditcard" class="gui-input" placeholder="Credit Card Number">
+                            </label> 
+                        </div><!-- end .section section -->
+                    
+                    </div><!-- end .frm-row section -->
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Send Form </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+    
+    <div></div><!-- end section -->
+
+</body>
+</html>

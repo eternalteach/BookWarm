@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Simple survey </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">-->
+    
+
+    <!--[if lte IE 9]>
+    	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>    
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-comments"></i> Simple survey</h4>
+          </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="contact2">
+            	<div class="form-body">
+                
+                    <div class="spacer-b30">
+                    	<div class="tagline"><span>Personal Details </span></div><!-- .tagline -->
+                    </div>                
+                
+                	<div class="frm-row">
+                    
+                        <div class="colm colm6">
+                        
+                        	<div class="section">
+                            	<label for="names" class="field-label">Your names </label>
+                                <label class="field prepend-icon">
+                                    <input type="text" name="names" id="names" class="gui-input" placeholder="Enter first name...">
+                                    <span class="field-icon"><i class="fa fa-user"></i></span>  
+                                </label>
+                            </div><!-- end section -->
+                            
+                        	<div class="section">
+                            	<label for="othernames" class="field-label">Other names </label>
+                                <label class="field prepend-icon">
+                                    <input type="text" name="othernames" id="othernames" class="gui-input" placeholder="Enter other name...">
+                                    <span class="field-icon"><i class="fa fa-user"></i></span>  
+                                </label>
+                            </div><!-- end section --> 
+                            
+                        	<div class="section">
+                            	<label for="email" class="field-label">Your email address </label>
+                                <label class="field prepend-icon">
+                                    <input type="email" name="email" id="email" class="gui-input" placeholder="Enter Email...">
+                                    <span class="field-icon"><i class="fa fa-envelope"></i></span>  
+                                </label>
+                            </div><!-- end section -->                                                       
+                            
+                        </div><!-- end .colm section -->
+                        
+                        <div class="colm colm6">
+                            
+                        	<div class="section">
+                            	<label for="mobile" class="field-label">Telephone / mobile </label>
+                                <label class="field prepend-icon">
+                                    <input type="tel" name="mobile" id="mobile" class="gui-input" placeholder="Enter mobile">
+                                    <span class="field-icon"><i class="fa fa-phone-square"></i></span>  
+                                </label>
+                            </div><!-- end section -->
+                            
+                            <div class="section">
+                            	<label for="firstaddr" class="field-label"> Street address </label>
+                                <label class="field prepend-icon">
+                                    <input type="text" name="firstaddr" id="firstaddr" class="gui-input" placeholder="Street address">
+                                    <span class="field-icon"><i class="fa fa-map-marker"></i></span>  
+                                </label>
+                            </div><!-- end section -->
+                            
+                            <div class="section">
+                            	<label for="city" class="field-label"> Home city </label>
+                                <label class="field prepend-icon">
+                                    <input type="text" name="city" id="city" class="gui-input" placeholder="City">
+                                    <span class="field-icon"><i class="fa fa-building-o"></i></span> 
+                                </label>
+                            </div><!-- end section -->                                                         
+
+                        </div><!-- end .colm section -->
+                        
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="spacer-t20 spacer-b30">
+                    	<div class="tagline"><span> Our services </span></div><!-- .tagline -->
+                    </div>
+                    
+                    <div class="frm-row">
+                    
+                        <div class="section colm colm4">
+                        
+                                <label class="option block">
+                                    <input type="checkbox" name="service" value="marketing">
+                                    <span class="checkbox"></span> Marketing           
+                                </label>
+                          
+                                <label class="option block spacer-t10">
+                                    <input type="checkbox" name="service" value="motion">
+                                    <span class="checkbox"></span> Motion graphics         
+                                </label>
+                                
+                                <label class="option block spacer-t10">
+                                    <input type="checkbox" name="service" value="videos">
+                                    <span class="checkbox"></span> Videography        
+                                </label>
+                                                   
+                        </div><!-- end .colm section -->
+                        
+                        <div class="section colm colm4">
+                        
+                                <label class="option block">
+                                    <input type="checkbox" name="service" value="webdesign">
+                                    <span class="checkbox"></span> Webdesign           
+                                </label>
+                          
+                                <label class="option block spacer-t10">
+                                    <input type="checkbox" name="service" value="webhosting">
+                                    <span class="checkbox"></span> Web hosting            
+                                </label>
+                                
+                                <label class="option block spacer-t10">
+                                    <input type="checkbox" name="service" value="wordpress">
+                                    <span class="checkbox"></span> Wordpress CMS          
+                                </label>
+                                                   
+                        </div><!-- end .colm section -->                                                       
+    
+                        
+                        <div class="section colm colm4">
+                        
+                                <label class="option block">
+                                    <input type="checkbox" name="service" value="apps">
+                                    <span class="checkbox"></span> Mobile apps          
+                                </label>
+                                
+                                <label class="option block spacer-t10">
+                                    <input type="checkbox" name="service" value="info">
+                                    <span class="checkbox"></span> Infographics          
+                                </label>
+                          
+                                <label class="option block spacer-t10">
+                                    <input type="checkbox" name="service" value="icons">
+                                    <span class="checkbox"></span> Icon design         
+                                </label>
+                                                   
+                        </div><!-- end .colm section -->
+                        
+                    </div> <!-- end .frm-row section -->
+                    
+                    <div class="spacer-t20 spacer-b30">
+                    	<div class="tagline"><span> How can we reach you </span></div><!-- .tagline -->
+                    </div> 
+                    
+                        <div class="section">
+                            <div class="option-group field">
+                                <label for="tv" class="option">
+                                    <input type="radio" name="reach" id="tv" value="tv">
+                                    <span class="radio"></span> Television
+                                </label>
+                                
+                                <label for="int" class="option">
+                                    <input type="radio" name="reach" id="int" value="int">
+                                    <span class="radio"></span> Internet                 
+                                </label>                            
+                                
+                                <label for="paper" class="option">
+                                    <input type="radio" name="reach" id="paper" value="paper">
+                                    <span class="radio"></span> Newspaper               
+                                </label>
+                                
+                                <label for="radios" class="option">
+                                    <input type="radio" name="reach" id="radios" value="radios">
+                                    <span class="radio"></span> Radio               
+                                </label>
+                                
+                                 <label for="othermedia" class="option">
+                                    <input type="radio" name="reach" id="othermedia" value="othermedia">
+                                    <span class="radio"></span> Other media              
+                                </label>                                                                
+                                
+                            </div>
+                                                
+                        </div><!-- end .section section -->                                        
+                                                                                                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary">Submit</button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+    
+    <div></div><!-- end section -->
+
+</body>
+</html>

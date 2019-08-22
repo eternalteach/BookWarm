@@ -1,0 +1,387 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Form validation </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css"  href="css/smart-addons.css">
+    
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/intlTelInput.min.js"></script>-->
+    
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+    <script type="text/javascript">
+		jQuery(document).ready(function($){
+		
+			$('.submitBtn').attr('disabled', 'disabled');
+			$('.resetBtn').attr('disabled', 'disabled');		
+		
+			/*
+			--------------------------------------------
+			BASIC PHONE INPUT
+			-------------------------------------------- */		
+			$("#phone").intlTelInput({
+				utilsScript: "js/utils.js"
+			});
+			
+			/*
+			--------------------------------------------
+			SELECTED EUROPEAN COUNTRIES
+			-------------------------------------------- */				
+			$("#phone2").intlTelInput({
+				onlyCountries: ["al", "ad", "at", "by", "be", "ba", "bg", "hr", "cz", "dk", 
+				"ee", "fo", "fi", "fr", "de", "gi", "gr", "va", "hu", "is", "ie", "it", "lv", 
+				"li", "lt", "lu", "mk", "mt", "md", "mc", "me", "nl", "no", "pl", "pt", "ro", 
+				"ru", "sm", "rs", "sk", "si", "es", "se", "ch", "ua", "gb"],
+				utilsScript: "js/utils.js"
+			});			
+			
+			/*
+			--------------------------------------------
+			PHONE VALIDATION
+			-------------------------------------------- */
+			var telInput = $("#phone3"),
+			  telErrorMsg = $(".telErrorMsg"),
+			  telValidMsg = $(".telValidMsg");
+			
+			// initialise plugin
+			telInput.intlTelInput({
+				preferredCountries: ["rw", "ke"],
+				utilsScript: "js/utils.js"
+			});
+			
+			var reset = function() {
+				telInput.removeClass("telErrorNum");
+				telInput.removeClass("telValidNum");
+				telErrorMsg.addClass("telHideMsg");
+				telValidMsg.addClass("telHideMsg");
+			};
+			
+			// on blur: validate
+			telInput.blur(function() {
+				reset();
+				if ($.trim(telInput.val())) {
+					if (telInput.intlTelInput("isValidNumber")) {
+						telValidMsg.removeClass("telHideMsg");
+						telInput.addClass("telValidNum");
+						$('.submitBtn').removeAttr('disabled'); 
+						$('.resetBtn').removeAttr('disabled');						
+					} else {
+						telInput.addClass("telErrorNum");
+						telErrorMsg.removeClass("telHideMsg");
+						$('.submitBtn').attr('disabled', 'disabled');
+						$('.resetBtn').attr('disabled', 'disabled');						
+					}
+				}
+			});
+			
+			// on keyup / change flag: reset
+			telInput.on("keyup change", reset);
+			
+			/*
+			--------------------------------------------
+			INTERNATIONAL FORMAT
+			-------------------------------------------- */	
+			var intInput = $("#phone4"),
+			  intOutput = $(".intFormat");
+			
+			intInput.intlTelInput({
+				nationalMode: true,
+				preferredCountries: ["fr", "ru"],
+				utilsScript: "js/utils.js"
+			});
+			
+			// update when the user selects a country
+			intInput.on("keyup change", function() {
+				var intlNumber = intInput.intlTelInput("getNumber");
+				if (intlNumber) {
+					intOutput.text(intlNumber);
+				} else {
+					intOutput.text("");
+				}
+			});
+			
+			/*
+			--------------------------------------------
+			OUTPUT IN ANOTHER INPUT
+			-------------------------------------------- */	
+			var inputInput = $("#phone5"),
+				outputInput = $("#phone6");			
+			inputInput.intlTelInput({
+				preferredCountries: ["cn", "ca"],
+				utilsScript: "js/utils.js"
+			});
+			
+			// update when the user selects a country
+			inputInput.on("keyup change", function() {
+				var outputNumber = inputInput.intlTelInput("getNumber");
+				if (outputNumber) {
+					outputInput.val(outputNumber);
+				} else {
+					outputInput.val("");
+				}
+			});
+			
+			/*
+			--------------------------------------------
+			COUNTRY DIAL CODE
+			-------------------------------------------- */		
+			$("#phone7").intlTelInput({
+				separateDialCode:true,
+				preferredCountries: ["de", "gr"],
+				utilsScript: "js/utils.js"
+			});
+			
+			/*
+			--------------------------------------------
+			DISABLE DROPDOWN
+			-------------------------------------------- */		
+			$("#phone8").intlTelInput({
+				separateDialCode:true,
+				allowDropdown:false,
+				onlyCountries: ["in"],
+				utilsScript: "js/utils.js"
+			});
+			
+			/*
+			--------------------------------------------
+			SELECT SWITCHING
+			-------------------------------------------- */				
+			// get the country data from the plugin
+			var countryData = $.fn.intlTelInput.getCountryData(),
+				telephoneInput = $("#phone9"),
+				addressDropdown = $("#address-country");
+			
+				// init plugin
+				telephoneInput.intlTelInput({
+					utilsScript: "js/utils.js"
+				});
+			
+				// populate the country dropdown
+				$.each(countryData, function(i, country) {
+					addressDropdown.append($("<option></option>").attr("value", country.iso2).text(country.name));
+				});
+				
+				// set it's initial value
+				var initialCountry = telephoneInput.intlTelInput("getSelectedCountryData").iso2;
+				addressDropdown.val(initialCountry);
+			
+				// listen to the telephone input for changes
+				telephoneInput.on("countrychange", function(e, countryData) {
+					addressDropdown.val(countryData.iso2);
+				});
+			
+				// listen to the address dropdown for changes
+				addressDropdown.change(function() {
+					telephoneInput.intlTelInput("setCountry", $(this).val());
+				});
+				
+				/*
+				--------------------------------------------
+				TOLL FREE PLACEHOLDER
+				-------------------------------------------- */		
+				$("#phone10").intlTelInput({
+					placeholderNumberType:"TOLL_FREE",
+					utilsScript: "js/utils.js"
+				});
+				
+				/*
+				--------------------------------------------
+				AUTOMATIC COUNTRY LOOKUP
+				-------------------------------------------- */				
+				$("#phone11").intlTelInput({
+					initialCountry: "auto",
+					geoIpLookup: function(callback) {
+						$.get('http://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+							var countryCode = (resp && resp.country) ? resp.country : "";
+							callback(countryCode);
+						});
+					},
+					utilsScript: "js/utils.js"
+				});
+				
+				/*
+				--------------------------------------------
+				CUSTOM PLACEHOLDER
+				-------------------------------------------- */		
+				$("#phone12").intlTelInput({
+					customPlaceholder: function(selectedCountryPlaceholder, selectedCountryData) {
+					  return "Call: " + selectedCountryPlaceholder;
+					},				
+					utilsScript: "js/utils.js"
+				});
+				
+				/*
+				--------------------------------------------
+				LOCALISED COUNTRY NAMES
+				-------------------------------------------- */					
+				var countryInfo = $.fn.intlTelInput.getCountryData();
+				$.each(countryInfo, function(i, country) {
+					country.name = country.name.replace(/.+\((.+)\)/,"$1");
+				});
+				
+				$("#phone13").intlTelInput({
+					utilsScript: "js/utils.js"
+				});																																									
+				
+					
+		});
+    </script>
+    
+    
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-phone"></i> Telephone Input </h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" action="" id="contactform">
+            	<div class="form-body">
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                        	<label class="field-label"> Basic Settings </label>
+                            <label class="field">
+                                <input type="tel" id="phone" name="phone" class="gui-input"> 
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                        	<label class="field-label"> Limit Countries </label>
+                            <label class="field">
+                                <input type="tel" id="phone2" name="phone2" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field-label"> Telephone Validation </label>
+                            <label class="field">
+                                <input type="tel" id="phone3" name="phone3" class="gui-input">
+                                <span class="telValidMsg telHideMsg">Valid phone number </span>
+                                <span class="telErrorMsg telHideMsg">Invalid phone number</span>                            
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                            <label class="field-label"> International Format <em class="intFormat"> </em> </label>
+                            <label class="field">
+                                <input type="tel" id="phone4" name="phone4" class="gui-input">                           
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section --> 
+                    
+                    <div class="section-grouped">
+                    	<label class="field-label"> Get International Number </label>
+                        <div class="frm-row">
+                            <div class="section colm colm6">
+                                <label class="field">
+                                    <input type="tel" id="phone5" name="phone5" class="gui-input"> 
+                                </label>
+                            </div><!-- end section -->
+                            
+                            <div class="section colm colm6">
+                                <label class="field">
+                                    <input type="tel" id="phone6" name="phone6" class="gui-input">
+                                </label>
+                            </div><!-- end section -->
+                        </div><!-- end .frm-row section -->                    
+                    </div><!-- section-grouped -->
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                        	<label class="field-label"> Country Dial Code </label>
+                            <label class="field">
+                                <input type="tel" id="phone7" name="phone7" class="gui-input"> 
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                        	<label class="field-label"> Disable Dropdown </label>
+                            <label class="field">
+                                <input type="tel" id="phone8" name="phone8" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section --> 
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                        	<label class="field-label"> Select Country </label>
+                            <label class="field select telSelect">
+                                <select id="address-country"> </select>
+                                <i class="arrow double"></i>                    
+                            </label> 
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                        	<label class="field-label"> Telephone Number </label>
+                            <label class="field">
+                                <input type="tel" id="phone9" name="phone9" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section --> 
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                        	<label class="field-label"> Toll Free Placeholder </label>
+                            <label class="field">
+								<input type="tel" id="phone10" name="phone10" class="gui-input">                   
+                            </label> 
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                        	<label class="field-label"> Automatic Country Lookup</label>
+                            <label class="field">
+                                <input type="tel" id="phone11" name="phone11" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section --> 
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                        	<label class="field-label"> Custom Placeholder </label>
+                            <label class="field">
+								<input type="tel" id="phone12" name="phone12" class="gui-input">                   
+                            </label> 
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                        	<label class="field-label"> Localised Country Names </label>
+                            <label class="field">
+                                <input type="tel" id="phone13" name="phone13" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section -->                                                                                                          
+                                     
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary submitBtn"> Submit </button>
+                    <button type="reset" class="button resetBtn"> Cancel </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+    
+    <div></div><!-- end section -->
+
+</body>
+</html>

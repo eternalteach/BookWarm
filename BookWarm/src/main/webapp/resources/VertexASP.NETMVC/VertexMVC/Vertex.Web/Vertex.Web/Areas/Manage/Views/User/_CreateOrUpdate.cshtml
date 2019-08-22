@@ -1,0 +1,249 @@
+﻿@model ApplicationUserModel
+
+@{
+    bool isNew = !(Model != null && !string.IsNullOrEmpty(Model.Id));
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <ul class="nav nav-pills" id="component-1" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active show" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="true">
+                <i class="fas fa-pencil-alt fs-14 mr-1"></i> General
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#component-1-2" role="tab" aria-controls="component-1-2" aria-selected="false">
+                <i class="fa fa-lock fs-14 mr-1"></i> Roles
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#component-1-3" role="tab" aria-controls="component-1-3" aria-selected="false">
+               <i class="fa fa-award mr-1 fs-14"></i> Social Networks
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#component-1-4" role="tab" aria-controls="component-1-4" aria-selected="false">
+                <i class="fa fa-blog fs-14 mr-1"></i> Posts <span class="badge badge-warning">@Model.Posts.Count()</span>
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content mt-4" id="component-1-content">
+        <div class="tab-pane fade show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
+
+            <div class="row">
+                <div class="col-md-2 mt-7">
+                    @Html.Vertex().PictureUploaderFor(m => m.AvatarId).EntityName("User").Width("100px").Height("100px").AppendCssClass("m-auto")
+                </div>
+                <div class="col-md-10">
+                    <div class="row"> 
+                        <div class="col-md-2">
+                            <div class="form-group mb-3">
+                                <div class="custom-control custom-checkbox">
+                                    @Html.CheckBoxFor(m => m.IsActive, new { @class = "custom-control-input" })
+                                    @Html.LabelFor(m => m.IsActive, new { @class = "custom-control-label" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mb-3">
+                                <div class="custom-control custom-checkbox">
+                                    @Html.CheckBoxFor(m => m.EmailConfirmed, new { @class = "custom-control-input" })
+                                    @Html.LabelFor(m => m.EmailConfirmed, new { @class = "custom-control-label" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user-edit mr-3 fs-14"></i>
+                                @Html.LabelFor(x => x.UserName, new { @class = "m-0 fs-14" })
+                            </span>
+                        </div>
+                        @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-mail-bulk mr-3 fs-14"></i>
+                                @Html.LabelFor(x => x.Email, new { @class = "m-0 fs-14" })
+                            </span>
+                        </div>
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-user-edit mr-3 fs-14"></i>
+                                        @Html.LabelFor(x => x.Name, new { @class = "m-0 fs-14" })
+                                    </span>
+                                </div>
+                                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-user-edit mr-3 fs-14"></i>
+                                        @Html.LabelFor(x => x.Surname, new { @class = "m-0 fs-14" })
+                                    </span>
+                                </div>
+                                @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-location-arrow mr-3 fs-14"></i>
+                                        @Html.LabelFor(x => x.Location, new { @class = "m-0 fs-14" })
+                                    </span>
+                                </div>
+                                @Html.TextBoxFor(x => x.Location, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-items-center mb-6">
+                <div class="col-md-10 offset-md-2">
+                    <div class="input-group custom-textarea mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-pencil-alt mr-3 fs-14"></i>
+                                @Html.LabelFor(x => x.Description, new { @class = "m-0 fs-14" })
+                            </span>
+                        </div>
+                        @Html.TextAreaFor(x => x.Description, new { @class = "form-control", @rows="7" })
+                    </div>
+
+
+                    <div class="form-group mt-4 pt-4 border-top">
+                        <button type="submit" name="action:Edit" class="btn btn-primary btn-sm btn-wide transition-hover mr-2">
+                            <i class="fa fa-save mr-1 fs-14"></i> Save
+                        </button>
+
+                        @*@if (!isNew)
+                        {
+                            @(Html.Vertex().ConfirmModal("Delete", "Category", new { @id = Model.Id })
+                                        .Title("Confirm Delete")
+                                        .Content("Are you sure do you want to delete ?")
+                                        .For(Html.Vertex().Button().Text("Delete").Color(BootstrapColor.Secondary).Size(ButtonSize.Small))
+                            )
+                        }*@
+
+                        <div class="d-inline-block">
+                            <span class="mx-2 text-light font-weight-light fs-15">or</span>
+                            <i class="fas fa-long-arrow-alt-left fs-13 text-primary o-8"></i>
+                            <a href="@Url.Action("List", "User")" class="m-link fs-15"> Back to list</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="component-1-2" role="tabpanel" aria-labelledby="component-1-2">
+            <div class="row">
+                <div class="col-md-12">
+
+                    @foreach (var role in Model.Roles)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="SelectedRoleNames" value="@role.Name" id="user-role-@role.Name"
+                                   checked="@(Model.SelectedRoleNames != null && Model.SelectedRoleNames.Contains(role.Name))" />
+                            <label class="form-check-label" for="user-role-@role.Name">@role.Name</label>
+                        </div>
+                    }
+
+                    @if (!Model.IsAdmin)
+                    {
+                        <p class="text-danger mt-4"><i class="fa fa-info-circle fs-13"></i> You don't have permissions to change role, you must be <strong>Admin</strong> </p>
+                    }
+
+                    <div class="d-flex mt-4">
+                       <div>
+                           <button type="submit" name="action:Edit" class="btn btn-primary btn-sm btn-wide transition-hover mr-2">
+                                <i class="fa fa-save mr-1 fs-14"></i> Save
+                            </button>
+
+                            <a class="btn btn-sleek-primary btn-sm pl-4 pr-4 transition-hover" href="@Url.Action("Create", "Role")">
+                                <i class="fa fa-plus mr-1 fs-12"></i> Add New Role
+                            </a>
+                       </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-pane fade" id="component-1-3" role="tabpanel" aria-labelledby="component-1-3">
+            <div class="row">
+                <div class="col-md-12">
+
+                    @(Html.Telerik().Grid<SocialNetworkModel>()
+                           .Name("SocialIcons")
+                           .BindTo(Model.SocialNetworks)
+                           .DataKeys(keys => { keys.Add(x => x.Id); })
+                           .DataBinding(dataBinding =>
+                           {
+                               dataBinding.Ajax()
+                                   .Select("SocialNetworkList", "User", new { entityId = Model.Id })
+                                   .Insert("SocialNetworkInsert", "User", new { entityId = Model.Id })
+                                   .Update("SocialNetworkUpdate", "User", new { entityId = Model.Id })
+                                   .Delete("SocialNetworkDelete", "User");
+                           })
+                           .Columns(columns =>
+                           {
+                               columns.Bound(x => x.Name).Width("18%");
+                               columns.Bound(x => x.WebAddress).Width("48%")
+                                    .Template(@<text><a href="@item.WebAddress" target="_blank">@item.WebAddress</a></text>)
+                                    .ClientTemplate("<a target='_blank' href='<#= WebAddress #>'><#= WebAddress #></a>");
+                           columns.Bound(x => x.OrderNo).Centered().Width("10%");
+                           columns.Command(commands =>
+                               {
+                                       commands.Edit();
+                                       commands.Delete();
+                                   }).HtmlAttributes(new { align = "right" }).Width("27%");
+                           }).ToolBar(commands => commands.Insert()).EnableCustomBinding(true)
+                    )
+
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="component-1-4" role="tabpanel" aria-labelledby="component-1-4">
+            <div class="row">
+                <div class="col-md-12">
+                    
+                @(Html.Telerik().Grid<PostModel>()
+                        .Name("Posts")
+                        .BindTo(Model.Posts)
+                        .Columns(columns =>
+                        {
+                                columns.Bound(x => x.PicturePath).Centered().Sortable(false).Width(80)
+                                    .Template(@<text><img alt="@item.Id" src="@item.PicturePath" width="40" /></text>);
+                                columns.Bound(x => x.Title).Width(400).Template(x => Html.ActionLink(x.Title, "Edit", "Post", new { id = x.Id }, new { }));
+                                columns.Bound(x => x.CommentCount).Width(120).Centered();
+                         columns.Bound(x => x.IsActive).Centered().Template(item => @Html.SymbolForBool(item.IsActive)).ClientTemplate(@Html.SymbolForBool("Published"));
+                         columns.Bound(x => x.CreateDate);
+                     }).Pageable(settings => settings.Total(Model.Posts.Count()).PageSize(15).Position(GridPagerPosition.Both))
+                )
+
+                </div>
+            </div>
+        </div>
+    </div>
+}

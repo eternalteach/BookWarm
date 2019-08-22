@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Select 2 </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/smart-addons.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/select2.full.min.js"></script>-->
+    <script type="text/javascript">
+		jQuery(document).ready(function($){
+		
+			$('.smart-select2').each(function() {
+				$(this).attr('style','width:100%');
+			});					
+			
+			
+			$(".example-disabled").select2();
+			$(".example-basic-single").select2();
+			$(".example-basic-multiple").select2();
+			$(".example-disabled-results").select2();
+			$(".example-basic-hide-search").select2({
+				minimumResultsForSearch: Infinity
+			});			
+			
+			$(".example-basic-multiple-limit").select2({
+				maximumSelectionLength: 2
+			});	
+			
+			$(".example-placeholder-single").select2({
+				placeholder: "Select option",
+				allowClear: true
+			});
+			
+			$(".example-placeholder-multiple").select2({
+				placeholder: "Select option"
+			});	
+			
+			$(".example-tags").select2({
+				tags: true
+			});	
+			
+			$(".example-tokenizer").select2({
+				tags: true,
+				tokenSeparators: [',', ' ']
+			});	
+			
+			$(".example-rtl").select2({
+				dir: "rtl"
+			});
+			
+			$(".example-diacritics").select2();											
+			
+			
+			
+			var data = [
+				{ id: 0, text: 'enhancement' }, 
+				{ id: 1, text: 'bug' }, 
+				{ id: 2, text: 'duplicate' }, 
+				{ id: 3, text: 'invalid' }, 
+				{ id: 4, text: 'wontfix' }
+			];
+			
+			$(".example-data-array").select2({
+				data: data
+			});
+			
+			$(".example-data-array-selected").select2({
+				data: data
+			});
+			
+			$(".programmatic-enable").on("click", function () {
+				$(".example-disabled").prop("disabled", false);
+			});
+			
+			$(".programmatic-disable").on("click", function () {
+				$(".example-disabled").prop("disabled", true);
+			});
+		
+		});	  
+    </script> 
+       
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-map-marker"></i> Jquery Select 2 </h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="account2">
+                <div class="form-body"> 
+                
+                    <div class="spacer-b30">
+                        <div class="tagline"><span> Jquery Select 2 </span></div><!-- .tagline -->
+                    </div>
+                    
+                    <div class="section">
+                        <label class="field">
+                            <select class="example-basic-single smart-select2">
+                                <option value="AL">Alabama</option>
+                                <option value="WY">Wyoming</option>
+                            </select>
+                        </label>
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                        <label class="field">
+                            <select class="example-basic-multiple smart-select2" multiple="multiple">
+                                <option value="AL">Alabama</option>
+                                <option value="WY">Wyoming</option>
+                            </select>
+                        </label>
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                        <label class="field">
+                        	<select class="example-data-array smart-select2"></select>
+                        </label>
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                        <label class="field">
+                            <select class="example-data-array-selected smart-select2">
+								<option value="2" selected="selected">duplicate</option>
+                            </select>                         
+                        </label>
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                        <label class="field">
+                            <select class="example-disabled-results smart-select2">
+                                <option value="one">First</option>
+                                <option value="two" disabled="disabled">Second (disabled)</option>
+                                <option value="three">Third</option>
+                                <option value="four" disabled="disabled">Fourth (disabled)</option>
+                                <option value="five" disabled="disabled">Fifth (disabled)</option>
+                                <option value="six">Sixth</option>
+                                <option value="seven">Seventh</option>
+                                <option value="eight">Eighth</option>
+                            </select>                                      
+                        </label>
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                        <label class="field">
+                            <select class="example-basic-hide-search smart-select2">
+                                <option value="AL">Alabama</option>
+                                <option value="WY">Wyoming</option>
+                            </select>
+                        </label>
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                        <label class="field">
+                            <select class="example-basic-multiple-limit smart-select2" multiple="multiple">
+                                <option value="1">Arua</option>
+                                <option value="2">Amuria</option>
+                                <option value="3">Bukedia</option>
+                                <option value="4">Bushenyi</option>
+                            </select>
+                        </label>
+                    </div><!-- end section --> 
+                    
+                    <div class="section">
+                        <label class="field">
+                            <select class="example-placeholder-single smart-select2">
+                                <option value=""></option>
+                                <option value="2">Amuria</option>
+                                <option value="3">Bukedia</option>
+                                <option value="4">Bushenyi</option>
+                            </select>                            
+                        </label>
+                    </div><!-- end section --> 
+                    
+                    <div class="section">
+                        <label class="field">
+                            <select class="example-placeholder-multiple smart-select2" multiple="multiple">
+                                <option value="1">Arua</option>
+                                <option value="2">Amuria</option>
+                                <option value="3">Bukedia</option>
+                                <option value="4">Bushenyi</option>
+                            </select>
+                        </label>
+                    </div><!-- end section --> 
+                    
+                    <div class="section">
+                        <label class="field">
+                            <select class="example-tags smart-select2" multiple="multiple">
+                                <option selected="selected" value="1">Arua</option>
+                                <option value="2">Amuria</option>
+                                <option selected="selected" value="3">Bukedia</option>
+                                <option value="4">Bushenyi</option>
+                            </select>
+                        </label>
+                    </div><!-- end section --> 
+                    
+                    <div class="section">
+                        <label class="field">
+                            <select class="example-tokenizer smart-select2" multiple="multiple">
+                                <option>Red</option>
+                                <option>Blue</option>
+                                <option>Green</option>
+                            </select>
+                        </label>
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                        <label class="field">
+							<select class="example-rtl smart-select2"  dir="rtl">
+                                <option value="AL">Alabama</option>
+                                <option value="WY">Wyoming</option>                            
+                            </select>              
+                        </label>
+                    </div><!-- end section -->
+                                          
+                    <div class="section">
+                        <label class="field">
+							<select class="example-diacritics smart-select2">
+                                <option>AerÃ³bics</option>
+                                <option>AerÃ³bics en Agua</option>
+                                <option>AerografÃ­a</option>
+                                <option>Aeromodelaje</option>
+                                <option>Ãguilas</option>
+                                <option>Ajedrez</option>
+                                <option>Ala Delta</option>
+                                <option>Ãlbumes de MÃºsica</option>
+                                <option>Alusivos</option>
+                                <option>AnÃ¡lisis de Escritura a Mano</option>                            
+                            </select>              
+                        </label>
+                    </div><!-- end section -->                    
+                    
+                    <div class="section">
+                        <label class="field">
+							<select class="example-disabled smart-select2" disabled="disabled">
+                                <option value="AL">Alabama</option>
+                                <option value="WY">Wyoming</option>                            
+                            </select>              
+                        </label>
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                        <label class="field">
+							<select class="example-disabled smart-select2" multiple="multiple" disabled="disabled">
+                                <option value="AL">Alabama</option>
+                                <option value="WY">Wyoming</option>                            
+                            </select>               
+                        </label>
+                    </div><!-- end section -->                                                                                            
+                    
+                    <button type="button" class="programmatic-enable button"> Enable </button>                                       
+					<button type="button" class="programmatic-disable button"> Disable </button>              
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Button  </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+
+</body>
+</html>

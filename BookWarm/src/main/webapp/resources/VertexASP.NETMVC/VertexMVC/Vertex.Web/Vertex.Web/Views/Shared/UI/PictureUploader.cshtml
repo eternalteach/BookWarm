@@ -1,0 +1,65 @@
+﻿@model PictureUploader
+@using Vertex.Service
+
+
+@{
+    int pictureId = Model.PictureId.HasValue ? Model.PictureId.Value : 0;
+    var pictureUrl = string.Empty;
+
+    if (pictureId == 0 && Model.DefaultPictureUrl.HasValue())
+    {
+        pictureUrl = Model.DefaultPictureUrl;
+    }
+    else if (pictureId > 0)
+    {
+        var mediaStorageService = Engine.Resolve<IMediaStorageService>();
+        pictureUrl = mediaStorageService.GetPictureUrl(pictureId);
+    } 
+
+    if (!Model.UploadUrl.HasValue())
+    {
+        Model.UploadUrl = Url.Action("UploadFiles", "FileUpload", new { Area = "Manage", entityId = Model.EntityId, entityName = Model.EntityName });
+    }
+
+
+    string id = string.Format("pic-{0}" , CommonHelper.GenerateRandomInteger());
+}
+
+
+<div class="@id picture-uploader fileupload-container @Model.GetCssClass()" @Model.GetHtmlAtributes()>
+    <div class="fileupload-thumb-stage">
+        <div class="fileupload-thumb" style="background-image: url('@pictureUrl')">
+            @*<input type="hidden" name="@Model.Name" class="hidden" />*@
+            @Html.Raw(Model.HiddenFor)
+            <div class="fileupload-controls">
+                @(Html.Vertex().FileUploader()
+                                    .UploadUrl(Model.UploadUrl)
+                                    .AppendHtmlAtribute("data-fallback-url", "pictureService.GetFallbackUrl(mediaSettings.ProductThumbPictureSize)")
+                                    .AcceptedFileTypes("gif|jpe?g|png")
+                                    .ShowRemoveButton(pictureId > 0)
+                                    .ShowRemoveButtonAfterUpload(true)
+                                    .UploadText(string.Empty)
+                                    .RemoveText(string.Empty)
+                )
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .fileupload-container.@id .fileupload-thumb-stage,
+    .picture-uploader.fileupload-container.@id {
+        width: @(Model.Width.HasValue() ? Model.Width : "100px");
+        max-width: @(Model.Width.HasValue() ? Model.Width : "100px");
+        height: @(Model.Height.HasValue() ? Model.Height : "100px");
+    }
+
+    .picture-uploader.fileupload-container.@id {
+        border-radius: @(Model.Circle ? "100" : "1")% !important;
+        border: 0 !important;
+    }
+
+    .picture-uploader.fileupload-container.@id .fileupload-buttons {
+        line-height:@(Model.Height.HasValue() ? Model.Height : "100px"); 
+    }
+</style>

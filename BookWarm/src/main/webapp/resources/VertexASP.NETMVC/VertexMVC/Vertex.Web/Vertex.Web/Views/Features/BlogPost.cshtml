@@ -1,0 +1,242 @@
+﻿
+
+@Html.Vertex().Page().Title("Features | Blog Posts").Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = false;
+    settings.StickyType = HeaderStickyType.Shrink;
+    settings.BorderBottom = HeaderBorderBottom.Light;
+    settings.ShowSearchIcon = true;
+})
+
+@Html.Partial("_Banner", "Blog Posts")
+
+
+<section class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <!--
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            | Sidebar
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            !-->
+            <div class="col-md-3">
+                <aside id="sidebar" class="sidebar sidebar-sticky">
+                    <ul class="nav nav-sidebar nav-sidebar-hero nav-sidebar-pill" data-accordion="true">
+                        <li class="nav-item"><a class="nav-link" href="#Default">Default</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#Pageable">Pageable</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#ToSlider">To Slider</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#methods">Methods</a> </li>
+                    </ul>
+                </aside>
+            </div>
+
+
+            <div class="col-md-8">
+                <div class="mb-9 pb-6" id="Default">
+                    <header class="mb-6 mx-auto">
+                        <h4>Blog Post</h4>
+                        <p class="lead-1">
+                            Use <code>@@Html.Vertex().BlogPosts(BlogPostViewName viewName)</code> method to list blog posts.<br />
+                            There are 6 different views <code>BlogPostViewName.Grid</code>, <code>BlogPostViewName.Card2D</code> ... and as you see at below.
+                        </p>
+                        <p><i class="fas fa-info-circle mr-1 fs-13"></i> Tab title equal to view name. </p>
+                    </header>
+
+
+                    @Html.Vertex().Tab(tab => {
+                        tab.Add().Title("Grid").Content(Html.Vertex().BlogPosts(BlogPostViewName.Grid).DisplayCount(4)).Active();
+                        tab.Add().Title("Card2D").Content(Html.Vertex().BlogPosts(BlogPostViewName.Card2D).DisplayCount(4));
+                        tab.Add().Title("Card").Content(Html.Vertex().BlogPosts(BlogPostViewName.Card).DisplayCount(4));
+                        tab.Add().Title("ListBottomText").Content(Html.Vertex().BlogPosts(BlogPostViewName.ListBottomText).DisplayCount(3)).AppendCssClass("col-md-10 mx-auto");
+                        tab.Add().Title("ListRightText").Content(Html.Vertex().BlogPosts(BlogPostViewName.ListRightText).DisplayCount(3));
+                        tab.Add().Title("ASP.NET MVC").ContentTemplate(@<text>                     
+                            <pre class="mb-0"><code class="language-csharp">// For the 'Grid' view
+@@Html.Vertex().BlogPosts(BlogPostViewName.Grid)
+
+// For the 'Card2D' view
+@@Html.Vertex().BlogPosts(BlogPostViewName.Card2D)
+                        
+// For the 'Card' view
+@@Html.Vertex().BlogPosts(BlogPostViewName.Card)
+
+// For the 'ListBottomText' view
+@@Html.Vertex().BlogPosts(BlogPostViewName.ListBottomText)
+
+// For the 'ListRightText' view
+@@Html.Vertex().BlogPosts(BlogPostViewName.ListRightText) </code> </pre> 
+                      </text> );
+                    }).BorderedNav()
+
+                </div>
+
+                <div class="mb-9 pb-6" id="Pageable">
+                    <header class="mb-6 mx-auto">
+                        <h4>Pageable</h4>
+                        <p class="lead-1">
+                            Use <code>.Pageable(string pageQueryName, int pageSize)</code> method to make pageable.
+                        </p>
+                    </header>
+
+                    @Html.Vertex().Tab(tab => {
+                        tab.Add().Title("Grid").Active().Content(Html.Vertex().BlogPosts(BlogPostViewName.Grid).DisplayCount(10).Pageable("grid-page", 2));
+                        tab.Add().Title("Card").Content(Html.Vertex().BlogPosts(BlogPostViewName.Card).DisplayCount(10).Pageable("card-page", 2));
+                        tab.Add().Title("ListBottomText").Content(Html.Vertex().BlogPosts(BlogPostViewName.ListBottomText).DisplayCount(10).Pageable("list-bottom-text-page", 2)).AppendCssClass("col-md-10 mx-auto"); 
+                        tab.Add().Title("ListRightText").Content(Html.Vertex().BlogPosts(BlogPostViewName.ListRightText).DisplayCount(10).Pageable("list-right-text-page", 2)); 
+                        tab.Add().Title("ASP.NET MVC").ContentTemplate(@<text>                     
+                            <pre class="mb-0"><code class="language-csharp">// For the 'Grid' view
+@@Html.Vertex().BlogPosts(BlogPostViewName.Grid).Pageable("grid-page", 2)
+                     
+// For the 'Card' view
+@@Html.Vertex().BlogPosts(BlogPostViewName.Card).Pageable("card-page", 2)
+
+// For the 'ListBottomText' view
+@@Html.Vertex().BlogPosts(BlogPostViewName.ListBottomText).Pageable("list-bottom-text-page", 2)
+
+// For the 'ListRightText' view
+@@Html.Vertex().BlogPosts(BlogPostViewName.ListRightText).Pageable("list-right-text-page", 2) </code> </pre> 
+                      </text> );
+                    }).BorderedNav()
+
+                </div>
+
+
+
+                <div class="mb-9" id="ToSlider">
+                    <header class="mb-6 mx-auto">
+                        <h4>To Slider</h4>
+                        <p class="lead-1">
+                            Use <code>.ToSlider(Action[SliderBuilder] action)</code> method to make slider. 
+                            
+                        </p>
+                    </header>
+
+                    <div class="mb-9 pb-9 border-bottom">
+                        <h5>Grid View</h5>
+                        @Html.Vertex().BlogPosts(BlogPostViewName.Grid).DisplayCount(10).ToSlider(slider => {
+                                   slider.SlidesToShow(2);
+                                   slider.Dots();
+                               })
+
+                        <br />
+                       <pre class="mb-0"><code class="language-csharp">@@Html.Vertex().BlogPosts(BlogPostViewName.Grid)
+    .ToSlider(slider => {
+        slider.SlidesToShow(2);
+        slider.Dots();
+    })</code> </pre> 
+
+                    </div>
+                    
+                    <div class="mb-9 pb-9 border-bottom">
+                        <h5>Card View</h5>
+                        @Html.Vertex().BlogPosts(BlogPostViewName.Card).DisplayCount(10).ToSlider(slider => {
+                                   slider.SlidesToShow(2);
+                                   slider.Dots();
+                               })
+
+                        <br />
+                       <pre class="mb-0"><code class="language-csharp">@@Html.Vertex().BlogPosts(BlogPostViewName.Card)
+    .ToSlider(slider => {
+        slider.SlidesToShow(2);
+        slider.Dots();
+    })</code> </pre> 
+                    </div>
+
+
+                    <div class="mb-9 pb-9 border-bottom">
+                        <h5>ListBottomText View</h5>
+                        @Html.Vertex().BlogPosts(BlogPostViewName.ListBottomText).DisplayCount(10).ToSlider(slider => {
+                                   slider.SlidesToShow(2);
+                                   slider.Dots();
+                               })
+
+                        <br />
+                       <pre class="mb-0"><code class="language-csharp">@@Html.Vertex().BlogPosts(BlogPostViewName.ListBottomText)
+    .ToSlider(slider => {
+        slider.SlidesToShow(2);
+        slider.Dots();
+    })</code> </pre> 
+                     </div>
+
+
+                    <div class="mb-9 pb-9 border-bottom">
+                        <h5 class="mb-4">ListRightText View</h5>
+                        @Html.Vertex().BlogPosts(BlogPostViewName.ListRightText).DisplayCount(10).ToSlider(slider => {
+                                   slider.SlidesToShow(1);
+                                   slider.Dots();
+                               })
+
+                        <br />
+                       <pre class="mb-0"><code class="language-csharp">@@Html.Vertex().BlogPosts(BlogPostViewName.ListRightText)
+    .ToSlider(slider => {
+        slider.SlidesToShow(2);
+        slider.Dots();
+    })</code> </pre> 
+                     </div>
+
+
+                    <div class="mb-9">
+                        <h5>PostOnImage View</h5>
+                        @Html.Vertex().BlogPosts(BlogPostViewName.PostOnImage).DisplayCount(10).ToSlider(slider => {
+                                   slider.SlidesToShow(2);
+                                   slider.Dots();
+                               })
+
+                        <br />
+                       <pre class="mb-0"><code class="language-csharp">@@Html.Vertex().BlogPosts(BlogPostViewName.PostOnImage)
+    .ToSlider(slider => {
+        slider.SlidesToShow(2);
+        slider.Dots();
+    })</code> </pre> 
+                    </div>
+
+
+                    <div class="mb-9">
+                        <h5>PostOnImage2 View</h5>
+                        @Html.Vertex().BlogPosts(BlogPostViewName.PostOnImage2).DisplayCount(10).ToSlider(slider => {
+                                   slider.SlidesToShow(2);
+                                   slider.Dots();
+                               })
+
+                        <br />
+                       <pre class="mb-0"><code class="language-csharp">@@Html.Vertex().BlogPosts(BlogPostViewName.PostOnImage2)
+    .ToSlider(slider => {
+        slider.SlidesToShow(2);
+        slider.Dots();
+    })</code> </pre> 
+                    </div>
+
+
+                </div>
+
+
+
+                <div id="methods" class="mb-9">
+                    <h2 class="h4">Methods <a class="anchorjs-link" href="#methods" aria-label="Anchor" data-anchorjs-icon="#"></a></h2>
+
+                    <table class="table table-bordered bg-white">
+                        <thead>
+                            <tr>
+                                <th style="width:35%">Method</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> <p><code class="highlighter-rouge">.Method(bool value)</code></p> </td>
+                                <td>Comming soon.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+ 
+
+
+
+@Html.Vertex().Footer()

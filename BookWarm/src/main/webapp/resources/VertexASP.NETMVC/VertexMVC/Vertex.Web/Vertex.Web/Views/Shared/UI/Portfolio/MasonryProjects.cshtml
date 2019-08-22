@@ -1,0 +1,142 @@
+﻿@model PortfolioView
+
+@{
+    if (Model.Slider != null)
+    {
+        foreach (var item in Model.Items)
+        {
+            Model.Slider.Add().Content(RenderItem(item).ToHtmlString()).AppendCssClass("p-1");
+        }
+        @Html.Raw(Model.Slider.ToHtmlString());
+    }
+    else
+    {
+        if (Model.ShowCategoryFilter)
+        {
+            <div id="js-filters-masonry" class="cbp-l-filters-alignCenter">
+                <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">
+                    All <div class="cbp-filter-counter"></div>
+                </div>
+                @foreach (var item in Model.AllCategories)
+                {
+                    <div data-filter=".@string.Format("cat-{0}", item.Id)" class="cbp-filter-item">
+                        @item.Name <div class="cbp-filter-counter"></div>
+                    </div>
+                }
+            </div>
+        }
+
+        <div id="js-grid-masonry" class="cbp"
+             data-filters="#js-filters-masonry"
+             data-layout-mode="grid"
+             data-animation-type="slideDelay"
+             data-gap-horizontal="20"
+             data-gap-vertical="20"
+             data-grid-adjustment="responsive"
+             data-caption="overlayBottomAlong"
+             data-display-type="bottomToTop"
+             data-media-queries='[
+                                    {"width": 1500, "cols": 5},
+                                    {"width": 1100, "cols": 4},
+                                    {"width": 800, "cols": 3},
+                                    {"width": 480, "cols": 2},
+                                    {"width": 300, "cols": 1}
+                                 ]'>
+
+            @foreach (var postItem in Model.Items)
+            {
+                @RenderItem(postItem)
+            }
+
+        </div>
+        <div>
+            @Html.Raw(Model.Pager)
+        </div>
+    }
+}
+
+
+@if (Model.Items.Count == 0)
+{
+    <div class="text-center small text-light">
+        No any portfolio to list. <br />
+        Go to <a href="@Url.Action("PortfolioCreate","Manage")" target="_blank" class="anim-link-2 anim-link-2-primary"> manage panel </a> to create new portfolio.
+    </div>
+}
+
+
+@helper RenderItem(Portfolio item)
+{
+    <div class="cbp-item @string.Format("cat-{0}", item.Category.Id)">
+        <a href="@item.Url" class="cbp-caption cbp-lightbox" data-title="@item.Title">
+            <div class="cbp-caption-defaultWrap">
+                @if (item.Pictures.Count() <= 2)
+                {
+                    <img src="@item.Picture.FilePath" data-cbp-src="@item.Picture.FilePath" alt="">
+                }
+                else if (item.Pictures.Count() == 3)
+                {
+                    @RenderGallery3(item.Pictures)
+                }
+                else if (item.Pictures.Count() > 3)
+                {
+                    @RenderGallery3Plus(item.Pictures)
+                }
+            </div>
+            <div class="cbp-caption-activeWrap">
+                <div class="cbp-l-caption-alignCenter">
+                    <div class="cbp-l-caption-body">
+                        <div class="cbp-l-caption-title">@item.Title</div>
+                        <div class="cbp-l-caption-desc">@item.Category.Name</div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+}
+
+
+@helper RenderGallery3(List<MediaStorage> pictures)
+{
+    <div class="gallery gallery-3-type4">
+        <div class="gallery-item">
+            <img src="@pictures[0].FilePath" alt="...">
+        </div>
+        <div class="gallery-item-group">
+            @for (int i = 1; i < pictures.Count; i++)
+            {
+                <div class="gallery-item">
+                    <img src="@pictures[i].FilePath" alt="...">
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@helper RenderGallery3Plus(List<MediaStorage> pictures)
+{
+    <div class="gallery gallery-4-type4">
+        <div class="gallery-item">
+            <img src="@pictures[0].FilePath" alt="...">
+        </div>
+        <div class="gallery-item-group">
+            @for (int i = 1; i < pictures.Count; i++)
+            {
+                if (i >= 3 && pictures.Count > 3)
+                {
+                    <div class="gallery-item">
+                        <div class="gallery-item-overlay">+@(pictures.Count - 4)</div>
+                        <img src="@pictures[i].FilePath" alt="...">
+                    </div>
+                    break;
+                }
+                else
+                {
+                    <div class="gallery-item">
+                        <img src="@pictures[i].FilePath" alt="...">
+                    </div>
+                }
+            }
+        </div>
+    </div>
+}

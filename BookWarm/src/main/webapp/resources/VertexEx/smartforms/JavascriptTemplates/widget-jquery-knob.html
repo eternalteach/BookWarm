@@ -1,0 +1,299 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Form validation </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    
+    
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.knob.min.js"></script>-->
+    
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+        <script type="text/javascript" src="js/excanvas.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+	<script type="text/javascript">
+        jQuery(document).ready(function($){	
+			$(".knob").knob();
+			//Tron Skin
+			$(".dial").knob({
+                change : function (value) {
+                },
+                release : function (value) {
+                },
+                cancel : function () {
+                },
+                draw : function () {
+
+                    // Tron Skin
+                    if(this.$.data('skin') == 'tron') {
+                        this.cursorExt = 0.3;
+                        var a = this.arc(this.cv), pa, r = 1;
+                        this.g.lineWidth = this.lineWidth;
+                        if (this.o.displayPrevious) {
+                            pa = this.arc(this.v);
+                            this.g.beginPath();
+                            this.g.strokeStyle = this.pColor;
+                            this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, pa.s, pa.e, pa.d);
+                            this.g.stroke();
+                        }
+
+                        this.g.beginPath();
+                        this.g.strokeStyle = r ? this.o.fgColor : this.fgColor ;
+                        this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, a.s, a.e, a.d);
+                        this.g.stroke();
+
+                        this.g.lineWidth = 2;
+                        this.g.beginPath();
+                        this.g.strokeStyle = this.o.fgColor;
+                        this.g.arc( this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
+                        this.g.stroke();
+
+                        return false;
+                    }
+                }
+            });
+			
+
+			// Infinite knob
+			var v, 
+				i = 0,
+				up = 0,
+				down = 0,
+				$idir = $(".idir"),
+				$ival = $(".ival"),
+				incr = function() { i++; $idir.show().html("+").fadeOut(); $ival.html(i); },
+				decr = function() { i--; $idir.show().html("-").fadeOut(); $ival.html(i); };
+			$(".infinite").knob({
+				min : 0, 
+				max : 20, 
+				stopper : false, 
+				change : function () {
+				if(v > this.cv){
+					if(up){ 
+						decr();
+						up = 0;
+					}else{
+						up = 1;
+						down = 0;
+					}
+				} else {
+					if(v < this.cv){
+						if(down){
+							incr();
+							down = 0;
+						}else{
+							down = 1;
+							up = 0;
+						}
+					}
+				}
+				v = this.cv;
+				}
+			});		
+        });	
+		
+			
+		//Clock knobs 
+		function clock() {
+			var $s = $(".second"),
+			$m = $(".minute"),
+			$h = $(".hour");
+			d = new Date(),
+			s = d.getSeconds(),
+			m = d.getMinutes(),
+			h = d.getHours();
+			$s.val(s).trigger("change");
+			$m.val(m).trigger("change");
+			$h.val(h).trigger("change");
+			setTimeout("clock()", 1000);
+		}
+		clock();		
+		
+    </script>
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-circle-o-notch"></i>jQuery Knob</h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" id="smart-form">
+            	<div class="form-body">
+                                        
+                    <div class="frm-row align-center">
+                        <div class="section colm colm4">
+                            <div class="spacer-b20">
+                                <label class="field-label">Basic Knob</label>
+                            </div>                         
+                            <label class="field">
+                                <input type="text" class="gui-input knob" data-width="100%" data-height="100%" value="75">
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm4">
+                            <div class="spacer-b20">
+                                <label class="field-label">Responsive Knob</label>
+                            </div>                        
+                            <label class="field">
+                                <input type="text" class="gui-input knob" data-width="100%" data-height="100%"  value="35">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm4">
+                            <div class="spacer-b20">
+                                <label class="field-label"> Tron Skin </label>
+                            </div>                         
+                            <label class="field">
+                                <input type="text" class="gui-input dial"  value="60"  data-width="100%" data-height="100%" 
+                                data-fgColor="#4EBD4A"  data-skin="tron" data-thickness=".2" data-displayPrevious="true">
+                            </label>
+                        </div><!-- end section -->                        
+                        
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="frm-row align-center">
+                    
+                        <div class="section colm colm4">
+                            <div class="spacer-b20">
+                                <label class="field-label"> Clock Knobs </label>
+                            </div>
+                            <div class="clock-knob">                        
+                                <div style="position:relative; width:170px; height:170px; margin:auto">
+                                    <div style="position:absolute;left:10px;top:10px">
+                                        <input class="knob hour" data-min="0" data-max="24" data-displayInput="false" 
+                                        data-width="170" data-height="170" data-thickness=".2">
+                                    </div>
+                                    <div style="position:absolute;left:40px;top:40px">
+                                        <input class="knob minute" data-min="0" data-max="60" data-fgColor="#4EBD4A"  
+                                        data-displayInput="false" data-width="110" data-height="110" data-thickness=".2">
+                                    </div>
+                                    <div style="position:absolute;left:60px;top:60px">
+                                        <input class="knob second" data-min="0" data-max="60" data-fgColor="#F4BB10" 
+                                        data-displayInput="false" data-width="70" data-height="70" data-thickness=".3">
+                                    </div>
+                                </div>
+                            </div><!-- clock-knob -->
+                        </div><!-- end section -->                        
+                        
+                        <div class="section colm colm4">
+                            <div class="spacer-b20">
+                                <label class="field-label"> Cursor Mode </label>
+                            </div>                        
+                            <label class="field">
+                                <input type="text" class="gui-input knob"  value="90"  data-width="170" 
+                                data-cursor="true" data-thickness="0.3" data-fgColor="#4EBD4A">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm4">
+                            <div class="spacer-b20">
+                                <label class="field-label">Hidden Knob Value</label>
+                            </div>                            
+                            <label class="field">
+                                <input type="text" class="gui-input knob" value="40" data-width="170" data-displayInput="false">
+                            </label>
+                        </div><!-- end section -->
+                                                                        
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="frm-row align-center">
+                        <div class="section colm colm4">
+                            <div class="spacer-b20">
+                                <label class="field-label"> Angle offset </label>
+                            </div>                         
+                            <label class="field">
+                                <input type="text" class="gui-input knob" value="40" data-width="150" data-angleOffset="90" data-linecap="round">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm4">
+                            <div class="spacer-b20">
+                                <label class="field-label"> Arch Knob </label>
+                            </div>                         
+                            <label class="field">
+                                <input type="text" class="gui-input knob"  value="70"  data-width="150" data-angleOffset="-25" 
+                                data-angleArc="250" data-fgColor="#4EBD4A" data-rotation="anticlockwise">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm4">
+                            <div class="spacer-b20">
+                                <label class="field-label"> Min-Max Value </label>
+                            </div>                         
+                            <label class="field">
+                                <input type="text" class="gui-input knob" value="10" data-width="150" data-min="0" 
+                                data-max="50" data-fgColor="#D24525" data-bgColor="#F4BB10" >
+                            </label>
+                        </div><!-- end section -->
+                                                
+                    </div><!-- end .frm-row section -->
+                   
+                    
+                    <div class="frm-row align-center">
+                        <div class="section colm colm4">
+                            <div class="spacer-b20">
+                                <label class="field-label"> Read Only </label>
+                            </div>                         
+                            <label class="field">
+                                <input type="text" class="gui-input knob" value="40" data-width="150" data-thickness=".1" data-readOnly="true">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm4">
+                            <div class="spacer-b20">
+                                <label class="field-label"> Infinite Knob :
+                                <strong style="font-weight:700; color:#4EBD4A;"> 
+                                    <span class="ival"> 0 </span> 
+                                    <span class="idir"></span>
+                                </strong> 
+                                </label>
+                            </div>                         
+                            <label class="field">
+                                <input type="text" class="gui-input infinite" value="0" data-width="150" 
+                                data-cursor="true" data-thickness="0.5" data-displayInput="false" data-fgColor="#3C9B39" data-bgColor="#4EBD4A">
+                            </label>                     
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm4">
+                            <div class="spacer-b20">
+                                <label class="field-label"> Dynamic Knob </label>
+                            </div>                        
+                            <label class="field">
+                                <input type="text" class="gui-input knob-dyn" data-width="150" data-cursor="true" value="56">
+                            </label>
+                            <div class="spacer-t10">
+                            	<input type="button" class="button btn-primary" onclick="$('.knob-dyn').knob();" value="Make Knob">
+                            </div>
+                        </div><!-- end section -->
+                                                
+                    </div><!-- end .frm-row section --> 
+                                                  
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Send Form </button>
+                    <button type="reset" class="button"> Cancel </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+    
+    <div></div><!-- end section -->
+
+</body>
+</html>

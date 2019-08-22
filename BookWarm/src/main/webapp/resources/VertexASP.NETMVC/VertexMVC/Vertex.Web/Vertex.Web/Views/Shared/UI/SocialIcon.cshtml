@@ -1,0 +1,7 @@
+﻿@model SocialIcon
+
+<div class="social text-center @Model.GetCssClass()" @Model.GetStyle() @Model.GetHtmlAtributes()>
+    <a class="social-@Model.Name.ToLower()" href="@Model.Url">
+        <i class="@Model.Icon"></i>
+    </a>
+</div>

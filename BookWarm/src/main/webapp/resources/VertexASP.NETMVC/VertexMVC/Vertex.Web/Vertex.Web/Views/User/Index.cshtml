@@ -1,0 +1,60 @@
+﻿ 
+
+@{ ViewBag.Title = Model; }
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = false;
+    settings.StickyType = HeaderStickyType.Shrink;
+    settings.BorderBottom = HeaderBorderBottom.Light;
+})
+
+ 
+@Html.Vertex().Section().Size(SectionSize.Small).ContentTemplate(@<text>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+
+                @Html.Vertex().UserShortInfo().User(Convert.ToString(ViewBag.UserName)).AppendCssClass("mb-6")
+                 
+
+                @(Html.Vertex().BlogPosts(BlogPostViewName.ListBottomText)
+                    .Pageable(2)
+                    .FilterByUserNames(new string[] { Convert.ToString(ViewBag.UserName) }))
+
+            </div>
+
+            <div class="col-lg-4">
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarSubscribeForm", new SubscriberModel())
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarFollowLinks")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarCategories")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarPopularPosts")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarLatestPosts")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarLatestComments")
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</text>)
+
+
+@Html.Vertex().Footer()
