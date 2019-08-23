@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<%@ include file="./includes/header/header_front01.jsp"%>
+<%@ include file="./header_front01.jsp"%>
    <!-- 이 두줄 여기에 필요한게 맞는지 확인해야한다. -->
    <link rel="stylesheet" href="vendor/bootstrap/css/glyphicon.css" />
    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700,800,900|Roboto%3A700%2C500%2C900%2C400" rel="stylesheet" type="text/css" />

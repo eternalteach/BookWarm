@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<%@ include file="./includes/header/header_front01.jsp"%>
+<%@ include file="./header_front01.jsp"%>
 <!-- 여기  front01의 current cSS 필요없음 -->
    <!-- Pricing CSS -->
    <link href="vendor/pricing-tables/main.css" rel="stylesheet" />
