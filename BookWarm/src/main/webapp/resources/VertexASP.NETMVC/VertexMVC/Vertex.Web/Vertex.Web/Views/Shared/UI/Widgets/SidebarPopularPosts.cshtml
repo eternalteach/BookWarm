@@ -1,0 +1,31 @@
+﻿@{
+    var postService = Engine.Resolve<IPostService>();
+    var popularPosts = postService.GetPopularPosts().Take(3);
+}
+
+@if (popularPosts.Count() > 0)
+{
+    <h3 class="h5 mb-4">Popular Posts</h3>
+    <div class="clearfix">
+
+        @foreach (var item in popularPosts)
+        {
+            <div class="media mb-4">
+                <div class="w-60px mr-3">
+                    <div class="vpicture-wrap vpicture-wrap-60px">
+                        <div class="vpicture-wrap-inner">
+                            <div class="vpicture-wrap-image" style="background-image: url('@item.Picture.FilePath')"></div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="media-body">
+                    <h4 class="h6 font-weight-normal mb-0">
+                        <a class="anim-link-2 text-dark" href="/@item.Url">@item.Title</a>
+                    </h4>
+                    <span class="time small text-muted">@item.CreateDateUtc.ToRelativeFormat()</span>
+                </div>
+            </div>
+        }
+
+    </div>
+}

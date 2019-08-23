@@ -1,0 +1,32 @@
+﻿@using Vertex.Service
+@using Vertex.Core.Cache 
+
+@{
+    var categoryService = Engine.Resolve<ICategoryService>();
+    var cacheManager = Engine.Resolve<ICacheManager>();
+    var postService = Engine.Resolve<IPostService>();
+    var urlService = Engine.Resolve<IUrlService>();
+
+    var categories = cacheManager.Get(CacheConstant.ALL_CATEGORIES, () =>
+    {
+        return categoryService.GetActives().Select(x => new CategoryModel
+        {
+            Id = x.Id,
+            Name = x.Name,
+            PostCount = postService.GetCount(x.Id),
+            Url = urlService.GetUrl(x.Id, "Category")
+        }).ToList();
+    });
+}
+
+<h3 class="h5 mb-4">Categories</h3>
+
+<ul class="list-group">
+    @foreach (var item in categories)
+    {
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a class="text-dark anim-link-2" href="/@item.Url">@item.Name</a>
+            <span class="badge badge-primary badge-pill">@item.PostCount</span>
+        </li>
+    }
+</ul>

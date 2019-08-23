@@ -1,0 +1,35 @@
+﻿@model ContactModel
+
+@using (Ajax.BeginForm("Contact", "Page", null, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "contactFormResult" }, new { @class = "input-glass", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="form-row">
+        <div class="form-group input-group col-md-12">
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "Full Name" })
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group input-group col-md-12">
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "E-mail" })
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group input-group col">
+            @Html.TextBoxFor(x => x.Subject, new { @class = "form-control", @placeholder = "Subject" })
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group input-group col">
+            @Html.TextAreaFor(x => x.Message, new { @class = "form-control", @placeholder = "Message", @rows = "3" })
+        </div>
+    </div>
+    <div class="form-row mt-2">
+        <div class="col">
+            <input type="submit" value="Send Message" class="btn btn-primary btn-block transition-hover" data-loading-text="Loading...">
+        </div>
+    </div>
+
+    <div class="mt-3" id="contactFormResult"></div>
+}

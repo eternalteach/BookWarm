@@ -1,0 +1,41 @@
+﻿@model Logo
+
+
+@if (Model.WhiteLogoOnSticky)
+{
+    <div class="header-logo header-logo-sticky-change" style="width: @String.Format("{0}px", Model.Width)">
+        <a href="@Url.Action("Index", "Home", new { Area = "" })">
+            <img class="header-logo-non-sticky o-0" 
+                 alt="@Model.AltText" 
+                 width="@String.Format("{0}px", Model.Width)" 
+                 height="@String.Format("{0}px", Model.Height)" 
+                 data-sticky-width="@Model.StickyWidth" 
+                 data-sticky-height="@String.Format("{0}px", Model.StickyHeight)" 
+                 data-sticky-top="@Model.StickyTop" 
+                 src="@Model.WhiteLogoSrc">
+            
+            <img class="header-logo-sticky o-0" 
+                 alt="@Model.AltText" 
+                 width="@String.Format("{0}px", Model.Width)" 
+                 height="@String.Format("{0}px", Model.Height)" 
+                 data-sticky-width="@Model.StickyWidth" 
+                 data-sticky-height="@String.Format("{0}px", Model.StickyHeight)" 
+                 data-sticky-top="@Model.StickyTop" 
+                 src="@Model.LogoSrc">
+        </a>
+    </div>
+}
+else
+{
+    <div class="header-logo">
+        <a href="@Url.Action("Index", "Home", new { Area = "" })">
+            <img alt="@Model.AltText"
+                 width="@String.Format("{0}px", Model.Width)"
+                 height="@String.Format("{0}px", Model.Height)"
+                 data-sticky-width="@Model.StickyWidth"
+                 data-sticky-height="@Model.StickyHeight"
+                 data-sticky-top="@Model.StickyTop"
+                 src="@Model.LogoSrc">
+        </a>
+    </div>
+}

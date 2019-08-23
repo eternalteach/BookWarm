@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Order Form v2 </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">-->
+    
+
+    <!--[if lte IE 9]>
+    	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>    
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-comments"></i>Make your order</h4>
+          </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="contact2">
+            	<div class="form-body">
+                
+                	<div class="frm-row">
+                    
+                        <div class="colm colm6">
+                        
+                        	<div class="section">
+                            	<label for="names" class="field-label">Your names <em> * </em> </label>
+                                <label class="field prepend-icon">
+                                    <input type="text" name="names" id="names" class="gui-input" placeholder="Enter first name...">
+                                    <span class="field-icon"><i class="fa fa-user"></i></span>  
+                                </label>
+                            </div><!-- end section -->
+                            
+                        	<div class="section">
+                            	<label for="othernames" class="field-label">Other names <em> * </em> </label>
+                                <label class="field prepend-icon">
+                                    <input type="text" name="othernames" id="othernames" class="gui-input" placeholder="Enter other name...">
+                                    <span class="field-icon"><i class="fa fa-user"></i></span>  
+                                </label>
+                            </div><!-- end section --> 
+                            
+                        	<div class="section">
+                            	<label for="email" class="field-label">Your email address <em> * </em> </label>
+                                <label class="field prepend-icon">
+                                    <input type="email" name="email" id="email" class="gui-input" placeholder="Enter Email...">
+                                    <span class="field-icon"><i class="fa fa-envelope"></i></span>  
+                                </label>
+                            </div><!-- end section -->                                                       
+                            
+                        </div><!-- end .colm section -->
+                        
+                        <div class="colm colm6">
+
+                            
+                        	<div class="section">
+                            	<label for="mobile" class="field-label">Telephone / mobile <em> * </em> </label>
+                                <label class="field prepend-icon">
+                                    <input type="tel" name="mobile" id="mobile" class="gui-input" placeholder="Enter mobile">
+                                    <span class="field-icon"><i class="fa fa-phone-square"></i></span>  
+                                </label>
+                            </div><!-- end section -->
+                            
+                             <div class="section">
+                             	<label for="services" class="field-label">Services required <em> * </em> </label>
+                                <label class="field select">
+                                    <select id="services" name="services">
+                                        <option value="">Choose a service...</option>
+                                        <option value="webdesign">Web design</option>
+                                        <option value="wordpress">Wordpress</option>
+                                        <option value="identity">Corporate identity</option>
+                                        <option value="cms">Custom CMS</option>
+                                    </select>
+                                    <i class="arrow double"></i>                    
+                                </label>  
+                            </div><!-- end section -->
+                            
+                            <div class="section">
+                            	<label for="budget" class="field-label">Project budget <em> * </em> </label>
+                                <label class="field select">
+                                    <select id="budget" name="budget">
+                                        <option value="">Select budget...</option>
+                                        <option value="500-1000"> $500 - $1000 </option>
+                                        <option value="1000-2000"> $1000 - $2000 </option>
+                                        <option value="2000-4000"> $2000 - $4000 </option>
+                                        <option value="5000+"> $5000+ </option>
+                                    </select>
+                                    <i class="arrow double"></i>                    
+                                </label>  
+                            </div><!-- end section -->  
+                            
+                        </div><!-- end .colm section -->
+                        
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="section">
+                    	<label for="file1" class="field-label"> 
+                        	Upload project samples - <span class="small-text fine-grey"> (ONLY JPG : PNG : PDF) </span> 
+                        </label>
+                        <label class="field prepend-icon file">
+                            <span class="button btn-primary"> Choose File </span>
+                            <input type="file" class="gui-file" name="upload1" id="file1" 
+                            onChange="document.getElementById('uploader1').value = this.value;">
+                            <input type="text" class="gui-input" id="uploader1" placeholder="no file selected" readonly>
+                            <span class="field-icon"><i class="fa fa-upload"></i></span>
+                        </label>
+                    </div><!-- end  section -->
+                    
+                	<div class="section">
+                    	<label for="description" class="field-label">Project description <em> * </em> </label>
+                    	<label class="field prepend-icon">
+                        	<textarea class="gui-textarea" name="description" placeholder="project description..."></textarea>
+                            <span class="field-icon"><i class="fa fa-file-text"></i></span>
+                            <span class="input-hint"> <strong>Hint:</strong> Please be as detailed as possible.</span>   
+                        </label>
+                    </div><!-- end section -->
+                                                                                                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary">Submit</button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+</body>
+</html>

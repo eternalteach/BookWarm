@@ -1,0 +1,36 @@
+﻿@model Button
+
+
+@if (Model.ButtonTag == ButtonTag.Link)
+{
+    <a href="@Model.ActionLink" class="btn @Model.GetCssClass()" @Model.GetHtmlAtributes()>
+        @if (Model.IconPosition == ButtonIconPosition.Left && !string.IsNullOrEmpty(Model.Icon))
+        {
+            <i class="@Model.Icon @(string.IsNullOrEmpty(Model.Text) ? null : "mr-1")"></i>
+        }
+        @Html.Raw(Model.Text)
+        @if (Model.IconPosition == ButtonIconPosition.Right && !string.IsNullOrEmpty(Model.Icon))
+        {
+            <i class="@Model.Icon @(string.IsNullOrEmpty(Model.Text) ? null : "ml-1")"></i>
+        }
+    </a>
+}
+else if (Model.ButtonTag == ButtonTag.Button)
+{
+    <button class="btn @Model.GetCssClass()" @Model.GetHtmlAtributes()>
+        @if (Model.IconPosition == ButtonIconPosition.Left && !string.IsNullOrEmpty(Model.Icon))
+        {
+            <i class="@Model.Icon @(string.IsNullOrEmpty(Model.Text) ? null : "mr-1")"></i>
+        }
+        @Html.Raw(Model.Text)
+        @if (Model.IconPosition == ButtonIconPosition.Right && !string.IsNullOrEmpty(Model.Icon))
+        {
+            <i class="@Model.Icon @(string.IsNullOrEmpty(Model.Text) ? null : "ml-1")"></i>
+        }
+    </button>
+}
+else
+{
+    <input class="btn @Model.GetCssClass()" @Model.GetHtmlAtributes() value="@Model.Text">
+}
+

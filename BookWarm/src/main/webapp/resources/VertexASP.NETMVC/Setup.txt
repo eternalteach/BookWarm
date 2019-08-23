@@ -1,0 +1,11 @@
+
+1. Open a SQL server and create a database "Vertex"
+2. Open "script.sql" in SQL server and execute it.
+3. Open VertexMVC\Vertex.Web\Vertex.Web\web.config file and change the #YourServerName 
+4. Open the project in Visual studio, build the project and run it.
+
+5. Login info 
+	UserName: Admin
+	Password: Admin123{
+
+Thats it.

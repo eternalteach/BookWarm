@@ -1,0 +1,84 @@
+﻿@model Nav
+@using Microsoft.AspNet.Identity
+@using Vertex.Service
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.Owin;
+
+@{
+    string lightTextCssClass = Model.IsLightText ? "header-nav-light-text" : string.Empty;
+}
+
+@if (Request.IsAuthenticated)
+{
+    var aplicationUserService = Request.GetOwinContext().Get<ApplicationUserService>();
+    var currentUser = aplicationUserService.FindById(User.Identity.GetUserId());
+    var mediaStorageService = Engine.Resolve<IMediaStorageService>();
+    var pictureUrl = mediaStorageService.GetPictureUrl(currentUser != null ? currentUser.PictureId : null);
+
+    <div class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2 @lightTextCssClass">
+        <div class="header-nav-feature header-nav-features-user header-nav-features-user-logged d-inline-flex mx-2 pr-2" id="headerAccount">
+            <a href="#" class="header-nav-features-toggle">
+                <i class="far fa-user"></i> @User.Identity.GetUserName()
+            </a>
+            <div class="header-nav-features-dropdown header-nav-features-dropdown-mobile-fixed header-nav-features-dropdown-force-right" id="headerTopUserDropdown">
+                <div class="row">
+                    <div class="col-3 pr-0">
+                        <div class="d-flex justify-content-start">
+                            <div class="vpicture-wrap vpicture-wrap-50px">
+                                <div class="vpicture-wrap-inner">
+                                    <div class="vpicture-wrap-image" style="background-image: url('@pictureUrl')"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <p class="mb-0 pb-0">Hello,</p>
+                        <p style="word-break:break-word;"><strong class="text-color-dark">@User.Identity.GetUserName().Truncate(20, "...") </strong></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <ul class="nav nav-list-simple flex-column text-3">
+                            <li class="nav-item">
+                                <a class="nav-link pl-1" href="@Url.Action("Index", "Dashboard", new { Area = "Manage" })">
+                                    <span class="anim-link-2 anim-link-2-primary">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link pl-1" href="@Url.Action("Index", "User", new { Area = "Manage" })">
+                                    <span class="anim-link-2 anim-link-2-primary">Profile</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link pl-1" href="@Url.Action("List", "Setting", new { Area = "Manage" })">
+                                    <span class="anim-link-2 anim-link-2-primary">Settings</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link pl-1" href="@Url.Action("ChangePassword", "User", new { Area = "Manage" })">
+                                    <span class="anim-link-2 anim-link-2-primary">Change Password</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <form action="/Account/LogOff" class="navbar-right" id="logoutForm" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <a class="nav-link pl-1 border-bottom-0" href="javascript:document.getElementById('logoutForm').submit()">
+                                        <span class="anim-link-2 anim-link-2-primary">Sign out</span>
+                                    </a>
+                                </form> 
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="order-1 order-lg-2">
+        <a href="/Account/Login" class="btn btn-primary transition-hover btn-sm ml-3">Sign in</a>
+    </div>
+}
+
+

@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Numeric Stepper </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/smart-addons.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.stepper.min.js"></script>-->
+    
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+    <script type="text/javascript">
+	
+		jQuery(document).ready(function($){
+
+			$('#stepper, #stepper2').stepper();
+			
+			$('#stepper3').stepper({
+				wheel_step: 1,
+				arrow_step: 0.2
+			});
+
+			$('#stepper4').stepper({ 
+				UI: false,
+				allowWheel :false 
+			});
+			
+			$('#stepper5').stepper({ 
+				limit: [0, 10] 
+			});
+			
+			$('#stepper6').stepper({ 
+				limit: [10,] 
+			});							
+		
+			/* Custom stepper value || add px on each value
+			------------------------------------------------- */		
+			$('#bordersize, #cornersize').stepper({ 
+				limit: [0,],
+				allowWheel :false,
+				onStep: function(val, up){
+					$(this).val(function(index, val) {
+						return val + "px";
+					});	
+				}
+			});
+			
+		});				
+    
+    </script>
+    
+    
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-sort-numeric-desc"></i> Numeric Stepper </h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="smart-form">
+            	<div class="form-body">
+                
+                	<div class="frm-row">
+                        <div class="section colm colm6">
+                        	<label for="stepper" class="field-label">Default Settings</label>
+                            <label class="field">
+                                <input type="text" name="stepper" id="stepper" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                        	<label for="stepper2" class="field-label">HTML5 Data Attributes</label>
+                            <label class="field">
+                                <input type="text" name="stepper2" id="stepper2" class="gui-input" 
+                                data-wheel-step="0.5" data-arrow-step="0.1" data-limit="[-10,10]">
+                            </label>
+                        </div><!-- end section -->
+                    </div> <!-- end .frm-row section -->
+                    
+                	<div class="frm-row">
+                        <div class="section colm colm6">
+                        	<label for="stepper3" class="field-label">Mouse Wheel  + Arrows Keys</label>
+                            <label class="field">
+                                <input type="text" name="stepper3" id="stepper3" value="3.6" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                        	<label for="stepper4" class="field-label">Disable Mouse Wheel</label>
+                            <label class="field">
+                            	<input type="text" name="stepper4" id="stepper4" value="2" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                    </div> <!-- end .frm-row section --> 
+                    
+                	<div class="frm-row">
+                        <div class="section colm colm6">
+                        	<label for="stepper5" class="field-label">Limit (Min 0 : Max 10)</label>
+                            <label class="field">
+                                <input type="text" name="stepper5" id="stepper5" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                        	<label for="stepper6" class="field-label">Limit Min Only</label>
+                            <label class="field">
+                            	<input type="text" name="stepper6" id="stepper6" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                    </div> <!-- end .frm-row section -->                                                            
+                
+                	<div class="frm-row">
+                        <div class="section colm colm6">
+                        	<label for="bordersize" class="field-label">Border Size</label>
+                            <label class="field">
+                                <input type="text" name="bordersize" id="bordersize" value="12px" class="gui-input" readonly>
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                        	<label for="cornersize" class="field-label">Corner Size</label>
+                            <label class="field">
+                                <input type="text" name="cornersize" id="cornersize" value="12px" class="gui-input" readonly>
+                            </label>
+                        </div><!-- end section -->
+                    </div> <!-- end .frm-row section -->                
+                
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Submit Form </button>
+                    <button type="reset" class="button"> Cancel </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+
+</body>
+</html>

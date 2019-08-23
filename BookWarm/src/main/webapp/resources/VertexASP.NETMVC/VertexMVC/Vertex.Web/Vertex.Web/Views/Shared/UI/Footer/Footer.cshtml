@@ -1,0 +1,90 @@
+﻿@model Footer
+
+@{
+    string siteName = Setting("general.meta.title").Value;
+}
+
+@using (Html.PageWrapContent("footer"))
+{
+    <!--Footer-Wrap-->
+    <footer class="border-top border-bottom @Model.GetCssClass()" @Model.GetStyle() @Model.GetHtmlAtributes()>
+        <div class="container m-gab-2">
+            <div class="row">
+                <div class="col-sm-6 mb-5 mb-lg-0">
+                    <img alt="@siteName" src="@Setting("general.site.logo").PictureUrl" class="mb-4" width="150">
+                    <h2 class="h5">
+                        <span class="m-link">@siteName</span> is the innovation platform <br>
+                        for business. And cats.
+                    </h2>
+                    <span class="small">Follow us on</span>
+                    <a href="@Setting("general.socialmedia.facebook").Value" target="_blank" class="primary-color small anim-link-2 anim-link-2-primary">Facebook</a><span class="text-light">,</span>
+                    <a href="@Setting("general.socialmedia.linkin").Value" target="_blank" class="primary-color small anim-link-2 anim-link-2-primary">LinkIn</a><span class="text-light">,</span>
+                    <a href="@Setting("general.socialmedia.twitter").Value" target="_blank" class="primary-color small anim-link-2 anim-link-2-primary">Twitter</a><span class="text-light">,</span>
+                    <a href="@Setting("general.socialmedia.instagram").Value" target="_blank" class="primary-color small anim-link-2 anim-link-2-primary">Instagram</a>
+                </div>
+                <div class="col-sm-2 mb-5 mb-lg-0">
+                    <h3 class="h6">
+                        <strong>Quick Links</strong>
+                    </h3>
+                    <ul class="list-unstyled mb-0">
+                        <li><a class="m-list--link" href="@Url.Action("GridRightSidebar", "Blog")">News</a></li>
+                        <li><a class="m-list--link" href="@Url.Action("AwesomeWork", "Portfolio")">Projects</a></li> 
+                        <li><a class="m-list--link" href="@Url.Action("Accordion", "UIKit")">UI Kit</a> </li>
+                        <li><a class="m-list--link" href="@Url.Action("BlogPost", "Features")">Features</a> </li>
+                        <li><a class="m-list--link" href="@Url.Action("Jobs", "Page")">Jobs <span class="badge badge-secondary">@Html.Vertex().Jobs().GetActiveJobs().Count() </span></a> </li>
+                    </ul>
+                </div>
+                <div class="col-sm-2 mb-5 mb-lg-0">
+                    <h3 class="h6">
+                        <strong>About</strong>
+                    </h3>
+                    <ul class="list-unstyled mb-0">
+                        <li><a class="m-list--link" href="@Url.Action("About", "Page")">About Us</a></li>
+                        <li><a class="m-list--link" href="@Url.Action("Contact", "Page")">Contact Us</a></li>
+                        <li><a class="m-list--link" href="@Url.Action("Services", "Page")">Services</a></li>
+                        <li><a class="m-list--link" href="@Url.Action("Team", "Page")">Meet Team</a> </li>
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <h3 class="h6">
+                        <strong>Account</strong>
+                    </h3>
+                    <ul class="list-unstyled mb-0">
+                        <li><a class="m-list--link" href="@Url.Action("Login", "Account")">Login</a></li>
+                        <li><a class="m-list--link" href="@Url.Action("Register", "Account")">Register</a></li>
+                        <li><a class="m-list--link" href="@Url.Action("Index", "Manage")">Profile</a></li> 
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <hr class="mt-0 mb-1">
+
+        <!-- Copyright -->
+        <div class="container m-gab-1">
+            <div class="row">
+                <div class="col-md-5">
+                    <ul class="list-inline mb-0 text-center text-lg-left">
+                        <li class="list-inline-item"><a class="m-list--link" href="#"><i class="icon-chat-1 fs-17 text-primary mr-1"></i> Chat </a></li>
+                        <li class="list-inline-item"><a class="m-list--link" href="#"><i class="icon-camera-landscape fs-17 text-primary mr-1"></i> English </a></li>
+                        <li class="list-inline-item"><a class="m-list--link" href="#"><i class="icon-headphone fs-17 text-primary mr-1"></i> @Setting("general.site.phonenumber").Value </a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 center">
+                    <img src="~/Content/img/logo.png" class="center my-2 my-lg-0" width="80">
+                </div>
+                <div class="col-md-5">
+                    <ul class="list-inline mb-0 text-center text-lg-right">
+                        <li class="list-inline-item"><a class="m-list--link" href="#">© @siteName @DateTime.UtcNow.Year </a></li>
+                        <li class="list-inline-item"><a class="m-list--link" href="#">Blog</a></li>
+                        <li class="list-inline-item"><a class="m-list--link" href="#">Privacy</a></li>
+                        <li class="list-inline-item"><a class="m-list--link" href="#">Terms</a></li>
+                        <li class="list-inline-item"><a class="m-list--link" href="#">Securty</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- End Copyright -->
+    </footer>
+    <!--End Footer-Wrap-->
+}

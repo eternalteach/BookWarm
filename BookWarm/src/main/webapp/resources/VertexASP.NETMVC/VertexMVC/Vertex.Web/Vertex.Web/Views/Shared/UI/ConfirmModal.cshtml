@@ -1,0 +1,41 @@
+﻿@model ConfirmModal
+
+@{
+    string modalId = string.Format("modal-{0}", Guid.NewGuid().ToString());
+    string value = Model.HtmlString.HasValue() ? Model.HtmlString : string.Empty;
+    string newContent = string.Empty;
+
+    var index = value.IndexOf(">");
+    if (index < 0)
+    {
+        <strong>Dear developer, this is not html string.</strong>
+        return;
+    }
+    else
+    {
+        newContent = value.Insert(index, string.Format(" data-toggle=\"modal\" data-target=\"#{0}\" ", modalId));
+    }
+}
+
+
+@Html.Raw(newContent)
+
+<div class="modal fade" id="@modalId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@Model.Title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Raw(Model.Content)
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="action:@Model.ActionName" class="btn btn-primary">Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>

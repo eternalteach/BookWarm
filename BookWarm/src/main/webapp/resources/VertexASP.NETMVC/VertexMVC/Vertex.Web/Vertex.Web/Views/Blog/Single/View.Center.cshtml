@@ -1,0 +1,84 @@
+﻿@model PostDetailModel
+@{
+    ViewBag.Title = Model.Title;
+}
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+})
+
+@Html.Vertex().ShareButtons()
+
+<section id="read-all" class="section pt-6">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8 text-center mt-6 mb-6">
+                <h1 class="mb-4">@Html.Raw(Model.Title)</h1>
+
+                <div class="text-center">
+                    <small class="text-muted mr-3">@Model.CreateDate.ToRelativeFormat()</small>
+
+                    <div class="d-inline-block mr-3">
+                        <div class="avatar">
+                            <img class="img-fluid rounded-circle" src="@Model.User.Avatar.FilePath" alt="Avatar">
+                        </div>
+                    </div>
+
+                    <div class="d-inline-block">
+                        <a href="/user/@Model.User.UserName"><small class="text-muted anim-link-2">By @Model.User.UserName</small></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-10 mb-6">
+                @Html.Partial("Single/Partials/_PostMedia", Model)
+            </div>
+
+            <div class="col-md-10 col-lg-8">
+                @Html.Raw(Model.Content)
+
+                <div class="mt-4">
+                    @foreach (var item in Model.Tags)
+                    {
+                        <a href="#" class="label label--sm label--secondary mb-2">@item.Name</a>
+                    }
+                </div>
+
+                @Html.Vertex().UserShortInfo().User(Model.User).AppendCssClass("my-9")
+            </div>
+
+            <div class="col-lg-12">
+                @if (Model.RelatedPosts.Count() > 0)
+                {
+                    <div class="clearfix my-9">
+                        <h3 class="h4 mb-3">Related Articles</h3>
+                        @(Html.Vertex().BlogPosts(BlogPostViewName.PostOnImage)
+                                     .CustomPosts(Model.RelatedPosts.Select(s => s.Id))
+                                     .ToSlider(slider =>
+                                     {
+                                         slider.SlidesToShow(3);
+                                         slider.Dots();
+                                     }))
+                    </div>
+                }
+            </div>
+
+            <div class="col-md-10 col-lg-8">
+                @if (Setting("post.comment.enabled").BoolValue && Model.AllowComment)
+                {
+                    <div class="clearfix" id="comments">
+                        @Html.Partial("Single/Partials/_Comments", Model.Comments)
+
+                        @Html.Partial("Single/Partials/_AddComment", new AddCommentModel() { PostId = Model.Id, ApproveComment = Model.ApproveComment })
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+@Html.Vertex().Footer()

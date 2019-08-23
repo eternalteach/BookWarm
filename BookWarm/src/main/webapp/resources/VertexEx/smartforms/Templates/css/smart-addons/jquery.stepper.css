@@ -1,0 +1,82 @@
+/*
+========================================================= 
+JQUERY NUMERIC STEPPER PLUGIN | 
+https://github.com/xFlatlinex/Numeric-Stepper
+========================================================= 
+*/
+
+.stepper-wrap {
+    position: relative;
+    display:block;
+    font: 11px Arial, sans-serif;
+}
+
+.stepper-wrap input {
+    text-align: right;
+	padding-right:20px;
+}
+
+.stepper-btn-wrap {
+    position: absolute;
+    top: 0;
+    right: -34px;
+    width: 34px;
+    height: 100%;
+    overflow: hidden;
+	background: #F5F5F5;
+    border: 1px solid #ccc;
+    border-width:1px 1px 1px 0;
+	-webkit-background-clip: padding-box;        
+    -moz-background-clip: padding;
+	background-clip: padding-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.stepper-btn-wrap a {
+    display: block;
+    height: 50%;
+    overflow: hidden;
+    line-height: 100%;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 1px 1px 0 #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+	text-indent:-9999px;	
+	background:#F5F5F5;
+    cursor: default;
+    color: #666;
+}
+
+.stepper-btn-wrap a:hover { 
+	background:#F9F9F9;
+}
+
+.stepper-btn-up:before, 
+.stepper-btn-dwn:before{
+    content: '';
+	border: 4px dashed; 
+	pointer-events: none;
+	border-color: #9F9F9F transparent;
+	border-color: #9F9F9F rgba(255, 255, 255, 0);
+    position: absolute;
+	right:14px;
+	z-index:1;
+	height:0;  
+	top:32%;
+	width:0;
+}
+
+.stepper-btn-up:before { 
+	border-bottom-style: solid; 
+	border-top: none; 
+}
+
+.stepper-btn-dwn:before { 
+	margin-top: 10px; 
+	border-top-style: solid; 
+	border-bottom: none; 
+}

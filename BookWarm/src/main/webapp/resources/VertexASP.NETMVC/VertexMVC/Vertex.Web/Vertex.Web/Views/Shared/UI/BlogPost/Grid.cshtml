@@ -1,0 +1,92 @@
+﻿@model BlogPost
+
+@{
+    if (Model.Slider != null)
+    {
+        foreach (var item in Model.Items)
+        {
+            Model.Slider.Add().Content(RenderItem(item).ToHtmlString());
+        }
+        @Html.Raw(Model.Slider.ToHtmlString());
+    }
+    else
+    {
+        <div class="cbp"
+             data-layout-mode="grid"
+             data-animation-type='slideDelay'
+             data-caption='overlayBottomAlong'
+             data-display-type='bottomToTop'
+             data-display-type-speed="100"
+             data-gap-horizontal="1"
+             data-gap-vertical="0"
+             data-media-queries='[{"width": 1500, "cols": 3}, {"width": 1100, "cols": 3}, {"width": 800, "cols": 3}, {"width": 480, "cols": 2}, {"width": 300, "cols": 1}]'>
+            @foreach (var postItem in Model.Items)
+            {
+                <div class="cbp-item identity">
+                    @RenderItem(postItem)
+                </div>
+            }
+        </div>
+        <div>
+            @Html.Raw(Model.Pager)
+        </div>
+    }
+}
+
+@if (Model.Items.Count == 0)
+{
+    <div class="text-center small text-light">
+        No any blog post to list. <br />
+        Go to <a href="@Url.Action("PostCreate","Manage")" target="_blank" class="anim-link-2 anim-link-2-primary"> manage panel </a> to create new blog post.
+    </div>
+}
+
+@helper RenderItem(Post post)
+{
+    <div class="p-3">
+        <article class="card shadow-5">
+
+            @if (post.Format == PostFormat.Video.ToString())
+            {
+                <iframe frameborder="0" allowfullscreen height="200" src="@post.FormatValue"></iframe>
+            }
+            else if (post.Format == PostFormat.Audio.ToString())
+            {
+                <audio src="@post.FormatValue" controls class="mr-auto ml-auto mt-3"></audio>
+            }
+            else if (post.Format == PostFormat.Quote.ToString())
+            {
+                <blockquote class="blockquote blockquote-font pt-5 pl-5 pr-5 mb-0 pb-0">
+                    <p class="mb-0 text-dark">@post.FormatValue</p>
+                </blockquote>
+            }
+            else
+            {
+                <a href="/@post.Url">
+                    <div data-scrim-bottom="6">
+                        <img class="img-fluid rounded w-100" src="@post.Picture.FilePath" alt="@post.Title">
+                    </div>
+                </a>
+            }
+
+            <div class="row h-100 p-5">
+                <div class="col-12 mb-5">
+                    <div class="d-block text-secondary mb-1 small">@post.CreateDateUtc.ToRelativeFormat()</div>
+                    <h3 class="card-title h5 mb-2">
+                        <a class="text-dark anim-link-2" href="/@post.Url">@post.Title.Truncate(70, "...")</a>
+                    </h3>
+                </div>
+                <div class="col-12 align-self-end">
+                    <div class="media align-items-center">
+                        <!--<img class="avatar avatar-xs mr-3" src="../assets/img/avatar/avatar3.jpg" alt="...">-->
+                        <div class="media-body fs-14">
+                            <a href="/User/@post.User.UserName" class="text-muted anim-link-2 mr-3">@post.User.UserName</a>
+                            <span class="icon-preview-2 mr-3 text-muted"> @post.ViewCount</span>
+                            <a href="/@post.Url#comments" class="text-muted"><span class="icon-bubble-conversation-2"></span> @post.Comments.Count()</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+}

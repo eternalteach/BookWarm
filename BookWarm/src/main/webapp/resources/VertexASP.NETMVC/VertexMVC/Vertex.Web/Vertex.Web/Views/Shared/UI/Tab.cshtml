@@ -1,0 +1,48 @@
+﻿@model Tab
+
+@{
+    var tabIds = new Dictionary<int, string>();
+    var tabNames = new Dictionary<int, string>();
+}
+
+
+<div>
+    <ul class="nav mb-4 @Model.GetCssClass()" @Model.GetHtmlAtributes() role="tablist">
+        @for (int i = 0; i < Model.Items.Count(); i++)
+        {
+            var item = Model.Items[i];
+            tabIds.Add(i, String.Format("tab-id-{0}", Guid.NewGuid().ToString()));
+            tabNames.Add(i, String.Format("tab-name-{0}", Guid.NewGuid().ToString()));
+
+            if (item.Disabled)
+            {
+                <li class="nav-item">
+                    <a class="nav-link disabled @(item.Active ? "show active" : string.Empty)" id="@tabIds[i]" href="#@tabNames[i]" aria-selected="@item.Active.ToString()"
+                       data-toggle="tab" role="tab" aria-controls="@tabNames[i]" tabindex="-1" aria-disabled="true">
+                        @item.Title
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link @(item.Active ? "show active" : string.Empty)" id="@tabIds[i]" href="#@tabNames[i]" aria-selected="@item.Active.ToString()"
+                       data-toggle="tab" role="tab" aria-controls="@tabNames[i]">
+                        @item.Title
+                    </a>
+                </li>
+            }
+        }
+    </ul>
+
+    <div class="tab-content">
+        @for (int i = 0; i < Model.Items.Count(); i++)
+        {
+            var item = Model.Items[i];
+            <div class="tab-pane fade @item.GetCssClass() @(item.Active ? "show active" : string.Empty )"
+                 @item.GetHtmlAtributes() id="@tabNames[i]" role="tabpanel" aria-labelledby="@tabIds[i]">
+                @Html.Raw(item.Content)
+            </div>
+        }
+    </div>
+</div>

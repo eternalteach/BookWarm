@@ -1,0 +1,33 @@
+﻿@model List<ApplicationUserModel>
+
+
+
+<div class="border mb-5">
+    <div class="border-top bg-gray py-3 px-4">
+        <h5 class="h6 mb-0 mt-1">Latest Users <span class="badge badge-success float-right">@Model.Count Users</span></h5>
+    </div>
+    <div class="bg-white pb-0 pt-0">
+        @foreach (var user in Model)
+        {
+            <a href="@Url.Action("Edit", "User", new { Id = user.Id })" class="media align-items-center hover-shadow-2 pl-3 pr-4 border-top dashboard-list-item">
+                <div class="w-60px mr-2 text-center">
+                    <img src="@user.AvatarUrl" class="avatar" />
+                </div>
+                <div class="media-body">
+                    <p class="small fs-13 text-dark fw-600 m-0" style="line-height:22px;">
+                        <span class="text-muted fs-13 fw-400">Name:</span> @user.UserName.Truncate(15, "...")
+                    </p>
+
+                    <p class="text-dark fs-13 m-0" style="line-height:19px;">
+                        <span class="text-muted fs-13 fw-400">Email:</span>
+                        @user.Email.Truncate(70, "...")
+                    </p>
+                    @*<span class="time fs-12 text-muted">@contact.Date.ToRelativeFormat()</span>*@
+                </div>
+            </a>
+        }
+        <div class="py-3 px-3 text-center border-top">
+            <a href="@Url.Action("List", "User")" class="fs-14 anim-link-2 anim-link-2-primary">View all users</a>
+        </div>
+    </div>
+</div>

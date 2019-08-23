@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - UI Slider </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/smart-addons.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-slider-pips.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-touch-punch.min.js"></script>-->
+    
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+	<script type="text/javascript">
+        
+            
+        jQuery(document).ready(function($){
+                
+                    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                    var $slidern = $("#slider").slider({
+                        range: "min",
+                        animate: true,
+                        min: 0,
+                        max: 11,
+                        value: 5			
+                    });
+                    
+                    $slidern.slider("pips", { rest: "label", labels: months });
+                    $slidern.slider("float" , { labels: months });
+                    $slidern.on("slidechange", function(e,ui) {
+                        $("#monthOutput").text( "Selected Month: " + months[ui.value] );
+                    });
+                    
+                    var $slider1 = $("#slider1").slider({
+                        range: true,
+                        animate: true,
+                        min: 0,
+                        max: 10,					
+                        values: [2, 8]
+                    });	
+                    
+                    $("#slider1").slider("pips", { first: "pip", last: "pip" });
+                    $( "#slider2" ).slider({
+                        range: "min",
+                        animate: true,
+                        value: 299,
+                        min: 99,
+                        max: 499,
+                        step: 100,
+                        slide: function(event, ui) {
+                            $("#amount").val("$" + ui.value);
+                        }
+                    });
+                                
+                    $("#amount").val( "$" + $("#slider2").slider("value"));
+                    $("#slider2").slider("pips", { rest: "label", prefix: "$", suffix: "" });
+                    $("#slider2").slider("float", { prefix: "$", suffix: "", pips: true });
+                    $("#slider3").slider({
+                        range: "max",
+                        animate: true,
+                        min: 1,
+                        max: 10,
+                        value: 2,
+                        slide: function(event, ui) {
+                            $("#bedrooms").val(ui.value);
+                        }
+                    });
+                    
+                    $("#bedrooms").val( $("#slider3").slider("value"));
+                    $("#slider3").slider("pips",{ rest: "label" });
+                    
+                    var select = $("#guests");
+                    var guestnumber = $("#slider4").slider({
+                        min: 1,
+                        max: 10,
+                        animate: true,
+                        range: "min",
+                        value: select[0].selectedIndex + 1,
+                        slide: function(event, ui) {
+                            select[0].selectedIndex = ui.value - 1;
+                        }
+                    });
+                    
+                    $("#guests").change(function() {
+                        guestnumber.slider("value", this.selectedIndex + 1);
+                    });
+                    
+                    $("#slider4").slider("pips" , {
+                        rest: false
+                    });				
+                    
+                    $("#slider5").slider({
+                        value:100,
+                        animate: true,
+                        min: 0,
+                        max: 500,
+                        step: 50,
+                        range: "min",
+                        slide: function(event, ui) {
+                            $("#donation").val(ui.value);
+                        }
+                    });
+                    
+                    $("#donation").val($("#slider5").slider("value"));
+                    $("#donation").blur(function() {
+                            $("#slider5").slider("value", $(this).val());
+                    });
+                                    
+                    var $sliderv =  $("#eq > .sliderv-wrapper").each(function() {
+                        var value = parseInt($(this).text(), 10);
+                            $(this).empty().slider({
+                            value: value,
+                            range: "min",
+                            step: 10,
+                            animate: true,
+                            orientation: "vertical"
+                        });
+                    });
+                    
+                    $sliderv.slider("pips", { 
+                        first: "pip", 
+                        last: "pip"
+                    });
+                    
+                    var suffix = "°c"
+                    var $sliderv1 = $("#eq2 > .sliderv-wrapper").each(function() {
+                        var value = parseInt($(this).text(), 10);
+                            $(this).empty().slider({
+                            value: value,
+                            range: "min",
+                            step: 5,
+                            animate: true,
+                            orientation: "vertical"
+                        });
+                    });
+                    
+                    $sliderv1.slider("pips", { 
+                        first: "pip", 
+                        last: "pip"
+                    });
+    
+				 $("#alternating-slider")
+				  .slider({
+					  max: 500,
+					  values: [0, 150, 350, 500]
+				  })
+				  .slider("pips", {
+					  step: 25,
+					  rest: "label",
+					  labels: { first: "Min", last: "Max" }
+				  })
+				  .slider("float");
+				  
+				var doubleLabels = [
+					"<i>100</i><span>LG</span>", 
+					"<i>200</i><span>Samsung</span>", 
+					"<i>300</i><span>Microsoft</span>", 
+					"<i>400</i><span>Google</span>", 
+					"<i>500</i><span>Apple</span>"
+				];
+									
+				$("#double-label-slider")
+				.slider({
+					max: 2,
+					min: -2,
+					value: 0,
+					animate: 400
+				})
+				.slider("pips", {
+					rest: "label",
+					labels: doubleLabels
+				});				    
+                    
+        });	
+        
+    </script>
+    
+    
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-signal"></i> UI Slider Labels</h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="smart-form">
+            	<div class="form-body">
+                
+                    <div class="spacer-b40">
+                    	<div class="tagline"><span> Horizontal Sliders </span></div><!-- .tagline -->
+                    </div> 
+                    
+                    <div>
+                    	<div> &nbsp; </div>
+                    </div>                    
+                    
+                    <div class="section spacer-b40">
+                        <div class="spacer-b40">
+                            <label> Alternating labels </label>
+                        </div><!-- end .spacer -->                     
+                        <div class="slider-wrapper purple-slider">
+                            <div id="alternating-slider"></div>
+                        </div><!-- end .slider-wrapper -->                
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                    	<div> &nbsp; </div>
+                    </div> 
+                    
+                    <div class="section spacer-b40">
+                        <div class="spacer-b40">
+                            <label> Double labels </label>
+                        </div><!-- end .spacer -->
+                        <div class="spacer-b10">
+                            <div> &nbsp; </div>
+                        </div>                                               
+                        <div class="slider-wrapper purple-slider">
+                            <div id="double-label-slider"></div>
+                        </div><!-- end .slider-wrapper -->                
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                    	<div> &nbsp; </div>
+                    </div>                                        
+                    
+                    <div class="section spacer-b40">
+                        <div class="spacer-b15">
+                            <span id="monthOutput" class="output">Select a month: </span>
+                        </div><!-- end .spacer -->                    
+                        <div class="slider-wrapper purple-slider">
+                            <div id="slider"></div>
+                        </div><!-- end .slider-wrapper -->
+                    </div><!-- end section -->
+                    
+                    <div class="section spacer-b20">
+                        <div class="slider-wrapper red-slider">
+                            <div id="slider1"></div>
+                        </div><!-- end .slider-wrapper -->
+                    </div><!-- end section -->
+                    
+                    <div class="section spacer-b40">
+                        <div class="spacer-b15">
+                            <label for="amount">Maximum price:</label>
+                            <input type="text" id="amount" class="slider-input"> 
+                        </div><!-- end .spacer -->                   
+                        <div class="slider-wrapper yellow-slider">
+                            <div id="slider2"></div>
+                        </div><!-- end .slider-wrapper -->
+                    </div><!-- end section -->
+                    
+                    <div class="section spacer-b40">
+                        <div class="spacer-b15">
+                            <label for="bedrooms">Number of bedrooms:</label>
+                            <input type="text" id="bedrooms" class="slider-input"> 
+                        </div><!-- end .spacer -->                   
+                        <div class="slider-wrapper blue-slider">
+                            <div id="slider3"></div>
+                        </div><!-- end .slider-wrapper -->
+                    </div><!-- end section -->
+
+                                     
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                            <div class="spacer-b20">
+                                <label for="guests" class="field-label">Update select value</label>
+                                <label class="field select">
+                                    <select name="guests" id="guests">
+                                        <option>1</option>
+                                        <option selected>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>                                
+                                    </select>
+                                    <i class="arrow double"></i>
+                                </label> 
+                            </div><!-- end .spacer -->                  
+                            <div class="slider-wrapper">
+                                <div id="slider4"></div>
+                            </div><!-- end .slider-wrapper -->
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                            <div class="spacer-b20">
+                                <label for="donation" class="field-label">Update input value</label>
+                                <label class="field">
+                                	<input type="text" id="donation" class="gui-input">
+                                </label> 
+                            </div><!-- end .spacer -->                   
+                            <div class="slider-wrapper black-slider">
+                                <div id="slider5"></div>
+                            </div><!-- end .slider-wrapper -->
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row -->
+                    
+                    <div class="spacer-t40 spacer-b40">
+                    	<div class="tagline"><span> Vertical Sliders </span></div><!-- .tagline -->
+                    </div>                     
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">                   
+                            <div id="eq" class="slider-group blue-slider">
+                                <div class="sliderv-wrapper"><span>100</span></div>
+                                <div class="sliderv-wrapper"><span>77</span></div>
+                                <div class="sliderv-wrapper"><span>55</span></div>
+                                <div class="sliderv-wrapper"><span>40</span></div>
+                                <div class="sliderv-wrapper"><span>55</span></div>
+                                <div class="sliderv-wrapper"><span>77</span></div>
+                                <div class="sliderv-wrapper"><span>100</span></div>
+                            </div><!-- end .slider-group -->
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">                   
+                            <div id="eq2" class="slider-group purple-slider">
+                                <div class="sliderv-wrapper"><span>100</span></div>
+                                <div class="sliderv-wrapper"><span>77</span></div>
+                                <div class="sliderv-wrapper"><span>55</span></div>
+                                <div class="sliderv-wrapper"><span>40</span></div>
+                                <div class="sliderv-wrapper"><span>55</span></div>
+                                <div class="sliderv-wrapper"><span>77</span></div>
+                                <div class="sliderv-wrapper"><span>100</span></div>
+                            </div><!-- end .slider-group -->
+                        </div><!-- end section -->
+                    </div><!-- end frm-row section -->
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Submit Form </button>
+                    <button type="reset" class="button"> Cancel </button>
+                </div><!-- end .form-footer section -->
+            </form>
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+</body>
+</html>

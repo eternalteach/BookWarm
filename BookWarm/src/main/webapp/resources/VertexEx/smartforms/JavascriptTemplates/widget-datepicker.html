@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Date Picker </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-custom.min.js"></script>-->
+    
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+    <script type="text/javascript">
+	
+		jQuery(document).ready(function($){
+		
+				$("#from").datepicker({
+					defaultDate: "+1w",
+					changeMonth: false,
+					numberOfMonths: 1,
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',
+					onClose: function( selectedDate ) {
+						$( "#to" ).datepicker( "option", "minDate", selectedDate );
+					}
+				});
+				
+				$("#to").datepicker({
+					defaultDate: "+1w",
+					changeMonth: false,
+					numberOfMonths: 1,
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',			
+					onClose: function( selectedDate ) {
+						$( "#from" ).datepicker( "option", "maxDate", selectedDate );
+					}
+				});
+				
+				$("#datepicker1").datepicker({
+					numberOfMonths: 1,
+					showOn: 'button',
+					buttonText: '<i class="fa fa-calendar"></i>',					
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',			
+					showButtonPanel: true
+				});
+				
+				$("#datepicker2").datepicker({
+					numberOfMonths: 1,
+					showOn: 'button',
+					buttonText: '<i class="fa fa-calendar"></i>',					
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',			
+					showButtonPanel: true
+				});				
+				 
+				$(".inline-calender").datepicker({
+					numberOfMonths: 1,
+					minDate: -20, 
+					maxDate: "+1M -10D",
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>'			
+				});		
+		
+		});				
+    
+    </script>
+    
+    
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-calendar"></i> UI Datepicker </h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="smart-form">
+            	<div class="form-body">
+                
+                    <div class="spacer-b30">
+                    	<div class="tagline"><span> Range datepicker </span></div><!-- .tagline -->
+                    </div>
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text" id="from" name="from" class="gui-input">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span>  
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text" id="to" name="to" class="gui-input">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span>  
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="spacer-t20 spacer-b40">
+                    	<div class="tagline"><span> Show On Button Icon </span></div><!-- .tagline -->
+                    </div>                    
+                    
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field prepend-picker-icon">
+                            	<input type="text"  name="datepicker1" id="datepicker1" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                            <label class="field append-picker-icon">
+                            	<input type="text"  name="datepicker2" id="datepicker2" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="spacer-t20 spacer-b40">
+                    	<div class="tagline"><span> Restricted Inline Calenders </span></div><!-- .tagline -->
+                    </div>                    
+                    
+                   <div class="section cal-widget"> 
+                        <div class="inline-calender"></div> 
+                   </div><!-- end section -->
+           
+                    <div class="frm-row">
+
+                       <div class="section colm colm6 cal-widget"> 
+                            <div class="inline-calender"></div> 
+                       </div><!-- end section -->
+                       
+                       <div class="section colm colm6 cal-widget"> 
+                            <div class="inline-calender"></div> 
+                       </div><!-- end section -->
+                        
+                    </div><!-- end .frm-row section --> 
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Submit Form </button>
+                    <button type="reset" class="button"> Cancel </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+    
+    <div></div><!-- end section -->
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+﻿@model SearchModel
+@{
+    ViewBag.Title = string.Format("Results for {0}", Model);
+}
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+})
+@Html.Vertex().Section().ContentTemplate(@<text>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="mnt-8 ml-3 mb-4">
+                    <form class="" role="search" action="/Blog/Search" method="get">
+                        <div class="input-group mb-3 w-50">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-search mr-2 fs-14"></i>
+                                    <label class="m-0 fs-14" for="Term">Search for: </label>
+                                </span>
+                            </div>
+                            @Html.TextBoxFor(x => x.Term, new { @class = "form-control", @id = "headerSearch", @placeholder = "Search..." })
+                        </div>
+                    </form>
+                </div>
+
+                @(Html.Vertex().BlogPosts(BlogPostViewName.ListBottomText)
+                               .Pageable(2)
+                               .SearchFor(Model.Term))
+
+            </div>
+
+            <div class="col-lg-4">
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarSubscribeForm", new SubscriberModel())
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarFollowLinks")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarCategories")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarPopularPosts")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarLatestPosts")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarLatestComments")
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</text>)
+
+
+@Html.Vertex().Footer()

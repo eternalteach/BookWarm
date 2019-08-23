@@ -1,0 +1,411 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Date Picker Options </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-custom.min.js"></script>-->
+    
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+    <script type="text/javascript">
+	
+		jQuery(document).ready(function($){
+		
+				$("#ddFormat").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',				
+					dateFormat:"dd/mm/yy"
+				});
+				
+				$("#yyFormat").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',				
+					dateFormat:"yy/mm/dd"
+				});
+				
+				$("#mmFormat").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>'
+				});
+				
+				$("#dashFormat").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',
+					dateFormat:"yy-mm-dd"
+				});	
+				
+				 
+				$("#startDay").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',
+					firstDay: 1			
+				});	
+				
+				 
+				$("#startDay4").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',
+					firstDay: 4			
+				});										
+				
+				$("#showWeek").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',				
+					showWeek: true,
+					firstDay: 1				
+				});
+				
+				$("#showButtons").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',				
+					showButtonPanel: true			
+				});	
+				
+				$("#showOtherMonths").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',				
+					showOtherMonths: true		
+				});
+								
+				$("#selectOtherMonths").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',				
+					showOtherMonths: true,
+					selectOtherMonths: true			
+				});	
+				
+				$("#popField").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',				
+					altField: "#altField",
+					altFormat: "DD, d MM, yy"		
+				});	
+				
+				$("#nonWeekends").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',				
+					beforeShowDay: $.datepicker.noWeekends		
+				});	
+				
+				$("#changeMonthYear").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',				
+					changeMonth: true,
+					changeYear: true	
+				});														
+
+				$("#constrainInput").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',				
+					constrainInput: true	
+				});
+					
+				$("#disableInput").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>'
+				});	
+				
+				$("#dayNamesMin").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',				
+					dayNamesMin: [ "Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa" ]	
+				});
+				
+				$("#monthNames").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',				
+					monthNames: [ "Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December" ]	
+				});	
+				
+				var datesArray = ["2015-12-24","2015-12-25"];
+				
+				$("#disableDays").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',
+					beforeShowDay: function(date){
+						var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+						return [$.inArray(string, datesArray) == -1];
+					}						
+				});
+				
+				$("#disableSunday").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',				
+					beforeShowDay: function(date) {
+						var day = date.getDay();
+						return [(day != 0), ''];
+					}
+				});	
+				
+				$("#disableMonday").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',				
+					beforeShowDay: function(date) {
+						var day = date.getDay();
+						return [(day != 1), ''];
+					}
+				});	
+				
+				$("#disableMT").datepicker({
+					prevText: '<i class="fa fa-chevron-left"></i>',
+					nextText: '<i class="fa fa-chevron-right"></i>',				
+					beforeShowDay: function(date) {
+						var day = date.getDay();
+						return [(day != 1 && day != 2)];
+					}
+				});
+				
+				$("#coursedate").datepicker({
+					numberOfMonths: 1,
+					prevText: '<i class="fa fa-chevron-left" />',
+					nextText: '<i class="fa fa-chevron-right" />',            
+					showButtonPanel: false,
+					dateFormat: 'dd-mm-yy',
+					onClose: function( selectedDate ) {
+						$("#theenddate").datepicker( "option", "minDate", selectedDate );
+					}					
+				});
+				
+				$("#theenddate").datepicker({
+					numberOfMonths: 1,
+					prevText: '<i class="fa fa-chevron-left" />',
+					nextText: '<i class="fa fa-chevron-right" />',            
+					showButtonPanel: false,
+					dateFormat: 'dd-mm-yy',
+					onClose: function( selectedDate ) {
+						$("#coursedate").datepicker( "option", "maxDate", selectedDate );
+					}					
+				});																															
+							
+		
+		});				
+    
+    </script>
+    
+    
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-calendar"></i> Datepicker Options</h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="smart-form">
+            	<div class="form-body">
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text" id="ddFormat" name="ddFormat" class="gui-input" placeholder="Format DD/MM/YY">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span>  
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text" id="yyFormat" name="yyFormat" class="gui-input" placeholder="Format YY/MM/DD">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span>  
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  id="mmFormat" name="mmFormat" class="gui-input" placeholder="Format MM/DD/YY">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span> 
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  name="dashFormat" id="dashFormat" class="gui-input" placeholder="Format ISO 8601: yy-mm-dd">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span> 
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  id="startDay" name="startDay" class="gui-input" placeholder="Start Day Monday">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span> 
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  id="startDay4" name="startDay4" class="gui-input" placeholder="Start Day Thursday">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span> 
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  id="showWeek" name="showWeek" class="gui-input" placeholder="Show week of the year">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span> 
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  id="showButtons" name="showButtons" class="gui-input" placeholder="Show buttons pane">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span> 
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  id="showOtherMonths" name="showOtherMonths" class="gui-input" placeholder="Show dates in other months">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span> 
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  id="selectOtherMonths" name="selectOtherMonths" class="gui-input" placeholder="Select dates in other months">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span> 
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section -->
+                    
+                     <div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  id="popField" name="popField" class="gui-input" placeholder="Populate another field">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span> 
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  id="altField" name="altField" class="gui-input" placeholder="Alternative field">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span> 
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section --> 
+                    
+                     <div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  id="nonWeekends" name="nonWeekends" class="gui-input" placeholder="Weekend days not selectable">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span> 
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  id="changeMonthYear" name="changeMonthYear" class="gui-input" placeholder="Change month year">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span> 
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section -->
+                    
+                     <div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  id="constrainInput" name="constrainInput" class="gui-input" placeholder="Only allow date characters ">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span> 
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  id="disableInput" name="disableInput" class="gui-input" placeholder="Disable direct input" readonly>
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span> 
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section -->
+                    
+                     <div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  id="dayNamesMin" name="dayNamesMin" class="gui-input" placeholder="Custom mini day names ">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span> 
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  id="monthNames" name="monthNames" class="gui-input" placeholder="Custom month names">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span> 
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section --> 
+               
+                     <div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  id="disableSunday" name="disableSunday" class="gui-input" placeholder="Disable Sunday">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span>
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  id="disableDays" name="disableDays" class="gui-input" placeholder="Disabled Days">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span> 
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section -->
+                    
+                     <div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  id="disableMonday" name="disableMonday" class="gui-input" placeholder="Disable Monday">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span>
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text"  id="disableMT" name="disableMT" class="gui-input" placeholder="Disabled Monday and Tuesday">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span> 
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section --> 
+                    
+                    
+ 					<div class="frm-row">
+                      <div class="section colm colm6">
+                      		<label for="coursedate" class="field-label"> Start Date </label>
+                            <label for="coursedate" class="field prepend-icon">
+                                <input type="text" id="coursedate" name="coursedate" class="gui-input" placeholder="Start date" readonly>
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span>  
+                            </label>
+                      </div><!-- end section --> 
+                      <div class="section colm colm6">
+                       		<label for="theenddate" class="field-label"> End Date </label>
+                            <label for="theenddate" class="field prepend-icon">
+                                <input type="text" id="theenddate" name="theenddate" class="gui-input" placeholder="End date" readonly>
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span>  
+                            </label>
+                        </div><!-- end section --> 
+                    </div>                                                              
+                                                                                                                                                               
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Submit Form </button>
+                    <button type="reset" class="button"> Cancel </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+    
+    <div></div><!-- end section -->
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+﻿@model PortfolioModel
+
+@if (Model.Id > 0)
+{
+    <script type="text/javascript">
+		$(document).ready(function () {
+            $('#add-portfolio-picture').on('click', function () {
+                var pictureId = Number($("#AddPictureModel_PictureId").val());
+                var displayOrder = Number($("#AddPictureModel_DisplayOrder").val());
+
+                if (pictureId == 0) {
+                	alert("Upload Picture First");
+                    return;
+                }
+
+                $.ajax({
+                    cache:false,
+                    type: "POST",
+                    url: "@(Url.Action("PictureAdd", "Portfolio"))",
+                    data: { "pictureId": pictureId, "displayOrder": displayOrder, "portfolioId": @Model.Id },
+                    success: function (data) {
+                        var portfoliopicturesGrid = $("#portfoliopictures-grid");
+                        portfoliopicturesGrid.data('tGrid').ajaxRequest();
+                        $("#AddPictureModel_PictureId").val(0);
+                        $("#AddPictureModel_DisplayOrder").val(0);
+                        $(".t-formatted-value").html(0);
+						 // $('#add-portfolio-picture').attr('disabled', 'disabled');
+                    },
+                    error:function (xhr, ajaxOptions, thrownError){
+                    	alert("Add Failed")
+                    }
+                });
+            });
+        });
+    </script>
+
+
+    <div class="row align-items-center">
+        <div class="col-md-2">
+            @Html.Vertex().PictureUploaderFor(m => m.AddPictureModel.PictureId).EntityName("PortfolioGallery").Height("70px").Width("120px").Circle(false)
+        </div>
+        <div class="col-md-5">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text pr-3">
+                        <i class="fas fa-pencil-alt mr-3 fs-14"></i>
+                        @Html.LabelFor(x => x.AddPictureModel.DisplayOrder, new { @class = "m-0 fs-14" })
+                    </span>
+                </div>
+                <div class="form-control p-0">
+                    @Html.Telerik().IntegerTextBoxFor(x => x.AddPictureModel.DisplayOrder)
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <button type="button" name="add-portfolio-picture" id="add-portfolio-picture" class="btn btn-sleek-primary btn-sm btn-wide">
+                <i class="fa fa-plus"></i>
+                <span>Add Picture</span>
+            </button>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="mt-6">
+        @(Html.Telerik().Grid<PortfolioModel.PortfolioPictureModel>()
+                     .Name("portfoliopictures-grid")
+                     .DataKeys(keys => { keys.Add(x => x.PictureId).RouteKey("PictureId"); })
+                     .Columns(columns =>
+                     {
+                         columns.Bound(x => x.PictureUrl)
+                             .Width(400)
+                             .Centered()
+                             .ClientTemplate("<a href='<#= PictureUrl #>' target='_blank'><img alt='<#= PictureId #>' src='<#= PictureUrl #>' style='max-height: 100px' /><a/>")
+                             .ReadOnly();
+                         columns.Bound(x => x.DisplayOrder).Width(100).Centered();
+                         columns.Command(commands =>
+                         {
+                             commands.Edit();
+                             commands.Delete();
+                         }).Width(180).HtmlAttributes(new { align = "right" });
+                     })
+                     .Editable(x => { x.Mode(GridEditMode.InLine); })
+                     .DataBinding(dataBinding =>
+                     {
+                         dataBinding.Ajax().Select("PictureList", "Portfolio", new { portfolioId = Model.Id })
+                             .Update("PictureUpdate", "Portfolio", new { portfolioId = Model.Id })
+                             .Delete("PictureDelete", "Portfolio", new { portfolioId = Model.Id });
+                     })
+                     .EnableCustomBinding(true))
+    </div>
+}
+else
+{
+    <div class="alert alert-danger">
+        Save before edit.
+    </div>
+}

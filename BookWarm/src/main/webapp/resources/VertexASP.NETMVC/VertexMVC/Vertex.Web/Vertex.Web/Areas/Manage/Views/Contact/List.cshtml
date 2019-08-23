@@ -1,0 +1,45 @@
+﻿@model Telerik.Web.Mvc.GridModel<ContactManageModel>
+
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+})
+
+@Html.Partial("_Breadcrumb", "Contacts")
+
+<section class="section pt-8 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-3">
+                @Html.Partial("_LeftNav")
+            </div>
+            <div class="col-md-9">
+
+                @(Html.Telerik().Grid<ContactManageModel>()
+                      .Name("categories")
+                      .BindTo(Model.Data)
+                      .Columns(columns =>
+                      {
+                          columns.Bound(x => x.Email).Width(275).Template(x => Html.ActionLink(x.Email, "Edit", "Contact", new { id = x.Id }, new { }));
+                          columns.Bound(x => x.FullName).Width(200);
+                          columns.Bound(x => x.Date);
+                          columns.Bound(x => x.IsRead).Centered().Template(item => @Html.SymbolForBool(item.IsRead)).ClientTemplate(@Html.SymbolForBool("Published")); 
+                          columns.Bound(x => x.Id)
+                                  .Template(x => Html.ActionLink("Read", "Edit", new { id = x.Id }, new { @class = "t-button" }))
+                                  .ClientTemplate("<a href=\"Contact/Edit/<#= Id #>\" class=\"t-button\">Read</a>")
+                                  .Title(String.Empty).Width(100)
+                                  .HtmlAttributes(new { align = "right", @class = "omega" });
+                      }).Pageable(settings => settings.Total(Model.Total).PageSize(10).Position(GridPagerPosition.Both))
+                )
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+@Html.Vertex().Footer()

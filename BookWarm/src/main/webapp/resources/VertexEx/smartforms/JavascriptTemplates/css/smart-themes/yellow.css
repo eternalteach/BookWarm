@@ -1,0 +1,125 @@
+
+/* @form header 
+-----------------------------------*/
+.smart-forms .header-yellow {	
+	background-color:#faa226;
+	border-top:1px solid #fbb34e;  
+	border-bottom:5px solid #e88a05;
+}
+
+.smart-forms .header-lite{ border-top-color:#fbb34e; }
+.smart-forms .header-lite:before{ background-color:#faa226;   }
+.smart-forms .header-yellow h4{ color:#fff; }
+
+/* @form tagline */
+.smart-forms .theme-yellow .tagline span{ color:#faa226; }
+.smart-forms .theme-yellow .smart-link{ color:#faa226; }
+
+/* @hover | focus  
+--------------------------------------------------- */
+.smart-forms .theme-yellow .gui-input:hover,
+.smart-forms .theme-yellow .gui-textarea:hover,
+.smart-forms .theme-yellow .select > select:hover,
+.smart-forms .theme-yellow .select-multiple select:hover, 
+.smart-forms .theme-yellow .gui-input:hover ~ .input-hint,
+.smart-forms .theme-yellow .file .gui-file:hover + .gui-input,
+.smart-forms .theme-yellow .gui-textarea:hover ~ .input-hint{ border-color: #f0ad4e; }
+
+.smart-forms .theme-yellow .gui-input:focus,
+.smart-forms .theme-yellow .gui-textarea:focus,
+.smart-forms .theme-yellow .select > select:focus,
+.smart-forms .theme-yellow .select-multiple select:focus{ 
+	border-color: #faa226; 
+	-webkit-box-shadow:0px 0px 3px #faa226 inset;  
+	-moz-box-shadow:0px 0px 3px #faa226 inset;   
+	-o-box-shadow:0px 0px 3px #faa226 inset; 	
+	box-shadow:0px 0px 3px #faa226 inset; 
+	color: #3C3C3C; 
+}
+
+.smart-forms .theme-yellow .gui-textarea:focus{  height: 120px; }
+.smart-forms .theme-yellow .select > select:focus { z-index:10; z-index:20\9; }
+.smart-forms .theme-yellow .gui-input:focus ~ .field-icon i,
+.smart-forms .theme-yellow .gui-textarea:focus ~ .field-icon i{ color:#faa226; }
+.smart-forms .theme-yellow .select-multiple select:focus, 
+.smart-forms .theme-yellow .gui-input:focus ~ .input-hint,
+.smart-forms .theme-yellow .gui-textarea:focus ~ .input-hint, 
+.smart-forms .theme-yellow .file .gui-file:focus + .gui-input{ border-color: #faa226; }
+.smart-forms .theme-yellow .select > select:focus + .arrow{ color:#faa226; }
+
+/* @star rating widget 
+----------------------------------------------------------------- */
+.smart-forms .theme-yellow .rating:hover .rating-star:hover,
+.smart-forms .theme-yellow .rating:hover .rating-star:hover ~ .rating-star,
+.smart-forms .theme-yellow .rating-input:checked ~ .rating-star { color: #FFB400;	}
+.smart-forms .theme-yellow .rating-star, 
+.smart-forms .theme-yellow .rating:hover .rating-star {	color: #A2A6A8;	 }
+
+/* @check + radio yellow 
+--------------------------------------------------- */
+.smart-forms .option-yellow input:hover + .checkbox,  
+.smart-forms .option-yellow input:hover + .radio{ border-color: #f0ad4e; }
+.smart-forms .option-yellow input:checked + .checkbox, 
+.smart-forms .option-yellow input:focus + .checkbox, 
+.smart-forms .option-yellow input:checked + .radio, 
+.smart-forms .option-yellow input:focus + .radio{ border-color: #faa226; }
+.smart-forms .option-yellow input:checked + .radio:before, 
+.smart-forms .option-yellow input:focus + .radio:before{  background: #faa226; }
+.smart-forms .option-yellow input:checked + .checkbox:before, 
+.smart-forms .option-yellow input:focus + .checkbox:before{ border-color: #faa226; }
+
+/* @toggle-switch yellow 
+------------------------------------------------------ */
+.smart-forms .switch-yellow > input:checked + .switch-label { background: #faa226; border-color: #faa226; }
+.smart-forms .switch-yellow > input:checked + .switch-label:after { color:#faa226; }
+.smart-forms .switch-yellow > input:checked:focus + .switch-label { background: #e88a05; border-color: #e88a05; }
+
+/* Smart Options 
+-------------------------------------------------------------- */
+.smart-forms .option > input:checked + .smart-option { background:#faa226; }
+.smart-forms .option > input:checked + .smart-option,
+.smart-forms input:checked + .smart-checkbox .iconc:before,
+.smart-forms .option > input:checked + .smart-option .iconc { border-color: #e88a05; }
+.smart-forms input:checked + .smart-radio .iconc:before { background: #e88a05; }
+
+/* Modern switch  
+-------------------------------------------------------------- */
+.smart-forms .modern-switch input:checked + .switch-toggle { background:#faa226; }
+.smart-forms .modern-switch input:checked + .switch-toggle::before { background:#CC7704;  }
+.smart-forms .modern-ios input:checked + .switch-toggle::before { background: #fff; }
+.smart-forms .modern-switch:active input:checked + .switch-toggle::before,
+.smart-forms .modern-switch input:checked + .switch-toggle:active::before { 
+	-webkit-box-shadow: 0 2px 8px rgba(0,0,0,0.28), 0 0 0 20px rgba(148,100,226,0.2);
+	-moz-box-shadow: 0 2px 8px rgba(0,0,0,0.28), 0 0 0 20px rgba(148,100,226,0.2); 
+	-o-box-shadow: 0 2px 8px rgba(0,0,0,0.28), 0 0 0 20px rgba(148,100,226,0.2); 
+	box-shadow: 0 2px 8px rgba(0,0,0,0.28), 0 0 0 20px rgba(148,100,226,0.2);  
+}
+
+/* @button yellow 
+---------------------------------------------------------------- */
+.smart-forms .btn-yellow { background-color:#faa226; }
+.smart-forms .btn-yellow:hover, 
+.smart-forms .btn-yellow:focus{ background-color:#f0ad4e;  }
+.smart-forms .btn-yellow:active{ background-color:#e88a05; }
+.smart-forms .btn-yellow,
+.smart-forms .btn-yellow:hover, 
+.smart-forms .btn-yellow:focus,
+.smart-forms .btn-yellow:active{ color: #fff; text-shadow: 0 1px rgba(0, 0, 0, 0.08); }
+
+/* @datepicker overides 
+-------------------------------------------------- */
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next,
+.ui-datepicker .ui-datepicker-title { color:#faa226; }
+.ui-monthpicker .ui-datepicker-today a, 
+.ui-monthpicker .ui-datepicker-today a:hover,
+.ui-datepicker .ui-datepicker-current-day a{
+	background:#faa226!important;
+}
+
+/* @price-box 
+----------------------------------------------- */
+.smart-forms .theme-yellow .selected-box h4{ color:#faa226; }
+.smart-forms .ribbon-inner{ background: #faa226; }
+.smart-forms .ribbon-inner:before,
+.smart-forms .ribbon-inner:after{ border-top-color:#e88a05; }

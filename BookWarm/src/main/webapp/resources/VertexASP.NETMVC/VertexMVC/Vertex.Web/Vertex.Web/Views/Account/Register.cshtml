@@ -1,0 +1,174 @@
+﻿@model RegisterViewModel
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowLogo = false;
+    settings.ShowTopbar = false;
+    settings.ShowSearchIcon = true;
+    settings.StickyType = HeaderStickyType.Shrink;
+    settings.Transparency = HeaderTransparency.Transparent;
+})
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="d-flex align-items-center position-relative h-100vh bg-light">
+    <div class="col-lg-5 col-xl-4 px-0 d-none d-lg-flex align-items-center bg-img h-100vh" data-overlay="1" style="background-image:url(../Content/img/mix/desktop-7.png);">
+        <div class="w-100 p-7 text-center">
+            <div class="position-absolute right-0 top-0 left-0 p-5">
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="../Content/img/logo-white.png" width="150" />
+                </a>
+            </div>
+
+            <div class="text-white position-relative">
+                <h1>
+                    Join Our Community
+                </h1>
+                <p>
+                    Lorem ipsum dolor sit amet, coectetuer adipiscing
+                    elit sed diam nonummy et nibh euismod
+                </p>
+            </div>
+
+            <div class="position-absolute right-0 bottom-0 left-0 text-center text-white p-5">
+                <div class="row">
+                    <div class="col-6">
+                        <p class="fs-14 mb-0 mt-1">© <span class="o-7"> @Setting("general.meta.title").Value @DateTime.UtcNow.Year</span></p>
+                    </div>
+                    <div class="col-6">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item"><a class="m-list--link anim-link-2 anim-link-2-white" href="#">Privacy</a></li>
+                            <li class="list-inline-item"><a class="m-list--link anim-link-2 anim-link-2-white" href="#">Terms</a></li>
+                            <li class="list-inline-item"><a class="m-list--link anim-link-2 anim-link-2-white" href="#">Securty</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-lg-8 col-xl-6 offset-md-1 offset-lg-1 offset-xl-2">
+                <div class="mb-6">
+                    <h2 class="h3 font-weight-normal mb-1">
+                        Welcome to <span class="font-weight-semi-bold text-primary">
+                            @Setting("general.meta.title").Value
+                        </span>
+                    </h2>
+                    <p>Let's get you all set up so you can verify your nonprofit and begin <br />setting up your first campaign!</p>
+                </div>
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "input-line vertex-input", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                    <div class="row no-gutters">
+                        <div class="col-md-12">
+                            <div class="vertex-input-group">
+                                <div class="apend-wrap">
+                                    <i class="icon-mail-2"></i>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.UserName, new { @class = "required" })
+                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Your email" })
+                                    @Html.HiddenFor(m => m.UserRole)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-md-12">
+                            <div class="vertex-input-group">
+                                <div class="apend-wrap">
+                                    <i class="icon-mail-2"></i>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Email, new { @class = "required" })
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Your email" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-md-6">
+                            <div class="vertex-input-group border-bottom-0">
+                                <div class="apend-wrap">
+                                    <i class="icon-lock-unlock-2"></i>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Password, new { @class = "required" })
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "*******" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="vertex-input-group border-bottom-0">
+                                <div class="apend-wrap">
+                                    <i class="icon-lock-unlock-2"></i>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "required" })
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "*******" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <div class="custom-control custom-checkbox mb-1">
+                                <input type="checkbox" class="custom-control-input" checked="">
+                                <label class="custom-control-label">Yes, I want to receive Vertex's emails.</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" checked="">
+                                <label class="custom-control-label">
+                                    I agree to the <a href="#" class="anim-link">Terms</a>,
+                                    <a href="#" class="anim-link">Primary Policy</a> and <a class="anim-link" href="#">Feeds</a>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4 mb-4">
+                        <div class="col-md-12">
+                            <input type="submit" class="btn btn-primary d-inline-block transition-hover pr-6 pl-6 mr-2" value="Register Now">
+                            <p class="d-inline-block">
+                                or @Html.ActionLink("Sign In", "Login", "Account", new { @class = "text-primary anim-link" })
+                            </p>
+                        </div>
+                    </div>
+
+                    @*<div class="row">
+                            <div class="col-md-12">
+                                <p class="small">Or you can join with</p>
+                                <ul class="list-inline mb-0">
+                                    <li class="list-inline-item">
+                                        <div class="social social-bg-brand social-lg text-center transition-hover">
+                                            <a class="social-facebook" href="#"><i class="fab fa-facebook fs-16"></i></a>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <div class="social social-bg-brand social-lg text-center transition-hover">
+                                            <a class="social-twitter" href="#"><i class="fab fa-twitter fs-16"></i></a>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <div class="social social-bg-brand social-lg text-center transition-hover">
+                                            <a class="social-gplus" href="#"><i class="fab fa-google-plus fs-16"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>*@
+
+                }
+            </div>
+        </div>
+    </div>
+</div>

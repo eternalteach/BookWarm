@@ -1,0 +1,179 @@
+﻿
+@{ ViewBag.Title = "Countup"; }
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = false;
+    settings.StickyType = HeaderStickyType.Shrink;
+    settings.BorderBottom = HeaderBorderBottom.Light;
+})
+
+@Html.Partial("_Banner", "Countup")
+
+
+@Html.Vertex().Section().Size(SectionSize.Small).ContentTemplate(@<text>
+
+    <div class="container">
+        <div class="row justify-content-center">
+
+
+            <!--
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            | Sidebar
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            !-->
+            <div class="col-md-3">
+                <aside id="sidebar" class="sidebar sidebar-sticky">
+                    <ul class="nav nav-sidebar nav-sidebar-hero nav-sidebar-pill" data-accordion="true">
+                        <li class="nav-item"><a class="nav-link" href="#Default">Default</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#Prefix">Prefix</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#Suffix">Suffix</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#Duration">Duration</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#methods">Methods</a> </li>
+                    </ul>
+                </aside>
+            </div>
+
+
+            <div class="col-md-7">
+                 
+
+                <div class="px-6 py-6 bg-gray mb-9" id="Default">
+                    <header class="mb-6">
+                        <h3>Default</h3>
+                        <hr>
+                        <p class="lead-1">Use <code>@@Html.Vertex().Countup()</code> method to create a countup</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-1" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-1-2" role="tab" aria-controls="component-1-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-1-content">
+                        <div class="tab-pane fade show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
+                            @Html.Vertex().Countup().FromTo(0, 800)
+                        </div>
+                        <div class="tab-pane fade" id="component-1-2" role="tabpanel" aria-labelledby="component-1-2">
+                            <pre><code class="language-csharp">@@Html.Vertex().Countup().FromTo(0, 800)</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+                 
+                <div class="px-6 py-6 bg-gray mb-9" id="Prefix">
+                    <header class="mb-6">
+                        <h3>Prefix</h3>
+                        <hr>
+                        <p class="lead-1">use <code>.Prefix(string prefix)</code> method to set prefix</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-2" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-2-1" role="tab" aria-controls="component-2-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-2-2" role="tab" aria-controls="component-2-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-2-content">
+                        <div class="tab-pane fade show active" id="component-2-1" role="tabpanel" aria-labelledby="component-2-1"> 
+                            @Html.Vertex().Countup().FromTo(100, 1250).Prefix("$")
+                        </div>
+                        <div class="tab-pane fade" id="component-2-2" role="tabpanel" aria-labelledby="component-2-2">
+                            <pre><code class="language-csharp">@@Html.Vertex().Countup().FromTo(100, 1250).Prefix("$")</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="px-6 py-6 bg-gray mb-9" id="Suffix">
+                    <header class="mb-6">
+                        <h3>Suffix</h3>
+                        <hr>
+                        <p class="lead-1">use <code>.Suffix(string suffix)</code> method to set suffix</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-3" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-3-1" role="tab" aria-controls="component-3-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-3-2" role="tab" aria-controls="component-3-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-3-content">
+                        <div class="tab-pane fade show active" id="component-3-1" role="tabpanel" aria-labelledby="component-3-1">
+                            @Html.Vertex().Countup().FromTo(500, 3000).Suffix("K") 
+                        </div>
+                        <div class="tab-pane fade" id="component-3-2" role="tabpanel" aria-labelledby="component-3-2">
+                            <pre><code class="language-csharp">@@Html.Vertex().Countup().FromTo(500, 3000).Suffix("K")</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="px-6 py-6 bg-gray mb-9" id="Duration">
+                    <header class="mb-6">
+                        <h3>Duration</h3>
+                        <hr>
+                        <p class="lead-1">use <code>.Duration(int duration)</code> method to set duration</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-4" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-4-1" role="tab" aria-controls="component-4-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-4-2" role="tab" aria-controls="component-4-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-4-content">
+                        <div class="tab-pane fade show active" id="component-4-1" role="tabpanel" aria-labelledby="component-4-1">
+                            @Html.Vertex().Countup().FromTo(150, 2000).Prefix("$").Suffix("M").Duration(1500)
+                        </div>
+                        <div class="tab-pane fade" id="component-4-2" role="tabpanel" aria-labelledby="component-4-2">
+                            <pre><code class="language-csharp">@@(Html.Vertex().Countup()
+        .FromTo(150, 2000)
+        .Prefix("$")
+        .Suffix("M")
+        .Duration(1500))</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="methods" class="mb-9">
+                    <h2 class="h4">Methods <a class="anchorjs-link" href="#methods" aria-label="Anchor" data-anchorjs-icon="#"></a></h2>
+
+                    <table class="table table-bordered bg-white">
+                        <thead>
+                            <tr>
+                                <th  style="width:35%">Method</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> <p><code class="highlighter-rouge">.Method(bool value)</code></p> </td>
+                                <td>Comming soon.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</text>)
+
+
+@Html.Vertex().Footer()

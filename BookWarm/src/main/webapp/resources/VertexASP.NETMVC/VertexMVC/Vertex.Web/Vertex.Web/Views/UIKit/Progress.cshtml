@@ -1,0 +1,247 @@
+﻿
+@{ ViewBag.Title = "Countup"; }
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = false;
+    settings.StickyType = HeaderStickyType.Shrink;
+    settings.BorderBottom = HeaderBorderBottom.Light;
+})
+
+
+@Html.Partial("_Banner", "Progress")
+
+
+@Html.Vertex().Section().Size(SectionSize.Small).ContentTemplate(@<text>
+
+    <div class="container">
+        <div class="row justify-content-center">
+
+
+            <!--
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            | Sidebar
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            !-->
+            <div class="col-md-3">
+                <aside id="sidebar" class="sidebar sidebar-sticky">
+                    <ul class="nav nav-sidebar nav-sidebar-hero nav-sidebar-pill" data-accordion="true">
+                        <li class="nav-item"> <a class="nav-link" href="#Default">Default</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="#height">Height</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="#labels">Labels</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="#Color">Color</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="#Striped">Striped</a> </li>
+                    </ul>
+                </aside>
+            </div>
+
+
+            <div class="col-md-7">
+
+
+                <div class="px-6 py-6 bg-gray mb-9" id="Default">
+                    <header class="mb-6">
+                        <h3>Default</h3>
+                        <hr>
+                        <p class="lead-1">Use <code>@@Html.Vertex().Progress()</code> method to create a progress</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-1" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-1-2" role="tab" aria-controls="component-1-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-1-content">
+                        <div class="tab-pane fade show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
+                            @Html.Vertex().Progress().Value(0)
+                            <br />
+                            @Html.Vertex().Progress().Value(25)
+                            <br />
+                            @Html.Vertex().Progress().Value(50)
+                            <br />
+                            @Html.Vertex().Progress().Value(75)
+                            <br />
+                            @Html.Vertex().Progress().Value(100)
+                        </div>
+                        <div class="tab-pane fade" id="component-1-2" role="tabpanel" aria-labelledby="component-1-2">
+                            <pre><code class="language-csharp">@@Html.Vertex().Progress().Value(0)
+@@Html.Vertex().Progress().Value(25)
+@@Html.Vertex().Progress().Value(50)
+@@Html.Vertex().Progress().Value(75)
+@@Html.Vertex().Progress().Value(100)</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="px-6 py-6 bg-gray mb-9" id="height">
+                    <header class="mb-6">
+                        <h3>Height</h3>
+                        <hr>
+                        <p class="lead-1">use <code>.Height(string height)</code> method to set height</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-2" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-2-1" role="tab" aria-controls="component-2-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-2-2" role="tab" aria-controls="component-2-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-2-content">
+                        <div class="tab-pane fade show active" id="component-2-1" role="tabpanel" aria-labelledby="component-2-1">
+                            @Html.Vertex().Progress().Value(25).Height("1px")
+                            <br />
+                            @Html.Vertex().Progress().Value(25).Height("4px")
+                            <br />
+                            @Html.Vertex().Progress().Value(50).Height("8px")
+                            <br />
+                            @Html.Vertex().Progress().Value(75).Height("3rem") 
+                        </div>
+                        <div class="tab-pane fade" id="component-2-2" role="tabpanel" aria-labelledby="component-2-2">
+                            <pre><code class="language-csharp">@@Html.Vertex().Progress().Value(25).Height("1px")
+@@Html.Vertex().Progress().Value(25).Height("4px")
+@@Html.Vertex().Progress().Value(50).Height("8px")
+@@Html.Vertex().Progress().Value(75).Height("2.6rem") </code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="px-6 py-6 bg-gray mb-9" id="labels">
+                    <header class="mb-6">
+                        <h3>Labels</h3>
+                        <hr>
+                        <p class="lead-1">use <code>.Label(string label)</code> method to set label</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-3" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-3-1" role="tab" aria-controls="component-3-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-3-2" role="tab" aria-controls="component-3-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-3-content">
+                        <div class="tab-pane fade show active" id="component-3-1" role="tabpanel" aria-labelledby="component-3-1">
+                            @Html.Vertex().Progress().Value(25).Label("25%")
+                            <br />
+                            @Html.Vertex().Progress().Value(50).Label("Bootstrap")
+                        </div>
+                        <div class="tab-pane fade" id="component-3-2" role="tabpanel" aria-labelledby="component-3-2">
+                            <pre><code class="language-csharp">@@Html.Vertex().Progress().Value(25).Label("25%")
+@@Html.Vertex().Progress().Value(50).Label("Bootstrap")</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="px-6 py-6 bg-gray mb-9" id="Color">
+                    <header class="mb-6">
+                        <h3>Color</h3>
+                        <hr>
+                        <p class="lead-1">use <code>.Color(BootstrapColor color)</code> method to set color. Default color is <code>BootstrapColor.Primary</code> </p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-4" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-4-1" role="tab" aria-controls="component-4-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-4-2" role="tab" aria-controls="component-4-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-4-content">
+                        <div class="tab-pane fade show active" id="component-4-1" role="tabpanel" aria-labelledby="component-4-1">
+                            @Html.Vertex().Progress().Value(25).Color(BootstrapColor.Danger)
+                            <br />
+                            @Html.Vertex().Progress().Value(40).Color(BootstrapColor.Dark)
+                            <br />
+                            @Html.Vertex().Progress().Value(55).Color(BootstrapColor.Primary)
+                            <br />
+                            @Html.Vertex().Progress().Value(70).Color(BootstrapColor.Secondary)
+                            <br />
+                            @Html.Vertex().Progress().Value(85).Color(BootstrapColor.Success)
+                            <br />
+                            @Html.Vertex().Progress().Value(100).Color(BootstrapColor.Warning)
+                        </div>
+                        <div class="tab-pane fade" id="component-4-2" role="tabpanel" aria-labelledby="component-4-2">
+                            <pre><code class="language-csharp">@@Html.Vertex().Progress().Value(25).Color(BootstrapColor.Danger)
+@@Html.Vertex().Progress().Value(40).Color(BootstrapColor.Dark)
+@@Html.Vertex().Progress().Value(55).Color(BootstrapColor.Primary)
+@@Html.Vertex().Progress().Value(70).Color(BootstrapColor.Secondary)
+@@Html.Vertex().Progress().Value(85).Color(BootstrapColor.Success)
+@@Html.Vertex().Progress().Value(100).Color(BootstrapColor.Warning)</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="px-6 py-6 bg-gray mb-9" id="Striped">
+                    <header class="mb-6">
+                        <h3>Striped</h3>
+                        <hr>
+                        <p class="lead-1">use <code>.Striped(bool animatedStripes = false)</code> method to set striped. </p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-5" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-5-1" role="tab" aria-controls="component-5-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-5-2" role="tab" aria-controls="component-5-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-5-content">
+                        <div class="tab-pane fade show active" id="component-5-1" role="tabpanel" aria-labelledby="component-5-1">
+                            @Html.Vertex().Progress().Value(55).Striped()
+                            <br />
+
+                            <p class="mb-1">Animated Stripes</p>
+                            @Html.Vertex().Progress().Value(85).Striped(true)
+                        </div>
+                        <div class="tab-pane fade" id="component-5-2" role="tabpanel" aria-labelledby="component-5-2">
+                            <pre><code class="language-csharp">@@Html.Vertex().Progress().Value(55).Striped()
+@@Html.Vertex().Progress().Value(85).Striped(true)</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="methods" class="mb-9">
+                    <h2 class="h4">Methods <a class="anchorjs-link" href="#methods" aria-label="Anchor" data-anchorjs-icon="#"></a></h2>
+
+                    <table class="table table-bordered bg-white">
+                        <thead>
+                            <tr>
+                                <th style="width:35%">Method</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> <p><code class="highlighter-rouge">.Method(bool value)</code></p> </td>
+                                <td>Comming soon.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</text>)
+
+
+@Html.Vertex().Footer()

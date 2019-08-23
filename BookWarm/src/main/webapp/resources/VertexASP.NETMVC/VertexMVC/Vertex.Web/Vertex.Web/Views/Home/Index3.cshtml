@@ -1,0 +1,434 @@
+﻿
+@Html.Vertex().Page().Title("Home").Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+    settings.Transparency = HeaderTransparency.Transparent;
+})
+
+
+
+@Html.Vertex().Section().BgColor(BootstrapColor.Light).VerticalCenter().AppendCssClass("position-relative h-100vh").ContentTemplate(
+    @<text>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-12 text-center z-index-10">
+                    <p class="text-uppercase o-7 fw-500 fs-13">We love what we offer</p>
+                    <h2 class="fs-50">
+                        Your business deserves a <br /> modern website
+                    </h2>
+                    <p class="lead mt-3 mb-4">
+                        With <span class="text-primary">180+ components and UI libraries,</span> it has everything you'll need to create <br>
+                        high-impact business solutions for the web platform.
+                    </p>
+
+                    @Html.Vertex().Button("Get Started").TransitionHover().ActionLink(Url.Action("BlogPost", "Features")).AppendCssClass("btn-wide")
+
+                </div>
+            </div>
+        </div>
+        <div class="custom-section-3">
+            <img src="/Content/img/svg/splash-intro-new.svg" alt="vertex">
+        </div>
+    </text>)
+
+
+
+@Html.Vertex().Section().Size(SectionSize.None).ContentTemplate(
+    @<text>
+        <div class="container">
+            <div class="row m-gab-3">
+                <div class="col-md-5">
+                    <h2>
+                        We tick masterfully   <br />
+                        all the boxes of  <br />
+                        cutting-edge design <br /> solutions.
+                    </h2>
+                </div>
+                <div class="col-md-7">
+                    <p class="mb-5">
+                        An enim nullam tempor sapien gravida donec enim ipsum blandit <br /> porta justo
+                        integer odio velna vitae auctor integer congue magna at pretium purus  pretium
+                        ligula rutrum luctus risus ultrice luctus ligula congue vitae <br /> auctor eros erat magna morbi
+                        integer odio velna vitae auctor integer congue magna at pretium purus  pretium
+                    </p>
+
+                    <a href="#" class="anim-link-2 anim-link-2-primary">Learn more about us →</a>
+                </div>
+            </div>
+
+            <div class="row m-gab-4-bottom">
+                <div class="col-sm-6 col-md-6 col-lg-4">
+                    @(Html.Vertex().IconBox()
+                        .Icon("icon-shopping-bag-3")
+                        .Title("Provide financial advice <br /> by our service<span class=\"badge badge-primary ml-2\">Best</span>")
+                        .Content("velna vitae auctor integer congue magna at pretium purus pretium ligula rutrum luctus risus ultrice"))
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4">
+                    @(Html.Vertex().IconBox()
+                        .Icon("icon-chat-1-1")
+                        .Title("Complate solution for <br />global organizations")
+                        .Content("An enim nullam tempor sapien gravida donec enim ipsum blandit porta justo integer odio velna vitae auctor"))
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4">
+                    @(Html.Vertex().IconBox()
+                       .Icon("icon-layers")
+                       .Title("Business monitoring & <br />lead generation")
+                       .Content("velna vitae auctor integer congue magna at pretium purus pretium ligula rutrum luctus risus ultrice"))
+                </div>
+            </div>
+        </div>
+    </text>)
+
+
+@Html.Vertex().Section().Size(SectionSize.None).AppendCssClass("mr-8 ml-8").ContentTemplate(
+    @<text>
+        <div class="container">
+            <div class="row mb-8 align-items-center text-center text-lg-left">
+                <div class="col-sm-12 col-md-12 col-lg-10">
+                    <span class="label label--sm label--success mb-2">Our Service</span>
+                    <h2>
+                        We provide wide range of <br />
+                        business services.
+                    </h2>
+                    <hr class="hr-1 hr-success" />
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-2">
+                     @(Html.Vertex().Button("See All Works")
+                        .IconPosition(ButtonIconPosition.Right)
+                        .Color(BootstrapColor.Success).Sleek().Size(ButtonSize.Small)
+                        .TransitionHover().Icon("fas fa-angle-right").AppendCssClass("mr-2")
+                        .ActionLink(Url.Action("AwesomeWork", "Portfolio"))) 
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 p-0">
+
+                    <div class="cbp cbp-caption-zoom-2"
+                         data-layoutMode="mosaic"
+                         data-animation-type='fadeOutTop'
+                         data-caption='zoom'
+                         data-display-type='fadeIn'
+                         data-display-type-speed="100"
+                         data-gap-horizontal="0"
+                         data-gap-vertical="10"
+                         data-media-queries='[
+                                {"width": 1500, "cols": 5},
+                                {"width": 1100, "cols": 5},
+                                {"width": 800, "cols": 4},
+                                {"width": 480, "cols": 3},
+                                {"width": 300, "cols": 1}
+                              ]'>
+                        <div class="cbp-item identity logos">
+                            <a href="#" class="cbp-caption cbp-lightbox" data-title="Dashboard<br>by Paul Flavius Nechita">
+                                <div class="cbp-caption-defaultWrap">
+                                    <img src="/Content/img/mix/s1.jpg" data-cbp-src="/Content/img/mix/s1.jpg" alt="">
+                                </div>
+                                <div class="cbp-caption-activeWrap">
+                                    <div class="cbp-l-caption-alignLeft">
+                                        <div class="cbp-l-caption-body">
+                                            <div class="cbp-l-caption-title">Linkedin Profile <br /> Tips for Freelancers </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="cbp-item web-design">
+                            <a href="#" class="cbp-caption cbp-lightbox" data-title="Client chat app WIP<br>by Paul Flavius Nechita">
+                                <div class="cbp-caption-defaultWrap">
+                                    <img src="/Content/img/mix/s2.jpg" data-cbp-src="/Content/img/mix/s2.jpg" alt="">
+                                </div>
+                                <div class="cbp-caption-activeWrap">
+                                    <div class="cbp-l-caption-alignLeft">
+                                        <div class="cbp-l-caption-body">
+                                            <div class="cbp-l-caption-title">How Amazon oneTag <br /> Can Grow Your Affiliate</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="cbp-item identity graphic">
+                            <a href="#" class="cbp-caption cbp-lightbox" data-title="Website Lightbox<br>by Paul Flavius Nechita">
+                                <div class="cbp-caption-defaultWrap">
+                                    <img src="/Content/img/mix/s4.jpg" data-cbp-src="/Content/img/mix/s4.jpg" alt="">
+                                </div>
+                                <div class="cbp-caption-activeWrap">
+                                    <div class="cbp-l-caption-alignLeft">
+                                        <div class="cbp-l-caption-body">
+                                            <div class="cbp-l-caption-title">Celebrate the Season with <br /> Cdiscount’s 20th Anniversary</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="cbp-item identity graphic">
+                            <a href="#" class="cbp-caption cbp-lightbox" data-title="Website Lightbox<br>by Paul Flavius Nechita">
+                                <div class="cbp-caption-defaultWrap">
+                                    <img src="/Content/img/mix/s5.jpg" data-cbp-src="/Content/img/mix/s5.jpg" alt="">
+                                </div>
+                                <div class="cbp-caption-activeWrap">
+                                    <div class="cbp-l-caption-alignLeft">
+                                        <div class="cbp-l-caption-body">
+                                            <div class="cbp-l-caption-title">Website Lightbox</div>
+                                            <div class="cbp-l-caption-desc">by Paul Flavius Nechita</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="cbp-item identity logos">
+                            <a href="#" class="cbp-caption cbp-lightbox" data-title="Dashboard<br>by Paul Flavius Nechita">
+                                <div class="cbp-caption-defaultWrap">
+                                    <img src="/Content/img/mix/s3.jpg" data-cbp-src="/Content/img/mix/s3.jpg" alt="">
+                                </div>
+                                <div class="cbp-caption-activeWrap">
+                                    <div class="cbp-l-caption-alignLeft">
+                                        <div class="cbp-l-caption-body">
+                                            <div class="cbp-l-caption-title">How to Use LinkedIn to Attract <br /> More Freelance Clients </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </text>)
+
+
+@Html.Vertex().Section().ContentTemplate(
+    @<text>
+        <div class="container">
+            <div class="row mb-8 align-items-center text-center text-lg-left">
+                <div class="col-sm-12 col-md-12 col-lg-10">
+                    <span class="label label--sm label--primary mb-2">Our Service</span>
+                    <h2>
+                        Trusted by great companies <br />
+                        What client says
+                    </h2>
+                    <hr class="hr-1 hr-primary" />
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-2">
+                     @(Html.Vertex().Button("Get Started!")
+                        .IconPosition(ButtonIconPosition.Right)
+                        .Sleek().Size(ButtonSize.Small)
+                        .TransitionHover().Icon("fas fa-angle-right").AppendCssClass("mr-2")
+                        .ActionLink(Url.Action("Testimonials", "Features"))) 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @(Html.Vertex().Testimonials().ToSlider(setting =>
+                                    {
+                                        setting.SlidesToShow(3);
+                                        setting.Autoplay();
+                                        setting.Dots();
+                                    }))
+                </div>
+            </div>
+        </div>
+    </text>)
+
+
+@Html.Vertex().Section().Size(SectionSize.Small).AppendCssClass("border-top").ContentTemplate(
+    @<text>
+        <div class="container">
+            <div class="row justify-content-center align-items-center text-center">
+                <div class="col-md-12">
+                    @(Html.Vertex().Client().ToSlider(setting =>
+                                    {
+                                        setting.SlidesToShow(6);
+                                        setting.Autoplay();
+                                    }))
+                </div>
+            </div>
+        </div>
+    </text>)
+
+
+@Html.Vertex().Section().AppendCssClass("mr-0 ml-0 ml-lg-8 mr-lg-8").AppendStyle("background-color", "#344755").ContentTemplate(
+    @<text>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="clearfix text-white text-center text-lg-left mt-9">
+                        <span class="label label--sm label--light mb-2">Pricing Plan</span>
+                        <h2>
+                            No hidden Charges. Check <br /> our package
+                        </h2>
+                        <hr class="hr-1 hr-light">
+                        <p class="mt-3 mb-7">
+                            We have different kind of plan for our customer, If you dont find your plan <a href="@Url.Action("Contact", "Page")" class="m-link-light">contact us</a>
+                        </p>
+
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-round btn-outline-light w-150 active">
+                                <input type="radio" name="pricing" value="monthly" autocomplete="off" checked /> Monthly
+                            </label>
+                            <label class="btn btn-round btn-outline-light w-150">
+                                <input type="radio" name="pricing" value="yearly" autocomplete="off" /> Yearly
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="pricing pricing--pema">
+                        <div class="pricing-item pricing-item--featured">
+                            <div class="pr-6 pl-6 pb-4 pt-5 bg-light-1 border-bottom">
+                                <h3 class="pricing-title">Weekly Package</h3>
+                                <div class="pricing-price">
+                                    <span class="pricing-currency">$</span>
+                                    <span class="pricing-main" data-bind-radio="pricing" data-monthly="29" data-yearly="39">29</span>
+                                    <span class="pricing-period">/ Week</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <p class="pricing-sentence">For medium sized teams</p>
+                                <ul class="pricing-feature-list">
+                                    <li class="m-list--link">- 50 presentations/month</li>
+                                    <li class="m-list--link">
+                                        - 5 hours of <span class="m-link-muted">free support</span>
+                                        <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="top" title="To assist you in the ordering process, we've compiled a list of purchase and licensing related FAQs."></i>
+                                    </li>
+                                    <li class="m-list--link">
+                                        - 10 campaigns/month <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="top" title="To assist you in the ordering process, we've compiled a list of purchase and licensing related FAQs."></i>
+                                    </li>
+                                    <li class="m-list--link">
+                                        - Mirror website
+                                        <span class="m-link-muted" data-toggle="tooltip" data-placement="top" title="To assist you in the ordering process, we've compiled a list of purchase and licensing related FAQs.">
+                                            adjustmant
+                                        </span>
+                                    </li>
+                                </ul>
+                                <a href="@Url.Action("Contact", "Page")" class="btn btn-outline-primary btn-block btn-sm border-w-2">Request Package</a>
+                            </div>
+                        </div>
+                        <div class="pricing-item">
+                            <div class="pr-6 pl-6 pb-4 pt-5 bg-light-1 border-bottom">
+                                <h3 class="pricing-title">Monthly Package</h3>
+                                <div class="pricing-price">
+                                    <span class="pricing-currency">$</span>
+                                    <span class="pricing-main" data-bind-radio="pricing" data-monthly="79" data-yearly="99">79</span>
+                                    <span class="pricing-period">/ Month</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <p class="pricing-sentence">For large companies</p>
+                                <ul class="pricing-feature-list">
+                                    <li class="m-list--link">- Unlimited presentations</li>
+                                    <li class="m-list--link">- 5 hours of <span class="m-link-muted">free support</span> </li>
+                                    <li class="m-list--link">- Unlimited support</li>
+                                    <li class="m-list--link">- Unlimited <span class="m-link-muted">campaigns</span></li>
+                                </ul>
+                                <a href="@Url.Action("Contact", "Page")" class="btn btn-outline-primary btn-block btn-sm border-w-2">Request Package</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @Html.Vertex().OvalDivider(OvalDividerType.Divider1)
+    </text>)
+
+
+@Html.Vertex().Section().AppendCssClass("pb-0").ContentTemplate(
+    @<text>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    @Html.Vertex().Portfolio(PortfolioViewName.Slide3D)
+                </div>
+                <div class="col-lg-6">
+                    <span class="label label--sm label--danger mb-2">Recent Projects</span>
+                    <h2>
+                        We have done  <br />
+                        lot's of work, Let's check <br />
+                        some from here
+                    </h2>
+                    <hr class="hr-1 hr-danger mb-6" />
+
+                    <h5>Financial Advise</h5>
+                    <p class="mb-6">
+                        An enim nullam tempor sapien gravida donec enim ipsum blandit porta justo integer odio velna vitae auctor integer congue magna at pretium purus pretium ligula rutrum
+                    </p> 
+
+                     @(Html.Vertex().Button("View Full Projects").Color(BootstrapColor.Danger)
+                        .Size(ButtonSize.Small).IconPosition(ButtonIconPosition.Right).Sleek()
+                        .TransitionHover().Icon("fas fa-angle-right")
+                        .ActionLink(Url.Action("Agency", "Portfolio")))
+                </div>
+            </div>
+        </div>
+    </text>)
+
+
+@Html.Vertex().Section().ContentTemplate(
+    @<text>
+        <div class="container">
+            <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-9">
+                <span class="label label--sm label--primary mb-2">Join Us</span>
+                <h2>Join Our World</h2>
+                <p>We have a streamline work process that defines business growth.</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card text-white bg-img" style="background-image: url(/Content/img/career-bg.jpg);background-size: cover;height:570px;">
+                        <div class="row h-100 p-5">
+                            <div class="col-12">
+                                <p class="text-primary pt-3">WE’RE HIRING</p>
+                                <h4 class="h2 font-weight-light mb-4">
+                                    Take your <br />
+                                    career to <br />
+                                    next level
+                                </h4>
+                                <p class="text-white-50">
+                                    Apply to our team <br />
+                                    and see what can <br />
+                                    we do together
+                                </p>
+                            </div>
+                            <div class="col-12 align-self-end">
+                                <a href="@Url.Action("Jobs", "Page")" class="btn btn-primary btn-sm transition-hover mb-5">
+                                    View Open Jobs
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oval-divider--bottom oval-divider--11"></div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div style="height:560px;" class="rounded-lg"
+                         data-provide="map"
+                         data-lat="41.0187429"
+                         data-lng="28.6390396"
+                         data-marker-lat="41.0187429"
+                         data-marker-lng="28.6390396"
+                         data-info="Üçevler mah, Urfalılar Cd. No:71/C, 34513 Esenyurt/İstanbul"></div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card text-white bg-img" style="background-image: url(/Content/img/phone-womany.jpg);background-size: cover;height:560px;" data-overlay="5">
+                        <div class="row h-100 p-5">
+                            <div class="col-12">
+                                <p class="text-primary pt-2">WE’RE HIRING</p>
+                                <h4 class="h2 font-weight-light mb-0">
+                                    Contact Us
+                                </h4>
+                                <p class="text-white-50">
+                                    Contact us
+                                </p>
+
+                                @Html.Vertex().Widget("SmallContactUs", new ContactModel())
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </text>)
+
+
+@Html.Vertex().Footer()

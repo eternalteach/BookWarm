@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Clone Elements </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.geocomplete.min.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function($){
+		
+			$("#geocomplete").geocomplete();
+						
+			var mapStyles = [{"elementType":"geometry","stylers":[{"hue":"#ff4400"},{"saturation":-68},{"lightness":-4},{"gamma":0.72}]},{"featureType":"road","elementType":"labels.icon"},{"featureType":"landscape.man_made","elementType":"geometry","stylers":[{"hue":"#0077ff"},{"gamma":3.1}]},{"featureType":"water","stylers":[{"hue":"#00ccff"},{"gamma":0.44},{"saturation":-33}]},{"featureType":"poi.park","stylers":[{"hue":"#44ff00"},{"saturation":-23}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"hue":"#007fff"},{"gamma":0.77},{"saturation":65},{"lightness":99}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"gamma":0.11},{"weight":5.6},{"saturation":99},{"hue":"#0091ff"},{"lightness":-86}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"lightness":-48},{"hue":"#ff5e00"},{"gamma":1.2},{"saturation":-23}]},{"featureType":"transit","elementType":"labels.text.stroke","stylers":[{"saturation":-64},{"hue":"#ff9100"},{"lightness":16},{"gamma":0.47},{"weight":2.7}]}];
+			
+			var options = {
+				map: "#map-1",
+				location: "Dublin",
+				mapOptions: {
+					styles: mapStyles
+				}
+			};
+			
+			$("#geocomplete2").geocomplete(options);
+			
+		});	  
+    </script> 
+       
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-map-marker"></i>Geocomplete </h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="account2">
+                <div class="form-body"> 
+                
+                    <div class="spacer-b30">
+                        <div class="tagline"><span> Jquery Geocomplete </span></div><!-- .tagline -->
+                    </div>
+                    
+                    <div class="section">
+                        <div class="smart-widget sm-right smr-80">
+                            <label class="field">
+                                <input type="text" class="gui-input" id="geocomplete" placeholder="Enter location">
+                            </label>
+                            <button type="button" class="button" id="find"> Find </button>
+                        </div><!-- end .smart-widget section --> 
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                        <label class="field">
+                            <input type="text" class="gui-input" id="geocomplete2" placeholder="Enter an address">
+                        </label>
+                    </div><!-- end section -->
+                    
+                    <div class="map-container"><div class="map-area" id="map-1"></div></div>                                       
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Button  </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+
+</body>
+</html>

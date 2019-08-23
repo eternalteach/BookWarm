@@ -1,0 +1,93 @@
+﻿@model IEnumerable<CommentListModel>
+
+<div class="clearfix my-4 comment-list-wrap">
+    <h3 class="h4 mb-3">@Model.Count() Comments</h3>
+
+    <ul class="media-list m-0 p-0">
+        @foreach (var item in Model)
+        {
+            <li class="comment-item media mt-5">
+                <a href="#">
+                    <img class="avatar comment-user-avatar mr-3 pi-img-round" src="@item.UserAvatarUrl" alt="@item.FullName" title="@item.FullName" />
+                </a>
+                <div class="media-body clearfix">
+                    <h4 class="h6 mb-1 comment-full-name">@item.FullName <span class="small ml-2 text-muted comment-date">@item.CreateDate</span></h4>
+                    <p class="mb-1 comment-content"> 
+                        @Html.Raw(item.Comment)
+                    </p>
+                    <a href="javascript:void(0)" data-comment-id="@item.Id" class="comment-reply text-primary anim-link-2 anim-link-2-primary small">Reply</a>
+
+                    @foreach (var child in item.ChildComments)
+                    {
+                        <div class="comment-subitem media mt-4">
+                            <a href="#">
+                                <img class="avatar comment-user-avatar mr-3 pi-img-round" src="@child.UserAvatarUrl" alt="@child.FullName" title="@child.FullName" />
+                            </a>
+                            <div class="media-body">
+                                <h4 class="h6 mb-1">@child.FullName <span class="small ml-2 text-muted comment-date">@child.CreateDate</span></h4>
+                                <p class="mb-1 comment-content">
+                                    @Html.Raw(child.Comment)
+                                </p>
+                            </div>
+                        </div>
+                    }
+                    <div class="new-comment-subitem-@item.Id"></div>
+                </div>
+            </li>
+        }
+        <li class="new-comment-item media"></li>
+    </ul>
+</div>
+
+
+<script type="text/javascript">
+
+    function OnCommentAddSuccess(response) {
+        if (response.success) {
+            if (response.parentId) {
+                $(".new-comment-subitem-" + response.parentId).before(response.result);
+            } else {
+                $(".new-comment-item:last").before(response.result);
+            }
+
+            $(".comment-cancel").click();
+            ClearInputValues();
+        } else {
+            if (response.parentId) {
+                $(".new-comment-subitem-" + response.parentId).before(response.result);
+            } else {
+                $(".new-comment-item:last").before(response.result);
+            }
+        }
+    }
+
+    $(document).on("click", ".comment-reply", function (e) {
+        $(".add-comment-wrap").appendTo($(this).parent(".media-body"));
+        $("input[name='ParentId']").val($(this).attr("data-comment-id"));
+        $(".comment-cancel").removeClass("d-none");
+        gotoElement(".add-comment-wrap");
+        e.preventDefault();
+    });
+
+    $(document).on("click", ".comment-cancel", function (e) {
+        $(".add-comment-wrap").appendTo("#comments");
+        $("input[name='ParentId']").val(0);
+        $(".comment-cancel").addClass("d-none");
+        ClearInputValues();
+        e.preventDefault();
+    });
+
+    function ClearInputValues() {
+        $("[name='FullName']").val("");
+        $("[name='Email']").val("");
+        $("[name='Content']").val("");
+    }
+
+    function gotoElement(id) {
+        id = id.replace("link", "");
+        $('html, body').animate({
+            scrollTop: $(id).offset().top - 100
+        }, 'slow');
+    }
+
+</script>

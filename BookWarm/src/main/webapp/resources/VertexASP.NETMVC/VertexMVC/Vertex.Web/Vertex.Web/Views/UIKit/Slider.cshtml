@@ -1,0 +1,428 @@
+﻿
+@{ ViewBag.Title = "Slider"; }
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = false;
+    settings.StickyType = HeaderStickyType.Shrink;
+    settings.BorderBottom = HeaderBorderBottom.Light;
+})
+
+@Html.Partial("_Banner", "Slider")
+
+
+@Html.Vertex().Section().Size(SectionSize.Small).ContentTemplate(@<text>
+
+    <div class="container">
+        <div class="row justify-content-center">
+
+
+            <!--
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            | Sidebar
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            !-->
+            <div class="col-md-3">
+                <aside id="sidebar" class="sidebar sidebar-sticky">
+                    <ul class="nav nav-sidebar nav-sidebar-hero nav-sidebar-pill" data-accordion="true">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Basic">Basic <i class="fas fa-chevron-right nav-angle"></i></a>
+                            <div class="nav">
+                                <a class="nav-link" href="#Autoplay">Autoplay</a>
+                                <a class="nav-link" href="#Autoplayspeed">Autoplay speed</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Arrows">Arrows <i class="fas fa-chevron-right nav-angle"></i></a>
+                            <div class="nav">
+                                <a class="nav-link" href="#Circlelight">Circle light</a>
+                                <a class="nav-link" href="#Circledark">Circle dark</a>
+                                <a class="nav-link" href="#Flashlight">Flash light</a>
+                                <a class="nav-link" href="#Flashdark">Flash dark</a> 
+                            </div>
+                        </li>
+                        <li class="nav-item"> <a class="nav-link" href="#Dots">Dots</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="#advanced">Advanced</a> </li>
+                    </ul>
+                </aside>
+            </div>
+
+
+            <div class="col-md-7">
+
+
+                <div class="px-6 py-6 bg-gray mb-9" id="Basic">
+                    <header class="mb-6">
+                        <h3>Basic</h3>
+                        <hr>
+                        <p class="lead-1">Use <code>@@Html.Vertex().Slider(Action[SliderBuilder] action)</code> method to create a slider</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-1" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-1-2" role="tab" aria-controls="component-1-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-1-content">
+                        <div class="tab-pane fade show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
+                            @(Html.Vertex().Slider(slider =>  {
+                                 slider.Add().Image("/Content/img/thumb/1.jpg");
+                                 slider.Add().Image("/Content/img/thumb/2.jpg");
+                                 slider.Add().Image("/Content/img/thumb/3.jpg");
+                            }))
+                        </div>
+                        <div class="tab-pane fade" id="component-1-2" role="tabpanel" aria-labelledby="component-1-2">
+                            <pre><code class="language-csharp">@@(Html.Vertex().Slider(slider => {
+    slider.Add().Image("/Content/img/thumb/1.jpg");
+    slider.Add().Image("/Content/img/thumb/2.jpg");
+    slider.Add().Image("/Content/img/thumb/3.jpg");
+}))</code>
+                        </pre>
+                        </div>
+                    </div>
+
+
+
+                    <br />
+                    <h5 id="ChangingBgColor" class="mt-6">Autoplay</h5>
+                    <p>
+                        Use <code>.Autoplay()</code>
+                    </p>
+
+                    <ul class="nav nav-bordered" id="component-2" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-2-1" role="tab" aria-controls="component-2-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-2-2" role="tab" aria-controls="component-2-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-2-content">
+                        <div class="tab-pane fade show active" id="component-2-1" role="tabpanel" aria-labelledby="component-2-1">
+                            @(Html.Vertex().Slider(slider =>
+                                                        {
+                                                            slider.Add().Image("/Content/img/thumb/1.jpg");
+                                                            slider.Add().Image("/Content/img/thumb/2.jpg");
+                                                            slider.Add().Image("/Content/img/thumb/3.jpg");
+                                                        }).Autoplay())
+                        </div>
+                        <div class="tab-pane fade" id="component-2-2" role="tabpanel" aria-labelledby="component-2-2">
+                            <pre><code class="language-csharp">@@(Html.Vertex().Slider(slider => {
+    slider.Add().Image("/Content/img/thumb/1.jpg");
+    slider.Add().Image("/Content/img/thumb/2.jpg");
+    slider.Add().Image("/Content/img/thumb/3.jpg");
+    slider.Autoplay();
+}))</code>
+                        </pre>
+                        </div>
+                    </div>
+
+
+
+                    <br />
+                    <h5 id="ChangingBgColor" class="mt-6">Autoplay Speed</h5>
+                    <p>
+                        Use <code>.Autoplay(int autoplaySpeed)</code>
+                    </p>
+
+                    <ul class="nav nav-bordered" id="component-3" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-3-1" role="tab" aria-controls="component-3-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-3-2" role="tab" aria-controls="component-3-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-3-content">
+                        <div class="tab-pane fade show active" id="component-3-1" role="tabpanel" aria-labelledby="component-3-1">
+                            @(Html.Vertex().Slider(slider =>
+                                                        {
+                                                            slider.Add().Image("/Content/img/thumb/1.jpg");
+                                                            slider.Add().Image("/Content/img/thumb/2.jpg");
+                                                            slider.Add().Image("/Content/img/thumb/3.jpg");
+                                                            slider.Autoplay(500);
+                                                        }))
+                        </div>
+                        <div class="tab-pane fade" id="component-3-2" role="tabpanel" aria-labelledby="component-3-2">
+                            <pre><code class="language-csharp">@@(Html.Vertex().Slider(slider => {
+    slider.Add().Image("/Content/img/thumb/1.jpg");
+    slider.Add().Image("/Content/img/thumb/2.jpg");
+    slider.Add().Image("/Content/img/thumb/3.jpg");
+    slider.Autoplay(500);
+}))</code>
+                        </pre>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+
+                <div class="px-6 py-6 bg-gray mb-9" id="Arrows">
+                    <header class="mb-6">
+                        <h3>Arrows</h3>
+                        <hr>
+                        <p class="lead-1">use <code>.Arrows()</code> method to set arrows</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-7" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-7-1" role="tab" aria-controls="component-7-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-7-2" role="tab" aria-controls="component-7-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-7-content">
+                        <div class="tab-pane fade show active" id="component-7-1" role="tabpanel" aria-labelledby="component-7-1">
+                            @(Html.Vertex().Slider(slider =>
+                                        {
+                                            slider.Add().Image("/Content/img/thumb/1.jpg");
+                                            slider.Add().Image("/Content/img/thumb/2.jpg");
+                                            slider.Add().Image("/Content/img/thumb/3.jpg");
+                                            slider.Arrows();
+                                        }))
+                        </div>
+                        <div class="tab-pane fade" id="component-7-2" role="tabpanel" aria-labelledby="component-7-2">
+                            <pre><code class="language-csharp">@@(Html.Vertex().Slider(slider => {
+    slider.Add().Image("/Content/img/thumb/1.jpg");
+    slider.Add().Image("/Content/img/thumb/2.jpg");
+    slider.Add().Image("/Content/img/thumb/3.jpg");
+    slider.Arrows();
+}))</code>
+                        </pre>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <br />
+                    <h5 id="Circlelight" class="mt-6">Circle light</h5>
+                    <p>
+                        Use <code>.Arrows(SliderArrowsType.CircleLight)</code>
+                    </p>
+
+                    <ul class="nav nav-bordered" id="component-8" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-8-1" role="tab" aria-controls="component-8-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-8-2" role="tab" aria-controls="component-8-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-8-content">
+                        <div class="tab-pane fade show active" id="component-8-1" role="tabpanel" aria-labelledby="component-8-1">
+                            @(Html.Vertex().Slider(slider =>
+                                                        {
+                                                            slider.Add().Image("/Content/img/thumb/1.jpg");
+                                                            slider.Add().Image("/Content/img/thumb/2.jpg");
+                                                            slider.Add().Image("/Content/img/thumb/3.jpg");
+                                                            slider.Arrows(SliderArrowsType.CircleLight);
+                                                        }))
+                        </div>
+                        <div class="tab-pane fade" id="component-8-2" role="tabpanel" aria-labelledby="component-8-2">
+                            <pre><code class="language-csharp">@@(Html.Vertex().Slider(slider => {
+    slider.Add().Image("/Content/img/thumb/1.jpg");
+    slider.Add().Image("/Content/img/thumb/2.jpg");
+    slider.Add().Image("/Content/img/thumb/3.jpg");
+    slider.Arrows(SliderArrowsType.CircleLight);
+}))</code>
+                        </pre>
+                        </div>
+                    </div>
+
+
+
+                    <br />
+                    <h5 id="Circledark" class="mt-6">Circle dark</h5>
+                    <p>
+                        Use <code>.Arrows(SliderArrowsType.CircleDark)</code>
+                    </p>
+
+                    <ul class="nav nav-bordered" id="component-9" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-9-1" role="tab" aria-controls="component-9-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-9-2" role="tab" aria-controls="component-9-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-9-content">
+                        <div class="tab-pane fade show active" id="component-9-1" role="tabpanel" aria-labelledby="component-9-1">
+                            @(Html.Vertex().Slider(slider =>
+                                                        {
+                                                            slider.Add().Image("/Content/img/thumb/1.jpg");
+                                                            slider.Add().Image("/Content/img/thumb/2.jpg");
+                                                            slider.Add().Image("/Content/img/thumb/3.jpg");
+                                                            slider.Arrows(SliderArrowsType.CircleDark);
+                                                        }))
+                        </div>
+                        <div class="tab-pane fade" id="component-9-2" role="tabpanel" aria-labelledby="component-9-2">
+                            <pre><code class="language-csharp">@@(Html.Vertex().Slider(slider => {
+    slider.Add().Image("/Content/img/thumb/1.jpg");
+    slider.Add().Image("/Content/img/thumb/2.jpg");
+    slider.Add().Image("/Content/img/thumb/3.jpg");
+    slider.Arrows(SliderArrowsType.CircleDark);
+}))</code>
+                        </pre>
+                        </div>
+                    </div>
+
+ 
+
+                    <br />
+                    <h5 id="FlashLight" class="mt-6">Flash Light</h5>
+                    <p>
+                        Use <code>.Arrows(SliderArrowsType.FlashLight)</code>
+                    </p>
+
+                    <ul class="nav nav-bordered" id="component-10" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-10-1" role="tab" aria-controls="component-10-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-10-2" role="tab" aria-controls="component-10-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-10-content">
+                        <div class="tab-pane fade show active" id="component-10-1" role="tabpanel" aria-labelledby="component-10-1">
+                            @(Html.Vertex().Slider(slider => {
+                                        slider.Add().Image("/Content/img/thumb/1.jpg");
+                                        slider.Add().Image("/Content/img/thumb/2.jpg");
+                                        slider.Add().Image("/Content/img/thumb/3.jpg");
+                                        slider.Arrows(SliderArrowsType.FlashLight);
+                                }))
+                        </div>
+                        <div class="tab-pane fade" id="component-10-2" role="tabpanel" aria-labelledby="component-10-2">
+                            <pre><code class="language-csharp">@@(Html.Vertex().Slider(slider => {
+    slider.Add().Image("/Content/img/thumb/1.jpg");
+    slider.Add().Image("/Content/img/thumb/2.jpg");
+    slider.Add().Image("/Content/img/thumb/3.jpg");
+    slider.Arrows(SliderArrowsType.FlashLight);
+}))</code>
+                        </pre>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <br />
+                    <h5 id="FlashDark" class="mt-6">Flash Dark</h5>
+                    <p>
+                        Use <code>.Arrows(SliderArrowsType.FlashDark)</code>
+                    </p>
+
+                    <ul class="nav nav-bordered" id="component-11" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-11-1" role="tab" aria-controls="component-11-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-11-2" role="tab" aria-controls="component-11-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-11-content">
+                        <div class="tab-pane fade show active" id="component-11-1" role="tabpanel" aria-labelledby="component-11-1">
+                            @(Html.Vertex().Slider(slider => {
+                                        slider.Add().Image("/Content/img/thumb/1.jpg");
+                                        slider.Add().Image("/Content/img/thumb/2.jpg");
+                                        slider.Add().Image("/Content/img/thumb/3.jpg");
+                                        slider.Arrows(SliderArrowsType.FlashDark);
+                                }))
+                        </div>
+                        <div class="tab-pane fade" id="component-11-2" role="tabpanel" aria-labelledby="component-11-2">
+                            <pre><code class="language-csharp">@@(Html.Vertex().Slider(slider => {
+    slider.Add().Image("/Content/img/thumb/1.jpg");
+    slider.Add().Image("/Content/img/thumb/2.jpg");
+    slider.Add().Image("/Content/img/thumb/3.jpg");
+    slider.Arrows(SliderArrowsType.FlashDark);
+}))</code>
+                        </pre>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+
+
+
+                <div class="px-6 py-6 bg-gray mb-9" id="Dots">
+                    <header class="mb-6">
+                        <h3>Dots</h3>
+                        <hr>
+                        <p class="lead-1">use <code>.Dots()</code> method to set arrows</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-5" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-5-1" role="tab" aria-controls="component-5-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-5-2" role="tab" aria-controls="component-5-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-5-content">
+                        <div class="tab-pane fade show active" id="component-5-1" role="tabpanel" aria-labelledby="component-5-1">
+                            @(Html.Vertex().Slider(slider =>
+                                        {
+                                            slider.Add().Image("/Content/img/thumb/1.jpg");
+                                            slider.Add().Image("/Content/img/thumb/2.jpg");
+                                            slider.Add().Image("/Content/img/thumb/3.jpg");
+                                            slider.Dots();
+                                        }))
+                        </div>
+                        <div class="tab-pane fade" id="component-5-2" role="tabpanel" aria-labelledby="component-5-2">
+                            <pre><code class="language-csharp">@@(Html.Vertex().Slider(slider => {
+    slider.Add().Image("/Content/img/thumb/1.jpg");
+    slider.Add().Image("/Content/img/thumb/2.jpg");
+    slider.Add().Image("/Content/img/thumb/3.jpg");
+    slider.Dots();
+}))</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div id="methods" class="mb-9">
+                    <h2 class="h4">Methods <a class="anchorjs-link" href="#methods" aria-label="Anchor" data-anchorjs-icon="#"></a></h2>
+
+                    <table class="table table-bordered bg-white">
+                        <thead>
+                            <tr>
+                                <th style="width:35%">Method</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> <p><code class="highlighter-rouge">.Method(bool value)</code></p> </td>
+                                <td>Comming soon.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</text>)
+
+
+@Html.Vertex().Footer()

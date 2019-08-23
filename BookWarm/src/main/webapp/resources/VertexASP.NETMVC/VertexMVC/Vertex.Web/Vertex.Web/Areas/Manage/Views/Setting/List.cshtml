@@ -1,0 +1,53 @@
+﻿@model Telerik.Web.Mvc.GridModel<SettingModel>
+
+@{ ViewBag.Title =  "Settings"; }
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+})
+
+@Html.Partial("_Breadcrumb", "Settings")
+
+<section class="section pt-8 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-3">
+                @Html.Partial("_LeftNav")
+            </div>
+
+            <div class="col-md-9">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <a class="btn btn-sleek-primary btn-sm pl-4 pr-4 transition-hover" href="@Url.Action("Create", "Setting")">
+                            <i class="fa fa-plus mr-1 fs-12"></i> Add New
+                        </a>
+                    </div>
+                </div>               
+
+                @(Html.Telerik().Grid<SettingModel>()
+                    .Name("settings")
+                    .BindTo(Model.Data)
+                    .Columns(columns =>
+                    {
+                        columns.Bound(x => x.Name).Width(300).Template(x => Html.ActionLink(x.Name, "Edit", "Setting", new { id = x.Id }, new { }));
+                        columns.Bound(x => x.Description).Width(300);
+                        columns.Bound(x => x.DataType);
+                        columns.Bound(x => x.Id)
+                                .Template(x => Html.ActionLink("Edit", "Edit", new { id = x.Id }, new { @class = "t-button" }))
+                                .ClientTemplate("<a href=\"Setting/Edit/<#= Id #>\" class=\"t-button\">Edit</a>")
+                                .Title(String.Empty).Width(100)
+                                .HtmlAttributes(new { align = "right", @class = "omega" });
+                    }).Pageable(settings => settings.Total(Model.Total).PageSize(12).Position(GridPagerPosition.Both))
+                )
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+@Html.Vertex().Footer()

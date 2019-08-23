@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Clone Elements </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.geocomplete.min.js"></script>
+    <script type="text/javascript">
+      jQuery(document).ready(function($){
+			$("#geocomplete").geocomplete({
+				map: "#map-1",
+				details: "form",
+				types: ["geocode", "establishment"],
+			});
+			
+			$("#find").click(function(){
+				$("#geocomplete").trigger("geocode");
+			});
+      });	  
+    </script> 
+       
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-0">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-map-marker"></i>Geocomplete </h4>
+            </div><!-- end .form-header section -->
+            
+            <form>
+                <div class="form-body"> 
+                
+                    <div class="spacer-b30">
+                        <div class="tagline"><span> Jquery Geocomplete </span></div><!-- .tagline -->
+                    </div>
+                    
+                    <div class="section">
+                        <div class="smart-widget sm-right smr-80">
+                            <label class="field">
+                                <input type="text" id="geocomplete"  class="gui-input"  placeholder="Type in an address" value="Empire State Bldg">
+                            </label>
+                            <!--<button type="button" class="button" id="find"> Find </button>-->
+                            <input id="find" type="button" class="button" value="find" />
+                        </div><!-- end .smart-widget section --> 
+                    </div><!-- end section -->
+                    
+                    <div class="frm-row">
+                        <div class="colm colm8">
+                            <div class="frm-row">
+                                <div class="colm colm6">
+                                
+                                    <div class="section">
+                                        <label class="field-label"> Name </label>
+                                        <label class="field">
+                                            <input type="text" name="name" class="gui-input" placeholder="Name" value="">
+                                        </label>
+                                    </div><!-- end section -->
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> POI Name </label>
+                                        <label class="field">
+                                            <input type="text" name="point_of_interest" class="gui-input" placeholder="POI Name" value="">
+                                        </label>
+                                    </div><!-- end section -->                         
+                                
+                                    <div class="section">
+                                        <label class="field-label"> Latitude </label>
+                                        <label class="field">
+                                            <input type="text" name="lat" class="gui-input" placeholder="Latitude" value="">
+                                        </label>
+                                    </div><!-- end section -->
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> Longitude </label>
+                                        <label class="field">
+                                            <input type="text" name="lng" class="gui-input" placeholder="Longitude" value="">
+                                        </label>
+                                    </div><!-- end section -->
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> Location </label>
+                                        <label class="field">
+                                            <input type="text" name="location" class="gui-input" placeholder="Location" value="">
+                                        </label>
+                                    </div><!-- end section -->
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> Location Type </label>
+                                        <label class="field">
+                                            <input type="text" name="location_type" class="gui-input" placeholder="Location Type" value="">
+                                        </label>
+                                    </div><!-- end section --> 
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> Formatted Address </label>
+                                        <label class="field">
+                                            <input type="text" name="formatted_address" class="gui-input" placeholder="Formatted Address" value="">
+                                        </label>
+                                    </div><!-- end section -->
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> Bounds </label>
+                                        <label class="field">
+                                            <input type="text" name="bounds" class="gui-input" placeholder="Bounds" value="">
+                                        </label>
+                                    </div><!-- end section -->
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> Viewport </label>
+                                        <label class="field">
+                                            <input type="text" name="viewport" class="gui-input" placeholder="Viewport" value="">
+                                        </label>
+                                    </div><!-- end section -->
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> Route </label>
+                                        <label class="field">
+                                            <input type="text" name="route" class="gui-input" placeholder="Route" value="">
+                                        </label>
+                                    </div><!-- end section -->
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> Street Number </label>
+                                        <label class="field">
+                                            <input type="text" name="street_number" class="gui-input" placeholder="Street Number" value="">
+                                        </label>
+                                    </div><!-- end section -->         
+                                                                   
+                                </div><!-- end col6 section -->
+                                
+                                <div class="colm colm6">
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> Postal Code </label>
+                                        <label class="field">
+                                            <input type="text" name="postal_code" class="gui-input" placeholder="Postal Code" value="">
+                                        </label>
+                                    </div><!-- end section -->
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> Locality </label>
+                                        <label class="field">
+                                            <input type="text" name="locality" class="gui-input" placeholder="Locality" value="">
+                                        </label>
+                                    </div><!-- end section --> 
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> Sublocality </label>
+                                        <label class="field">
+                                            <input type="text" name="sublocality" class="gui-input" placeholder="Sublocality" value="">
+                                        </label>
+                                    </div><!-- end section -->
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> Country </label>
+                                        <label class="field">
+                                            <input type="text" name="country" class="gui-input" placeholder="Country" value="">
+                                        </label>
+                                    </div><!-- end section --> 
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> Country Code </label>
+                                        <label class="field">
+                                            <input type="text" name="country_short" class="gui-input" placeholder="Country Code" value="">
+                                        </label>
+                                    </div><!-- end section -->
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> State </label>
+                                        <label class="field">
+                                            <input type="text" name="administrative_area_level_1" class="gui-input" placeholder="State" value="">
+                                        </label>
+                                    </div><!-- end section -->
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> Place ID </label>
+                                        <label class="field">
+                                            <input type="text" name="place_id" class="gui-input" placeholder="Place ID" value="">
+                                        </label>
+                                    </div><!-- end section -->
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> ID </label>
+                                        <label class="field">
+                                            <input type="text" name="id" class="gui-input" placeholder="ID" value="">
+                                        </label>
+                                    </div><!-- end section -->  
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> Reference </label>
+                                        <label class="field">
+                                            <input type="text" name="reference" class="gui-input" placeholder="Reference" value="">
+                                        </label>
+                                    </div><!-- end section -->
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> URL </label>
+                                        <label class="field">
+                                            <input type="text" name="url" class="gui-input" placeholder="URL" value="">
+                                        </label>
+                                    </div><!-- end section -->
+                                    
+                                    <div class="section">
+                                        <label class="field-label"> Website </label>
+                                        <label class="field">
+                                            <input type="text" name="website" class="gui-input" placeholder="Website" value="">
+                                        </label>
+                                    </div><!-- end section -->                                                                                                       
+                                                            
+                                </div><!-- end col6 section -->
+                            </div><!-- end .frm-row section -->
+                        </div><!-- end .col8 section -->
+                        <div class="colm colm4">
+                            <div class="map-container"><div class="map-area" id="map-1"></div></div> 
+                        </div><!-- end .col4 section -->
+                    </div><!-- end .frm-row section --> 
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Button  </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+
+</body>
+</html>

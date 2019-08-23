@@ -1,0 +1,9 @@
+﻿@model SvgInjector
+
+<div id="svg_parent">
+    <img class="js-svg-injector @Model.GetCssClass()"
+         src="@Model.SvgSrc"
+         data-img-info='[{"targetId": "#svg_changing_id", "src": "@Model.NewSrc"}]'
+         data-parent="#svg_parent"
+         @Model.GetStyle() @Model.GetHtmlAtributes()>
+</div>

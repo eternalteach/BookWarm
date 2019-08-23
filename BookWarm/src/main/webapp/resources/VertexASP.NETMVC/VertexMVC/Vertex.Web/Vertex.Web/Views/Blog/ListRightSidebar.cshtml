@@ -1,0 +1,53 @@
+﻿
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+    settings.BorderBottom = HeaderBorderBottom.Light;
+})
+
+
+
+@Html.Vertex().Section().ContentTemplate(@<text>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+
+                @Html.Vertex().BlogPosts(BlogPostViewName.ListBottomText).Pageable(3)
+
+            </div>
+
+            <div class="col-lg-4">
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarSubscribeForm", new SubscriberModel())
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarFollowLinks")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarCategories")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarPopularPosts")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarLatestPosts")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarLatestComments")
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</text>)
+
+
+
+@Html.Vertex().Footer()

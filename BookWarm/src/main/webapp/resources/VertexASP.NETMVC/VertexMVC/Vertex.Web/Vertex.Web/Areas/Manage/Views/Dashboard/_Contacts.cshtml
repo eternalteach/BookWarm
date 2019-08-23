@@ -1,0 +1,40 @@
+﻿@model List<ContactManageModel>
+
+
+<div class="border mb-5">
+    <div class="border-top bg-gray py-3 px-4">
+        <h5 class="h6 mb-0 mt-1">Contacts <span class="badge badge-success float-right">@Model.Count Message</span></h5>
+    </div>
+    <div class="bg-white pb-1 pt-0">
+        @foreach (var contact in Model.Take(4))
+        {
+            <a href="@Url.Action("Edit", "Contact", new { Id = contact.Id })" class="media align-items-center hover-shadow-2 pl-3 pr-4 border-top dashboard-list-item">
+                <div class="w-60px mr-2 text-center">
+                    <img src="~/Content/img/base/avatar.png" class="avatar" />
+                </div>
+                <div class="media-body">
+                    <p class="small fs-13 text-dark fw-600 m-0" style="line-height:22px;">@contact.FullName.Truncate(15, "...") </p>
+                    <p class="text-dark fs-13 m-0" style="line-height:19px;">
+                        @contact.Message.Truncate(70, "...")
+                    </p>
+                    <span class="time fs-12 text-muted">@contact.Date.ToRelativeFormat()</span>
+                </div>
+            </a>
+        }
+        @if (Model.Count == 0)
+        {
+            <div class="py-3 px-3 text-center border-top">
+                <p class="fs-14 text-muted m-0">
+                    No any contacts to list.
+                    <a href="@Url.Action("List", "Contact")" class="anim-link-2 anim-link-2-primary">go to list</a>
+                </p>
+            </div>
+        }
+        else
+        {
+            <div class="py-3 px-3 text-center border-top">
+                <a href="@Url.Action("List", "Contact")" class="fs-14 anim-link-2 anim-link-2-primary">View all contacts</a>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,59 @@
+﻿@model CategoryDetailModel
+@{
+    ViewBag.Title = Model.Name;
+}
+
+ 
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+})
+
+@Html.Vertex().Section().ContentTemplate(@<text>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <h5 class="mnt-8 ml-3 mb-6">
+                    Posts listed for <span class="m-link">@Model.Name</span> category.
+                </h5>
+
+                @(Html.Vertex().BlogPosts(BlogPostViewName.ListBottomText)
+                                .Pageable(5)
+                                .FilterByCategoryId(Model.Id))
+
+            </div>
+
+            <div class="col-lg-4">
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarSubscribeForm", new SubscriberModel())
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarFollowLinks")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarCategories")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarPopularPosts")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarLatestPosts")
+                </div>
+
+                <div class="mb-9">
+                    @Html.Vertex().Widget("SidebarLatestComments")
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</text>)
+
+
+@Html.Vertex().Footer()

@@ -1,0 +1,45 @@
+﻿@model Nav
+
+
+<nav class="collapse">
+    <ul class="nav nav-pills" id="mainNav">
+        @foreach (var menu in Model.Dropdowns.Where(s => !string.IsNullOrEmpty(s.LinkText)))
+        {
+            <li class="dropdown">
+                <a class="dropdown-item dropdown-toggle @menu.IsActive" href="@menu.Action"> @Html.Raw(menu.LinkText) </a>
+                @if (menu.HasSubMenu)
+                {
+                    @renderSubMenu(menu.Dropdowns)
+                }
+            </li>
+        }
+    </ul>
+</nav>
+
+
+@helper renderSubMenu(List<Dropdown> menus)
+{
+    <ul class="dropdown-menu">
+        @foreach (var menu in menus)
+        {
+            if (menu.HasSubMenu)
+            {
+                <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle @menu.IsActive" href="@menu.Action">@Html.Raw(menu.LinkText)</a>
+                    @renderSubMenu(menu.Dropdowns)
+                </li>
+            }
+            else
+            {
+                if (menu.DropdownType == DropdownType.Link)
+                {
+                    <li><a class="dropdown-item @menu.IsActive" href="@menu.Action">@Html.Raw(menu.LinkText)</a></li>
+                }
+                else if (menu.DropdownType == DropdownType.Divider)
+                {
+                    <li class="header-divider"></li>
+                }
+            }
+        }
+    </ul>
+}

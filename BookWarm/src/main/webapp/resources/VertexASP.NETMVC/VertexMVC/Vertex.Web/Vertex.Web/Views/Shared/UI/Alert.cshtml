@@ -1,0 +1,13 @@
+﻿@model Alert 
+
+
+<div class="@Model.GetCssClass()" @Model.GetHtmlAtributes() role="alert">
+    @Html.Raw(Model.Text)
+
+    @if (Model.Dismissible)
+    {
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    }
+</div>

@@ -1,0 +1,313 @@
+﻿
+@Html.Vertex().Page().Title("Home").Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+})
+
+
+@Html.Vertex().Section().Size(SectionSize.None).AppendCssClass("pt-2").ContentTemplate(
+    @<text>
+        <div class="container">
+            <div class="row align-items-center pt-8">
+                <div class="col-sm-12 col-lg-7">
+                    <div class="mb-sm-8 mb-md-4 mb-lg-0">
+                        <figure class="ie-main-hero">
+                            @Html.Vertex().SvgInjector().SvgSrc("/Content/img/svg/svg3.svg").NewSrc("/Content/img/hero/svg3_1.jpg")
+
+                            <a href="https://www.youtube.com/watch?v=bmixiVwtDso" class="m-video-link video-player-centered" data-provide="lightbox">
+                                <div class="m-video-link--icon"><i class="fas fa-play"></i></div>
+                                <div class="m-video-link--text text-white">
+                                    <div>Watch</div>
+                                    <div class="font-weight-bold">INTRO VIDEO</div>
+                                </div>
+                            </a>
+                        </figure>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-5">
+                    <div class="clearfix text-center text-lg-left">
+                        <h2 class="fs-50">
+                            Hello, do you <br />
+                            need a new web <br />
+                            @Html.Vertex().Typing(settings => {
+                                   settings.Text = "design?, app?, subscription?";
+                                   settings.BackSpeed = 75;
+                                   settings.AppendCssClass("text-primary");
+                               })
+                        </h2>
+                        <p class="mt-3 mb-4">It is a long estabished fact that a reader will be distracted <br /> by to the readeble content of a page when.</p>
+
+                        @Html.Vertex().Button("See Features").Sleek().TransitionHover().ActionLink(Url.Action("Index", "Features")).AppendCssClass("px-5")
+
+                        <span class="o-5 fs-15 mr-1 ml-2">or</span>
+
+                        <a href="@Url.Action("About", "Page")" class="anim-link-2 anim-link-2-primary fs-15">
+                            Read more →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </text>)
+
+
+
+@Html.Vertex().Section().ContentTemplate(
+    @<text>
+        <div class="container">
+            <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-9">
+                <h2 class="">Our Core <span class="text-primary">Services</span></h2>
+                <p>We have a streamline work process that defines business <br /> growth.</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-11">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            @(Html.Vertex().IconBox()
+                                .Icon("icon-dollar-currency-2")
+                                .SubTitle("Business Service")
+                                .Title("Complete solutions for <br />global organisations")
+                                .Content("Navigation available in bootstrap share general markup.")
+                                .Bordered(BootstrapColor.Light, OvalDividerType.Divider8)
+                            )
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            @(Html.Vertex().IconBox()
+                                .Icon("icon-shopping-bag-3")
+                                .SubTitle("Service Offering")
+                                .Title("Professional Services <br />by our expert")
+                                .Content("Navigation available in bootstrap share general markup.")
+                                .Bordered(BootstrapColor.Primary, OvalDividerType.Divider8)
+                                .IconColor(BootstrapColor.White)
+                                .TitleColor(BootstrapColor.White)
+                                .ContentColor(BootstrapColor.White)
+                            )
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            @(Html.Vertex().IconBox()
+                                 .Icon("icon-window-hand")
+                                 .SubTitle("Technical Service")
+                                 .Title("Business Monitoring & <br />Lead Generation")
+                                 .Content("Navigation available in bootstrap share general markup.")
+                                 .Bordered(BootstrapColor.Light, OvalDividerType.Divider8)
+                            )
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </text>)
+
+
+@Html.Vertex().Section().AppendCssClass("pt-8").ContentTemplate(
+    @<text>
+        <div class="container">
+            <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-9">
+                <h2>Recent <span class="text-primary">Work</span></h2>
+                <p>If you are looking to work with us do not hesitate to contact <br /> us via the contact page.</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 mb-4">
+                    @Html.Vertex().Portfolio(PortfolioViewName.Agency).ToSlider(slider => {
+                         slider.SlidesToShow(4);
+                         slider.Dots();
+                     }).DisplayCount(10)
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-sm-12">
+                    @(Html.Vertex().Button("View All Project")
+                        .Sleek()
+                        .TransitionHover()
+                        .AppendCssClass("pr-5 pl-5")
+                        .ActionLink(Url.Action("AwesomeWork", "Portfolio")))
+                </div>
+            </div>
+        </div>
+    </text>)
+
+
+
+
+@Html.Vertex().Section(setting => {
+    setting.SectionType = SectionType.ParallaxVideo;
+    setting.Src = "mp4:/Content/video/video_space_cover.mp4";
+    setting.AppendCssClass("text-white text-center ml-0 mr-0 ml-lg-5 mr-lg-5");
+}).ContentTemplate(@<text>
+    <div class="container">
+        <header class="section-header mb-3">
+            <img src="/Content/img/logo-white.png" />
+        </header>
+
+        <p class="white-color fs-24">
+            Our themes power more than <b class="fsx">24,000</b> <br />
+            websites all over the world
+        </p>
+
+        @(Html.Vertex().Button("More About Us")
+            .Sleek().Color(BootstrapColor.White)
+            .TransitionHover().Icon("icon-arrow-right-2")
+            .AppendCssClass("mt-4 pl-4 pr-4")
+            .ActionLink(Url.Action("About", "Page")))
+    </div>
+</text>)
+
+
+
+
+@Html.Vertex().Section().ContentTemplate(@<text>
+    <div class="container">
+        <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-9">
+            <h2>Vertex <span class="text-primary">Features</span></h2>
+            <p>Join The Ultimate And Awesome Experience</p>
+        </div>
+
+        <div class="row justify-content-lg-center">
+            <div class="col-md-6 col-lg-5 mb-7">
+                @(Html.Vertex().IconBox()
+                   .Icon("fas fa-box-open").IconPosition(IconBoxIconPosition.Left)
+                   .Title("Unlimited Possibilites")
+                   .Content("Sed quis dolor in lacus ullamcorper euismod nec et nibh. Morbi mollis, enim vitae rutrum lacus porttitor..")
+                   .ActionLink("Explore now", "BlogPost", "Features")
+                   .AppendCssClass("pr-lg-5"))
+            </div>
+            <div class="col-md-6 col-lg-5 mb-7">
+                @(Html.Vertex().IconBox()
+                    .Icon("fas fa-layer-group").IconPosition(IconBoxIconPosition.Left)
+                    .Title("Full Responsive")
+                    .Content("Sed quis dolor in lacus ullamcorper euismod nec et nibh. Morbi mollis, enim vitae rutrum lacus porttitor..")
+                    .ActionLink("Explore now", "Portfolio", "Features")
+                    .AppendCssClass("pl-lg-5"))
+            </div>
+            <div class="w-100"></div>
+            <div class="col-md-6 col-lg-5 mb-7">
+                @(Html.Vertex().IconBox()
+                    .Icon("fas fa-paint-roller").IconPosition(IconBoxIconPosition.Left)
+                    .Title("Easy to Customize")
+                    .Content("Sed quis dolor in lacus ullamcorper euismod nec et nibh. Morbi mollis, enim vitae rutrum lacus porttitor..")
+                    .ActionLink("Explore now", "Clients", "Features")
+                    .AppendCssClass("pr-lg-5"))
+            </div>
+            <div class="col-md-6 col-lg-5 mb-7">
+                @(Html.Vertex().IconBox()
+                    .Icon("fas fa-gem").IconPosition(IconBoxIconPosition.Left)
+                    .Title("Clean And Modern")
+                    .Content("Sed quis dolor in lacus ullamcorper euismod nec et nibh. Morbi mollis, enim vitae rutrum lacus porttitor.")
+                    .ActionLink("Explore now", "Jobs", "Features")
+                    .AppendCssClass("pl-lg-5"))
+            </div>
+        </div>
+
+        <div class="row text-center">
+            <div class="col-sm-12 mt-3">
+                @(Html.Vertex().Button("Let's See Our Features")
+                        .Sleek()
+                        .TransitionHover()
+                        .AppendCssClass("pr-5 pl-5")
+                        .ActionLink(Url.Action("Index", "Features")))
+            </div>
+        </div>
+    </div>
+</text>)
+
+
+
+
+@Html.Vertex().Section().ContentTemplate(@<text>
+    <div class="container">
+        <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-9">
+            <h2>Meet Our <span class="text-primary">Team</span></h2>
+            <p>Join The Ultimate And Awesome Experience</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                @(Html.Vertex().TeamMember().DisplayCount(4))
+            </div>
+        </div>
+
+    </div>
+</text>)
+
+
+@Html.Vertex().Section().SectionType(SectionType.ParallaxImage).Src("/Content/img/hero/h26.jpg").Overlay(3).ContentTemplate(@<text>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="clearfix">
+                    <h2 class="text-white font-weight-bold fs-40">
+                        Let's Work Togather
+                    </h2>
+                    <p class="text-white mt-3 mb-4">
+                        Get in touch with us and let us help you, we can make your <br /> project come true.
+                    </p>
+                    <a href="#getStarted" class="btn btn-outline-light">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <a href="https://www.youtube.com/watch?v=bmixiVwtDso" class="m-video-link" data-provide="lightbox">
+                    <div class="m-video-link--icon"><i class="fas fa-play"></i></div>
+                    <div class="m-video-link--text text-white">
+                        <div>Watch</div>
+                        <div class="font-weight-bold">INTRO VIDEO</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    @Html.Vertex().OvalDivider(OvalDividerType.Divider5).Position(OvalDividerPosition.Top)
+    @Html.Vertex().OvalDivider(OvalDividerType.Divider5).Position(OvalDividerPosition.Bottom)
+</text>)
+
+
+
+
+@Html.Vertex().Section().ContentTemplate(@<text>
+    <div class="container">
+        <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-9">
+            <h2>Our Happy <span class="text-primary">Clients</span></h2>
+            <p>Our clients are the life-source of our business and the force behind our innovations.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                @(Html.Vertex().Client().ToSlider(setting =>
+                    {
+                        setting.SlidesToShow(6);
+                        setting.Autoplay();
+                        setting.Dots();
+                    }))
+            </div>
+        </div>
+    </div>
+</text>)
+
+
+@Html.Vertex().Section().SectionType(SectionType.Colored).BgColor(BootstrapColor.Light).AppendCssClass("pt-6 pb-12 border-top").ContentTemplate(@<text>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 text-center text-sm-left">
+                <h2 class="h4 primary-color mb-0">Redy to get started?</h2>
+                <h3 class="h5 mb-0">Create a free account or get in touch.</h3>
+            </div>
+            <div class="col-sm-4">
+                <div class="text-center text-lg-right">
+                    @Html.Vertex().Button("View Features").ActionLink(Url.Action("Index","Features")).TransitionHover().AppendCssClass("mt-3 mb-0 mr-2")
+                    @Html.Vertex().Button("Get in Touch").TransitionHover().Color(BootstrapColor.Secondary).AppendCssClass("mt-3 mb-0")
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Vertex().OvalDivider(OvalDividerType.Divider8)
+</text>)
+
+
+
+@Html.Vertex().Footer()

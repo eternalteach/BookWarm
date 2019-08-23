@@ -1,0 +1,259 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Chained Selects</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.chained.min.js"></script>-->
+    
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+	<script type="text/javascript">
+    
+		jQuery(document).ready(function($){
+		
+			$("#smartphonemodel").chained("#smartphone");
+			$("#series").chained("#mark");
+			$("#model").chained("#series");
+			$("#engine").chained("#series, #model");
+			
+			$("#series-remote").remoteChained({
+				parents : "#mark-remote",
+				url : "php/selectData.php?smartload=1",
+				loading : "loading...."
+			});
+			
+			$("#model-remote").remoteChained({
+				parents : "#series-remote",
+				url : "php/selectData.php?smartload=1",
+				loading : "loading...."
+			});
+			
+			$("#engine-remote").remoteChained({
+				parents : "#series-remote, #model-remote",
+				url : "php/selectData.php?smartload=1",
+				loading : "loading....",
+				clear : true
+			});
+			
+			$("#products").remoteChained({
+				parents : "#company",
+				url : "php/selectData.php?smartload=1",
+				loading : "loading products...."
+			});		
+		
+		});				
+    
+    </script>
+       
+</head>
+
+<body class="woodbg">
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-chain"></i>Chained Selects </h4>
+            </div><!-- end .form-header section -->
+            <form method="post" action="/" id="account2">
+            	<div class="form-body">
+                    <div class="spacer-b30">
+                    	<div class="tagline"><span>Simple Chaining </span></div><!-- .tagline -->
+                    </div> 
+                	<div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field select">
+                                <select id="smartphone" name="smartphone">
+                                	<option value="">Choose option</option>
+                                    <option value="samsung">Samsung</option>
+                                    <option value="xiaomi">Xiaomi</option>
+                                    <option value="apple">Apple</option>
+                                    <option value="nokia">Nokia</option>
+                                    <option value="sony">Sony</option>
+                                    <option value="lg">LG</option>
+                                </select>
+                                <i class="arrow double"></i>                             
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm6">
+                            <label class="field select">
+                              <select id="smartphonemodel" name="smartphonemodel">
+                              	  <option value="">Choose option</option>
+                              	  <option value="galaxy-s6" class="samsung">Galaxy S6</option>
+                                  <option value="galaxy-s6-edge" class="samsung">Galaxy S6 Edge</option>
+                                  <option value="galaxy-note-4" class="samsung">Galaxy Note 4</option>
+                                  <option value="mi-note" class="xiaomi">Xiaomi Mi Note</option>
+                                  <option value="mi-note-pro" class="xiaomi">Xiaomi Mi Note Pro</option>
+                                  <option value="mi4" class="xiaomi">Xiaomi Mi4</option>
+                                  <option value="mi4i" class="xiaomi">Xiaomi Mi4i</option>
+                                  <option value="iphone6" class="apple">iPhone 6</option>
+                                  <option value="iphone6-plus" class="apple">iPhone 6 Plus</option>
+                                  <option value="iphone5s" class="apple">iPhone 5s</option>
+                                  <option value="iphone5" class="apple">iPhone 5</option>
+                                  <option value="lumia-930" class="nokia">Lumia 930</option>
+                                  <option value="lumia-920" class="nokia">Lumia 920</option>
+                                  <option value="lumia-1020" class="nokia">Lumia 1050</option>
+                                  <option value="xperia-Z3" class="sony">Xperia Z3</option>
+                                  <option value="xperia-Z2" class="sony">Xperia Z2</option>
+                                  <option value="xperia-Z" class="sony">Xperia Z</option>
+                                  <option value="lgg4" class="lg">LG G4</option>
+                                  <option value="lgg3" class="lg">LG G3</option>
+                                  <option value="lgg2" class="lg">LG G2</option>                                                                    
+                              </select>
+                              <i class="arrow double"></i>                   
+                            </label>
+                        </div><!-- end section -->               
+                    </div><!-- end frm-row section -->
+                    
+                	<div class="frm-row">
+                        <div class="section colm colm3">
+                            <label class="field select">
+                                <select id="mark" name="mark">
+                                    <option value="">--</option>
+                                    <option value="bmw">BMW</option>
+                                    <option value="audi">Audi</option>
+                                </select>
+                                <i class="arrow double"></i>                             
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm3">
+                            <label class="field select">
+                                <select id="series" name="series">
+                                    <option value="">--</option>
+                                    <option value="series-1" class="bmw">1 series</option>
+                                    <option value="series-3" class="bmw">3 series</option>
+                                    <option value="series-5" class="bmw">5 series</option>
+                                    <option value="series-6" class="bmw">6 series</option>
+                                    <option value="series-7" class="bmw">7 series</option>
+                                    <option value="a1" class="audi">A1</option>
+                                    <option value="a3" class="audi">A3</option>
+                                    <option value="s3" class="audi">S3</option>
+                                    <option value="a4" class="audi">A4</option>
+                                    <option value="s4" class="audi">S4</option>
+                                    <option value="a5" class="audi">A5</option>
+                                    <option value="s5" class="audi">S5</option>
+                                    <option value="a6" class="audi">A6</option>
+                                    <option value="s6" class="audi">S6</option>
+                                    <option value="rs6" class="audi">RS6</option>
+                                    <option value="a8" class="audi">A8</option>
+                                </select>
+                                <i class="arrow double"></i>                             
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm3">
+                            <label class="field select">
+                                <select id="model" name="model">
+                                    <option value="">--</option>
+                                    <option value="3-doors"       class="series-1">3 doors</option>
+                                    <option value="5-doors"       class="series-1">5 doors</option>
+                                    <option value="coupe"         class="series-1 series-3 series-6">Coupe</option>
+                                    <option value="cabrio"        class="series-1 series-3 series-6">Cabrio</option>
+                                    <option value="sedan"         class="series-3 series-5 series-7">Sedan</option>
+                                    <option value="touring"       class="series-3 series-5">Touring</option>
+                                    <option value="gran-tourismo" class="series-5">Gran Tourismo</option>
+                                    <option value="sedan"        class="a1 a3 s3 a4 s4 a6 s6 rs6">Sedan</option>
+                                    <option value="sportback"    class="a3 s3 a5 s5">Sportback</option>
+                                    <option value="cabriolet"    class="a3 a5 s5">Cabriolet</option>
+                                    <option value="avant"        class="a4 s4 a6 s6 rs6">Avant</option>
+                                    <option value="allroad"      class="a4 a6">Allroad</option>
+                                    <option value="coupe"        class="a5 s5">Coupe</option>
+                                </select>
+                                <i class="arrow double"></i>                             
+                            </label>
+                        </div><!-- end section -->                                               
+                        <div class="section colm colm3">
+                            <label class="field select">
+                                <select id="engine" name="engine">
+                                    <option value="">--</option>
+                                    <option value="25-petrol" class="series-3 a3 a4">2.5 petrol</option>
+                                    <option value="30-petrol" class="series-3 series-5 series-6 a3 a4 a5">3.0 petrol</option>
+                                    <option value="30-diesel" class="series-3\sedan series-5\sedan a5">3.0 diesel</option>
+                                </select>
+                              <i class="arrow double"></i>                   
+                            </label>
+                        </div><!-- end section -->               
+                    </div><!-- end frm-row section --> 
+                    
+                    <div class="spacer-t20 spacer-b40">
+                    	<div class="tagline"><span>Remote Chaining - AJAX JSON PHP  </span></div><!-- .tagline -->
+                    </div>                     
+                    
+                	<div class="frm-row">
+                        <div class="section colm colm3">
+                            <label class="field select">
+                                <select id="mark-remote" data-variable="bar" name="mark">
+                                    <option value="">--</option>
+                                    <option value="bmw">BMW</option>
+                                    <option value="audi">Audi</option>
+                                </select>                            
+                                <i class="arrow double"></i>                             
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm3">
+                            <label class="field select">
+                                <select id="series-remote" name="series">
+                                    <option value="">--</option>
+                                </select>                            
+                                <i class="arrow double"></i>                             
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm3">
+                            <label class="field select">
+                                <select id="model-remote"  name="model">
+                                    <option value="">--</option>
+                                </select>                            
+                                <i class="arrow double"></i>                             
+                            </label>
+                        </div><!-- end section -->                                               
+                        <div class="section colm colm3">
+                            <label class="field select">
+                                <select id="engine-remote" name="engine">
+                                    <option value="">--</option>
+                                </select>                            
+                              <i class="arrow double"></i>                   
+                            </label>
+                        </div><!-- end section -->               
+                    </div><!-- end frm-row section -->
+                    
+                	<div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field select">
+                                <select id="company" name="company">
+                                	<option value="">---</option>
+                                    <option value="apple">Apple</option>
+                                    <option value="microsoft">Microsoft</option>
+                                    <option value="samsung">Samsung</option>
+                                    <option value="google">Google</option>
+                                    <option value="lg">LG</option>                                  
+                                </select>
+                                <i class="arrow double"></i>                             
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm6">
+                            <label class="field select">
+                              <select id="products" name="products">
+                              	  <option value="">---</option>                                                         
+                              </select>
+                              <i class="arrow double"></i>                   
+                            </label>
+                        </div><!-- end section -->               
+                    </div><!-- end frm-row section -->
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Send Form </button>
+                </div><!-- end .form-footer section -->
+            </form>
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+</body>
+</html>

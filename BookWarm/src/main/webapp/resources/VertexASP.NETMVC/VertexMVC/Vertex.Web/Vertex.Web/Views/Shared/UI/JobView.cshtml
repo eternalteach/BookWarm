@@ -1,0 +1,53 @@
+﻿@model JobView
+
+
+@if (Model.Variation == JobViewVariation.Variation1)
+{
+    foreach (var category in Model.AllCategories)
+    {
+        var jobs = Model.Items.Where(s => s.CategoryId == category.Id);
+        if (jobs.Count() > 0)
+        {
+            <div class="row justify-content-center border-bottom mb-5">
+                <div class="col-md-3">
+                    <p class="lead text-dark">@category.Name</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="check-list">
+                        @foreach (var job in jobs)
+                        {
+                            <li>
+                                <a href="@job.Url" class="fs-16 anim-link">@job.Title</a>
+                                <p class="fs-14">@job.Location, <span class="o-6">@job.JobType</span> </p>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+    }
+}
+else if (Model.Variation == JobViewVariation.Variation2)
+{
+    foreach (var item in Model.Items)
+    {
+        <a class="card card-frame card-text-dark mb-3 transition-hover" href="@item.Url">
+            <div class="card-body py-3 px-4">
+                <span class="row justify-content-sm-between align-items-sm-center">
+                    <span class="col-sm-7 mb-1 mb-sm-0">
+                        <span class="fs-14 text-secondary">@item.Category.Name</span> <br />
+                        @item.Title
+
+                    </span>
+                    <span class="col-sm-3 mb-2 mb-sm-0 fs-14 text-secondary">
+                        @item.Location <br />
+                        @item.JobType
+                    </span>
+                    <span class="col-sm-2 text-primary text-sm-right">
+                        Apply now →
+                    </span>
+                </span>
+            </div>
+        </a>
+    }
+}

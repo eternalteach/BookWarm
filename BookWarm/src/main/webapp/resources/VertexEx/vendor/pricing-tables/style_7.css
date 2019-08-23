@@ -1,0 +1,191 @@
+/*
+CSS3 Responsive Web Pricing Tables Grids
+Updated 05.2015 – v7.0
+Copyright QuanticaLabs
+www.quanticalabs.com
+*/
+
+/* ============ Style 7 ============= */
+/* ========== HEADINGS  ========== */
+div.p_table h1.col1
+	{
+	color: #faab00;
+	}
+	
+div.p_table h1.col2
+	{
+	color: #9bba0d;
+	}
+	
+div.p_table h1.col3
+	{
+	color: #539a2d;
+	}
+	
+div.p_table h1.col4
+	{
+	color: #268061;
+	}
+	
+div.p_table h1.col1 span
+	{
+	color: #faab00;
+	}
+
+div.p_table h1.col2 span
+	{
+	color: #9bba0d;
+	}
+	
+div.p_table h1.col3 span
+	{
+	color: #539a2d;
+	}
+	
+div.p_table h1.col4 span
+	{
+	color: #268061;
+	}
+	
+div.p_table h2.col1,
+div.p_table h2.col2,
+div.p_table h2.col3,
+div.p_table h2.col4
+	{
+	color: #ffffff;
+	}
+	
+div.p_table h2.caption
+	{
+	color: #faab00;
+	}
+	
+div.p_table h2.caption span
+	{
+	color: #9bba0d;
+	}	
+	
+div.p_table h3.col1
+	{
+	color: #faab00;
+	}
+	
+div.p_table h3.col2
+	{
+	color: #9bba0d;
+	}
+	
+div.p_table h3.col3
+	{
+	color: #539a2d;
+	}
+	
+div.p_table h3.col4
+	{
+	color: #268061;
+	}
+	
+/* ========== CAPTION COLUMN  ========== */
+/* --- header row 1 ---  */
+div.p_table div.caption_column li.header_row_1 
+	{
+	border-top: 0;
+	border-bottom: 1px solid #ffffff;
+	background-color: #ffffff;
+	}
+	
+/* --- header row 2 ---  */
+div.p_table div.caption_column li.header_row_2
+	{
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+	background-color: #ffffff;
+	}
+
+/* ========== COLUMN STYLE 1  ========== */
+/* --- header row 1 ---  */
+div.p_table div.column_1 li.header_row_1
+	{
+	border-top: 0;
+	border-bottom: 1px solid #faab00;
+	background-color: #faab00;
+	}
+	
+/* --- header row 2 ---  */
+div.p_table div.column_1 li.header_row_2
+	{
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+	background-color: #ffffff;
+	}
+	
+/* ========== COLUMN STYLE 2  ========== */
+/* --- header row 1 ---  */
+div.p_table div.column_2 li.header_row_1
+	{
+	border-top: 0;
+	border-bottom: 1px solid #9bba0d;
+	background-color: #9bba0d;
+	}
+	
+/* --- header row 2 ---  */
+div.p_table div.column_2 li.header_row_2
+	{
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+	background-color: #ffffff;
+	}
+	
+/* ========== COLUMN STYLE 3  ========== */
+/* --- header row 1 ---  */
+div.p_table div.column_3 li.header_row_1
+	{
+	border-top: 0;
+	border-bottom: 1px solid #539a2d;
+	background-color: #539a2d;
+	}
+	
+/* --- header row 2 ---  */
+div.p_table div.column_3 li.header_row_2
+	{
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+	background-color: #ffffff;
+	}
+	
+/* ========== COLUMN STYLE 4  ========== */
+/* --- header row 1 ---  */
+div.p_table div.column_4 li.header_row_1
+	{
+	border-top: 0;
+	border-bottom: 1px solid #268061;
+	background-color: #268061;
+	}
+	
+/* --- header row 2 ---  */
+div.p_table div.column_4 li.header_row_2
+	{
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+	background-color: #ffffff;
+	}
+	
+/* ========== RIBBONS  ========== */
+/* --- base --- */
+div.column_ribbon
+	{
+	background: #f2f2f2; /* ribbon background color */
+	color: #444444; /* ribbon text color */
+	}
+
+/* --- bottom triangle --- */	
+div.column_ribbon::before
+	{
+	border-right-color: #d2d2d2; /* ribbon bottom triangle color */
+	}
+
+/* --- right triangles --- */		
+div.column_ribbon::after
+	{
+	border-color: #f2f2f2 transparent #f2f2f2 #f2f2f2; /* ribbon background color */
+	}	

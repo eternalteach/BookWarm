@@ -1,0 +1,21 @@
+﻿@model HtmlEditor
+
+@Html.Vertex().Page().Css(@<text>
+    <link href="~/Content/vendor/filemanager/css/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+    <link href="~/Content/vendor/filemanager/css/theme.css" rel="stylesheet" />
+    <link href="~/Content/vendor/filemanager/css/main.css" rel="stylesheet" />
+</text>)
+
+@Html.TextArea(Model.Name, /* Name suffix */
+        Model.Html, /* Initial value */
+        new { @class = "summernote-editor", data_file_browser_url = "/RoxyFileManager/Index2" }
+)
+
+<script>
+	summernote_image_upload_url = '@Html.Raw(Url.Action("ProcessRequest", "RoxyFileManager"))';
+
+	$(function () {
+		$('#@Model.Name').summernote($.extend(true, {}, summernote_global_config, { lang: "null" }));
+	});
+
+</script>

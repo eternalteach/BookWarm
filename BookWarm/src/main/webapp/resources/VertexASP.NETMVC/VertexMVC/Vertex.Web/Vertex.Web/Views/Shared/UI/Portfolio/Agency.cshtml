@@ -1,0 +1,155 @@
+﻿@model PortfolioView
+
+@{
+    if (Model.Slider != null)
+    {
+        foreach (var item in Model.Items)
+        {
+            Model.Slider.Add().Content(RenderItem(item).ToHtmlString()).AppendCssClass("p-1");
+        }
+        @Html.Raw(Model.Slider.ToHtmlString());
+    }
+    else
+    {
+        if (Model.ShowCategoryFilter)
+        {
+            <div class="cbp-l-center">
+                <div id="js-filters-agency" class="cbp-l-filters-text">
+                    <div class="cbp-l-filters-text-sort">Filter by:</div>
+                    <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">
+                        All <div class="cbp-filter-counter"></div>
+                    </div>
+
+                    @foreach (var item in Model.AllCategories)
+                    {
+                        <div data-filter=".@string.Format("cat-{0}", item.Id)" class="cbp-filter-item">
+                            @item.Name <div class="cbp-filter-counter"></div>
+                        </div>
+                    }
+                </div>
+
+                @if (Model.ShowSorter)
+                {
+                    <div id="js-sort-agency" class="cbp-l-sort cbp-l-sort--simple">
+                        <div class="cbp-l-text-sort">Sort by: </div>
+                        <div class="cbp-l-dropdown">
+                            <div class="cbp-l-dropdown-wrap">
+                                <div class="cbp-l-dropdown-header">Original order</div>
+                                <div class="cbp-l-dropdown-list">
+                                    <div class="cbp-l-dropdown-item cbp-sort-item cbp-l-dropdown-item--active" data-sort="" data-sortBy="">Original order</div>
+                                    <div class="cbp-l-dropdown-item cbp-sort-item" data-sort=".cbp-l-grid-agency-title" data-sortBy="string:asc">Title - ASC</div>
+                                    <div class="cbp-l-dropdown-item cbp-sort-item" data-sort=".cbp-l-grid-agency-title" data-sortBy="string:desc">Title - DESC</div>
+                                    <div class="cbp-l-dropdown-item cbp-sort-item" data-sort=".cbp-l-grid-agency-desc" data-sortBy="string:asc">Description - ASC</div>
+                                    <div class="cbp-l-dropdown-item cbp-sort-item" data-sort=".cbp-l-grid-agency-desc" data-sortBy="string:desc">Description - DESC</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+
+        <div class="cbp cbp-l-grid-agency mb-8"
+             data-filters="#js-filters-agency"
+             data-layout-mode="grid"
+             data-animation-type='slideLeft'
+             data-caption='none'
+             data-display-type='bottomToTop'
+             data-display-type-speed="100"
+             data-gap-horizontal="35"
+             data-gap-vertical="15"
+             data-plugin-sort-element="#js-sort-agency"
+             data-media-queries='[ {"width": 1500, "cols": 4}, {"width": 1100, "cols": 4}, {"width": 800, "cols": 3}, {"width": 480, "cols": 2}, {"width": 300, "cols": 1} ]'>
+
+            @foreach (var postItem in Model.Items)
+            {
+                @RenderItem(postItem)
+            }
+        </div>
+        <div>
+            @Html.Raw(Model.Pager)
+        </div>
+    }
+}
+
+
+@if (Model.Items.Count == 0)
+{
+    <div class="text-center small text-light">
+        No any portfolio to list. <br />
+        Go to <a href="@Url.Action("PortfolioCreate","Manage")" target="_blank" class="anim-link-2 anim-link-2-primary"> manage panel </a> to create new portfolio.
+    </div>
+}
+
+
+@helper RenderItem(Portfolio item)
+{
+    <div class="cbp-item @string.Format("cat-{0}", item.Category.Id)">
+        <a href="@item.Url">
+            <div class="cbp-caption">
+                <div class="cbp-caption-defaultWrap">
+                    @if (item.Pictures.Count() <= 2)
+                    {
+                        <img src="@item.Picture.FilePath" data-cbp-src="@item.Picture.FilePath" alt="">
+                    }
+                    else if (item.Pictures.Count() == 3)
+                    {
+                        @RenderGallery3(item.Pictures)
+                    }
+                    else if (item.Pictures.Count() > 3)
+                    {
+                        @RenderGallery3Plus(item.Pictures)
+                    }
+                </div>
+            </div>
+            <div class="cbp-l-grid-agency-title"><span class="anim-link-2">@item.Title.Truncate(25, "...")</span></div>
+            <div class="cbp-l-grid-agency-desc">@item.Category.Name.Truncate(25, "...")</div>
+        </a>
+    </div>
+}
+
+
+@helper RenderGallery3(List<MediaStorage> pictures)
+{
+    <div class="gallery gallery-3-type4">
+        <div class="gallery-item">
+            <img src="@pictures[0].FilePath" alt="...">
+        </div>
+        <div class="gallery-item-group">
+            @for (int i = 1; i < pictures.Count; i++)
+            {
+                <div class="gallery-item">
+                    <img src="@pictures[i].FilePath" alt="...">
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@helper RenderGallery3Plus(List<MediaStorage> pictures)
+{
+    <div class="gallery gallery-4-type4">
+        <div class="gallery-item">
+            <img src="@pictures[0].FilePath" alt="...">
+        </div>
+        <div class="gallery-item-group">
+            @for (int i = 1; i < pictures.Count; i++)
+            {
+                if (i >= 3 && pictures.Count > 3)
+                {
+                    <div class="gallery-item">
+                        <div class="gallery-item-overlay">+@(pictures.Count - 4)</div>
+                        <img src="@pictures[i].FilePath" alt="...">
+                    </div>
+                    break;
+                }
+                else
+                {
+                    <div class="gallery-item">
+                        <img src="@pictures[i].FilePath" alt="...">
+                    </div>
+                }
+            }
+        </div>
+    </div>
+}

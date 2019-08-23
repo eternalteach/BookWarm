@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Clone Elements </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.geocomplete.min.js"></script>
+    <script type="text/javascript">
+      jQuery(document).ready(function($){
+
+        var $geocomplete3 = $("#geocomplete3"),
+          	$multiple = $("#multiple");
+        
+			$geocomplete3
+			  .geocomplete({ map: "#map-2" })
+			  .bind("geocode:multiple", function(event, results){
+				$.each(results, function(){
+				  var result = this;
+				  $("<li>")
+					.html(result.formatted_address)
+					.appendTo($multiple)
+					.click(function(){
+					  $geocomplete3.geocomplete("update", result)
+					});
+				});
+			  });
+	   
+      });	  
+    </script> 
+       
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-map-marker"></i>Geocomplete </h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="account2">
+                <div class="form-body"> 
+                
+                    <div class="spacer-b30">
+                        <div class="tagline"><span> Jquery Geocomplete </span></div><!-- .tagline -->
+                    </div>
+                    
+                    <div class="section">
+                        <div class="smart-widget sm-right smr-80">
+                            <label class="field">
+                                <input type="text" class="gui-input" id="geocomplete3" placeholder="Type in an address" value="Hauptstraße">
+                            </label>
+                            <button type="button" class="button" id="find3"> Find </button>
+                        </div><!-- end .smart-widget section --> 
+                    </div><!-- end section -->
+                    
+                    <div class="map-container"><div class="map-area" id="map-2"></div></div>                                        
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Button  </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+
+</body>
+</html>

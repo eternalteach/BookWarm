@@ -1,0 +1,58 @@
+﻿@model BlogPost
+
+
+<div class="popular-articles">
+    <header class="popular-header header-card white-underline-links">
+        <h2 class="text-white header-card-title">
+            Popular <br>this <br>month
+        </h2>
+        <p class="mb-0 text-white-50">
+            Join our <a class="m-link-light" href="#">news</a>
+        </p>
+    </header>
+
+    <div class="mini-card-grid">
+        @foreach (var post in Model.Items)
+        {
+            <article class="mini-card module module-article article">
+                <header class="mini-article-card-header">
+                    <div class="mini-article-card-title">
+                        <div class="mini-article-subhead">
+                            @*Article*@
+                            <time class="text-light ml-2" datetime="2019-01-21">
+                                @*<i class="far fa-clock ml-2 fs-12"></i>*@ @post.CreateDateUtc.ToRelativeFormat()
+                                <i class="icon icon-preview-2 ml-3 fs-16"></i> @post.ViewCount
+                            </time>
+                        </div>
+                        <h2>
+                            <a href="/@post.Url" class="article-card-header read-article anim-link-2 anim-link-2-primary">
+                                @post.Title
+                            </a>
+                        </h2>
+                    </div>
+                </header>
+
+                <div class="mini-article-meta">
+                    <div class="mini-article-byline">
+                        <div class="author-avatar">
+                            <a class="author-name" href="#">
+                                <img alt="@post.User.UserName" src="@post.User.Avatar.FilePath" class="avatar" height="80" width="80">
+                            </a>
+                        </div>
+                        <div class="author-name-area">
+                            <div class="author-name-prefix text-light">
+                                Author
+                            </div>
+                            <a class="author-name" href="/User/@post.User.UserName">
+                                @post.User.UserName
+                            </a>
+                        </div>
+                    </div>
+                    <div class="tags">
+                        <a href="/@post.Category.Url" rel="tag" class="label label--sm label--secondary">@post.Category.Name</a>
+                    </div>
+                </div>
+            </article>
+        }
+    </div>
+</div>

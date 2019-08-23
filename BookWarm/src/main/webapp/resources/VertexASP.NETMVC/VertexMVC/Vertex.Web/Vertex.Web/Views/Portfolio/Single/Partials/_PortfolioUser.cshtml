@@ -1,0 +1,31 @@
+﻿@model ApplicationUser
+
+<div class="clearfix my-9">
+    <div class="media mb-4">
+        <div class="w-15 mr-4">
+            <div class="vpicture-wrap vpicture-wrap-110px">
+                <div class="vpicture-wrap-inner">
+                    <div class="vpicture-wrap-image" style="background-image: url('@Model.Avatar.FilePath')"></div>
+                </div>
+            </div>
+        </div>
+        <div class="media-body">
+            <a class="text-dark anim-link-2 clearfix h5" href="/User/@Model.UserName">@Model.UserName</a>
+            <p class="mt-2">
+                @Html.Raw(Model.Description)
+            </p>
+
+            @if (Model.SocialNetworks != null && Model.SocialNetworks.Count > 0)
+            {
+                <div class="social social-brand">
+                    @foreach (var socialLink in Model.SocialNetworks)
+                    {
+                        <a target="_blank" href="@socialLink.WebAddress" class="social-@socialLink.Name.ToLower()" title="View on @socialLink.Name">
+                            <i class="@AvailableSocialNetwork.Icons[socialLink.Name].Icon"></i>
+                        </a>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

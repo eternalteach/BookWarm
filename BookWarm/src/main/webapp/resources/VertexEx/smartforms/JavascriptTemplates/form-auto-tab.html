@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Form validation </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    
+    
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.autotab.min.js"></script>-->
+    
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+	<script type="text/javascript">
+        jQuery(document).ready(function($){
+			$('.number').autotab();
+			$('.dataAttr').autotab();
+			$('.maxnumber').autotab({ maxlength: 3 });
+			$('#alphanumeric1').autotab({ format: 'alphanumeric', target: '#alphanumeric2' });
+			$('#alphanumeric2').autotab({ format: 'alphanumeric', target: '#alphanumeric3', previous: '#alphanumeric1' });
+			$('#alphanumeric3').autotab({ format: 'alphanumeric', target: '#alphanumeric4', previous: '#alphanumeric2' });
+			$('#alphanumeric4').autotab({ format: 'alphanumeric', previous: '#alphanumeric3' });
+			$('.toUpper').autotab({ format: 'text',uppercase: true });				
+					
+        });	
+    </script>
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-twitch"></i>jQuery Autotab </h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" id="smart-form">
+            	<div class="form-body">
+                
+                    <div class="spacer-b20">
+                    	<label class="field-label">Autotab Numbers</label>
+                    </div>
+                                        
+                    <div class="frm-row">
+                        <div class="section colm colm3">
+                            <label class="field">
+                                <input type="text" id="number1" class="gui-input number" maxlength="3" placeholder="256">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm9">
+                            <label class="field">
+                                <input type="text" id="number2" class="gui-input number" maxlength="6" placeholder="707070">
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="spacer-b20">
+                    	<label class="field-label">Maximum Input Length </label>
+                    </div>                    
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm4">
+                            <label class="field">
+                                <input type="text" id="max_number1" class="gui-input maxnumber" placeholder="XXX">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm4">
+                            <label class="field">
+                                <input type="text" id="max_number2" class="gui-input maxnumber" placeholder="XXX">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm4">
+                            <label class="field">
+                                <input type="text" id="max_number3" class="gui-input maxnumber" placeholder="XXX">
+                            </label>
+                        </div><!-- end section -->
+                                                
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="spacer-b20">
+                    	<label class="field-label">Autotab Alphanumeric</label>
+                    </div>                                        
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm3">
+                            <label class="field">
+                                <input type="text" id="alphanumeric1" class="gui-input alphanumeric" maxlength="4" placeholder="XXXX">
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm3">
+                            <label class="field">
+                                <input type="text" id="alphanumeric2" class="gui-input alphanumeric" maxlength="4" placeholder="XXXX">
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm3">
+                            <label class="field">
+                                <input type="text" id="alphanumeric3" class="gui-input alphanumeric" maxlength="4" placeholder="XXXX">
+                            </label>
+                        </div><!-- end section -->
+                        <div class="section colm colm3">
+                            <label class="field">
+                                <input type="text" id="alphanumeric4" class="gui-input alphanumeric" maxlength="4" placeholder="XXXX">
+                            </label>
+                        </div><!-- end section -->                        
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="spacer-b20">
+                    	<label class="field-label">HTL5 Data Attributes</label>
+                    </div>                    
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm4">
+                            <label class="field">
+                                <input type="text" id="data_attr1" class="gui-input dataAttr" maxlength="5" data-autotab-format="number" placeholder="XXXXX">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm4">
+                            <label class="field">
+                                <input type="text" id="data_attr2" class="gui-input dataAttr" maxlength="5" data-autotab-format="number" placeholder="XXXXX">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm4">
+                            <label class="field">
+                                <input type="text" id="data_attr3" class="gui-input dataAttr" maxlength="5" data-autotab-format="number" placeholder="XXXXX">
+                            </label>
+                        </div><!-- end section -->
+                                                
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="spacer-b20">
+                    	<label class="field-label">Uppercase Text</label>
+                    </div>                      
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field">
+                                <input type="text" id="uppercase1" class="gui-input toUpper" maxlength="6" placeholder="XXXXXX">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                            <label class="field">
+                                <input type="text" id="uppercase1" class="gui-input toUpper" maxlength="6" placeholder="XXXXXX">
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section -->                                                            
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Send Form </button>
+                    <button type="reset" class="button"> Cancel </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+    
+    <div></div><!-- end section -->
+
+</body>
+</html>

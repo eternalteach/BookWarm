@@ -1,0 +1,10 @@
+﻿@model Spinner
+
+
+<div class="@Model.GetCssClass()" @Model.GetHtmlAtributes()>
+    @if (!String.IsNullOrEmpty(Model.Text))
+    {
+        <span class="sr-only">@Html.Raw(Model.Text)</span>
+    }
+</div>
+

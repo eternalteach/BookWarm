@@ -1,0 +1,45 @@
+﻿@model Telerik.Web.Mvc.GridModel<SubscriberModel>
+
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+})
+ 
+@Html.Partial("_Breadcrumb", "Portfolio Categories")
+
+<section class="section pt-8 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-3">
+                @Html.Partial("_LeftNav")
+            </div>
+            <div class="col-md-9">
+
+                @(Html.Telerik().Grid<SubscriberModel>()
+                      .Name("categories")
+                      .BindTo(Model.Data)
+                      .Columns(columns =>
+                      {
+                          columns.Bound(x => x.Email).Width(350).Template(x => Html.ActionLink(x.Email, "Edit", "Subscriber", new { id = x.Id }, new { }));
+                          columns.Bound(x => x.FullName); 
+                          columns.Bound(x => x.SubscribeDate);
+                          columns.Bound(x => x.IsActive).Centered().Template(item => @Html.SymbolForBool(item.IsActive)).ClientTemplate(@Html.SymbolForBool("Published")); 
+                          columns.Bound(x => x.Id)
+                                  .Template(x => Html.ActionLink("View", "Edit", new { id = x.Id }, new { @class = "t-button" }))
+                                  .ClientTemplate("<a href=\"Subscriber/Edit/<#= Id #>\" class=\"t-button\">View</a>")
+                                  .Title(String.Empty).Width(100)
+                                  .HtmlAttributes(new { align = "right", @class = "omega" });
+                      }).Pageable(settings => settings.Total(Model.Total).PageSize(10).Position(GridPagerPosition.Both))
+                )
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+@Html.Vertex().Footer()

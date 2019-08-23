@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Month Picker </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-monthpicker.min.js"></script>-->
+    
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+    <script type="text/javascript">
+	
+		jQuery(document).ready(function($){
+		
+					$("#month-picker1").monthpicker({
+						changeYear: false,
+						stepYears: 1,
+						prevText: '<i class="fa fa-chevron-left"></i>',
+						nextText: '<i class="fa fa-chevron-right"></i>',
+						showButtonPanel: true
+					});					
+					
+					$("#month-picker2").monthpicker({
+						changeYear: false,
+						stepYears: 1,
+						prevText: '<i class="fa fa-chevron-left"></i>',
+						nextText: '<i class="fa fa-chevron-right"></i>',
+						showButtonPanel: true
+					});	
+					
+					$("#month-picker3").monthpicker({
+						monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin', 'Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+						monthNamesShort: ['Jan','Fév','Mar','Avr','Mai','Jui', 'Jul','Aoû','Sep','Oct','Nov','Déc'],
+						prevText: '<i class="fa fa-chevron-left"></i>',
+						nextText: '<i class="fa fa-chevron-right"></i>',						
+						changeYear: false,
+						yearRange: 'c-2:c+2',
+						dateFormat: 'MM yy'
+					});
+					
+					$('#month-picker4').monthpicker({
+						dateFormat: 'MM yy',
+						monthNames: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+						monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+						prevText: '<i class="fa fa-chevron-left"></i>',
+						nextText: '<i class="fa fa-chevron-right"></i>',
+						changeYear: true,
+					});	
+					
+					$('#month-picker5').monthpicker({
+						showOn: 'button',
+						buttonText: '<i class="fa fa-calendar"></i>',
+						prevText: '<i class="fa fa-chevron-left"></i>',
+						nextText: '<i class="fa fa-chevron-right"></i>',
+						changeYear: true
+					});
+												
+					$('#month-picker6').monthpicker({
+						showOn: 'button',
+						buttonText: '<i class="fa fa-calendar"></i>',
+						prevText: '<i class="fa fa-chevron-left"></i>',
+						nextText: '<i class="fa fa-chevron-right"></i>',
+						changeYear: true
+					});
+						
+					$(".date-picker").datepicker({
+						showOn: "both",
+						buttonText: '<i class="fa fa-calendar"></i>',
+						prevText: '<i class="fa fa-chevron-left"></i>',
+						nextText: '<i class="fa fa-chevron-right"></i>',
+						changeYear: false					
+					});
+		});				
+    
+    </script>
+    
+    
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-calendar-o"></i> Month Picker </h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="smart-form">
+            	<div class="form-body">
+
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text" id="month-picker1" name="month-picker1" class="gui-input">
+                                <span class="field-icon"><i class="fa fa-calendar-o"></i></span>  
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text" id="month-picker2" name="month-picker2" class="gui-input">
+                                <span class="field-icon"><i class="fa fa-calendar-o"></i></span>  
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="spacer-t20 spacer-b40">
+                    	<div class="tagline"><span> Custom Month Names </span></div><!-- .tagline -->
+                    </div>                                       
+                    
+                    <div class="frm-row">
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text" id="month-picker3" name="month-picker3" class="gui-input">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span>  
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                            <label class="field prepend-icon">
+                            	<input type="text" id="month-picker4" name="month-picker4" class="gui-input">
+                                <span class="field-icon"><i class="fa fa-calendar"></i></span>  
+                            </label>
+                        </div><!-- end section -->
+                    </div><!-- end .frm-row section -->                   
+                   
+                    
+                    <div class="spacer-t20 spacer-b40">
+                    	<div class="tagline"><span> Show On Icon Click </span></div><!-- .tagline -->
+                    </div>
+                   
+                    <div class="frm-row">
+                    
+                        <div class="section colm colm6">
+                            <label class="field prepend-picker-icon">
+                            	<input type="text" id="month-picker5" name="month-picker5" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                            <label class="field append-picker-icon">
+                            	<input type="text" id="month-picker6" name="month-picker6" class="gui-input">
+                            </label>
+                        </div><!-- end section -->
+                        
+                    </div><!-- end .frm-row section -->
+                    
+                    <div class="spacer-t20 spacer-b40">
+                    	<div class="tagline"><span> Date Picker </span></div><!-- .tagline -->
+                    </div>
+                   
+                    <div class="frm-row">
+                    
+                        <div class="section colm colm6">
+                            <label class="field prepend-picker-icon">
+                            	<input type="text" id="date-picker1" name="date-picker1" class="gui-input date-picker">
+                            </label>
+                        </div><!-- end section -->
+                        
+                        <div class="section colm colm6">
+                            <label class="field append-picker-icon">
+                            	<input type="text" id="date-picker2" name="date-picker2" class="gui-input date-picker">
+                            </label>
+                        </div><!-- end section -->
+                        
+                    </div><!-- end .frm-row section -->                    
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Submit Form </button>
+                    <button type="reset" class="button"> Cancel </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+    
+    <div></div><!-- end section -->
+
+</body>
+</html>

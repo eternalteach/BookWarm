@@ -1,0 +1,283 @@
+﻿
+@Html.Vertex().Page().Title("Home").Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+    settings.BorderBottom = HeaderBorderBottom.Light;
+})
+
+
+
+<section class="section">
+
+    <div id="svg_parent" class="col-lg-9 col-xl-7 d-none d-sm-block d-lg-block position-absolute top-0 right-0 pr-0">
+        <figure class="ie-main-hero">
+            <img class="js-svg-injector" src="/Content/img/svg/svg1.svg" alt="Image Description"
+                 data-img-info='[{"targetId": "#svg_changing_id", "src": "/Content/img/big/j1.jpg"}]'
+                 data-parent="#svg_parent">
+        </figure>
+    </div>
+
+    <div class="container overflow-visible z-index-10">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mb-6">
+                <div class="clearfix">
+                    <h2 class="fs-40">
+                        We Are <span class="text-primary">@Setting("general.meta.title").Value</span> <br />
+                        Developer Qualty <br />
+                        website.
+                    </h2>
+                    <p class="mt-3 mb-4 lead">I dewelopers website so clientcan focus on their <br />business  instead  of each side. </p>
+                    <div class="clearfix mb-5">
+                        <a href="#" class="btn btn-sleek-primary transition-hover pr-5 pl-5">
+                            Get Started
+                        </a>
+                        <span class="o-3 fs-15">or</span>
+                        <a href="#" class="anim-link fs-15">
+                            view more<span class="fas fa-angle-right align-middle ml-2"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mnb-15">
+            <div class="col-sm-6 col-md-6 col-lg-4 mb-6 mb-lg-0">
+
+                @(Html.Vertex().IconBox()
+                                    .Icon("icon-shopping-bag-3")
+                                    .Title("Provide financial advice <br> by our service")
+                                    .Content(" Navigation available in bootstrap share markup and styles.")
+                                    .Bordered(BootstrapColor.White).TransitionHover()
+                                    .ActionLink("Explore now", "Index", "Features")
+                                    .Shadow().HoverShadow())
+
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 mb-6 mb-lg-0">
+                @(Html.Vertex().IconBox()
+                                    .Icon("icon-dollar-currency-2")
+                                    .Title("Complate solution for <br>global organizations")
+                                    .Content(" Navigation available in bootstrap share markup and styles.")
+                                    .Bordered(BootstrapColor.White).TransitionHover()
+                                    .ActionLink("Explore now", "Index", "Features")
+                                    .Shadow().HoverShadow())
+
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 mb-6 mb-lg-0">
+                @(Html.Vertex().IconBox()
+                                    .Icon("icon-dollar-currency-2")
+                                    .Title("Business monitoring &amp; <br>lead generation")
+                                    .Content(" Navigation available in bootstrap share markup and styles.")
+                                    .Bordered(BootstrapColor.White).TransitionHover()
+                                    .ActionLink("Explore now", "Index", "Features")
+                                    .Shadow().HoverShadow())
+
+            </div>
+        </div>
+    </div>
+    @Html.Vertex().OvalDivider(OvalDividerType.Divider14)
+</section>
+
+
+
+
+
+
+
+<section class="section m-gab-4-top">
+    <div class="container">
+        <div class="w-md-80 w-lg-80 text-center mx-md-auto mb-9">
+            <p class="text-primary">WHAT WE DO</p>
+            <h2>We Completed 1500+ Projects Yearly <br /> Succesfully & Counting</h2>
+        </div>
+        <div class="row justify-content-center pt-4">
+            <div class="col-sm-4 col-lg-3 mb-7 mb-sm-0 border-right">
+                <div class="text-center">
+                    @Html.Vertex().Countup().FromTo(0, 2000).Suffix("+").Color(BootstrapColor.Primary).AppendCssClass("display-4")
+                    <p class="mb-0">Partners are <br /> in the Vertex network</p>
+                </div>
+            </div>
+
+            <div class="col-sm-4 col-lg-3 mb-7 mb-sm-0 border-right">
+                <div class="text-center">
+                    @Html.Vertex().Countup().FromTo(0, 541).Prefix("$").Color(BootstrapColor.Primary).AppendCssClass("display-4")
+                    <p class="mb-0">Community earnings <br /> per year </p>
+                </div>
+            </div>
+
+            <div class="col-sm-4 col-lg-3 mb-7 mb-sm-0">
+                <div class="text-center">
+                    @Html.Vertex().Countup().FromTo(0, 19).Suffix("M+").Color(BootstrapColor.Primary).AppendCssClass("display-4")
+                    <p class="mb-0">Developers <br />in our community</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-md-11">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="svgbg-1">
+                            <div class="gradient-border-1">
+                                <img src="/Content/img/bx1.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+
+                        @(Html.Vertex().Testimonials().DisplayCount(3).ToSlider(slider => {
+                                    slider.Dots();
+                                    slider.SlidesToShow(1);
+                                }).AppendCssClass("pt-4"))
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="row mb-8 align-items-center text-center text-lg-left">
+            <div class="col-lg-10">
+                <p class="text-primary">OUR WORKS</p>
+                <h2>
+                    Check Some Of Our <br />
+                    Recent Works.
+                </h2>
+            </div>
+            <div class="col-lg-2">
+                <a href="#" class="btn btn-sleek-primary btn-sm transition-hover mt-6">See All Works <span class="fa fa-angle-right ml-2"></span></a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                @Html.Vertex().Portfolio(PortfolioViewName.Agency).ToSlider(slider => {
+                         slider.SlidesToShow(4);
+                         slider.Dots();
+                     }).DisplayCount(8)
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="w-md-80 w-lg-80 text-center mx-md-auto mb-9">
+            <p class="text-primary">PRICING PLAN</p>
+            <h2> No hidden Charges. Check <br /> our package</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pricing pricing--pema">
+                    <div class="pricing-item border-bottom border-top border-left">
+                        <div class="pr-6 pl-6 pb-4 pt-5 bg-light-1 border-bottom">
+                            <h3 class="pricing-title">Monthly Package</h3>
+                            <div class="pricing-price text-success">
+                                <span class="pricing-currency">$</span>
+                                <span class="pricing-main" data-bind-radio="pricing" data-monthly="79" data-yearly="99">79</span>
+                                <span class="pricing-period text-success">/ Month</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="pricing-sentence">For large companies</p>
+                            <ul class="pricing-feature-list">
+                                <li class="m-list--link">- Unlimited presentations</li>
+                                <li class="m-list--link">- 5 hours of <span class="m-link-muted">free support</span> </li>
+                                <li class="m-list--link">- Unlimited support</li>
+                                <li class="m-list--link">- Unlimited <span class="m-link-muted">campaigns</span></li>
+                            </ul>
+                            <button class="btn btn-outline-success btn-block btn-sm border-w-2">Request Package</button>
+                        </div>
+                    </div>
+                    <div class="pricing-item pricing-item--featured border border-primary">
+                        <div class="pr-6 pl-6 pb-4 pt-5 bg-light-1 border-bottom">
+                            <h3 class="pricing-title">Weekly Package</h3>
+                            <div class="pricing-price text-primary">
+                                <span class="pricing-currency">$</span>
+                                <span class="pricing-main" data-bind-radio="pricing" data-monthly="29" data-yearly="39">29</span>
+                                <span class="pricing-period text-primary">/ Week</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="pricing-sentence">For medium sized teams</p>
+                            <ul class="pricing-feature-list">
+                                <li class="m-list--link">- 50 presentations/month</li>
+                                <li class="m-list--link">
+                                    - 5 hours of <span class="m-link-muted">free support</span>
+                                    <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title="To assist you in the ordering process, we've compiled a list of purchase and licensing related FAQs."></i>
+                                </li>
+                                <li class="m-list--link">
+                                    - 10 campaigns/month <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title="To assist you in the ordering process, we've compiled a list of purchase and licensing related FAQs."></i>
+                                </li>
+                                <li class="m-list--link">
+                                    - Mirror website
+                                    <span class="m-link-muted" data-toggle="tooltip" data-placement="top" title="To assist you in the ordering process, we've compiled a list of purchase and licensing related FAQs.">
+                                        adjustmant
+                                    </span>
+                                </li>
+                            </ul>
+                            <button class="btn btn-outline-primary btn-block btn-sm border-w-2">Request Package</button>
+                        </div>
+                    </div>
+                    <div class="pricing-item border-bottom border-top border-right">
+                        <div class="pr-6 pl-6 pb-4 pt-5 bg-light-1 border-bottom">
+                            <h3 class="pricing-title">Monthly Package</h3>
+                            <div class="pricing-price text-warning">
+                                <span class="pricing-currency">$</span>
+                                <span class="pricing-main" data-bind-radio="pricing" data-monthly="79" data-yearly="99">79</span>
+                                <span class="pricing-period text-warning">/ Month</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="pricing-sentence">For large companies</p>
+                            <ul class="pricing-feature-list">
+                                <li class="m-list--link">- Unlimited presentations</li>
+                                <li class="m-list--link">- 5 hours of <span class="m-link-muted">free support</span> </li>
+                                <li class="m-list--link">- Unlimited support</li>
+                                <li class="m-list--link">- Unlimited <span class="m-link-muted">campaigns</span></li>
+                            </ul>
+                            <button class="btn btn-outline-warning btn-block btn-sm border-w-2">Request Package</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section bg-light">
+    <div class="container">
+        <div class="w-md-80 w-lg-80 text-center mx-md-auto mb-9">
+            <p class="text-primary">OUR BLOG</p>
+            <h2> Our Company News</h2>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-11">
+                @(Html.Vertex().BlogPosts(BlogPostViewName.Card)
+                                                    .ToSlider(slider =>
+                                                    {
+                                                        slider.SlidesToShow(3);
+                                                        slider.Dots();
+                                                    }).DisplayCount(6))
+            </div>
+            <div class="col-md-12 text-center mt-5">
+                <p>Interested in more ? <a class="text-primary border-bottom anim-link" href="#">Keep Reading</a> </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@Html.Vertex().Footer().ViewName("FooterDark")

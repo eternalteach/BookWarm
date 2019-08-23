@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Clone Elements </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-cloneya.min.js"></script>-->
+    
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+	<script type="text/javascript">
+		jQuery(document).ready(function($){
+			
+			$('input[type=file]').change(function() {
+				$smartFileVal = $(this);
+				$smartFileVal.next('.gui-input').val($smartFileVal.val());
+			});
+			
+			
+			$('#clone-fields').cloneya({
+				maximum				: 5,
+				valueClone			: false,
+				dataClone			: false,
+				deepClone			: false,
+				clonePosition		: 'after',
+				serializeID     	: true,
+				ignore	    		: 'label.error',
+				preserveChildCount  : false
+			}).on('clone_after_append', function(event, toclone, newclone) {
+				$(newclone).find('input[type=file]').change(function() {
+					$smartFileVal = $(this);
+					$smartFileVal.next('.gui-input').val($smartFileVal.val());
+				});
+			});
+		
+		});		  
+    </script>
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-2">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-binoculars"></i>File input clone </h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="account2">
+                <div class="form-body"> 
+                
+                    <div class="spacer-b30">
+                        <div class="tagline"><span>Simple Cloning </span></div><!-- .tagline -->
+                    </div>                    
+                    
+                    <div id="clone-fields">
+                        <div class="toclone clone-widget">
+                            <div class="spacer-b10">
+                                <label class="field prepend-icon file">
+                                    <span class="button btn-primary"> Choose File </span>
+                                    <input type="file" class="gui-file" name="file[]">
+                                    <input type="text" class="gui-input" placeholder="no file selected" readonly>
+                                    <span class="field-icon"><i class="fa fa-upload"></i></span>
+                                </label>
+                            </div>
+                            <a href="#" class="clone button btn-primary"><i class="fa fa-plus"></i></a>
+                            <a href="#" class="delete button"><i class="fa fa-minus"></i></a>
+                        </div>  
+                    </div><!-- end #clone-fields -->
+                
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                    <button type="submit" class="button btn-primary"> Send Form </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+
+</body>
+</html>

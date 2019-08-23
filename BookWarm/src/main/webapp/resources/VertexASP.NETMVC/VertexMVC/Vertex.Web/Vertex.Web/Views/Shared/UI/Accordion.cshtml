@@ -1,0 +1,36 @@
+﻿@model Accordion
+
+@{ 
+    var accordionId = String.Format("accourdion-{0}", Guid.NewGuid().ToString());
+}
+
+
+<div class="accordion @Model.GetCssClass()" @Model.GetStyle() @Model.GetHtmlAtributes() id="@accordionId">
+    @foreach (var item in Model.Items)
+    {
+        string guideItems = Guid.NewGuid().ToString();
+        var collapseId = String.Format("collapse-{0}", guideItems);
+        var headingId = String.Format("heading-{0}", guideItems);
+
+        <div class="card @item.GetCssClass()" @item.GetStyle() @item.GetHtmlAtributes()>
+            <div class="card-header bg-gray" id="@headingId">
+                <h2 class="fs-16 mb-0 accordion-header">
+                    <a class="@(item.Expanded ? string.Empty : "collapsed") d-block text-dark" href="#@collapseId"
+                       data-toggle="collapse" data-target="#@collapseId" aria-expanded="@item.Expanded.ToString().ToLower()" aria-controls="@collapseId">
+                       
+                        @if (item.TitleIcon.HasValue())
+                        {
+                            <i class="@item.TitleIcon mr-1 fs-14"></i> 
+                        }
+                        @Html.Raw(item.Title)
+                    </a>
+                </h2>
+            </div>
+            <div id="@collapseId" class="collapse @(item.Expanded ? "show": string.Empty)" aria-labelledby="@headingId" data-parent="#@accordionId">
+                <div class="card-body">
+                    <p class="m-0">@Html.Raw(item.Content)</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

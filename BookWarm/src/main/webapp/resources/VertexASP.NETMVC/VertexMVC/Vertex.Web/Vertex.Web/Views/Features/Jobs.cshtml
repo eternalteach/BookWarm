@@ -1,0 +1,135 @@
+﻿
+@{ ViewBag.Title = "Features | Jobs"; }
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = false;
+    settings.ShowSearchIcon = true;
+    settings.StickyType = HeaderStickyType.Shrink;
+})
+
+@Html.Partial("_Banner", "Jobs")
+
+
+@Html.Vertex().Section().Size(SectionSize.Small).ContentTemplate(@<text>
+
+    <div class="container">
+        <div class="row justify-content-center">
+
+
+            <!--
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            | Sidebar
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            !-->
+            <div class="col-md-3">
+                <aside id="sidebar" class="sidebar sidebar-sticky">
+                    <ul class="nav nav-sidebar nav-sidebar-hero nav-sidebar-pill" data-accordion="true">
+                        <li class="nav-item"><a class="nav-link" href="#Variation1">Variation 1</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#Variation2">Variation 2</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#methods">Methods</a> </li>
+                    </ul>
+                </aside>
+            </div>
+
+
+            <div class="col-md-9">
+                 
+
+                <div class="px-6 py-6 bg-gray mb-4" id="Variation1">
+                    <header class="mb-6">
+                        <h3>Default</h3>
+                        <hr>
+                        <p class="lead-1">Use <code>@@Html.Vertex().Jobs()</code> method to list jobs</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-1" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-1-2" role="tab" aria-controls="component-1-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-1-content">
+                        <div class="tab-pane fade show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
+                            @Html.Vertex().Jobs().DisplayCount(8)
+                        </div>
+                        <div class="tab-pane fade" id="component-1-2" role="tabpanel" aria-labelledby="component-1-2">
+                            <pre class="mb-0"><code class="language-csharp">// list all jobs
+@@Html.Vertex().Jobs()
+
+// or
+@@Html.Vertex().Jobs().DisplayCount(8)</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="duik-callout duik-callout-primary mb-7">
+                    <h4 class="h5">Info!</h4>
+                    <p class="mb-0">
+                        Clients are managing from manage panel.
+                        <a href="@Url.Action("Login", "Account")" target="_blank" class="m-link">Login</a> to manage clients.
+                    </p>
+                </div>
+
+                 
+                <div class="mb-9" id="Variation2">
+                    <header class="mb-6">
+                        <h3>Variation 2</h3>
+                        <hr>
+                        <p class="lead-1">use <code>.Variation(JobViewVariation.Variation2)</code> method to list variation 2.<br />
+                         You can see example for variation 1 in page by <a href="@Url.Action("Team","Page")" target="_blank" class="m-link">click here</a>
+                        or for Variation 2 <a href="@Url.Action("Jobs","Page")" target="_blank" class="m-link">click here</a>
+                        </p>
+                         
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-2" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-2-1" role="tab" aria-controls="component-2-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-2-2" role="tab" aria-controls="component-2-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-2-content">
+                        <div class="tab-pane fade show active" id="component-2-1" role="tabpanel" aria-labelledby="component-2-1"> 
+                             @Html.Vertex().Jobs().Variation(JobViewVariation.Variation2)
+                        </div>
+                        <div class="tab-pane fade" id="component-2-2" role="tabpanel" aria-labelledby="component-2-2">
+                            <pre class="mb-0"><code class="language-csharp">@@Html.Vertex().Jobs().Variation(JobViewVariation.Variation2)</code></pre>
+                        </div>
+                    </div>
+                </div>
+                                
+
+
+                <div id="methods" class="mb-9">
+                    <h2 class="h4">Methods <a class="anchorjs-link" href="#methods" aria-label="Anchor" data-anchorjs-icon="#"></a></h2>
+
+                    <table class="table table-bordered bg-white">
+                        <thead>
+                            <tr>
+                                <th  style="width:35%">Method</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> <p><code class="highlighter-rouge">.DisplayCount(int count)</code></p> </td>
+                                <td>Comming soon.</td>
+                            </tr> 
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</text>)
+
+
+@Html.Vertex().Footer()

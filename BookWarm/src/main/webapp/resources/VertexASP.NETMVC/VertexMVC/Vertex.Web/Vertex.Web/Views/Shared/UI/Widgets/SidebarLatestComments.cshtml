@@ -1,0 +1,40 @@
+﻿@using Vertex.Service
+
+@{
+    var recentComments = new List<CommentModel>();
+
+    if (Setting("post.comment.enabled").BoolValue && Setting("post.recentcomment").BoolValue)
+    {
+        var postService = Engine.Resolve<IPostService>();
+        var urlService = Engine.Resolve<IUrlService>();
+        
+        recentComments = postService.GetLatestComments().Take(5).Select(x => new CommentModel
+        {
+            FullName = x.FullName,
+            PostName = postService.GetById(x.PostId).Title,
+            PostUrl = urlService.GetUrl(x.PostId, "Post"),
+            Comment = x.Commentary
+        }).ToList();
+    }
+}
+
+
+@if (recentComments.Count() > 0)
+{
+    <h3 class="h5 mb-4">Latest Comments</h3>
+    <div class="clearfix">
+        @foreach (var item in recentComments)
+        {
+            <div class="media align-items-center mb-4">
+                <div class="w-60px mr-3 text-center">
+                    <i class="icon-bubble-conversation-2 fs-35"></i>
+                </div>
+                <div class="media-body fs-15">
+                    <span><a href="#" class="text-dark anim-link-2 text-style-italic">@item.FullName</a> <span class="text-muted">on</span> </span>
+                    <a class="mt-0 mb-2 text-dark anim-link-2 text-style-italic" href="/@item.PostUrl#comments">@item.PostName</a>
+                </div>
+            </div>
+        }
+    </div>
+}
+

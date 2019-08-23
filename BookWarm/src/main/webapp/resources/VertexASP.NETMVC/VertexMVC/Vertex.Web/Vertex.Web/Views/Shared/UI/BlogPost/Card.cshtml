@@ -1,0 +1,80 @@
+﻿@model BlogPost
+
+
+@{
+    if (Model.Slider != null)
+    {
+        foreach (var item in Model.Items)
+        {
+            Model.Slider.Add().Content(RenderItem(item).ToHtmlString());
+        }
+        @Html.Raw(Model.Slider.ToHtmlString());
+    }
+    else
+    {
+        <div class="cbp"
+             data-layout-mode="grid"
+             data-animation-type='slideDelay'
+             data-caption='overlayBottomAlong'
+             data-display-type='bottomToTop'
+             data-display-type-speed="100"
+             data-gap-horizontal="1"
+             data-gap-vertical="0"
+             data-media-queries='[{"width": 1500, "cols": 3}, {"width": 1100, "cols": 3}, {"width": 800, "cols": 3}, {"width": 480, "cols": 2}, {"width": 300, "cols": 1}]'>
+            @foreach (var postItem in Model.Items)
+            {
+                <div class="cbp-item identity">
+                    @RenderItem(postItem)
+                </div>
+            }
+        </div>
+        <div>
+            @Html.Raw(Model.Pager)
+        </div>
+    }
+}
+
+
+@if (Model.Items.Count == 0)
+{
+    <div class="text-center small text-light">
+        No any blog post to list. <br />
+        Go to <a href="@Url.Action("PostCreate","Manage")" target="_blank" class="anim-link-2 anim-link-2-primary"> manage panel </a> to create new blog post.
+    </div>
+}
+
+
+@helper RenderItem(Post post)
+{
+    <div class="p-3">
+        <div class="card shadow-sm hover-shadow-6 transition-hover">
+            <div class="card-body bg-white p-5">
+                <div class="small d-block text-muted mb-2"><time class="text-light mb-3">@post.CreateDateUtc.ToRelativeFormat()</time></div>
+                <h2 class="h5">
+                    <a href="/@post.Url" class="text-dark anim-link-2" tabindex="0">@post.Title</a>
+                </h2>
+                @*@Html.Raw(String.IsNullOrEmpty(post.ShortContent) ? string.Empty : post.ShortContent.Truncate(200, "..."))*@
+
+                <div class="custom-tags mt-3 mb-2">
+                    <a href="/@post.Category.Url" rel="tag" class="label label--sm label--secondary small">@post.Category.Name</a>
+                </div>
+            </div>
+            <div class="card-footer bg-white border-top pb-5 px-0 mx-5">
+                <div class="media align-items-center">
+                    <div class="avatar-sm mr-3">
+                        <img class="img-fluid rounded-circle" src="@post.User.Avatar.FilePath" alt="@post.User.UserName">
+                    </div>
+                    <div class="media-body">
+                        <div class="text-light small">
+                            Author
+                        </div>
+                        <h4 class="small mb-0">
+                            <a href="/User/@post.User.UserName" class="text-dark anim-link-2" tabindex="0">@post.User.UserName</a>
+                        </h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}

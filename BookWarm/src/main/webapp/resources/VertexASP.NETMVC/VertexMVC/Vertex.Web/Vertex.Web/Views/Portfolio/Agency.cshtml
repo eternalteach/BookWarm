@@ -1,0 +1,56 @@
+﻿
+@{ ViewBag.Title = "Agency"; }
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+})
+
+
+
+@Html.Vertex().Section().Overlay(5).Src("../Content/img/hero/h13.jpg").SectionType(SectionType.ParallaxImage).ContentTemplate(@<text>
+
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-9 text-white">
+                <div class="clearfix">
+                    @Html.Vertex().Breadcrumb().Transparent().TextColor(BootstrapColor.White) 
+
+                    @*<nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-transparent pr-0 pl-0 mb-0">
+                            <li class="breadcrumb-item"><a class="text-white-50" href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a class="text-white-50" href="#">Blog</a></li>
+                            <li class="breadcrumb-item active text-white-50 o-4" aria-current="page">Card</li>
+                        </ol>
+                    </nav>*@
+                    <h1>Card View Blog Style</h1>
+                    <p class="lead mb-5">
+                        We are going global <strong class="m-link-light">#LoveToVertex</strong> . To make it happen we are looking for fresh, ambitious talent to join our cause.
+                    </p>
+                    <a href="#read-all" class="btn btn-light btn-sm transition-hover pr-4 pl-4">Read all news</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</text>)
+
+
+
+@Html.Vertex().Section().BgColor(BootstrapColor.Light).ContentTemplate(@<text>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+                @Html.Vertex().Portfolio(PortfolioViewName.Agency).ShowCategoryFilter()
+
+            </div>
+        </div>
+    </div>
+
+</text>)
+
+
+
+@Html.Vertex().Footer()

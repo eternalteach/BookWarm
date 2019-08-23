@@ -1,0 +1,50 @@
+﻿@model DashboardViewModel
+
+
+@Html.Vertex().Page().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+})
+
+
+@Html.Partial("_Breadcrumb", "Dashboard")
+
+
+<section class="section pt-8 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-3">
+                @Html.Partial("_LeftNav")
+            </div>
+            <div class="col-md-9">
+
+                <div class="row">
+                    <div class="col-md-6">
+
+                        @Html.Partial("_LatestUsers", Model.LatestUsers)
+
+                        @Html.Partial("_Comments", Model.Comments)
+
+                    </div>
+
+                    <div class="col-md-6">
+                        
+                        @Html.Partial("_Contacts", Model.Contacts)
+
+                        @Html.Partial("_ApplyJobs", Model.ApplyJobs)
+                         
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<style>
+    .dashboard-list-item { padding-bottom: 0.7rem !important; padding-top: 0.7rem !important; }
+</style>
+
+@Html.Vertex().Footer()

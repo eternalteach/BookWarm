@@ -1,0 +1,491 @@
+﻿
+@{ ViewBag.Title = "Popup"; }
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = false;
+    settings.StickyType = HeaderStickyType.Shrink;
+    settings.BorderBottom = HeaderBorderBottom.Light;
+})
+
+
+@Html.Partial("_Banner", "Popup")
+
+
+<section class="m-gab-2">
+
+    <div class="container">
+        <div class="row justify-content-center">
+
+
+            <!--
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            | Sidebar
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            !-->
+            <div class="col-md-3">
+                <aside id="sidebar" class="sidebar sidebar-sticky">
+                    <ul class="nav nav-sidebar nav-sidebar-hero nav-sidebar-pill" data-accordion="true">
+                        <li class="nav-item"><a class="nav-link" href="#Default">Default</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#Prefix">For any html element</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#Position">Position</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#Slide">Slide Animation</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="#methods">Methods</a> </li>
+                    </ul>
+                </aside>
+            </div>
+
+
+            <div class="col-md-7">
+
+                <div class="px-6 py-6 bg-gray mb-6" id="Default">
+                    <header class="mb-6">
+                        <h3>Default</h3>
+                        <hr>
+                        <p class="lead-1">
+                            Use <code>@@Html.Vertex().Popup()</code> method to create a Popup. <br />
+                            Use <code>.For(...)</code><small>(+3 overloads)</small> method to bind any html element, html string or vertex component.
+                        </p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-1" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-1-2" role="tab" aria-controls="component-1-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="component-1-content">
+                        <div class="tab-pane fade show active pt-4" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
+                            @(Html.Vertex().Popup()
+                                 .Title("Auto Show Popup")
+                                 .Message("We help you create and manage all you projects.").AutoShow()
+                                 .For(Html.Vertex().Button("Popup example")))
+
+                        </div>
+                        <div class="tab-pane fade" id="component-1-2" role="tabpanel" aria-labelledby="component-1-2">
+                            <pre class="mb-0 pb-0"><code class="language-csharp">@@Html.Vertex().Popup()
+    .Title("Working together ?")
+    .Message("We help you create and manage all you projects.")
+    .For(Html.Vertex().Button("Popup example"))</code>
+                            </pre>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="duik-callout duik-callout-info mb-7">
+                    <h4 class="h5">Note!</h4>
+                    <p class="mb-0">
+                        If you want to show a popup without a element use <code>.AutoShow()</code> method. You don't need to use <code>.For(...)</code> method.
+                            <pre class="mb-0 pb-0 pl-0 pr-0 pt-4 bg-transparent"><code class="language-csharp">@@Html.Vertex().Popup()
+    .Title("Auto Show Popup")
+    .Message("We help you create and manage all you projects.")
+    .AutoShow()</code></pre>
+                    </p>
+                </div>
+
+
+                <div class="px-6 py-6 bg-gray mb-9" id="Prefix">
+                    <header class="mb-6">
+                        <h3>Popup for any html element</h3>
+                        <hr>
+                        <p class="lead-1">use <code>.For(...)</code><small>(+3 overloads)</small> method to bind any html element.</p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-2" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-2-1" role="tab" aria-controls="component-2-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-2-2" role="tab" aria-controls="component-2-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-2-content">
+                        <div class="tab-pane fade show active" id="component-2-1" role="tabpanel" aria-labelledby="component-2-1">
+
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td style="vertical-align:middle;">
+                                            <p class="m-0">for vertex <a href="@Url.Action("Button", "UIKit")" target="_blank" class="m-link">button</a></p>
+                                        </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.Vertex().Popup().Title("Hello button").Message("We help you create and manage all you projects.").For(Html.Vertex().Button("Popup Button").Size(ButtonSize.Small))
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">for a checkbox</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.Vertex().Popup().Title("Hello checkbox").Message("We help you create and manage all you projects.").Position(PopupPosition.BottomRight).For(@<text>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" checked="">
+                                                    <label class="custom-control-label">Checked</label>
+                                                </div>
+                                            </text>)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">for a form control</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.Vertex().Popup().Title("Hello form control").Message("We help you create and manage all you projects.").For(@<text>
+                                                <div class="form-group m-0">
+                                                    <input class="form-control form-control-sm" type="text" placeholder="First name">
+                                                </div>
+                                            </text>)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">for a link</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @Html.Vertex().Popup().Title("Working together ?").Message("We help you create and manage all you projects.").For(@<text>
+                                                <a href="#" class="m-link">Popup link</a>
+                                            </text>)
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="tab-pane fade" id="component-2-2" role="tabpanel" aria-labelledby="component-2-2">
+                            <pre><code class="language-csharp">// For button 
+@@Html.Vertex().Popup()
+    .Title("Hello button")
+    .Message("We help you create and manage all you projects.")
+    .For(Html.Vertex().Button("Popup Button").Size(ButtonSize.Small))
+
+// For checkbox 
+@@Html.Vertex().Popup()
+    .Title("Hello checkbox")
+    .Message("We help you create and manage all you projects.")
+    .Position(PopupPosition.Left)
+    .For(@@&lt;text&gt;
+            &lt;div class=&quot;custom-control custom-checkbox&quot;&gt;
+              &lt;input type=&quot;checkbox&quot; class=&quot;custom-control-input&quot; checked=&quot;&quot;&gt;
+              &lt;label class=&quot;custom-control-label&quot;&gt;Checked&lt;/label&gt;
+            &lt;/div&gt;
+          &lt;/text&gt;)
+
+// For form control 
+@@Html.Vertex().Popup()
+    .Title("Hello form control")
+    .Message("We help you create and manage all you projects.")
+    .For(@@&lt;text&gt;
+            &lt;div class=&quot;form-group m-0&quot;&gt;
+                &lt;input class=&quot;form-control&quot; type=&quot;text&quot; placeholder=&quot;First name&quot;&gt;
+            &lt;/div&gt;
+          &lt;/text&gt;)
+
+// For link
+@@Html.Vertex().Popup()
+    .Title("Working together ?")
+    .Message("We help you create and manage all you projects.")
+    .For(@@&lt;text&gt;
+            &lt;a href=&quot;#&quot; class=&quot;m-link&quot;&gt;Popup link&lt;/a&gt;
+          &lt;/text&gt;)</code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="px-6 py-6 bg-gray mb-9" id="Position">
+                    <header class="mb-6">
+                        <h3>Position</h3>
+                        <hr>
+
+                        <p>
+                            The default position of the popups are PopupPosition.BottomRight. To change this default value, simply use
+                            <code>Position(PopupPosition position)</code> method with one of the following values:<br>
+                            <code>PopupPosition.TopLeft</code> | <code>PopupPosition.TopCenter</code> | <code>PopupPosition.TopRight</code> |
+                            <code>PopupPosition.BottomLeft</code> | <code>PopupPosition.BottomCenter</code> | <code>PopupPosition.BottomRight</code>
+                        </p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-3" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-3-1" role="tab" aria-controls="component-3-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-3-2" role="tab" aria-controls="component-3-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-3-content">
+                        <div class="tab-pane fade show active" id="component-3-1" role="tabpanel" aria-labelledby="component-3-1">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">PopupPosition.TopLeft</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @(Html.Vertex().Popup()
+                                                                        .Title("Working together ?")
+                                                                        .Message("We help you create and manage all you projects.")
+                                                                        .Position(PopupPosition.TopLeft)
+                                                                        .For(@<text> <a href="#" class="m-link">Top Left</a> </text>))
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">PopupPosition.TopCenter</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @(Html.Vertex().Popup()
+                                                                        .Title("Working together ?")
+                                                                        .Message("We help you create and manage all you projects.")
+                                                                        .Position(PopupPosition.TopCenter)
+                                                                        .For(@<text> <a href="#" class="m-link">Top Center</a> </text>))
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">PopupPosition.TopRight</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @(Html.Vertex().Popup()
+                                                                        .Title("Working together ?")
+                                                                        .Message("We help you create and manage all you projects.")
+                                                                        .Position(PopupPosition.TopRight)
+                                                                        .For(@<text> <a href="#" class="m-link">Top Right</a> </text>))
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">PopupPosition.BottomLeft</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @(Html.Vertex().Popup()
+                                                                        .Title("Working together ?")
+                                                                        .Message("We help you create and manage all you projects.")
+                                                                        .Position(PopupPosition.BottomLeft)
+                                                                        .For(@<text> <a href="#" class="m-link">Bottom Left</a> </text>))
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">PopupPosition.BottomCenter</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @(Html.Vertex().Popup()
+                                                                        .Title("Working together ?")
+                                                                        .Message("We help you create and manage all you projects.")
+                                                                        .Position(PopupPosition.BottomCenter)
+                                                                        .For(@<text> <a href="#" class="m-link">Bottom Center</a> </text>))
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">PopupPosition.BottomRight</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @(Html.Vertex().Popup()
+                                                                        .Title("Working together ?")
+                                                                        .Message("We help you create and manage all you projects.")
+                                                                        .Position(PopupPosition.BottomRight)
+                                                                        .For(@<text> <a href="#" class="m-link">Bottom Right</a> </text>))
+                                        </td>
+                                    </tr>
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="component-3-2" role="tabpanel" aria-labelledby="component-3-2">
+                            <pre><code class="language-csharp">@@Html.Vertex().Popup()
+    .Title("Working together ?")
+    .Message("We help you create and manage all you projects.")
+    .Position(PopupPosition.TopLeft)
+    .For(@@&lt;text&gt; &lt;a href=&quot;#&quot;&gt;Top&lt;/a&gt; &lt;/text&gt;)        
+                                
+@@Html.Vertex().Popup()
+    .Title("Working together ?")
+    .Message("We help you create and manage all you projects.")
+    .Position(PopupPosition.TopCenter)
+    .For(@@&lt;text&gt; &lt;a href=&quot;#&quot;&gt;Bottom&lt;/a&gt; &lt;/text&gt;)  
+
+@@Html.Vertex().Popup()
+    .Title("Working together ?")
+    .Message("We help you create and manage all you projects.")
+    .Position(PopupPosition.TopRight)
+    .For(@@&lt;text&gt; &lt;a href=&quot;#&quot;&gt;Left&lt;/a&gt; &lt;/text&gt;)   
+
+@@Html.Vertex().Popup()
+    .Title("Working together ?")
+    .Message("We help you create and manage all you projects.")
+    .Position(PopupPosition.BottomLeft)
+    .For(@@&lt;text&gt; &lt;a href=&quot;#&quot;&gt;Right&lt;/a&gt; &lt;/text&gt;)
+                                
+@@Html.Vertex().Popup()
+    .Title("Working together ?")
+    .Message("We help you create and manage all you projects.")
+    .Position(PopupPosition.BottomCenter)
+    .For(@@&lt;text&gt; &lt;a href=&quot;#&quot;&gt;Left&lt;/a&gt; &lt;/text&gt;)                                  
+                                
+@@Html.Vertex().Popup()
+    .Title("Working together ?")
+    .Message("We help you create and manage all you projects.")
+    .Position(PopupPosition.BottomRight)
+    .For(@@&lt;text&gt; &lt;a href=&quot;#&quot;&gt;Left&lt;/a&gt; &lt;/text&gt;)     
+
+                                </code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+                <div class="px-6 py-6 bg-gray mb-9" id="Slide">
+                    <header class="mb-6">
+                        <h3>Slide</h3>
+                        <hr>
+                        <p>
+                            The default animation of the popup component is fade. You can change this default behavior by <code>Slide(PopupSlide slide)</code>
+                            method which can accept one of the following valuse:<br><code>.PopupSlide.Up</code>
+                            | <code>PopupSlide.Down</code> | <code>PopupSlide.Left</code> | <code>PopupSlide.Right</code>
+                        </p>
+                    </header>
+
+                    <ul class="nav nav-bordered" id="component-5" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#component-5-1" role="tab" aria-controls="component-5-1" aria-selected="true">Preview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#component-5-2" role="tab" aria-controls="component-5-2" aria-selected="false">ASP.NET MVC</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-4" id="component-5-content">
+                        <div class="tab-pane fade show active" id="component-5-1" role="tabpanel" aria-labelledby="component-5-1">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">PopupSlide.Up</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @(Html.Vertex().Popup()
+                                                                        .Title("Working together ?")
+                                                                        .Message("We help you create and manage all you projects.")
+                                                                        .Slide(PopupSlide.Up)
+                                                                        .For(@<text> <a href="#" class="m-link">Up</a> </text>))
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">PopupSlide.Down</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @(Html.Vertex().Popup()
+                                                                        .Title("Working together ?")
+                                                                        .Message("We help you create and manage all you projects.")
+                                                                        .Slide(PopupSlide.Down)
+                                                                        .For(@<text> <a href="#" class="m-link">Down</a> </text>))
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">PopupSlide.Right</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @(Html.Vertex().Popup()
+                                                                        .Title("Working together ?")
+                                                                        .Message("We help you create and manage all you projects.")
+                                                                        .Slide(PopupSlide.Right)
+                                                                        .For(@<text> <a href="#" class="m-link">Right</a> </text>))
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;"> <p class="m-0">PopupSlide.Left</p> </td>
+                                        <td style="vertical-align:middle;">
+                                            @(Html.Vertex().Popup()
+                                                                        .Title("Working together ?")
+                                                                        .Message("We help you create and manage all you projects.")
+                                                                        .Slide(PopupSlide.Left)
+                                                                        .For(@<text> <a href="#" class="m-link">Left</a> </text>))
+                                        </td>
+                                    </tr>
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="component-5-2" role="tabpanel" aria-labelledby="component-5-2">
+                            <pre><code class="language-csharp">@@Html.Vertex().Popup()
+    .Title("Working together ?")
+    .Message("We help you create and manage all you projects.")
+    .Slide(PopupSlide.Up)
+    .For(@@&lt;text&gt; &lt;a href=&quot;#&quot;&gt;Top&lt;/a&gt; &lt;/text&gt;)        
+                                
+@@Html.Vertex().Popup()
+    .Title("Working together ?")
+    .Message("We help you create and manage all you projects.")
+    .Slide(PopupSlide.Down)
+    .For(@@&lt;text&gt; &lt;a href=&quot;#&quot;&gt;Bottom&lt;/a&gt; &lt;/text&gt;)  
+
+@@Html.Vertex().Popup()
+    .Title("Working together ?")
+    .Message("We help you create and manage all you projects.")
+    .Slide(PopupSlide.Right)
+    .For(@@&lt;text&gt; &lt;a href=&quot;#&quot;&gt;Left&lt;/a&gt; &lt;/text&gt;)   
+
+@@Html.Vertex().Popup()
+    .Title("Working together ?")
+    .Message("We help you create and manage all you projects.")
+    .Slide(PopupSlide.Left)
+    .For(@@&lt;text&gt; &lt;a href=&quot;#&quot;&gt;Right&lt;/a&gt; &lt;/text&gt;)
+                                 
+
+                                </code>
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div id="methods" class="mb-9">
+                    <h2 class="h4">Methods <a class="anchorjs-link" href="#methods" aria-label="Anchor" data-anchorjs-icon="#"></a></h2>
+
+                    <table class="table table-bordered bg-white">
+                        <thead>
+                            <tr>
+                                <th style="width:35%">Method</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> <p><code class="highlighter-rouge">.Method(bool value)</code></p> </td>
+                                <td>Comming soon.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+
+@*<div id="popup-bottom-right" class="popup bg-primary col-6 col-md-3" data-position="bottom-right">
+        <button type="button" class="close" data-dismiss="popup" aria-label="Close">
+            <span class="text-white" aria-hidden="true">&times;</span>
+        </button>
+        <div class="media">
+            <img class="avatar mr-4" src="../assets/img/avatar/avatar2.jpg" alt="avatar">
+            <div class="media-body text-white">
+                <h5>Working together ?</h5>
+                <p class="mb-0">We help you create and manage all you projects.</p>
+            </div>
+        </div>
+    </div>*@
+
+@Html.Vertex().Footer()

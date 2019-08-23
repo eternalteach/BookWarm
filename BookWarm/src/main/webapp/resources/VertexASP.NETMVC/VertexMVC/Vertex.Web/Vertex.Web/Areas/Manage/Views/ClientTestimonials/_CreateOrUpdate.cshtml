@@ -1,0 +1,177 @@
+﻿@model TestimonialsModel
+
+@{ bool isNew = !(Model != null && Model.Id > 0); }
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+
+    <div class="row">
+        <div class="col-10 offset-2">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-pencil-alt mr-3 fs-14"></i>
+                        @Html.LabelFor(x => x.TypeName, new { @class = "m-0 fs-14" })
+                    </span>
+                </div>
+
+                @Html.DropDownListFor(x => x.TypeName, new SelectList(Model.AvailableTypeNames), "Select", new { @class = "form-control", })
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="OnlyClient" style="display:none">
+        <div class="col-md-2">
+            @Html.Vertex().PictureUploaderFor(x => x.ClientLogoId).EntityName("ClientLogo").AppendCssClass("m-auto")
+        </div>
+        <div class="col-md-10">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-compact-disc mr-3 fs-14"></i>
+                        @Html.LabelFor(x => x.ClientName, new { @class = "m-0 fs-14" })
+                    </span>
+                </div>
+                @Html.TextBoxFor(x => x.ClientName, new { @class = "form-control" })
+            </div>
+
+            <div class="input-group mb-4">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-link mr-3 fs-14"></i>
+                        @Html.LabelFor(x => x.Website, new { @class = "m-0 fs-14" })
+                    </span>
+                </div>
+                @Html.TextBoxFor(x => x.Website, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="OnlyTestimonials" style="display:none">
+        <div class="col-md-2">
+            @Html.Vertex().PictureUploaderFor(x => x.PersonPictureId).EntityName("TestimonialsPerson").AppendCssClass("m-auto")
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user-edit mr-3 fs-14"></i>
+                                @Html.LabelFor(x => x.PersonName, new { @class = "m-0 fs-14" })
+                            </span>
+                        </div>
+                        @Html.TextBoxFor(x => x.PersonName, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-pencil-alt mr-3 fs-14"></i>
+                                @Html.LabelFor(x => x.PersonPosition, new { @class = "m-0 fs-14" })
+                            </span>
+                        </div>
+                        @Html.TextBoxFor(x => x.PersonPosition, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group custom-textarea mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-pencil-alt mr-3 fs-14"></i>
+                        @Html.LabelFor(x => x.WhatSayAboutUs, new { @class = "m-0 fs-14" })
+                    </span>
+                </div>
+                @Html.TextAreaFor(x => x.WhatSayAboutUs, new { @class = "form-control", @rows = "5" })
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 offset-md-2">
+
+            <div class="row align-content-center align-items-center mb-3">
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text pr-3">
+                                <i class="fas fa-sort-numeric-down mr-3 fs-14"></i>
+                                @Html.LabelFor(x => x.OrderNo, new { @class = "m-0 fs-14" })
+                            </span>
+                        </div>
+                        <div class="form-control p-0">
+                            @Html.Telerik().IntegerTextBoxFor(x => x.OrderNo)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group m-0">
+                        <div class="custom-control custom-checkbox">
+                            @Html.CheckBoxFor(m => m.IsActive, new { @class = "custom-control-input" })
+                            @Html.LabelFor(m => m.IsActive, new { @class = "custom-control-label" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mt-6">
+                <div class="form-group mt-4 pt-4 border-top">
+                    <button type="submit" name="action:@(isNew ? "Create": "Edit")" class="btn btn-primary btn-sm btn-wide transition-hover mr-2">
+                        <i class="fa fa-save mr-1 fs-14"></i> Save
+                    </button>
+
+                    @if (!isNew)
+                    {
+                        @(Html.Vertex().ConfirmModal("Delete", "ClientTestimonials", new { @id = Model.Id })
+                                                                            .Title("Confirm Delete")
+                                                                            .Content("Are you sure do you want to delete ?")
+                                                                            .For(Html.Vertex().Button().Text("Delete").Color(BootstrapColor.Secondary).Size(ButtonSize.Small))
+                        )
+                    }
+
+                    <div class="d-inline-block">
+                        <span class="mx-2 text-light font-weight-light fs-15">or</span>
+                        <i class="fas fa-long-arrow-alt-left fs-13 text-primary o-8"></i>
+                        <a href="@Url.Action("List", "ClientTestimonials")" class="m-link fs-15">  Back to list</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#TypeName").change(toggleTypeName);
+        toggleTypeName();
+    });
+
+    function toggleTypeName() {
+        var selectedPostFormat = $("#TypeName").val();
+
+        if (selectedPostFormat == 'OnlyClient') {
+            $('#OnlyClient').show();
+            $('#OnlyTestimonials').hide();
+        }
+        else if (selectedPostFormat == 'OnlyTestimonials') {
+            $('#OnlyClient').hide();
+            $('#OnlyTestimonials').show();
+        }
+        else if (selectedPostFormat == 'ClientAndTestimonials') {
+            $('#OnlyTestimonials').show();
+            $('#OnlyClient').show();
+        }
+        else {
+            $('#OnlyClient').hide();
+            $('#OnlyTestimonials').hide();
+        }
+    }
+</script>

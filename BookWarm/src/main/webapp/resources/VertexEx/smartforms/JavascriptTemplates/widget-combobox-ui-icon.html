@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - UI Combobox</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-combo.min.js"></script>-->  
+	<script type="text/javascript">
+        jQuery(document).ready(function($){
+            $("#city").combobox();
+			$("#region").combobox({ 
+				select: function (event, ui) { 
+					alert('Your region is - ' + this.value);
+				} 
+			});			
+		});	
+    </script>
+    
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-3">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-pencil-square"></i>Combobox icons</h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="account2">
+            	<div class="form-body">
+                
+                
+                    <div class="section">
+                    	<label for="combobox1" class="field-label"> Change Detection </label>
+						<label class="field prepend-icon">
+                            <select id="region" data-cb-widget-placeholder="Select Region">
+                                <option value="">Select region...</option>
+                                <option value="north">Northern</option>
+                                <option value="west">Western</option>
+                                <option value="south">Southern</option>
+                                <option value="east">Eastern </option>
+                                <option value="central">Central</option>
+                            </select>
+                            <span class="field-icon"><i class="fa fa-map-marker"></i></span>  
+                        </label>
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                    	<label class="field-label">  Basic Combobox  </label>
+						<label class="field prepend-icon">
+                               <select id="city" data-cb-widget-placeholder="Choose City">
+                                    <option value="">Choose City</option>
+                                    <option class="east" value="AL">Alabama</option>
+                                    <option class="north" value="AK">Alaska</option>
+                                    <option class="west" value="AZ">Arizona</option>
+                                    <option class="south" value="AR">Arkansas</option>
+                                    <option class="central" value="CA">California</option>
+                                    <option class="north" value="CO">Colorado</option>
+                                    <option class="east" value="CT">Connecticut</option>
+                                    <option class="south" value="DE">Delaware</option>
+                                    <option class="north" value="DC">District Of Columbia</option>
+                                    <option class="east" value="FL">Florida</option>
+                                    <option class="north" value="GA">Georgia</option>
+                                    <option class="south" value="HI">Hawaii</option>
+                                    <option class="south" value="ID">Idaho</option>
+                                    <option class="north" value="IL">Illinois</option>
+                                    <option class="east" value="IN">Indiana</option>
+                                    <option class="central" value="IA">Iowa</option>
+                                    <option class="west" value="KS">Kansas</option>
+                                    <option class="west" value="KY">Kentucky</option>
+                                </select>
+                                <span class="field-icon"><i class="fa fa-globe"></i></span>  
+                        </label>
+                    </div><!-- end section -->                    
+                    
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Send Form </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+    
+    <div></div><!-- end section -->
+
+</body>
+</html>

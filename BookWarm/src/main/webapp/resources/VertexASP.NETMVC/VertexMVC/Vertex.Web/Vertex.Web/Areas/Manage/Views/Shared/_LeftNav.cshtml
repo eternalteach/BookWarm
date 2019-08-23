@@ -1,0 +1,51 @@
+﻿
+@{
+    var menus = DemoMenu.GetManagePanelMenu();
+}
+
+<aside id="sidebar" class="sidebar sidebar-sticky px-5 py-3 bg-white border">
+    <ul class="nav nav-sidebar nav-sidebar-hero nav-sidebar-pill" data-accordion="true">
+        @foreach (var menu in menus.Dropdowns.FirstOrDefault().Dropdowns)
+        {
+            if (menu.LinkText.HasValue())
+            {
+                <li class="nav-item">
+                    @if (!menu.HasSubMenu)
+                    {
+                        <a class="nav-link @menu.IsActive" href="@menu.Action"> @menu.LinkText </a>
+                    }
+                    else
+                    {
+                        @renderSubMenu(menu, menu.Dropdowns)
+                    }
+                </li>
+            }
+            else
+            {
+                if (menu.HasSubMenu)
+                {
+                    @renderSubMenu(menu, menu.Dropdowns)
+                }
+            }
+        }
+    </ul>
+</aside>
+
+
+@helper renderSubMenu(Dropdown parent, List<Dropdown> menus)
+{
+    <a class="nav-link @parent.IsActive" href="#">
+        @parent.LinkText 
+        <i class="fas fa-chevron-right nav-angle"></i>
+    </a>
+    <div class="nav fs-15">
+        @foreach (var menu in menus)
+        {
+            <a class="nav-link @menu.IsActive" href="@menu.Action"> @menu.LinkText </a>
+            if (menu.HasSubMenu)
+            {
+                @renderSubMenu(menu, menu.Dropdowns)
+            }
+        }
+    </div>
+}

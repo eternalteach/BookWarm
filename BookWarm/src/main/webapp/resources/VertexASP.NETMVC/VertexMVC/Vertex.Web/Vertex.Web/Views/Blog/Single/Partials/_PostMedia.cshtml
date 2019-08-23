@@ -1,0 +1,21 @@
+﻿@model PostDetailModel
+
+
+@if (Model.PostFormat == PostFormat.Video.ToString())
+{
+    <iframe frameborder="0" allowfullscreen height="450" src="@Model.PostFormatValue" class="w-100"></iframe>
+}
+else if (Model.PostFormat == PostFormat.Audio.ToString())
+{
+    <audio src="@Model.PostFormatValue" controls class="mr-auto ml-auto mt-3 w-100 mb-0"></audio>
+}
+else if (Model.PostFormat == PostFormat.Quote.ToString())
+{
+    <blockquote class="blockquote blockquote-font m-0 pt-0">
+        <p class="mb-0 text-dark fs-28" style="line-height:36px;">@Model.PostFormatValue</p>
+    </blockquote>
+}
+else
+{
+    <img class="img-fluid rounded w-100" src="@Model.PicturePath" alt="@Model.Title">
+}

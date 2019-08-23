@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title> Smart Forms - Currencies and Numbers</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--<link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
+    <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
+    
+
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/autoNumeric.min.js"></script>-->
+    
+    <!--[if lte IE 9]>   
+        <script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+    
+    <!--[if lte IE 8]>
+        <link type="text/css" rel="stylesheet" href="css/smart-forms-ie8.css">
+    <![endif]-->
+    
+    <script type="text/javascript">
+		jQuery(document).ready(function($){
+			$('.auto').autoNumeric('init');
+			$('#custom-settings').autoNumeric('init', { 
+				digitGroupSeparator: '.', 
+				decimalCharacter: ',', 
+				decimalCharacterAlternative: '.', 
+				currencySymbol: '\u00a0€', 
+				currencySymbolPlacement: 's', 
+				roundingMethod: 'U', 
+				minimumValue: '0', 
+				leadingZero: 'deny' 
+			});			
+		});   
+    </script>
+       
+</head>
+
+<body class="woodbg">
+
+	<div class="smart-wrap">
+    	<div class="smart-forms smart-container wrap-3">
+        
+        	<div class="form-header header-primary">
+            	<h4><i class="fa fa-money"></i>Numbers and currency</h4>
+            </div><!-- end .form-header section -->
+            
+            <form method="post" action="/" id="account2">
+            	<div class="form-body"> 	
+                    
+                    <div class="section">
+                    	<label class="field-label">Comma separator </label>
+                    	<label class="field">
+                        	<input type="text" class="gui-input auto" placeholder="Comma separator">
+                        </label>
+                    </div><!-- end section -->
+                    
+                    <div class="section">
+                    	<label class="field-label">Period separator</label>
+                    	<label class="field">
+                        	<input type="text" class="gui-input auto" data-digit-group-separator="." data-decimal-character="," placeholder="Period separator">
+                        </label>
+                    </div><!-- end section -->                          
+                
+                	<div class="section">
+                    	<label class="field-label">Space separator</label>
+                    	<label class="field">
+                        	<input type="text" class="gui-input auto" data-digit-group-separator=" " data-decimal-character="." placeholder="Space separator">
+                        </label>
+                    </div><!-- end section -->
+                    
+                	<div class="section">
+                    	<label class="field-label">Dollar sign</label>
+                    	<label class="field">
+                        	<input type="text" class="gui-input auto" data-currency-symbol="$ " placeholder="Dollar sign">
+                        </label>
+                    </div><!-- end section --> 
+                    
+                	<div class="section">
+                    	<label class="field-label">Pound sign</label>
+                    	<label class="field">
+                        	<input type="text"   class="gui-input auto"  data-digit-group-separator="." data-decimal-character="," data-currency-symbol="£ " placeholder="Pound sign" >
+                        </label>
+                    </div><!-- end section -->                    
+                    
+                	<div class="section">
+                    	<label class="field-label">Euro sign </label>
+                    	<label class="field">
+                        	<input type="text" class="gui-input auto" data-digit-group-separator="." data-decimal-character="," data-currency-symbol="€ " placeholder="Euro sign">
+                        </label>
+                    </div><!-- end section -->                                       
+                    
+                	<div class="section">
+                    	<label class="field-label">Swiss francs sign</label>
+                    	<label class="field">
+                        	<input type="text" class="gui-input auto" data-digit-group-separator="." data-decimal-character="," data-currency-symbol=" CHF" 
+                            data-currency-symbol-placement="s" placeholder="Swiss Francs sign" >
+                        </label>
+                    </div><!-- end section -->
+                    
+                	<div class="section">
+                    	<label class="field-label">No digital grouping</label>
+                    	<label class="field">
+                        	<input type="text" class="gui-input auto" data-digit-group-separator="" placeholder="No digital grouping" >
+                        </label>
+                    </div><!-- end section -->
+                    
+                	<div class="section">
+                    	<label class="field-label">2 Spacing - India's Lakhs</label>
+                    	<label class="field">
+                        	<input type="text" class="gui-input auto" data-digital-group-spacing="2" data-currency-symbol="Rs. " placeholder="2 India's Lakhs" >
+                        </label>
+                    </div><!-- end section -->
+                    
+                	<div class="section">
+                    	<label class="field-label">4 Spacing -  Some Asian countries</label>
+                    	<label class="field">
+                        	<input type="text" class="gui-input auto" data-digital-group-spacing="4" data-currency-symbol="¥ " placeholder="4 some Asian countries" >
+                        </label>
+                    </div><!-- end section --> 
+                    
+                    
+                	<div class="section">
+                    	<label class="field-label">Minimum - maximum</label>
+                    	<label class="field">
+                        	<input type="text" class="gui-input auto" data-minimum-value="0" data-maximum-value="9999" placeholder="0 - 9999" >
+                        </label>
+                    </div><!-- end section -->
+                    
+                	<div class="section">
+                    	<label class="field-label">Negative - positive</label>
+                    	<label class="field">
+                        	<input type="text" class="gui-input auto" data-digit-group-separator="." data-decimal-character="," data-minimum-value="-99.99" 
+                            data-maximum-value="1000.00" placeholder="-99.99 to 1000.00" >
+                        </label>
+                    </div><!-- end section -->
+                    
+                	<div class="section">
+                    	<label class="field-label">Negative only with brackets</label>
+                    	<label class="field">
+                        	<input type="text" class="gui-input auto" data-digit-group-separator="." data-decimal-character="," data-minimum-value="-9999.99" 
+                            data-maximum-value="0.00" data-negative-brackets-type-on-blur="(,)" placeholder="-9999.99 to 0.00" >
+                        </label>
+                    </div><!-- end section -->
+                    
+                	<div class="section">
+                    	<label class="field-label">Custom settings</label>
+                    	<label class="field">
+                        	<input type="text" class="gui-input" id="custom-settings" placeholder="Custom settings" >
+                        </label>
+                    </div><!-- end section -->                                                                                                   
+
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                	<button type="submit" class="button btn-primary"> Send Form </button>
+                </div><!-- end .form-footer section -->
+            </form>
+            
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+
+</body>
+</html>

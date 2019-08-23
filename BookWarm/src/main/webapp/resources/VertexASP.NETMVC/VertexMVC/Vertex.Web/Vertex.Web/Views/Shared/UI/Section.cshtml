@@ -1,0 +1,7 @@
+﻿@model Section
+
+
+<section class="@Model.GetCssClass()" @Model.GetStyle() @Model.GetHtmlAtributes()>
+    @Html.Raw(Model.Content)
+</section>
+ 

@@ -1,0 +1,22 @@
+﻿@model Vertex.Web.Framework.UI.Page
+
+@using (Html.PageWrapContent("body"))
+{
+    @Html.Raw(string.Format("class='{0}' ",Model.GetCssClass())) 
+    @Html.Raw(Model.GetHtmlAtributes()) 
+}
+
+@using (Html.PageWrapContent("title"))
+{
+    @Html.Raw(Model.Title)  
+}
+
+@using (Html.PageWrapContent("css"))
+{
+    @Html.Raw(Model.Css)  
+}
+
+@using (Html.PageWrapContent("script"))
+{
+    @Html.Raw(Model.Script)  
+}

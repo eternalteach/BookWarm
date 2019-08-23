@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNet.Identity 
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.Owin; 
+
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true;
+})
+
+
+@Html.Partial("_Breadcrumb")
+
+ 
+<section class="section pt-8 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-3">
+                @Html.Partial("_LeftNav")
+            </div>
+            <div class="col-md-9">
+
+                <br />
+                <h5 class="text-primary mb-4">Hello <span class="m-link">@User.Identity.GetUserName()</span> </h5>
+                <h4 class="text-danger">You don't have permission to do this action <br /> <span class="m-link">in demo version</span>.</h4>                  
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+@Html.Vertex().Footer()
+ 

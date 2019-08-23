@@ -1,0 +1,410 @@
+/*
+   color:#6772e5 -- mor
+   color:#24b47e veya #3ecf8e -- yeþil gibi
+   color:#32325d kapalý mor içinde #9cdbff
+   color:#b76ac4 -- açýk mor
+
+   #19a9e5
+   base color: #75d380
+   #49a8ec
+*/
+
+a,
+a:hover,
+.v-icon,
+.btn-link,
+.btn-default:hover,
+.required,
+.primary-font-color,
+.primary-color,
+.feature-box .icon,
+.call-to-action .title strong,
+.section-title strong,
+.v-search-items .star-vote li,
+.travel-form.icon-tabs .nav-pills > li > a:hover,
+.travel-form.icon-tabs .nav-pills > li.active:hover > a,
+.travel-form.icon-tabs .nav-pills > li.active > a,
+.travel-form.icon-tabs .nav-pills > li.active > a:focus,
+.xblog-large-info-meta-link:hover,
+.xblog-large-info-title a:hover,
+.xblog-medium-info-meta-link:hover,
+.xblog-medium-info-title a:hover,
+.-format-quote .xblog-quote-icon,
+nav.xsearch-navbar.navbar-light .navbar-nav .active > .nav-link,
+.cbp-l-grid-masonry-projects-title:hover,
+[data-type].primary-color + .typed-cursor,
+.c-breadcrumb-6.-style-default .c-breadcrumb-6-item:last-child .c-breadcrumb-6-link,
+.c-breadcrumb-6.-style-icons .c-breadcrumb-6-item:last-child .c-breadcrumb-6-link,
+.pagination > li > a, .pagination > li > span,
+ul.i-list.medium.bordered .icon,
+.tc-services-style4 .services-icon,
+.tc-services-style5 .services-icon,
+.main-color .xsocial-icons-simple a:hover,
+.pi-section-grey .xsocial-icons-simple a:hover,
+.c-breadcrumb-6-item:hover .c-breadcrumb-6-link,
+.c-breadcrumb-6-item.active .c-breadcrumb-6-link,
+.timeline-movement .date,
+.feature-box-core .feature-box-core-category,
+.counters .counter.bb strong,
+.accordion.v6 .accordion-tag,
+.stories_wrapper .quotes:before,
+.btn.btn-outline-primary,
+blockquote.quote-simple cite,
+blockquote.v3 cite,
+blockquote.v3::before,
+.srv-container .srv-name a:hover,
+.portfolio-item-title a:hover,
+.post-content-wrap-inner a:hover,
+.accordion .card-header > h5 a:hover,
+.footer.footer-2 .main .latest-news a:hover,
+.footer.footer-2 a:hover,
+.tg-filter-name:hover,
+.pracia-grid .tg-filter:hover,
+.camberra-grid .tg-filter:hover,
+.tg-dropdown-holder:hover,
+.xsearch-items h3.search-item-caption a:hover,
+.platform-block-title:hover,
+.platform-block-steps a:hover,
+.post-content-wrap .post-title a:hover,
+.counters span.counter-append,
+.related-wrap-title:hover,
+.related-wrap-title a:hover footer.footer-pompis a:hover,
+figure.product-item .product-name a:hover,
+.cart-table .cart_item a:hover,
+.blog-item .read-more-button:hover,
+.blog-item a:hover,
+.blog-item:hover h2:hover,
+.blog-item:hover .link-to-post,
+.blog-item:hover a,
+footer.footer-emel a:hover,
+.counters-emel.counters .counter .counter-icon.top-icon,
+.testimonial-two blockquote p:before,
+.testimonial-two blockquote p:after,
+.testimonial-two blockquote p:before,
+.testimonial-two blockquote p:after,
+footer.footer-emel #newsletterForm .btn,
+.sidebar .list-group-item.list-toggle > a:hover,
+footer.footer-pompis a:hover,
+.pricing-column h3,
+.owl-carousel.show-nav-title .owl-nav [class*="owl-"]:hover, 
+.owl-carousel.show-nav-title .owl-nav [class*="owl-"].hover,
+.owl-carousel.show-nav-title .owl-nav [class*="owl-"],
+.v_blog-item-title:hover{
+   color: #0cb4ce;
+}
+.counters-emel.counters .counter span.text.primary-color {
+   color: #0cb4ce!important;
+}
+
+.btn.transparent-light:hover,
+.btn.transparent-dark:hover {
+   color: #0cb4ce !important;
+}
+
+.page-item.active .page-link,
+.xblog-item.-format-standard .xblog-info:first-child,
+.xblog-item.-format-quote .xblog-info:first-child,
+.xblog-item.-format-aside .xblog-info:first-child,
+.xblog-item.-format-status .xblog-info:first-child,
+.xblog-item.-format-chat .xblog-info:first-child,
+.xblog-item.-format-link .xblog-info:first-child,
+.xblog-medium-item.-format-standard .xblog-medium-info:first-child,
+.xblog-medium-item.-format-quote .xblog-medium-info:first-child,
+.xblog-medium-item.-format-aside .xblog-medium-info:first-child,
+.xblog-medium-item.-format-status .xblog-medium-info:first-child,
+.xblog-medium-item.-format-chat .xblog-medium-info:first-child,
+.xblog-medium-item.-format-link .xblog-medium-info:first-child,
+.xblog-large-item.-format-standard .xblog-large-info:first-child,
+.xblog-large-item.-format-quote .xblog-large-info:first-child,
+.xblog-large-item.-format-aside .xblog-large-info:first-child,
+.xblog-large-item.-format-status .xblog-large-info:first-child,
+.xblog-large-item.-format-chat .xblog-large-info:first-child,
+.xblog-large-item.-format-link .xblog-large-info:first-child,
+.form-control:focus,
+.form-control:active,
+.feature-box .icon.bordered,
+.btn-primary,
+.pagination > .active > a, .pagination > .active > span,
+.pagination > .active > a:hover, .pagination > .active > span:hover,
+.pagination > .active > a:focus, .pagination > .active > span:focus,
+ul.i-list.medium.bordered .icon,
+a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active,
+.feature-box .icon.filled,
+html .cta.with-full-borders-primary,
+.clients-wrap .owl-carousel .owl-item figure:hover,
+.btn.btn-outline-primary,
+.btn.btn-outline-primary:hover,
+.feature-box .icon.filled.medium,
+testimonial-two,
+.testimonial-two .owl-carousel .owl-dots .owl-dot.active span,
+.testimonial-two .owl-carousel .owl-dots .owl-dot:hover span,
+.testimonial-four blockquote:hover,
+.exp-separator,
+.testimonial-two,
+.exp-separator-inner {
+   border-color: #0cb4ce;
+}
+
+html .cta.featured.featured-primary,
+.left-top-br:before,
+.right-top-br:before,
+.call-to-action.top-bordered,
+.cbp-l-filters-alignCenter .cbp-filter-counter:after,
+.cbp-l-filters-buttonCenter .cbp-filter-counter:after,
+.top-bar.tobbar-clered,
+sup.new-badge:before,
+.feature-box[class*="feature-box-secundary-"] .v-icon:after,
+.testimonials.testimonials-primary-color li.testimonial.has-cite .testimonial-text::after {
+   border-top-color: #0cb4ce;
+}
+
+.feature-box[class*="feature-box-secundary-"] .v-icon:after,
+.title-highlight-inner,
+.call-to-action.left-bordered,
+.custom-timeline .custom-timeline-box:after,
+.cta.pompis-style h3 {
+   border-left-color: #0cb4ce;
+}
+
+.testimonial-four blockquote:hover::after,
+.section-arrow-primary-color.section-arrow--bottom-center:after {
+   border-right-color: #0cb4ce;
+}
+
+section.fx--y aside.guide .cover,
+.page-item.active .page-link,
+.progress-bar,
+.bg-primary,
+.progress-bar-primary,
+.btn-primary,
+.label-primary,
+.timeline_box:hover:before,
+.page-header.primary,
+.ion-icons li:hover,
+.bs-glyphicons li:hover,
+.fontawesome-icon-list .fa-hover a:hover,
+.cbp-l-grid-masonry-projects .cbp-l-caption-buttonLeft,
+.cbp-l-grid-masonry-projects .cbp-l-caption-buttonRight,
+.pagination > .active > a, .pagination > .active > span,
+.pagination > .active > a:hover, .pagination > .active > span:hover,
+.pagination > .active > a:focus, .pagination > .active > span:focus,
+.cbp-l-filters-alignCenter .cbp-filter-counter,
+.cbp-l-filters-buttonCenter .cbp-filter-counter,
+.cbp-l-caption-buttonLeft, .cbp-l-caption-buttonRight,
+.main-color .xsocial-icons a:hover,
+sup.new-badge,
+.xspecial-heading.v2:after,
+.testimonials-tab .nav.nav-justified > li > a > .quote,
+.btn.accent,
+.v-list.v3 li > i,
+.btn-primary,
+.footer.footer-2 .title:after,
+.testimonial-two .owl-carousel .owl-dots .owl-dot.active span:before,
+.testimonial-two .owl-carousel .owl-dots .owl-dot:hover span:before,
+.tab-wrap .nav-tabs li .nav-link.active span:after,
+html #header .header-top.header-top-primary,
+.service-item-title:after,
+.section-arrow-primary-color.section-arrow--bottom-center:after,
+html .cta.cta-primary,
+.team-member.v2 .member-info .share i.fa-share-alt,
+.team-member.v2 .member-info .share:hover i.fa-share-alt,
+.menu-label,
+ul.i-list.filled i.fa,
+.feature-box .icon.filled,
+ul.i-list.medium .icon,
+.page-header.page-header-primary,
+.feature-box .icon-square,
+.call-to-action-fw.call-to-action-primary,
+.main-color .xsocial-icons.xsocial-effected-bg a i:first-child,
+html .cta.cta-primary,
+.testimonials.testimonials-primary-color li.testimonial .testimonial-text,
+.fancy-list li:hover::before,
+.process-step .process-step-step .process-step-dot:after,
+.minimal-post.post-content-wrap .post-meta ul:after,
+.join-us-form:before,
+.v-counter .count-divider span,
+.lift-off,
+.process-step .process-step-step .progress .progress-bar,
+.v-heading-v2 span,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus,
+.widget .tagcloud a:hover,
+.widget ul.wp-tag-cloud li:hover > a,
+.widget.v-photo-stream-widget li,
+.v-bg-stylish.v-bg-stylish-v10,
+.v-bg-stylish-v10.v-full-width-text:after,
+.v-parallax .v-bg-overlay.overlay-colored,
+.recent-post figure,
+header div.search .btn-primary:hover,
+header div.search .btn-primary,
+header ul.nav-pills > li > a:hover,
+.portfolio-grid li,
+.feature-box-icon:hover,
+.sf-hover .feature-box-icon,
+.feature-box[class*="feature-box-secundary-"] .feature-box-icon,
+.sf-hover .feature-box-line,
+.pricing-column.highlight h3,
+span.highlighted,
+span.dropcap4,
+.progress-bar-primary,
+.v-process-steps .feature-box-icon:hover,
+#header .header-nav-main nav > ul > li.dropdown-mega.dropdown-mega-shop .cart-items,
+.vertex-box,
+.vertex-box:before,
+.vertex-box .vertex-box-inner:before,
+.horizontal-break-two,
+.owl-carousel .owl-nav [class*="owl-"],
+.pricing--rabten .pricing__action{
+   background-color: #0cb4ce;
+}
+
+.btn.btn-outline-primary:hover,
+.bg-primary {
+   background-color: #0cb4ce !important;
+}
+
+.blockquote-primary {
+   border-color: #0cb4ce !important;
+}
+
+.testimonials-tab .nav.nav-justified > li > a > img {
+   box-shadow: 0 0 0 5px #0cb4ce;
+}
+
+.special-heading.word-underline span,
+.special-heading.word-underline-2 span,
+nav.xsearch-navbar.navbar-light .navbar-nav .active > .nav-link,
+.special-heading.underline span:after,
+.cbp-l-filters-alignCenter .cbp-filter-item.cbp-filter-item-active,
+.cbp-l-filters-buttonCenter .cbp-filter-item.cbp-filter-item-active,
+.tg-filter.tg-show-filter.tg-filter-active,
+.v-heading-v2 h2, .v-heading-v2 h3, .v-heading-v2 h4,
+.blog-item .read-more-button:hover,
+.testimonial-four blockquote:hover::after,
+.section-arrow-primary-color.section-arrow--bottom-center:after {
+   border-bottom-color: #0cb4ce;
+}
+
+.process-step .process-step-step .process-step-stepnum,
+.timeline-movement .title,
+h1, h2, h3, h4, h5, h6,
+.l-navbar_s-left.l-navbar_t-dark,
+.logo-brand,
+.menuzord-tabs-nav > li > a,
+.btn-default,
+.panel-group .panel-heading a,
+.cbp-l-grid-agency-title,
+.xblog-wrap .xblog-meta a,
+.xblog-large-info-meta-link,
+.xblog-large-info-title a,
+.xblog-medium-info-meta-link,
+.xblog-medium-info-title a,
+.xblog-info-title a,
+.ion-icons li:before,
+.bs-glyphicons .glyphicon,
+.fontawesome-icon-list .fa-hover a,
+.cbp-l-grid-masonry-projects-title,
+.cbp-l-grid-projects-title,
+.cbp-l-caption-title,
+.cbp-l-filters-alignCenter .cbp-filter-item.cbp-filter-item-active,
+.cbp-l-filters-buttonCenter .cbp-filter-item.cbp-filter-item-active,
+.cbp-l-filters-button .cbp-filter-item.cbp-filter-item-active,
+ul.comments .comment-block .comment-by,
+.testimonial-meta .testimonial-name strong,
+.footer.footer-minimal a,
+.slide-container .list-group-item,
+ul.comments .comment-block .comment-by strong,
+.blog-list-title a,
+.platform-block-title,
+.sidebar .list-group-item > a,
+.progress-bars.v2 .progress-label,
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4,
+.h5, .h6, h1 a,
+h2 a, h3 a,
+h4 a, h5 a, h6 a,
+.h1 a, .h2 a, .h3 a,
+.h4 a, .h5 a,
+.h6 a, blockquote,
+.srv-container .srv-name a,
+.srv-container .srv-name,
+.tab-wrap .nav-tabs .nav-link.active,
+ul.nav-shortcodes label,
+.team-member .member-name .name,
+.stories_wrapper .testimonial_name,
+.testimonial-five .testimonial-author strong{
+   color: #303133;
+}
+
+div.base-color h3,
+div.base-color h4,
+div.base-color h5,
+div.base-color h6,
+div.base-color {
+   color: #262626 !important;
+}
+
+span.dropcap3 {
+   background-color: #262626;
+}
+
+.main-color .feature-box.boxed,
+.main-color .call-to-action,
+.alternate-color,
+.page-header {
+   background-color: #f7f7f7;
+}
+
+.alternate-color .feature-box.boxed,
+.alternate-color .form-control,
+.alternate-color .call-to-action,
+.main-color {
+   background-color: #fff;
+}
+
+.c-tab-1-body-item,
+.c-tab-1-nav-link,
+.form-control,
+.pager li > a, .pager li > span,
+.pagination > li > a, .pagination > li > span,
+.btn-default,
+.xtestimonial .xtestimonial-content,
+.platform-block,
+.feature-box.boxed,
+.call-to-action,
+.xblog.xblog-type-4 .xblog-info:first-child {
+   border-color: #eaeaea;
+}
+
+.special-heading.line span:before, .special-heading.line span:after,
+.top-bar,
+.special-heading.word-underline .special-heading-inner,
+.panel-group .panel,
+.accordion.accordion-default .panel-default,
+.xblog.xblog-type-5.xblog-list article.xblog-item:not(:last-child),
+.b-bordered {
+   border-bottom-color: #eaeaea;
+}
+
+.special-heading.line span:before, .special-heading.line span:after,
+.footer.footer-minimal,
+.t-bordered {
+   border-top-color: #eaeaea;
+}
+
+.col-md-border:not(:last-child) {
+   border-right-color: #eaeaea;
+}
+
+.col-md-border + .col-md-border,
+.col-border + .col-border {
+   border-left-color: #eaeaea;
+}
+
+b, strong {
+    font-weight: 600;
+}
+ 

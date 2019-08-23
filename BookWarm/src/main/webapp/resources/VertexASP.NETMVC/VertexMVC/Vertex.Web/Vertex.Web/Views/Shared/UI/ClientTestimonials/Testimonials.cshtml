@@ -1,0 +1,68 @@
+﻿@model Vertex.Web.Framework.UI.ClientTestimonials
+
+@{
+    if (Model.Slider != null)
+    {
+        foreach (var item in Model.Items)
+        {
+            Model.Slider.Add().Content(RenderItem(item).ToHtmlString());
+        }
+        @Html.Raw(Model.Slider.ToHtmlString());
+    }
+    else
+    {
+        <div class="cbp"
+             data-layout-mode="grid"
+             data-animation-type='slideDelay'
+             data-caption='overlayBottomAlong'
+             data-display-type='bottomToTop'
+             data-display-type-speed="100"
+             data-gap-horizontal="1"
+             data-gap-vertical="0"
+             data-media-queries='[
+                    {"width": 1500, "cols": 4},
+                    {"width": 1100, "cols": 3},
+                    {"width": 840, "cols": 3},
+                    {"width": 640, "cols": 2},
+                    {"width": 480, "cols": 2},
+                    {"width": 300, "cols": 1}]'>
+            @foreach (var item in Model.Items)
+            {
+                <div class="cbp-item identity">
+                    @RenderItem(item)
+                </div>
+            }
+        </div>
+    }
+}
+
+@helper RenderItem(ClientTestimonialsItem item)
+{
+    <div class="clearfix pl-8 pr-4 mb-8 mb-lg-6 @Model.GetCssClass()"  @Model.GetHtmlAtributes()>
+        @if (!string.IsNullOrEmpty(item.ClientName))
+        {
+            <img src="@item.ClientLogoUrl" alt="@item.ClientName" data-toggle="tooltip" data-title="@item.ClientName" style="width:130px!important" width="130" class="mb-2">
+        } 
+        <div class="mb-3 testimonial-quote">
+            <blockquote class="mb-0">
+                @Html.Raw(item.WhatSayAboutUs)
+            </blockquote>
+            <div class="rating">
+                <label class="fa fa-star"></label>
+                <label class="fa fa-star"></label>
+                <label class="fa fa-star"></label>
+                <label class="fa fa-star"></label>
+                <label class="fa fa-star"></label>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <div class="avatar">
+                <img class="img-fluid rounded-circle" src="@item.PersonPictureUrl" alt="Image Description">
+            </div>
+            <div class="ml-3">
+                <h4 class="h6 mb-0">@item.PersonName</h4>
+                <small class="text-muted">@item.PersonPosition</small>
+            </div>
+        </div>
+    </div>
+} 

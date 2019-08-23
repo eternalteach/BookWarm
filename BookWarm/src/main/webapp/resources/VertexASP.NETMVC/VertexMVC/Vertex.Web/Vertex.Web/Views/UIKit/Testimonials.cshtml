@@ -1,0 +1,31 @@
+﻿ 
+
+@{ ViewBag.Title = "Accordion"; }
+
+@Html.Vertex().Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = false;
+    settings.StickyType = HeaderStickyType.Shrink;
+    settings.BorderBottom = HeaderBorderBottom.Light;
+})
+
+
+@Html.Partial("_Banner", "Progress")
+
+
+@Html.Vertex().Section().Size(SectionSize.Small).ContentTemplate(@<text>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto"> 
+
+                @Html.Vertex().Progress() 
+
+            </div>
+        </div>
+    </div>
+
+</text>)
+
+
+@Html.Vertex().Footer()

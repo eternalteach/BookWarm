@@ -1,0 +1,20 @@
+﻿@model Slider
+
+<div class="@Model.GetCssClass()" @Model.GetHtmlAtributes()>
+    @foreach (var item in Model.Items)
+    {
+        <div>
+            <div class="@item.GetCssClass()" @item.GetHtmlAtributes()>
+                @if (!String.IsNullOrEmpty(item.Content))
+                {
+                    @Html.Raw(item.Content)
+                }
+                else
+                {
+                    <img src="@item.Src">
+                }
+            </div>
+        </div>
+    }
+</div>
+

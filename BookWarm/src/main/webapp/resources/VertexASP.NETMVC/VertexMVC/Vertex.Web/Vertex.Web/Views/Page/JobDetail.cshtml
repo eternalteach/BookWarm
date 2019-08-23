@@ -1,0 +1,199 @@
+﻿@model JobDetailModel
+
+@{ string title = string.Format("{0} | {1}", "Job", Model.Title); }
+
+@Html.Vertex().Page().Title(title).Header(settings => {
+    settings.Nav = DemoMenu.GetDemoMenu();
+    settings.ShowTopbar = true; 
+})
+
+<section class="section">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12  mb-4">
+                <a class="text-primary" href="@Url.Action("Jobs", "Page")">
+                    <span class="fas fa-arrow-left small text-primary mr-2"></span>
+                    See All Jobs
+                </a>
+            </div>
+        </div>
+
+        <div class="row pb-8 mb-8 border-bottom align-items-md-center">
+            <div class="col-md-9">
+                <h1 class="h3">@Model.Title </h1>
+                <p class="mb-0">
+                    <span class="mr-3">
+                        <span class="fas fa-copy mr-1 fs-12 text-light"></span> @Model.CategoryName
+                    </span>
+                    <span>
+                        <span class="fas fa-eye mr-1 fs-12 text-light"></span> Viewed @Model.ViewCount times
+                    </span>
+                </p>
+            </div>
+
+            <div class="col-md-3 text-md-right">
+                <a class="btn btn-primary" href="#ApplyJobWrap">
+                    Apply Now
+                </a>
+            </div>
+        </div>
+
+        <div class="row mb-9">
+            <div class="col-md-8">
+                @Html.Raw(Model.Description)
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border shadow-sm pt-5 px-5 pb-5 mb-8">
+                    <div class="media mb-4 pb-3 border-bottom"> 
+                        <div class="media-body">
+                            <span class="d-block font-weight-medium text-primary">Job Detail</span> 
+                        </div>
+                    </div>
+                    <div class="media mb-3">
+                        <div class="min-width-4 text-center text-primary mt-1 mr-3">
+                            <span class="fas fa-copy"></span>
+                        </div>
+                        <div class="media-body">
+                            <span class="d-block font-weight-medium">Category</span>
+                            <small class="d-block text-secondary">@Model.CategoryName </small>
+                        </div>
+                    </div>
+                    <div class="media mb-3">
+                        <div class="min-width-4 text-center text-primary mt-1 mr-3">
+                            <span class="fas fa-map-marked-alt"></span>
+                        </div>
+                        <div class="media-body">
+                            <span class="d-block font-weight-medium">Location</span>
+                            <small class="d-block text-secondary">@Model.Location</small>
+                        </div>
+                    </div>
+                    <div class="media mb-3">
+                        <div class="min-width-4 text-center text-primary mt-1 mr-3">
+                            <span class="fas fa-coffee"></span>
+                        </div>
+                        <div class="media-body">
+                            <span class="d-block font-weight-medium">Job type</span>
+                            <small class="d-block text-secondary">@Model.WorkType</small>
+                        </div>
+                    </div>
+                    <div class="media mb-3">
+                        <div class="min-width-4 text-center text-primary mt-1 mr-3">
+                            <span class="fas fa-money-bill-alt"></span>
+                        </div>
+                        <div class="media-body">
+                            <span class="d-block font-weight-medium">Salary</span>
+                            <small class="d-block text-secondary">$5.000 - $7.200</small>
+                        </div>
+                    </div>
+                    <div class="media mb-1">
+                        <div class="min-width-4 text-center text-primary mt-1 mr-3">
+                            <span class="fas fa-business-time"></span>
+                        </div>
+                        <div class="media-body">
+                            <span class="d-block font-weight-medium">Posted </span>
+                            <small class="d-block text-secondary">@Model.CreateDate.ToRelativeFormat()</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    @Html.Vertex().Widget("SidebarSubscribeForm", new SubscriberModel())
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center" id="ApplyJobWrap">
+            <div class="col-md-10">
+
+                <div class="card shadow-sm py-8 px-7 border">
+
+                    <div class="text-center mb-6">
+                        <span class="label label--sm label--primary mb-3">Join Us</span>
+                        <h2 class="h3 font-weight-normal">Apply for this Job</h2>
+                    </div>
+
+                    @using (Ajax.BeginForm("ApplyJob", "Page", null, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "applayJobResult" }, new { role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-user-edit mr-3 fs-14"></i>
+                                            @Html.LabelFor(x => x.ApplyJob.FullName, new { @class = "m-0" })
+                                        </span>
+                                    </div>
+                                    @Html.TextBoxFor(x => x.ApplyJob.FullName, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-envelope mr-3 fs-14"></i>
+                                            @Html.LabelFor(x => x.ApplyJob.Email, new { @class = "m-0" })
+                                        </span>
+                                    </div>
+                                    @Html.TextBoxFor(x => x.ApplyJob.Email, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-phone mr-3 fs-14"></i>
+                                            @Html.LabelFor(x => x.ApplyJob.Phone, new { @class = "m-0" })
+                                        </span>
+                                    </div>
+                                    @Html.TextBoxFor(x => x.ApplyJob.Phone, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-link mr-3 fs-14"></i>
+                                            @Html.LabelFor(x => x.ApplyJob.Website, new { @class = "m-0" })
+                                        </span>
+                                    </div>
+                                    @Html.TextBoxFor(x => x.ApplyJob.Website, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 mb-5 mt-2">
+                                <div class="input-group custom-textarea mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-pencil-alt mr-3 fs-14"></i>
+                                            @Html.LabelFor(x => x.ApplyJob.Message, new { @class = "m-0" })
+                                        </span>
+                                    </div>
+                                    @Html.TextAreaFor(x => x.ApplyJob.Message, new { @class = "form-control", @rows = "5" })
+                                </div>
+
+                                <div class="mt-3" id="applayJobResult"></div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-wide transition-3d-hover">Apply Now</button>
+                        </div>
+
+                        @Html.HiddenFor(model => model.ApplyJob.JobId)
+                    }
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+@Html.Vertex().Footer()
