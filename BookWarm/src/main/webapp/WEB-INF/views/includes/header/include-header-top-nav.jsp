@@ -494,7 +494,7 @@
 									<td class="product-thumbnail"><a
 										href="shop-product-sidebar.html"> <img width="100"
 											height="100" alt="" class="img-fluid"
-											src="img/shop/th-mismo-bag-grey.jpg">
+											src="./resources/VertexEx/img/shop/th-mismo-bag-grey.jpg">
 									</a></td>
 									<td class="product-name"><a
 										href="shop-product-sidebar.html">Mismo Bag Grey<br>
@@ -507,7 +507,7 @@
 									<td class="product-thumbnail"><a
 										href="shop-product-sidebar.html"> <img width="100"
 											height="100" alt="" class="img-fluid"
-											src="img/shop/th-womens-bag.jpg">
+											src="./resources/VertexEx/img/shop/th-womens-bag.jpg">
 									</a></td>
 									<td class="product-name"><a
 										href="shop-product-sidebar.html">Womens Bag<br>
