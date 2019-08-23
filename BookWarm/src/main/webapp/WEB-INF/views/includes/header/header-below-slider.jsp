@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<%@ include file="./header_front01.jsp"%>
+<%@ include file="./include-header-front01.jsp"%>
    <!-- 이 두줄 여기에 필요한게 맞는지 확인해야한다. -->
    <link rel="stylesheet" href="vendor/bootstrap/css/glyphicon.css" />
    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700,800,900|Roboto%3A700%2C500%2C900%2C400" rel="stylesheet" type="text/css" />
@@ -369,7 +369,7 @@
                               <div class="header-nav-main header-nav-main-effect-2 header-nav-main-sub-effect-1">
                                  
                                  <!-- 탑 메뉴 -->
-                                 <%@ include file="../includes/header/top_nav.jsp"%>
+                                 <%@ include file="./include-header-top-nav.jsp"%>
                                  
                               </div>
                               <ul class="header-social-icons social-icons d-none d-sm-block">

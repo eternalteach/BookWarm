@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<%@ include file="./header_front01.jsp"%>
+<%@ include file="./include-header-front01.jsp"%>
 <!-- 여기  front01의 current cSS 필요없음 -->
    <!-- Pricing CSS -->
    <link href="vendor/pricing-tables/main.css" rel="stylesheet" />
@@ -35,7 +35,7 @@
                            <div class="header-nav-main header-nav-main-effect-2 header-nav-main-sub-effect-1">
                               
                               <!-- 탑 메뉴 -->
-                              <%@ include file="../includes/header/top_nav.jsp"%>
+                              <%@ include file="./include-header-top-nav.jsp"%>
                               
                            </div>
                            <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main nav">

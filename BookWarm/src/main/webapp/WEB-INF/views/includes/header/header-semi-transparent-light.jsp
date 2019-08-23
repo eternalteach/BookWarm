@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<%@ include file="./includes/header/header_front01.jsp"%>
+<%@ include file="./include-header-front01.jsp"%>
 </head>
 <body>
 
@@ -30,7 +30,7 @@
                            <div class="header-nav-main header-nav-main-effect-2 header-nav-main-sub-effect-1">
                              
                              <!-- 탑 메뉴 -->
-                             <%@ include file="../includes/header/top_nav.jsp"%>
+                             <%@ include file="./include-header-top-nav.jsp"%>
                              
                            </div>
                            <ul class="header-social-icons social-icons d-none d-sm-block">
