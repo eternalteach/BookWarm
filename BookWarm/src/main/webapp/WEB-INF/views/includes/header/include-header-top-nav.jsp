@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
 <nav class="collapse">
 	<ul class="nav nav-pills" id="mainNav">
@@ -15,7 +15,7 @@
 				<li><a class="dropdown-item" href="index-8.html">Home
 						Version 8</a></li>
 
-				<!--여기서부터는 살린 다음 다시 봐보자.-->
+				<!--ì¬ê¸°ìë¶í°ë ì´ë¦° ë¤ì ë¤ì ë´ë³´ì.-->
 				<li><a class="dropdown-item" href="index-9.html">Home
 						Version 9</a></li>
 				<li><a class="dropdown-item" href="index-10.html">Home
@@ -48,10 +48,10 @@
 				<li class="dropdown-submenu"><a class="dropdown-item" href="#">About
 						Me</a>
 					<ul class="dropdown-menu">
-						<!-- 개인 통계자료 참고-->
+						<!-- ê°ì¸ íµê³ìë£ ì°¸ê³ -->
 						<li><a class="dropdown-item" href="pages-about-me.html">About
 								Me</a></li>
-						<!-- 오류해결뒤 다시 판단-->
+						<!-- ì¤ë¥í´ê²°ë¤ ë¤ì íë¨-->
 						<li><a class="dropdown-item" href="pages-about-me-2.html">About
 								Me - Alt</a></li>
 					</ul></li>
@@ -75,7 +75,7 @@
 
 					</ul></li>
 
-				<!--이거는 회원등급 페이지로-->
+				<!--ì´ê±°ë íìë±ê¸ íì´ì§ë¡-->
 				<li><a class="dropdown-item" href="pages-pricing.html">Pricing
 						Page</a></li>
 
@@ -241,7 +241,7 @@
 				<li class="dropdown-submenu"><a class="dropdown-item" href="#">Portfolio
 						Styles</a>
 					<ul class="dropdown-menu">
-						<!-- 살림 -->
+						<!-- ì´ë¦¼ -->
 						<li><a class="dropdown-item"
 							href="portfolio-grid-overlay.html">Grid Overlay</a></li>
 
@@ -494,7 +494,7 @@
 									<td class="product-thumbnail"><a
 										href="shop-product-sidebar.html"> <img width="100"
 											height="100" alt="" class="img-fluid"
-											src="img/shop/th-mismo-bag-grey.jpg">
+											src="./resources/VertexEx/img/shop/th-mismo-bag-grey.jpg">
 									</a></td>
 									<td class="product-name"><a
 										href="shop-product-sidebar.html">Mismo Bag Grey<br>
@@ -507,7 +507,7 @@
 									<td class="product-thumbnail"><a
 										href="shop-product-sidebar.html"> <img width="100"
 											height="100" alt="" class="img-fluid"
-											src="img/shop/th-womens-bag.jpg">
+											src="./resources/VertexEx/img/shop/th-womens-bag.jpg">
 									</a></td>
 									<td class="product-name"><a
 										href="shop-product-sidebar.html">Womens Bag<br>
