@@ -15,4 +15,17 @@ public class HomeController {
 		return "/index";
 	}
 	
+	@RequestMapping(value = "/dark", method = RequestMethod.GET)
+	public String dark() {
+		return "includes/header/header-dark-dropdown";
+	}
+	
+	@RequestMapping(value = "/full", method = RequestMethod.GET)
+	public String full() {
+		return "includes/header/header-full-width";
+	}
+	
+	@RequestMapping(value = "/foo", method = RequestMethod.GET)
+	public String footer1() {
+		return "includes/footer/footer1";	}
 }
