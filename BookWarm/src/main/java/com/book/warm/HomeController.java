@@ -25,7 +25,11 @@ public class HomeController {
 		return "includes/header/header-full-width";
 	}
 	
-	@RequestMapping(value = "/foo", method = RequestMethod.GET)
+	@RequestMapping(value = "/foo1", method = RequestMethod.GET)
 	public String footer1() {
 		return "includes/footer/footer1";	}
+	
+	@RequestMapping(value = "/foo2", method = RequestMethod.GET)
+	public String foo2() {
+		return "includes/footer/footer2";	}
 }
