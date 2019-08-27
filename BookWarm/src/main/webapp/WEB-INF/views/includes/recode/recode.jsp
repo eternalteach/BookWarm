@@ -1,20 +1,24 @@
-﻿<section class="section-small main-color">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<!-- <section class="section-small main-color"> background white-->
+<section class="section-primary alternate-color b-bordered">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-sm-6">
 				<div class="special-heading word-underline">
 					<h4 class="special-heading-inner">
-						<span> Our Crazy Skills </span>
+						<span> Reading Record </span>
 					</h4>
 				</div>
 				<div class="progress-bars v2">
 					<div class="progress-label">
-						<span>HTML/CSS</span>
+						<span>읽은 기록</span>
 					</div>
 					<div class="progress">
 						<div class="progress-bar progress-bar-primary"
-							data-appear-progress-animation="${boardlog.startPage}%">
-							<span class="progress-bar-tooltip">${boardlog.startPage}%</span>
+							data-appear-progress-animation="${boardlog.amount}%">
+							<span class="progress-bar-tooltip">${boardlog.amount}%</span>
 						</div>
 					</div>
 					<div class="progress-label">
@@ -61,30 +65,28 @@
 					<div class="row content-grid-row">
 						<div class="content-grid-item col-md-6">
 							<div class="counter text-right">
-								<strong class="fs-42 primary-color" data-to="48.50"
-									data-plugin-options="{&quot;decimals&quot;: 2}">48.50</strong>
-								<span>Project Done</span>
+								<strong class="fs-42 primary-color" data-to="${boardlog.amount}"
+									data-plugin-options="{&quot;decimals&quot;: 2}">${boardlog.amount}</strong>
+								<span>읽은 페이지</span>
 							</div>
 						</div>
 						<div class="content-grid-item col-md-6">
 							<div class="counter text-left">
-								<strong class="fs-42 primary-color" data-to="750">750</strong> <span>Facebook
-									Likes</span>
+								<strong class="fs-42 primary-color" data-to="${book.readingNum}">${book.readingNum}</strong> <span>함께 읽는 독자 수</span>
 							</div>
 						</div>
 					</div>
 					<div class="row content-grid-row">
 						<div class="content-grid-item col-md-6">
 							<div class="counter text-right">
-								<strong class="fs-42 primary-color" data-to="12000">12000</strong>
-								<span>Customers</span>
+								<strong class="fs-42 primary-color" data-to="${boardlog.recordNum}">${boardlog.recordNum}</strong>
+								<span>감상문 수</span>
 							</div>
 						</div>
 						<div class="content-grid-item col-md-6">
 							<div class="counter text-left">
-								<strong class="fs-42 primary-color" data-to="15.49"
-									data-plugin-options="{&quot;decimals&quot;: 2}">15.49</strong>
-								<span>Extremely Cheap</span>
+								<strong>기록 추가</strong>
+								<span></span>
 							</div>
 						</div>
 					</div>

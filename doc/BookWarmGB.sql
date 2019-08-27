@@ -1,15 +1,8 @@
 -- logBoard, logingBoard sequence 생성
 create sequence seq_logBoard;
 create sequence seq_logingBoard;
--- logingBoard 보드 생성
-create table loging_board(
-writeNo number(10,0),
-startDate date not null,
-startPage number(4,0) not null,
-endDate date not null);
--- sample date
-insert into loging_board (writeNo, startDate, startPage, endDate) values(1, sysdate, 222, sysdate);
-insert into log_board (writeNo,user_id,ISBN,write_buy_date)values(1, 'user00', 'isbn001', sysdate);
+
+
 -- logBoard 보드 생성
 create table log_board(
 writeNo number(10,0) PRIMARY key,
@@ -22,11 +15,23 @@ read_stop number(10,0),
 read_star number(1,0)
 );
 
+-- logingBoard 보드 생성
+create table loging_board(
+writeNo number(10,0),
+startPage number(4,0) default 1 not null,
+endPage number(4,0) not null,
+startDate date not null,
+endDate date not null);
+
 -- loging 의 writeNo 는 log의 writeNo를 참조한다.
 alter table loging_board add constraint fk_log_board foreign key (writeNo) REFERENCES log_board (writeNo);
 
-select * from loging_board;
+-- sample date (log board, loging board)
+insert into log_board (writeNo,user_id,ISBN,write_buy_date)values(seq_logBoard.nextval, 'user00', 'isbn001', sysdate);
+insert into loging_board (writeNo, startDate, startPage, endDate,endPage) values(1, sysdate, 11, sysdate,500);
 
+select * from log_board;
+select * from loging_board;
 
 --테스트
 select * from loging_board where writeNo=1;
