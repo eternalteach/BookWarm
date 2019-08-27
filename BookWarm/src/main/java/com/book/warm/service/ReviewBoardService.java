@@ -16,7 +16,7 @@ public class ReviewBoardService {
 	SqlSessionTemplate sqlSession;
 	
 	public List<ReviewBoardVO> selectBoardList() {
-		
+
 		return sqlSession.selectList("board.selectBoardList");
 	}
 	

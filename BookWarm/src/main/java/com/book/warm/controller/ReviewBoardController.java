@@ -16,10 +16,11 @@ public class ReviewBoardController {
 	ReviewBoardService rbs;
 	
 	@RequestMapping("/recordMain")
-	public String recordMain(ReviewBoardVO reviewBoardVO, Model model) {
+	public String recordMain(Model model) {
 		
 		model.addAttribute("list", rbs.selectBoardList());
 		
 		return "recordMain";
 	}
+	
 }

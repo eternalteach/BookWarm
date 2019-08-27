@@ -6,7 +6,7 @@
  <mapper namespace="board">
  
  	<select id="selectBoardList" resultType="com.book.warm.vo.ReviewBoardVO">
- 		select * from reviewBoard order by opinion_modify_date
+ 		select * from reviewboard order by opinion_modify_date
  	</select>
  
  </mapper>
