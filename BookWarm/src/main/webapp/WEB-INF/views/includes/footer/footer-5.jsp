@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page session="false"%>
 
+<body>
 	<div class="wrapper">
 		<div class="page">
 			<footer class="footer footer-emel" id="footer-5">

@@ -51,3 +51,9 @@
             </div>
          </div>
       </header>
+      <!--End Header-->
+		<!-- insert context -->
+		<!-- insert footer -->
+   </div>
+</body>
+</html>
