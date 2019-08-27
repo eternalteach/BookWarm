@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board"> <!-- service 에서 return sqlSession.selectList("board.selectList"); 에서 board랑 namespace의 값과 맞춰줘야한다. -->
+	<select id='selectBoardOne' resultType="com.book.warm.vo.LogingBoardVO" >
+	select * from loging_board where writeNo=#{writeNo}
+	</select>
+	
+</mapper>
