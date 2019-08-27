@@ -156,6 +156,55 @@
 
                   <div class="col-md-8 right-side-sidebar v_blog-medium pt-70">
 
+
+
+				<!-- 블로그에 글 넣기 시도 -->
+				
+				                         <article class="v_blog-item">
+                        <div class="v_blog-item-inner row">
+                           <div class="v_blog-item-media col-md-5">
+                              <a href="#">
+                                 <img class="w-100" src="./resources/VertexEx/img/blog/x2.jpg" />
+                              </a>
+                           </div>
+                           <div class="v_blog-item-content col-md-7">
+                              <div class="v_blog-item-header">
+                                 <ul class="v_blog-item-meta">
+                                    <li class="v_blog-item-author">
+                                       <span>By </span> <a href="#">Vertex</a>
+                                    </li>
+                                    <li class="v_blog-item-date">
+                                       <time class="" datetime="2018-06-30T10:47:48+00:00">
+                                          June 30, 2018
+                                       </time>
+                                    </li>
+                                    <li class="v_blog-item-comments">No Comments</li>
+                                 </ul>
+
+                                 <a href="./resources/VertexEx/blog-post-standard.html" rel="bookmark">
+                                    <h2 class="v_blog-item-title" itemprop="name headline">${list.opinion_title }</h2>
+                                 </a>
+                              </div>
+
+                              <div itemprop="articleBody">
+                                 <p>
+                                    Verterem repudiare no duo. Voluptua forensibus honestatis ad qui, vide atqui percipit id ius,
+                                    congue scaevola.
+                                 </p>
+                                 <a class="v_blog-item-read-more" href="#">
+                                    <span>Read more</span>
+                                 </a>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+
+
+
+
+
+
+
                      <article class="v_blog-item">
                         <div class="v_blog-item-inner row">
                            <div class="v_blog-item-media col-md-5">

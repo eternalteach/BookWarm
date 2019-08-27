@@ -2,8 +2,10 @@ package com.book.warm.service;
 
 import org.springframework.stereotype.Service;
 
-//»õ·Î Å¬·¡½º ¸¸µé¾î¼­ ÇÏ¼¼¿ä. ¼öÁ¤ÇØ¼­ ÇÏ¸é ¾ÈµË´Ï´Ù.
+//ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­ ï¿½Ï¼ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ï¸ï¿½ ï¿½ÈµË´Ï´ï¿½.
 @Service
 public class LogBoardService {
-
+	
+		
+	
 }
