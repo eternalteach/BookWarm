@@ -29,15 +29,21 @@
 		스프링에 SqlSessionFactory를 등록하는 작업은 SqlSessionFactoryBean을 이용한다. 스프링과 연동작업을 처리하는 것은 mybatis-spring이다 -->
 		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
+		<property name="mapperLocations"
+			value="classpath:/com/book/warm/mapper/*.xml"></property>
 		</bean>
 		<!-- ./sqlSessionFactory -->
-		
 				
 		<!-- /.mybatis -->
-		<!-- opg.zerock.mapper 패키지를 조사하도록 설정 -->
-		<mybatis-spring:scan base-package="com.book.warm.mapper"/>
+		<!-- opg.zerock.service 패키지를 조사하도록 설정 -->
+		<mybatis-spring:scan base-package="com.book.warm.service"/>
 		<!-- ./mybatis -->
 		
 		<!-- 비즈니스 계층의 인터페이스와 구현클래스 작성된 것을 스프링 빈으로 인식하기 위해서 org.zerock.service패키지를 조사하도록 추가 -->
+			<!-- sqlsession 추가해보자 이거는 나중에 지우기 -->
+			<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+	</bean>
 		<!-- <context:component-scan base-package="com.book.warm.service"/> -->
 </beans>

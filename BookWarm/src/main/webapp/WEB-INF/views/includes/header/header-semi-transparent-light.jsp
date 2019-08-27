@@ -81,5 +81,3 @@
 <!-- insert footer -->
       </div>
    </div>
-</body>
-</html>
