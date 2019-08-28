@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
-   <meta charset="utf-8">
+   <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <title>Vertex - Responsive HTML5 Bootstrap Template</title>
    <meta name="keywords" content="HTML5 Template" />
@@ -23,6 +23,17 @@
    <link href="./resources/VertexEx/css/main.css" rel="stylesheet" />
    <link href="./resources/VertexEx/css/main-shortcodes.css" rel="stylesheet" />
    <link href="./resources/VertexEx/css/header.css" rel="stylesheet" />
+   
+   <!-- shopping_list CSS -->
+   <link href="./resources/VertexEx/css/shop.css" rel="stylesheet" />
+   <link href="./resources/VertexEx/css/bg-stylish.css" rel="stylesheet" />
+   <link href="./resources/VertexEx/css/streamline-icon.css" rel="stylesheet" />
+   <link href="./resources/VertexEx/css/font-icons.css" rel="stylesheet" />
+   <link href="./resources/VertexEx/smartforms/JavascriptTemplates/css/smart-addons.css" rel="stylesheet" />
+   <link href="./resources/VertexEx/smartforms/Templates/css/smart-forms.css" rel="stylesheet" />
+   <!-- end shopping_list CSS  -->
+   
+   
    <link href="./resources/VertexEx/css/form-element.css" rel="stylesheet" />
    <link href="./resources/VertexEx/css/animation.css" rel="stylesheet" />
    <link href="./resources/VertexEx/css/responsive.css" rel="stylesheet" />
@@ -73,3 +84,13 @@
    <!-- Custom JS -->
    <script src="./resources/VertexEx/js/custom.js"></script>
    
+	
+	<!-- shoppig list  -->	
+   <!-- Smart Form Elements -->
+   <script src="./resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-custom.min.js"></script>
+   <script src="./resources/VertexEx/smartforms/JavascriptTemplates/js/jquery.placeholder.min.js"></script>
+   <script src="./resources/VertexEx/smartforms/JavascriptTemplates/js/select2.full.min.js"></script>
+   <script src="./resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-combo.min.js"></script>
+   	<!-- end shoppig list  -->	
+	
+	
