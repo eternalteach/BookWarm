@@ -1,3 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.book.warm.mapper.ShopListMapper"></mapper>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shop">
+
+	<select id="shoplist" resultType="com.book.warm.vo.ShopListBoardVO">
+	select book_title, writer_name, publisher_name, book_price_for_sale
+	from book, publisher, writer 
+	where book.publisher_no = publisher.publisher_no 
+			and writer.writer_no = book.writer_no
+	</select>
+
+</mapper>

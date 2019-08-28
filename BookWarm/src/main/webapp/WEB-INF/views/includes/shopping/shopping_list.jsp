@@ -19,7 +19,6 @@
                            <div class="col-md-3">
                               <select class="custom-select pull-right mt-15">
                                  <option selected>쇼핑 	 Newness</option>
-                                 <option value="1">쇼핑 by price: low to high</option>
                                  <option value="2">쇼핑 by popularity</option>
                                  <option value="3">쇼핑 by price: high to low</option>
                               </select>
@@ -78,7 +77,9 @@
                                  </div>
                               </figure>
                            </div>
-
+							
+							
+							<!-- 우왕  책 리스트를 불러와야한다. 변수명 바꿔줘야함 -->
                            <div class="col">
 
                               <figure class="product-shadows product-item">
@@ -350,9 +351,10 @@
                                        </div>
                                     </div>
                                  </div>
-
+								
+								<c:forEach items="${list}" var="shop">
                                  <div class="product-details">
-                                    <h3 class="product-name"><a href="#">Turtleneck Sweater Grey</a></h3>
+                                    <h3 class="product-name"><a href="#">${shop.book_title}</a></h3>
                                     <span class="product-posted_in"><a href="#" rel="tag">Shirting</a></span>
                                     <span class="product-price">
                                        <span class="product-amount">
@@ -365,6 +367,8 @@
                                        <i class="fa fa-star"></i>
                                     </div>
                                  </div>
+                                 </c:forEach>
+                                 
                               </figure>
                            </div>
 
@@ -529,7 +533,7 @@
                         <a href="#" class="btn btn-tw ls-0"><i class="fa fa-twitter"></i> Twitter</a>
                      </div>
                      <div class="special-heading line center">
-                        <h5 class="special-heading-inner mb-10"><span class="o-7"> or </span></h5>
+                        <h5 class="spe	cial-heading-inner mb-10"><span class="o-7"> or </span></h5>
                      </div>
                      <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
                         <div class="form-group">
