@@ -23,4 +23,14 @@ public class CommunityBoardService {
 		return (ArrayList) sqlSession.selectList("CommunityBoard.selectList");
 	}
 
+	public CommunityBoardVO getCommunityBoardOne(String commNo) {
+		log.info("===== getCommunityBoardOne ===== ");
+		return sqlSession.selectOne("CommunityBoard.selectOne", commNo);
+	}
+
+	public int getCommunityBoardOneDelete(String commNo) {
+		log.info("===== getCommunityBoardOneDelete ===== ");
+		return sqlSession.delete("CommunityBoard.delete", Integer.parseInt(commNo));
+	}
+
 }

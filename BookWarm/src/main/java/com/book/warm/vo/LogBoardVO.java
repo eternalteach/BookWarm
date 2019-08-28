@@ -6,9 +6,9 @@ import java.sql.Date;
 public class LogBoardVO { // ������� SQL
 	private int writeNo; // ��Ϲ�ȣ write_no
 	private String userId; // ����� ID user_id
-	private Date writeWrittenDate; // �ۼ��� write_written_date
+	private String writeWrittenDate; // �ۼ��� write_written_date
 	private String ISBN; // ������ȣ ISBN
-	private Date writeBuyDate; // ������(�뿩��) write_buy_date
+	private String writeBuyDate; // ������(�뿩��) write_buy_date
 	private int readAmount; // �������� read_amount  (���� ��)
 	private int readStop; // å���� read_stop
 	private int readStar; // ���� read_star
@@ -29,11 +29,11 @@ public class LogBoardVO { // ������� SQL
 		this.userId = userId;
 	}
 
-	public Date getWriteWrittenDate() {
+	public String getWriteWrittenDate() {
 		return writeWrittenDate;
 	}
 
-	public void setWriteWrittenDate(Date writeWrittenDate) {
+	public void setWriteWrittenDate(String writeWrittenDate) {
 		this.writeWrittenDate = writeWrittenDate;
 	}
 
@@ -45,11 +45,11 @@ public class LogBoardVO { // ������� SQL
 		ISBN = iSBN;
 	}
 
-	public Date getWriteBuyDate() {
+	public String getWriteBuyDate() {
 		return writeBuyDate;
 	}
 
-	public void setWriteBuyDate(Date writeBuyDate) {
+	public void setWriteBuyDate(String writeBuyDate) {
 		this.writeBuyDate = writeBuyDate;
 	}
 
@@ -77,7 +77,7 @@ public class LogBoardVO { // ������� SQL
 		this.readStar = readStar;
 	}
 
-	public LogBoardVO(int writeNo, String userId, Date writeWrittenDate, String iSBN, Date writeBuyDate,
+	public LogBoardVO(int writeNo, String userId, String writeWrittenDate, String iSBN, String writeBuyDate,
 			int readAmount, int readStop, int readStar) {
 		super();
 		this.writeNo = writeNo;

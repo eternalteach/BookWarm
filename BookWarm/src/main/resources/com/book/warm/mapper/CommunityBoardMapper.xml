@@ -5,6 +5,12 @@
 
 <mapper namespace="CommunityBoard"> 
 	<select id='selectList' resultType="com.book.warm.vo.CommunityBoardVO">
-		select * from community_board order by commNo
+		select * from community_board order by commNo desc
+	</select>
+	<select id='selectOne' resultType="com.book.warm.vo.CommunityBoardVO">
+		select * from community_board where commNo=#{commNo}
+	</select>
+	<select id='delete' resultType="int">
+		delete community_board where commNo=#{commNo}
 	</select>
 </mapper>

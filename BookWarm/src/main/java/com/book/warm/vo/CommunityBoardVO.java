@@ -1,14 +1,12 @@
 package com.book.warm.vo;
 
-import java.sql.Date;
-
 public class CommunityBoardVO {
 	private int commNo;
 	private String userId;
 	private String commSbject;
 	private String commTitle;
 	private String commContent;
-	private Date commWrittenTime;
+	private String commWrittenTime;
 	private int commClicked;
 	private int commGroup;
 	private int commStep;
@@ -54,11 +52,11 @@ public class CommunityBoardVO {
 		this.commContent = commContent;
 	}
 
-	public Date getCommWritten_time() {
+	public String getCommWrittenTime() {
 		return commWrittenTime;
 	}
 
-	public void setCommWritten_time(Date commWrittenTime) {
+	public void setCommWrittenTime(String commWrittenTime) {
 		this.commWrittenTime = commWrittenTime;
 	}
 
@@ -95,7 +93,7 @@ public class CommunityBoardVO {
 	}
 
 	public CommunityBoardVO(int commNo, String userId, String commSbject, String commTitle, String commContent,
-			Date commWrittenTime, int commClicked, int commGroup, int commStep, int commIndent) {
+			String commWrittenTime, int commClicked, int commGroup, int commStep, int commIndent) {
 		super();
 		this.commNo = commNo;
 		this.userId = userId;

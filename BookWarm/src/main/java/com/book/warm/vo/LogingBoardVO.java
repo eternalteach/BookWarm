@@ -6,8 +6,8 @@ public class LogingBoardVO {
 	private int writeNo;
 	private int startPage;
 	private int endPage;
-	private Date startDate;
-	private Date endDate;
+	private String startDate;
+	private String endDate;
 	private int recordNum;
 
 	public int getRecordNum() {
@@ -42,23 +42,23 @@ public class LogingBoardVO {
 		this.endPage = endPage;
 	}
 
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 
-	public LogingBoardVO(int writeNo, int startPage, int endPage, Date startDate, Date endDate) {
+	public LogingBoardVO(int writeNo, int startPage, int endPage, String startDate, String endDate) {
 		super();
 		this.writeNo = writeNo;
 		this.startPage = startPage;

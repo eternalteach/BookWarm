@@ -37,29 +37,34 @@ select * from loging_board;
 select * from loging_board where writeNo=1;
 
 --comunity board
-create table comunity_board(
+create table community_board(
 commNo NUMBER(4) PRIMARY KEY,
 userId VARCHAR2(20),
 commSbject varchar2(20),
 commTitle VARCHAR2(100),
 commContent VARCHAR2(3000),
-commWritten_time DATE DEFAULT SYSDATE,
+commWrittenTime DATE DEFAULT SYSDATE,
 commClicked NUMBER(4) DEFAULT 0,
 commGroup NUMBER(4),
 commStep NUMBER(4),
 commIndent NUMBER(4)
 );
 
+
 --comunity board sequence
-create sequence comunity_board_seq;
+create sequence community_board_seq;
+
 
 --comunity board sample data
-insert into comunity_board (comm_no, user_id, comm_sbject, comm_title, comm_content, comm_clicked, comm_group,comm_Step,comm_Indent)
-VALUES (comunity_board_seq.nextval, 'userID', 'comm_sbject', 'comm_title', 'comm_content' ,0, comunity_board_seq.currval, 0, 0);
+insert into community_board (commNo, userId, commSbject, commTitle, commContent, commClicked, commGroup,commStep,commIndent)
+VALUES (community_board_seq.nextval, 'userID02', 'comm_sbject', 'comm_title', 'comm_content' ,0, community_board_seq.currval, 0, 0);
 
 -- community board select test
-select * from comunity_board;
+select * from community_board;
 
 -- community board get list test
-select * from comunity_board order by comm_no;
+select * from community_board order by commNo desc;
+
+-- community board delete test
+delete community_board where commNo=5;
 
