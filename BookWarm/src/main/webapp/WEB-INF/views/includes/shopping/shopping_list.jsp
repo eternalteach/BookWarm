@@ -8,17 +8,17 @@
                         <div class="row">
                            <div class="col-md-9">
                               <h2 class="section-title m-none fs-26">
-                                 		베스트ㅇㄹㄴㅇㅇㅇㅇㅇ
+                                 		베스트셀러
                                  		<!-- 베스트 -->
                               </h2>
                               <p class="mb-25">
-								쇼핑
+								주간베스트
                               </p>
                            </div>
 
                            <div class="col-md-3">
                               <select class="custom-select pull-right mt-15">
-                                 <option selected>쇼핑 by Newness</option>
+                                 <option selected>쇼핑 	 Newness</option>
                                  <option value="1">쇼핑 by price: low to high</option>
                                  <option value="2">쇼핑 by popularity</option>
                                  <option value="3">쇼핑 by price: high to low</option>
@@ -476,7 +476,7 @@
                            <section class="sidebar-widget bordered-sidebar">
 
                               <div class="heading">
-                                 <h4 class="title">Categiries </h4>
+                                 <h4 class="title">List </h4>
                               </div>
                               <ul class="list-group">
                                  <li class="list-group-item"><a href="#"><i class="fa fa-caret-right"></i> Grid System </a> </li>
@@ -503,84 +503,6 @@
                               </ul>
                            </section>
 
-
-                           <form method="post" action="/" id="smart-form">
-                              <div class="form-body p-none pb-40">
-                                 <div class="smart-forms">
-
-                                    <section class="sidebar-widget bordered-sidebar">
-                                       <div class="heading">
-                                          <h4 class="title">Price range: </h4>
-                                       </div>
-
-                                       <div class="section">
-                                          <div class="spacer-b15">
-                                             <input type="text" id="amounts" class="slider-input">
-                                          </div><!-- end .spacer -->
-                                          <div class="slider-wrapper">
-                                             <div id="slider-range"></div>
-                                          </div><!-- end .slider-wrapper -->
-                                       </div><!-- end section -->
-
-
-
-                                    </section>
-
-
-                                    <section class="sidebar-widget bordered-sidebar">
-
-                                       <div class="heading">
-                                          <h4 class="title">Region </h4>
-                                       </div>
-
-                                       <label class="field prepend-icon">
-                                          <select id="region" data-cb-widget-placeholder="Select Region">
-                                             <option value="">Select region...</option>
-                                             <option value="north">Northern</option>
-                                             <option value="west">Western</option>
-                                             <option value="south">Southern</option>
-                                             <option value="east">Eastern </option>
-                                             <option value="central">Central</option>
-                                          </select>
-                                          <span class="field-icon"><i class="fa fa-map-marker"></i></span>
-                                       </label>
-                                    </section>
-
-                                    <section class="sidebar-widget bordered-sidebar">
-                                       <div class="heading">
-                                          <h4 class="title">Date Range </h4>
-                                       </div>
-                                       <div class="section">
-                                          <label class="field prepend-icon">
-                                             <input type="text" id="ddFormat" name="ddFormat" class="gui-input" placeholder="Format DD/MM/YY">
-                                             <span class="field-icon"><i class="fa fa-calendar"></i></span>
-                                          </label>
-                                       </div><!-- end section -->
-                                       <div class="section mb-0">
-                                          <label class="field prepend-icon">
-                                             <input type="text" id="yyFormat" name="yyFormat" class="gui-input" placeholder="Format YY/MM/DD">
-                                             <span class="field-icon"><i class="fa fa-calendar"></i></span>
-                                          </label>
-                                       </div><!-- end section -->
-                                    </section>
-
-                                    <section class="sidebar-widget bordered-sidebar">
-                                       <div class="heading">
-                                          <h4 class="title">Tags </h4>
-                                       </div>
-                                       <label class="field">
-                                          <select class="example-tags smart-select2" multiple="multiple">
-                                             <option selected="selected" value="1">Arua</option>
-                                             <option value="2">Amuria</option>
-                                             <option selected="selected" value="3">Bukedia</option>
-                                             <option value="4">Bushenyi</option>
-                                          </select>
-                                       </label>
-                                    </section>
-                                    <button type="submit" class="button btn-primary"> Search </button>
-                                 </div>
-                              </div><!-- end .form-body section -->
-                           </form>
                         </aside>
                      </div>
                   </div>

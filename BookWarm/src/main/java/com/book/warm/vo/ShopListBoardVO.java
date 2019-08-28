@@ -2,7 +2,7 @@ package com.book.warm.vo;
 
 import java.security.Timestamp;
 
-//ÎèÑÏÑú VO
+//ºÓ«Œ∏ÆΩ∫∆Æ VO
 public class ShopListBoardVO {
 	
 	private int isbn;

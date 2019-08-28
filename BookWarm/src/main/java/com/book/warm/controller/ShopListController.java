@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ShopListController {
 	
+	//책 리스트 보여주는 페이지
 	@RequestMapping(value = "/shop_list", method = RequestMethod.GET)
 	public String shop_list() {
 		return "shop_list";

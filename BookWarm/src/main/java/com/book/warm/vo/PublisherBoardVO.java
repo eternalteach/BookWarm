@@ -1,6 +1,6 @@
 package com.book.warm.vo;
 
-//퍼블리셔
+//퍼블리셔 VO
 public class PublisherBoardVO {
 	private int publisher_no;
 	private String publisher_name;
