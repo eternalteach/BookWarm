@@ -22,7 +22,32 @@
 				<div class="col-md-8 right-side-sidebar v_blog-medium pt-70">
 
 
-<div> add comunity board</div>
+					<div>
+						add comunity board<br>
+						<table width="500" cellpadding="0" cellspacing="0" border="1">
+							<tr>
+								<th>번호</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>날짜</th>
+								<th>조회수</th>
+							</tr>
+							<c:forEach items="${list}" var="communityBoard">
+								<tr>
+									<td>${communityBoard.commNo}</td>
+									<td><c:forEach begin="1" end="${communityBoard.commIndent}">[re]</c:forEach>
+										<a href="communityBoardView?commNo=${communityBoard.commNo}">${communityBoard.commTitle}</a></td>
+									<td>${communityBoard.userId}</td>
+									<td>${communityBoard.commWritten_time}</td>
+									<td>${communityBoard.commClicked}</td>
+								</tr>
+							</c:forEach>
+							<tr>
+								<td colspan="5"><a href="write_view">글작성</a></td>
+							</tr>
+						</table>
+
+					</div>
 
 
 					<div class="row">
