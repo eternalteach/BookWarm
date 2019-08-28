@@ -3,10 +3,22 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
- <mapper namespace="board">
+ <mapper namespace="review_main">
  
  	<select id="selectBoardList" resultType="com.book.warm.vo.ReviewBoardVO">
- 		select * from reviewboard order by opinion_modify_date
+ 		<!-- select * from reviewboard order by opinion_modify_date -->
+ 		
+ 		select * from
+		(
+		    select opinion_no, user_id, opinion_written_date, opinion_modify_date, isbn, opinion_title, opinion_content, opinion_open, rank() over(partition by isbn order by opinion_modify_date desc) rk 
+		    from reviewboard
+		) sub
+		where sub.rk = 1
+		
+ 	</select>
+ 	
+ 	<select id="selectListPerBook" resultType="com.book.warm.vo.ReviewBoardVO">
+ 		select * from reviewboard where isbn = #{isbn} order by opinion_written_date desc
  	</select>
  
  </mapper>

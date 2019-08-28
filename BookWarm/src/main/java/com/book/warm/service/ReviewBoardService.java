@@ -17,7 +17,12 @@ public class ReviewBoardService {
 	
 	public List<ReviewBoardVO> selectBoardList() {
 
-		return sqlSession.selectList("board.selectBoardList");
+		return sqlSession.selectList("review_main.selectBoardList");
+	}
+
+	public List<ReviewBoardVO> selectListPerBook(String isbn) {
+
+		return sqlSession.selectList("review_main.selectListPerBook", isbn);
 	}
 	
 }
