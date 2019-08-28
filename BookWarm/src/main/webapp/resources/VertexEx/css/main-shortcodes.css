@@ -2177,7 +2177,7 @@ html .cta.cta-light p {
     font-size: 11px;
     display: block;
     position: absolute;
-    top: -28px;
+    top: +28px;
     right: 5px;
     border-radius: 2px;
     opacity: 0;

@@ -28,7 +28,7 @@ alter table loging_board add constraint fk_log_board foreign key (writeNo) REFER
 
 -- sample date (log board, loging board)
 insert into log_board (writeNo,user_id,ISBN,write_buy_date)values(seq_logBoard.nextval, 'user00', 'isbn001', sysdate);
-insert into loging_board (writeNo, startDate, startPage, endDate,endPage) values(1, sysdate, 11, sysdate,500);
+insert into loging_board (writeNo, startDate, startPage, endDate,endPage) values(1, sysdate, 111, sysdate,520);
 
 select * from log_board;
 select * from loging_board;

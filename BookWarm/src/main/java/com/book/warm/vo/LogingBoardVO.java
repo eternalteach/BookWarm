@@ -8,7 +8,6 @@ public class LogingBoardVO {
 	private int endPage;
 	private Date startDate;
 	private Date endDate;
-	private int amount;
 	private int recordNum;
 
 	public int getRecordNum() {
@@ -17,10 +16,6 @@ public class LogingBoardVO {
 
 	public void setRecordNum(int recordNum) {
 		this.recordNum = recordNum;
-	}
-
-	public int getAmount() {
-		return endPage - startPage;
 	}
 
 	public int getWriteNo() {
