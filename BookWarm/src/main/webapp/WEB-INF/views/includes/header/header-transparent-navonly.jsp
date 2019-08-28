@@ -137,36 +137,4 @@
       </header>
       <!--header end-->
 
-            <div class="page">
-
-         <section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall bg-overlay--gradient-dark">
-
-            <div class="divimage dzsparallaxer--target w-100" style="height: 100%; background-image: url(./resources/VertexEx/img/banner/b8.jpg);">
-            </div>
-
-            <div class="container text-white text-center pt-200 pb-200">
-               <div class="row">
-
-                  <div class="col-md-12 z-index-1">
-                     <p class="mb-0 o-7 fw-5 ls-1 text-uppercase">Record Your Feelings</p>
-                     <h2 class="fw-6 fs-54 lh-56">
-                        If you look back at your records, <br /> you will know <span class="primary-color">about you.</span>
-                     </h2>
-
-                     <ol class="breadcrumb clean-breadcrumb text-white mb-0 mt-20 o-8">
-                        <li><a href="#"><i class="fa fa-book"></i> Record Loging</a></li>
-                        <li><a href="#"><i class="fa fa-tint"></i> Record your Feel</a></li>
-                        <li><a href="#"><i class="fa fa-diamond"></i> Find More Book</a></li>
-                     </ol>
-                  </div>
-               </div>
-            </div>
-         </section>
-
-         
-		<!-- insert context -->
-		<!-- insert footer -->
-         
-      </div>
-
    </div>

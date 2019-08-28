@@ -19,6 +19,7 @@
    <link rel="stylesheet" href="./resources/VertexEx/vendor/owl-carousel/owl.carousel.css" />
    <link rel="stylesheet" href="./resources/VertexEx/vendor/magnific-popup/magnific-popup.css" />
    <link rel="stylesheet" href="./resources/VertexEx/vendor/lite-tooltip/css/litetooltip.css" />
+   <link rel="stylesheet" href="./resources/VertexEx/vendor/bootstrap/css/glyphicon.css" />
    <!-- Theme CSS -->
    <link href="./resources/VertexEx/css/main.css" rel="stylesheet" />
    <link href="./resources/VertexEx/css/main-shortcodes.css" rel="stylesheet" />

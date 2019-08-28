@@ -30,7 +30,7 @@ public class BoardLogController {
 
 	@RequestMapping(value = "/boardlog", method = RequestMethod.GET)
 	// add task - get book command(need total page)
-	public String boardlog(Model model, LogingBoardVO logingBoardVO, BookVO bookVO) throws Exception {
+	public String boardLog(Model model, LogingBoardVO logingBoardVO, BookVO bookVO) throws Exception {
 		log.info("===== boardlog() =====");
 		ArrayList<LogingBoardVO> logingList = logingBoardService.selectList(logingBoardVO.getWriteNo());
 		int readPageNum=statisticsFunctionService.logingPage(logingList, bookVO);
@@ -42,5 +42,10 @@ public class BoardLogController {
 		model.addAttribute("recordNum", logingCount);
 		model.addAttribute("bookTotalPage", bookTotalPage);
 		return "/boardlog";
+	}
+	@RequestMapping(value = "/boardlogwrite", method = RequestMethod.GET)
+	public String boardLogWrite() throws Exception {
+		log.info("===== boardLogWrite() =====");
+		return "/boardlogwrite";
 	}
 }

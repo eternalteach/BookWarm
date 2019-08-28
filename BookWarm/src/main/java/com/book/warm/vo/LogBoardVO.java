@@ -2,16 +2,16 @@ package com.book.warm.vo;
 
 import java.sql.Date;
 
-//»õ·Î Å¬·¡½º ¸¸µé¾î¼­ ÇÏ¼¼¿ä. ¼öÁ¤ÇØ¼­ ÇÏ¸é ¾ÈµË´Ï´Ù.
-public class LogBoardVO { // µ¶¼­±â·Ï SQL
-	private int writeNo; // ±â·Ï¹øÈ£ write_no
-	private String userId; // »ç¿ëÀÚ ID user_id
-	private Date writeWrittenDate; // ÀÛ¼ºÀÏ write_written_date
-	private String ISBN; // µµ¼­¹øÈ£ ISBN
-	private Date writeBuyDate; // ±¸¸ÅÀÏ(´ë¿©ÀÏ) write_buy_date
-	private int readAmount; // µ¶¼­»óÅÂ read_amount  (ÀÐÀº ¾ç)
-	private int readStop; // Ã¥°¥ÇÇ read_stop
-	private int readStar; // º°Á¡ read_star
+//ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­ ï¿½Ï¼ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ï¸ï¿½ ï¿½ÈµË´Ï´ï¿½.
+public class LogBoardVO { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ SQL
+	private int writeNo; // ï¿½ï¿½Ï¹ï¿½È£ write_no
+	private String userId; // ï¿½ï¿½ï¿½ï¿½ï¿½ ID user_id
+	private Date writeWrittenDate; // ï¿½Û¼ï¿½ï¿½ï¿½ write_written_date
+	private String ISBN; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ ISBN
+	private Date writeBuyDate; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ë¿©ï¿½ï¿½) write_buy_date
+	private int readAmount; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ read_amount  (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
+	private int readStop; // Ã¥ï¿½ï¿½ï¿½ï¿½ read_stop
+	private int readStar; // ï¿½ï¿½ï¿½ï¿½ read_star
 
 	public int getWriteNo() {
 		return writeNo;

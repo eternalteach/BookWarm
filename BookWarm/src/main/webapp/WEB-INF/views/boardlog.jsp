@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ include file="includes/header/header-transparent.jsp"%>
+<%@ include file="includes/header/header-transparent-record.jsp"%>
 
 
 
@@ -15,7 +15,7 @@
 				<div class="col-md-3 left-side-sidebar pt-70">
 					<aside class="sidebar">
 						<!-- recode 삽입 -->
-						<%@ include file="includes/recode/recode.jsp"%>
+						<%@ include file="includes/record/record.jsp"%>
 					</aside>
 				</div>
 
