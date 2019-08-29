@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<!-- 읽어온 날짜를 형식에 맞게 자르기 위해 taglib 추가 -->
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     
 <!DOCTYPE html>
 
@@ -586,17 +588,18 @@
                             	
                             
                             
-                            	<!-- 책별 감상 뿌리기 시도 8/28 -->
-                            
-                            	
+                            <!-- 8/28 책별 감상 뿌리기 -->
                             <c:forEach items="${list}" var="vo">
+                            
+                            <!-- 8/29 작성일 혹은 수정일을 쪼개서 형식에 맞게 넣기 위한 c태그 추가 -->
+                            <c:set var="tmp_date" value="${vo.opinion_modify_date}"/>
                             
 								<li class="v-blog-item col-sm-12">
 
                                     <div class="post-content no-thumb clearfix">
 
                                         <div class="v-post-date pull-left">
-                                            <span class="day">12</span>
+                                            <span class="day">${fn:substring(tmp_date,0,8)}</span> <!-- 가져온 날짜 중 일에 해당하는 숫자 -->
                                             <span class="month">Mar</span>
                                             <div class="like-holder like-button"><i class="fa fa-heart"></i>18</div>
                                         </div>

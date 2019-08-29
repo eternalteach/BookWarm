@@ -160,7 +160,6 @@
 
 				<!-- 블로그에 글 넣기 시도 -->
 				<!-- 책별 데이터 불러오고 그 중 가장 최근 데이터 하나만 불러오기. -->
-				<!-- select * from reviewBoard order by opinion_modify_date desc -->
 				
 				<c:forEach items="${list}" var="vo">
 				
@@ -168,7 +167,7 @@
                         <div class="v_blog-item-inner row">
                            <div class="v_blog-item-media col-md-5">
                               <a href="/warm/reviewPerBook?isbn=${vo.isbn}">
-                                 <img class="w-100" src="./resources/VertexEx/img/blog/x2.jpg" />
+                                 <img class="w-100" src="${vo.img_src}" />
                               </a>
                            </div>
                            <div class="v_blog-item-content col-md-7">
@@ -187,13 +186,13 @@
                                  </ul>
 
                                  <a href="./resources/VertexEx/blog-post-standard.html" rel="bookmark">
-                                    <h2 class="v_blog-item-title" itemprop="name headline">${vo.opinion_title}</h2>
+                                    <h2 class="v_blog-item-title" itemprop="name headline"><%-- ${vo.opinion_title} --%></h2>
                                  </a>
                               </div>
 
                               <div itemprop="articleBody">
                                  <p>
-                                 	${vo.opinion_content}
+                                 	<%-- ${vo.opinion_content} --%>
                                  </p>
                                  <a class="v_blog-item-read-more" href="#">
                                     <span>Read more</span>

@@ -8,6 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
 import com.book.warm.vo.ReviewBoardVO;
+import com.book.warm.vo.ReviewBoardVO2;
+
 
 @Service
 public class ReviewBoardService {
@@ -15,7 +17,9 @@ public class ReviewBoardService {
 	@Inject
 	SqlSessionTemplate sqlSession;
 	
-	public List<ReviewBoardVO> selectBoardList() {
+	public List<ReviewBoardVO2> selectBoardList() {
+		
+		System.out.println("asdf: " + sqlSession.selectList("review_main.selectBoardList"));
 
 		return sqlSession.selectList("review_main.selectBoardList");
 	}
