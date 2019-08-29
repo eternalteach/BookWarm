@@ -38,7 +38,7 @@
 									<td><c:forEach begin="1" end="${communityBoard.commIndent}">[re]</c:forEach>
 										<a href="communityboardview?commNo=${communityBoard.commNo}">${communityBoard.commTitle}</a></td>
 									<td>${communityBoard.userId}</td>
-									<td>${communityBoard.commWritten_time}</td>
+									<td>${communityBoard.commWrittenTime}</td>
 									<td>${communityBoard.commClicked}</td>
 								</tr>
 							</c:forEach>

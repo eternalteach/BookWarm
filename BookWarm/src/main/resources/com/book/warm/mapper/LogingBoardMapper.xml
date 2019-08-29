@@ -2,14 +2,11 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="board"> 
+<mapper namespace="com.book.warm.service.LogingBoardService"> 
 	<select id='selectList' resultType="com.book.warm.vo.LogingBoardVO">
 		select * from loging_board where writeNo=#{writeNo}
 	</select>
-
 	<select id='CountWriteNo' resultType="Integer">
 		select count(*) from loging_board where writeNo=#{writeNo}
 	</select>
-
 </mapper>

@@ -18,6 +18,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 public class BoardCommunityController {
+	
 	@Inject
 	CommunityBoardService communityBoardService;
 
@@ -50,8 +51,9 @@ public class BoardCommunityController {
 		log.info("delete : " + deleteCommNo);
 		return "redirect:communityboard";
 	}
+
 	@RequestMapping(value = "/communityboardmodify", method = RequestMethod.GET)
-	public String communityboardmodify(Model model,HttpServletRequest request) throws Exception {
+	public String communityboardmodify(Model model, HttpServletRequest request) throws Exception {
 		log.info("===== communityboardmodify() =====");
 		String commNo = request.getParameter("commNo");
 		CommunityBoardVO communityBoardOne = communityBoardService.getCommunityBoardOne(commNo);
