@@ -34,16 +34,16 @@
 							</tr>
 							<c:forEach items="${list}" var="communityBoard">
 								<tr>
-									<td>${communityBoard.commNo}</td>
-									<td><c:forEach begin="1" end="${communityBoard.commIndent}">[re]</c:forEach>
-										<a href="communityboardview?commNo=${communityBoard.commNo}">${communityBoard.commTitle}</a></td>
-									<td>${communityBoard.userId}</td>
-									<td>${communityBoard.commWrittenTime}</td>
-									<td>${communityBoard.commClicked}</td>
+									<td>${communityBoard.comm_no}</td>
+									<td><c:forEach begin="1" end="${communityBoard.comm_indent}">[re]</c:forEach>
+										<a href="communityboardview?comm_no=${communityBoard.comm_no}">${communityBoard.comm_subject}&nbsp;${communityBoard.comm_title}</a></td>
+									<td>${communityBoard.user_id}</td>
+									<td>${communityBoard.comm_written_time}</td>
+									<td>${communityBoard.comm_clicked}</td>
 								</tr>
 							</c:forEach>
 							<tr>
-								<td colspan="5"><a href="write_view">글작성</a></td>
+								<td colspan="5"><a href="communityboardwrite">글작성</a></td>
 							</tr>
 						</table>
 

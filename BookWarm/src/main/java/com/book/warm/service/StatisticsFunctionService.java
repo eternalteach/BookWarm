@@ -12,20 +12,20 @@ public class StatisticsFunctionService {
 	public int logingPage(ArrayList<LogingBoardVO> list, BookVO bookVO) {
 		int total = bookVO.getTotalPage();
 
-		int[] realReadPage = new int[total]; // ì±…ì˜ ì½ì€í˜ì´ì§€ 0ìœ¼ë¡œ ì´ˆê¸°í™”
+		int[] realReadPage = new int[total]; // ì±…ì˜ ?½???˜?´ì§? 0?œ¼ë¡? ì´ˆê¸°?™”
 		for (int i = 0; i < total; i++) {
 			realReadPage[i] = 0;
 		}
 
-		for (int j = 0; j < list.size(); j++) { // ì½ì€ í˜ì´ì§€ ì²´í¬í•˜ê¸°
-			int readStartPage = list.get(j).getStartPage();
-			int readEndPage = list.get(j).getEndPage();
+		for (int j = 0; j < list.size(); j++) { // ?½?? ?˜?´ì§? ì²´í¬?•˜ê¸?
+			int readStartPage = list.get(j).getStart_page();
+			int readEndPage = list.get(j).getEnd_page();
 			for (int i = readStartPage - 1; i < readEndPage; i++) {
 				realReadPage[i]++;
 			}
 		}
 
-		int countPage = 0; // ì½ì€ í˜ì´ì§€ ìˆ˜ ì¹´ìš´íŠ¸
+		int countPage = 0; // ?½?? ?˜?´ì§? ?ˆ˜ ì¹´ìš´?Š¸
 		for (int i = 0; i < total; i++) {
 			if (realReadPage[i] != 0) {
 				countPage++;

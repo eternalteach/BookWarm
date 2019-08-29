@@ -24,20 +24,20 @@
 
 					<div>
 						<table width="500" cellpadding="0" cellspacing="0" border="1">
-								<input type="hidden" name="commNo"
-									value="${communityBoardOne.commNo}">
+								<input type="hidden" name="comm_no"
+									value="${communityBoardOne.comm_no}">
 								<tr>
-									<td>Title &nbsp; ${communityBoardOne.commTitle}</td>
-									<td>작성일 &nbsp; ${communityBoardOne.commWrittenTime}</td>
+									<td>Title &nbsp; ${communityBoard.comm_subject}&nbsp;${communityBoardOne.comm_title}</td>
+									<td>작성일 &nbsp; ${communityBoardOne.comm_written_time}</td>
 								</tr>
 								<tr>
-									<td colspan="2">작성자 &nbsp; ${communityBoardOne.userId}</td>
+									<td colspan="2">작성자 &nbsp; ${communityBoardOne.user_id}</td>
 								</tr>
 								<tr>
 									<td colspan="2">내용</td>
 								</tr>
 								<tr>
-									<td colspan="2">${communityBoardOne.commContent}</td>
+									<td colspan="2">${communityBoardOne.comm_content}</td>
 								</tr>
 								<tr>
 									<td colspan="2" align='right'><a>이 작성자의 게시글 더 보기</a> &nbsp;
@@ -45,14 +45,13 @@
 								</tr>
 								<tr>
 									<td colspan="2">조회수 &nbsp;
-										${communityBoardOne.commClicked} &nbsp; &nbsp;좋아요&nbsp;2&nbsp;(하트)</td>
+										${communityBoardOne.comm_clicked} &nbsp; &nbsp;좋아요&nbsp;2&nbsp;(하트)</td>
 								</tr>
 								<tr>
-									<td colspan="2"><a href="communityboardmodify?commNo=${communityBoardOne.commNo}">수정</a>
-										&nbsp;&nbsp; <a href="communityboard">목록보기</a> &nbsp;&nbsp; <a
-										href="communityboarddelete?commNo=${communityBoardOne.commNo}">삭제</a>
+									<td colspan="2"><a href="communityboardmodify?comm_no=${communityBoardOne.comm_no}">수정</a>
+										&nbsp;&nbsp; <a href="communityboard">목록보기</a> 
 										&nbsp;&nbsp; <a
-										href="reply_view?commNo=${communityBoardOne.commNo}">답변</a></td>
+										href="reply_view?comm_no=${communityBoardOne.comm_no}">답변</a></td>
 								</tr>
 						</table>
 					</div>

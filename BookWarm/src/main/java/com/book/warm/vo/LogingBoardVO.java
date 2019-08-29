@@ -1,74 +1,85 @@
 package com.book.warm.vo;
 
-import java.sql.Date;
-
 public class LogingBoardVO {
-	private int writeNo;
-	private int startPage;
-	private int endPage;
-	private String startDate;
-	private String endDate;
-	private int recordNum;
+	private String isbn;
+	private int write_no;
+	private int start_page;
+	private int end_page;
+	private String start_date;
+	private String end_date;
+	private int record_num;
 
-	public int getRecordNum() {
-		return recordNum;
+	public String getIsbn() {
+		return isbn;
 	}
 
-	public void setRecordNum(int recordNum) {
-		this.recordNum = recordNum;
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 
-	public int getWriteNo() {
-		return writeNo;
+	public int getWrite_no() {
+		return write_no;
 	}
 
-	public void setWriteNo(int writeNo) {
-		this.writeNo = writeNo;
+	public void setWrite_no(int write_no) {
+		this.write_no = write_no;
 	}
 
-	public int getStartPage() {
-		return startPage;
+	public int getStart_page() {
+		return start_page;
 	}
 
-	public void setStartPage(int startPage) {
-		this.startPage = startPage;
+	public void setStart_page(int start_page) {
+		this.start_page = start_page;
 	}
 
-	public int getEndPage() {
-		return endPage;
+	public int getEnd_page() {
+		return end_page;
 	}
 
-	public void setEndPage(int endPage) {
-		this.endPage = endPage;
+	public void setEnd_page(int end_page) {
+		this.end_page = end_page;
 	}
 
-	public String getStartDate() {
-		return startDate;
+	public String getStart_date() {
+		return start_date;
 	}
 
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
+	public void setStart_date(String start_date) {
+		this.start_date = start_date;
 	}
 
-	public String getEndDate() {
-		return endDate;
+	public String getEnd_date() {
+		return end_date;
 	}
 
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
+	public void setEnd_date(String end_date) {
+		this.end_date = end_date;
 	}
 
-	public LogingBoardVO(int writeNo, int startPage, int endPage, String startDate, String endDate) {
+	public int getRecord_num() {
+		return record_num;
+	}
+
+	public void setRecord_num(int record_num) {
+		this.record_num = record_num;
+	}
+
+	public LogingBoardVO(String isbn, int write_no, int start_page, int end_page, String start_date, String end_date,
+			int record_num) {
 		super();
-		this.writeNo = writeNo;
-		this.startPage = startPage;
-		this.endPage = endPage;
-		this.startDate = startDate;
-		this.endDate = endDate;
+		this.isbn = isbn;
+		this.write_no = write_no;
+		this.start_page = start_page;
+		this.end_page = end_page;
+		this.start_date = start_date;
+		this.end_date = end_date;
+		this.record_num = record_num;
 	}
 
 	public LogingBoardVO() {
 		super();
 	}
+
 
 }

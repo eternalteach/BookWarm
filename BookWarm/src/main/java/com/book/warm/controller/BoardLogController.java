@@ -9,22 +9,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.book.warm.service.LogingBoardService;
+import com.book.warm.mapper.ISBNimgMapper;
+import com.book.warm.mapper.LogingBoardMapper;
 import com.book.warm.service.StatisticsFunctionService;
 import com.book.warm.vo.BookVO;
+import com.book.warm.vo.ISBNimgVO;
 import com.book.warm.vo.LogingBoardVO;
 
 import lombok.extern.log4j.Log4j;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 @Log4j
 public class BoardLogController {
 	@Inject
-	LogingBoardService logingBoardService;
+	LogingBoardMapper logingBoardMapper;
 
+	@Inject
+	ISBNimgMapper iBNimgMapper;
 	@Inject
 	StatisticsFunctionService statisticsFunctionService;
 
@@ -32,17 +33,21 @@ public class BoardLogController {
 	// add task - get book command(need total page)
 	public String boardLog(Model model, LogingBoardVO logingBoardVO, BookVO bookVO) throws Exception {
 		log.info("===== boardlog() =====");
-		ArrayList<LogingBoardVO> logingList = logingBoardService.selectList(logingBoardVO.getWriteNo());
-		int readPageNum=statisticsFunctionService.logingPage(logingList, bookVO);
-		int logingCount = logingBoardService.CountWriteNo(logingBoardVO.getWriteNo());
-		int bookTotalPage=bookVO.getTotalPage(); /*tmp value, please modify this code*/
-		double reading=((double)readPageNum/(double)bookTotalPage)*100;
+		ArrayList<LogingBoardVO> logingList = logingBoardMapper.selectList(logingBoardVO.getIsbn());
+		String isbn = "isbn001";
+		ISBNimgVO iSBNimgVO = iBNimgMapper.getBookImg(isbn);
+		int readPageNum = statisticsFunctionService.logingPage(logingList, bookVO);
+		int logingCount = logingBoardMapper.CountWriteNo(logingBoardVO.getIsbn());
+		int bookTotalPage = bookVO.getTotalPage(); /* tmp value, please modify this code */
+		double reading = ((double) readPageNum / (double) bookTotalPage) * 100;
 		model.addAttribute("readPageNum", readPageNum);
 		model.addAttribute("reading", reading);
 		model.addAttribute("recordNum", logingCount);
 		model.addAttribute("bookTotalPage", bookTotalPage);
+		model.addAttribute("ISBNimg", iSBNimgVO);
 		return "/boardlog";
 	}
+
 	@RequestMapping(value = "/boardlogwrite", method = RequestMethod.GET)
 	public String boardLogWrite() throws Exception {
 		log.info("===== boardLogWrite() =====");
