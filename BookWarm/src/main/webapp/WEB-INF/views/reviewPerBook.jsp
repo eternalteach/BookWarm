@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 읽어온 날짜를 형식에 맞게 자르기 위해 taglib 추가 -->
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     
@@ -574,11 +575,193 @@
             </div>
         </section>
 
-        <div class="v-page-wrap has-right-sidebar has-one-sidebar">
+        <div class="v-page-wrap has-left-sidebar has-one-sidebar">
             <div class="container">
                 <div class="row">
 
-                    <div class="col-sm-9 v-blog-wrap">
+                    
+
+                    <aside class="sidebar left-sidebar col-sm-3">
+                    
+                    	<!-- 사이드바에 해당 책 이미지와 책 제목+작가 띄워보기. -->
+                    	
+                    	<section>
+                    		<a href="#">
+                                <img src="${vo.img_src}">
+                            </a>
+                    	</section>
+                    
+                    
+                    
+                        <section class="widget v-search-widget clearfix">
+                            <form role="search" method="get" id="searchform" class="searchform" action="#">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" value="" name="s" id="s" placeholder="Search" />
+                                </div>
+                            </form>
+                        </section>
+                        <section class="widget v-photo-stream-widget clearfix">
+                            <div class="widget-heading clearfix">
+                                <h4 class="v-heading"><span>Photo Stream</span></h4>
+                            </div>
+                            <ul class="v-photo-stream-images clearfix">
+                                <li>
+                                    <a href="#">
+                                        <img src="./resources/Vertex/img/thumbs/project-1.jpg">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="./resources/Vertex/img/thumbs/project-2.jpg">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="./resources/Vertex/img/thumbs/project-3.jpg">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="./resources/Vertex/img/thumbs/project-4.png">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="./resources/Vertex/img/thumbs/project-5.jpg">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="./resources/Vertex/img/thumbs/project-6.jpg">
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
+                        
+                        
+                        <section class="widget v-category-widget clearfix">
+                            <div class="widget-heading clearfix">
+                                <h4 class="v-heading"><span>Categories</span></h4>
+                            </div>
+                            <ul>
+                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Web Design</a> </li>
+                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Bootstrap</a> </li>
+                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Business</a> </li>
+                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">JQuery</a> </li>
+                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Gaming</a> </li>
+                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Photography</a> </li>
+                            </ul>
+                        </section>
+                        <section class="widget v-recent-entry-widget clearfix">
+                            <div class="widget-heading clearfix">
+                                <h4 class="v-heading"><span>Recent Posts</span></h4>
+                            </div>
+                            <ul>
+                                <li>
+                                    <a href="./resources/Vertex/blog-standard-post.html">Amazing Standard Post</a>
+                                    <span class="post-date">March 12, 2018</span>
+                                </li>
+                                <li>
+                                    <a href="./resources/Vertex/blog-full-width-post.html">Full Width Media Post</a>
+                                    <span class="post-date">September 25, 2018</span>
+                                </li>
+                                <li>
+                                    <a href="./resources/Vertex/blog-video-post.html">Perfect Video Post</a>
+                                    <span class="post-date">November 19, 2014</span>
+                                </li>
+                                <li>
+                                    <a href="./resources/Vertex/blog-slideshow-post.html">Amazing Slideshow post</a>
+                                    <span class="post-date">November 21, 2018</span>
+                                </li>
+                                <li>
+                                    <a href="./resources/Vertex/blog-standard-post.html">Text-only Post</a>
+                                    <span class="post-date">March 23, 2018</span>
+                                </li>
+                            </ul>
+                        </section>
+
+                        <section class="widget widget_sf_recent_custom_comments clearfix">
+                            <div class="widget-heading clearfix">
+                                <h4 class="v-heading"><span>Recent Comments</span></h4>
+                            </div>
+                            <ul class="recent-comments-list">
+
+                                <li class="comment">
+                                    <div class="comment-wrap clearfix">
+                                        <div class="comment-avatar">
+                                            <img src="./resources/Vertex/img/team/t3.png" class="avatar" height="100" width="100" />
+                                        </div>
+                                        <div class="comment-content">
+                                            <div class="comment-body">
+                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
+                                                    <p>Praesent eros mauris dolor</p>
+                                                </a>
+                                            </div>
+                                            <div class="comment-meta">
+                                                <span class="comment-author">Vertex</span> <span class="comment-date">20 hours ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="comment">
+                                    <div class="comment-wrap clearfix">
+                                        <div class="comment-avatar">
+                                            <img src="./resources/Vertex/img/team/t1.png" class="avatar" height="100" width="100" />
+                                        </div>
+                                        <div class="comment-content">
+                                            <div class="comment-body">
+                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
+                                                    <p>Omnis iste natus error sit dolor </p>
+                                                </a>
+                                            </div>
+                                            <div class="comment-meta">
+                                                <span class="comment-author">Guest</span> <span class="comment-date">5 hours ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="comment">
+                                    <div class="comment-wrap clearfix">
+                                        <div class="comment-avatar">
+                                            <img src="./resources/Vertex/img/team/t4.png" class="avatar" height="100" width="100" />
+                                        </div>
+                                        <div class="comment-content">
+                                            <div class="comment-body">
+                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
+                                                    <p>Sed tellus ante aliquam eget</p>
+                                                </a>
+                                            </div>
+                                            <div class="comment-meta">
+                                                <span class="comment-author">Admin</span> <span class="comment-date">2 days ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </section>
+
+                        <section class="widget v-tag-cloud-widget clearfix">
+                            <div class="widget-heading clearfix">
+                                <h4 class="v-heading"><span>Tags</span></h4>
+                            </div>
+                            <div class="tagcloud">
+                                <ul class='wp-tag-cloud'>
+                                    <li><a href="#">CSS 3</a></li>
+                                    <li><a href="#">HTML 5</a></li>
+                                    <li><a href="#">Lifestyle</a></li>
+                                    <li><a href="#">Mobile</a></li>
+                                    <li><a href="#">News</a></li>
+                                    <li><a href="#">PHP</a></li>
+                                    <li><a href="#">Social</a></li>
+                                    <li><a href="#">video</a></li>
+                                    <li><a href="#">WordPress</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </aside>
+					<div class="col-sm-9 v-blog-wrap">
 
                         <div class="v-blog-items-wrap blog-standard">
 
@@ -591,16 +774,19 @@
                             <!-- 8/28 책별 감상 뿌리기 -->
                             <c:forEach items="${list}" var="vo">
                             
-                            <!-- 8/29 작성일 혹은 수정일을 쪼개서 형식에 맞게 넣기 위한 c태그 추가 -->
-                            <c:set var="tmp_date" value="${vo.opinion_modify_date}"/>
+	                        <!-- 8/29 날짜 형식 변환: 달을 영어로 출력하기 위해 언어 변경, format을 필요 데이터만 필요한 형태로 변환 -->    
+	                        <fmt:setLocale value="en_US" scope="session"/>
+                            <fmt:formatDate var="fmt_date" value="${vo.opinion_modify_date}" pattern="ddMMM"/>
+                            <!-- 		작성일 혹은 수정일을 쪼개서 형식에 맞게 넣기 위한 c태그 추가 -->
+                            <c:set var="tmp_date" value="${fmt_date}"/>
                             
 								<li class="v-blog-item col-sm-12">
 
                                     <div class="post-content no-thumb clearfix">
 
                                         <div class="v-post-date pull-left">
-                                            <span class="day">${fn:substring(tmp_date,0,8)}</span> <!-- 가져온 날짜 중 일에 해당하는 숫자 -->
-                                            <span class="month">Mar</span>
+                                            <span class="day">${fn:substring(tmp_date,0,2)}</span> <!-- 가져온 날짜 중 일에 해당하는 숫자 -->
+                                            <span class="month">${fn:substring(tmp_date,2,5)}</span>
                                             <div class="like-holder like-button"><i class="fa fa-heart"></i>18</div>
                                         </div>
                                         <div class="post-inner">
@@ -900,176 +1086,6 @@
                             </nav>
                         </div>
                     </div>
-
-                    <aside class="sidebar right-sidebar col-sm-3">
-                        <section class="widget v-search-widget clearfix">
-                            <form role="search" method="get" id="searchform" class="searchform" action="#">
-                                <div class="form-group">
-                                    <input class="form-control" type="text" value="" name="s" id="s" placeholder="Search" />
-                                </div>
-                            </form>
-                        </section>
-                        <section class="widget v-photo-stream-widget clearfix">
-                            <div class="widget-heading clearfix">
-                                <h4 class="v-heading"><span>Photo Stream</span></h4>
-                            </div>
-                            <ul class="v-photo-stream-images clearfix">
-                                <li>
-                                    <a href="#">
-                                        <img src="./resources/Vertex/img/thumbs/project-1.jpg">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="./resources/Vertex/img/thumbs/project-2.jpg">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="./resources/Vertex/img/thumbs/project-3.jpg">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="./resources/Vertex/img/thumbs/project-4.png">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="./resources/Vertex/img/thumbs/project-5.jpg">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="./resources/Vertex/img/thumbs/project-6.jpg">
-                                    </a>
-                                </li>
-                            </ul>
-                        </section>
-                        
-                        
-                        <section class="widget v-category-widget clearfix">
-                            <div class="widget-heading clearfix">
-                                <h4 class="v-heading"><span>Categories</span></h4>
-                            </div>
-                            <ul>
-                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Web Design</a> </li>
-                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Bootstrap</a> </li>
-                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Business</a> </li>
-                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">JQuery</a> </li>
-                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Gaming</a> </li>
-                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Photography</a> </li>
-                            </ul>
-                        </section>
-                        <section class="widget v-recent-entry-widget clearfix">
-                            <div class="widget-heading clearfix">
-                                <h4 class="v-heading"><span>Recent Posts</span></h4>
-                            </div>
-                            <ul>
-                                <li>
-                                    <a href="./resources/Vertex/blog-standard-post.html">Amazing Standard Post</a>
-                                    <span class="post-date">March 12, 2018</span>
-                                </li>
-                                <li>
-                                    <a href="./resources/Vertex/blog-full-width-post.html">Full Width Media Post</a>
-                                    <span class="post-date">September 25, 2018</span>
-                                </li>
-                                <li>
-                                    <a href="./resources/Vertex/blog-video-post.html">Perfect Video Post</a>
-                                    <span class="post-date">November 19, 2014</span>
-                                </li>
-                                <li>
-                                    <a href="./resources/Vertex/blog-slideshow-post.html">Amazing Slideshow post</a>
-                                    <span class="post-date">November 21, 2018</span>
-                                </li>
-                                <li>
-                                    <a href="./resources/Vertex/blog-standard-post.html">Text-only Post</a>
-                                    <span class="post-date">March 23, 2018</span>
-                                </li>
-                            </ul>
-                        </section>
-
-                        <section class="widget widget_sf_recent_custom_comments clearfix">
-                            <div class="widget-heading clearfix">
-                                <h4 class="v-heading"><span>Recent Comments</span></h4>
-                            </div>
-                            <ul class="recent-comments-list">
-
-                                <li class="comment">
-                                    <div class="comment-wrap clearfix">
-                                        <div class="comment-avatar">
-                                            <img src="./resources/Vertex/img/team/t3.png" class="avatar" height="100" width="100" />
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="comment-body">
-                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
-                                                    <p>Praesent eros mauris dolor</p>
-                                                </a>
-                                            </div>
-                                            <div class="comment-meta">
-                                                <span class="comment-author">Vertex</span> <span class="comment-date">20 hours ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="comment">
-                                    <div class="comment-wrap clearfix">
-                                        <div class="comment-avatar">
-                                            <img src="./resources/Vertex/img/team/t1.png" class="avatar" height="100" width="100" />
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="comment-body">
-                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
-                                                    <p>Omnis iste natus error sit dolor </p>
-                                                </a>
-                                            </div>
-                                            <div class="comment-meta">
-                                                <span class="comment-author">Guest</span> <span class="comment-date">5 hours ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="comment">
-                                    <div class="comment-wrap clearfix">
-                                        <div class="comment-avatar">
-                                            <img src="./resources/Vertex/img/team/t4.png" class="avatar" height="100" width="100" />
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="comment-body">
-                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
-                                                    <p>Sed tellus ante aliquam eget</p>
-                                                </a>
-                                            </div>
-                                            <div class="comment-meta">
-                                                <span class="comment-author">Admin</span> <span class="comment-date">2 days ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </section>
-
-                        <section class="widget v-tag-cloud-widget clearfix">
-                            <div class="widget-heading clearfix">
-                                <h4 class="v-heading"><span>Tags</span></h4>
-                            </div>
-                            <div class="tagcloud">
-                                <ul class='wp-tag-cloud'>
-                                    <li><a href="#">CSS 3</a></li>
-                                    <li><a href="#">HTML 5</a></li>
-                                    <li><a href="#">Lifestyle</a></li>
-                                    <li><a href="#">Mobile</a></li>
-                                    <li><a href="#">News</a></li>
-                                    <li><a href="#">PHP</a></li>
-                                    <li><a href="#">Social</a></li>
-                                    <li><a href="#">video</a></li>
-                                    <li><a href="#">WordPress</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                    </aside>
                 </div>
             </div>
         </div>

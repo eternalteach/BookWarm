@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!-- 읽어온 날짜를 형식에 맞게 자르기 위해 taglib 추가 -->
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     
 <!DOCTYPE html>
 
@@ -581,8 +584,74 @@
                         <div class="v-blog-items-wrap blog-standard">
 
                             <ul class="v-blog-items row standard-items clearfix">
+                            
+                            
+                            	
+                            
+                            
+                            <!-- 8/28 책별 감상 뿌리기 -->
+                            <c:forEach items="${list}" var="vo">
+                            
+	                        <!-- 8/29 날짜 형식 변환: 달을 영어로 출력하기 위해 언어 변경, format을 필요 데이터만 필요한 형태로 변환 -->    
+	                        <fmt:setLocale value="en_US" scope="session"/>
+                            <fmt:formatDate var="fmt_date" value="${vo.opinion_modify_date}" pattern="ddMMM"/>
+                            <!-- 		작성일 혹은 수정일을 쪼개서 형식에 맞게 넣기 위한 c태그 추가 -->
+                            <c:set var="tmp_date" value="${fmt_date}"/>
+                            
+								<li class="v-blog-item col-sm-12">
 
+                                    <div class="post-content no-thumb clearfix">
+
+                                        <div class="v-post-date pull-left">
+                                            <span class="day">${fn:substring(tmp_date,0,2)}</span> <!-- 가져온 날짜 중 일에 해당하는 숫자 -->
+                                            <span class="month">${fn:substring(tmp_date,2,5)}</span>
+                                            <div class="like-holder like-button"><i class="fa fa-heart"></i>18</div>
+                                        </div>
+                                        <div class="post-inner">
+                                            <div class="post-header">
+                                                <h2 class="title"><a href="#">${vo.opinion_title}</a></h2>
+
+                                                <div class="post-meta-info">
+                                                    <span class="blog-author minor-meta">
+                                                        Posted by
+                                                        <span class="entry-author-link">
+                                                            <span class="vcard author">
+                                                                <span class="v-blog-item-details">
+                                                                    <a href="#" title="Posts by HB-Themes" rel="author">${vo.user_id}</a>
+                                                                </span>
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                    <span class="text-sep">|</span>
+
+                                                    <span class="blog-categories minor-meta">
+                                                        <a href="#">News</a>, <a href="#">Updates</a> <span class="text-sep">|</span>
+
+                                                        <span class="comment-container minor-meta">
+                                                            <a href="./resources/Vertex/blog-standard-post.html#comment-area" class="comments-link">3 comments </a>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="v-blog-post-description">
+                                                <p>
+                                                    ${vo.opinion_content}
+                                                </p>
+                                            </div>
+                                            <a class="btn v-btn standard white sf-icon-stroke" href="./resources/Vertex/blog-full-width-post-2.html">
+                                                <i class="icon-arrow-32"></i><span class="text">Read more</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                
+							</c:forEach>                                
+
+
+
+                                
                                 <li class="v-blog-item col-sm-12">
+                                
                                     <figure class="animated-overlay overlay-alt">
                                         <div class="flexslider thumb-slider">
                                             <ul class="slides">
@@ -599,6 +668,8 @@
                                             </ul>
                                         </div>
                                     </figure>
+                                    
+                                    
                                     <div class="post-content">
 
                                         <div class="v-post-date pull-left">
@@ -879,6 +950,8 @@
                                 </li>
                             </ul>
                         </section>
+                        
+                        
                         <section class="widget v-category-widget clearfix">
                             <div class="widget-heading clearfix">
                                 <h4 class="v-heading"><span>Categories</span></h4>

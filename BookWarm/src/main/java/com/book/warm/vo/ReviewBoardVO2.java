@@ -20,6 +20,8 @@ public class ReviewBoardVO2 {
 	public ReviewBoardVO2() {
 		super();
 	}
+	
+	
 
 	public ReviewBoardVO2(String opinion_no, String user_id, Timestamp opinion_written_date,
 			Timestamp opinion_modify_date, String isbn, int opinion_ref, String opinion_title, String opinion_content,
@@ -39,101 +41,104 @@ public class ReviewBoardVO2 {
 		this.img_src = img_src;
 	}
 
-	protected String getOpinion_no() {
+
+
+	public String getOpinion_no() {
 		return opinion_no;
 	}
 
-	protected void setOpinion_no(String opinion_no) {
+	public void setOpinion_no(String opinion_no) {
 		this.opinion_no = opinion_no;
 	}
 
-	protected String getUser_id() {
+	public String getUser_id() {
 		return user_id;
 	}
 
-	protected void setUser_id(String user_id) {
+	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
 
-	protected Timestamp getOpinion_written_date() {
+	public Timestamp getOpinion_written_date() {
 		return opinion_written_date;
 	}
 
-	protected void setOpinion_written_date(Timestamp opinion_written_date) {
+	public void setOpinion_written_date(Timestamp opinion_written_date) {
 		this.opinion_written_date = opinion_written_date;
 	}
 
-	protected Timestamp getOpinion_modify_date() {
+	public Timestamp getOpinion_modify_date() {
 		return opinion_modify_date;
 	}
 
-	protected void setOpinion_modify_date(Timestamp opinion_modify_date) {
+	public void setOpinion_modify_date(Timestamp opinion_modify_date) {
 		this.opinion_modify_date = opinion_modify_date;
 	}
 
-	protected String getIsbn() {
+	public String getIsbn() {
 		return isbn;
 	}
 
-	protected void setIsbn(String isbn) {
+	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
 
-	protected int getOpinion_ref() {
+	public int getOpinion_ref() {
 		return opinion_ref;
 	}
 
-	protected void setOpinion_ref(int opinion_ref) {
+	public void setOpinion_ref(int opinion_ref) {
 		this.opinion_ref = opinion_ref;
 	}
 
-	protected String getOpinion_title() {
+	public String getOpinion_title() {
 		return opinion_title;
 	}
 
-	protected void setOpinion_title(String opinion_title) {
+	public void setOpinion_title(String opinion_title) {
 		this.opinion_title = opinion_title;
 	}
 
-	protected String getOpinion_content() {
+	public String getOpinion_content() {
 		return opinion_content;
 	}
 
-	protected void setOpinion_content(String opinion_content) {
+	public void setOpinion_content(String opinion_content) {
 		this.opinion_content = opinion_content;
 	}
 
-	protected String getOpinion_open() {
+	public String getOpinion_open() {
 		return opinion_open;
 	}
 
-	protected void setOpinion_open(String opinion_open) {
+	public void setOpinion_open(String opinion_open) {
 		this.opinion_open = opinion_open;
 	}
 
-	protected int getRk() {
+	public int getRk() {
 		return rk;
 	}
 
-	protected void setRk(int rk) {
+	public void setRk(int rk) {
 		this.rk = rk;
 	}
 
-	protected String getIsbn_1() {
+	public String getIsbn_1() {
 		return isbn_1;
 	}
 
-	protected void setIsbn_1(String isbn_1) {
+	public void setIsbn_1(String isbn_1) {
 		this.isbn_1 = isbn_1;
 	}
 
-	protected String getImg_src() {
+	public String getImg_src() {
 		return img_src;
 	}
 
-	protected void setImg_src(String img_src) {
+	public void setImg_src(String img_src) {
 		this.img_src = img_src;
 	}
+
 	
 	
 }

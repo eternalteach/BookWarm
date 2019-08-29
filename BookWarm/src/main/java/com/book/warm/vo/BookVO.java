@@ -1,0 +1,20 @@
+package com.book.warm.vo;
+
+import java.sql.Date;
+
+public class BookVO {
+	
+	private String isbn;
+	private String book_title;
+	private int writer_no;
+	private int translator_no;
+	private int publisher_no;
+	private int book_tot_page;
+	private Date book_published_date;
+	private int book_price;
+	private int book_stock;
+	private String book_intro;
+	private String book_idx;
+	private String book_story;
+	
+}

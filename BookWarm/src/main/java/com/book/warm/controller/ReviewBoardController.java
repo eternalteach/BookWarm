@@ -18,7 +18,7 @@ public class ReviewBoardController {
 	@RequestMapping("/reviewMain")
 	public String recordMain(Model model) {
 		
-//		System.out.println((rbs.selectBoardList().get(0)).getOpinion_no());
+		System.out.println((rbs.selectBoardList().get(0)).getOpinion_no());
 		
 //		System.out.println(((rbs.selectBoardList()).get(0)).getOpinion_no());
 		
