@@ -36,6 +36,7 @@ public class BoardLogController {
 		ArrayList<LogingBoardVO> logingList = logingBoardMapper.selectList(logingBoardVO.getIsbn());
 		String isbn = "isbn001";
 		ISBNimgVO iSBNimgVO = iBNimgMapper.getBookImg(isbn);
+		System.out.println(iSBNimgVO.getIsbn());
 		int readPageNum = statisticsFunctionService.logingPage(logingList, bookVO);
 		int logingCount = logingBoardMapper.CountWriteNo(logingBoardVO.getIsbn());
 		int bookTotalPage = bookVO.getTotalPage(); /* tmp value, please modify this code */
@@ -52,5 +53,10 @@ public class BoardLogController {
 	public String boardLogWrite() throws Exception {
 		log.info("===== boardLogWrite() =====");
 		return "/boardlogwrite";
+	}
+	@RequestMapping(value = "/boardLogWriteSave", method = RequestMethod.POST)
+	public String boardLogWriteSave() throws Exception {
+		log.info("===== boardLogWrite() =====");
+		return "redirect:boardlog";
 	}
 }

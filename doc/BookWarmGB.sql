@@ -18,14 +18,13 @@ read_star number(1,0)
 -- logingBoard 보드 생성
 create table loging_board(
 ISBN varchar2(1000),
-write_no number(10,0),
+write_no number(10,0) PRIMARY key,
 start_page number(4,0) default 1 not null,
 end_page number(4,0) not null,
-start_date date not null,
+start_date date default sysdate,
 end_date date not null);
 
--- loging 의 writeNo 는 log의 writeNo를 참조한다.
-alter table loging_board add constraint fk_log_board foreign key (write_no) REFERENCES log_board (write_no);
+drop table loging_board;
 
 --comunity board
 create table community_board(
@@ -54,13 +53,13 @@ img_src VARCHAR2(1000)
 
 -- sample date (log board, loging board)
 insert into log_board (write_no,user_id,ISBN,write_buy_date)values(seq_logBoard.nextval, 'user00', 'isbn001', sysdate);
-insert into loging_board (isbn,write_no, start_date, start_page, end_date,end_page) values('isbn001',21, sysdate, 70, sysdate,500);
+insert into loging_board (isbn,write_no, start_date, start_page, end_date,end_page) values('isbn001',seq_logingBoard.nextval, sysdate, 70, sysdate,500);
 
 select * from log_board;
 select * from loging_board;
 
 --테스트
-select * from loging_board where write_no=2;
+select * from loging_board where write_no=21;
 
 
 
@@ -80,7 +79,7 @@ select * from community_board order by comm_no desc;
 
 select * from community_board;
 -- community board modify test
-update community_board SET comm_title = 'modify', comm_content='수정된 내용1' where comm_no=22;
+update community_board SET comm_title = 'modify', comm_content='수정된 내용12' where comm_no=22;
 -- community board delete test
 delete community_board where comm_no=5;
 
@@ -93,3 +92,8 @@ select * from isbn_img;
 -- getBookImg Test (첫 이미지 가지고오기)
 select * from (select * from isbn_img where isbn='isbn001') where rownum=1;
 delete isbn_img where isbn='isbn001';
+
+
+
+
+

@@ -1,15 +1,15 @@
 package com.book.warm.vo;
 
 public class ISBNimgVO {
-	private String ISBN;
+	private String isbn;
 	private String img_src;
 
-	public String getISBN() {
-		return ISBN;
+	public String getIsbn() {
+		return isbn;
 	}
 
-	public void setISBN(String iSBN) {
-		ISBN = iSBN;
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 
 	public String getImg_src() {
@@ -20,9 +20,9 @@ public class ISBNimgVO {
 		this.img_src = img_src;
 	}
 
-	public ISBNimgVO(String iSBN, String img_src) {
+	public ISBNimgVO(String isbn, String img_src) {
 		super();
-		ISBN = iSBN;
+		this.isbn = isbn;
 		this.img_src = img_src;
 	}
 

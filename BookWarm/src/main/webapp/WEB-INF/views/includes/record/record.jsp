@@ -15,7 +15,7 @@
 				<article class="v_blog-item">
 					<div class="v_blog-item-inner row">
 						<div class="v_blog-item-media col-md-12">
-							<a href="#"> <img src="${ISBNimg.img_src }" />
+							<a href="#"> <img src="${ISBNimg.img_src}" />
 							</a>
 						</div>
 					</div>
@@ -29,23 +29,26 @@
 							data-appear-progress-animation="${reading}%"></div>
 						<span class="progress-bar-tooltip">${reading}%</span>
 					</div>
-					<div class="content-grid-item col-md-6">
+					<div class="content-grid-item col-md-12">
 						<div>
 							<div class="progress-label">
-								<span>ReadingPage</span>&nbsp &nbsp<strong class="primary-color"
+								<span>ReadingPage</span>&nbsp; &nbsp;<strong class="primary-color"
 									data-to="${readPageNum}">${readPageNum}</strong>
 							</div>
 						</div>
 						<div>
 							<div class="progress-label">
-								<span>TotalPage</span>&nbsp &nbsp<strong class="primary-color"
+								<span>TotalPage</span>&nbsp; &nbsp;<strong class="primary-color"
 									data-to="${bookTotalPage}">${bookTotalPage}</strong>
 							</div>
 						</div>
 						<div>
 							<div class="progress-label">
-								<span>Record</span>&nbsp &nbsp<strong class="primary-color"
+								<span>Record</span>&nbsp; &nbsp;<strong class="primary-color"
 									data-to="${recordNum}">${recordNum}</strong>
+							</div>
+							<div class="special-heading">
+								<a href="boardlogwrite?isbn=${ISBNimg.isbn}">&nbsp; &nbsp;<strong class="primary-color">Record More</strong></a>
 							</div>
 						</div>
 					</div>

@@ -1,12 +1,14 @@
 package com.book.warm.vo;
 
+import java.sql.Timestamp;
+
 public class CommunityBoardVO {
 	private int comm_no;
 	private String user_id;
 	private String comm_subject;
 	private String comm_title;
 	private String comm_content;
-	private String comm_written_time;
+	private Timestamp comm_written_time;
 	private int comm_clicked;
 	private int comm_group;
 	private int comm_step;
@@ -41,10 +43,10 @@ public class CommunityBoardVO {
 	public void setComm_content(String comm_content) {
 		this.comm_content = comm_content;
 	}
-	public String getComm_written_time() {
+	public Timestamp getComm_written_time() {
 		return comm_written_time;
 	}
-	public void setComm_written_time(String comm_written_time) {
+	public void setComm_written_time(Timestamp comm_written_time) {
 		this.comm_written_time = comm_written_time;
 	}
 	public int getComm_clicked() {
@@ -72,7 +74,7 @@ public class CommunityBoardVO {
 		this.comm_indent = comm_indent;
 	}
 	public CommunityBoardVO(int comm_no, String user_id, String comm_subject, String comm_title, String comm_content,
-			String comm_written_time, int comm_clicked, int comm_group, int comm_step, int comm_indent) {
+			Timestamp comm_written_time, int comm_clicked, int comm_group, int comm_step, int comm_indent) {
 		super();
 		this.comm_no = comm_no;
 		this.user_id = user_id;
@@ -88,6 +90,4 @@ public class CommunityBoardVO {
 	public CommunityBoardVO() {
 		super();
 	}
-
-	
 }

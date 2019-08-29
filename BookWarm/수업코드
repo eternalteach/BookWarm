@@ -1,0 +1,90 @@
+	===========================================================================
+	파일 업로드
+	servlet-context.xml 설정하기
+
+	<!-- MultipartResolver 설정 -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="100000000" /><!-- bite단위 대략 10mb -->
+		<beans:property name="maxInMemorySize" value="100000000" />
+	</beans:bean>
+
+	<!-- 파일업로드를 위한 디렉토리 설정 -->
+
+	<!-- String uploadPath = new String("e:/uplaod"); -->
+	<beans:bean id="uploadPath" class="java.lang.String">
+		<beans:constructor-arg value="d:/upload" />
+	</beans:bean>
+	
+	
+	
+	
+	Controller.java 설정하기
+	private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
+	
+	// xml에 설정된 리소스참조
+	//bean의 id가 uploadPath인 태그를 참조
+	
+	@Resource(name="uploadPath")
+	String uploadPath;
+	
+	// url은 같지만 get방식으로 넘어옴
+	@RequestMapping(value="/upload/uploadForm", method = RequestMethod.GET)
+	public void uploadForm() {
+		// upload/uploadForm.jsp로 포워딩
+	}
+	
+	//업로드 버튼 => 임시디렉토리업로드 => 파일정보가 file에 저장 => 지정된 디렉토리에 저장
+	@RequestMapping(value = "/upload/uploadForm", method = RequestMethod.POST)
+	public ModelAndView uploadForm(MultipartFile file, ModelAndView mav) throws Exception{
+		
+		logger.info("파일이름:" + file.getOriginalFilename());
+		String savedName = file.getOriginalFilename();
+		
+		logger.info("파일크기:" + file.getSize());
+		logger.info("컨텐트타입:" + file.getContentType());
+		
+		savedName = uploadFile(savedName,file.getBytes());
+		mav.setViewName("upload/uploadResult");
+		mav.addObject("saveName",savedName);
+		return mav; // uploadResult.jsp로 포워딩	
+	}
+	
+	//파일이름이 중복되지 않도록 처리
+	private String uploadFile(String originalName, byte[] fileData) throws Exception {
+		
+		//uuid 생성(Universal Unique IDentifier, 범용 고유 식별자 , 랜덤으로 코드를 만들어냄)
+		UUID uid = UUID.randomUUID();
+		String savedName = uid.toString() + "_" + originalName;
+		File target = new File(uploadPath, savedName);
+		
+		//임시디렉토리에 저장된 업로드된 파일을 지정된 디렉 토리로 복사
+		//FileCopyUtils.copy(바이트배열,파일객체)
+		FileCopyUtils.copy(fileData, target);
+		
+		return savedName;
+	}
+	===========================================================================
+	한글 처리
+	web.xml 에서 설정하기
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>
+			org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+		
+	===========================================================================
