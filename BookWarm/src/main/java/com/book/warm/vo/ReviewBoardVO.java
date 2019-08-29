@@ -4,15 +4,15 @@ import java.sql.Timestamp;
 
 public class ReviewBoardVO {
 
-	private int opinion_no;
+	private int review_no;
 	private String user_id;
-	private Timestamp opinion_written_date;
-	private Timestamp opinion_modify_date;
+	private Timestamp review_written_date;
+	private Timestamp review_modify_date;
 	private String isbn;
-	private int opinion_ref;
-	private String opinion_title;
-	private String opinion_content;
-	private String opinion_open;
+	private int review_ref;
+	private String review_title;
+	private String review_content;
+	private String review_open;
 	
 	
 	
@@ -21,26 +21,26 @@ public class ReviewBoardVO {
 	}
 
 
-	public ReviewBoardVO(int opinion_no, String user_id, Timestamp opinion_written_date, Timestamp opinion_modify_date,
-			String isbn, int opinion_ref, String opinion_title, String opinion_content, String opinion_open) {
+	public ReviewBoardVO(int review_no, String user_id, Timestamp review_written_date, Timestamp review_modify_date,
+			String isbn, int review_ref, String review_title, String review_content, String review_open) {
 		super();
-		this.opinion_no = opinion_no;
+		this.review_no = review_no;
 		this.user_id = user_id;
-		this.opinion_written_date = opinion_written_date;
-		this.opinion_modify_date = opinion_modify_date;
+		this.review_written_date = review_written_date;
+		this.review_modify_date = review_modify_date;
 		this.isbn = isbn;
-		this.opinion_ref = opinion_ref;
-		this.opinion_title = opinion_title;
-		this.opinion_content = opinion_content;
-		this.opinion_open = opinion_open;
+		this.review_ref = review_ref;
+		this.review_title = review_title;
+		this.review_content = review_content;
+		this.review_open = review_open;
 	}
 	
 	
-	public int getOpinion_no() {
-		return opinion_no;
+	public int getReview_no() {
+		return review_no;
 	}
-	public void setOpinion_no(int opinion_no) {
-		this.opinion_no = opinion_no;
+	public void setReview_no(int review_no) {
+		this.review_no = review_no;
 	}
 	public String getUser_id() {
 		return user_id;
@@ -48,17 +48,17 @@ public class ReviewBoardVO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	public Timestamp getOpinion_written_date() {
-		return opinion_written_date;
+	public Timestamp getReview_written_date() {
+		return review_written_date;
 	}
-	public void setOpinion_written_date(Timestamp opinion_written_date) {
-		this.opinion_written_date = opinion_written_date;
+	public void setReview_written_date(Timestamp review_written_date) {
+		this.review_written_date = review_written_date;
 	}
-	public Timestamp getOpinion_modify_date() {
-		return opinion_modify_date;
+	public Timestamp getReview_modify_date() {
+		return review_modify_date;
 	}
-	public void setOpinion_modify_date(Timestamp opinion_modify_date) {
-		this.opinion_modify_date = opinion_modify_date;
+	public void setReview_modify_date(Timestamp review_modify_date) {
+		this.review_modify_date = review_modify_date;
 	}
 	public String getIsbn() {
 		return isbn;
@@ -66,29 +66,29 @@ public class ReviewBoardVO {
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
-	public int getOpinion_ref() {
-		return opinion_ref;
+	public int getReview_ref() {
+		return review_ref;
 	}
-	public void setOpinion_ref(int opinion_ref) {
-		this.opinion_ref = opinion_ref;
+	public void setReview_ref(int review_ref) {
+		this.review_ref = review_ref;
 	}
-	public String getOpinion_title() {
-		return opinion_title;
+	public String getReview_title() {
+		return review_title;
 	}
-	public void setOpinion_title(String opinion_title) {
-		this.opinion_title = opinion_title;
+	public void setReview_title(String review_title) {
+		this.review_title = review_title;
 	}
-	public String getOpinion_content() {
-		return opinion_content;
+	public String getReview_content() {
+		return review_content;
 	}
-	public void setOpinion_content(String opinion_content) {
-		this.opinion_content = opinion_content;
+	public void setReview_content(String review_content) {
+		this.review_content = review_content;
 	}
-	public String getOpinion_open() {
-		return opinion_open;
+	public String getReview_open() {
+		return review_open;
 	}
-	public void setOpinion_open(String opinion_open) {
-		this.opinion_open = opinion_open;
+	public void setReview_open(String review_open) {
+		this.review_open = review_open;
 	}
 	
 	

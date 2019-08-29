@@ -9,9 +9,9 @@
  	
  		select * from
 		(
-		    select opinion_no, user_id, opinion_written_date, opinion_modify_date, isbn, 
-		    	opinion_ref, opinion_title, opinion_content, opinion_open, 
-		    	rank() over(partition by isbn order by opinion_modify_date desc, opinion_no desc) rk 
+		    select review_no, user_id, review_written_date, review_modify_date, isbn, 
+		    	review_ref, review_title, review_content, review_open, 
+		    	rank() over(partition by isbn order by review_modify_date desc, review_no desc) rk 
 		    from review_board
 		) sub, book_cover bc
 		where sub.rk = 1 and sub.isbn=bc.isbn
@@ -19,7 +19,7 @@
  	</select>
  	
  	<select id="selectListPerBook" resultType="com.book.warm.vo.ReviewBoardVO">
- 		select * from review_board where isbn = #{isbn} order by opinion_written_date desc
+ 		select * from review_board where isbn = #{isbn} order by review_written_date desc
  	</select>
  
  </mapper>
