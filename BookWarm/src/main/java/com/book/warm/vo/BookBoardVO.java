@@ -19,6 +19,7 @@ public class BookBoardVO {
 	private String book_intro;
 	private String book_idx;
 	private String book_story;
+	private String book_img;
 	
 	public int getBook_list() {
 		return book_list;
@@ -103,6 +104,12 @@ public class BookBoardVO {
 	}
 	public void setBook_story(String book_story) {
 		this.book_story = book_story;
+	}
+	public String getBook_img() {
+		return book_img;
+	}
+	public void setBook_img(String book_img) {
+		this.book_img = book_img;
 	}
 	
 	

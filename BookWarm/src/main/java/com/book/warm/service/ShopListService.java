@@ -4,20 +4,27 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
+import com.book.warm.mapper.ShopListMapper;
 import com.book.warm.vo.ShopListBoardVO;
 
 @Service
 public class ShopListService {
 
 	@Inject
-	SqlSessionTemplate sqlSession;
+	ShopListMapper shoplistmapper;
 	
-	//불러오기
+	//베스트 순서로 불러오기
 	public List<ShopListBoardVO> shoplist() throws Exception{
-		System.out.println("얍");
-		return sqlSession.selectList("shop.shoplist");
+		System.out.println("ShopList 베스트순으로 불러오기");
+
+		return shoplistmapper.shoplist();
+	}
+	
+	//제목순(ㄱㄴㄷㄹ)순으로 불러오기
+	public List<ShopListBoardVO> shoplist2() throws Exception{
+		System.out.println("shoplist2 제목순으로 불러오기");
+		return shoplistmapper.shoplist2();
 	}
 }

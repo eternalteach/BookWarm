@@ -23,17 +23,6 @@
    <link href="./resources/VertexEx/css/main.css" rel="stylesheet" />
    <link href="./resources/VertexEx/css/main-shortcodes.css" rel="stylesheet" />
    <link href="./resources/VertexEx/css/header.css" rel="stylesheet" />
-   
-   <!-- shopping_list CSS -->
-   <link href="./resources/VertexEx/css/shop.css" rel="stylesheet" />
-   <link href="./resources/VertexEx/css/bg-stylish.css" rel="stylesheet" />
-   <link href="./resources/VertexEx/css/streamline-icon.css" rel="stylesheet" />
-   <link href="./resources/VertexEx/css/font-icons.css" rel="stylesheet" />
-   <link href="./resources/VertexEx/smartforms/JavascriptTemplates/css/smart-addons.css" rel="stylesheet" />
-   <link href="./resources/VertexEx/smartforms/Templates/css/smart-forms.css" rel="stylesheet" />
-   <!-- end shopping_list CSS  -->
-   
-   
    <link href="./resources/VertexEx/css/form-element.css" rel="stylesheet" />
    <link href="./resources/VertexEx/css/animation.css" rel="stylesheet" />
    <link href="./resources/VertexEx/css/responsive.css" rel="stylesheet" />
@@ -85,12 +74,62 @@
    <script src="./resources/VertexEx/js/custom.js"></script>
    
 	
-	<!-- shoppig list  -->	
-   <!-- Smart Form Elements -->
+	
+	
+	<!-- ============================================================ -->
+   <!-- shop-right-sidebar.html에서 추가된 CSS -->
+   <link href="./resources/VertexEx/css/shop.css" rel="stylesheet" />
+   <link href="./resources/VertexEx/css/bg-stylish.css" rel="stylesheet" />
+   <link href="./resources/VertexEx/css/streamline-icon.css" rel="stylesheet" />
+   <link href="./resources/VertexEx/css/font-icons.css" rel="stylesheet" />
+   <link href="./resources/VertexEx/smartforms/JavascriptTemplates/css/smart-addons.css" rel="stylesheet" />
+   <link href="./resources/VertexEx/smartforms/Templates/css/smart-forms.css" rel="stylesheet" />
+    <!-- Smart Form Elements -->
    <script src="./resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-custom.min.js"></script>
    <script src="./resources/VertexEx/smartforms/JavascriptTemplates/js/jquery.placeholder.min.js"></script>
    <script src="./resources/VertexEx/smartforms/JavascriptTemplates/js/select2.full.min.js"></script>
    <script src="./resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-combo.min.js"></script>
-   	<!-- end shoppig list  -->	
-	
+   <!-- shop-right-sidebar.html CSS 끝 -->
+   	
+   	
+   	<!-- ============================================================ -->
+   	<!-- VerText의 element-tabs의 추가된 CSS -->
+    <!-- Libs CSS -->
+    <link href="./resources/Vertex/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./resources/Vertex/css/style.css" rel="stylesheet" />
+    <link href="./resources/Vertex/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="./resources/Vertex/css/streamline-icon.css" rel="stylesheet" />
+    <link href="./resources/Vertex/css/header.css" rel="stylesheet" />
+    <link href="./resources/Vertex/css/portfolio.css" rel="stylesheet" />
+    <link href="./resources/Vertex/css/blog.css" rel="stylesheet" />
+    <link href="./resources/Vertex/css/v-animation.css" rel="stylesheet" />
+    <link href="./resources/Vertex/css/v-bg-stylish.css" rel="stylesheet" />
+    <link href="./resources/Vertex/css/shortcodes.css" rel="stylesheet" />
+    <link href="./resources/Vertex/css/utilities.css" rel="stylesheet" />
+    <link href="./resources/Vertex/css/theme-responsive.css" rel="stylesheet" />
+    <link href="./resources/Vertex/plugins/aos/aos.css" rel="stylesheet" />
+    <link href="./resources/Vertex/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
+    <link href="./resources/Vertex/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
+    <!-- Skin -->
+    <link rel="stylesheet" href="./resources/Vertex/css/skin/default.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./resources/Vertex/css/custom.css">
+	 <!-- Libs -->
+    <script src="./resources/Vertex/js/jquery.min.js"></script>
+    <script src="./resources/Vertex/js/popper.js"></script>
+    <script src="./resources/Vertex/js/bootstrap.min.js"></script>
+    <script src="./resources/Vertex/js/jquery.flexslider-min.js"></script>
+    <script src="./resources/Vertex/js/jquery.easing.js"></script>
+    <script src="./resources/Vertex/js/jquery.fitvids.js"></script>
+    <script src="./resources/Vertex/js/jquery.carouFredSel.min.js"></script>
+    <script src="./resources/Vertex/js/jquery.validate.js"></script>
+    <script src="./resources/Vertex/js/theme-plugins.js"></script>
+    <script src="./resources/Vertex/js/jquery.isotope.min.js"></script>
+    <script src="./resources/Vertex/js/imagesloaded.js"></script>
+    <script src="./resources/Vertex/js/view.min.js?auto"></script>
+    <script src="./resources/Vertex/plugins/aos/aos.js"></script>
+    <script src="./resources/Vertex/js/theme-core.js"></script>
+    <script src="./resources/Vertex/js/theme.js"></script>
+    <script src="./resources/Vertex/js/theme.init.js"></script>
+    <!--  VerText의 element-tabs의 추가된 CSS 끝  -->
 	

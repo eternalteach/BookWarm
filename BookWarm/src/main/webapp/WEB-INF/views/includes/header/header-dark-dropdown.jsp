@@ -68,7 +68,7 @@
 				class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall bg-overlay--gradient-dark">
 
 				<div class="divimage dzsparallaxer--target w-100"
-					style="height: 120%; background-image: url(./resources/VertexEx/img/banner/king.jpg);">
+					style="height: 120%; background-image: url(./resources/VertexEx/img/banner/꼬부기피카츄.gif);">
 				</div>
 
 				<div class="container text-white text-center pt-200 pb-200">

@@ -6,4 +6,5 @@
 <!-- context -->
 <%@ include file="includes/shopping/shopping_list.jsp"%>
 <!-- footer  -->
-<%@ include file="includes/footer/footer-2.jsp"%>
+<!--  -->
+<%@ include file="includes/footer/footer-1.jsp"%>
