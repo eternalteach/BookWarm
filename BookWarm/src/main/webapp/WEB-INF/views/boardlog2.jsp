@@ -34,6 +34,22 @@
 <script src="./resources/VertexEx/smartforms/JavascriptTemplates/js/select2.full.min.js"></script>
 <script src="./resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-combo.min.js"></script>
 
+
+<div class="modal fade" id="exampleModalLabel33" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel33" aria-hidden="true">
+         <div class="modal-dialog" style="max-width:335px" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel33">Login via</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+               </div>
+            </div>
+         </div>
+      </div>
+      
 <div class="page has-sidebar has-right-sidebar bordered">
 	<div class="page-inner">
 		<div class="container">
@@ -44,6 +60,8 @@
 						<%@ include file="includes/record/record.jsp"%>
 					</aside>
 				</div>
+
+				
 			</div>
 		</div>
 	</div>

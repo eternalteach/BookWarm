@@ -355,14 +355,14 @@ update community_board SET comm_title = 'modify', comm_content='수정된 내용12' w
 delete community_board where comm_no=5;
 
 --ISBNimg data
-insert into isbn_img (isbn,img_src)VALUES ('isbn001','resources/img/ISBNimg/book001.jpg');
-insert into isbn_img (isbn,img_src)VALUES ('isbn001','resources/img/ISBNimg/book002.jpg');
-insert into isbn_img (isbn,img_src)VALUES ('isbn001','resources/img/ISBNimg/book003.jpg');
+insert into book_cover (isbn,img_src)VALUES ('isbn001','resources/img/ISBNimg/book001.jpg');
+insert into book_cover (isbn,img_src)VALUES ('isbn001','resources/img/ISBNimg/book002.jpg');
+insert into book_cover (isbn,img_src)VALUES ('isbn001','resources/img/ISBNimg/book003.jpg');
 
-select * from isbn_img;
+select * from book_cover;
 -- getBookImg Test (첫 이미지 가지고오기)
-select * from (select * from isbn_img where isbn='isbn001') where rownum=1;
-delete isbn_img where isbn='isbn001';
+select * from (select * from book_cover where isbn='isbn001') where rownum=1;
+delete book_cover where isbn='isbn001';
 
 
 

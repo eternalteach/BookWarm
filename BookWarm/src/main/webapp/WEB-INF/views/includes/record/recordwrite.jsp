@@ -80,8 +80,6 @@
 					guestnumber.slider("value", this.selectedIndex + 1);
 				});
 
-
-
 				$("#eq > .sliderv-wrapper").each(function() {
 					var value = parseInt($(this).text(), 10);
 					$(this).empty().slider({

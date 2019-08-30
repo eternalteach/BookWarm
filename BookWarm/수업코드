@@ -64,6 +64,13 @@
 		
 		return savedName;
 	}
+	
+	올릴 jsp 페이지에서 form 형식
+	<form id="form1" action="${path}/upload/uploadForm" method="post"
+		enctype="multipart/form-data" target="iframe1"><!-- enctype= 인코드 타입의 약자 부분을 쪼개서 여러개로 만들어서 전송한다.(multipart/form-data)-->
+		<input type="file" name="file"> <input type="submit"
+			value="업로드">
+	</form>
 	===========================================================================
 	한글 처리
 	web.xml 에서 설정하기

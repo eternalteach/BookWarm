@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.book.warm.mapper.LogingBoardMapper"> 
 	<select id='selectList' resultType="com.book.warm.vo.LogingBoardVO">
-		select * from loging_board where isbn=#{isbn}
+		select write_no, start_page, end_page,  start_date , end_date, isbn  from loging_board where isbn=#{isbn}
 	</select>
 	<select id='CountWriteNo' resultType="Integer">
 		select count(*) from loging_board where isbn=#{isbn}

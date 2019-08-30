@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.book.warm.vo.BookVO;
 import com.book.warm.vo.LogingBoardVO;
+
 @Service
 public class StatisticsFunctionService {
 
@@ -32,6 +33,28 @@ public class StatisticsFunctionService {
 			}
 		}
 		return countPage;
+	}
+
+	public int firstPage(ArrayList<LogingBoardVO> list) {
+		int listSize = list.size();
+		int firstpage = list.get(0).getStart_page();
+		for (int i = 0; i < listSize; i++) {
+			if (firstpage > list.get(i).getStart_page()) {
+				firstpage = list.get(i).getStart_page();
+			}
+		}
+		return firstpage;
+	}
+
+	public int endPage(ArrayList<LogingBoardVO> list) {
+		int listSize = list.size();
+		int endpage = list.get(0).getEnd_page();
+		for (int i = 0; i < listSize; i++) {
+			if (endpage < list.get(i).getEnd_page()) {
+				endpage = list.get(i).getEnd_page();
+			}
+		}
+		return endpage;
 	}
 
 }

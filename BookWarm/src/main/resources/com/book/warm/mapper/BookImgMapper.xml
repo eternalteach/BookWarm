@@ -4,6 +4,6 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.book.warm.mapper.ISBNimgMapper"> 
 	<select id='getBookImg' resultType="com.book.warm.vo.ISBNimgVO">
-		select * from (select * from isbn_img where isbn=#{isbn}) where rownum=1
+		select * from (select * from book_cover where isbn=#{isbn}) where rownum=1
 	</select>
 </mapper>

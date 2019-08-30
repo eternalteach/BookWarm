@@ -38,9 +38,14 @@ public class BoardLogController {
 		ISBNimgVO iSBNimgVO = iBNimgMapper.getBookImg(isbn);
 		System.out.println(iSBNimgVO.getIsbn());
 		int readPageNum = statisticsFunctionService.logingPage(logingList, bookVO);
+		int startPage = statisticsFunctionService.firstPage(logingList);
+		int endPage = statisticsFunctionService.endPage(logingList);
 		int logingCount = logingBoardMapper.CountWriteNo(logingBoardVO.getIsbn());
 		int bookTotalPage = bookVO.getTotalPage(); /* tmp value, please modify this code */
 		double reading = ((double) readPageNum / (double) bookTotalPage) * 100;
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("loginglist", logingList);
 		model.addAttribute("readPageNum", readPageNum);
 		model.addAttribute("reading", reading);
 		model.addAttribute("recordNum", logingCount);
@@ -54,6 +59,7 @@ public class BoardLogController {
 		log.info("===== boardLogWrite() =====");
 		return "/boardlogwrite";
 	}
+
 	@RequestMapping(value = "/boardLogWriteSave", method = RequestMethod.POST)
 	public String boardLogWriteSave() throws Exception {
 		log.info("===== boardLogWrite() =====");
