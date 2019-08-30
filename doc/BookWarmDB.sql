@@ -26,11 +26,11 @@ start_date date default sysdate,
 end_date date not null);
 
 --독서감상테이블 감상번호 시퀀스
-create sequence review_no_seq;
---독서감상 테이블
+create sequence review_board_seq;
+--독서감상 테이블 (김해랑)
 create table review_board(
 review_no  NUMBER (10,0) primary key,
-user_id VARCHAR2(50),
+user_id VARCHAR2(20),
 review_written_date date default sysdate,
 review_modify_date date default sysdate,
 isbn varchar2(20),
@@ -40,22 +40,22 @@ review_content varchar2(2000),
 review_open varchar2(1) default 'N');
 
 ----댓글
---create sequence rno_seq;
+--create sequence review_re_seq;
 --
-----댓글 테이블
---create table opinion_reply(
---rno number(10,0) primary key,
---opinion_no number(10),
---userid varchar2(20),
---re_content varchar2(200)
+----댓글 테이블 (김해랑 사용 예정)
+--create table review_reply(
+--review_re_no number(10,0) primary key,
+--review_no number(10),
+--user_id varchar2(20),
+--review_re_content varchar2(500)
 --);
 --파일업로드도 보류..
 
 --해쉬태그 시퀀스
 create sequence hashtag_seq;
---해쉬태그 테이블 
+--해쉬태그 테이블 (김해랑 사용 예정)
 create table hashtag(
-opinion_no number(10,0),
+review_no number(10,0),
 tag_name varchar2(50) not null
 );
 
@@ -102,7 +102,7 @@ ALTER TABLE community_board_reply ADD CONSTRAINTS comm_no FOREIGN KEY(comm_no) R
 
 -------------------- book --------------------
 --book ISBNimg
-create table book_img(
+create table book_cover(
 isbn varchar2(20),
 img_src VARCHAR2(1000)
 );
