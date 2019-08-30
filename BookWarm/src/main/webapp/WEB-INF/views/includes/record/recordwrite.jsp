@@ -162,10 +162,10 @@
 				<div class="heading">
 					<h4 class="title">Date Range</h4>
 				</div>
-				<div class="section">
-					<label class="field prepend-icon"> <input type="text"
-						id="ddFormat" name="ddFormat" class="gui-input"
-						placeholder="Format DD/MM/YY"> <span class="field-icon"><i
+				<div class="section mb-0">
+					<label class="field prepend-icon"> 
+					<input type="text" id="yyFormat" name="yyFormat" class="gui-input"
+						placeholder="Format YY/MM/DD"> <span class="field-icon"><i
 							class="fa fa-calendar"></i></span>
 					</label>
 				</div>
