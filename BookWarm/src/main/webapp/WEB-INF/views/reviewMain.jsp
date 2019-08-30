@@ -46,58 +46,6 @@
                            </div>
                         </section>
 
-                        <section class="sidebar-widget">
-                           <div class="heading">
-                              <h4 class="title">RECENT POST</h4>
-                           </div>
-                           <div class="sidebar-widget-inner">
-
-                              <div class="clearfix">
-
-                                 <div class="spost clearfix">
-                                    <div class="entry-image">
-                                       <a href="#" class="nobg"><img class="img-circle" src="./resources/VertexEx/img/thumbs/project-3.jpg" alt=""></a>
-                                    </div>
-                                    <div class="entry-c">
-                                       <div class="entry-title">
-                                          <h4><a href="#">Lorem ipsum dolor sit amet, consectetur</a></h4>
-                                       </div>
-                                       <ul class="entry-meta">
-                                          <li>10th July 2014</li>
-                                       </ul>
-                                    </div>
-                                 </div>
-
-                                 <div class="spost clearfix">
-                                    <div class="entry-image">
-                                       <a href="#" class="nobg"><img class="img-circle" src="./resources/VertexEx/img/thumbs/project-7.jpg" alt=""></a>
-                                    </div>
-                                    <div class="entry-c">
-                                       <div class="entry-title">
-                                          <h4><a href="#">Elit Assumenda vel amet dolorum quasi</a></h4>
-                                       </div>
-                                       <ul class="entry-meta">
-                                          <li>10th July 2014</li>
-                                       </ul>
-                                    </div>
-                                 </div>
-
-                                 <div class="spost clearfix">
-                                    <div class="entry-image">
-                                       <a href="#" class="nobg"><img class="img-circle" src="./resources/VertexEx/img/thumbs/project-8.png" alt=""></a>
-                                    </div>
-                                    <div class="entry-c">
-                                       <div class="entry-title">
-                                          <h4><a href="#">Debitis nihil placeat, illum est nisi</a></h4>
-                                       </div>
-                                       <ul class="entry-meta">
-                                          <li>10th July 2014</li>
-                                       </ul>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </section>
 
                         <section class="sidebar-widget">
                            <div class="heading">
@@ -119,38 +67,7 @@
                               </div>
                            </div>
                         </section>
-
-                        <section class="sidebar-widget">
-                           <div class="heading">
-                              <h4 class="title">About Us</h4>
-                           </div>
-
-                           <div class="sidebar-widget-inner">
-                              <p>
-                                 Lorem ipsum dolor sit amet, consec tetuer adipiscing elit.
-                                 Aenean commo ligula eget dolor. Aenean massa. Cum sociis
-                                 natoque penatibus et magnis dis parturient.
-                                 <a href="#" class="read-more-btn">Read more </a>
-                              </p>
-                           </div>
-                        </section>
-
-                        <section class="sidebar-widget">
-                           <div class="heading">
-                              <h4 class="title">Portfolio</h4>
-                           </div>
-
-                           <div class="sidebar-widget-inner">
-                              <div class="owl-carousel owl-theme" data-plugin-options='{"items": 1, "margin": 10, "animateOut": "fadeOut"}'>
-                                 <div>
-                                    <img alt="" class="img-responsive" src="./resources/VertexEx/img/portfolio/p16.jpg">
-                                 </div>
-                                 <div>
-                                    <img alt="" class="img-responsive" src="./resources/VertexEx/img/portfolio/p9.jpg">
-                                 </div>
-                              </div>
-                           </div>
-                        </section>
+                        
                      </aside>
                   </div>
 
@@ -178,7 +95,7 @@
                                     </li>
                                     <li class="v_blog-item-date">
                                        <time class="" datetime="2018-06-30T10:47:48+00:00">
-                                          ${vo.opinion_modify_date}
+                                          ${vo.review_modify_date}
                                        </time>
                                     </li>
                                     <li class="v_blog-item-comments">No Comments</li>
@@ -186,16 +103,16 @@
                                  </ul>
 
                                  <a href="./resources/VertexEx/blog-post-standard.html" rel="bookmark">
-                                    <h2 class="v_blog-item-title" itemprop="name headline"><%-- ${vo.opinion_title} --%></h2>
+                                    <h2 class="v_blog-item-title" itemprop="name headline"><%-- ${vo.review_title} --%></h2>
                                  </a>
                               </div>
 
                               <div itemprop="articleBody">
                                  <p>
-                                 	<%-- ${vo.opinion_content} --%>
+                                 	<%-- ${vo.review_content} --%>
                                  </p>
                                  <a class="v_blog-item-read-more" href="#">
-                                    <span>Read more</span>
+                                    <span>Reviews about this book</span>
                                  </a>
                               </div>
                            </div>

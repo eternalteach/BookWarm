@@ -18,9 +18,6 @@ public class ReviewBoardController {
 	@RequestMapping("/reviewMain")
 	public String recordMain(Model model) {
 		
-		
-//		System.out.println(((rbs.selectBoardList()).get(0)).getReview_no());
-		
 		model.addAttribute("list", rbs.selectBoardList());
 		
 		return "reviewMain";
@@ -30,8 +27,18 @@ public class ReviewBoardController {
 	public String reviewPerBook(@RequestParam("isbn") String isbn, Model model) {
 		
 		model.addAttribute("list", rbs.selectListPerBook(isbn));
-		
+		model.addAttribute("thumbnail", rbs.showBookThumbnail(isbn));
 		return "reviewPerBook";
+	}
+	
+	@RequestMapping("/reviewSelectOne")
+	public String reviewSelectOne(@RequestParam("review_no") String review_no, 
+									    @RequestParam("isbn") String isbn, 
+									    Model model) {
+		
+		model.addAttribute("review", rbs.selectedReview(review_no));
+		model.addAttribute("book", rbs.bookInfo(isbn));
+		return "reviewSelectOne";
 	}
 	
 }

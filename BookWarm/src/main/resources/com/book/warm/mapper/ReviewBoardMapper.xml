@@ -3,7 +3,7 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
- <mapper namespace="review_main">
+ <mapper namespace="com.book.warm.mapper.ReviewBoardMapper">
  
  	<select id="selectBoardList" resultType="com.book.warm.vo.ReviewBoardVO2">
  	
@@ -20,6 +20,21 @@
  	
  	<select id="selectListPerBook" resultType="com.book.warm.vo.ReviewBoardVO">
  		select * from review_board where isbn = #{isbn} order by review_written_date desc
+ 	</select>
+ 	
+ 	<select id="showBookThumbnail" resultType="com.book.warm.vo.BookThumbnailVO">
+ 		select img_src, book_title, writer_name
+		from book_cover bc, book b, writer w
+		where bc.isbn = #{isbn} 
+		and bc.isbn = b.isbn and b.writer_no = w.writer_no
+ 	</select>
+ 	
+ 	<select id="selectedReview" resultType="com.book.warm.vo.ReviewBoardVO">
+ 		select * from review_board where review_no = #{review_no}
+ 	</select>
+ 	
+ 	<select id="bookInfo" resultType="com.book.warm.vo.BookVO">
+ 		select * from book where isbn = #{isbn}
  	</select>
  
  </mapper>

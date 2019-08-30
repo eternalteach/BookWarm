@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
+import com.book.warm.mapper.ReviewBoardMapper;
+import com.book.warm.vo.BookThumbnailVO;
+import com.book.warm.vo.BookVO;
 import com.book.warm.vo.ReviewBoardVO;
 import com.book.warm.vo.ReviewBoardVO2;
 
@@ -15,18 +17,31 @@ import com.book.warm.vo.ReviewBoardVO2;
 public class ReviewBoardService {
 	
 	@Inject
-	SqlSessionTemplate sqlSession;
+	ReviewBoardMapper rbm;
 	
 	public List<ReviewBoardVO2> selectBoardList() {
 		
-		System.out.println("asdf: " + sqlSession.selectList("review_main.selectBoardList"));
-
-		return sqlSession.selectList("review_main.selectBoardList");
+		return rbm.selectBoardList();
 	}
 
 	public List<ReviewBoardVO> selectListPerBook(String isbn) {
 
-		return sqlSession.selectList("review_main.selectListPerBook", isbn);
+		return rbm.selectListPerBook(isbn);
 	}
 	
+	public BookThumbnailVO showBookThumbnail(String isbn) {
+		System.out.println("showBookThumbnail진입, isbn은: " + isbn);
+		System.out.println("BookThumbnail: " + rbm.showBookThumbnail(isbn));
+		return rbm.showBookThumbnail(isbn);
+	}
+
+	public ReviewBoardVO selectedReview(String review_no) {
+		System.out.println("review_no: " + review_no);
+		return rbm.selectedReview(review_no);
+	}
+
+	public BookVO bookInfo(String isbn) {
+		// TODO Auto-generated method stub
+		return rbm.bookInfo(isbn);
+	}
 }
