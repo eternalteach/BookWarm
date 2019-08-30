@@ -28,10 +28,15 @@
 		<!-- 내부적으로 SQLSession이라는 것을 만들어 Connection을 생성하거나 원하는 SQL을 전달하고, 결과를 리턴받는 구조로 작성하게 된다.
 		스프링에 SqlSessionFactory를 등록하는 작업은 SqlSessionFactoryBean을 이용한다. 스프링과 연동작업을 처리하는 것은 mybatis-spring이다 -->
 		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"></property>
+			<property name="dataSource" ref="dataSource"></property>
+			<!-- <property name="mapperLocations" value="classpath:/com/book/warm/mapper/*.xml"></property> -->
 		</bean>
 		<!-- ./sqlSessionFactory -->
 		
+		<!-- SqlSessionTemplate클래스로 객체를 만들어야하기 때문에 한번 더 감싸는 것. -->
+		<!-- <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+		</bean> -->
 				
 		<!-- /.mybatis -->
 		<!-- opg.zerock.mapper 패키지를 조사하도록 설정 -->
