@@ -179,8 +179,8 @@ create table cart(
 cart_no number(20) primary key,
 user_id varchar2(20), -- fk 설정하기
 isbn varchar2(20), --fk설정하기
-cart_cnt number(20));
-
+);
+/////////////////////////////////////////////////////cart_cnt number(20)컬럼 제거
 ---------------------------------------------
 
 --------------- user ---------------
