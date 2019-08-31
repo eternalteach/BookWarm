@@ -23,6 +23,15 @@ public class ReviewBoardController {
 		return "reviewMain";
 	}
 	
+	@RequestMapping("/reviewPerBook2")
+	public String reviewPerBook2(@RequestParam("isbn") String isbn, Model model) {
+		
+		model.addAttribute("list", rbs.selectListPerBook(isbn));
+		model.addAttribute("thumbnail", rbs.showBookThumbnail(isbn));
+		return "reviewPerBook2";
+	}
+	
+	
 	@RequestMapping("/reviewPerBook")
 	public String reviewPerBook(@RequestParam("isbn") String isbn, Model model) {
 		
@@ -39,6 +48,14 @@ public class ReviewBoardController {
 		model.addAttribute("review", rbs.selectedReview(review_no));
 		model.addAttribute("book", rbs.bookInfo(isbn));
 		return "reviewSelectOne";
+	}
+	
+	@RequestMapping("/reviewWrite")
+	public String reviewWrite(@RequestParam("isbn") String isbn, Model model) {
+		
+		
+		
+		return "reviewWrite";
 	}
 	
 }

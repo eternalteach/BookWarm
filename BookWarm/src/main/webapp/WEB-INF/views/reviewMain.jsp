@@ -28,51 +28,16 @@
 
             <div class="container">
                <div class="row">
-
-                  <div class="col-md-3 left-side-sidebar pt-70">
+					
+				<!-- 감상 메인 페이지에서 사이드바 안 쓸 듯 -->
+                  <!-- <div class="col-md-3 left-side-sidebar pt-70">
 
                      <aside class="sidebar">
-
-                        <section class="sidebar-widget">
-                           <div class="heading">
-                              <h4 class="title">Search</h4>
-                           </div>
-                           <div class="sidebar-widget-inner">
-                              <form class="search-form">
-                                 <div class="input-group">
-                                    <input class="form-control" placeholder="Search..." name="s" id="s" type="text">
-                                 </div>
-                              </form>
-                           </div>
-                        </section>
-
-
-                        <section class="sidebar-widget">
-                           <div class="heading">
-                              <h4 class="title">Tags</h4>
-                           </div>
-                           <div class="sidebar-widget-inner">
-                              <div class="tag-cloud">
-                                 <ul class="tag-cloud-inner">
-                                    <li><a href="#">CSS 3</a></li>
-                                    <li><a href="#">HTML 5</a></li>
-                                    <li><a href="#">Lifestyle</a></li>
-                                    <li><a href="#">Mobile</a></li>
-                                    <li><a href="#">News</a></li>
-                                    <li><a href="#">PHP</a></li>
-                                    <li><a href="#">Social</a></li>
-                                    <li><a href="#">video</a></li>
-                                    <li><a href="#">WordPress</a></li>
-                                 </ul>
-                              </div>
-                           </div>
-                        </section>
-                        
+						<section></section>                        
                      </aside>
-                  </div>
+                  </div> -->
 
                   <div class="col-md-8 right-side-sidebar v_blog-medium pt-70">
-
 
 
 				<!-- 블로그에 글 넣기 시도 -->
@@ -80,6 +45,7 @@
 				
 				<c:forEach items="${list}" var="vo">
 				
+<div class="post-content no-thumb clearfix">
 				    <article class="v_blog-item">
                         <div class="v_blog-item-inner row">
                            <div class="v_blog-item-media col-md-5">
@@ -109,7 +75,7 @@
 
                               <div itemprop="articleBody">
                                  <p>
-                                 	<%-- ${vo.review_content} --%>
+                                 	${vo.review_content}
                                  </p>
                                  <a class="v_blog-item-read-more" href="#">
                                     <span>Reviews about this book</span>
@@ -118,7 +84,7 @@
                            </div>
                         </div>
                      </article>
-                     
+</div>                     
 				</c:forEach>
 
 
