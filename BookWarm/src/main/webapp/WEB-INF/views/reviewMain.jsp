@@ -49,7 +49,7 @@
 				    <article class="v_blog-item">
                         <div class="v_blog-item-inner row">
                            <div class="v_blog-item-media col-md-5">
-                              <a href="/warm/reviewPerBook?isbn=${vo.isbn}">
+                              <a href="/warm/reviewPerBook?user_id=${vo.user_id}&isbn=${vo.isbn}">
                                  <img class="w-100" src="${vo.img_src}" />
                               </a>
                            </div>

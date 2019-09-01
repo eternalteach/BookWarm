@@ -19,7 +19,8 @@
  	</select>
  	
  	<select id="selectListPerBook" resultType="com.book.warm.vo.ReviewBoardVO">
- 		select * from review_board where isbn = #{isbn} order by review_written_date desc
+ 		select * from review_board where isbn = #{param1} and user_id = #{param2} 
+ 		order by review_written_date desc
  	</select>
  	
  	<select id="showBookThumbnail" resultType="com.book.warm.vo.BookThumbnailVO">
@@ -36,5 +37,28 @@
  	<select id="bookInfo" resultType="com.book.warm.vo.BookVO">
  		select * from book where isbn = #{isbn}
  	</select>
+ 	
+ 	<insert id="registerReview" parameterType="com.book.warm.vo.ReviewBoardVO">
+ 		insert into review_board
+ 				(
+ 				review_no, user_id,
+ 				isbn, review_ref, review_title, review_content, review_open
+ 				) 
+		values (
+				review_board_seq.nextval, #{user_id}, #{isbn}, #{review_ref}, 
+ 		 		#{review_title}, #{review_content}, #{review_open}
+ 		 		)
+ 	</insert>
+ 	
+ 	<delete id="deleteReview">
+ 		delete from review_board where user_id=#{user_id} and review_no=#{review_no}
+ 	</delete>
+ 	
+ 	<update id="modifyReview">
+ 		update review_board
+		set review_modify_date=sysdate, review_title=#{review_title}, review_content=#{review_content},
+    		review_ref=#{review_ref}, review_open=#{review_open}
+		where user_id=#{user_id} and review_no=#{review_no}
+ 	</update>
  
  </mapper>

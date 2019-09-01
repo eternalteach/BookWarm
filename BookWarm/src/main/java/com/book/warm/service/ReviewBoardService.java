@@ -24,9 +24,9 @@ public class ReviewBoardService {
 		return rbm.selectBoardList();
 	}
 
-	public List<ReviewBoardVO> selectListPerBook(String isbn) {
+	public List<ReviewBoardVO> selectListPerBook(String isbn, String user_id) {
 
-		return rbm.selectListPerBook(isbn);
+		return rbm.selectListPerBook(isbn, user_id);
 	}
 	
 	public BookThumbnailVO showBookThumbnail(String isbn) {
@@ -35,13 +35,38 @@ public class ReviewBoardService {
 		return rbm.showBookThumbnail(isbn);
 	}
 
-	public ReviewBoardVO selectedReview(String review_no) {
-		System.out.println("review_no: " + review_no);
+	public ReviewBoardVO selectedReview(int review_no) {
 		return rbm.selectedReview(review_no);
 	}
 
 	public BookVO bookInfo(String isbn) {
 		// TODO Auto-generated method stub
 		return rbm.bookInfo(isbn);
+	}
+
+	public int registerReview(ReviewBoardVO rbVO) {
+		
+		//checkbox가 체크되어 있으면 Y, 아니면 N(비공개)
+		if(rbVO.getReview_open().equals("on")) 
+			rbVO.setReview_open("Y");
+		else
+			rbVO.setReview_open("N");
+		
+		return rbm.registerReview(rbVO);
+	}
+
+	public int deleteReview(ReviewBoardVO rbVO) {
+
+		return rbm.deleteReview(rbVO);
+	}
+
+	public int modifyReview(ReviewBoardVO rbVO) {
+		
+		if(rbVO.getReview_open().equals("on")) 
+			rbVO.setReview_open("Y");
+		else
+			rbVO.setReview_open("N");
+		
+		return rbm.modifyReview(rbVO);
 	}
 }

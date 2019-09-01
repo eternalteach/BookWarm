@@ -197,7 +197,7 @@
                             <!-- 감상 작성 버튼 추가 -->
                             <li class="v-blog-item col-sm-12">
                             <button class="btn btn-outline-secondary">
-                            	<a href="/warm/reviewWrite<%-- ?isbn=${isbn} --%>">
+                            	<a href="/warm/reviewWrite?isbn=${list[0].isbn}&user_id=${list[0].user_id}">
 		                            
 		                            	<span class="text ls-1">
 		                            		Write Review
@@ -229,7 +229,7 @@
                                         </div>
                                         <div class="post-inner">
                                             <div class="post-header">
-                                                <h2 class="title"><a href="#">${vo.review_title}</a></h2>
+                                                <h2 class="title"><a href="/warm/reviewSelectOne?review_no=${vo.review_no}&isbn=${vo.isbn}">${vo.review_title}</a></h2>
 
                                                 <div class="post-meta-info">
                                                     <span class="blog-author minor-meta">
@@ -258,7 +258,7 @@
                                                     ${vo.review_content}
                                                 </p>
                                             </div>
-                                            <a class="btn v-btn standard white sf-icon-stroke" style="float:right" "href="/warm/reviewSelectOne?review_no=${vo.review_no}&isbn=${vo.isbn}">
+                                            <a class="btn v-btn standard white sf-icon-stroke" style="float:right" href="/warm/reviewSelectOne?review_no=${vo.review_no}&isbn=${vo.isbn}">
                                                 <i class="icon-arrow-32"></i><span class="text">Read more</span>
                                             </a>
                                         </div>

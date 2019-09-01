@@ -49,27 +49,27 @@
                             	
                             	
                             		<!-- 작성 페이지. -->
-                            		<form action="register">
+                            		<form action="modify">
 										<input type="hidden" name="user_id" value="${review.user_id}">
 										<input type="hidden" name="isbn" value="${review.isbn}">
 										<!-- 작성 시간과 수정 시간은 알아서 데이터 입력시에 들어가니 여기엔 필요 없음 -->
-                            		
+
                             			<table>
                             				<tr>
                             					<td>제목</td>
-                            					<td><input type="text" name="review_title"></td>
+                            					<td><input type="text" name="review_title" value="${review.review_title}"></td>
                             				</tr>
                             				<tr>
                             					<td>관련 페이지</td>
-                            					<td><input type="number" name="review_ref"></td>
+                            					<td><input type="number" name="review_ref" value="${review.review_ref}"></td>
                             				</tr>
                             				<tr>
                             					<td>공개여부</td>
-                            					<td><input type="checkbox" name="review_open"></td>
+                            					<td><input type="checkbox" name="review_open" value="${review.review_open}"></td>
                             				</tr>
                             				<tr>
                             					<td>내용</td>
-                            					<td><textarea name="review_content" cols="80" rows="10"></textarea></td>
+                            					<td><textarea name="review_content" cols="80" rows="10">${review.review_content}</textarea></td>
                             				</tr>
                             				<tr>
                             					<td></td>

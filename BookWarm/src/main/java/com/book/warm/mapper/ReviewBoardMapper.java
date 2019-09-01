@@ -11,13 +11,19 @@ public interface ReviewBoardMapper {
 	
 	public List<ReviewBoardVO2> selectBoardList();
 	
-	public List<ReviewBoardVO> selectListPerBook(String isbn);
+	public List<ReviewBoardVO> selectListPerBook(String isbn, String user_id);
 
 	public BookThumbnailVO showBookThumbnail(String isbn);
 
-	public ReviewBoardVO selectedReview(String review_no);
+	public ReviewBoardVO selectedReview(int review_no);
 
 	public BookVO bookInfo(String isbn);
+
+	public int registerReview(ReviewBoardVO rbVO);
+
+	public int deleteReview(ReviewBoardVO rbVO);
+
+	public int modifyReview(ReviewBoardVO rbVO);
 	
 	
 }

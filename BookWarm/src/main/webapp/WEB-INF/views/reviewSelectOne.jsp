@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
@@ -584,6 +586,16 @@
                             </figure>
 
                             <h3 class="blog-post-caption">${review.review_title}</h3>
+                            <a href="/warm/modifyReview?user_id=${review.user_id}&review_no=${review.review_no}">
+								<span class="text ls-1">
+						            수정하기
+						        </span>   
+							</a>
+							<a href="delete?isbn=${review.isbn}&user_id=${review.user_id}&review_no=${review.review_no}">
+								<span class="text ls-1">
+						            삭제하기
+						        </span>   
+							</a>
 
                             <div class="post-info clearfix">
                                 <span class="vcard author">
@@ -701,50 +713,18 @@
                                 <h3 class="v-heading"><span>3 Comments</span></h3>
 
                                 <ul class="media-list">
+                                	<%-- <c:forEach items="${replies}" var="reply">  
                                     <li class="media">
                                         <a class="pull-left" href="#">
                                             <img class="media-object" src="./resources/Vertex/img/team/t5.png">
                                         </a>
                                         <div class="media-body">
-                                            <h4 class="media-heading">Vertex <span class="date">5 months ago</span> <span><a class="reply-link" href="#">Reply</a> </span></h4>
+                                            <h4 class="media-heading">${reply.user_id}<span class="date">${reply.review_re_written_date}</span> <span><a class="reply-link" href="#">Reply</a> </span></h4>
                                             <p>Cras sit amet nibh libero, in gravida nulla Cras purus odio, in vulputate at, tempus viverra turpis.</p>
-
-                                            <hr>
-
-                                            <div class="media">
-                                                <a class="pull-left" href="#">
-                                                    <img class="media-object" src="./resources/Vertex/img/team/t4.png">
-                                                </a>
-                                                <div class="media-body">
-                                                    <h4 class="media-heading">Admin <span class="date">5 months ago</span> <span><a class="reply-link" href="#">Reply</a> </span></h4>
-                                                    Cras sit amet nibh libero, Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                                                </div>
-                                            </div>
-
-                                            <hr>
-
-                                            <div class="media">
-                                                <a class="pull-left" href="#">
-                                                    <img class="media-object" src="./resources/Vertex/img/team/t3.png">
-                                                </a>
-                                                <div class="media-body">
-                                                    <h4 class="media-heading">Admin <span class="date">5 months ago</span> <span><a class="reply-link" href="#">Reply</a> </span></h4>
-                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante commodo.
-                                                </div>
-                                            </div>
-
-                                            <hr>
                                         </div>
                                     </li>
-                                    <li class="media">
-                                        <a class="pull-left" href="#">
-                                            <img class="media-object" src="./resources/Vertex/img/team/t1.png">
-                                        </a>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Vertex <span class="date">5 months ago</span> <span><a class="reply-link" href="#">Reply</a> </span></h4>
-                                            Cras sit amet nibh libero Nulla vel metus vestibulum in vulputate at, tempus viverra turpis.
-                                        </div>
-                                    </li>
+                                    </c:forEach> --%>
+                                    
                                 </ul>
                             </div>
 
