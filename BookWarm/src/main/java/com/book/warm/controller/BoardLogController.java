@@ -1,5 +1,6 @@
 package com.book.warm.controller;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.inject.Inject;
@@ -32,13 +33,14 @@ public class BoardLogController {
 
 	@RequestMapping(value = "/boardlog", method = RequestMethod.GET)
 	// add task - get book command(need total page)
-	public String boardLog(Model model,@Param("isbn") String isbn) throws Exception {
+	public String boardLog(Model model, @Param("isbn") String isbn) throws Exception {
 		log.info("===== boardlog() =====");
-		
-		BookVO bookVO=new BookVO(1000,"isbn001");
-		
+
+		BookVO bookVO = new BookVO(1000, "isbn001");
+
 		ArrayList<LogingBoardVO> logingList = logingBoardMapper.selectList(isbn);
-		
+		System.out.println("logingList.get(0)" + logingList.get(0).getStart_date());
+		Timestamp ts = new Timestamp(19910101);
 		BookCoverVO BookCoverVO = bookCoverMapper.getBookImg(isbn);
 		int readPageNum = statisticsFunctionService.logingPage(logingList, bookVO);
 		int logingCount = logingBoardMapper.CountWriteNo(isbn);
@@ -61,11 +63,31 @@ public class BoardLogController {
 		return "/boardlogwrite";
 	}
 
+	@RequestMapping(value = "/boardlogmodify", method = RequestMethod.GET)
+	public String boardlogmodify(@Param("write_no") String write_no, Model model) throws Exception {
+		log.info("===== boardlogmodify() =====");
+		LogingBoardVO willModifyLoging = logingBoardMapper.getLogingVOForWriteNo(write_no);
+		model.addAttribute("willModifyLoging", willModifyLoging);
+		System.out.println("modify에서 write_no" + willModifyLoging.getWrite_no());
+		System.out.println("modify에서start_date" + willModifyLoging.getStart_date());
+		return "/boardlogmodify";
+	}
+
 	@RequestMapping(value = "/boardLogWriteSave", method = RequestMethod.POST)
 	public String boardLogWriteSave(LogingBoardVO logingBoardVO) throws Exception {
-		log.info("===== boardLogWrite() =====");
+		log.info("===== boardLogWriteSave() =====");
 		logingBoardMapper.logingBoard(logingBoardVO);
-		String isbn=logingBoardVO.getIsbn();
-		return "redirect:boardlog?isbn="+isbn;
+		String isbn = logingBoardVO.getIsbn();
+		return "redirect:boardlog?isbn=" + isbn;
+	}
+
+	@RequestMapping(value = "/boardLogModifySave", method = RequestMethod.POST)
+	public String boardLogModifySave(LogingBoardVO logingBoardVO) throws Exception {
+		log.info("===== boardLogModifySave() =====");
+
+		logingBoardMapper.modifyLoging(logingBoardVO);
+		System.out.println("modifySave에서 write_no" + logingBoardVO.getWrite_no());
+		String isbn = logingBoardVO.getIsbn();
+		return "redirect:boardlog?isbn=" + isbn;
 	}
 }

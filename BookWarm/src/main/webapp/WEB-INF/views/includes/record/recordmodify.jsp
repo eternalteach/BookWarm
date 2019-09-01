@@ -5,12 +5,15 @@
 	<br/>
 	<br/>
 	<br/>
-	<form method="post" action="boardLogWriteSave">
-	isbn : <input type="text" name="isbn" value="1"><br/>
-	start_page : <input type="text" name="start_page" value="1"><br/>
-	end_page : <input type="text" name="end_page" value="2"><br/>
-	start_date : <input type="date" min="2000-01-01" max="2030-12-31" name="start_date" value="2019-01-19"><br/> <!-- 추후 date 선택시 오늘 날짜 초과는 입력불가 추가하기 -->
+	<form method="post" action="boardLogModifySave">
+	isbn : <input type="text" name="isbn" value="${willModifyLoging.isbn}"><br/>
+	start_page : <input type="text" name="start_page" value="${willModifyLoging.start_page}"><br/>
+	end_page : <input type="text" name="end_page" value="${willModifyLoging.end_page}"><br/>
+	<fmt:parseDate value="${willModifyLoging.start_date}" var="start_date" pattern="yyyy-MM-dd HH:mm:ss"/>
+													<fmt:formatDate value="${start_date}" pattern="yyyy-MM-dd"/>
+    start_date : <input type="date" min="2000-01-01" max="2030-12-31" name="start_date" value="<fmt:formatDate value="${start_date}" pattern="yyyy-MM-dd"/>"><br/> <!-- 추후 date 선택시 오늘 날짜 초과는 입력불가 추가하기 -->
 	완독일 : <input type="checkbox" name="end_date" ><br/>
+	<input type="text" name="write_no" value="${willModifyLoging.write_no}" hidden="hidden">
 	
 	<input type="button" value="delete">
 	<button type="submit" class="button btn-primary">RE Record</button>

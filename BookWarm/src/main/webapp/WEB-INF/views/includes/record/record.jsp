@@ -60,7 +60,7 @@
 <p><a href="#ex1" rel="modal:open">모달창띄우기</a></p>
       <!-- 모달창 띄우기 -->
 <style>
-#modalRecordDetail{left:-20%; top:20%; }
+#modalRecordDetail{left:20%; top:20%; }
 </style>      
       
   <div class="col-md-8 right-side-sidebar v_blog-medium pt-70">
@@ -69,7 +69,7 @@
 						<div class="has-right-sidebar has-one-sidebar">
 							<div class="container">
 								<div class="row">
-<div id="modalRecordDetail" class="modal-dialog" >
+<div id="modalRecordDetail" class="modal" >
 									<div class="col-sm-15 v-blog-wrap">
 										<div class="v-blog-items-wrap blog-standard">
 											<ul class="v-blog-items row standard-items clearfix">
@@ -114,14 +114,14 @@
 																<div class="post-meta-info">
 																	<span class="blog-categories minor-meta"> 
 																		<span class="comment-container minor-meta">
-                            							<fmt:formatDate var="fmt_date" value="${loginglist.start_date}" pattern="yyyyMMdd"/>
-                            							${fmt_date}
+                            						<fmt:parseDate value="${loginglist.start_date}" var="start_date" pattern="yyyy-MM-dd HH:mm:ss"/>
+													<fmt:formatDate value="${start_date}" pattern="yyyy-MM-dd"/>
 																		</span>
 																		<span class="comment-container minor-meta">
 																			&nbsp;&nbsp;p.${loginglist.start_page}&nbsp;&nbsp;-&nbsp;p.${loginglist.end_page}
 																		</span>
 																		<span class="text-sep">&nbsp;|&nbsp;</span> 
-																		<a href="#">Modify</a>
+																		<a href="boardlogmodify?write_no=${loginglist.write_no}">Modify</a>
 																	</span>
 																</div>
 															</c:forEach>

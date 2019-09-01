@@ -13,6 +13,10 @@ public interface LogingBoardMapper {
 
 	public Integer CountWriteNo(String isbn);
 	
-	public void logingBoard(LogingBoardVO logingBoardVO);
+	public int logingBoard(LogingBoardVO logingBoardVO);
+
+	public LogingBoardVO getLogingVOForWriteNo(String write_no);
+
+	public int modifyLoging(LogingBoardVO logingBoardVO);
 
 }
