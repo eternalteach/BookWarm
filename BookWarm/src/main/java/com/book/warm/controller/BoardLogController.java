@@ -41,13 +41,11 @@ public class BoardLogController {
 		
 		BookCoverVO BookCoverVO = bookCoverMapper.getBookImg(isbn);
 		int readPageNum = statisticsFunctionService.logingPage(logingList, bookVO);
-		int startPage = statisticsFunctionService.firstPage(logingList);
-		int endPage = statisticsFunctionService.endPage(logingList);
 		int logingCount = logingBoardMapper.CountWriteNo(isbn);
 		int bookTotalPage = bookVO.getTotalPage(); /* tmp value, please modify this code */
 		double reading = ((double) readPageNum / (double) bookTotalPage) * 100;
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
+		model.addAttribute("startPage", statisticsFunctionService.firstPage(logingList));
+		model.addAttribute("endPage", statisticsFunctionService.endPage(logingList));
 		model.addAttribute("loginglist", logingList);
 		model.addAttribute("readPageNum", readPageNum);
 		model.addAttribute("reading", reading);
