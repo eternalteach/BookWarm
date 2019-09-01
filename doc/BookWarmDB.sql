@@ -16,14 +16,14 @@ read_stop number(10,0),
 read_star number(1,0)
 );
 
--- logingBoard 보드 생성
+-- logingBoard 보드 생성(기범)
 create table loging_board(
 isbn varchar2(20),
 write_no number(10,0) PRIMARY key,
 start_page number(4,0) default 1 not null,
 end_page number(4,0) not null,
 start_date date default sysdate,
-end_date date not null);
+end_date varchar2(5) default 'false');
 
 --독서감상테이블 감상번호 시퀀스
 create sequence review_board_seq;
