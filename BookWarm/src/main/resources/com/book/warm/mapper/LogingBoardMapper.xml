@@ -21,4 +21,7 @@
 	<update id="modifyLoging" ><!--  start date 뺀 상태이다 추가해줘야한다. -->
 		update loging_board set isbn=#{isbn}, start_page=#{start_page}, end_page=#{end_page}, start_date=to_date('${start_date}','yyyy-mm-dd'), end_date='${end_date}' where write_no=#{write_no}
 	</update>
+	<delete id="deleteLoging" ><!--  start date 뺀 상태이다 추가해줘야한다. -->
+	delete loging_board where write_no=#{write_no}
+	</delete>
 </mapper>

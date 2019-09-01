@@ -72,6 +72,14 @@ public class BoardLogController {
 		System.out.println("modify¿¡¼­start_date" + willModifyLoging.getStart_date());
 		return "/boardlogmodify";
 	}
+	@RequestMapping(value = "/boardLogDelete", method = RequestMethod.GET)
+	public String boardLogDelete(@Param("write_no") String write_no) throws Exception {
+		log.info("===== boardLogDelete() =====");
+		LogingBoardVO willDeleteLoging = logingBoardMapper.getLogingVOForWriteNo(write_no);
+		logingBoardMapper.deleteLoging(write_no);
+		String isbn = willDeleteLoging.getIsbn();
+		return "redirect:boardlog?isbn=" + isbn;
+	}
 
 	@RequestMapping(value = "/boardLogWriteSave", method = RequestMethod.POST)
 	public String boardLogWriteSave(LogingBoardVO logingBoardVO) throws Exception {

@@ -19,4 +19,6 @@ public interface LogingBoardMapper {
 
 	public int modifyLoging(LogingBoardVO logingBoardVO);
 
+	public int deleteLoging(String write_no);
+
 }
