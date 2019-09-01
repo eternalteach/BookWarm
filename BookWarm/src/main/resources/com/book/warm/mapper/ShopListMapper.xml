@@ -7,18 +7,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- //베스트 순서로 불러오기 -->
 	<select id="shoplist" resultType="com.book.warm.vo.ShopListBoardVO">
-	select book_list, book_img, book_title, writer.writer_name, publisher.publisher_name, book_price_for_sale
-	from book, publisher, writer 
-	where book.publisher_no = publisher.publisher_no and writer.writer_no = book.writer_no
-	order by book_list
+	select isbn, book_title, book_price, book_price_for_sale, writer_name, translator_name, publisher_name, book_img
+	from book, publisher, writer, translator
+	where book.publisher_no = publisher.publisher_no 
+    	  and writer.writer_no = book.writer_no
+    	  and translator.translator_no = book.translator_no
+	order by 1
 	</select>
+	
 	
 	
 	<!-- 테스트용/ 제목순으로 불러오기 -->
 	<select id="shoplist2" resultType="com.book.warm.vo.ShopListBoardVO">
-	select book_list, book_img, book_title, writer.writer_name, publisher.publisher_name, book_price_for_sale
-	from book, publisher, writer 
-	where book.publisher_no = publisher.publisher_no and writer.writer_no = book.writer_no
+	select isbn, book_title, book_price, book_price_for_sale, writer_name, translator_name, publisher_name, book_img
+	from book, publisher, writer, translator
+	where book.publisher_no = publisher.publisher_no 
+    	  and writer.writer_no = book.writer_no
+    	  and translator.translator_no = book.translator_no
 	order by 2
 	</select>
+	
+	
+	<select id="bookdetail" resultType="com.book.warm.vo.ShopListBoardVO">
+	select * from book where isbn = #{isbn}
+	</select>
+	
+	
+	
 </mapper>

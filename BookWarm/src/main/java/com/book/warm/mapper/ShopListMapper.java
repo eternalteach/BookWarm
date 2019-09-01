@@ -11,4 +11,8 @@ public interface ShopListMapper {
 	
 	//제목순(ㄱㄴㄷㄹ)순으로 불러오기
 	public List<ShopListBoardVO> shoplist2();
+	
+	//책 눌렀을때 상세페이지 이동
+	public ShopListBoardVO bookdetail(String isbn);
+	
 }

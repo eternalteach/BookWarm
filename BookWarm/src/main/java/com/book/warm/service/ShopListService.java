@@ -27,4 +27,10 @@ public class ShopListService {
 		System.out.println("shoplist2 제목순으로 불러오기");
 		return shoplistmapper.shoplist2();
 	}
+	
+	//책 상세정보 불러오기
+	public ShopListBoardVO bookdetail(String isbn) throws Exception{
+		System.out.println("책 상세정보 가져오기");
+		return shoplistmapper.bookdetail(isbn);
+	}
 }

@@ -1,7 +1,8 @@
 package com.book.warm.vo;
 
-//í¼ë¸”ë¦¬ì…” VO
+//ÃâÆÇ»ç VO
 public class PublisherBoardVO {
+	
 	private int publisher_no;
 	private String publisher_name;
 	private int publilsher_phone;

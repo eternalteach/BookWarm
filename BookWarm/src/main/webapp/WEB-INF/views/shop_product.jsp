@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!-- 헤더 -->
-<%@ include file="includes/header/header-transparent.jsp"%>
+<%@ include file="includes/header/header-dark-dropdown.jsp"%>
 <!-- context -->
 <%@ include file="includes/shopping/shopping_product.jsp"%>
 <%-- footer --%>

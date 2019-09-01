@@ -5,8 +5,7 @@ import java.security.Timestamp;
 //도서 VO
 public class BookBoardVO {
 	
-	private int book_list;
-	private int isbn;
+	private String isbn;
 	private String book_title;
 	private int writer_no;
 	private int translator_no;
@@ -20,17 +19,13 @@ public class BookBoardVO {
 	private String book_idx;
 	private String book_story;
 	private String book_img;
+
 	
-	public int getBook_list() {
-		return book_list;
-	}
-	public void setBook_list(int book_list) {
-		this.book_list = book_list;
-	}
-	public int getIsbn() {
+	//게터세터
+	public String getIsbn() {
 		return isbn;
 	}
-	public void setIsbn(int isbn) {
+	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
 	public String getBook_title() {
@@ -111,6 +106,5 @@ public class BookBoardVO {
 	public void setBook_img(String book_img) {
 		this.book_img = book_img;
 	}
-	
-	
+
 }

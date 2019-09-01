@@ -1,6 +1,7 @@
 package com.book.warm.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,8 +28,10 @@ public class ShopListController {
 	
 	//책 상세페이지 이동
 	@RequestMapping(value = "/shop_product", method = RequestMethod.GET)
-	public String shop_product(Model model) throws Exception {
+	public String shop_product(HttpServletRequest req, Model model) throws Exception {
 		System.out.println("책 상세페이지");
+		String isbn = req.getParameter("isbn");
+		model.addAttribute("shop_product", shopslistservice.bookdetail(isbn));
 		return "shop_product";
 	}
 	
