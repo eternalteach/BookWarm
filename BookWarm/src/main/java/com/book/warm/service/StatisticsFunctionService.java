@@ -34,6 +34,8 @@ public class StatisticsFunctionService {
 		}
 		return countPage;
 	}
+	
+	
 
 	public int firstPage(ArrayList<LogingBoardVO> list) {
 		int listSize = list.size();

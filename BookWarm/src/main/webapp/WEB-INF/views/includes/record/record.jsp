@@ -15,7 +15,7 @@
 				<article class="v_blog-item">
 					<div class="v_blog-item-inner row">
 						<div class="v_blog-item-media col-md-12">
-							<a href="#"> <img src="${ISBNimg.img_src}" />
+							<a href="#"> <img src="${BookCoverVO.img_src}" />
 							</a>
 						</div>
 					</div>
@@ -47,7 +47,7 @@
 								<span>Record</span>&nbsp; &nbsp;<a href="#modalRecordDetail" rel="modal:open" ><strong class="primary-color" data-to="${recordNum}" data-plugin-options="{&quot;decimals&quot;: 0}">${recordNum}</strong></a>
 							</div>
 							<div class="special-heading text-left">
-								<a href="boardlogwrite?isbn=${ISBNimg.isbn}">&nbsp; &nbsp;<strong class="primary-color">Record write</strong></a>
+								<a href="boardlogwrite?isbn=${BookCoverVO.isbn}">&nbsp; &nbsp;<strong class="primary-color">Record write</strong></a>
 							</div>
 						</div>
 					</div>

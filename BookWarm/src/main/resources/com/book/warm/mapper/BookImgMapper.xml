@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.book.warm.mapper.ISBNimgMapper"> 
-	<select id='getBookImg' resultType="com.book.warm.vo.ISBNimgVO">
+<mapper namespace="com.book.warm.mapper.BookCoverMapper"> 
+	<select id='getBookImg' resultType="com.book.warm.vo.BookCoverVO">
 		select * from (select * from book_cover where isbn=#{isbn}) where rownum=1
 	</select>
 </mapper>

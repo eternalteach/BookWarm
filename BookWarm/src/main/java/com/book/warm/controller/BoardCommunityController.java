@@ -78,10 +78,7 @@ public class BoardCommunityController {
 	@RequestMapping(value = "/communityBoardSaveWrite", method = RequestMethod.POST)
 	public String communityBoardSaveWrite(CommunityBoardVO communityBoardVO) throws Exception {
 		log.info("===== communityBoardSaveWrite() =====");
-		System.out.println("communityBoardVO"+communityBoardVO.getComm_no());
-		Integer communityBoardSaveWrite = communityBoardMapper.insertCommunityBoardWrite(communityBoardVO);
-		System.out.println(communityBoardSaveWrite);
-		System.out.println("communityBoardVO : "+communityBoardVO.getComm_no());
+		communityBoardMapper.insertCommunityBoardWrite(communityBoardVO);
 		return "redirect:communityboard";
 	}
 }

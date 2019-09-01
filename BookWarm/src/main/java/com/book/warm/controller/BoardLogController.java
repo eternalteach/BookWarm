@@ -4,16 +4,17 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.book.warm.mapper.ISBNimgMapper;
+import com.book.warm.mapper.BookCoverMapper;
 import com.book.warm.mapper.LogingBoardMapper;
 import com.book.warm.service.StatisticsFunctionService;
+import com.book.warm.vo.BookCoverVO;
 import com.book.warm.vo.BookVO;
-import com.book.warm.vo.ISBNimgVO;
 import com.book.warm.vo.LogingBoardVO;
 
 import lombok.extern.log4j.Log4j;
@@ -25,22 +26,24 @@ public class BoardLogController {
 	LogingBoardMapper logingBoardMapper;
 
 	@Inject
-	ISBNimgMapper iBNimgMapper;
+	BookCoverMapper bookCoverMapper;
 	@Inject
 	StatisticsFunctionService statisticsFunctionService;
 
 	@RequestMapping(value = "/boardlog", method = RequestMethod.GET)
 	// add task - get book command(need total page)
-	public String boardLog(Model model, LogingBoardVO logingBoardVO, BookVO bookVO) throws Exception {
+	public String boardLog(Model model,@Param("isbn") String isbn) throws Exception {
 		log.info("===== boardlog() =====");
-		ArrayList<LogingBoardVO> logingList = logingBoardMapper.selectList(logingBoardVO.getIsbn());
-		String isbn = "isbn001";
-		ISBNimgVO iSBNimgVO = iBNimgMapper.getBookImg(isbn);
-		System.out.println(iSBNimgVO.getIsbn());
+		
+		BookVO bookVO=new BookVO(1000,"isbn001");
+		
+		ArrayList<LogingBoardVO> logingList = logingBoardMapper.selectList(isbn);
+		
+		BookCoverVO BookCoverVO = bookCoverMapper.getBookImg(isbn);
 		int readPageNum = statisticsFunctionService.logingPage(logingList, bookVO);
 		int startPage = statisticsFunctionService.firstPage(logingList);
 		int endPage = statisticsFunctionService.endPage(logingList);
-		int logingCount = logingBoardMapper.CountWriteNo(logingBoardVO.getIsbn());
+		int logingCount = logingBoardMapper.CountWriteNo(isbn);
 		int bookTotalPage = bookVO.getTotalPage(); /* tmp value, please modify this code */
 		double reading = ((double) readPageNum / (double) bookTotalPage) * 100;
 		model.addAttribute("startPage", startPage);
@@ -50,7 +53,7 @@ public class BoardLogController {
 		model.addAttribute("reading", reading);
 		model.addAttribute("recordNum", logingCount);
 		model.addAttribute("bookTotalPage", bookTotalPage);
-		model.addAttribute("ISBNimg", iSBNimgVO);
+		model.addAttribute("BookCoverVO", BookCoverVO);
 		return "/boardlog";
 	}
 
@@ -61,8 +64,10 @@ public class BoardLogController {
 	}
 
 	@RequestMapping(value = "/boardLogWriteSave", method = RequestMethod.POST)
-	public String boardLogWriteSave() throws Exception {
+	public String boardLogWriteSave(LogingBoardVO logingBoardVO) throws Exception {
 		log.info("===== boardLogWrite() =====");
-		return "redirect:boardlog";
+		logingBoardMapper.logingBoard(logingBoardVO);
+		String isbn=logingBoardVO.getIsbn();
+		return "redirect:boardlog?isbn="+isbn;
 	}
 }

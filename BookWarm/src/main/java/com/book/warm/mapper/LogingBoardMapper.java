@@ -12,5 +12,7 @@ public interface LogingBoardMapper {
 	public ArrayList<LogingBoardVO> selectList(String isbn);
 
 	public Integer CountWriteNo(String isbn);
+	
+	public void logingBoard(LogingBoardVO logingBoardVO);
 
 }
