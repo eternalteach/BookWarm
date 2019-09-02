@@ -88,60 +88,6 @@
 				</c:forEach>
 
 
-
-
-                     <article class="v_blog-item">
-                        <div class="v_blog-item-inner row">
-                           <div class="v_blog-item-media col-md-5">
-                              <div class="carousel-wrap">
-                                 <div class="owl-carousel owl-theme" data-plugin-options='{"items":1, "singleItem": true, "dots":false, "autoPlay": true}'>
-                                    <div>
-                                       <img alt="" class="img-responsive" src="./resources/VertexEx/img/blog/x8.jpg">
-                                    </div>
-                                    <div>
-                                       <img alt="" class="img-responsive" src="./resources/VertexEx/img/blog/x2.jpg">
-                                    </div>
-                                 </div>
-                                 <div class="customNavigation">
-                                    <a class="prev"><i class="fa fa-angle-left"></i></a>
-                                    <a class="next"><i class="fa fa-angle-right"></i></a>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="v_blog-item-content col-md-7">
-                              <div class="v_blog-item-header">
-                                 <ul class="v_blog-item-meta">
-                                    <li class="v_blog-item-author">
-                                       <span>By </span> <a href="#">Vertex</a>
-                                    </li>
-                                    <li class="v_blog-item-date">
-                                       <time class="" datetime="2018-06-30T10:47:48+00:00">
-                                          June 30, 2018
-                                       </time>
-                                    </li>
-                                    <li class="v_blog-item-comments">No Comments</li>
-                                    <li class="v_blog-item-like-counter"><span>22 Likes</span></li>
-                                 </ul>
-
-                                 <a href="./resources/VertexEx/blog-post-standard-2.html" rel="bookmark">
-                                    <h2 class="v_blog-item-title" itemprop="name headline">This is a standard post with a images slider</h2>
-                                 </a>
-                              </div>
-
-                              <div itemprop="articleBody">
-                                 <p>
-                                    Verterem repudiare no duo. Voluptua forensibus honestatis ad qui, vide atqui percipit id ius,
-                                    congue id.
-                                 </p>
-                                 <a class="v_blog-item-read-more" href="#">
-                                    <span>Read more</span>
-                                 </a>
-                              </div>
-                           </div>
-                        </div>
-                     </article>
-
-
                      <article class="v_blog-item">
                         <div class="v_blog-item-inner row">
                            <div class="v_blog-item-media col-md-5">
@@ -327,7 +273,7 @@
    </div>
 
 
-<%@ include file="./includes/footer/footer-2.jsp"%>
+<%-- <%@ include file="./includes/footer/footer-2.jsp"%> --%>
 
 </body>
 </html>

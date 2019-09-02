@@ -85,6 +85,12 @@ public class ReviewBoardVO {
 		this.review_content = review_content;
 	}
 	public String getReview_open() {
+		
+		if(review_open == null || review_open.equals(""))
+			review_open = "";
+		else
+			review_open = "checked";
+		
 		return review_open;
 	}
 	public void setReview_open(String review_open) {

@@ -586,15 +586,20 @@
                             </figure>
 
                             <h3 class="blog-post-caption">${review.review_title}</h3>
-                            <a href="/warm/modifyReview?user_id=${review.user_id}&review_no=${review.review_no}">
+                            <a class="btn btn-outline-secondary" href="/warm/modifyReview?user_id=${review.user_id}&review_no=${review.review_no}">
 								<span class="text ls-1">
 						            수정하기
 						        </span>   
 							</a>
-							<a href="delete?isbn=${review.isbn}&user_id=${review.user_id}&review_no=${review.review_no}">
+							<a class="btn btn-outline-secondary" href="delete?isbn=${review.isbn}&user_id=${review.user_id}&review_no=${review.review_no}">
 								<span class="text ls-1">
 						            삭제하기
 						        </span>   
+							</a>
+							<a class="btn btn-outline-secondary" href="/warm/reviewPerBook?isbn=${review.isbn}&user_id=${review.user_id}">
+								<span class="text ls-1">
+								    목록으로
+								</span>
 							</a>
 
                             <div class="post-info clearfix">

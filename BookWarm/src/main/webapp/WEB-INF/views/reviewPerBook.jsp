@@ -196,16 +196,17 @@
                             
                             <!-- 감상 작성 버튼 추가 -->
                             <li class="v-blog-item col-sm-12">
-                            <button class="btn btn-outline-secondary">
-                            	<a href="/warm/reviewWrite?isbn=${list[0].isbn}&user_id=${list[0].user_id}">
-		                            
+                            	<a class="btn btn-outline-secondary" href="/warm/reviewWrite?isbn=${list[0].isbn}&user_id=${list[0].user_id}">
 		                            	<span class="text ls-1">
 		                            		Write Review
 			                                <i class="icon icon-pen-3"></i>
 		                            	</span>
-		                            
                             	</a>
-                            </button>
+                            	<a class="btn btn-outline-secondary" href="/warm/reviewMain?isbn=${list[0].isbn}&user_id=${list[0].user_id}">
+		                            	<span class="text ls-1">
+		                            		서재로 돌아가기
+		                            	</span>
+                            	</a>
                             </li>
                             
                             
@@ -276,12 +277,12 @@
                                         <div class="flexslider thumb-slider">
                                             <ul class="slides">
                                                 <li>
-                                                    <a href="./resources/Vertex/blog-slideshow-post.html" class="link-to-post">
+                                                    <a href="./resources/Vertex/blog-full-width-post.html" class="link-to-post">
                                                         <img src='./resources/Vertex/img/blog/b-fw-5.jpg' />
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="./resources/Vertex/blog-slideshow-post.html" class="link-to-post">
+                                                    <a href="./resources/Vertex/blog-full-width-post.html" class="link-to-post">
                                                         <img src='./resources/Vertex/img/blog/b-fw-4.jpg' />
                                                     </a>
                                                 </li>
@@ -299,7 +300,7 @@
                                         </div>
                                         <div class="post-inner">
                                             <div class="post-header">
-                                                <h2 class="title"><a href="./resources/Vertex/blog-slideshow-post.html">How to Boost Your Business Email Writing Skills</a></h2>
+                                                <h2 class="title"><a href="./resources/Vertex/blog-full-width-post.html">How to Boost Your Business Email Writing Skills</a></h2>
 
                                                 <div class="post-meta-info">
                                                     <span class="blog-author minor-meta">

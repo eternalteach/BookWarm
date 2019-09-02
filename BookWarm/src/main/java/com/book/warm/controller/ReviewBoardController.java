@@ -4,12 +4,12 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.book.warm.service.ReviewBoardService;
+import com.book.warm.vo.Criteria;
 import com.book.warm.vo.ReviewBoardVO;
 
 @Controller
@@ -20,27 +20,27 @@ public class ReviewBoardController {
 	
 	// 내가 쓴 모든 리뷰가 최근 수정일 순 - 책별로 나타남
 	@RequestMapping("/reviewMain")
-	public String recordMain(Model model) {
+	public String recordMain(@RequestParam("user_id") String user_id, Model model) {
 		
-		model.addAttribute("list", rbs.selectBoardList());
+		model.addAttribute("list", rbs.selectBoardList(user_id));
 		
 		return "reviewMain";
 	}
 	
 	// 책별 감상 목록
 	@RequestMapping("/reviewPerBook2")
-	public String reviewPerBook2(ReviewBoardVO rbVO, Model model) {
+	public String reviewPerBook2(ReviewBoardVO rbVO, Criteria cri, Model model) {
 		
-		model.addAttribute("list", rbs.selectListPerBook(rbVO.getIsbn(), rbVO.getUser_id()));
+		model.addAttribute("list", rbs.getListPerBook(rbVO.getIsbn(), rbVO.getUser_id(), cri));
 		model.addAttribute("thumbnail", rbs.showBookThumbnail(rbVO.getIsbn()));
 		return "reviewPerBook2";
 	}
 	
 	// 책별 감상 목록
 	@RequestMapping("/reviewPerBook")
-	public String reviewPerBook(ReviewBoardVO rbVO, Model model) {
+	public String reviewPerBook(ReviewBoardVO rbVO, Criteria cri, Model model) {
 		
-		model.addAttribute("list", rbs.selectListPerBook(rbVO.getIsbn(), rbVO.getUser_id()));
+		model.addAttribute("list", rbs.getListPerBook(rbVO.getIsbn(), rbVO.getUser_id(), cri));
 		model.addAttribute("thumbnail", rbs.showBookThumbnail(rbVO.getIsbn()));
 		return "reviewPerBook";
 	}
@@ -70,7 +70,7 @@ public class ReviewBoardController {
 	// 작성 페이지에서 등록 버튼 클릭시
 	@RequestMapping("/register")
 	public String write(ReviewBoardVO rbVO, RedirectAttributes rttr) {
-		
+		System.out.println("register진입");
 		rbs.registerReview(rbVO);
 		rttr.addAttribute("isbn", rbVO.getIsbn());
 		rttr.addAttribute("user_id", rbVO.getUser_id());
@@ -94,16 +94,17 @@ public class ReviewBoardController {
 	
 	@RequestMapping("/modifyReview")
 	public String modify(ReviewBoardVO rbVO, Model model) {
-		
+		System.out.println("modifyReview진입");
 		
 		rbVO = rbs.selectedReview(rbVO.getReview_no());
 		
 		System.out.println("변경 전: " + rbVO.getReview_open());
 		
 		// 값을 볼 땐 반대로 y를 on으로 no를 off로 바꿔줌. 
-		if(rbVO.getReview_open().equals("Y"))
-			rbVO.setReview_open("on"); 
-		else rbVO.setReview_open("off");
+		/*
+		 * if(rbVO.getReview_open()==null) rbVO.setReview_open(""); else
+		 * rbVO.setReview_open("checked");
+		 */
 		
 		System.out.println("변경 후: " + rbVO.getReview_open());
 		
@@ -115,8 +116,8 @@ public class ReviewBoardController {
 	@RequestMapping("/modify")
 	public String modify(ReviewBoardVO rbVO, RedirectAttributes rttr) {
 		
+		System.out.println("/modify했을 때: " + rbVO.getReview_open());
 		rbs.modifyReview(rbVO);
-		
 		rttr.addAttribute("review_no", rbVO.getReview_no());
 		rttr.addAttribute("isbn", rbVO.getIsbn());
 		

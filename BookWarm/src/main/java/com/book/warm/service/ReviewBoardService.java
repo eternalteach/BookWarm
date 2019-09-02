@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.book.warm.mapper.ReviewBoardMapper;
 import com.book.warm.vo.BookThumbnailVO;
 import com.book.warm.vo.BookVO;
+import com.book.warm.vo.Criteria;
 import com.book.warm.vo.ReviewBoardVO;
 import com.book.warm.vo.ReviewBoardVO2;
 
@@ -19,19 +20,23 @@ public class ReviewBoardService {
 	@Inject
 	ReviewBoardMapper rbm;
 	
-	public List<ReviewBoardVO2> selectBoardList() {
+	public List<ReviewBoardVO2> selectBoardList(String user_id) {
 		
-		return rbm.selectBoardList();
+		return rbm.selectBoardList(user_id);
 	}
 
-	public List<ReviewBoardVO> selectListPerBook(String isbn, String user_id) {
+	/*
+	 * public List<ReviewBoardVO> getListPerBook(String isbn, String user_id) {
+	 * 
+	 * return rbm.getListPerBook(isbn, user_id); }
+	 */
+	
+	public List<ReviewBoardVO> getListPerBook(String isbn, String user_id, Criteria cri) {
 
-		return rbm.selectListPerBook(isbn, user_id);
+		return rbm.getListPerBookWithPaging(isbn, user_id, cri);
 	}
 	
 	public BookThumbnailVO showBookThumbnail(String isbn) {
-		System.out.println("showBookThumbnail진입, isbn은: " + isbn);
-		System.out.println("BookThumbnail: " + rbm.showBookThumbnail(isbn));
 		return rbm.showBookThumbnail(isbn);
 	}
 
@@ -40,17 +45,11 @@ public class ReviewBoardService {
 	}
 
 	public BookVO bookInfo(String isbn) {
-		// TODO Auto-generated method stub
 		return rbm.bookInfo(isbn);
 	}
 
 	public int registerReview(ReviewBoardVO rbVO) {
 		
-		//checkbox가 체크되어 있으면 Y, 아니면 N(비공개)
-		if(rbVO.getReview_open().equals("on")) 
-			rbVO.setReview_open("Y");
-		else
-			rbVO.setReview_open("N");
 		
 		return rbm.registerReview(rbVO);
 	}
@@ -61,11 +60,6 @@ public class ReviewBoardService {
 	}
 
 	public int modifyReview(ReviewBoardVO rbVO) {
-		
-		if(rbVO.getReview_open().equals("on")) 
-			rbVO.setReview_open("Y");
-		else
-			rbVO.setReview_open("N");
 		
 		return rbm.modifyReview(rbVO);
 	}
