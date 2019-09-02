@@ -27,7 +27,7 @@ public class BoardCommunityController {
 		log.info("===== boardCommunity() =====");
 
 		ArrayList<CommunityBoardVO> list = communityBoardMapper.getCommunityBoardList();
-		model.addAttribute("list", list);
+		model.addAttribute("loginglist", list);
 
 		return "/communityboard";
 	}

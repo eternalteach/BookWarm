@@ -18,9 +18,14 @@ read_star number(1,0)
 		insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) values ('isbn001',seq_logingBoard.nextval,270,400,to_date('19911011','yyyymmdd'),'');
         insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) values ('isbn001',seq_logingBoard.nextval,370,420,to_date('19911011','yyyymmdd'),'');
         insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) values ('isbn001',seq_logingBoard.nextval,580,610,to_date('19911011','yyyymmdd'),'checked');
+        
+        --재귀복사 insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) (select isbn, seq_logingBoard.nextval, start_page,end_page,start_date,end_date from loging_board);
 select write_no, start_page, end_page, to_char(start_date,'yyyy-dd-mm') , end_date, isbn 
 from loging_board where isbn='isbn001' ;
 select * from loging_board;
+select write_no, start_page, end_page, start_date, end_date, isbn  from(
+--페이징처리
+select /*INDEX_DESC(loging_board pk_board)*/ rownum rn, write_no, start_page, end_page, start_date, end_date, isbn  from loging_board where isbn='isbn002' and rownum<=20)where rn<10;
 
 
 
@@ -112,7 +117,7 @@ ALTER TABLE community_board_reply ADD CONSTRAINTS comm_no FOREIGN KEY(comm_no) R
 
 -------------------- book --------------------
 --book ISBNimg
-create table book_img(
+create table Book_cover(
 isbn varchar2(20),
 img_src VARCHAR2(1000)
 );
@@ -134,6 +139,11 @@ book_idx varchar2(500),
 book_story varchar2(500),
 book_img varchar2(100)
 );
+select * from book;
+insert into book(isbn, BOOK_TITLE, WRITER_NO, TRANSLATOR_NO, PUBLISHER_NO, BOOK_TOT_PAGE, BOOK_PUBLISHED_DATE, BOOK_PRICE, BOOK_PRICE_FOR_SALE, BOOK_STOCK, BOOK_INTRO, BOOK_IDX, BOOK_STORY, BOOK_IMG)
+values(29,'해리포터 2',26,26,26,200,'2019/09/01',10500,10000,26,'The official playscript of the original West End production of Harry Potter and the Cursed Child.',
+'제1장 리들 하우스','마법사 세계의 최대 게임인 퀴디치 월드컵 중 볼드모트의 상징인 어둠의 표식이','resources/img/BookCover/book002.jpg');
+
 ---------------------------------------------
 
 --------------- 작가 ---------------

@@ -1,6 +1,5 @@
 package com.book.warm.controller;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.inject.Inject;
@@ -10,10 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.book.warm.mapper.BookCoverMapper;
 import com.book.warm.mapper.LogingBoardMapper;
+import com.book.warm.page.Criteria;
+import com.book.warm.page.PageDTO;
 import com.book.warm.service.StatisticsFunctionService;
 import com.book.warm.vo.BookCoverVO;
 import com.book.warm.vo.BookVO;
@@ -34,26 +34,34 @@ public class BoardLogController {
 
 	@RequestMapping(value = "/boardlog", method = RequestMethod.GET)
 	// add task - get book command(need total page)
-	public String boardLog(Model model, @Param("isbn") String isbn) throws Exception {
+	public String boardLog(Model model, BookVO bookVO, Criteria cri) throws Exception {
 		log.info("===== boardlog() =====");
+		bookVO = logingBoardMapper.getBookVO(bookVO);
+		log.info(bookVO.getIsbn());
+		log.info("1===================================================");
+		log.info("list: " + cri);
+		log.info("bookVO.getBook_img()============"+bookVO.getBook_img());
+		cri.setIsbn(bookVO.getIsbn());
+		log.info("2===================================================");
+		ArrayList<LogingBoardVO> logingList = logingBoardMapper.getListWithPaging(cri);
+		log.info("3===================================================");
+		model.addAttribute("loginglist", logingList);
+		model.addAttribute("pageMaker", new PageDTO(cri, 123));
 
-		BookVO bookVO = new BookVO(1000, "isbn001");
-
-		ArrayList<LogingBoardVO> logingList = logingBoardMapper.selectList(isbn);
-		Timestamp ts = new Timestamp(19910101);
-		BookCoverVO BookCoverVO = bookCoverMapper.getBookImg(isbn);
+		log.info("4===================================================");
 		int readPageNum = statisticsFunctionService.logingPage(logingList, bookVO);
-		int logingCount = logingBoardMapper.CountWriteNo(isbn);
-		int bookTotalPage = bookVO.getTotalPage(); /* tmp value, please modify this code */
+		log.info("5===================================================");
+		int logingCount = logingBoardMapper.CountWriteNo(bookVO);
+		log.info("6===================================================");
+		int bookTotalPage = bookVO.getBook_tot_page(); /* tmp value, please modify this code */
+		log.info("7===================================================");
 		double reading = ((double) readPageNum / (double) bookTotalPage) * 100;
 		model.addAttribute("startPage", statisticsFunctionService.firstPage(logingList));
 		model.addAttribute("endPage", statisticsFunctionService.endPage(logingList));
-		model.addAttribute("loginglist", logingList);
 		model.addAttribute("readPageNum", readPageNum);
 		model.addAttribute("reading", reading);
 		model.addAttribute("recordNum", logingCount);
-		model.addAttribute("bookTotalPage", bookTotalPage);
-		model.addAttribute("BookCoverVO", BookCoverVO);
+		model.addAttribute("bookVO", bookVO);
 		return "/boardlog";
 	}
 
@@ -72,6 +80,7 @@ public class BoardLogController {
 		System.out.println("modify¿¡¼­start_date" + willModifyLoging.getStart_date());
 		return "/boardlogmodify";
 	}
+
 	@RequestMapping(value = "/boardLogDelete", method = RequestMethod.GET)
 	public String boardLogDelete(@Param("write_no") String write_no) throws Exception {
 		log.info("===== boardLogDelete() =====");

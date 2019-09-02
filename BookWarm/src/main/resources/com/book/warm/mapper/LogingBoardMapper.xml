@@ -3,8 +3,14 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.book.warm.mapper.LogingBoardMapper"> 
-	<select id='selectList' resultType="com.book.warm.vo.LogingBoardVO">
+	<select id='getList' resultType="com.book.warm.vo.LogingBoardVO">
 		select write_no, start_page, end_page, start_date, end_date, isbn  from loging_board where isbn=#{isbn}
+	</select>
+	<select id='getListWithPaging' resultType="com.book.warm.vo.LogingBoardVO">
+		<![CDATA[
+select write_no, start_page, end_page, start_date, end_date, isbn  from(
+select /*INDEX_DESC(loging_board pk_board)*/ rownum rn, write_no, start_page, end_page, start_date, end_date, isbn  from loging_board where isbn=#{isbn} and rownum<=#{pageNum}*#{amount})where rn>(#{pageNum}-1)*#{amount}
+		]]>
 	</select>
 	<!-- to_char('start_date','yyyy-mm-dd') -->
 	<select id='CountWriteNo' resultType="Integer">
@@ -24,4 +30,8 @@
 	<delete id="deleteLoging" ><!--  start date 뺀 상태이다 추가해줘야한다. -->
 	delete loging_board where write_no=#{write_no}
 	</delete>
+	
+	<select id='getBookVO' resultType="com.book.warm.vo.BookVO">
+	select * from Book where isbn=#{isbn}
+	</select>
 </mapper>

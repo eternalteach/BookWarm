@@ -10,8 +10,14 @@ import com.book.warm.vo.LogingBoardVO;
 @Service
 public class StatisticsFunctionService {
 
+
+	
 	public int logingPage(ArrayList<LogingBoardVO> list, BookVO bookVO) {
-		int total = bookVO.getTotalPage();
+		if(list.size()==-1||list.size()==0) {
+			System.out.println("list.size() : "+list.size());
+			return 0;
+		}
+		int total = bookVO.getBook_tot_page();
 
 		int[] realReadPage = new int[total]; // Ï±ÖÏùò ?ùΩ???éò?ù¥Ïß? 0?úºÎ°? Ï¥àÍ∏∞?ôî
 		for (int i = 0; i < total; i++) {
@@ -34,10 +40,12 @@ public class StatisticsFunctionService {
 		}
 		return countPage;
 	}
-	
-	
 
 	public int firstPage(ArrayList<LogingBoardVO> list) {
+		if(list.size()==-1||list.size()==0) {
+			System.out.println("list.size() : "+list.size());
+			return 0;
+		}
 		int listSize = list.size();
 		int firstpage = list.get(0).getStart_page();
 		for (int i = 0; i < listSize; i++) {
@@ -49,6 +57,10 @@ public class StatisticsFunctionService {
 	}
 
 	public int endPage(ArrayList<LogingBoardVO> list) {
+		if(list.size()==-1||list.size()==0) {
+			System.out.println("list.size() : "+list.size());
+			return 0;
+		}
 		int listSize = list.size();
 		int endpage = list.get(0).getEnd_page();
 		for (int i = 0; i < listSize; i++) {
