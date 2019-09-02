@@ -15,9 +15,9 @@ read_amount number(10,0),
 read_stop number(10,0),
 read_star number(1,0)
 );
-		insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) values ('isbn001',seq_logingBoard.nextval,270,400,to_date('19911011','yyyymmdd'),'false');
-        insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) values ('isbn001',seq_logingBoard.nextval,370,420,to_date('19911011','yyyymmdd'),'false');
-        insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) values ('isbn001',seq_logingBoard.nextval,580,610,to_date('19911011','yyyymmdd'),'false');
+		insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) values ('isbn001',seq_logingBoard.nextval,270,400,to_date('19911011','yyyymmdd'),'');
+        insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) values ('isbn001',seq_logingBoard.nextval,370,420,to_date('19911011','yyyymmdd'),'');
+        insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) values ('isbn001',seq_logingBoard.nextval,580,610,to_date('19911011','yyyymmdd'),'checked');
 select write_no, start_page, end_page, to_char(start_date,'yyyy-dd-mm') , end_date, isbn 
 from loging_board where isbn='isbn001' ;
 select * from loging_board;
@@ -31,7 +31,7 @@ write_no number(10,0) PRIMARY key,
 start_page number(4,0) default 1 not null,
 end_page number(4,0) not null,
 start_date date default sysdate,
-end_date varchar2(5) default 'false'); 
+end_date varchar2(10) default 'false'); 
 
 drop table loging_board;
 

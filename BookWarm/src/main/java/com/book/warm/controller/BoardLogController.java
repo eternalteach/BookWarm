@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.book.warm.mapper.BookCoverMapper;
 import com.book.warm.mapper.LogingBoardMapper;
@@ -39,7 +40,6 @@ public class BoardLogController {
 		BookVO bookVO = new BookVO(1000, "isbn001");
 
 		ArrayList<LogingBoardVO> logingList = logingBoardMapper.selectList(isbn);
-		System.out.println("logingList.get(0)" + logingList.get(0).getStart_date());
 		Timestamp ts = new Timestamp(19910101);
 		BookCoverVO BookCoverVO = bookCoverMapper.getBookImg(isbn);
 		int readPageNum = statisticsFunctionService.logingPage(logingList, bookVO);
@@ -58,7 +58,7 @@ public class BoardLogController {
 	}
 
 	@RequestMapping(value = "/boardlogwrite", method = RequestMethod.GET)
-	public String boardLogWrite() throws Exception {
+	public String boardLogWrite(BookCoverVO bookCoverVO) throws Exception {
 		log.info("===== boardLogWrite() =====");
 		return "/boardlogwrite";
 	}

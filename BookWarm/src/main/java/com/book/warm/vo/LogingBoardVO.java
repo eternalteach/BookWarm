@@ -51,10 +51,10 @@ public class LogingBoardVO {
 
 	public String getEnd_date() {
 		System.out.println("get ¾È"+end_date);
-		if (end_date == null || end_date.equals("false")) {
-			end_date = "false";
+		if (end_date == null || end_date.equals("")) {
+			end_date = "";
 		} else {
-			end_date = "true";
+			end_date = "checked";
 		}
 		return end_date;
 	}

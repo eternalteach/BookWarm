@@ -57,8 +57,6 @@
 	</div>
 </section>
 
-<p><a href="#ex1" rel="modal:open">모달창띄우기</a></p>
-      <!-- 모달창 띄우기 -->
 <style>
 #modalRecordDetail{left:20%; top:20%; }
 </style>      
@@ -121,7 +119,7 @@
 																			&nbsp;&nbsp;p.${loginglist.start_page}&nbsp;&nbsp;-&nbsp;p.${loginglist.end_page}
 																		</span>
 																		<span class="text-sep">&nbsp;|&nbsp;</span> 
-																		<a href="boardlogmodify?write_no=${loginglist.write_no}">Modify</a>
+ 																		<a href="boardlogmodify?write_no=${loginglist.write_no}">Modify</a>
 																	</span>
 																</div>
 															</c:forEach>
