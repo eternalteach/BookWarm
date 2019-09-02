@@ -23,7 +23,7 @@ write_no number(10,0) PRIMARY key,
 start_page number(4,0) default 1 not null,
 end_page number(4,0) not null,
 start_date date default sysdate,
-end_date varchar2(5) default 'false');
+end_date varchar2(10) default 'false');
 
 --독서감상테이블 감상번호 시퀀스
 create sequence review_board_seq;
