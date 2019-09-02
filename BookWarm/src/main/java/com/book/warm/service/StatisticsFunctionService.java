@@ -10,8 +10,6 @@ import com.book.warm.vo.LogingBoardVO;
 @Service
 public class StatisticsFunctionService {
 
-
-	
 	public int logingPage(ArrayList<LogingBoardVO> list, BookVO bookVO) {
 		if(list.size()==-1||list.size()==0) {
 			System.out.println("list.size() : "+list.size());

@@ -15,9 +15,9 @@ read_amount number(10,0),
 read_stop number(10,0),
 read_star number(1,0)
 );
-		insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) values ('isbn001',seq_logingBoard.nextval,270,400,to_date('19911011','yyyymmdd'),'');
-        insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) values ('isbn001',seq_logingBoard.nextval,370,420,to_date('19911011','yyyymmdd'),'');
-        insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) values ('isbn001',seq_logingBoard.nextval,580,610,to_date('19911011','yyyymmdd'),'checked');
+		insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) values ('1',seq_logingBoard.nextval,270,400,to_date('19911011','yyyymmdd'),'');
+        insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) values ('2',seq_logingBoard.nextval,370,420,to_date('19911011','yyyymmdd'),'');
+        insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) values ('3',seq_logingBoard.nextval,580,610,to_date('19911011','yyyymmdd'),'checked');
         
         --재귀복사 insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) (select isbn, seq_logingBoard.nextval, start_page,end_page,start_date,end_date from loging_board);
 select write_no, start_page, end_page, to_char(start_date,'yyyy-dd-mm') , end_date, isbn 
@@ -139,11 +139,17 @@ book_idx varchar2(500),
 book_story varchar2(500),
 book_img varchar2(100)
 );
+--drop table book;
 select * from book;
 insert into book(isbn, BOOK_TITLE, WRITER_NO, TRANSLATOR_NO, PUBLISHER_NO, BOOK_TOT_PAGE, BOOK_PUBLISHED_DATE, BOOK_PRICE, BOOK_PRICE_FOR_SALE, BOOK_STOCK, BOOK_INTRO, BOOK_IDX, BOOK_STORY, BOOK_IMG)
-values(29,'해리포터 2',26,26,26,200,'2019/09/01',10500,10000,26,'The official playscript of the original West End production of Harry Potter and the Cursed Child.',
+values(1,'해리포터 1',1,26,26,500,'2019/09/01',10500,10000,26,'The official playscript of the original West End production of Harry Potter and the Cursed Child.',
+'제1장 리들 하우스','마법사 세계의 최대 게임인 퀴디치 월드컵 중 볼드모트의 상징인 어둠의 표식이','resources/img/BookCover/book001.jpg');
+insert into book(isbn, BOOK_TITLE, WRITER_NO, TRANSLATOR_NO, PUBLISHER_NO, BOOK_TOT_PAGE, BOOK_PUBLISHED_DATE, BOOK_PRICE, BOOK_PRICE_FOR_SALE, BOOK_STOCK, BOOK_INTRO, BOOK_IDX, BOOK_STORY, BOOK_IMG)
+values(2,'해리포터 2',1,26,26,500,'2019/09/01',10500,10000,26,'The official playscript of the original West End production of Harry Potter and the Cursed Child.',
 '제1장 리들 하우스','마법사 세계의 최대 게임인 퀴디치 월드컵 중 볼드모트의 상징인 어둠의 표식이','resources/img/BookCover/book002.jpg');
-
+insert into book(isbn, BOOK_TITLE, WRITER_NO, TRANSLATOR_NO, PUBLISHER_NO, BOOK_TOT_PAGE, BOOK_PUBLISHED_DATE, BOOK_PRICE, BOOK_PRICE_FOR_SALE, BOOK_STOCK, BOOK_INTRO, BOOK_IDX, BOOK_STORY, BOOK_IMG)
+values(3,'해리포터 1',1,26,26,500,'2019/09/01',10500,10000,26,'The official playscript of the original West End production of Harry Potter and the Cursed Child.',
+'제1장 리들 하우스','마법사 세계의 최대 게임인 퀴디치 월드컵 중 볼드모트의 상징인 어둠의 표식이','resources/img/BookCover/book003.jpg');
 ---------------------------------------------
 
 --------------- 작가 ---------------

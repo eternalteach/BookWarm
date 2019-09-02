@@ -35,26 +35,15 @@ public class BoardLogController {
 	@RequestMapping(value = "/boardlog", method = RequestMethod.GET)
 	// add task - get book command(need total page)
 	public String boardLog(Model model, BookVO bookVO, Criteria cri) throws Exception {
-		log.info("===== boardlog() =====");
-		bookVO = logingBoardMapper.getBookVO(bookVO);
-		log.info(bookVO.getIsbn());
-		log.info("1===================================================");
-		log.info("list: " + cri);
-		log.info("bookVO.getBook_img()============"+bookVO.getBook_img());
+		bookVO = logingBoardMapper.getBookVO(bookVO);// get isbn and set all bookVO attr
 		cri.setIsbn(bookVO.getIsbn());
-		log.info("2===================================================");
 		ArrayList<LogingBoardVO> logingList = logingBoardMapper.getListWithPaging(cri);
-		log.info("3===================================================");
 		model.addAttribute("loginglist", logingList);
 		model.addAttribute("pageMaker", new PageDTO(cri, 123));
 
-		log.info("4===================================================");
 		int readPageNum = statisticsFunctionService.logingPage(logingList, bookVO);
-		log.info("5===================================================");
 		int logingCount = logingBoardMapper.CountWriteNo(bookVO);
-		log.info("6===================================================");
 		int bookTotalPage = bookVO.getBook_tot_page(); /* tmp value, please modify this code */
-		log.info("7===================================================");
 		double reading = ((double) readPageNum / (double) bookTotalPage) * 100;
 		model.addAttribute("startPage", statisticsFunctionService.firstPage(logingList));
 		model.addAttribute("endPage", statisticsFunctionService.endPage(logingList));

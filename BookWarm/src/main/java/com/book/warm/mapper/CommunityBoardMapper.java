@@ -2,11 +2,8 @@ package com.book.warm.mapper;
 
 import java.util.ArrayList;
 
-import org.springframework.stereotype.Service;
-
 import com.book.warm.vo.CommunityBoardVO;
 
-@Service
 public interface CommunityBoardMapper {
 
 	public ArrayList<CommunityBoardVO> getCommunityBoardList();
