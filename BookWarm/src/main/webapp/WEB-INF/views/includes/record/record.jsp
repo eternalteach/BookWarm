@@ -52,8 +52,8 @@
 									data-plugin-options="{&quot;decimals&quot;: 0}">${recordNum}</strong></a>
 							</div>
 							<div class="special-heading text-left">
-								<a href="boardlogwrite?isbn=${bookVO.isbn}">&nbsp;
-									&nbsp;<strong class="primary-color">Record write</strong>
+								<a href="boardlogwrite?isbn=${bookVO.isbn}">&nbsp; &nbsp;<strong
+									class="primary-color">Record write</strong>
 								</a>
 							</div>
 						</div>
@@ -66,6 +66,10 @@
 
 <style>
 #modalRecordDetail {
+	width: 365px;
+	height: 530px;
+	padding-left: 15px;
+	padding-right: 15px;
 	left: 20%;
 	top: 20%;
 }
@@ -83,7 +87,6 @@
 								<ul class="v-blog-items row standard-items clearfix">
 									<li class="v-blog-item col-sm-12">
 										<div class="post-content no-thumb clearfix">
-											<!-- 박스 -->
 											<div class="post-header">
 												<span class="blog-author minor-meta"> Posted by <span
 													class="entry-author-link"> <span
@@ -94,36 +97,33 @@
 													</span>
 												</span>
 												</span>
-												<div class="form-body p-none pb-40">
-													<div class="smart-forms">
-														<section class="sidebar-widget bordered-sidebar">
-															<div class="heading">
-																<h4 class="title">Reading range</h4>
+												<div class="smart-forms">
+													<section class="sidebar-widget bordered-sidebar">
+														<div class="heading">
+															<h4 class="title">Reading range</h4>
+														</div>
+														<div class="section">
+															<div class="spacer-b15">
+																<input type="text" id="startRead" class="slider-input"
+																	value="${startPage}" hidden="hidden"> <input
+																	type="text" id="endRead" class="slider-input"
+																	value="${endPage}" hidden="hidden"> <input
+																	type="text" id="bookTotalPage"
+																	value="${bookVO.book_tot_page}" hidden="hidden">
 															</div>
-															<div class="section">
-																<div class="spacer-b15">
-																	<input type="text" id="startRead" class="slider-input"
-																		value="${startPage}" hidden="hidden"> <input
-																		type="text" id="endRead" class="slider-input"
-																		value="${endPage}" hidden="hidden"> <input
-																		type="text" id="bookTotalPage"
-																		value="${bookVO.book_tot_page}" hidden="hidden">
-																</div>
-																<!-- end .spacer -->
-																<div class="slider-wrapper">
-																	<div id="slider-range"></div>
-																</div>
-																<br /> <span>Total &nbsp; p.${startPage} -
-																	p.${endPage}</span>
-																<!-- end .slider-wrapper -->
+															<div class="slider-wrapper">
+																<div id="slider-range"></div>
 															</div>
-															<!-- end section -->
-														</section>
-													</div>
+															<br />
+															<div style="text-align: center;">
+																<span>Total &nbsp; p.${startPage} - p.${endPage}</span><br />
+															</div>
+														</div>
+													</section>
 												</div>
 
 												<c:forEach items="${loginglist}" var="loginglist">
-													<div class="post-meta-info">
+													<div class="post-meta-info" style="text-align: center;">
 														<span class="blog-categories minor-meta"> <span
 															class="comment-container minor-meta"> <fmt:parseDate
 																	value="${loginglist.start_date}" var="start_date"
@@ -131,40 +131,52 @@
 																	value="${start_date}" pattern="yyyy-MM-dd" />
 														</span> <span class="comment-container minor-meta">
 																&nbsp;&nbsp;p.${loginglist.start_page}&nbsp;&nbsp;-&nbsp;p.${loginglist.end_page}
-														</span> <span class="text-sep">&nbsp;|&nbsp;</span> <a
-															href="boardlogmodify?write_no=${loginglist.write_no}">Modify</a>
+														</span> <span class="text-sep">&nbsp;|&nbsp;</span> 
+														<a class="move" href="${loginglist.write_no}">Modify</a>
 														</span>
 													</div>
 												</c:forEach>
-
+												<br />
 												<!-- paging -->
+
 												<div class="row">
-													<div class="col-md-12">
-														<nav aria-label="Page navigation example">
-															<ul class="pagination">
-																<c:if test="${pageMaker.prev}">
-																	<li class="page-item disabled">
-																	<a class="page-link" href="${pageMaker.startPage-1}" tabindex="-1">Previous</a></li>
-																</c:if>
+													<nav aria-label="Page navigation example">
+														<ul class="pagination" style="text-align: center;">
+															<c:if test="${pageMaker.prev}">
+																<li class="modalPaging page-item"><a
+																	class="modalPaging page-link"
+																	href="${pageMaker.startPage-1}">Previous</a></li>
+															</c:if>
 
-																<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-																	<li class="page-item ${pageMaker.cri.pageNum==num?"active":""}">
-																	<a class="page-link" href="${num}">${num}</a></li>
-																</c:forEach>
+															<c:forEach var="num" begin="${pageMaker.startPage}"
+																end="${pageMaker.endPage}">
+																<li
+																	class="modalPaging page-item ${pageMaker.cri.pageNum==num?"active":""}">
+																	<a class="modalPaging page-link" href="${num}">${num}</a>
+																</li>
+															</c:forEach>
 
-																<c:if test="${pageMaker.next}">
-																	<li class="page-item">
-																	<a class="page-link" href="${pageMaker.endPage+1}">Next</a></li>
-																</c:if>
-															</ul>
-															<form id='actionForm' action='boardlog' method='get'>
-																<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-																<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
-																<input type='hidden' name='isbn' value='${bookVO.isbn}'>
-															</form>
-														</nav>
-													</div>
+															<c:if test="${pageMaker.next}">
+																<li class="modalPaging page-item"><a
+																	class="modalPaging page-link"
+																	href="${pageMaker.endPage+1}">Next</a></li>
+															</c:if>
+														</ul>
+													</nav>
+													<form id='actionForm' action='boardlog' method='get'>
+														<input type='hidden' id='pageNum' name='pageNum'
+															value='${pageMaker.cri.pageNum}'> <input
+															type='hidden' id='amount' name='amount'
+															value='${pageMaker.cri.amount}'> <input
+															type='hidden' id='isbn' name='isbn'
+															value='${bookVO.isbn}'> <input type='hidden'
+															id='modalOpen' name='modalOpen' value='${modalOpen}'>
+													</form>
 												</div>
+												<br />
+												<button type='button' class='modalClose'>
+													<a href="#" rel="modal:close">Close</a>
+												</button>
 											</div>
 										</div>
 									</li>
@@ -179,16 +191,34 @@
 </div>
 
 <script>
+	$(document).ready(function() {
+		var actionForm = $("#actionForm");
+		var modalOpen = $('#modalOpen').val();
+		if (modalOpen == "open") {
+			$("#modalRecordDetail").modal("open");
+		}
 
+		$(".modalPaging a").on("click", function(e) {
+			e.preventDefault(); // a태그 클릭해도 페이지 이동 없도록
+			console.log('click');
+			$('#modalOpen').val('open');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+			// 1. 페이지 리로딩 막기
+			// 내부에 있는 값 바꾸려면 ajax사용하기
+			// ajax사용해서 해당 부분 html을 바꿔줘야한다.
+			// $('#modalRecordDetail').innerHTML()
+		});
 
-$(document).ready(function(){
-var actionForm=$("#actionForm");
-$(".page-item a").on("click",function(e){
-	e.preventDefault();
-	console.log('click');
-	actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-	actionForm.submit();
-	$("#modalRecordDetail" ).modal("show"); 
-});
-});
+		$(".modalClose").on("click", function() {
+			$('#modalOpen').val("close");
+		});
+		
+		$(".move").on("click",function(e){
+			e.preventDefault();
+			actionForm.append("<input type='hidden' name='write_no' value='"+$(this).attr("href")+"'>");
+			actionForm.attr("action","boardlogmodify");
+			actionForm.submit();
+		})
+	});
 </script>

@@ -3,12 +3,15 @@ package com.book.warm.controller;
 import java.util.ArrayList;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.book.warm.mapper.BookCoverMapper;
 import com.book.warm.mapper.LogingBoardMapper;
@@ -34,12 +37,15 @@ public class BoardLogController {
 
 	@RequestMapping(value = "/boardlog", method = RequestMethod.GET)
 	// add task - get book command(need total page)
-	public String boardLog(Model model, BookVO bookVO, Criteria cri) throws Exception {
-		bookVO = logingBoardMapper.getBookVO(bookVO);// get isbn and set all bookVO attr
-		cri.setIsbn(bookVO.getIsbn());
-		ArrayList<LogingBoardVO> logingList = logingBoardMapper.getListWithPaging(cri);
+	public String boardLog(Model model, @Param("bookVO") BookVO bookVO, Criteria criteria, HttpServletRequest req)
+			throws Exception {
+		log.info("===== boardlog() =====");
+		log.info("boardlogmodify - cri.getAmount()" + criteria.getAmount());
+		log.info("boardlogmodify - cri.getPageNum()" + criteria.getPageNum());
+		bookVO = logingBoardMapper.getBookVO(bookVO.getIsbn());// get isbn and set all bookVO attr
+		ArrayList<LogingBoardVO> logingList = logingBoardMapper.getListWithPaging(criteria, bookVO);
 		model.addAttribute("loginglist", logingList);
-		model.addAttribute("pageMaker", new PageDTO(cri, 123));
+		model.addAttribute("pageMaker", new PageDTO(criteria, 123));
 
 		int readPageNum = statisticsFunctionService.logingPage(logingList, bookVO);
 		int logingCount = logingBoardMapper.CountWriteNo(bookVO);
@@ -51,6 +57,7 @@ public class BoardLogController {
 		model.addAttribute("reading", reading);
 		model.addAttribute("recordNum", logingCount);
 		model.addAttribute("bookVO", bookVO);
+		model.addAttribute("modalOpen", req.getParameter("modalOpen"));
 		return "/boardlog";
 	}
 
@@ -60,19 +67,17 @@ public class BoardLogController {
 		return "/boardlogwrite";
 	}
 
-	@RequestMapping(value = "/boardlogmodify", method = RequestMethod.GET)
-	public String boardlogmodify(@Param("write_no") String write_no, Model model) throws Exception {
-		log.info("===== boardlogmodify() =====");
-		LogingBoardVO willModifyLoging = logingBoardMapper.getLogingVOForWriteNo(write_no);
-		model.addAttribute("willModifyLoging", willModifyLoging);
-		System.out.println("modify에서 write_no" + willModifyLoging.getWrite_no());
-		System.out.println("modify에서start_date" + willModifyLoging.getStart_date());
-		return "/boardlogmodify";
-	}
-
 	@RequestMapping(value = "/boardLogDelete", method = RequestMethod.GET)
-	public String boardLogDelete(@Param("write_no") String write_no) throws Exception {
+	public String boardLogDelete(@Param("write_no") String write_no, Criteria cri, RedirectAttributes rttr)
+			throws Exception {
 		log.info("===== boardLogDelete() =====");
+		log.info("boardLogDelete - cri.getAmount()" + cri.getAmount());
+		log.info("boardLogDelete - cri.getPageNum()" + cri.getPageNum());
+
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
+		rttr.addAttribute("modalOpen", "open");
+
 		LogingBoardVO willDeleteLoging = logingBoardMapper.getLogingVOForWriteNo(write_no);
 		logingBoardMapper.deleteLoging(write_no);
 		String isbn = willDeleteLoging.getIsbn();
@@ -87,9 +92,26 @@ public class BoardLogController {
 		return "redirect:boardlog?isbn=" + isbn;
 	}
 
+	@RequestMapping(value = "/boardlogmodify", method = RequestMethod.GET)
+	public String boardlogmodify(@Param("write_no") String write_no, Model model,
+			@ModelAttribute("criteria") Criteria criteria, RedirectAttributes rttr) throws Exception {
+		log.info("===== boardlogmodify() =====");
+		log.info("boardlogmodify - cri.getAmount()" + criteria.getAmount());
+		log.info("boardlogmodify - cri.getPageNum()" + criteria.getPageNum());
+		LogingBoardVO willModifyLoging = logingBoardMapper.getLogingVOForWriteNo(write_no);
+		model.addAttribute("willModifyLoging", willModifyLoging);
+		return "/boardlogmodify";
+	}
+
 	@RequestMapping(value = "/boardLogModifySave", method = RequestMethod.POST)
-	public String boardLogModifySave(LogingBoardVO logingBoardVO) throws Exception {
+	public String boardLogModifySave(LogingBoardVO logingBoardVO, Criteria criteria,
+			RedirectAttributes rttr) throws Exception {
 		log.info("===== boardLogModifySave() =====");
+		log.info("criteria.getAmount()"+criteria.getAmount());
+		log.info("criteria.getPageNum()"+criteria.getPageNum());
+		rttr.addAttribute("amount",criteria.getAmount());
+		rttr.addAttribute("pageNum",criteria.getPageNum());
+		rttr.addAttribute("modalOpen", "open");
 
 		logingBoardMapper.modifyLoging(logingBoardVO);
 		System.out.println("modifySave에서 write_no" + logingBoardVO.getWrite_no());

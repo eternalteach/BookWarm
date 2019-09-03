@@ -9,7 +9,7 @@
 	<select id='getListWithPaging' resultType="com.book.warm.vo.LogingBoardVO">
 		<![CDATA[
 select write_no, start_page, end_page, start_date, end_date, isbn  from(
-select /*INDEX_DESC(loging_board pk_board)*/ rownum rn, write_no, start_page, end_page, start_date, end_date, isbn  from loging_board where isbn=#{isbn} and rownum<=#{pageNum}*#{amount})where rn>(#{pageNum}-1)*#{amount}
+select /*INDEX_DESC(loging_board pk_board)*/ rownum rn, write_no, start_page, end_page, start_date, end_date, isbn  from loging_board where isbn=#{bookVO.isbn} and rownum<=#{criteria.pageNum}*#{criteria.amount})where rn>(#{criteria.pageNum}-1)*#{criteria.amount}
 		]]>
 	</select>
 	<!-- to_char('start_date','yyyy-mm-dd') -->
