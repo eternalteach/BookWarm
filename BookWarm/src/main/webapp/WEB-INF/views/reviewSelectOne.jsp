@@ -586,21 +586,30 @@
                             </figure>
 
                             <h3 class="blog-post-caption">${review.review_title}</h3>
-                            <a class="btn btn-outline-secondary" href="/warm/modifyReview?user_id=${review.user_id}&review_no=${review.review_no}">
+                            
+                            
+                            <a class="btn btn-outline-secondary" id="move" href="/warm/modifyReview?user_id=${review.user_id}&review_no=${review.review_no}">
 								<span class="text ls-1">
 						            수정하기
 						        </span>   
 							</a>
-							<a class="btn btn-outline-secondary" href="delete?isbn=${review.isbn}&user_id=${review.user_id}&review_no=${review.review_no}">
+							<a class="btn btn-outline-secondary" href="/warm/delete?isbn=${review.isbn}&user_id=${review.user_id}&review_no=${review.review_no}">
 								<span class="text ls-1">
 						            삭제하기
 						        </span>   
 							</a>
-							<a class="btn btn-outline-secondary" href="/warm/reviewPerBook?isbn=${review.isbn}&user_id=${review.user_id}">
-								<span class="text ls-1">
-								    목록으로
-								</span>
-							</a>
+                            <form id='operForm' action="reviewPerBook" method="get">
+                                	<input type='hidden' id='review_no' name='review_no' value='${review.review_no}'>
+                                	<input type='hidden' name='user_id' value='${review.user_id}'>
+                                	<input type='hidden' name='isbn' value='${review.isbn}'>
+                                	<input type='hidden' name='pageNum' value='${cri.pageNum}'>
+                                	<input type='hidden' name='amount' value='${cri.amount}'>
+									<button type="submit" class="btn btn-outline-secondary">
+										<span class="text ls-1">
+										    목록으로
+										</span>
+									</button>
+                            </form>
 
                             <div class="post-info clearfix">
                                 <span class="vcard author">
@@ -676,6 +685,8 @@
                                         </a>
                                     </div>
                                 </div>
+                                
+                                
 								
 								<!-- about 섹션, 나중에 해당 아이디의 글 보러가기로 쓸 수도 있을 것 같아 일단 주석처리. -->
 								
@@ -1049,6 +1060,24 @@
         </div>
         <!--End Footer-Wrap-->
     </div>
+    
+    <script type="text/javascript">
+    	$(document).ready(function() {
+    		
+    		var operForm = $("#operForm");
+    		
+    		// 수정 버튼 클릭시 페이지 정보, review_no, user_id를 끌고 modifyReview로.
+    		$("#move").on("click", function() {
+    			
+    			e.preventDefault();
+    			
+    			operForm.attr("action", "/warm/modifyReview");
+    			operForm.submit();
+    		});
+    		
+    		
+    	});
+    </script>
 
 
     <!-- Libs -->

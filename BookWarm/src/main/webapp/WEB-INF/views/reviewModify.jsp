@@ -53,20 +53,14 @@
                             	
                             	
                             	<li>
-                            	
-                            	<!-- 체크박스<input type="checkbox" value="on">
-                            	체크박스<input type="checkbox" checked="checked">
-                            	체크박스<input type="checkbox" checked="">
-                            	체크박스<input type="checkbox" checked=null>
-                            	체크박스<input type="checkbox" checked="false">
-                            	체크박스<input type="checkbox" checked=false>
-                            	체크박스<input type="checkbox" checked="unchecked"> -->
                         
                             		<!-- 작성 페이지. -->
                             		<form action="modify">
 										<input type="hidden" name="user_id" value="${review.user_id}">
 										<input type="hidden" name="isbn" value="${review.isbn}">
                             			<input type="hidden" name="review_no" value="${review.review_no}">
+                            			<input type="hidden" name="pageNum" value="${cri.pageNum}">
+                            			<input type="hidden" name="amount" value="${cri.amount}">
 										<!-- 작성 시간과 수정 시간은 알아서 데이터 입력시에 들어가니 여기엔 필요 없음 -->
 
                             			<table>
@@ -91,24 +85,23 @@
                             					<td>
 	                            					<button class="btn btn-outline-secondary">
 								                      	<span class="text ls-1">
-						                            		등록하기
+						                            		수정하기
 							                                <i class="icon icon-pen-3"></i>
 						                            	</span>    
 								                    </button>
-								                    <a class="btn btn-outline-secondary" href="/warm/reviewSelectOne?review_no=${review.review_no}&isbn=${review.isbn}">
+								                    <a class="btn btn-outline-secondary" 
+								                    	href="/warm/reviewSelectOne?review_no=${review.review_no}&isbn=${review.isbn}&pageNum=${cri.pageNum}&amount=${cri.amount}">
 								                    	<span class="text ls-1">
 								                    		돌아가기
 								                    	</span>
 								                    </a>
+								                    
 					                            </td>
                             				</tr>
                             			</table>
-                            			
-                            			
 										                    		
                             		</form>
                             	</li>
-                            
                             
                             
 	                            <!-- <!-- 감상 작성 버튼 추가 -->
@@ -277,7 +270,6 @@
         </div>
         <!--End Footer-Wrap-->
     </div>
-
 
 
     <!-- Libs -->

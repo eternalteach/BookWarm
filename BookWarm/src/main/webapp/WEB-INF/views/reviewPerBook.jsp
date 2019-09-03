@@ -7,7 +7,7 @@
 
 <%@ include file="./includes/header/header-from-vertex.jsp" %>
     
-
+	
 
     
     <div role="main" class="main">
@@ -230,8 +230,10 @@
                                         </div>
                                         <div class="post-inner">
                                             <div class="post-header">
-                                                <h2 class="title"><a href="/warm/reviewSelectOne?review_no=${vo.review_no}&isbn=${vo.isbn}">${vo.review_title}</a></h2>
-
+                                                <%-- <h2 class="title"><a href="/warm/reviewSelectOne?review_no=${vo.review_no}&isbn=${vo.isbn}">${vo.review_title}</a></h2> --%>
+												
+												<h2 class="title"><a class="move" href="${vo.review_no}">${vo.review_title}</a></h2>
+												
                                                 <div class="post-meta-info">
                                                     <span class="blog-author minor-meta">
                                                         Posted by
@@ -338,196 +340,121 @@
                                         </div>
                                     </div>
                                 </li>
-
-                                <li class="v-blog-item col-sm-12">
-
-                                    <figure class="animated-overlay overlay-alt">
-                                        <img src="./resources/Vertex/img/blog/b-fw-1.jpg" />
-                                        <a href="./resources/Vertex/blog-standard-post.html" class="link-to-post"></a>
-                                        <figcaption>
-                                            <div class="thumb-info thumb-info-v2"><i class="fa fa-angle-right"></i></div>
-                                        </figcaption>
-                                    </figure>
-
-                                    <div class="post-content">
-
-                                        <div class="v-post-date pull-left">
-                                            <span class="day">15</span>
-                                            <span class="month">Mar</span>
-                                            <div class="like-holder like-button"><i class="fa fa-heart"></i>25</div>
-                                        </div>
-                                        <div class="post-inner">
-                                            <div class="post-header">
-                                                <h2 class="title"><a href="./resources/Vertex/blog-standard-post.html">Scaling Your eCommerce Business? Read This First</a></h2>
-
-                                                <div class="post-meta-info">
-                                                    <span class="blog-author minor-meta">
-                                                        Posted by
-                                                        <span class="entry-author-link">
-                                                            <span class="vcard author">
-                                                                <span class="v-blog-item-details">
-                                                                    <a href="#" title="Posts by HB-Themes" rel="author">Vertex</a>
-                                                                </span>
-                                                            </span>
-                                                        </span>
-                                                    </span>
-                                                    <span class="text-sep">|</span>
-
-                                                    <span class="blog-categories minor-meta">
-                                                        <a href="#">News</a>, <a href="#">Industry</a> <span class="text-sep">|</span>
-
-                                                        <span class="comment-container minor-meta">
-                                                            <a href="./resources/Vertex/blog-standard-post.html#comment-area" class="comments-link">3 comments </a>
-                                                        </span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="v-blog-post-description">
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquam massa quis mauris sollicitudin
-                                                    commodo venenatis ligula commodo. Sed blandit convallis dignissim. Pellentesque pharetra velit eu velit
-                                                    elementum et convallis erat vulputate. Sed in nulla ut elit mollis posuere. Praesent a felis accumsan
-                                                    neque interdum molestie…
-                                                </p>
-                                            </div>
-                                            <a class="btn v-btn standard white sf-icon-stroke" href="./resources/Vertex/blog-full-width-post-2.html">
-                                                <i class="icon-arrow-32"></i><span class="text">Read more</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="v-blog-item col-sm-12">
-                                    <figure class="animated-overlay overlay-alt">
-                                        <img src="./resources/Vertex/img/blog/b-fw-2.jpg" />
-                                        <a href="./resources/Vertex/blog-full-width-post.html" class="link-to-post"></a>
-                                        <figcaption>
-                                            <div class="thumb-info thumb-info-v2"><i class="fa fa-angle-right"></i></div>
-                                        </figcaption>
-                                    </figure>
-
-                                    <div class="post-content">
-
-                                        <div class="v-post-date pull-left">
-                                            <span class="day">18</span>
-                                            <span class="month">Jun</span>
-                                            <div class="like-holder like-button"><i class="fa fa-heart"></i>12</div>
-                                        </div>
-                                        <div class="post-inner">
-                                            <div class="post-header">
-                                                <h2 class="title"><a href="#">Optimizing Your Affiliate Content for Search in 2018</a></h2>
-
-                                                <div class="post-meta-info">
-                                                    <span class="blog-author minor-meta">
-                                                        Posted by
-                                                        <span class="entry-author-link">
-                                                            <span class="vcard author">
-                                                                <span class="v-blog-item-details">
-                                                                    <a href="#" title="Posts by HB-Themes" rel="author">Vertex</a>
-                                                                </span>
-                                                            </span>
-                                                        </span>
-                                                    </span>
-                                                    <span class="text-sep">|</span>
-
-                                                    <span class="blog-categories minor-meta">
-                                                        <a href="#">News</a>, <a href="#">Updates</a> <span class="text-sep">|</span>
-
-                                                        <span class="comment-container minor-meta">
-                                                            <a href="./resources/Vertex/blog-standard-post.html#comment-area" class="comments-link">8 comments </a>
-                                                        </span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="v-blog-post-description">
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquam massa quis mauris sollicitudin
-                                                    commodo venenatis ligula commodo. Sed blandit convallis dignissim. Pellentesque pharetra velit eu velit
-                                                    elementum et convallis erat vulputate. Sed in nulla ut elit mollis posuere. Praesent a felis accumsan
-                                                    neque interdum molestie…
-                                                </p>
-                                            </div>
-                                            <a class="btn v-btn standard white sf-icon-stroke" href="./resources/Vertex/blog-full-width-post-2.html">
-                                                <i class="icon-arrow-32"></i><span class="text">Read more</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="v-blog-item col-sm-12">
-
-                                    <div class="post-content no-thumb clearfix">
-
-                                        <div class="v-post-date pull-left">
-                                            <span class="day">12</span>
-                                            <span class="month">Mar</span>
-                                            <div class="like-holder like-button"><i class="fa fa-heart"></i>18</div>
-                                        </div>
-                                        <div class="post-inner">
-                                            <div class="post-header">
-                                                <h2 class="title"><a href="#">Text-Only Post</a></h2>
-
-                                                <div class="post-meta-info">
-                                                    <span class="blog-author minor-meta">
-                                                        Posted by
-                                                        <span class="entry-author-link">
-                                                            <span class="vcard author">
-                                                                <span class="v-blog-item-details">
-                                                                    <a href="#" title="Posts by HB-Themes" rel="author">Vertex</a>
-                                                                </span>
-                                                            </span>
-                                                        </span>
-                                                    </span>
-                                                    <span class="text-sep">|</span>
-
-                                                    <span class="blog-categories minor-meta">
-                                                        <a href="#">News</a>, <a href="#">Updates</a> <span class="text-sep">|</span>
-
-                                                        <span class="comment-container minor-meta">
-                                                            <a href="./resources/Vertex/blog-standard-post.html#comment-area" class="comments-link">3 comments </a>
-                                                        </span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="v-blog-post-description">
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquam massa quis mauris sollicitudin
-                                                    commodo venenatis ligula commodo. Sed blandit convallis dignissim. Pellentesque pharetra velit eu velit
-                                                    elementum et convallis erat vulputate. Sed in nulla ut elit mollis posuere. Praesent a felis accumsan
-                                                    neque interdum molestie…
-                                                </p>
-                                            </div>
-                                            <a class="btn v-btn standard white sf-icon-stroke" href="./resources/Vertex/blog-full-width-post-2.html">
-                                                <i class="icon-arrow-32"></i><span class="text">Read more</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
+                               
                             </ul>
 
                             <nav aria-label="...">
                                 <ul class="pagination">
-                                    <li class="page-item disabled">
-                                        <span class="page-link">Previous</span>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item active">
-                                        <span class="page-link">
-                                            2
-                                            <span class="sr-only">(current)</span>
-                                        </span>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
-                                    </li>
+                                	
+                                	 <!-- 책은 prev데이터가 없으면 아예 버튼을 노출하지 않는 거고,
+                                	 여기서는 prev 데이터가 없으면 클릭이 되지 않게 만든 것. -->
+                                	 
+                                	 	<!-- 이렇게 하면 prev 데이터가 없을 때 previous가 비활성화되기만 함. -->
+	                                    <%-- <li class="page-item ${pageMaker.prev ? "":"disabled"} ">
+	                                        <a  class="page-link" href="${pageMaker.startPage-1}">
+		                                        Previous
+		                                    </a>
+	                                    </li> --%>
+                                	 
+                                	 
+                                	<c:if test="${pageMaker.prev}">
+	                                    <li class="page-item">
+	                                        <a class="page-link" href="${pageMaker.startPage-1}">
+		                                        Previous
+		                                    </a>
+	                                    </li>
+                                	</c:if>
+                                	<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+                                	
+	                                    <li class="page-item ${pageMaker.cri.pageNum == num ? "active":"" }"><a class="page-link" href="${num}">${num}</a></li>
+	                                    
+	                                    <!-- <li class="page-item active">
+	                                        <span class="page-link">
+	                                            2
+	                                            <span class="sr-only">(current)</span>
+	                                        </span>
+	                                    </li> -->
+	                                    
+                                	</c:forEach>
+                                    
+                                    <c:if test="${pageMaker.next}">
+	                                    <li class="page-item">
+		                                    <a class="page-link" href="${pageMaker.endPage+1}">
+		                                        Next
+		                                    </a>
+	                                    </li>
+                                	</c:if> 
+                                	
+                                	<form id="actionForm" action="/warm/reviewPerBook" method="get">
+
+                                		<input type="hidden" name="isbn" value="${list[0].isbn}">
+                                		<input type="hidden" name="user_id" value="${list[0].user_id}">
+                                		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+                                		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+                                		
+                                	</form>
+                                	
                                 </ul>
                             </nav>
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <script type="text/javascript">
+        	$(document).ready(function() {
+        		
+        		var actionForm = $("#actionForm");
+        		
+        		$(".page-link").on("click", function(e) {
+        			
+        			e.preventDefault();
+        			
+        			console.log('click');
+        			
+        			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+        			actionForm.submit();
+        		 });
+        		
+        		
+        		$(".move").on("click", function(e) {
+        			
+        			e.preventDefault();
+        			
+        			actionForm.append("<input type='hidden' name='review_no' value='"+$(this).attr("href")+"'>");
+        			actionForm.attr("action", "/warm/reviewSelectOne");
+        			actionForm.submit();
+        		}); 
+        		
+        		
+        		/* var result = '<c:out value="${result}"/>';
+        		
+        		checkModal(result);
+        		
+        		history.replaceState({}, null, null);
+        		
+        		function checkModal(result) {
+        			
+        			if(result === '' || history.state) {
+        				return;
+        			}
+        			
+        			if(parseInt(result) > 0) {
+        				$(".modal-body").html(
+        						"게시글 " + parseInt(result) + " 번이 등록되었습니다.");
+        			}
+        			
+        			$("#myModal").modal("show");
+        		}
+        		
+        		$("#regBtn").on("click", function() {
+        			self.location = "/board/register";
+        		}); */
+        		
+        	});
+        </script>
 
 <%@ include file="./includes/footer/footer-6 from Vertex.jsp" %>
     </div>
