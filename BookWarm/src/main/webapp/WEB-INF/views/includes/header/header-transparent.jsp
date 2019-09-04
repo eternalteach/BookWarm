@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="UTF-8">
 <head>
-  <%@ include file="./header_front.jsp"%>
+  <%@ include file="./include-header-front01.jsp"%>
 </head>
 <body>
 
@@ -30,7 +30,7 @@
                            <div class="header-nav-main header-nav-main-effect-2 header-nav-main-sub-effect-1">
                               
                               <!-- 탑 메뉴 -->
-                              <%@ include file="./header_nav.jsp"%>
+                              <%@ include file="./include-header-top-nav.jsp"%>
                               
                            </div>
                            <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main nav">

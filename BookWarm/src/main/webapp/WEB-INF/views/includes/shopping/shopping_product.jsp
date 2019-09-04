@@ -41,9 +41,9 @@
                               <i class="fa fa-star"></i>
                               <i class="fa fa-star"></i>
                               <i class="fa fa-star"></i>
-                         <!--      <i class="fa fa-star"></i>
                               <i class="fa fa-star"></i>
-                           </span> -->
+                              <i class="fa fa-star"></i>
+                           </span>
                         </div>
 
 						
@@ -74,17 +74,6 @@
 						    <button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="Add to wishlist" data-location="top">
                           	<span>목록</span>
                            </button>
-
-                 <!--        <div class="product_meta mb-40">
-                           <span class="sku_wrapper">SKU: <span class="sku" itemprop="sku">612444</span></span>
-                           <span class="posted_in">Categories: <a rel="tag" href="#">Accessories</a>, <a rel="tag" href="#">Bags</a>.</span>
-                           <span class="tagged_as">
-                              Tags:
-                              <a href="#" rel="tag">Sweaters</a>,
-                              <a href="#" rel="tag">Turtleneck</a>,
-                              <a href="#" rel="tag">Wool</a>
-                           </span>
-                        </div> -->
 
 
                         <div class="clearfix">
@@ -151,19 +140,10 @@
                                  </div>
                               </div>
                            </div>
-
-
                         </div>
-
-
-
-
                      </div>
                   </div>
                </div>
-
-
-
             </div>
 
 
@@ -172,7 +152,6 @@
 
                <div class="container">
                   <div class="row">
-
                      <div class="col-md-12">
                         <h2 class="section-title mb-5 fs-26">
                            	 대표 저서
@@ -181,24 +160,15 @@
                   </div>
 
                   <div class="row">
-                         <c:forEach items="${bookwriter}" var="bookwriter">
+                    <c:forEach items="${bookwriter}" var="bookwriter">
                      <div class="col-md-2">
 						<figure class="product-shadows product-item">
                         <div class="product-shadows product-item">
                                  <figure class="product-shadows product-item">
                                     <div class="product-media">
-
-
-
                                        <div class="img-wrap first-image">
                                          <a href="shop_product?isbn=${bookwriter.isbn}&writer_name=${bookwriter.writer_name}"><img src="${bookwriter.book_img}"></a>
                                        </div>
-                                       
-                                       
-                                       
-                                       
-                                       
-                                       
                                        <div class="img-wrap second-image">
                                           <img src="${bookwriter.book_img}">
                                        </div> 
@@ -209,7 +179,6 @@
                                        <span class="product-price">
                                           <span class="product-amount">
                                           	 <span class="product-price-currency">${bookwriter.book_price_for_sale}</span>원
-                                             
                                           </span>
                                        </span>
                                        <div class="product-star-rating" title="Rated 4.67 out of 5">
@@ -223,96 +192,14 @@
                                  </figure>
                               </div>
                               </figure>
-                              </div>
-                                </c:forEach>
-                           </div>
-                           
-                           
-                           
+                             </div>
+                            </c:forEach>
+                         </div>
+                         <!-- row끝 -->
                         </div>
-                     </div>
-                  </div>
-            </section> 
+		            </section> 
+				</div>
+              </div>
          </div>
-
-  <!--     <div class="modal fade" id="exampleModalLabel33" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel33" aria-hidden="true">
-         <div class="modal-dialog" style="max-width:345px" role="document">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel33">Login via</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                  </button>
-               </div>
-               <div class="modal-body">
-                  <div class="clearfix" id="login-dp">
-
-                     <div class="social-buttons text-center">
-                        <a href="#" class="btn btn-fb ls-0"><i class="fa fa-facebook"></i> Facebook</a>
-                        <a href="#" class="btn btn-tw ls-0"><i class="fa fa-twitter"></i> Twitter</a>
-                     </div>
-                     <div class="special-heading line center">
-                        <h5 class="special-heading-inner mb-10"><span class="o-7"> or </span></h5>
-                     </div>
-                     <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                        <div class="form-group">
-                           <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                           <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
-                        </div>
-                        <div class="form-group">
-                           <label class="sr-only" for="exampleInputPassword2">Password</label>
-                           <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-                           <div class="help-block text-right pt-10 fs-13"><a href="" class="read-more">Forget the password ?</a></div>
-                        </div>
-                        <div class="form-group">
-                           <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-                        </div>
-                        <div class="checkbox-custom checkbox-default">
-                           <input id="RememberMe" name="rememberme" type="checkbox">
-                           <label for="RememberMe"> keep me logged-in</label>
-                        </div>
-                     </form>
-
-                     <div class="bottom text-center">
-                        New here ? <a href="#"><b>Join Us</b></a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div> -->
- 
-<!-- 
-
-   <script>
-      $(document).ready(function () {
-         $("#content-slider").lightSlider({
-            loop: true,
-            keyPress: true
-         });
-         $('#image-gallery').lightSlider({
-            gallery: true,
-            item: 1,
-            slideMargin: 0,
-            galleryMargin: 15,
-            thumbMargin: 15,
-            speed: 500,
-            auto: true,
-            loop: true,
-            onSliderLoad: function () {
-               $('#image-gallery').removeClass('cS-hidden');
-            }
-         });
-      });
-   </script>
-   <style>
-      .lSSlideOuter .lSPager.lSGallery {
-         width: 100% !important;
-      }
-
-      .lSSlideOuter .lSPager.lSGallery li {
-         width: 100px !important;
-      }
-   </style> -->
 </body>
 </html>

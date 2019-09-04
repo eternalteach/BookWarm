@@ -156,12 +156,12 @@
 								aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11"
 								aria-expanded="true">제목순</a></li>
 								
-			<!-- 				<li class="nav-item"><a class="nav-link "
+			 				<li class="nav-item"><a class="nav-link "
 								id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a2"
 								data-toggle="tab"
 								href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" role="tab"
 								aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22"
-								aria-expanded="true">Events</a></li> -->
+								aria-expanded="true">Events</a></li> 
 						</ul>
 						<!-- ul끝  -->
 
