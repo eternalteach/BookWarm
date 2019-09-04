@@ -40,15 +40,18 @@ review_content varchar2(2000),
 review_open varchar2(1) default 'N');
 
 ----댓글
---create sequence review_re_seq;
+create sequence review_re_seq;
 --
-----댓글 테이블 (김해랑 사용 예정)
---create table review_reply(
---review_re_no number(10,0) primary key,
---review_no number(10),
---user_id varchar2(20),
---review_re_content varchar2(500)
---);
+----댓글 테이블 (김해랑)
+create table review_reply(
+    review_re_no number(10),
+    review_no number(10),
+    user_id varchar2(20),
+    review_re_content varchar2(500),
+    review_re_written_date date,
+    review_re_modified_date date,
+    CONSTRAINT pk_review_reply primary key (review_re_no)
+);
 --파일업로드도 보류..
 
 --해쉬태그 시퀀스
