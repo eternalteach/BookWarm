@@ -4,11 +4,13 @@ package com.book.warm.vo;
 //조인해서 결과값만 나오게 하는 class
 public class ShopListBoardVO {
 	
-	private int isbn;
+	private String isbn;
 	private String book_title;
 	private String book_price; //정가
 	private int book_price_for_sale; //판매가
+	private int writer_no;
 	private String writer_name;
+	private String writer_info;
 	private String translator_name;
 	private String publisher_name;
 	private int book_tot_page;
@@ -16,13 +18,25 @@ public class ShopListBoardVO {
 	private String book_idx;
 	private String book_story;
 	private String book_img;
-	
+	private String genre;
 	
 	//게터세터
-	public int getIsbn() {
+	public int getWriter_no() {
+		return writer_no;
+	}
+	public void setWriter_no(int writer_no) {
+		this.writer_no = writer_no;
+	}
+	public String getWriter_info() {
+		return writer_info;
+	}
+	public void setWriter_info(String writer_info) {
+		this.writer_info = writer_info;
+	}
+	public String getIsbn() {
 		return isbn;
 	}
-	public void setIsbn(int isbn) {
+	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
 	public String getBook_title() {
@@ -91,6 +105,11 @@ public class ShopListBoardVO {
 	public void setBook_img(String book_img) {
 		this.book_img = book_img;
 	}
-
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
 	
 }

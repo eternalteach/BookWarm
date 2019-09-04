@@ -16,48 +16,44 @@
 
                   <div class="col-md-6">
 
+					<c:forEach items="${bookgenre}" var="genre">
                      <ol class="breadcrumb clean-breadcrumb">
-                        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i>소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">${shop_product.book_title}</a></li>
+                        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i>${genre.genre}</a></li>
+                        <li><a href="#">${genre.book_title}</a></li>
                      </ol>
-
+					</c:forEach>
+					
+					
                      <div class="product-details">
                         <h2 class="product-name"><a href="#">${shop_product.book_title}</a></h2>
 
                         <div class="product-price-wrap">
 
                            <span class="product-price">
-                              <del class="product-amount"><span class="product-price-currency">${shop_product.book_price}</span>원</del>
+                              <del class="product-amount"><span class="product-price-currency">정가&nbsp${shop_product.book_price}</span>원</del><br>
                               <ins> 
                                  <span class="product-amount">
-                                    <span class="product-price-currency">${shop_product.book_price}</span>원
+                                    <span class="product-price-currency">할인가&nbsp${shop_product.book_price}</span>원
                                  </span>
-                                <!--  <span class="product-amount">
-                                    <span class="product-price-currency">£</span>360
-                                 </span> -->
                             </ins>
                            </span>
                            <span class="product-star-rating" title="Rated 4.67 out of 5">
                               <i class="fa fa-star"></i>
                               <i class="fa fa-star"></i>
                               <i class="fa fa-star"></i>
+                         <!--      <i class="fa fa-star"></i>
                               <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                           </span>
+                           </span> -->
                         </div>
 
-
+						
+						
                         <div class="product-summary">
-                           <p>
-                   <%--         ${shop_product.book_intro} --%>
-                           </p>
+                         <p>${shop_product.writer_name}&nbsp저</p>
+ 						 <p>${shop_product.translator_name}&nbsp역</p>
                         </div>
 
-
-
-
-                        <form class="cart" method="post" enctype="multipart/form-data">
+                        <form class="cart" method="get" enctype="multipart/form-data">
                            <div class="quantity">
                               <input type="text" name="quantity" value="1" title="Qty" class="input-text qty text">
                               <div class="qty-adjust">
@@ -67,16 +63,17 @@
                            </div>
 
                            <button type="submit" class="btn btn-outline-primary btn-md product-btn">
-                              <i class="fa fa-shopping-basket"></i><span>장바구니</span>
+                              <i class="fa fa-shopping-basket" ></i><span>장바구니</span></a>
                            </button>
 
                            <button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="Add to wishlist" data-location="top">
-                              <i class="fa fa-shopping-basket"></i><span>구매</span>
+                             <span>구매</span>
                            </button>
+                           
                         </form>
-
-
-
+						    <button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="Add to wishlist" data-location="top">
+                          	<span>목록</span>
+                           </button>
 
                  <!--        <div class="product_meta mb-40">
                            <span class="sku_wrapper">SKU: <span class="sku" itemprop="sku">612444</span></span>
@@ -115,11 +112,8 @@
                                                 1
                                              </td>
                                              <td>
-                                                Mark
-                                             </td>
-                                             <td>
-                                                Otto
-                                             </td>
+                                                목차                                             </td>
+                                             
                                              <td>
                                                 @mdo
                                              </td>
@@ -173,65 +167,49 @@
             </div>
 
 
-
-            <section class="section-big main-color">
+			<!-- 대표저서  -->
+             <section class="section-big main-color">
 
                <div class="container">
                   <div class="row">
 
                      <div class="col-md-12">
                         <h2 class="section-title mb-5 fs-26">
-                           Related Products
+                           	 대표 저서
                         </h2>
-                        <p class="mb-25">
-                           Lorem ipsum dolor sit amet isse potenti.
-                        </p>
                      </div>
                   </div>
 
                   <div class="row">
-
-                     <div class="col">
-
-                        <div class="carousel-wrap">
-                           <div class="owl-carousel owl-theme" data-plugin-options='{"items":4, "singleItem": true, "dots":false, "autoPlay": true, "margin": 30}'>
-                              <div>
+                         <c:forEach items="${bookwriter}" var="bookwriter">
+                     <div class="col-md-2">
+						<figure class="product-shadows product-item">
+                        <div class="product-shadows product-item">
                                  <figure class="product-shadows product-item">
                                     <div class="product-media">
+
+
+
                                        <div class="img-wrap first-image">
-                                          <img src="./resources/VertexEx/img/shop/adidas-grey-red001_1.jpg">
+                                         <a href="shop_product?isbn=${bookwriter.isbn}&writer_name=${bookwriter.writer_name}"><img src="${bookwriter.book_img}"></a>
                                        </div>
+                                       
+                                       
+                                       
+                                       
+                                       
+                                       
                                        <div class="img-wrap second-image">
-                                          <img src="./resources/VertexEx/img/shop/adidas-grey-red001_2.jpg">
-                                       </div>
-
-                                       <div class="cart-overlay clearfix">
-                                          <div class="shop-actions clearfix">
-                                             <div class="shop-action-item add-to-cart-wrap lite-tooltip" data-title="Add to cart" data-location="top">
-                                                <a href="#">
-                                                   <i class="fa fa-shopping-basket"></i>
-                                                </a>
-                                             </div>
-                                             <div class="shop-action-item add-to-wishlist-wrap lite-tooltip" data-title="Add to wishlist" data-location="top">
-                                                <a href="#">
-                                                   <i class="fa fa-heart"></i>
-                                                </a>
-                                             </div>
-                                             <div class="shop-action-item add-to-quickview-wrap lite-tooltip" data-title="Quickview" data-location="top">
-                                                <a href="#">
-                                                   <i class="fa fa-eye"></i>
-                                                </a>
-                                             </div>
-                                          </div>
-                                       </div>
+                                          <img src="${bookwriter.book_img}">
+                                       </div> 
                                     </div>
-
+									
                                     <div class="product-details">
-                                       <h3 class="product-name"><a href="#">Adidas Boston Super</a></h3>
-                                       <span class="product-posted_in"><a href="#" rel="tag">Shirting</a></span>
+                                       <h3 class="product-name"><a href="#">${bookwriter.book_title}</a></h3>
                                        <span class="product-price">
                                           <span class="product-amount">
-                                             <span class="product-price-currency">£</span>200
+                                          	 <span class="product-price-currency">${bookwriter.book_price_for_sale}</span>원
+                                             
                                           </span>
                                        </span>
                                        <div class="product-star-rating" title="Rated 4.67 out of 5">
@@ -241,246 +219,23 @@
                                           <i class="fa fa-star"></i>
                                           <i class="fa fa-star-half"></i>
                                        </div>
-                                    </div>
+                                    </div> 
                                  </figure>
                               </div>
-                              <div>
-                                 <figure class="product-shadows product-item">
-                                    <div class="product-media">
-                                       <div class="img-wrap first-image">
-                                          <img src="./resources/VertexEx/img/shop/UltraBoostUncaged.jpg">
-                                       </div>
-                                       <div class="img-wrap second-image">
-                                          <img src="./resources/VertexEx/img/shop/UltraBoostUncaged2.jpg">
-                                       </div>
-
-                                       <div class="cart-overlay clearfix">
-                                          <div class="shop-actions clearfix">
-                                             <div class="shop-action-item add-to-cart-wrap lite-tooltip" data-title="Add to cart" data-location="top">
-                                                <a href="#">
-                                                   <i class="fa fa-shopping-basket"></i>
-                                                </a>
-                                             </div>
-                                             <div class="shop-action-item add-to-wishlist-wrap lite-tooltip" data-title="Add to wishlist" data-location="top">
-                                                <a href="#">
-                                                   <i class="fa fa-heart"></i>
-                                                </a>
-                                             </div>
-                                             <div class="shop-action-item add-to-quickview-wrap lite-tooltip" data-title="Quickview" data-location="top">
-                                                <a href="#">
-                                                   <i class="fa fa-eye"></i>
-                                                </a>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-
-                                    <div class="product-details">
-                                       <h3 class="product-name"><a href="#">Ultra Boost Uncaged</a></h3>
-                                       <span class="product-posted_in"><a href="#" rel="tag">Shirting</a></span>
-                                       <span class="product-price">
-                                          <span class="product-amount">
-                                             <span class="product-price-currency">£</span>190
-                                          </span>
-                                       </span>
-                                       <div class="product-star-rating" title="Rated 4.67 out of 5">
-                                          <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i>
-                                       </div>
-                                    </div>
-                                 </figure>
+                              </figure>
                               </div>
-
-                              <div>
-
-                                 <figure class="product-shadows product-item">
-                                    <div class="product-media">
-                                       <div class="badge-wrap">
-                                          <span class="onsale">Sale</span>
-                                       </div>
-                                       <div class="img-wrap">
-                                          <img src="./resources/VertexEx/img/shop/Vertex-gift-card.jpg">
-                                       </div>
-
-                                       <div class="cart-overlay clearfix">
-                                          <div class="shop-actions clearfix">
-                                             <div class="shop-action-item add-to-cart-wrap lite-tooltip" data-title="Add to cart" data-location="top">
-                                                <a href="#">
-                                                   <i class="fa fa-shopping-basket"></i>
-                                                </a>
-                                             </div>
-                                             <div class="shop-action-item add-to-wishlist-wrap lite-tooltip" data-title="Add to wishlist" data-location="top">
-                                                <a href="#">
-                                                   <i class="fa fa-heart"></i>
-                                                </a>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-
-                                    <div class="product-details">
-                                       <h3 class="product-name"><a href="#">Gift Card</a></h3>
-                                       <span class="product-posted_in"><a href="#" rel="tag">Accessories</a></span>
-                                       <span class="product-price">
-                                          <span class="product-amount">
-                                             <span class="product-price-currency">£</span>100
-                                          </span>
-                                       </span>
-                                    </div>
-                                 </figure>
-                              </div>
-
-                              <div>
-                                 <figure class="product-shadows product-item">
-                                    <div class="product-media">
-                                       <div class="img-wrap">
-                                          <img src="./resources/VertexEx/img/shop/ami-turtle-grey.jpg">
-                                       </div>
-
-                                       <div class="cart-overlay clearfix">
-                                          <div class="shop-actions clearfix">
-                                             <div class="shop-action-item add-to-cart-wrap lite-tooltip" data-title="Add to cart" data-location="top">
-                                                <a href="#">
-                                                   <i class="fa fa-shopping-basket"></i>
-                                                </a>
-                                             </div>
-                                             <div class="shop-action-item add-to-wishlist-wrap lite-tooltip" data-title="Add to wishlist" data-location="top">
-                                                <a href="#">
-                                                   <i class="fa fa-heart"></i>
-                                                </a>
-                                             </div>
-                                             <div class="shop-action-item add-to-quickview-wrap lite-tooltip" data-title="Quickview" data-location="top">
-                                                <a href="#">
-                                                   <i class="fa fa-eye"></i>
-                                                </a>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-
-                                    <div class="product-details">
-                                       <h3 class="product-name"><a href="#">Turtleneck Sweater</a></h3>
-                                       <span class="product-posted_in"><a href="#" rel="tag">Outerwear</a></span>
-                                       <span class="product-price">
-                                          <span class="product-amount">
-                                             <span class="product-price-currency">£</span>720
-                                          </span>
-                                       </span>
-                                       <div class="product-star-rating" title="Rated 4.67 out of 5">
-                                          <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i>
-                                       </div>
-                                    </div>
-                                 </figure>
-                              </div>
-
-                              <div>
-
-                                 <figure class="product-shadows product-item">
-                                    <div class="product-media">
-                                       <div class="img-wrap">
-                                          <img src="./resources/VertexEx/img/shop/UltraBoostUncaged.jpg">
-                                       </div>
-
-                                       <div class="cart-overlay clearfix">
-                                          <div class="shop-actions clearfix">
-                                             <div class="shop-action-item add-to-cart-wrap lite-tooltip" data-title="Add to cart" data-location="top">
-                                                <a href="#">
-                                                   <i class="fa fa-shopping-basket"></i>
-                                                </a>
-                                             </div>
-                                             <div class="shop-action-item add-to-wishlist-wrap lite-tooltip" data-title="Add to wishlist" data-location="top">
-                                                <a href="#">
-                                                   <i class="fa fa-heart"></i>
-                                                </a>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-
-                                    <div class="product-details">
-                                       <h3 class="product-name"><a href="#">Ultra Boost Uncaged</a></h3>
-                                       <span class="product-posted_in"><a href="#" rel="tag">Accessories</a></span>
-                                       <span class="product-price">
-                                          <span class="product-amount">
-                                             <span class="product-price-currency">£</span>100
-                                          </span>
-                                       </span>
-                                       <div class="product-star-rating" title="Rated 4.67 out of 5">
-                                          <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i>
-                                       </div>
-                                    </div>
-                                 </figure>
-                              </div>
-
-                              <div>
-
-                                 <figure class="product-shadows product-item">
-                                    <div class="product-media">
-                                       <div class="img-wrap">
-                                          <img src="./resources/VertexEx/img/shop/ami-turtle-grey001alt-700x904.jpg">
-                                       </div>
-
-                                       <div class="cart-overlay clearfix">
-                                          <div class="shop-actions clearfix">
-                                             <div class="shop-action-item add-to-cart-wrap lite-tooltip" data-title="Add to cart" data-location="top">
-                                                <a href="#">
-                                                   <i class="fa fa-shopping-basket"></i>
-                                                </a>
-                                             </div>
-                                             <div class="shop-action-item add-to-wishlist-wrap lite-tooltip" data-title="Add to wishlist" data-location="top">
-                                                <a href="#">
-                                                   <i class="fa fa-heart"></i>
-                                                </a>
-                                             </div>
-                                             <div class="shop-action-item add-to-quickview-wrap lite-tooltip" data-title="Quickview" data-location="top">
-                                                <a href="#">
-                                                   <i class="fa fa-eye"></i>
-                                                </a>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-
-                                    <div class="product-details">
-                                       <h3 class="product-name"><a href="#">Turtleneck Sweater Grey</a></h3>
-                                       <span class="product-posted_in"><a href="#" rel="tag">Shirting</a></span>
-                                       <span class="product-price">
-                                          <span class="product-amount">
-                                             <span class="product-price-currency">£</span>190
-                                          </span>
-                                       </span>
-                                       <div class="product-star-rating" title="Rated 4.67 out of 5">
-                                          <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i>
-                                       </div>
-                                    </div>
-                                 </figure>
-                              </div>
+                                </c:forEach>
                            </div>
-                           <div class="customNavigation">
-                              <a class="prev"><i class="fa fa-angle-left"></i></a>
-                              <a class="next"><i class="fa fa-angle-right"></i></a>
-                           </div>
+                           
+                           
+                           
                         </div>
                      </div>
                   </div>
-               </div>
-            </section>
+            </section> 
          </div>
 
-      </div>
-
-      <div class="modal fade" id="exampleModalLabel33" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel33" aria-hidden="true">
+  <!--     <div class="modal fade" id="exampleModalLabel33" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel33" aria-hidden="true">
          <div class="modal-dialog" style="max-width:345px" role="document">
             <div class="modal-content">
                <div class="modal-header">
@@ -525,9 +280,9 @@
                </div>
             </div>
          </div>
-      </div>
-   </div>
-
+      </div> -->
+ 
+<!-- 
 
    <script>
       $(document).ready(function () {
@@ -558,6 +313,6 @@
       .lSSlideOuter .lSPager.lSGallery li {
          width: 100px !important;
       }
-   </style>
+   </style> -->
 </body>
 </html>

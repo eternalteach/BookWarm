@@ -5,3 +5,4 @@
 <!-- context -->
 <%@ include file="includes/shopping/shopping_list.jsp"%>
 <!-- footer  -->
+
