@@ -26,8 +26,8 @@ public class BoardCommunityController {
 	public String boardCommunity(Model model) throws Exception {
 		log.info("===== boardCommunity() =====");
 
-		ArrayList<CommunityBoardVO> list = communityBoardMapper.getCommunityBoardList();
-		model.addAttribute("loginglist", list);
+		ArrayList<CommunityBoardVO> communityBoardList = communityBoardMapper.getCommunityBoardList();
+		model.addAttribute("communityBoardList", communityBoardList);
 
 		return "/communityboard";
 	}

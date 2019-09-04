@@ -36,6 +36,7 @@
 <input type='hidden' name='modalOpen' value='<c:out value="open"/>'>
 <input type='hidden' name='pageNum' value='<c:out value="${criteria.pageNum}"/>'>
 <input type='hidden' name='amount' value='<c:out value="${criteria.amount}"/>'>
+</form>
 <script>
 // submit -> check start_page > end_page -> submit
 $(document).ready(function(){

@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.book.warm.mapper.CommunityBoardMapper"> 
 	<select id='getCommunityBoardList' resultType="com.book.warm.vo.CommunityBoardVO">
-		select * from community_board order by comm_no desc
+		select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_group,comm_step,comm_indent from community_board order by comm_no desc
 	</select>
 	<select id='getCommunityBoardOne' resultType="com.book.warm.vo.CommunityBoardVO">
 		select * from community_board where comm_no=#{comm_no}

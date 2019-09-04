@@ -2,26 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ include file="includes/header/header-transparent-record.jsp"%>
+<%@ include file="includes/header/header-transparent-navonly.jsp"%>
 
 
 
 <div class="page has-sidebar has-right-sidebar bordered">
 
 	<div class="page-inner">
-
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3 left-side-sidebar pt-70">
-					<aside class="sidebar">
-						<!-- side menu 삽입 -->
-						<%@ include file="includes/record/record.jsp"%>
-					</aside>
-				</div>
-
 				<div class="col-md-8 right-side-sidebar v_blog-medium pt-70">
-
-
 					<div>
 						add comunity board<br>
 						<table width="500" cellpadding="0" cellspacing="0" border="1">
@@ -32,7 +22,7 @@
 								<th>날짜</th>
 								<th>조회수</th>
 							</tr>
-							<c:forEach items="${list}" var="communityBoard">
+							<c:forEach items="${communityBoardList}" var="communityBoard">
 								<tr>
 									<td>${communityBoard.comm_no}</td>
 									<td><c:forEach begin="1" end="${communityBoard.comm_indent}">[re]</c:forEach>
@@ -48,11 +38,9 @@
 						</table>
 
 					</div>
-
-
+	<!-- 페이징 처리 -->
 					<div class="row">
 						<div class="col-md-12">
-
 							<nav aria-label="Page navigation example">
 								<ul class="pagination">
 									<li class="page-item disabled"><a class="page-link"
@@ -66,6 +54,8 @@
 							</nav>
 						</div>
 					</div>
+					
+					
 				</div>
 			</div>
 		</div>
