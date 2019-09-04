@@ -14,13 +14,13 @@
 		where c.user_id = #{param1}
 	</select>
 	
-	<select id="removeCart" resultType="com.book.warm.vo.CartVO" parameterType="com.book.warm.vo.CartVO">
+	<!-- <select id="removeCart" resultType="com.book.warm.vo.CartVO" parameterType="com.book.warm.vo.CartVO">
 		select c.*, b.book_title, b.book_price_for_sale, b.book_img, c.cart_cnt*b.book_price_for_sale as total
 		from cart c inner join book b
 		on c.isbn = b.isbn
 		where c.user_id = #{user_id}
 		and c.cart_no != #{cart_no}
-	</select>
+	</select> -->
 	
 </mapper>
 

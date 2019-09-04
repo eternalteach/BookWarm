@@ -21,7 +21,7 @@
                </div>
             </div>
          </section>
-		<form action="<%=path%>/shop/saveChanges" method="get">
+		<form action="<%=path%>/shop/charge" method="get" id="sendForm">
          <div class="page-inner no-border">
 
             <section class="section-primary main-color">
@@ -32,7 +32,7 @@
 					
                      <div class="col-md-9">
 
-                        <h4>장바구니 <span class="o-6">(3 items)</span> </h4>
+                        <h4>장바구니 <span class="o-6"></span> </h4>
 
                         <div class="table-responsive">
 
@@ -53,11 +53,12 @@
                               
                               	  <div id="list">
 		                              <c:forEach items="${list}" var="vo" varStatus="idx">
+		                              	<%-- <input type="hidden" class="cart_no" name="cart_no" value="${vo.cart_no}"> --%>
 		                              	 <!-- 한 개 기준(시작) -->
 		                                 <tr class="cart_item" id="item-${idx.count}">
 		                                  	<!-- 체크박스 -->
 		                                    <td class="cart-product-checkbox">
-		                                       <input type="checkbox" class="chkbox" checked>
+		                                       <input type="checkbox" class="chkbox" name="cart_no" value="${vo.cart_no}"checked>
 		                                    </td>
 											<!-- 책 이미지(사진) -->
 		                                    <td class="cart-product-thumbnail">
@@ -74,7 +75,10 @@
 											<!-- 수량 -->
 		                                    <td class="cart-product-quantity">
 		                                       <div class="form-group">
-		                                          <input type="number" class="form-control cnt" value="${vo.cart_cnt}">
+		                                       	  <a href="<%=path %>/shop/cntDown?user_id=${vo.user_id}&cart_no=${vo.cart_no}&cart_cnt=${vo.cart_cnt}">-&nbsp&nbsp&nbsp</a>
+		                                       	  ${vo.cart_cnt}
+		                                       	  <a href="<%=path %>/shop/cntUp?user_id=${vo.user_id}&cart_no=${vo.cart_no}&cart_cnt=${vo.cart_cnt}">&nbsp&nbsp&nbsp+</a>
+		                                          <%-- <input type="number" class="form-control cnt" value="${vo.cart_cnt}"> --%>
 		                                       </div>
 		                                    </td>
 											<!-- 총액(책 가격 * 수량) -->
@@ -92,7 +96,7 @@
                               	  </div>
 	                              
 	                              
-                                 <!-- 쿠폰코드, 업데이트 카트 버튼 있는 부분 -->
+                                 <!-- 쿠폰코드 있는 부분 -->
                                  <tr class="cart-footer_item">
                                     <td colspan="6" class="pt-35 pb-35 pl-0">
                                        <div class="row">
@@ -106,9 +110,6 @@
                                              <a href="#" class="btn btn-primary">쿠폰 적용</a>
                                           </div>
 
-                                          <div class="col-md-5">
-                                             <a href="<%=path%>/shop/saveChanges?" class="btn btn-primary float-right mr-none">변경사항 저장</a>
-                                          </div>
                                        </div>
                                     </td>
                                  </tr>
@@ -140,7 +141,8 @@
                                     </td>
 
                                     <td class="cart-product-name">
-                                       <span class="amount">Free Delivery</span>
+                                       <span class="amount delivery">Free Delivery</span>
+                                       <input type="hidden" id="delivery" name="delivery" value="">
                                     </td>
                                  </tr>
                                  
@@ -152,13 +154,14 @@
 									<!-- 체크한 물품 총액 -->
                                     <td class="cart-product-name">
                                        <span class="amount subTotal">0 원</span>
+                                       <input type="hidden" id="subTotal" name="subTotal" value="">
                                     </td>
                                  </tr>
                                  
                               </tbody>
                            </table>
 
-                           <a href="shop.html" class="btn btn-primary d-block fs-11">구매하기</a>
+                           <div class="btn btn-primary d-block fs-11" id="charge">구매하기</div>
                         </div>
                      </div>
                   </div>

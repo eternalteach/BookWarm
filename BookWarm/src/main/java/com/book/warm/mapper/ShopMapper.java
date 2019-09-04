@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.book.warm.vo.CartVO;
 
@@ -34,6 +35,13 @@ public interface ShopMapper {
 //			"		and c.cart_no != #{cart_no}")
 //	public List<CartVO> removeCart(@Param("user_id") String user_id, @Param("cart_no") String cart_no);
 	
+	@Update("update cart set cart_cnt=#{cart_cnt} where cart_no=#{cart_no}")
+	public void updateCnt(@Param("cart_cnt") int cart_cnt, @Param("cart_no") String cart_no);
 	
+	@Select("select c.*, b.book_title, b.book_price_for_sale, b.book_img, c.cart_cnt*b.book_price_for_sale as total\r\n" + 
+			"		from cart c inner join book b\r\n" + 
+			"		on c.isbn = b.isbn\r\n" + 
+			"where cart_no=#{cart_no}")
+	public CartVO getCartOne(@Param("cart_no") String cart_no);
 	
 }

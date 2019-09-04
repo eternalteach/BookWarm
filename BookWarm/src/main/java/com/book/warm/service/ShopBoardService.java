@@ -25,6 +25,14 @@ public class ShopBoardService {
 		shopMapper.removeCart(user_id, isbn);
 	}
 	
+	public void updateCnt(int cart_cnt, String cart_no) {
+		shopMapper.updateCnt(cart_cnt, cart_no);
+	}
+	
+	public CartVO getCartOne(String cart_no) {
+		return shopMapper.getCartOne(cart_no);
+	}
+	
 	
 	
 	

@@ -492,11 +492,12 @@
                                       </ul>
                                    </li>
                                    <li class="dropdown dropdown-mega dropdown-mega-shop" id="headerShop">
-                                      <a class="dropdown-item dropdown-toggle" href="page-login.html">
+                                      <!-- 헤더쪽 장바구니 -->
+                                      <a class="dropdown-item dropdown-toggle" href="/warm/shop/shop-cart?user_id=aaa"><!-- user_id는 세션으로 받아내기 -->
                                          <i class="ion-bag fs-22"></i>
-                                         <span class="cart-items">2</span>
+                                         <span class="cart-items">3</span><!-- 장바구니 품목 개수 -->
                                       </a>
-                                      <ul class="dropdown-menu">
+                                      <ul class="dropdown-menu"><!-- 마우스오버부분 -->
                                          <li>
                                             <div class="dropdown-mega-content">
                                                <table class="cart">

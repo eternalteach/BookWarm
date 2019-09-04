@@ -407,30 +407,34 @@
 	}
 </style>
 <script>
+
+	
+	
 	$(document).ready(function() {
 
 		// 처음에 최종금액란, subTotal에 뿌려줄 금액
 		var initTotal = 0;
+		var totEach = 0;
+		var cntItems = 0;
 		$('.tot').each(function(index, item) {
-			var price = $('.price').eq(index).html(); // 가격
-			var count = $('.cnt').eq(index).val(); // 수량
-			
-			// 총액 = 책 가격 * 수량
-			var totEach = price * count
-			
-			// class가 tot인 곳의 html에 넣어준다.
-			var totEach = parseInt($(item).html());
-			$(item).html(totEach);
+			// 각 항목의 총액
+			totEach = parseInt($(item).html());
 			
 			// 최종 금액
 			// 1. 각각의 총액을 더해준다
 			initTotal = initTotal + totEach;
-
-			// 2. UI의 total, subTotal로 보여지는 부분에 뿌려준다.
-			$('.totAllItems').html("<strong>" + initTotal + "원</strong>");
-			$('.subTotal').html(initTotal + " 원");
+			cntItems = index+1;
+			$('.o-6').html("("+ cntItems +" items)");
 		})
-
+		// 2. UI의 total, subTotal로 보여지는 부분에 뿌려준다.
+		$('.totAllItems').html("<strong>" + initTotal + "원</strong>");
+		$('.subTotal').html(initTotal + "원");
+		$('#subTotal').attr("value", initTotal + "원");
+		
+		delivery();
+		
+		
+		
 		// 체크박스 클릭할 때마다 검사
 		var chkbox = $('.chkbox');
 		chkbox.on('click', function() {
@@ -444,12 +448,14 @@
 				}
 
 				// 3. 더한 subTotal을 UI의 subTotal부분에 뿌려준다.
-				$('.subTotal').html(subTotal + ' 원');
+				$('.subTotal').html(subTotal + '원');
+				$('#subTotal').attr("value", subTotal);
 			})
+			delivery();
 		})
 
 		// 수량을 올릴 때마다 UI에 반영 & db에 반영
-		$('.cnt').click(function() {
+		/* $('.cnt').click(function() {
 			var price;
 			var cnt;
 			var tot;
@@ -474,10 +480,10 @@
 			})
 			
 			// 장바구니 총액에 반영
-			$('.totAllItems').html("<strong>" + totAllItems + " 원</strong>");
+			$('.totAllItems').html("<strong>" + totAllItems + "원</strong>");
 			// subTotal에 반영
-			$('.subTotal').html(changeSubTotal+" 원");
-		})
+			$('.subTotal').html(changeSubTotal+"원");
+		}) */
 
 		// 삭제 버튼 클릭 >> 클릭한거 hidden처리
 		$('.fa-trash').on('click', function() {
@@ -501,11 +507,88 @@
 				// subTotal에 0원 찍어주기
 				$('.subTotal').html("0원");
 			}
-			
+			delivery();
 		})
+		
+		$('#charge').on('click', function() {
+			$('#sendForm').submit();
+		})
+		
 	})
+	
+	function delivery() {
+		var subTotal = $('.subTotal').html();
+		var fee;
+		
+		// 배송비 -> 5만원 이상 무료
+		if(subTotal!=null && parseInt(subTotal.split("원", 1)) >= 50000) {
+			fee = "무료";
+		}else {
+			fee = "2500원";
+		}
+		$('.delivery').html(fee);
+		$('#delivery').attr('value', fee);
+	}
+	
 </script>
 <!-- /shopContent.jsp에서 사용 -->
+
+<!-- shopChargePage.jsp에서 사용 -->
+<!-- 다음 주소 api -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script>
+	//해당 코드는 사용자가 클릭한것을 반환해준다 (도로명 클릭시 도로명 반환,지번 클릭시 지번반환)
+	//기본적으로 다음 API는 (시,구,동만 반환해준다 상세정보 반환X) 하지만 풀주소는 반환해준다 
+	//따라서 풀주소로 시,구,동,상세주소를 파싱해주자..
+    function getAddressInfo(){
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var value;
+                var jusoSangsae="";
+                var str = data.jibunAddress;   // 풀주소 저장
+                str = str.split(" ");          // 공백으로 짤라준다
+ 
+                // -> 공백으로 짜르는 이유는 해당 API에서 (서울특별시 강남동 강남구99-9) 이런식으로 띄어쓰기로 시 군 구 를 반환해주기 때문.
+                // -> 서울특별시 강남동 강남구99-9를 띄어쓰기로 파싱하면 {"서울특별시","강남동","강남구","99-9"} 이런으로 파싱된다                
+ 
+ 
+                if(data.userSelectedType == "J"){   // 사용자가 지번을 클릭했다면
+                    for(var i =0;i<str.length;i++){
+                        if(str[i]==data.bname){     //  data.bname 즉 동정보하고 str[i]가 동일 문자일시
+                            value=i;                // 그위치를 저장한다
+                        }
+                    }
+                }else{
+                    str = data.roadAddress;        // 사용자가 도로명을 클릭했다면
+                    str = str.split(" ");         
+                    for(var i=0;i<str.length;i++){
+                        if(str[i]==data.roadname){ // data.roadname 즉 도로명의 동정보하고 str[i]가 동일 문자일시
+                            value=i;               // 그위치를 저장한다
+                        }
+                    }
+                }
+ 
+                for(var i=value;i<str.length;i++){  // 동위치부터 끝까지
+                    jusoSangsae = jusoSangsae+str[i];
+                    // 지번주소 기준으로 설명을 덧붙이자면.
+                    // 풀주소를 띄어쓰기로 split시 {"서울특별시","강남동","강남구","99-9"} 이렇게 나온다
+                    // 내가 하고자 했던것은 "강남구"의 위치를 찾은뒤 그위치부터 끝까지 출력한것이다
+                }
+ 
+ 
+ 
+                alert(data.sido); //서울특별시
+                alert(data.sigungu); // 은평구
+                alert(jusoSangsae ); // 갈현1동 xxx-xxx 3층
+                
+            },
+        shorthand : false
+     	// -> 해당 옵션은 기본적으로 true이며, true로 지정시 축약형 주소가 나옴(서울특별시 -> 서울)
+        }).open();
+    }
+
+</script>
+<!-- /shopChargePage.jsp에서 사용 -->
 
 
 <!-- Theme Initialization -->
