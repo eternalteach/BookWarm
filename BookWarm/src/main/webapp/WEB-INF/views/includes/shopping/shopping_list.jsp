@@ -301,25 +301,10 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <p>
-                                                    Aliquam erat volutpat. Etiam tortor sapien, elementum quis semper eu, convallis eget justo.
-                                                    Nulla facilisi. Curabitur cursus vestibulum turpis eget sagittis. Phasellus tempus semper
-                                                    tellus, sed ullamcorper libero sodales a. Fusce vulputate varius quam. Curabitur erat orci,
-                                                    gravida eu tempus sed, pretium non ante. Vestibulum augue nisi, vulputate pellentesque
-                                                    posuere id, gravida et est. Suspendisse vestibulum scelerisque metus, ut bibendum lorem
-                                                    pharetra nec. Phasellus vitae faucibus nisi. Aliquam erat volutpat. Etiam sed neque massa.
-                                                    Pellentesque at augue sed neque faucibus tincidunt sit amet nec nisl. Aliquam erat volutpat.
-                                                    Etiam tortor sapien, elementum quis semper eu, convallis eget justo. Nulla facilisi.
-                                                    Curabitur cursus vestibulum turpis eget sagittis.
+                                               	 테스트
                                                 </p>
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquam massa quis
-                                                    mauris sollicitudin commodo venenatis ligula commodo. Sed blandit convallis dignissim.
-                                                    Pellentesque pharetra velit eu velit elementum et convallis erat vulputate. Sed in
-                                                    nulla ut elit mollis posuere. Praesent a felis accumsan neque interdum molestie ut id
-                                                    massa. In hac habitasse platea dictumst. Nulla ut lorem ante. In convallis, felis eget
-                                                    consequat faucibus, mi diam consequat augue, quis porta nibh leo a massa. Sed quam nunc,
-                                                    vulputate vel imperdiet vel, aliquet sit amet risus. Maecenas nec tempus velit. Praesent
-                                                    gravida mi et mauris sollicitu.
+                                                   	테스트22
                                                 </p>
                                             </div>
                                         </div>

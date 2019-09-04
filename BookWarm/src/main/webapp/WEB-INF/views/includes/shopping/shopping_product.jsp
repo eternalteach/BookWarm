@@ -57,8 +57,8 @@
                            <div class="quantity">
                               <input type="text" name="quantity" value="1" title="Qty" class="input-text qty text">
                               <div class="qty-adjust">
-                                 <a class="qty-plus" href="#"><i class="fa fa-chevron-up"></i></a>
-                                 <a class="qty-minus" href="#"><i class="fa fa-chevron-down"></i></a>
+                                 <a class="qty-plus" href="#" ><i class="fa fa-chevron-up"></i></a>
+                                 <a class="qty-minus" href="#" ><i class="fa fa-chevron-down"></i></a>
                               </div>
                            </div>
 
@@ -71,14 +71,15 @@
                            </button>
                            
                         </form>
-						    <button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="Add to wishlist" data-location="top">
+                       		
+                       		<!-- 목록버튼 클릭하면 책 목록으로 이동. -->
+						    <a href="/warm/shop_list"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="Add to wishlist" data-location="top">
                           	<span>목록</span>
-                           </button>
+                           </button></a>
+                       
 
 
                         <div class="clearfix">
-
-
                            <div class="tab-wrap clean-tab">
                               <ul class="nav nav-tabs" role="tablist">
                                  <li class="nav-item">
@@ -201,5 +202,27 @@
 				</div>
               </div>
          </div>
+         
+         
+         <script>
+         $(function(){ 
+        	 	
+        	  $('.qty-plus').click(function(){ 
+        	    var n = $('.qty-plus').index(this);
+        	    var num = $(".num:eq("+n+")").val();
+        	    num = $(".num:eq("+n+")").val(num*1+1); 
+        	  });
+        	  
+        	  console.log('click');
+        	  $('.qty-minus').click(function(){ 
+        	    var n = $('.qty-minus').index(this);
+        	    var num = $(".num:eq("+n+")").val();
+        	    num = $(".num:eq("+n+")").val(num*1-1); 
+        	  });
+        	}) 
+         </script>
+         
+         
+         
+         
 </body>
-</html>
