@@ -92,7 +92,7 @@
 								                    <a class="btn btn-outline-secondary" 
 								                    	href="/warm/reviewSelectOne?review_no=${review.review_no}&isbn=${review.isbn}&pageNum=${cri.pageNum}&amount=${cri.amount}">
 								                    	<span class="text ls-1">
-								                    		돌아가기
+								                    		돌아가기${cri.pageNum}
 								                    	</span>
 								                    </a>
 								                    

@@ -53,7 +53,7 @@
  	</select>
  	
  	<select id="selectedReview" resultType="com.book.warm.vo.ReviewBoardVO">
- 		select * from review_board where review_no = #{review_no}
+ 		select * from review_board where review_no = #{param1} and user_id = #{param2}
  	</select>
  	
  	<select id="bookInfo" resultType="com.book.warm.vo.BookVO">

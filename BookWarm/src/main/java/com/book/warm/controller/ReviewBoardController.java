@@ -52,10 +52,14 @@ public class ReviewBoardController {
 	// 감상 하나만 보기
 	@RequestMapping("/reviewSelectOne")
 	public String reviewSelectOne(@RequestParam("review_no") int review_no, 
+										@RequestParam("user_id") String user_id,
 									    @RequestParam("isbn") String isbn, 
 									    @ModelAttribute("cri") Criteria cri, Model model) {
 		
-		model.addAttribute("review", rbs.selectedReview(review_no));
+		System.out.println(cri.getPageNum());
+		System.out.println(cri.getAmount());
+		
+		model.addAttribute("review", rbs.selectedReview(review_no, user_id));
 		model.addAttribute("book", rbs.bookInfo(isbn));
 		return "reviewSelectOne";
 	}
@@ -94,7 +98,9 @@ public class ReviewBoardController {
 	@RequestMapping("/modifyReview")
 	public String modify(ReviewBoardVO rbVO, @ModelAttribute("cri") Criteria cri, Model model) {
 		
-		rbVO = rbs.selectedReview(rbVO.getReview_no());
+		
+		System.out.println("여기서 페이지 번호는: " + cri.getPageNum());
+		rbVO = rbs.selectedReview(rbVO.getReview_no(), rbVO.getUser_id());
 		
 		model.addAttribute("review", rbVO);
 		

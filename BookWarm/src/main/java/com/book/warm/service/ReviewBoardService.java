@@ -40,8 +40,8 @@ public class ReviewBoardService {
 		return rbm.showBookThumbnail(isbn);
 	}
 
-	public ReviewBoardVO selectedReview(int review_no) {
-		return rbm.selectedReview(review_no);
+	public ReviewBoardVO selectedReview(int review_no, String user_id) {
+		return rbm.selectedReview(review_no, user_id);
 	}
 
 	public BookVO bookInfo(String isbn) {

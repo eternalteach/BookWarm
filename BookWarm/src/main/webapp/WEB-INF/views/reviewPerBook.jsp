@@ -230,7 +230,7 @@
                                         </div>
                                         <div class="post-inner">
                                             <div class="post-header">
-                                                <%-- <h2 class="title"><a href="/warm/reviewSelectOne?review_no=${vo.review_no}&isbn=${vo.isbn}">${vo.review_title}</a></h2> --%>
+                                                <%-- <h2 class="title"><a href="/warm/reviewSelectOne?user_id=${vo.user_id}&review_no=${vo.review_no}&isbn=${vo.isbn}">${vo.review_title}</a></h2> --%>
 												
 												<h2 class="title"><a class="move" href="${vo.review_no}">${vo.review_title}</a></h2>
 												
@@ -261,7 +261,7 @@
                                                     ${vo.review_content}
                                                 </p>
                                             </div>
-                                            <a class="btn v-btn standard white sf-icon-stroke" style="float:right" href="/warm/reviewSelectOne?review_no=${vo.review_no}&isbn=${vo.isbn}">
+                                            <a class="btn v-btn standard white sf-icon-stroke" style="float:right" href="/warm/reviewSelectOne?user_id=${vo.user_id}&review_no=${vo.review_no}&isbn=${vo.isbn}">
                                                 <i class="icon-arrow-32"></i><span class="text">Read more</span>
                                             </a>
                                         </div>

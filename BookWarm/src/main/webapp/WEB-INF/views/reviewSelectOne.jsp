@@ -587,7 +587,55 @@
 
                             <h3 class="blog-post-caption">${review.review_title}</h3>
                             
+                            <!-- 게시글 조회 화면에서 수정 / 삭제 / 목록으로 돌아가기 버튼 -->
+                            <!-- script를 통해 각각 버튼을 클릭했을 때 다른 action을 취하도록 한다. -->
                             
+                            <form id="operForm" action="reviewPerBook" method="get">
+                                	<input type='hidden' id='review_no' name='review_no' value='${review.review_no}'>
+                                	<input type='hidden' name='user_id' value='${review.user_id}'>
+                                	<input type='hidden' name='isbn' value='${review.isbn}'>
+                                	<input type='hidden' name='pageNum' value='${cri.pageNum}'>
+                                	<input type='hidden' name='amount' value='${cri.amount}'>
+                                	
+                                	<button type="submit" data-oper='modify' class="btn btn-outline-secondary">
+										<span class="text ls-1">
+										    수정하기
+										</span>
+									</button>
+									<button type="submit" data-oper='delete' class="btn btn-outline-secondary">
+										<span class="text ls-1">
+										    삭제하기
+										</span>
+									</button>
+									<button type="submit" data-oper='list' class="btn btn-outline-secondary">
+										<span class="text ls-1">
+										    목록으로
+										</span>
+									</button>
+                                	
+                                	
+		                            <%-- <a id="move" href="/warm/modifyReview?user_id=${review.user_id}&review_no=${review.review_no}">
+										<span class="text ls-1">
+								            수정하기
+								        </span>   
+									</a>
+									<a class="btn btn-outline-secondary" href="/warm/delete?isbn=${review.isbn}&user_id=${review.user_id}&review_no=${review.review_no}">
+										<span class="text ls-1">
+								            삭제하기
+								        </span>   
+									</a>
+									<button type="submit" class="btn btn-outline-secondary">
+										<span class="text ls-1">
+										    목록으로
+										</span>
+									</button> --%>
+                            </form>
+                            
+                            
+                            
+                            
+                            
+                            <%-- 
                             <a class="btn btn-outline-secondary" id="move" href="/warm/modifyReview?user_id=${review.user_id}&review_no=${review.review_no}">
 								<span class="text ls-1">
 						            수정하기
@@ -598,7 +646,7 @@
 						            삭제하기
 						        </span>   
 							</a>
-                            <form id='operForm' action="reviewPerBook" method="get">
+                            <form id="operForm" action="reviewPerBook" method="get">
                                 	<input type='hidden' id='review_no' name='review_no' value='${review.review_no}'>
                                 	<input type='hidden' name='user_id' value='${review.user_id}'>
                                 	<input type='hidden' name='isbn' value='${review.isbn}'>
@@ -609,7 +657,7 @@
 										    목록으로
 										</span>
 									</button>
-                            </form>
+                            </form> --%>
 
                             <div class="post-info clearfix">
                                 <span class="vcard author">
@@ -1061,19 +1109,78 @@
         <!--End Footer-Wrap-->
     </div>
     
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
     <script type="text/javascript">
     	$(document).ready(function() {
     		
+    		
+    		 /* <a class="btn btn-outline-secondary" id="move" href="/warm/modifyReview?user_id=${review.user_id}&review_no=${review.review_no}">
+		            수정하기
+			</a>
+			<a class="btn btn-outline-secondary" href="/warm/delete?isbn=${review.isbn}&user_id=${review.user_id}&review_no=${review.review_no}">
+		            삭제하기
+			</a>
+         <form id="operForm" action="reviewPerBook" method="get">
+             	<input type='hidden' id='review_no' name='review_no' value='${review.review_no}'>
+             	<input type='hidden' name='user_id' value='${review.user_id}'>
+             	<input type='hidden' name='isbn' value='${review.isbn}'>
+             	<input type='hidden' name='pageNum' value='${cri.pageNum}'>
+             	<input type='hidden' name='amount' value='${cri.amount}'>
+					<button type="submit" class="btn btn-outline-secondary">
+						    목록으로
+					</button>
+         </form> */
+    		
+    		
+    		
     		var operForm = $("#operForm");
     		
-    		// 수정 버튼 클릭시 페이지 정보, review_no, user_id를 끌고 modifyReview로.
-    		$("#move").on("click", function() {
+    		$('button').on("click", function(e) {
     			
     			e.preventDefault();
     			
-    			operForm.attr("action", "/warm/modifyReview");
+    			var operation = $(this).data("oper");
+    			console.log(operation);
+    			
+    			if(operation === 'remove') {
+    				// "삭제하기"
+    				// -> 요청할 주소 : delete
+    				// -> 넘겨야 하는 정보 : user_id, review_no(해당 게시물을 지우기 위함)
+    				//							isbn(삭제 후 reviewPerBook 페이지에서 책 리뷰를 조회하기 위함)
+    				operForm.attr("action", "delete");
+    				
+    			} else if (operation === 'modify') {
+    				// "수정하기"
+    				// -> 요청할 주소 : modifyReview
+    				// -> 넘겨야 하는 정보 : user_id, review_no(해당 게시물을 불러와 수정하기 위함)
+    				//							Criteria(pageNum, amount) (들어올 때의 페이지로 돌아가기 위함)
+    				operForm.attr("action", "modifyReview");
+    			} 
+    			
+    			// "목록으로"
+    			// -> 요청할 주소 : reviewPerBook
+    			// -> 넘겨야 하는 정보 : user_id, review_no(해당 게시물을 지우기 위함)
+    			//							Criteria(pageNum, amount) (들어올 때의 페이지로 돌아가기 위함)
+    			//							isbn(reviewPerBook 페이지에서 책 리뷰를 다시 조회하기 위함)
+    			
     			operForm.submit();
     		});
+    		
+    		// 수정 버튼 클릭시 페이지 정보, review_no, user_id를 끌고 modifyReview로.
+    		$("#move").on("click", function() {
+    			alert("jjj");
+    			console.log("${cri.pageNum}");
+    			e.preventDefault();
+    			alert("jjj2");
+    			//operForm.find("input[name='pageNum']").val($(this).attr("href"));
+    			operForm.attr("action", "/warm/modifyReview").attr("method","get");
+    			operForm.submit();
+    		});
+    		
+
+    		
     		
     		
     	});

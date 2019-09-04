@@ -18,7 +18,7 @@ public interface ReviewBoardMapper {
 
 	public BookThumbnailVO showBookThumbnail(String isbn);
 
-	public ReviewBoardVO selectedReview(int review_no);
+	public ReviewBoardVO selectedReview(int review_no, String user_id);
 
 	public BookVO bookInfo(String isbn);
 
