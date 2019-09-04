@@ -1,8 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
+		<!-- Hikari 설정 추가하므로 반드시 log4jdbc.log4j2.properties파일 추가해야한다.-->
+		<!-- /.hikariConfig (DB접속부 설정) -->
+		<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"></property>
+		<property name="username" value="book"></property>
+		<property name="password" value="warm"></property>
+		</bean>
+		<!-- ./hikariConfig (DB접속부 설정) -->
 		
+		<!-- /.HikariCP configuration -->
+		<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg ref="hikariConfig"/>
+		</bean>
+		<!-- ./HikariCP configuration -->
+		
+		<!-- /.sqlSessionFactory -->
+		<!-- 내부적으로 SQLSession이라는 것을 만들어 Connection을 생성하거나 원하는 SQL을 전달하고, 결과를 리턴받는 구조로 작성하게 된다.
+		스프링에 SqlSessionFactory를 등록하는 작업은 SqlSessionFactoryBean을 이용한다. 스프링과 연동작업을 처리하는 것은 mybatis-spring이다 -->
+		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- <property name="mapperLocations" value="classpath:/com/book/warm/mapper/*.xml"></property> -->
+		</bean>
+		<!-- ./sqlSessionFactory -->
+		
+		
+		<!-- /.mybatis -->
+		<!-- opg.zerock.mapper 패키지를 조사하도록 설정 -->
+		<mybatis-spring:scan base-package="com.book.warm.mapper"/>
+		<!-- ./mybatis -->
+		
+		<!-- 비즈니스 계층의 인터페이스와 구현클래스 작성된 것을 스프링 빈으로 인식하기 위해서 org.zerock.service패키지를 조사하도록 추가 -->
+		<!-- <context:component-scan base-package="com.book.warm.service"/> -->
 </beans>

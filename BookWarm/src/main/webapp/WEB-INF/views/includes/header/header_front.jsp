@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-    
-   <meta charset="utf-8">
+
+
+   <meta charset="UTF-8">
+
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <title>Vertex - Responsive HTML5 Bootstrap Template</title>
    <meta name="keywords" content="HTML5 Template" />
@@ -77,6 +79,26 @@
    <!-- Custom JS -->
    <script src="./resources/VertexEx/js/custom.js"></script>
 
+
    <!-- Style Swicher -->
    <!--<script src="vendor/style-switcher/style.switcher.js" id="styleSwitcherScript" data-base-path="" data-skin-src=""></script>
    <script src="vendor/style-switcher/style.switcher.localstorage.js"></script>-->
+
+   
+   
+   <!-- VerTextEX의 shop-single-product.html의 추가된 CSS -->
+   <!-- Vendor CSS -->
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Cabin:400,600,700" rel="stylesheet">
+   <link rel="stylesheet" href="./resources/VertexEx/vendor/bootstrap/css/glyphicon.css" />
+   <link href="./resources/VertexEx/vendor/light-slider/css/lightslider.css" rel="stylesheet" />
+    <!-- Theme CSS -->
+   <link href="./resources/VertexEx/css/shop.css" rel="stylesheet" />
+   <link href="./resources/VertexEx/css/bg-stylish.css" rel="stylesheet" />
+   <link href="./resources/VertexEx/css/streamline-icon.css" rel="stylesheet" />
+   <link href="./resources/VertexEx/css/font-icons.css" rel="stylesheet" />
+   <link href="./resources/VertexEx/css/responsive.css" rel="stylesheet" />
+   <!-- Vendor -->
+   <script src="./resources/Vertex/vendor/light-slider/js/lightslider.min.js"></script>
+   <!-- 끝  -->
+   
+

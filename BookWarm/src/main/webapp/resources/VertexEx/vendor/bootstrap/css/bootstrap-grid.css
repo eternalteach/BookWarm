@@ -115,7 +115,7 @@ html {
   }
 }
 
-.row {
+/* .row {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -125,7 +125,7 @@ html {
           flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px;
-}
+} */
 
 @media (min-width: 576px) {
   .row {
@@ -202,7 +202,7 @@ html {
   }
 }
 
-.col {
+ .col {
   -webkit-flex-basis: 0;
       -ms-flex-preferred-size: 0;
           flex-basis: 0;
@@ -211,7 +211,7 @@ html {
       -ms-flex-positive: 1;
           flex-grow: 1;
   max-width: 100%;
-}
+} 
 
 .col-auto {
   -webkit-box-flex: 0;
