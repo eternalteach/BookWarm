@@ -45,6 +45,13 @@
  	
  	</select>
  	
+ 	<select id="getTotalCount" resultType="int">
+ 		
+ 		select count(*) from review_board where isbn = #{param2} and user_id = #{param3} 
+ 		order by review_written_date desc
+ 	
+ 	</select>
+ 	
  	<select id="showBookThumbnail" resultType="com.book.warm.vo.BookThumbnailVO">
  		select img_src, book_title, writer_name
 		from book_cover bc, book b, writer w

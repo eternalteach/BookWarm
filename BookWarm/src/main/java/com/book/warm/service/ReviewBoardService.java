@@ -63,4 +63,9 @@ public class ReviewBoardService {
 		
 		return rbm.modifyReview(rbVO);
 	}
+	
+	public int getTotal(Criteria cri, String isbn, String user_id) {
+		
+		return rbm.getTotalCount(cri, isbn, user_id);
+	}
 }

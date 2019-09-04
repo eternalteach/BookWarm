@@ -55,7 +55,7 @@
                             	<li>
                         
                             		<!-- 작성 페이지. -->
-                            		<form action="modify">
+                            		<form id="operForm" action="modify">
 										<input type="hidden" name="user_id" value="${review.user_id}">
 										<input type="hidden" name="isbn" value="${review.isbn}">
                             			<input type="hidden" name="review_no" value="${review.review_no}">
@@ -83,18 +83,18 @@
                             				<tr>
                             					<td></td>
                             					<td>
-	                            					<button class="btn btn-outline-secondary">
+	                            					<button class="btn btn-outline-secondary" data-oper='modify' >
 								                      	<span class="text ls-1">
 						                            		수정하기
 							                                <i class="icon icon-pen-3"></i>
 						                            	</span>    
 								                    </button>
-								                    <a class="btn btn-outline-secondary" 
-								                    	href="/warm/reviewSelectOne?review_no=${review.review_no}&isbn=${review.isbn}&pageNum=${cri.pageNum}&amount=${cri.amount}">
-								                    	<span class="text ls-1">
-								                    		돌아가기${cri.pageNum}
-								                    	</span>
-								                    </a>
+								                    <button class="btn btn-outline-secondary" data-oper='list' >
+								                      	<span class="text ls-1">
+						                            		돌아가기
+							                                <i class="icon icon-pen-3"></i>
+						                            	</span>    
+								                    </button>
 								                    
 					                            </td>
                             				</tr>
@@ -103,20 +103,6 @@
                             		</form>
                             	</li>
                             
-                            
-	                            <!-- <!-- 감상 작성 버튼 추가 -->
-	                            <!-- <li class="v-blog-item col-sm-12">
-	                            <button class="btn btn-outline-secondary">
-	                            	<a href="">
-			                            
-			                            	<span class="text ls-1">
-			                            		Write Review
-				                                <i class="icon icon-pen-3"></i>
-			                            	</span>
-			                            
-	                            	</a>
-	                            </button>
-	                            </li> -->
                             
                             </ul>
 
@@ -270,6 +256,55 @@
         </div>
         <!--End Footer-Wrap-->
     </div>
+    
+    
+    <script type="text/javascript">
+	
+    $(document).ready(function() {
+    	
+    	var operForm = $("#operForm");
+		
+		$('button').on("click", function(e) {
+			
+			e.preventDefault();
+			
+			var operation = $(this).data("oper");
+			console.log(operation);
+        										  
+			if(operation === 'list') {
+			// "목록으로"
+			// -> 요청할 주소 : reviewPerBook
+			// -> 넘겨야 하는 정보 : user_id, review_no, isbn(해당 게시물을 다시 조회하기 위함)
+			//							Criteria(pageNum, amount) (들어올 때의 페이지로 돌아가기 위함)
+			//							isbn(reviewPerBook 페이지에서 책 리뷰를 다시 조회하기 위함)
+				
+				operForm.attr("action", "reviewSelectOne");
+			
+				/* var user_id = $("input[name='user_id']").clone();
+				var review_no = $("input[name='review_no']").clone();
+				var isbn = $("input[name='isbn']").clone();
+				var pageNum = $("input[name='pageNum']").clone();
+				var amount = $("input[name='amount']").clone();
+				
+				operForm.empty();
+				
+				operForm.append(userid);
+				operForm.append(review);
+				operForm.append(isbn);
+				operForm.append(pageNum);
+				operForm.append(amount); */
+			}
+			// "수정하기"
+			// -> 요청할 주소 : modify
+			// -> 넘겨야 하는 정보 : user_id, review_no, user_
+			//							Criteria(pageNum, amount) (들어올 때의 페이지로 돌아가기 위함)
+			operForm.submit();
+			
+			
+		});
+    });
+    
+    </script>
 
 
     <!-- Libs -->

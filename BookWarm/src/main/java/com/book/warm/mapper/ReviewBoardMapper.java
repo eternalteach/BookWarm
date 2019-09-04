@@ -28,5 +28,6 @@ public interface ReviewBoardMapper {
 
 	public int modifyReview(ReviewBoardVO rbVO);
 	
+	public int getTotalCount(Criteria cri, String isbn, String user_id);
 	
 }

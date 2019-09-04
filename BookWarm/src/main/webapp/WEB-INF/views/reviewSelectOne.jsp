@@ -613,51 +613,9 @@
 										</span>
 									</button>
                                 	
-                                	
-		                            <%-- <a id="move" href="/warm/modifyReview?user_id=${review.user_id}&review_no=${review.review_no}">
-										<span class="text ls-1">
-								            수정하기
-								        </span>   
-									</a>
-									<a class="btn btn-outline-secondary" href="/warm/delete?isbn=${review.isbn}&user_id=${review.user_id}&review_no=${review.review_no}">
-										<span class="text ls-1">
-								            삭제하기
-								        </span>   
-									</a>
-									<button type="submit" class="btn btn-outline-secondary">
-										<span class="text ls-1">
-										    목록으로
-										</span>
-									</button> --%>
                             </form>
                             
                             
-                            
-                            
-                            
-                            <%-- 
-                            <a class="btn btn-outline-secondary" id="move" href="/warm/modifyReview?user_id=${review.user_id}&review_no=${review.review_no}">
-								<span class="text ls-1">
-						            수정하기
-						        </span>   
-							</a>
-							<a class="btn btn-outline-secondary" href="/warm/delete?isbn=${review.isbn}&user_id=${review.user_id}&review_no=${review.review_no}">
-								<span class="text ls-1">
-						            삭제하기
-						        </span>   
-							</a>
-                            <form id="operForm" action="reviewPerBook" method="get">
-                                	<input type='hidden' id='review_no' name='review_no' value='${review.review_no}'>
-                                	<input type='hidden' name='user_id' value='${review.user_id}'>
-                                	<input type='hidden' name='isbn' value='${review.isbn}'>
-                                	<input type='hidden' name='pageNum' value='${cri.pageNum}'>
-                                	<input type='hidden' name='amount' value='${cri.amount}'>
-									<button type="submit" class="btn btn-outline-secondary">
-										<span class="text ls-1">
-										    목록으로
-										</span>
-									</button>
-                            </form> --%>
 
                             <div class="post-info clearfix">
                                 <span class="vcard author">
@@ -1115,26 +1073,6 @@
     <script type="text/javascript">
     	$(document).ready(function() {
     		
-    		
-    		 /* <a class="btn btn-outline-secondary" id="move" href="/warm/modifyReview?user_id=${review.user_id}&review_no=${review.review_no}">
-		            수정하기
-			</a>
-			<a class="btn btn-outline-secondary" href="/warm/delete?isbn=${review.isbn}&user_id=${review.user_id}&review_no=${review.review_no}">
-		            삭제하기
-			</a>
-         <form id="operForm" action="reviewPerBook" method="get">
-             	<input type='hidden' id='review_no' name='review_no' value='${review.review_no}'>
-             	<input type='hidden' name='user_id' value='${review.user_id}'>
-             	<input type='hidden' name='isbn' value='${review.isbn}'>
-             	<input type='hidden' name='pageNum' value='${cri.pageNum}'>
-             	<input type='hidden' name='amount' value='${cri.amount}'>
-					<button type="submit" class="btn btn-outline-secondary">
-						    목록으로
-					</button>
-         </form> */
-    		
-    		
-    		
     		var operForm = $("#operForm");
     		
     		$('button').on("click", function(e) {
@@ -1167,21 +1105,6 @@
     			
     			operForm.submit();
     		});
-    		
-    		// 수정 버튼 클릭시 페이지 정보, review_no, user_id를 끌고 modifyReview로.
-    		$("#move").on("click", function() {
-    			alert("jjj");
-    			console.log("${cri.pageNum}");
-    			e.preventDefault();
-    			alert("jjj2");
-    			//operForm.find("input[name='pageNum']").val($(this).attr("href"));
-    			operForm.attr("action", "/warm/modifyReview").attr("method","get");
-    			operForm.submit();
-    		});
-    		
-
-    		
-    		
     		
     	});
     </script>

@@ -41,11 +41,13 @@ public class ReviewBoardController {
 	// 책별 감상 목록
 	@RequestMapping("/reviewPerBook")
 	public String reviewPerBook(ReviewBoardVO rbVO, Criteria cri, Model model) {
-		System.out.println("===리뷰 퍼 북 진입===");
+
 		model.addAttribute("list", rbs.getListPerBook(rbVO.getIsbn(), rbVO.getUser_id(), cri));
 		model.addAttribute("thumbnail", rbs.showBookThumbnail(rbVO.getIsbn()));
-		model.addAttribute("pageMaker", new PageDTO(cri, 123));
+		int total = rbs.getTotal(cri, rbVO.getIsbn(), rbVO.getUser_id());
+		System.out.println("total : " + total);
 		
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		return "reviewPerBook";
 	}
 	
@@ -55,9 +57,6 @@ public class ReviewBoardController {
 										@RequestParam("user_id") String user_id,
 									    @RequestParam("isbn") String isbn, 
 									    @ModelAttribute("cri") Criteria cri, Model model) {
-		
-		System.out.println(cri.getPageNum());
-		System.out.println(cri.getAmount());
 		
 		model.addAttribute("review", rbs.selectedReview(review_no, user_id));
 		model.addAttribute("book", rbs.bookInfo(isbn));
@@ -98,8 +97,6 @@ public class ReviewBoardController {
 	@RequestMapping("/modifyReview")
 	public String modify(ReviewBoardVO rbVO, @ModelAttribute("cri") Criteria cri, Model model) {
 		
-		
-		System.out.println("여기서 페이지 번호는: " + cri.getPageNum());
 		rbVO = rbs.selectedReview(rbVO.getReview_no(), rbVO.getUser_id());
 		
 		model.addAttribute("review", rbVO);
@@ -108,11 +105,14 @@ public class ReviewBoardController {
 	}
 	
 	@RequestMapping("/modify")
-	public String modify(ReviewBoardVO rbVO, RedirectAttributes rttr) {
+	public String modify(ReviewBoardVO rbVO, Criteria cri, RedirectAttributes rttr) {
 		
 		rbs.modifyReview(rbVO);
+		rttr.addAttribute("user_id", rbVO.getUser_id());
 		rttr.addAttribute("review_no", rbVO.getReview_no());
 		rttr.addAttribute("isbn", rbVO.getIsbn());
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
 		
 		return "redirect:/reviewSelectOne";
 	}
