@@ -141,7 +141,7 @@
 						<ul class="nav nav-tabs nav-tabs-default nav-tabs-centered "
 							role="tablist">
 							<!-- isbn순 -->
-							<li class="nav-item"><a class="nav-link active ybaby" 
+							<li class="nav-item"><a class="nav-link active" 
 								id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a0" 
 								data-toggle="tab"
 								href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a00" role="tab"
@@ -149,19 +149,23 @@
 								aria-expanded="true">베스트셀러</a></li>
 								
 							<!-- 제목순 -->	
-							<li class="nav-item"><a class="nav-link ybaby"
+							<li class="nav-item"><a class="nav-link"
 								id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a1"
 								data-toggle="tab"
 								href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11" role="tab"
 								aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11"
 								aria-expanded="true">제목순</a></li>
 								
-			 				<li class="nav-item"><a class="nav-link "
-								id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a2"
-								data-toggle="tab"
-								href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" role="tab"
-								aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22"
-								aria-expanded="true">Events</a></li> 
+    						<li class="nav-item">
+                           	 <a class="nav-link " 
+                           	 id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a2" 
+                           	 data-toggle="tab" 
+                           	 href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" 
+                           	 role="tab" 
+                            	aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" 
+                           	 aria-expanded="true">Events</a>
+                        	</li>
+								
 						</ul>
 						<!-- ul끝  -->
 
@@ -288,11 +292,39 @@
 									<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
 									<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
 								</form> 
-								
-								
 							</div>
 							<!-- 제목순으로 불러오기 끝  -->
 							
+							<!-- test창  -->
+								 <div class="tab-pane fade " id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" role="tabpanel" aria-labelledby="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a2">
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <p>
+                                                    Aliquam erat volutpat. Etiam tortor sapien, elementum quis semper eu, convallis eget justo.
+                                                    Nulla facilisi. Curabitur cursus vestibulum turpis eget sagittis. Phasellus tempus semper
+                                                    tellus, sed ullamcorper libero sodales a. Fusce vulputate varius quam. Curabitur erat orci,
+                                                    gravida eu tempus sed, pretium non ante. Vestibulum augue nisi, vulputate pellentesque
+                                                    posuere id, gravida et est. Suspendisse vestibulum scelerisque metus, ut bibendum lorem
+                                                    pharetra nec. Phasellus vitae faucibus nisi. Aliquam erat volutpat. Etiam sed neque massa.
+                                                    Pellentesque at augue sed neque faucibus tincidunt sit amet nec nisl. Aliquam erat volutpat.
+                                                    Etiam tortor sapien, elementum quis semper eu, convallis eget justo. Nulla facilisi.
+                                                    Curabitur cursus vestibulum turpis eget sagittis.
+                                                </p>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquam massa quis
+                                                    mauris sollicitudin commodo venenatis ligula commodo. Sed blandit convallis dignissim.
+                                                    Pellentesque pharetra velit eu velit elementum et convallis erat vulputate. Sed in
+                                                    nulla ut elit mollis posuere. Praesent a felis accumsan neque interdum molestie ut id
+                                                    massa. In hac habitasse platea dictumst. Nulla ut lorem ante. In convallis, felis eget
+                                                    consequat faucibus, mi diam consequat augue, quis porta nibh leo a massa. Sed quam nunc,
+                                                    vulputate vel imperdiet vel, aliquet sit amet risus. Maecenas nec tempus velit. Praesent
+                                                    gravida mi et mauris sollicitu.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+							<!-- test창끝  -->
 							
 							
 						</div>
@@ -463,6 +495,9 @@
 			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 			actionForm.submit();
 			});
+		
+		
+		
 		
 		$(".ybaby").on("click", function(e) {
 			
