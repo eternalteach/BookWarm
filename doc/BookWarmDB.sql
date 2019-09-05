@@ -202,8 +202,7 @@ user_addr_detail varchar2(100),
 user_join_date date,
 user_level varchar2(10),
 user_tot_price number(30,0),
-user_point number(20,0),
-user_agree char(1)
+user_point number(20,0)
 );
 
 --친구
