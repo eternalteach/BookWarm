@@ -4,10 +4,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="includes/header/header-transparent-navonly.jsp"%>
 
-
+<br/>
+<br/>
+<br/>
 
 <div class="page has-sidebar has-right-sidebar bordered">
-
 	<div class="page-inner">
 		<div class="container">
 			<div class="row">

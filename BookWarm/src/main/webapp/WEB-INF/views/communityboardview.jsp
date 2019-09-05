@@ -12,12 +12,6 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3 left-side-sidebar pt-70">
-					<aside class="sidebar">
-						<!-- side menu 삽입 -->
-						<%@ include file="includes/record/record.jsp"%>
-					</aside>
-				</div>
 
 				<div class="col-md-8 right-side-sidebar v_blog-medium pt-70">
 
@@ -50,8 +44,7 @@
 								<tr>
 									<td colspan="2"><a href="communityboardmodify?comm_no=${communityBoardOne.comm_no}">수정</a>
 										&nbsp;&nbsp; <a href="communityboard">목록보기</a> 
-										&nbsp;&nbsp; <a
-										href="reply_view?comm_no=${communityBoardOne.comm_no}">답변</a></td>
+										&nbsp;&nbsp; <a href="communityboardreplywrite?comm_no=${communityBoardOne.comm_no}">답변</a></td>
 								</tr>
 						</table>
 					</div>

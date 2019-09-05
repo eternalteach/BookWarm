@@ -75,10 +75,28 @@ public class BoardCommunityController {
 		System.out.println(modifyCommunityBoardOne);
 		return "redirect:communityboard";
 	}
+	@RequestMapping(value = "/communityBoardSaveReplyWrite", method = RequestMethod.POST)
+	public String communityBoardSaveReplyWrite(CommunityBoardVO communityBoardVO) throws Exception {
+		log.info("===== communityBoardSaveReplyWrite() =====");
+		communityBoardMapper.insertCommunityBoardReplyWrite(communityBoardVO);
+		communityBoardMapper.replyshape(communityBoardVO);
+		
+		return "redirect:communityboard";
+	}
+	
+	@RequestMapping(value = "/communityboardreplywrite", method = RequestMethod.GET)
+	public String communityboardreplywrite(String comm_no,Model model ) throws Exception {
+		log.info("===== communityboardreplywrite() =====");
+		CommunityBoardVO communityBoardVO=communityBoardMapper.getCommunityBoardOne(comm_no);
+		model.addAttribute("communityBoardVO",communityBoardVO);
+		//받아와야 할 정보, 원 글의 group, 
+		return "/communityboardreplywrite";
+	}
 	@RequestMapping(value = "/communityBoardSaveWrite", method = RequestMethod.POST)
 	public String communityBoardSaveWrite(CommunityBoardVO communityBoardVO) throws Exception {
 		log.info("===== communityBoardSaveWrite() =====");
 		communityBoardMapper.insertCommunityBoardWrite(communityBoardVO);
 		return "redirect:communityboard";
 	}
+
 }

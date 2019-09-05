@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.book.warm.mapper.CommunityBoardMapper"> 
 	<select id='getCommunityBoardList' resultType="com.book.warm.vo.CommunityBoardVO">
-		select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_group,comm_step,comm_indent from community_board order by comm_no desc
+		select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_group,comm_step,comm_indent from community_board order by comm_group  desc, comm_step asc
 	</select>
 	<select id='getCommunityBoardOne' resultType="com.book.warm.vo.CommunityBoardVO">
 		select * from community_board where comm_no=#{comm_no}
@@ -21,4 +21,12 @@
 		insert into community_board (comm_no, user_id, comm_subject, comm_title, comm_content, comm_clicked, comm_group,comm_step,comm_indent)
 VALUES (community_board_seq.nextval, #{user_id}, #{comm_subject}, #{comm_title}, #{comm_content} ,0, community_board_seq.currval, 0, 0)
 	</insert>
+	
+	<insert id='insertCommunityBoardReplyWrite'>
+		insert into community_board (comm_no, user_id, comm_subject, comm_title, comm_content, comm_clicked, comm_group,comm_step,comm_indent)
+VALUES (community_board_seq.nextval, #{user_id}, #{comm_subject}, #{comm_title}, #{comm_content} ,0, #{comm_group}, #{comm_step}+1, #{comm_indent}+1)
+	</insert >
+	<update id='replyshape'>
+	update community_board set comm_step=comm_step+1 where comm_group=#{comm_group} and comm_step>#{comm_step}
+	</update>
 </mapper>

@@ -10,9 +10,13 @@ public interface CommunityBoardMapper {
 
 	public CommunityBoardVO getCommunityBoardOne(String comm_no);
 
-	public Integer getCommunityBoardOneDelete(String comm_no);
+	public int getCommunityBoardOneDelete(String comm_no);
 
-	public Integer modifyCommunityBoardOne(CommunityBoardVO communityBoardVO);
+	public int modifyCommunityBoardOne(CommunityBoardVO communityBoardVO);
 
-	public Integer insertCommunityBoardWrite(CommunityBoardVO communityBoardVO);
+	public int insertCommunityBoardWrite(CommunityBoardVO communityBoardVO);
+
+	public int insertCommunityBoardReplyWrite(CommunityBoardVO communityBoardVO);
+	
+	public int replyshape(CommunityBoardVO communityBoardVO);
 }
