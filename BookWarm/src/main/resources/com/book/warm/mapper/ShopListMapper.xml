@@ -103,6 +103,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
               		and writer.writer_no = book.writer_no
                 	and book.translator_no = translator.translator_no
                		and book.isbn = category.isbn    
-        and book.isbn > 0
 	</select>
 </mapper>

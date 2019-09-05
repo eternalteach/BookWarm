@@ -8,7 +8,7 @@ public class Criteria {
 	//생성자
 	public Criteria() {
 		//1페이지 10개 지정
-		this(1,12);
+		this(1,6);
 	}
 	
 	

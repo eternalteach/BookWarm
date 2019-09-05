@@ -26,6 +26,10 @@ public class ShopListController {
 		//model.addAttribute("list", shoplistservice.shoplist());
 		//model.addAttribute("list_title", shoplistservice.shoplist2());
 		
+		
+		
+		 System.out.println(criteria.getAmount() + " : "+ criteria.getPageNum());
+		
 		//∆‰¿Ã¬° √≥∏Æ
 		model.addAttribute("shoplistpage", shoplistservice.shoplistpage(criteria));
 		model.addAttribute("shoplistpage2", shoplistservice.shoplistpage2(criteria));
@@ -35,6 +39,8 @@ public class ShopListController {
 		System.out.println("≈‰≈ª:"+total);
 		
 		model.addAttribute("pageMaker", new PagingBoardVO(criteria, total));
+		model.addAttribute("pageMaker2", new PagingBoardVO(criteria, total));
+		
 		
 		System.out.println("list:=====" + criteria);
 		return "shop_list";

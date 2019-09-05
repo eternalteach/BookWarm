@@ -135,7 +135,7 @@
 							<h3>Centered</h3>
 						</div>
 					</div>
-					
+
 					<!-- 책 정렬 제목  -->
 					<div class="col-sm-12">
 						<ul class="nav nav-tabs nav-tabs-default nav-tabs-centered "
@@ -151,11 +151,11 @@
 							<!-- 제목순 -->	
 							<li class="nav-item"><a class="nav-link"
 								id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a1"
-								data-toggle="tab"
-								href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11" role="tab"
+								data-toggle="tab"								
+								href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11" role="tab" 
 								aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11"
 								aria-expanded="true">제목순</a></li>
-								
+							<!-- test//아직 아무것도 없음 -->
     						<li class="nav-item">
                            	 <a class="nav-link " 
                            	 id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a2" 
@@ -249,7 +249,7 @@
 												<div class="product-media">
 													<div class="img-wrap first-image">
 														<!-- 책 이미지 누르면 책 상세 페이지로 이동 -->
-														<a href="shop_product?isbn=${shop_title.isbn}"><img src="${shop_title.book_img}"></a>
+														<a href="shop_product?isbn=${shop_title.isbn}&writer_name=${shop_title.writer_name}"><img src="${shop_title.book_img}"></a>
 													</div>
 												</div>
 
@@ -268,7 +268,7 @@
 								
 								
 								 <!-- 제목순 페이징 처리 시작 -->
-							<nav aria-label="Page navigation example">
+								<nav aria-label="Page navigation example">
 								<ul class="pagination justify-content-center">
 									<c:if test="${pageMaker.prev}">
 									<li class="page-item disabled">
@@ -290,7 +290,7 @@
 								
 								<form id='actionForm' action="/warm/shop_list" method='get'>
 									<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
-									<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
+									<input type='hidden' name='amount' value='${pageMaker2.cri.amount }'>
 								</form> 
 							</div>
 							<!-- 제목순으로 불러오기 끝  -->
@@ -310,9 +310,12 @@
                                         </div>
                                     </div>
 							<!-- test창끝  -->
-							
-							
 						</div>
+						<!-- 책 불러오는 리스트 끝 -->
+						
+						
+						
+						
 					</div>
 				</div>
 				<!--End Horizontal Tab - Clean-->
@@ -468,8 +471,10 @@
 	
 	<!-- 이게있어야 스크립트 작동ㅠㅠ -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	
 	<!-- 페이징 스크립트 -->
 	<script type="text/javascript">
+	
 		$(document).ready(function(){
 		var actionForm = $("#actionForm");
 	
@@ -480,23 +485,6 @@
 			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 			actionForm.submit();
 			});
-		
-		
-		
-		
-		$(".ybaby").on("click", function(e) {
-			
-			e.preventDefault();
-			$('.nav-link').removeClass('active');
-			/* $(this).addClass('active');
-			
-			$('.tab-pane.active').removeClass('active');
-			$('.tab-pane').addClass('active'); */
-			
-			actionForm.find("input[name='pageNum']").val("1");
-			actionForm.submit();
-		});
-			 
 		
 	});
 	</script>

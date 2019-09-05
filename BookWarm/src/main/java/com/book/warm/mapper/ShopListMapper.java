@@ -28,4 +28,5 @@ public interface ShopListMapper {
 	
 	
 	public int gettotalcount(Criteria criteria);
+	
 }

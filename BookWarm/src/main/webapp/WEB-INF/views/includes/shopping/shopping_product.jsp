@@ -53,12 +53,12 @@
  						 <p>${shop_product.translator_name}&nbsp역</p>
                         </div>
 
-                        <form class="cart" method="get" enctype="multipart/form-data">
+                        <form id="qq" class="cart" method="get" enctype="multipart/form-data">
                            <div class="quantity">
-                              <input type="text" name="quantity" value="1" title="Qty" class="input-text qty text">
+                              <input type="text" name="quantity" value="1" title="Qty" class="input-text qty text" id="num">
                               <div class="qty-adjust">
-                                 <a class="qty-plus" href="#" ><i class="fa fa-chevron-up"></i></a>
-                                 <a class="qty-minus" href="#" ><i class="fa fa-chevron-down"></i></a>
+                                 <i class="fa fa-chevron-up qty-plus" id="plus"></i>
+                                 <i class="fa fa-chevron-down qty-minus" id="minus"></i>
                               </div>
                            </div>
 
@@ -79,6 +79,7 @@
                        
 
 
+            		    <!-- 줄거리/목차부분  -->
                         <div class="clearfix">
                            <div class="tab-wrap clean-tab">
                               <ul class="nav nav-tabs" role="tablist">
@@ -89,7 +90,6 @@
                                     <a class="nav-link" data-toggle="tab" href="#Services" role="tab">목차</a>
                                  </li>
                               </ul>
-
                               <div class="tab-content">
                                  <div class="tab-pane active" id="About" role="tabpanel">
                                     <p>${shop_product.book_intro}</p>
@@ -98,43 +98,15 @@
                                     <table class="table table-striped">
                                        <tbody>
                                           <tr>
-                                             <td>
-                                                1
-                                             </td>
-                                             <td>
-                                                목차                                             </td>
-                                             
-                                             <td>
-                                                @mdo
-                                             </td>
+                                             <td>1</td>
+                                             <td>목차</td>
+                                             <td>@mdo</td>
                                           </tr>
                                           <tr>
-                                             <td>
-                                                2
-                                             </td>
-                                             <td>
-                                                Jacob
-                                             </td>
-                                             <td>
-                                                Thornton
-                                             </td>
-                                             <td>
-                                                @fat
-                                             </td>
-                                          </tr>
-                                          <tr>
-                                             <td>
-                                                3
-                                             </td>
-                                             <td>
-                                                Larry
-                                             </td>
-                                             <td>
-                                                the Bird
-                                             </td>
-                                             <td>
-                                                @twitter
-                                             </td>
+                                             <td>2</td>
+                                             <td>Jacob</td>
+                                             <td>Thornton</td>
+                                             <td>@fat</td>
                                           </tr>
                                        </tbody>
                                     </table>
@@ -142,6 +114,7 @@
                               </div>
                            </div>
                         </div>
+                       <!-- 줄거리/목차 끝  -->
                      </div>
                   </div>
                </div>
@@ -203,26 +176,39 @@
               </div>
          </div>
          
+<!--          
+                            <form class="cart" method="get" enctype="multipart/form-data">
+                           <div class="quantity">
+                              <input type="text" name="quantity" value="1" title="Qty" class="input-text qty text" id="num">
+                              <div class="qty-adjust">
+                                 <i class="fa fa-chevron-up qty-plus" id="plus"></i>
+                                 <i class="fa fa-chevron-down qty-minus" id="minus"></i>
+                              </div>
+                           </div>
+        </form> -->
          
-         <script>
-         $(function(){ 
-        	 	
-        	  $('.qty-plus').click(function(){ 
-        	    var n = $('.qty-plus').index(this);
-        	    var num = $(".num:eq("+n+")").val();
-        	    num = $(".num:eq("+n+")").val(num*1+1); 
-        	  });
-        	  
-        	  console.log('click');
-        	  $('.qty-minus').click(function(){ 
-        	    var n = $('.qty-minus').index(this);
-        	    var num = $(".num:eq("+n+")").val();
-        	    num = $(".num:eq("+n+")").val(num*1-1); 
-        	  });
-        	}) 
+         
+        <script type="text/javascript">
+         /* 수량올리기 */
+ 		$(document).ready(function(){
+ 			var qq = $("#qq");
+ 		
+ 			$('#plus').on("click", function(){
+ 			
+ 				 console.log('click');
+
+ 				 var q= $('#num').attr('value', 2);
+ 				 alert(q);
+ 				
+ 				  
+ 				  
+ 				 
+ 				}); 
+ 			 
+ 		});
          </script>
-         
-         
+          
+          
          
          
 </body>
