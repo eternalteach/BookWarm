@@ -186,10 +186,10 @@ isbn varchar2(20), --fk설정하기
 /////////////////////////////////////////////////////cart_cnt number(20)컬럼 제거
 ---------------------------------------------
 
---------------- user ---------------
+--------------- user ---------------(임지현)
 create table user_info(
-userid varchar2(20) primary key,
-userpw varchar2(20) not null,
+user_id varchar2(20) primary key,
+user_pw varchar2(20) not null,
 user_nickname varchar2(20),
 user_name varchar2(20),
 user_bday date,
