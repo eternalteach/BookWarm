@@ -25,8 +25,8 @@ public class ShopController {
 	@Inject
 	ShopBoardService service;
 	
-	@RequestMapping("/shop-cart")
-	public String shop_cart(HttpServletRequest req, Model model) {
+	@RequestMapping("/cart")
+	public String cart(HttpServletRequest req, Model model) {
 		
 		// url에서 user_id를 받아온다.
 		String user_id = req.getParameter("user_id");
@@ -36,6 +36,7 @@ public class ShopController {
 		if(isbn != null) 
 			service.removeCart(user_id, isbn);
 		System.out.println(user_id);
+		
 		// 장바구니 화면에 그냥 접속한 경우
 		List<CartVO> list = service.cartList(user_id);
 		
@@ -52,18 +53,22 @@ public class ShopController {
 		
 		service.updateCnt(cart_cnt, cart_no);
 		
-		return "redirect:shop-cart?user_id="+user_id;
+		return "redirect:cart?user_id="+user_id;
 	}
 	
 	@RequestMapping("/cntDown")
 	public String cntDown(HttpServletRequest req, Model model) {
-		int cart_cnt = Integer.parseInt(req.getParameter("cart_cnt"))-1;
-		String cart_no = req.getParameter("cart_no");
+		int cart_cnt = Integer.parseInt(req.getParameter("cart_cnt"));
 		String user_id = req.getParameter("user_id");
 		
-		service.updateCnt(cart_cnt, cart_no);
+		// 수량이 0 이상(1,2,3,...)일 경우에만 줄일 수 있다.
+		if(cart_cnt>0) {
+			cart_cnt -= 1;
+			String cart_no = req.getParameter("cart_no");
+			service.updateCnt(cart_cnt, cart_no);
+		}
 		
-		return "redirect:shop-cart?user_id="+user_id;
+		return "redirect:cart?user_id="+user_id;
 	}
 	
 	@RequestMapping("/charge")
@@ -88,5 +93,6 @@ public class ShopController {
 		
 		return "/shop-charge";
 	}
+	
 	
 }

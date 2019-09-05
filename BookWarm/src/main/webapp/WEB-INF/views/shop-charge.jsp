@@ -9,7 +9,7 @@
 </head>
 <body>
 	<%@ include file="./includes/header/shopHeader/shopHeaderNav.jsp"%>
-	<%@ include file="./includes/content/shopChargePage.jsp"%>
+	<%@ include file="./includes/content/shopContent/shopChargePage.jsp"%>
 	<%@ include file="./includes/footer/shopFooter/shopFooterNav.jsp"%>	
 </body>
 </html>

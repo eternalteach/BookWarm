@@ -1,9 +1,4 @@
-﻿<!DOCTYPE html>
-<% String path = request.getContextPath(); %>
-<html lang="en">
-<head>
-</head>
-<body>
+﻿<% String path1 = request.getContextPath(); %>
 
    <div class="wrapper">
       <div class="page has-sidebar has-right-sidebar bordered">
@@ -21,7 +16,7 @@
                </div>
             </div>
          </section>
-		<form action="<%=path%>/shop/charge" method="get" id="sendForm">
+		<form action="<%=path1%>/shop/charge" method="get" id="sendForm">
          <div class="page-inner no-border">
 
             <section class="section-primary main-color">
@@ -75,9 +70,9 @@
 											<!-- 수량 -->
 		                                    <td class="cart-product-quantity">
 		                                       <div class="form-group">
-		                                       	  <a href="<%=path %>/shop/cntDown?user_id=${vo.user_id}&cart_no=${vo.cart_no}&cart_cnt=${vo.cart_cnt}">-&nbsp&nbsp&nbsp</a>
+		                                       	  <a href="<%=path1 %>/shop/cntDown?user_id=${vo.user_id}&cart_no=${vo.cart_no}&cart_cnt=${vo.cart_cnt}">-&nbsp&nbsp&nbsp</a>
 		                                       	  ${vo.cart_cnt}
-		                                       	  <a href="<%=path %>/shop/cntUp?user_id=${vo.user_id}&cart_no=${vo.cart_no}&cart_cnt=${vo.cart_cnt}">&nbsp&nbsp&nbsp+</a>
+		                                       	  <a href="<%=path1 %>/shop/cntUp?user_id=${vo.user_id}&cart_no=${vo.cart_no}&cart_cnt=${vo.cart_cnt}">&nbsp&nbsp&nbsp+</a>
 		                                          <%-- <input type="number" class="form-control cnt" value="${vo.cart_cnt}"> --%>
 		                                       </div>
 		                                    </td>
@@ -172,6 +167,3 @@
          
       </div>
    </div>
-   <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-</body>
-</html>

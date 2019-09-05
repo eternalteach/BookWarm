@@ -1,4 +1,3 @@
-
 <%
 	String context = request.getContextPath();
 %>
@@ -72,6 +71,9 @@
 	href="<%=context%>/resources/VertexEx/smartforms/Templates/css/smart-forms.css"
 	rel="stylesheet" />
 
+<!-- Current Page CSS -->
+   <link href="<%=context%>/resources/VertexEx/smartforms/Templates/css/smart-forms.css" rel="stylesheet" />
+
 <!-- Theme Custom CSS -->
 <link rel="stylesheet"
 	href="<%=context%>/resources/VertexEx/css/custom.css">
@@ -120,6 +122,7 @@
 <script
 	src="<%=context%>/resources/VertexEx/vendor/lite-tooltip/js/litetooltip.js"></script>
 <script src="<%=context%>/resources/VertexEx/js/theme-plugins.js"></script>
+<script src="<%=context%>/resources/VertexEx/vendor/smoothscroll/smooth.scroll.min.js"></script>
 
 <!-- Smart Form Elements -->
 <script
@@ -406,10 +409,9 @@
 		text-align: center;
 	}
 </style>
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <script>
 
-	
-	
 	$(document).ready(function() {
 
 		// 처음에 최종금액란, subTotal에 뿌려줄 금액
@@ -533,66 +535,72 @@
 </script>
 <!-- /shopContent.jsp에서 사용 -->
 
-<!-- shopChargePage.jsp에서 사용 -->
-<!-- 다음 주소 api -->
+<!-- shopChargePage.jsp에서 사용(daum 주소 api) -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
-	//해당 코드는 사용자가 클릭한것을 반환해준다 (도로명 클릭시 도로명 반환,지번 클릭시 지번반환)
-	//기본적으로 다음 API는 (시,구,동만 반환해준다 상세정보 반환X) 하지만 풀주소는 반환해준다 
-	//따라서 풀주소로 시,구,동,상세주소를 파싱해주자..
-    function getAddressInfo(){
+    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+    function sample4_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
-                var value;
-                var jusoSangsae="";
-                var str = data.jibunAddress;   // 풀주소 저장
-                str = str.split(" ");          // 공백으로 짤라준다
- 
-                // -> 공백으로 짜르는 이유는 해당 API에서 (서울특별시 강남동 강남구99-9) 이런식으로 띄어쓰기로 시 군 구 를 반환해주기 때문.
-                // -> 서울특별시 강남동 강남구99-9를 띄어쓰기로 파싱하면 {"서울특별시","강남동","강남구","99-9"} 이런으로 파싱된다                
- 
- 
-                if(data.userSelectedType == "J"){   // 사용자가 지번을 클릭했다면
-                    for(var i =0;i<str.length;i++){
-                        if(str[i]==data.bname){     //  data.bname 즉 동정보하고 str[i]가 동일 문자일시
-                            value=i;                // 그위치를 저장한다
-                        }
-                    }
-                }else{
-                    str = data.roadAddress;        // 사용자가 도로명을 클릭했다면
-                    str = str.split(" ");         
-                    for(var i=0;i<str.length;i++){
-                        if(str[i]==data.roadname){ // data.roadname 즉 도로명의 동정보하고 str[i]가 동일 문자일시
-                            value=i;               // 그위치를 저장한다
-                        }
-                    }
+                // data는 사용자가 선택한 주소 정보를 담고 있는 객체.
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var roadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 참고 항목 변수
+
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
                 }
- 
-                for(var i=value;i<str.length;i++){  // 동위치부터 끝까지
-                    jusoSangsae = jusoSangsae+str[i];
-                    // 지번주소 기준으로 설명을 덧붙이자면.
-                    // 풀주소를 띄어쓰기로 split시 {"서울특별시","강남동","강남구","99-9"} 이렇게 나온다
-                    // 내가 하고자 했던것은 "강남구"의 위치를 찾은뒤 그위치부터 끝까지 출력한것이다
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                 }
- 
- 
- 
-                alert(data.sido); //서울특별시
-                alert(data.sigungu); // 은평구
-                alert(jusoSangsae ); // 갈현1동 xxx-xxx 3층
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr  + ')';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample4_postcode').value = data.zonecode;
+                document.getElementById("sample4_roadAddress").value = roadAddr;
+                document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
                 
-            },
-        shorthand : false
-     	// -> 해당 옵션은 기본적으로 true이며, true로 지정시 축약형 주소가 나옴(서울특별시 -> 서울)
+                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+                if(roadAddr !== ''){
+                    document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+                } else {
+                    document.getElementById("sample4_extraAddress").value = '';
+                }
+
+                var guideTextBox = document.getElementById("guide");
+                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                if(data.autoRoadAddress) {
+                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                    guideTextBox.style.display = 'block';
+
+                } else if(data.autoJibunAddress) {
+                    var expJibunAddr = data.autoJibunAddress;
+                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                    guideTextBox.style.display = 'block';
+                } else {
+                    guideTextBox.innerHTML = '';
+                    guideTextBox.style.display = 'none';
+                }
+            }
         }).open();
     }
-
 </script>
 <!-- /shopChargePage.jsp에서 사용 -->
 
 
 <!-- Theme Initialization -->
 <script src="<%=context%>/resources/VertexEx/js/theme.js"></script>
+<%-- <script src="<%=context%>/resources/Vertex/js/theme.js"></script> --%>
 
 <!-- Custom JS -->
 <script src="<%=context%>/resources/VertexEx/js/custom.js"></script>
