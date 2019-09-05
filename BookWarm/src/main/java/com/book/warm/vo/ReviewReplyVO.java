@@ -2,9 +2,10 @@ package com.book.warm.vo;
 
 import java.sql.Timestamp;
 
+
 public class ReviewReplyVO {
 	
-	private int review_re_nol;
+	private int review_re_no;
 	private int review_no;
 	private String user_id;
 	private String review_re_content;
@@ -17,21 +18,21 @@ public class ReviewReplyVO {
 	}
 	
 	
-	public ReviewReplyVO(int review_re_nol, int review_no, String user_id, String review_re_content,
+	public ReviewReplyVO(int review_re_no, int review_no, String user_id, String review_re_content,
 			Timestamp review_re_written_date, Timestamp review_re_modified_date) {
 		super();
-		this.review_re_nol = review_re_nol;
+		this.review_re_no = review_re_no;
 		this.review_no = review_no;
 		this.user_id = user_id;
 		this.review_re_content = review_re_content;
 		this.review_re_written_date = review_re_written_date;
 		this.review_re_modified_date = review_re_modified_date;
 	}
-	public int getReview_re_nol() {
-		return review_re_nol;
+	public int getReview_re_no() {
+		return review_re_no;
 	}
-	public void setReview_re_nol(int review_re_nol) {
-		this.review_re_nol = review_re_nol;
+	public void setReview_re_no(int review_re_no) {
+		this.review_re_no = review_re_no;
 	}
 	public int getReview_no() {
 		return review_no;

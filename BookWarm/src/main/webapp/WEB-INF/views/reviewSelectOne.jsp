@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
@@ -735,11 +735,13 @@
                                 <h3 class="v-heading"><span>3 Comments</span></h3>
 
                                 <ul class="media-list">
-                                	<%-- <c:forEach items="${replies}" var="reply">  
-                                    <li class="media">
+                                
+                                	<%-- <c:forEach items="${replies}" var="reply">
+                                    <li class="media" data-review_re_no='12'>
                                         <a class="pull-left" href="#">
                                             <img class="media-object" src="./resources/Vertex/img/team/t5.png">
                                         </a>
+                                        
                                         <div class="media-body">
                                             <h4 class="media-heading">${reply.user_id}<span class="date">${reply.review_re_written_date}</span> <span><a class="reply-link" href="#">Reply</a> </span></h4>
                                             <p>Cras sit amet nibh libero, in gravida nulla Cras purus odio, in vulputate at, tempus viverra turpis.</p>
@@ -753,10 +755,27 @@
                             <div class="post-block-wrap" id="comment-area">
 
                                 <h3 class="v-heading"><span>Leave a comment</span></h3>
-                                <form action="#" method="post">
+                                <form action="/warm/replies/new" method="post">
                                     <div class="form-group">
                                         <div class="row">
+                                        	<!-- 넘겨줄 값은 감상번호와 작성자...(user_id)? -->
+                                        
+                                        	<!-- 포스트를 불러올 때 리뷰 번호, 유저아이디로 select했는데 아래 댓글을 달 때 user_id는 다른 user_id????? -->
+                                        	<!-- 다른 이름으로 해서 불러올까요? 여기에서의 댓글은 로그인된 아이디를 불러오고 리뷰 불러오는 아이디는 넘어온 값. -->
+                                        	<div class="col-sm-4">
+                                                <!-- <input type="hidden" value="" maxlength="100" placeholder="user_id" class="form-control" name="user_id" id="name"> -->
+                                                <input type="hidden" value="${review.review_no}" maxlength="100" class="form-control" name="review_no">
+                                            </div>
+                                            
+                                            <!-- 나중에 로그인과 연동해 처리하고 일단은 -->
                                             <div class="col-sm-4">
+                                                <label>Your ID <span class="required">*</span></label>
+                                                <input type="text" value="" maxlength="100" placeholder="Your ID" class="form-control" name="user_id" id="name">
+                                            </div>
+                                            
+                                        
+	                                        <!-- 이름/ 이메일/ 홈페이지 필요 없을 듯 -->
+                                            <!-- <div class="col-sm-4">
                                                 <label>Your name <span class="required">*</span></label>
                                                 <input type="text" value="" maxlength="100" placeholder="Your name" class="form-control" name="name" id="name">
                                             </div>
@@ -767,13 +786,14 @@
                                             <div class="col-sm-4">
                                                 <label>Website</label>
                                                 <input type="text" value="" placeholder="Website" maxlength="100" class="form-control" name="website" id="website">
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <label>Comment <span class="required">*</span></label>
+                                            	<!-- 지금대로면 딱히 레이블이 필요 없음 -->
+                                                <!-- <label>Comment <span class="required">*</span></label> --> 
                                                 <textarea maxlength="5000" rows="10" placeholder="Comment" class="form-control" name="comment" id="comment"></textarea>
                                             </div>
                                         </div>
@@ -1067,11 +1087,97 @@
         <!--End Footer-Wrap-->
     </div>
     
-    
+    // jQuery 사용을 위해 cdn 추가
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     
+    
+    // 댓글 처리를 위한 reply.js 추가
+    <script type="text/javascript" src = "/warm/resources/Vertex/js/reply.js"></script>
+    
+    <script type="text/javascript" >
+    
+    	console.log("====================== js test =================");
+			
+		var review_no_value = '<c:out value="${review.review_no}"/>';
+		var replyUL = $(".media-list");	
+		
+		showList(1);
+		
+		function showList(page) {
+			
+			replyService.getList({review_no:review_no_value, page: page || 1}, function(list) {
+				
+				var str = "";
+				if(list == null || list.length == 0) {
+					replyUL.html("");
+					return;
+				}
+				for(var i=0, len = list.length || 0; i<len; i++) {
+					
+					str += "<li class='media' data-review_re_no='" + list[i].review_re_no+"'>";
+					str += "	<div><div class='media-body'><strong class='media-heading'>" + list[i].user_id + "</strong>";
+					str += "		<small class='date'>" + replyService.displayTime(list[i].review_re_written_date) + "</small></div>";
+					str += "		<p>" + list[i].review_re_content + "</p></div></li>";
+				}
+				
+				replyUL.html(str);
+			}); // end function
+		} //end showList
+		
+		
+		
+		
+		/* //for replyService add test
+		replyService.add(
+			{review_re_content:"JS Test", user_id:"누구게", review_no : review_no_value}
+			,
+			function(result) {
+				alert("result: " + result);
+			}
+		);
+		
+		//for replyService getList test
+		replyService.getList({review_no : review_no_value, page:1}, function(list){
+			
+			for(var i=0, len = list.length||0; i<len; i++) {
+				console.log(list[i]);
+			}
+		});
+		
+		//for replyService remove test
+		replyService.remove(2, function(count) {
+			
+			console.log(count);
+			
+			if(count === "success") {
+				alert("Removed");
+			}
+		}, function(err) {
+			alert('Error');
+		}); 
+		
+		//for replyService modify test
+		replyService.update({
+			review_re_no : 14,
+			review_no : review_no_value,
+			review_re_content : "수정합니다ㅏㅏㅏㅏㅏㅏ"
+		}, function(result) {
+			alert("수정 완료");
+		}); 
+		
+		//for replyService get test
+		replyService.get(10, function(data) {
+			console.log(data);
+		});*/
+		
+		
+    	
+    </script>	
+    	
+    	
     <script type="text/javascript">
     	$(document).ready(function() {
+    		
     		
     		var operForm = $("#operForm");
     		
