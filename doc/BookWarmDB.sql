@@ -40,17 +40,17 @@ review_content varchar2(2000),
 review_open varchar2(1) default 'N');
 
 ----댓글
-create sequence review_re_seq;
+create sequence review_comment_seq;
 --
-----댓글 테이블 (김해랑)
-create table review_reply(
-    review_re_no number(10),
+----댓글 테이블 (김해랑)(9/5 review_reply -> review_comment로 수정)
+create table review_comment(
+    review_co_no number(10),
     review_no number(10),
     user_id varchar2(20),
-    review_re_content varchar2(500),
-    review_re_written_date date,
-    review_re_modified_date date,
-    CONSTRAINT pk_review_reply primary key (review_re_no)
+    review_co_content varchar2(500),
+    review_co_written_date date,
+    review_co_modified_date date,
+    CONSTRAINT pk_review_comment primary key (review_co_no)
 );
 --파일업로드도 보류..
 
@@ -85,22 +85,22 @@ comm_indent NUMBER(4)
 create sequence community_board_seq;
 create sequence community_board_reply_seq;
 
--- community board reply table
-create table community_board_reply(
+-- community board reply table(9/5 reply->comment로 수정)
+create table community_board_comment(
 comm_no number(4),
-comm_re_no NUMBER(4) PRIMARY KEY,
+comm_co_no NUMBER(4) PRIMARY KEY,
 user_id VARCHAR2(20),
-comm_re_content VARCHAR2(3000),
-comm_re_written_time DATE DEFAULT SYSDATE,
-comm_re_modify_time DATE DEFAULT SYSDATE,
-comm_re_deleted char(1) default 'n',
+comm_co_content VARCHAR2(3000),
+comm_co_written_time DATE DEFAULT SYSDATE,
+comm_co_modify_time DATE DEFAULT SYSDATE,
+comm_co_deleted char(1) default 'n',
 comm_clicked NUMBER(4) DEFAULT 0,
-comm_re_group NUMBER(4),
-comm_re_step NUMBER(4),
-comm_re_indent NUMBER(4));
+comm_co_group NUMBER(4),
+comm_co_step NUMBER(4),
+comm_co_indent NUMBER(4));
 
 --comm_no fk설정
-ALTER TABLE community_board_reply ADD CONSTRAINTS comm_no FOREIGN KEY(comm_no) REFERENCES community_board;
+ALTER TABLE community_board_comment ADD CONSTRAINTS comm_no FOREIGN KEY(comm_no) REFERENCES community_board;
 ------------------------------------------------------------
 
 -------------------- book --------------------
