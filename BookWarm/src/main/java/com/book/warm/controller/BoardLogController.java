@@ -47,10 +47,10 @@ public class BoardLogController {
 		model.addAttribute("loginglist", logingList);
 		model.addAttribute("pageMaker", new PageDTO(criteria, 123));
 
-		int readPageNum = statisticsFunctionService.logingPage(logingList, bookVO);
-		int logingCount = logingBoardMapper.CountWriteNo(bookVO);
+		int readPageNum = statisticsFunctionService.logingPage(logingList, bookVO); //
+		int logingCount = logingBoardMapper.CountWriteNo(bookVO); 
 		int bookTotalPage = bookVO.getBook_tot_page(); /* tmp value, please modify this code */
-		double reading = ((double) readPageNum / (double) bookTotalPage) * 100;
+		double reading = ((double) readPageNum / (double) bookTotalPage) * 100; // 
 		model.addAttribute("startPage", statisticsFunctionService.firstPage(logingList));
 		model.addAttribute("endPage", statisticsFunctionService.endPage(logingList));
 		model.addAttribute("readPageNum", readPageNum);

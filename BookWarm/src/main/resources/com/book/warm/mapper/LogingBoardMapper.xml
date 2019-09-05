@@ -30,8 +30,8 @@ select /*INDEX_DESC(loging_board pk_board)*/ rownum rn, write_no, start_page, en
 	<delete id="deleteLoging" ><!--  start date 뺀 상태이다 추가해줘야한다. -->
 	delete loging_board where write_no=#{write_no}
 	</delete>
-	
 	<select id='getBookVO' resultType="com.book.warm.vo.BookVO">
 	select * from Book where isbn=#{isbn}
 	</select>
+	
 </mapper>
