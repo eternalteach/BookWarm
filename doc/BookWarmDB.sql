@@ -98,7 +98,6 @@ comm_cmt_content VARCHAR2(3000),
 comm_cmt_written_time DATE DEFAULT SYSDATE,
 comm_cmt_modify_time DATE DEFAULT SYSDATE,
 comm_cmt_deleted char(1) default 'n',
-comm_clicked NUMBER(10) DEFAULT 0,
 comm_cmt_group NUMBER(10),
 comm_cmt_step NUMBER(4),
 comm_cmt_indent NUMBER(4));
