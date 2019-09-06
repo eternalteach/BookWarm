@@ -1,3 +1,5 @@
 console.log("Comment Module..........................................");
 
-var commentService={};
+var commentService=(function(){
+	return{name:"AAAA"};
+})();

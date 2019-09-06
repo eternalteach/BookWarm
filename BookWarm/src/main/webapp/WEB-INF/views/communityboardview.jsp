@@ -39,12 +39,17 @@
 								</td>
 							</tr>
 						</table>
+						<div class="comment">
+						
+						</div>
 						<form id='pagingActionForm' method='get'>
 							<input type='text' hidden='hidden' id='pageNum' name='pageNum' value='${criteria.pageNum}'> 
 							<input type='text' hidden='hidden' id='amount' name='amount' value='${criteria.amount}'>
 							<input type='text' hidden='hidden' id='comm_no' name='comm_no' value='${sellectedCommunityBoardPost.comm_no}'>
 						</form>
 					</div>
+<script type="text/javascript" src="resources/js/comment.js"></script>
+
 <script>
 	$(document).ready(function() {
 		var pagingActionForm = $("#pagingActionForm");
@@ -54,6 +59,7 @@
 			pagingActionForm.attr("action",moveNextPage);
 			pagingActionForm.submit();
 		});
+		
 	});
 </script>
 <%@ include file="includes/footer/footer-1.jsp"%>

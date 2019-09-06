@@ -400,6 +400,7 @@ delete book_cover where isbn='isbn001';
 
 select * from community_board;
 
+select * from community_board_comment;
 
 --페이징처리 한 community board 리스트 불러오기
 select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_group,comm_step,comm_indent from(
@@ -408,3 +409,9 @@ select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,co
   order by comm_group desc, comm_step asc
   )
   ) where rn> 10 AND rn<=20;
+
+
+select * from(
+select rownum rn, comm_no, comm_cmt_no, user_id,comm_cmt_content,comm_cmt_written_time,comm_cmt_modify_time, comm_cmt_deleted,comm_cmt_group,comm_cmt_step,comm_cmt_indent from(
+select * from community_board_comment where comm_no=5
+  order by comm_cmt_group desc, comm_cmt_step asc)) where rn> (1-1)*10 AND rn<=1*10;
