@@ -87,7 +87,7 @@ ALTER TABLE community_board ADD CONSTRAINT comm_pk_board primary KEY(comm_no);
 
 --comunity board sequence
 create sequence community_board_seq;
-create sequence community_board_reply_seq;
+create sequence community_board_comment_seq;
 
 -- community_board_comment table (박기범)
 create table community_board_comment(
