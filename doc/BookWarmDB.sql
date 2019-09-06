@@ -82,31 +82,32 @@ comm_step NUMBER(4),
 comm_indent NUMBER(4)
 );
 
--- community board pk설정, pk를 comm_pk_board로 설정
-ALTER TABLE community_board ADD CONSTRAINT  comm_pk_board primary KEY(comm_no);
+-- pk설정, comm의 pk를 comm_pk_board로 설정
+ALTER TABLE community_board ADD CONSTRAINT comm_pk_board primary KEY(comm_no);
 
 --comunity board sequence
 create sequence community_board_seq;
 create sequence community_board_reply_seq;
 
-
--- community board reply table(9/5 reply->comment로 수정)
+-- community_board_comment table (박기범)
 create table community_board_comment(
-comm_no number(4),
-comm_cmt_no NUMBER(4) PRIMARY KEY,
+comm_no number(10),
+comm_cmt_no NUMBER(10),
 user_id VARCHAR2(20),
 comm_cmt_content VARCHAR2(3000),
 comm_cmt_written_time DATE DEFAULT SYSDATE,
 comm_cmt_modify_time DATE DEFAULT SYSDATE,
 comm_cmt_deleted char(1) default 'n',
-comm_clicked NUMBER(4) DEFAULT 0,
-comm_cmt_group NUMBER(4),
+comm_clicked NUMBER(10) DEFAULT 0,
+comm_cmt_group NUMBER(10),
 comm_cmt_step NUMBER(4),
 comm_cmt_indent NUMBER(4));
 
 --comm_no fk설정
 ALTER TABLE community_board_comment ADD CONSTRAINTS comm_no FOREIGN KEY(comm_no) REFERENCES community_board;
-------------------------------------------------------------
+-- community_board_comment pk설정 및 이름 설정
+ALTER TABLE community_board_comment ADD CONSTRAINT comm_cmt_pk_board primary KEY(comm_cmt_no);
+                       ---------------------------------------
 
 -------------------- book --------------------
 --book ISBNimg
