@@ -8,11 +8,6 @@
 <br />
 <br />
 
-<div class="page has-sidebar has-right-sidebar bordered">
-	<div class="page-inner">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 right-side-sidebar v_blog-medium pt-70">
 					<div>
 						add comunity board<br>
 						<table width="500" cellpadding="0" cellspacing="0" border="1">
@@ -69,11 +64,6 @@
 					</div>
 
 
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 <script>
 	$(document)
 			.ready(

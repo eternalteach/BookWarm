@@ -83,38 +83,43 @@ tag_name varchar2(50) not null
 -------------------- create community board --------------------
 --community board
 create table community_board(
-comm_no NUMBER(4) PRIMARY KEY,
+comm_no NUMBER(10),
 user_id VARCHAR2(20),
-comm_subject varchar2(20),
-comm_title VARCHAR2(100),
+comm_subject varchar2(30),
+comm_title VARCHAR2(200),
 comm_content VARCHAR2(3000),
 comm_written_time DATE DEFAULT SYSDATE,
 comm_modify_time DATE DEFAULT SYSDATE,
-comm_clicked NUMBER(4) DEFAULT 0,
-comm_group NUMBER(4),
+comm_clicked NUMBER(10) DEFAULT 0,
+comm_group NUMBER(10),
 comm_step NUMBER(4),
 comm_indent NUMBER(4)
 );
+
+-- pk설정, comm의 pk를 comm_pk_board로 설정
+ALTER TABLE community_board ADD CONSTRAINT comm_pk_board primary KEY(comm_no);
+
 --comunity board sequence
 create sequence community_board_seq;
-create sequence community_board_reply_seq;
+create sequence community_board_comment_seq;
 
--- community board reply table
-create table community_board_reply(
-comm_no number(4),
-comm_re_no NUMBER(4) PRIMARY KEY,
+-- community_board_comment table
+create table community_board_comment(
+comm_no number(10),
+comm_cmt_no NUMBER(10),
 user_id VARCHAR2(20),
-comm_re_content VARCHAR2(3000),
-comm_re_written_time DATE DEFAULT SYSDATE,
-comm_re_modify_time DATE DEFAULT SYSDATE,
-comm_re_deleted char(1) default 'n',
-comm_clicked NUMBER(4) DEFAULT 0,
-comm_re_group NUMBER(4),
-comm_re_step NUMBER(4),
-comm_re_indent NUMBER(4));
+comm_cmt_content VARCHAR2(3000),
+comm_cmt_written_time DATE DEFAULT SYSDATE,
+comm_cmt_modify_time DATE DEFAULT SYSDATE,
+comm_cmt_deleted char(1) default 'n',
+comm_cmt_group NUMBER(10),
+comm_cmt_step NUMBER(4),
+comm_cmt_indent NUMBER(4));
 
 --comm_no fk설정
-ALTER TABLE community_board_reply ADD CONSTRAINTS comm_no FOREIGN KEY(comm_no) REFERENCES community_board;
+ALTER TABLE community_board_comment ADD CONSTRAINTS comm_no FOREIGN KEY(comm_no) REFERENCES community_board;
+-- community_board_comment pk설정 및 이름 설정
+ALTER TABLE community_board_comment ADD CONSTRAINT comm_cmt_pk_board primary KEY(comm_cmt_no);
 ------------------------------------------------------------
 
 -------------------- book --------------------
@@ -393,6 +398,13 @@ select * from (select * from book_cover where isbn='isbn001') where rownum=1;
 delete book_cover where isbn='isbn001';
 
 
+select * from community_board;
 
 
-
+--페이징처리 한 community board 리스트 불러오기
+select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_group,comm_step,comm_indent from(
+select rownum rn, comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_group,comm_step,comm_indent from(
+select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_group,comm_step,comm_indent  from community_board
+  order by comm_group desc, comm_step asc
+  )
+  ) where rn> 10 AND rn<=20;

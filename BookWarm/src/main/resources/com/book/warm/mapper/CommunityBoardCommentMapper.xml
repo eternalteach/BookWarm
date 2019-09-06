@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.book.warm.mapper.CommunityBoardCommentMapper">
+	
+	<insert id='insertComment'>
+	insert into community_board_comment (comm_no, comm_cmt_no, user_id, comm_cmt_content,comm_cmt_group,comm_cmt_step,comm_cmt_indent ) values (
+	#{comm_no},community_board_comment_seq.nextval,#{user_id},#{comm_cmt_content},community_board_comment_seq.nextval,0,0)
+	</insert>
+	
+	<select id='readComment' resultType="com.book.warm.vo.CommunityBoardCommentVO">
+	select * from community_board_comment where comm_cmt_no=#{comm_cmt_no}
+	</select>
+	
+	<delete id='deleteComment'>
+	delete from community_board_comment where comm_cmt_no=#{comm_cmt_no}
+	</delete>
+	
+	<update id='updateComment'>
+	update community_board_comment set comm_cmt_content=#{comm_cmt_content}, comm_cmt_modify_time=sysdate where comm_cmt_no=#{comm_cmt_no}
+	</update>
+	
+	<select id='getCommentListWithPaging' resultType="com.book.warm.vo.CommunityBoardCommentVO">
+	<![CDATA[
+select * from(
+select rownum rn, comm_no, comm_cmt_no, user_id,comm_cmt_content,comm_cmt_written_time,comm_cmt_modify_time, comm_cmt_deleted,comm_cmt_group,comm_cmt_step,comm_cmt_indent from(
+select * from community_board_comment where comm_no=#{comm_no}
+  order by comm_cmt_group desc, comm_cmt_step asc)) where rn> (#{criteria.pageNum}-1)*#{criteria.amount} AND rn<=#{criteria.pageNum}*#{criteria.amount}
+		]]>
+	</select>
+	
+	
+	
+	<select id='getCommunityBoardList'
+		resultType="com.book.warm.vo.CommunityBoardVO">
+		select
+		comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_group,comm_step,comm_indent
+		from community_board order by comm_group desc, comm_step asc
+	</select>
+	<select id='getCommunityBoardListWithPaging'
+		resultType="com.book.warm.vo.CommunityBoardVO">
+<![CDATA[
+select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_group,comm_step,comm_indent from(
+select rownum rn, comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_group,comm_step,comm_indent from(
+select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_group,comm_step,comm_indent  from community_board
+  order by comm_group desc, comm_step asc)) where rn> (#{pageNum}-1)*#{amount} AND rn<=#{pageNum}*#{amount}
+		]]>
+	</select>
+	<select id='getCommunityBoardOne'
+		resultType="com.book.warm.vo.CommunityBoardVO">
+		select * from community_board where comm_no=#{comm_no}
+	</select>
+	
+	<select id='getNumberOfPostsOnCommunityBoard' resultType="Integer">
+		select count(*) from community_board
+	</select>
+	
+	<select id='getCommunityBoardOneDelete' resultType="Integer">
+		delete
+		community_board where comm_no=#{comm_no}
+	</select>
+
+	<update id='modifyCommunityBoardOne'>
+		update community_board SET comm_title =
+		#{comm_title},
+		comm_content=#{comm_content},comm_subject=#{comm_subject} where
+		comm_no=#{comm_no}
+	</update>
+
+	<insert id='insertCommunityBoardWrite'>
+		insert into community_board (comm_no, user_id,
+		comm_subject, comm_title, comm_content, comm_clicked,
+		comm_group,comm_step,comm_indent)
+		VALUES (community_board_seq.nextval,
+		#{user_id}, #{comm_subject},
+		#{comm_title}, #{comm_content} ,0,
+		community_board_seq.currval, 0, 0)
+	</insert>
+
+	<insert id='insertCommunityBoardReplyWrite'>
+		insert into community_board (comm_no, user_id,
+		comm_subject, comm_title, comm_content, comm_clicked,
+		comm_group,comm_step,comm_indent)
+		VALUES (community_board_seq.nextval,
+		#{user_id}, #{comm_subject},
+		#{comm_title}, #{comm_content} ,0,
+		#{comm_group}, #{comm_step}+1,
+		#{comm_indent}+1)
+	</insert>
+	<update id='replyshape'>
+		update community_board set comm_step=comm_step+1
+		where
+		comm_group=#{comm_group} and comm_step>#{comm_step}
+	</update>
+</mapper>

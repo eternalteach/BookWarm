@@ -27,8 +27,8 @@ public class BoardCommunityController {
 	CommunityBoardMapper communityBoardMapper;
 
 	@RequestMapping(value = "/communityboard", method = RequestMethod.GET)
-	public String boardCommunity(Model model,@ModelAttribute("criteria") Criteria criteria) throws Exception {
-		log.info("==================== boardCommunity() ====================");
+	public String communityBoard(Model model,@ModelAttribute("criteria") Criteria criteria) throws Exception {
+		log.info("==================== communityBoard() ====================");
 		ArrayList<CommunityBoardVO> communityBoardList = communityBoardMapper.getCommunityBoardListWithPaging(criteria);
 		int numberOfPostsOnCommunityBoard=communityBoardMapper.getNumberOfPostsOnCommunityBoard();
 		model.addAttribute("communityBoardList", communityBoardList);
@@ -37,21 +37,21 @@ public class BoardCommunityController {
 	}
 
 	@RequestMapping(value = "/communityboardview", method = RequestMethod.GET)
-	public String communityboardview(Model model,CommunityBoardVO communityBoardVO,@ModelAttribute("criteria") Criteria criteria) throws Exception {
-		log.info("==================== communityboardview() ====================");
+	public String communityBoardView(Model model,CommunityBoardVO communityBoardVO,@ModelAttribute("criteria") Criteria criteria) throws Exception {
+		log.info("==================== communityBoardView() ====================");
 		CommunityBoardVO sellectedCommunityBoardPost = communityBoardMapper.getCommunityBoardOne(communityBoardVO.getComm_no());
 		model.addAttribute("sellectedCommunityBoardPost", sellectedCommunityBoardPost);
 		return "/communityboardview";
 	}
 
 	@RequestMapping(value = "/communityboarddelete", method = RequestMethod.GET)
-	public String communityBoardDelete(HttpServletRequest request,RedirectAttributes rttr, @ModelAttribute("criteria") Criteria criteria) throws Exception {
-		log.info("===== communityboarddelete() =====");
-		String comm_no = request.getParameter("comm_no");
-		Integer deletecomm_no = communityBoardMapper.getCommunityBoardOneDelete(comm_no);
+	public String communityBoardDelete(CommunityBoardVO communityBoardVO,RedirectAttributes rttr, @ModelAttribute("criteria") Criteria criteria) throws Exception {
+		log.info("==================== communityBoardDelete() ====================");
+		int deletePostNumber = communityBoardVO.getComm_no();
+		communityBoardMapper.getCommunityBoardOneDelete(deletePostNumber);
 		rttr.addAttribute("amount",criteria.getAmount());
 		rttr.addAttribute("pageNum",criteria.getPageNum());
-		log.info("delete : " + deletecomm_no);
+		log.info("==================== Delete Post Number : "+ deletePostNumber + "====================");
 		return "redirect:communityboard";
 	}
 
@@ -63,23 +63,21 @@ public class BoardCommunityController {
 		return "/communityboardmodify";
 	}
 	@RequestMapping(value = "/communityboardwrite", method = RequestMethod.GET)
-	public String communityboardmodify() throws Exception {
-		log.info("===== communityboardwrite() =====");
+	public String communityboardwrite() throws Exception {
+		log.info("==================== communityboardwrite() ====================");
 		return "/communityboardwrite";
 	}
 	@RequestMapping(value = "/communityBoardSaveModify", method = RequestMethod.POST)
 	public String communityBoardSaveModify(RedirectAttributes rttr,CommunityBoardVO communityBoardVO,@ModelAttribute("criteria") Criteria criteria) throws Exception {
-		log.info("===== communityBoardSaveModify() =====");
-		System.out.println("communityBoardVO.getComm_no()"+communityBoardVO.getComm_no());
-		Integer modifyCommunityBoardOne = communityBoardMapper.modifyCommunityBoardOne(communityBoardVO);
-		System.out.println(modifyCommunityBoardOne);
+		log.info("==================== communityBoardSaveModify() ====================");
+		communityBoardMapper.modifyCommunityBoardOne(communityBoardVO);
 		rttr.addAttribute("amount",criteria.getAmount());
 		rttr.addAttribute("pageNum",criteria.getPageNum());
 		return "redirect:communityboard";
 	}
 	@RequestMapping(value = "/communityBoardSaveReplyWrite", method = RequestMethod.POST)
-	public String communityBoardSaveReplyWrite(RedirectAttributes rttr,CommunityBoardVO communityBoardVO,Criteria criteria) throws Exception {
-		log.info("===== communityBoardSaveReplyWrite() =====");
+	public String communityBoardSaveReplyWrite(RedirectAttributes rttr, CommunityBoardVO communityBoardVO, Criteria criteria) throws Exception {
+		log.info("==================== communityBoardSaveReplyWrite() ====================");
 		communityBoardMapper.insertCommunityBoardReplyWrite(communityBoardVO);
 		communityBoardMapper.replyshape(communityBoardVO);
 		rttr.addAttribute("amount",criteria.getAmount());
