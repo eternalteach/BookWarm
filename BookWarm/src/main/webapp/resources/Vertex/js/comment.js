@@ -1,16 +1,16 @@
 console.log("Reply Module......");
 
-var replyService = (function(){
+var commentService = (function(){
 	
 //	댓글 추가
-	function add(reply, callback, error) {
+	function add(comment, callback, error) {
 		
-		console.log("add reply");
+		console.log("add comment");
 		
 		$.ajax({
 			type : 'post',
-			url : '/warm/replies/new',
-			data : JSON.stringify(reply),
+			url : '/warm/comments/new',
+			data : JSON.stringify(comment),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr) {
 				if(callback) {
@@ -32,7 +32,7 @@ var replyService = (function(){
 		var review_no = param.review_no;
 		var page = param.page || 1;
 		
-		$.getJSON("/warm/replies/pages/" + review_no + "/" + page + ".json",
+		$.getJSON("/warm/comments/pages/" + review_no + "/" + page + ".json",
 				function(data) {
 					if (callback) {
 						callback(data);
@@ -46,11 +46,11 @@ var replyService = (function(){
 	
 	
 //	댓글 삭제
-	function remove(review_re_no, callback, error) {
+	function remove(review_cmt_no, callback, error) {
 		
 		$.ajax({
 			type : 'delete',
-			url : '/warm/replies/' + review_re_no,
+			url : '/warm/comments/' + review_cmt_no,
 			success : function(deleteResult, status, xhr) {
 				if(callback) {
 					callback(deleteResult);
@@ -65,14 +65,14 @@ var replyService = (function(){
 	}
 	
 //	댓글 수정
-	function update(reply, callback, error) {
+	function update(comment, callback, error) {
 		
-		console.log("Review_re_no: " + reply.review_re_no);
+		console.log("review_cmt_no: " + comment.review_cmt_no);
 		
 		$.ajax({
 			type : 'put',
-			url : '/warm/replies/' + reply.review_re_no,
-			data : JSON.stringify(reply),
+			url : '/warm/comments/' + comment.review_cmt_no,
+			data : JSON.stringify(comment),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr) {
 				if(callback) {
@@ -88,9 +88,9 @@ var replyService = (function(){
 	}
 	
 //	댓글 조회
-	function get(review_re_no, callback, error) {
+	function get(review_cmt_no, callback, error) {
 		
-		$.get("/warm/replies/" + review_re_no + ".json", function(result) {
+		$.get("/warm/comments/" + review_cmt_no + ".json", function(result) {
 			
 			if(callback) {
 				callback(result);

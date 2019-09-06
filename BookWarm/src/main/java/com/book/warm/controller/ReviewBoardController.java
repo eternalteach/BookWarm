@@ -54,6 +54,8 @@ public class ReviewBoardController {
 	// 감상 하나만 보기
 	@RequestMapping("/reviewSelectOne")
 	public String reviewSelectOne(@RequestParam("review_no") int review_no, 
+										// 여기서 리뷰 조회시 작성자의 id를 굳이 param으로 받아올 필요는 없음.
+										// 
 										@RequestParam("user_id") String user_id,
 									    @RequestParam("isbn") String isbn, 
 									    @ModelAttribute("cri") Criteria cri, Model model) {

@@ -635,13 +635,12 @@
                             <section class="article-body-wrap">
 
                                 <div class="body-text clearfix">
-                                
+                                	
                                     <!-- 첫 글자만 크게 출력하고 나머지 내용은 보통 글씨로 나오는 형식 -->
                                     <!-- 나중에 쓸 수도 있으니 주석처리 -->
                                     <%-- <p>
                                         <span class="dropcap1">${fn:substring(review.review_content,0,2)}</span>
                                         ${fn:substring(review.review_content,2,-1)}
-										
                                     </p> --%>
                                     <blockquote class="pullquote">
                                         <span style="color: #888888;">
@@ -736,14 +735,14 @@
 
                                 <ul class="media-list">
                                 
-                                	<%-- <c:forEach items="${replies}" var="reply">
-                                    <li class="media" data-review_re_no='12'>
+                                	<%-- <c:forEach items="${comments}" var="comment">
+                                    <li class="media" data-review_cmt_no='12'>
                                         <a class="pull-left" href="#">
                                             <img class="media-object" src="./resources/Vertex/img/team/t5.png">
                                         </a>
                                         
                                         <div class="media-body">
-                                            <h4 class="media-heading">${reply.user_id}<span class="date">${reply.review_re_written_date}</span> <span><a class="reply-link" href="#">Reply</a> </span></h4>
+                                            <h4 class="media-heading">${comment.user_id}<span class="date">${comment.review_cmt_written_date}</span> <span><a class="comment-link" href="#">Comment</a> </span></h4>
                                             <p>Cras sit amet nibh libero, in gravida nulla Cras purus odio, in vulputate at, tempus viverra turpis.</p>
                                         </div>
                                     </li>
@@ -755,19 +754,18 @@
                             <div class="post-block-wrap" id="comment-area">
 
                                 <h3 class="v-heading"><span>Leave a comment</span></h3>
-                                <form action="/warm/replies/new" method="post">
+                                
+                                <form class="co_form" action="/warm/comments/new" method="post">
                                     <div class="form-group">
                                         <div class="row">
                                         	<!-- 넘겨줄 값은 감상번호와 작성자...(user_id)? -->
                                         
-                                        	<!-- 포스트를 불러올 때 리뷰 번호, 유저아이디로 select했는데 아래 댓글을 달 때 user_id는 다른 user_id????? -->
-                                        	<!-- 다른 이름으로 해서 불러올까요? 여기에서의 댓글은 로그인된 아이디를 불러오고 리뷰 불러오는 아이디는 넘어온 값. -->
-                                        	<div class="col-sm-4">
+                                        	<!-- 넘어온 값은 감상 작성자 id, 아래 댓글을 달 때 user_id는 로그인한 id! -->
+                                        	
                                                 <!-- <input type="hidden" value="" maxlength="100" placeholder="user_id" class="form-control" name="user_id" id="name"> -->
                                                 <input type="hidden" value="${review.review_no}" maxlength="100" class="form-control" name="review_no">
-                                            </div>
                                             
-                                            <!-- 나중에 로그인과 연동해 처리하고 일단은 -->
+                                            <!-- 나중에 로그인과 연동해 처리하고 일단은 그냥 입력받기 -->
                                             <div class="col-sm-4">
                                                 <label>Your ID <span class="required">*</span></label>
                                                 <input type="text" value="" maxlength="100" placeholder="Your ID" class="form-control" name="user_id" id="name">
@@ -794,7 +792,7 @@
                                             <div class="col-sm-12">
                                             	<!-- 지금대로면 딱히 레이블이 필요 없음 -->
                                                 <!-- <label>Comment <span class="required">*</span></label> --> 
-                                                <textarea maxlength="5000" rows="10" placeholder="Comment" class="form-control" name="comment" id="comment"></textarea>
+                                                <textarea maxlength="5000" rows="10" placeholder="Comment" class="form-control" name="content" id="content"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -1091,61 +1089,204 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     
     
-    // 댓글 처리를 위한 reply.js 추가
-    <script type="text/javascript" src = "/warm/resources/Vertex/js/reply.js"></script>
+    // 댓글 처리를 위한 comment.js 추가
+    <script type="text/javascript" src = "/warm/resources/Vertex/js/comment.js"></script>
     
-    <script type="text/javascript" >
-    
-    	console.log("====================== js test =================");
-			
+        <script type="text/javascript" >
+        
+        $(document).ready(function() {
+        
+        // showList에서 -1일 경우 원래의 태그를 실행하고,
+        // 수정 버튼을 클릭했을 때 번호를 받아와서 
+        var no = -1;
+        	
+    	// 댓글 목록
 		var review_no_value = '<c:out value="${review.review_no}"/>';
-		var replyUL = $(".media-list");	
+		var commentUL = $(".media-list");	
+		
+		// 수정/삭제를 클릭했을 때. UL 클릭시 이벤트 위임.
+		commentUL.on("click", "button", function() {
+			
+			var no = $(this).data("review_cmt_no");
+			var oper = $(this).data("oper");
+			
+			if(oper === 'modify') {
+				// 'modify' 클릭시
+				
+				showList2(1, no);
+				
+				
+			} else {
+				// 'delete' 클릭시
+				
+				commentService.remove(no, function(result) {
+					
+					if(result === 'success')
+						alert("댓글을 삭제했습니다.");
+					showList(1);
+				});
+			}
+		});
+		
 		
 		showList(1);
 		
 		function showList(page) {
 			
-			replyService.getList({review_no:review_no_value, page: page || 1}, function(list) {
+			commentService.getList({review_no:review_no_value, page: page || 1}, function(list) {
 				
 				var str = "";
 				if(list == null || list.length == 0) {
-					replyUL.html("");
+					commentUL.html("");
 					return;
 				}
 				for(var i=0, len = list.length || 0; i<len; i++) {
 					
-					str += "<li class='media' data-review_re_no='" + list[i].review_re_no+"'>";
+					
+					str += "<li class='media'>";
 					str += "	<div><div class='media-body'><strong class='media-heading'>" + list[i].user_id + "</strong>";
-					str += "		<small class='date'>" + replyService.displayTime(list[i].review_re_written_date) + "</small></div>";
-					str += "		<p>" + list[i].review_re_content + "</p></div></li>";
+					str += "		<small class='date'>" + commentService.displayTime(list[i].review_cmt_written_date) + "</small>";
+					
+					str += "<button data-oper='modify'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>수정</button>";
+					str += "<button data-oper='delete'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>삭제</button>";
+					
+					str += "	</div>";
+					str += "		<p>" + list[i].review_cmt_content + "</p></div></li>";
+					
+					
+					// 수정버튼을 눌렀을 때 해당 댓글의 content부분을 input박스로 드러내면?
+					// 버튼을 클릭했을 때, 해당 버튼의 oper값이 modify라면,
+					// 해당 버튼의 review_cmt_no과 같은 댓글의 저 맨 아래 부분을 
+					// <textarea maxlength="5000" rows="10" placeholder="Comment" class="form-control" name="content" id="content"></textarea>
+					// 이걸로 변경하는 것?
+							
+					// showList(1);
+					
+					// 삼항연산자 두 번 쓰기.
+					// no을 -1로 설정해놓고, -1이면 원래의 태그를 실행하고, 
+					// 아니면 
+					
+					/* no == list[i].review_cmt_no 
+						? ""		
+						: ""	 */
+							
+					/* <li class="page-item ${pageMaker.cri.pageNum == num ? "active":"" }"></li> */
+					
+					
 				}
 				
-				replyUL.html(str);
+				commentUL.html(str);
+			}); // end function
+		} //end showList
+		
+		
+function showList2(page, no) {
+			
+			console.log("no는요 : " + no);
+			
+			commentService.getList({review_no:review_no_value, page: page || 1}, function(list) {
+				
+				var str = "";
+				if(list == null || list.length == 0) {
+					commentUL.html("");
+					return;
+				}
+				for(var i=0, len = list.length || 0; i<len; i++) {
+					
+					
+					str += "<li class='media'>";
+					str += "	<div><div class='media-body'><strong class='media-heading'>" + list[i].user_id + "</strong>";
+					str += "		<small class='date'>" + commentService.displayTime(list[i].review_cmt_written_date) + "</small>";
+					
+					str += "<a href src='/warm/comments/update/' + list[i].review_cmt_no style='font-size:0.5em; '>확인</button>";
+					str += "<button data-oper='save'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>확인</button>";
+					str += "<button data-oper='cancel'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>취소</button>";
+					
+					str += "	</div>";
+					
+					str += (no == list[i].review_cmt_no) ?  "<textarea maxlength='5000' class='form-control' name='content' id='content'>" + list[i].review_cmt_content + "</textarea>"
+																:  "		<p>" + list[i].review_cmt_content + "</p></div></li>" ;
+					
+					
+					
+					// 수정버튼을 눌렀을 때 해당 댓글의 content부분을 input박스로 드러내면?
+					// 버튼을 클릭했을 때, 해당 버튼의 oper값이 modify라면,
+					// 해당 버튼의 review_cmt_no과 같은 댓글의 저 맨 아래 부분을 
+					// <textarea maxlength="5000" rows="10" placeholder="Comment" class="form-control" name="content" id="content"></textarea>
+					// 이걸로 변경하는 것?
+							
+					// showList(1);
+					
+					// 삼항연산자 두 번 쓰기.
+					// no을 -1로 설정해놓고, -1이면 원래의 태그를 실행하고, 
+					// 아니면 
+					
+					
+					
+				}
+				
+				commentUL.html(str);
 			}); // end function
 		} //end showList
 		
 		
 		
 		
-		/* //for replyService add test
-		replyService.add(
-			{review_re_content:"JS Test", user_id:"누구게", review_no : review_no_value}
+		// comment 폼이 있고, 여기서 받아서 넘겨야하는 값은 댓글작성자id(user_id), 감상글번호(review_no), 댓글내용(review_cmt_content)
+		// 등록 버튼을 누르면 commentService.add 함수가 작동해서 내용을 등록하게 되는데, 
+		// 등록 후에는 잘 등록되었다는 메시지가 뜨고, 다시 댓글 목록을 갱신하는 것까지.
+		
+		// Comment Form
+		var co_form = $(".co_form");
+		var content = co_form.find("textarea[name='content']"); // Comment 내용
+		var user_id = co_form.find("input[name='user_id']");	// Comment 작성자
+		
+		var commentRegisterBtn = $("#Button1"); // Comment 등록버튼
+		
+		commentRegisterBtn.on("click", function(e) {
+			
+			e.preventDefault();
+			var comment = {
+				review_cmt_content : content.val(),
+				user_id : user_id.val(),
+				review_no : review_no_value
+			};
+			
+			commentService.add(comment, function(result){
+				if(result == "success") {
+					
+					alert("댓글이 등록되었습니다.");
+				}
+				co_form.find("textarea[name='content']").val("");
+				showList(1);
+			});
+			//co_form.submit();
+		});
+		
+		
+		
+		
+		
+		
+		/* //for commentService add test
+		commentService.add(
+			{review_cmt_content:"JS Test", user_id:"누구게", review_no : review_no_value}
 			,
 			function(result) {
 				alert("result: " + result);
 			}
 		);
 		
-		//for replyService getList test
-		replyService.getList({review_no : review_no_value, page:1}, function(list){
+		//for commentService getList test
+		commentService.getList({review_no : review_no_value, page:1}, function(list){
 			
 			for(var i=0, len = list.length||0; i<len; i++) {
 				console.log(list[i]);
 			}
 		});
 		
-		//for replyService remove test
-		replyService.remove(2, function(count) {
+		//for commentService remove test
+		commentService.remove(2, function(count) {
 			
 			console.log(count);
 			
@@ -1156,32 +1297,35 @@
 			alert('Error');
 		}); 
 		
-		//for replyService modify test
-		replyService.update({
-			review_re_no : 14,
+		//for commentService modify test
+		commentService.update({
+			review_cmt_no : 14,
 			review_no : review_no_value,
-			review_re_content : "수정합니다ㅏㅏㅏㅏㅏㅏ"
+			review_cmt_content : "수정합니다ㅏㅏㅏㅏㅏㅏ"
 		}, function(result) {
 			alert("수정 완료");
 		}); 
 		
-		//for replyService get test
-		replyService.get(10, function(data) {
+		//for commentService get test
+		commentService.get(10, function(data) {
 			console.log(data);
 		});*/
 		
-		
+        });
     	
     </script>	
+    
+    
     	
     	
     <script type="text/javascript">
     	$(document).ready(function() {
     		
-    		
+    		// 작성한 감상글 수정/삭제, 목록으로 돌아가기
     		var operForm = $("#operForm");
+    		var buttons = operForm.find("button");
     		
-    		$('button').on("click", function(e) {
+    		buttons.on("click", function(e) {
     			
     			e.preventDefault();
     			

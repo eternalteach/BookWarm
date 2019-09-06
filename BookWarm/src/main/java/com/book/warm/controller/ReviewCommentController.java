@@ -14,30 +14,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.book.warm.service.ReviewReplyService;
+import com.book.warm.service.ReviewCommentService;
 import com.book.warm.vo.Criteria;
-import com.book.warm.vo.ReviewReplyVO;
+import com.book.warm.vo.ReviewCommentVO;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-@RequestMapping("/replies/")
+@RequestMapping("/comments/")
 @RestController
 @Log4j
 @AllArgsConstructor
-public class ReviewReplyController {
+public class ReviewCommentController {
 	
-	private ReviewReplyService rrs;
+	private ReviewCommentService rcs;
 	
 	// 댓글 입력
 	@PostMapping(value="/new",
 					 consumes = "application/json",
 					 produces = { MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> create(@RequestBody ReviewReplyVO vo) {
+	public ResponseEntity<String> create(@RequestBody ReviewCommentVO vo) {
 		
-		log.info("ReviewReplyVO: " + vo);
-		int insertCount = rrs.register(vo);
-		log.info("Reply INSERT COUNT: " + insertCount);
+		log.info("ReviewCommentVO: " + vo);
+		int insertCount = rcs.register(vo);
+		log.info("Comment INSERT COUNT: " + insertCount);
 		
 		return insertCount == 1
 				? new ResponseEntity<>("success", HttpStatus.OK)
@@ -49,53 +49,53 @@ public class ReviewReplyController {
 					produces= {
 								MediaType.APPLICATION_XML_VALUE,
 								MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<List<ReviewReplyVO>> getList(
+	public ResponseEntity<List<ReviewCommentVO>> getList(
 			@PathVariable("page") int page,
 			@PathVariable("review_no") int review_no) {
 		
 		log.info("getList");
 		Criteria cri = new Criteria(page, 10);
 		
-		return new ResponseEntity<>(rrs.getList(cri, review_no), HttpStatus.OK);
+		return new ResponseEntity<>(rcs.getList(cri, review_no), HttpStatus.OK);
 	}
 	
 	// 댓글 조회
-	@GetMapping(value="/{review_re_no}",
+	@GetMapping(value="/{review_cmt_no}",
 					produces = { MediaType.APPLICATION_XML_VALUE,
 									MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<ReviewReplyVO> get(@PathVariable("review_re_no") int review_re_no) {
+	public ResponseEntity<ReviewCommentVO> get(@PathVariable("review_cmt_no") int review_cmt_no) {
 		
-		log.info("get: " + review_re_no);
-		return new ResponseEntity<>(rrs.get(review_re_no), HttpStatus.OK);
+		log.info("get: " + review_cmt_no);
+		return new ResponseEntity<>(rcs.get(review_cmt_no), HttpStatus.OK);
 	}
 	
 	// 댓글 삭제
-	@DeleteMapping(value = "/{review_re_no}",
+	@DeleteMapping(value = "/{review_cmt_no}",
 					   produces = { MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> remove(@PathVariable("review_re_no") int review_re_no) {
+	public ResponseEntity<String> remove(@PathVariable("review_cmt_no") int review_cmt_no) {
 		
-		log.info("remove: " + review_re_no);
+		log.info("remove: " + review_cmt_no);
 		
-		return rrs.remove(review_re_no) == 1
+		return rcs.remove(review_cmt_no) == 1
 				? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	// 댓글 수정
 	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH },
-						  value = "/{review_re_no}",
+						  value = "/{review_cmt_no}",
 						  consumes = "application/json",
 						  produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> modify(
-			@RequestBody ReviewReplyVO vo,
-			@PathVariable("review_re_no") int review_re_no) {
+			@RequestBody ReviewCommentVO vo,
+			@PathVariable("review_cmt_no") int review_cmt_no) {
 		
-		vo.setReview_re_no(review_re_no);
+		vo.setReview_cmt_no(review_cmt_no);
 		
-		log.info("review_re_no: " + review_re_no);
+		log.info("review_cmt_no: " + review_cmt_no);
 		log.info("modify: " + vo);
 		
-		return rrs.modify(vo) == 1
+		return rcs.modify(vo) == 1
 				? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}

@@ -11,7 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.book.warm.vo.Criteria;
-import com.book.warm.vo.ReviewReplyVO;
+import com.book.warm.vo.ReviewCommentVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -24,7 +24,7 @@ public class ReviewReplyMapperTests {
 	
 	
 	@Inject
-	ReviewReplyMapper rrm;
+	ReviewCommentMapper rrm;
 	
 //	@Test
 	public void testMapper() {
@@ -37,7 +37,7 @@ public class ReviewReplyMapperTests {
 		
 		IntStream.rangeClosed(2, 11).forEach( i -> {
 			
-			ReviewReplyVO vo = new ReviewReplyVO();
+			ReviewCommentVO vo = new ReviewCommentVO();
 			
 			// 게시물의 번호
 			vo.setReview_no(reviewNoArr[i % 5]);
@@ -53,7 +53,7 @@ public class ReviewReplyMapperTests {
 		
 		int targetNo = 5;
 		
-		ReviewReplyVO vo = rrm.read(targetNo);
+		ReviewCommentVO vo = rrm.read(targetNo);
 		log.info(vo);
 	}
 	
@@ -70,7 +70,7 @@ public class ReviewReplyMapperTests {
 		
 		int targetNo = 10;
 		
-		ReviewReplyVO vo = rrm.read(10);
+		ReviewCommentVO vo = rrm.read(10);
 		vo.setReview_re_content("Update Reply");
 		
 		int count = rrm.update(vo);
@@ -82,7 +82,7 @@ public class ReviewReplyMapperTests {
 		
 		Criteria cri = new Criteria();
 		
-		List<ReviewReplyVO> replies = rrm.getListWithPaging(cri, reviewNoArr[0]);
+		List<ReviewCommentVO> replies = rrm.getListWithPaging(cri, reviewNoArr[0]);
 		replies.forEach(reply -> log.info(reply));
 	}
 }
