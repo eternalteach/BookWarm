@@ -4,9 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="includes/header/header-transparent-navonly.jsp"%>
 
-<br/>
-<br/>
-<br/>
+<br />
+<br />
+<br />
 
 <div class="page has-sidebar has-right-sidebar bordered">
 	<div class="page-inner">
@@ -26,8 +26,9 @@
 							<c:forEach items="${communityBoardList}" var="communityBoard">
 								<tr>
 									<td>${communityBoard.comm_no}</td>
-									<td><c:forEach begin="1" end="${communityBoard.comm_indent}">[re]</c:forEach>
-										<a href="communityboardview?comm_no=${communityBoard.comm_no}">${communityBoard.comm_subject}&nbsp;${communityBoard.comm_title}</a></td>
+									<td><c:forEach begin="1"
+											end="${communityBoard.comm_indent}">[re]</c:forEach> <a
+										class='move' href="${communityBoard.comm_no}">${communityBoard.comm_subject}&nbsp;${communityBoard.comm_title}</a></td>
 									<td>${communityBoard.user_id}</td>
 									<td>${communityBoard.comm_written_time}</td>
 									<td>${communityBoard.comm_clicked}</td>
@@ -39,28 +40,57 @@
 						</table>
 
 					</div>
-	<!-- 페이징 처리 -->
+					<!-- 페이징 처리 -->
 					<div class="row">
-						<div class="col-md-12">
-							<nav aria-label="Page navigation example">
-								<ul class="pagination">
-									<li class="page-item disabled"><a class="page-link"
-										href="#" tabindex="-1">Previous</a></li>
-									<li class="page-item"><a class="page-link" href="#">1</a></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"><a class="page-link" href="#">Next</a>
+						<nav aria-label="Page navigation example">
+							<ul class="pagination" style="text-align: center;">
+								<c:if test="${pageMaker.prev}">
+									<li class="commPaging page-item"><a
+										class="commPaging page-link" href="${pageMaker.startPage-1}">Previous</a></li>
+								</c:if>
+
+								<c:forEach var="num" begin="${pageMaker.startPage}"
+									end="${pageMaker.endPage}">
+									<li class="commPaging page-item ${pageMaker.cri.pageNum==num?"active":""}">
+										<a class="commPaging page-link" href="${num}">${num}</a>
 									</li>
-								</ul>
-							</nav>
-						</div>
+								</c:forEach>
+
+								<c:if test="${pageMaker.next}">
+									<li class="commPaging page-item"><a
+										class="commPaging page-link" href="${pageMaker.endPage+1}">Next</a></li>
+								</c:if>
+							</ul>
+						</nav>
+						<form id='pagingActionForm' method='get'>
+							<input type='text' hidden='hidden' id='pageNum' name='pageNum' value='${pageMaker.cri.pageNum}'> 
+							<input type='text' hidden='hidden' name='amount' value='${pageMaker.cri.amount}'>
+						</form>
 					</div>
-					
-					
+
+
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<script>
+	$(document)
+			.ready(
+					function() {
+						var pagingActionForm = $("#pagingActionForm");
+						$(".commPaging a").on("click", function(e) {
+									e.preventDefault();
+									pagingActionForm.find("input[name='pageNum']").val($(this).attr("href"));
+									pagingActionForm.submit();
+								});
 
+						$(".move").on("click",function(e) {
+											e.preventDefault();
+											pagingActionForm.append("<input type='hidden' name='comm_no' value='" + $(this).attr("href") + "'>");
+											pagingActionForm.attr("action", "communityboardview");
+											pagingActionForm.submit();
+										})
+					});
+</script>
 <%@ include file="includes/footer/footer-1.jsp"%>

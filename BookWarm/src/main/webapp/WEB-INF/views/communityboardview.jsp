@@ -7,51 +7,63 @@
 
 
 <div class="page has-sidebar has-right-sidebar bordered">
-
 	<div class="page-inner">
-
 		<div class="container">
 			<div class="row">
-
 				<div class="col-md-8 right-side-sidebar v_blog-medium pt-70">
-
-
 					<div>
 						<table width="500" cellpadding="0" cellspacing="0" border="1">
-								<input type="hidden" name="comm_no"
-									value="${communityBoardOne.comm_no}">
-								<tr>
-									<td>Title &nbsp; ${communityBoard.comm_subject}&nbsp;${communityBoardOne.comm_title}</td>
-									<td>작성일 &nbsp; ${communityBoardOne.comm_written_time}</td>
-								</tr>
-								<tr>
-									<td colspan="2">작성자 &nbsp; ${communityBoardOne.user_id}</td>
-								</tr>
-								<tr>
-									<td colspan="2">내용</td>
-								</tr>
-								<tr>
-									<td colspan="2">${communityBoardOne.comm_content}</td>
-								</tr>
-								<tr>
-									<td colspan="2" align='right'><a>이 작성자의 게시글 더 보기</a> &nbsp;
-										 &nbsp; &nbsp;</td>
-								</tr>
-								<tr>
-									<td colspan="2">조회수 &nbsp;
-										${communityBoardOne.comm_clicked} &nbsp; &nbsp;좋아요&nbsp;2&nbsp;(하트)</td>
-								</tr>
-								<tr>
-									<td colspan="2"><a href="communityboardmodify?comm_no=${communityBoardOne.comm_no}">수정</a>
-										&nbsp;&nbsp; <a href="communityboard">목록보기</a> 
-										&nbsp;&nbsp; <a href="communityboardreplywrite?comm_no=${communityBoardOne.comm_no}">답변</a></td>
-								</tr>
+							<tr>
+								<td>Title &nbsp;
+									${sellectedCommunityBoardPost.comm_subject}&nbsp;${sellectedCommunityBoardPost.comm_title}</td>
+								<td>작성일 &nbsp; ${sellectedCommunityBoardPost.comm_written_time}</td>
+							</tr>
+							<tr>
+								<td colspan="2">작성자 &nbsp; ${sellectedCommunityBoardPost.user_id}</td>
+							</tr>
+							<tr>
+								<td colspan="2">내용</td>
+							</tr>
+							<tr>
+								<td colspan="2">${sellectedCommunityBoardPost.comm_content}</td>
+							</tr>
+							<tr>
+								<td colspan="2" align='right'><a>이 작성자의 게시글 더 보기</a> &nbsp;
+									&nbsp; &nbsp;</td>
+							</tr>
+							<tr>
+								<td colspan="2">조회수 &nbsp;
+									${sellectedCommunityBoardPost.comm_clicked} &nbsp;
+									&nbsp;좋아요&nbsp;2&nbsp;(하트)</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<a class="submit" href="communityboardmodify">수정</a> &nbsp;&nbsp; 
+									<a class="submit" href="communityboard">목록보기</a> &nbsp;&nbsp; 
+									<a class="submit" href="communityboardreplywrite">답변</a>
+								</td>
+							</tr>
 						</table>
+						<form id='pagingActionForm' method='get'>
+							<input type='text' hidden='hidden' id='pageNum' name='pageNum' value='${criteria.pageNum}'> 
+							<input type='text' hidden='hidden' id='amount' name='amount' value='${criteria.amount}'>
+							<input type='text' hidden='hidden' id='comm_no' name='comm_no' value='${sellectedCommunityBoardPost.comm_no}'>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
+<script>
+	$(document).ready(function() {
+		var pagingActionForm = $("#pagingActionForm");
+		$(".submit").on("click", function(e) {
+			e.preventDefault(); // a태그 클릭해도 페이지 이동 없도록
+			let moveNextPage=$(this).attr("href");
+			pagingActionForm.attr("action",moveNextPage);
+			pagingActionForm.submit();
+		});
+	});
+</script>
 <%@ include file="includes/footer/footer-1.jsp"%>

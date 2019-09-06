@@ -210,9 +210,6 @@
 			// $('#modalRecordDetail').innerHTML()
 		});
 
-		$(".modalClose").on("click", function() {
-			$('#modalOpen').val("close");
-		});
 		
 		$(".move").on("click",function(e){
 			e.preventDefault();
@@ -220,5 +217,9 @@
 			actionForm.attr("action","boardlogmodify");
 			actionForm.submit();
 		})
+		
+		$(".modalClose").on("click", function() {
+			$('#modalOpen').val("close");
+		});
 	});
 </script>

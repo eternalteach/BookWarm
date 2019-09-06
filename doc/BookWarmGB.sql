@@ -38,6 +38,8 @@ end_page number(4,0) not null,
 start_date date default sysdate,
 end_date varchar2(10) default 'false'); 
 
+ALTER INDEX SYS_C007061 RENAME TO comm_index; 
+
 drop table loging_board;
 
 --독서감상테이블 감상번호 시퀀스

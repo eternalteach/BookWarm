@@ -2,21 +2,24 @@ package com.book.warm.mapper;
 
 import java.util.ArrayList;
 
+import com.book.warm.page.Criteria;
 import com.book.warm.vo.CommunityBoardVO;
 
 public interface CommunityBoardMapper {
 
-	public ArrayList<CommunityBoardVO> getCommunityBoardList();
-
-	public CommunityBoardVO getCommunityBoardOne(String comm_no);
-
-	public int getCommunityBoardOneDelete(String comm_no);
-
-	public int modifyCommunityBoardOne(CommunityBoardVO communityBoardVO);
-
-	public int insertCommunityBoardWrite(CommunityBoardVO communityBoardVO);
-
-	public int insertCommunityBoardReplyWrite(CommunityBoardVO communityBoardVO);
+	public int getNumberOfPostsOnCommunityBoard();
 	
-	public int replyshape(CommunityBoardVO communityBoardVO);
+	public ArrayList<CommunityBoardVO> getCommunityBoardListWithPaging(Criteria criteria);
+
+	public CommunityBoardVO getCommunityBoardOne(int comm_no);
+
+	public Integer getCommunityBoardOneDelete(String comm_no);
+
+	public Integer modifyCommunityBoardOne(CommunityBoardVO communityBoardVO);
+
+	public Integer insertCommunityBoardWrite(CommunityBoardVO communityBoardVO);
+
+	public Integer insertCommunityBoardReplyWrite(CommunityBoardVO communityBoardVO);
+	
+	public Integer replyshape(CommunityBoardVO communityBoardVO);
 }

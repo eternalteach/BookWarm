@@ -45,7 +45,7 @@ public class BoardLogController {
 		bookVO = logingBoardMapper.getBookVO(bookVO.getIsbn());// get isbn and set all bookVO attr
 		ArrayList<LogingBoardVO> logingList = logingBoardMapper.getListWithPaging(criteria, bookVO);
 		model.addAttribute("loginglist", logingList);
-		model.addAttribute("pageMaker", new PageDTO(criteria, 123));
+		model.addAttribute("pageMaker", new PageDTO(criteria, 123)); // inject totalPageNum
 
 		int readPageNum = statisticsFunctionService.logingPage(logingList, bookVO); //
 		int logingCount = logingBoardMapper.CountWriteNo(bookVO); 

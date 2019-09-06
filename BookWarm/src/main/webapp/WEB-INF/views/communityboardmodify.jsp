@@ -3,65 +3,53 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="includes/header/header-transparent-record.jsp"%>
-
-
-
-<div class="page has-sidebar has-right-sidebar bordered">
-
-	<div class="page-inner">
-
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3 left-side-sidebar pt-70">
-					<aside class="sidebar">
-						<!-- side menu 삽입 -->
-						<%@ include file="includes/record/record.jsp"%>
-					</aside>
-				</div>
-
-				<div class="col-md-8 right-side-sidebar v_blog-medium pt-70">
-
-
 					<div>
+							<form id="pagingActionForm" method="post">
 						<table width="500" cellpadding="0" cellspacing="0" border="1">
-							<form action="communityBoardSaveModify" method="post">
-								<input type="hidden" name="comm_no" value="${communityBoardOne.comm_no}">
 								<tr>
 									<td>번호</td>
-									<td>${communityBoardOne.comm_no}</td>
+									<td>${modifyCommunityBoardPost.comm_no}</td>
 								</tr>
 								<tr>
 									<td>조회수</td>
-									<td>${communityBoardOne.comm_clicked}</td>
+									<td>${modifyCommunityBoardPost.comm_clicked}</td>
 								</tr>
 								<tr>
 									<td>작성자</td>
-									<td><input type="text" name="user_id" value="${communityBoardOne.user_id}"></td>
+									<td><input type="text" name="user_id" value="${modifyCommunityBoardPost.user_id}"></td>
 								</tr>
 								<tr>
 									<td>제목</td>
-									<td><input type="text" name="comm_title" value="${communityBoardOne.comm_title}"></td>
+									<td><input type="text" name="comm_title" value="${modifyCommunityBoardPost.comm_title}"></td>
 								</tr>
 								<tr>
 									<td>말머리</td>
-									<td><input type="text" name="comm_subject" value="${communityBoard.comm_subject}"></td>
+									<td><input type="text" name="comm_subject" value="${modifyCommunityBoardPost.comm_subject}"></td>
 								</tr>
 								<tr>
 									<td>내용</td>
-									<td><textarea rows="10" name="comm_content">${communityBoardOne.comm_content}</textarea></td>
+									<td><textarea rows="10" name="comm_content">${modifyCommunityBoardPost.comm_content}</textarea></td>
 								</tr>
 								<tr>
-									<td colspan="2"><input type="submit" value="저장">&nbsp;&nbsp; 
-										<a href="communityboard">List</a> &nbsp;&nbsp; 
-										<a href="communityboarddelete?comm_no=${communityBoardOne.comm_no}">Delete</a>
+									<td colspan="2"><a class="submit" href="communityBoardSaveModify"><button type="submit">저장</button></a>&nbsp;&nbsp; 
+										<a class="submit" href="communityboard">List</a> &nbsp;&nbsp; 
+										<a class="submit" href="communityboarddelete">Delete</a>
 								</tr>
-							</form>
+									<input type='text' hidden='hidden' id='pageNum' name='pageNum' value='${criteria.pageNum}'> 
+									<input type='text' hidden='hidden' id='amount' name='amount' value='${criteria.amount}'>
+									<input type='text' hidden='hidden' id='comm_no' name='comm_no' value='${modifyCommunityBoardPost.comm_no}'>
 						</table>
+							</form>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
+<script>
+	$(document).ready(function() {
+		var pagingActionForm = $("#pagingActionForm");
+		$(".submit").on("click", function(e) {
+			e.preventDefault();
+			let moveNextPage=$(this).attr("href");
+			pagingActionForm.attr("action",moveNextPage);
+			pagingActionForm.submit();
+		});
+	});
+</script>
 <%@ include file="includes/footer/footer-1.jsp"%>
