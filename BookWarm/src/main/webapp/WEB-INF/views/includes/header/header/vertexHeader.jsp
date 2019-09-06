@@ -1,3 +1,4 @@
+<%@page import="com.book.warm.service.RegisterService"%>
 <% String path = request.getContextPath(); %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -120,6 +121,7 @@
   
   	
     $(document).ready(function() {
+    	
     	var dt = new Date();
     	var year = $('#year');
     	var month = $('#month');
@@ -139,10 +141,84 @@
     	for(var i=1; i<=31; i++){
     		day.append("<option value='"+i+"'>"+i+"</option>")
     	}
+    	
+    	$('#chkDuplicatedId').on('click', function() {
+    		var user_id = $('#user_id').val();
+    		
+    		if(user_id==null) {
+    			alert("아이디를 입력해주세요.")
+    		}
+    		
+    	})
+    	
+    	
+    	$('#user_pw').on('keyup', function() {
+	    	var pw = $('#user_pw').val();
+	    	var pwConfirm = $('#pwConfirm').val();
+    		chkPw(pw, pwConfirm);
+    	})
+    	
+    	$('#pwConfirm').on('keyup', function() {
+	    	var pw = $('#user_pw').val();
+	    	var pwConfirm = $('#pwConfirm').val();
+    		chkPw(pw, pwConfirm);
+    	})
+    	
+    	
+    	
     })
+    
+    function chkPw(pw, pwConfirm) {
+    	if(pw==pwConfirm) {
+    		// 비번 == 비번확인
+    		$('#pwConfirmMsg').html('<span>비밀번호가 일치합니다.</span>');
+    		$('#pwConfirmMsg').attr('style', 'color:blue');
+    	}else {
+    		// 비번 != 비번확인
+    		$('#pwConfirmMsg').html('<span>비밀번호가 일치하지 않습니다.</span>');
+    		$('#pwConfirmMsg').attr('style', 'color:red');
+    	}
+    }
+    
+ 	
+    	
+    
     </script>
     
-    
-	<script>
-    
-</script>
+    <!-- checkDuplicatedRegisterPage.jsp -->
+    <script>
+    	$(document).ready(function() {
+    		
+    		// 이메일 선택
+    		$('#selectEmail').on('click', function() {
+    			var selected = $(this).val();
+    			var user_mail2 = $('#user_mail2');
+    			
+    			if(selected=="선택") {
+    				// 선택창 아직 선택하기 이전 >> 입력창 비우기
+    				user_mail2.val('');
+    			}else if(selected=="typeEmail"){
+    				// 직접 입력하기 선택 >> 입력창 비우기
+    				user_mail2.val('');
+    				user_mail2.attr('placeholder', 'type your email here!')
+    			}else {
+    				// 네이버, 구글, 다음 주소 선택 >> input창에 넣어주기
+    				user_mail2.val(selected);
+    			}
+    		})
+    		
+    		// 전송 버튼 클릭시 >> 모든 창 안 채워져있으면 경고창
+    		$('#chkDuplicatedBtn').on('click', function() {
+    			var user_name = $('#user_name').val();
+    			var user_mail1 = $('#user_mail1').val();
+    			var user_mail2 = $('#user_mail2').val();
+    			
+    			if(user_name=="" || user_mail1=="" || user_mail2=="") {
+    				alert("모든 폼을 작성해주세요.");
+    			}else {
+    				$(this).attr('type', 'submit');
+    			}
+    		})
+    		
+    	})
+	</script>

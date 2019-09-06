@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<% String path1 = request.getContextPath(); %>
 <div class="wrapper">
 
       <div class="page body-sign">
@@ -20,6 +21,7 @@
 
                               <div class="form-header header-primary">
                                  <h4><i class="fa fa-sign-in"></i>Login</h4>
+                                 <span style="color:red">${msg}</span>
                               </div><!-- end .form-header section -->
 
                               <form method="post" action="/warm/loginAction" id="contact">
@@ -49,7 +51,7 @@
                                  </div><!-- end .form-body section -->
                                  <div class="form-footer">
                                     <button type="submit" class="button btn-primary">로그인</button>
-                                    <a href="#"><button type="button" class="button btn-primary">회원가입</button></a>
+                                    <a href="<%=path1 %>/checkDuplicateRegister"><button type="button" class="button btn-primary">회원가입</button></a>
                                  </div><!-- end .form-footer section -->
                               </form>
                            </div><!-- end .smart-forms section -->

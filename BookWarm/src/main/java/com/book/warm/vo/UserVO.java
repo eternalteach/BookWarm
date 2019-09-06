@@ -7,30 +7,29 @@ public class UserVO {
 	String user_pw;
 	String user_nickname;
 	String user_name;
-	Timestamp user_bday;
+	String user_bday; // 생일(날짜)
 	String user_sex; // f&m
 	String user_phone;
 	String user_mail;
-	int user_zipcode;
-	String user_addr;
-	String user_addr_detail;
-	Timestamp user_join_date;
+	int user_zipcode; // 우편번호
+	String user_addr; // 도로명주소
+	String user_addr_detail; // 상세주소+참고항목
+	String user_join_date; // 가입일(날짜)
 	String user_level;
 	int user_tot_price;
 	int user_point;
-	String user_agree;
 	
 	public String getUser_id() {
 		return user_id;
 	}
-	public void setUserid(String user_id) {
+	public void setUser_id(String user_id) {
 		this.user_id = user_id;
+	}
+	public void setUser_pw(String user_pw) {
+		this.user_pw = user_pw;
 	}
 	public String getUser_pw() {
 		return user_pw;
-	}
-	public void setUserpw(String user_pw) {
-		this.user_pw = user_pw;
 	}
 	public String getUser_nickname() {
 		return user_nickname;
@@ -44,10 +43,10 @@ public class UserVO {
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
 	}
-	public Timestamp getUser_bday() {
+	public String getUser_bday() {
 		return user_bday;
 	}
-	public void setUser_bday(Timestamp user_bday) {
+	public void setUser_bday(String user_bday) {
 		this.user_bday = user_bday;
 	}
 	public String getUser_sex() {
@@ -86,10 +85,10 @@ public class UserVO {
 	public void setUser_addr_detail(String user_addr_detail) {
 		this.user_addr_detail = user_addr_detail;
 	}
-	public Timestamp getUser_join_date() {
+	public String getUser_join_date() {
 		return user_join_date;
 	}
-	public void setUser_join_date(Timestamp user_join_date) {
+	public void setUser_join_date(String user_join_date) {
 		this.user_join_date = user_join_date;
 	}
 	public String getUser_level() {
@@ -109,12 +108,6 @@ public class UserVO {
 	}
 	public void setUser_point(int user_point) {
 		this.user_point = user_point;
-	}
-	public String getUser_agree() {
-		return user_agree;
-	}
-	public void setUser_agree(String user_agree) {
-		this.user_agree = user_agree;
 	}
 	
 }

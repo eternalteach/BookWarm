@@ -106,10 +106,4 @@ public class LoginController {
 		return "redirect:login";
 	}
 	
-	@RequestMapping(value="/register") 
-	public String register() {
-		
-		return "/register";
-	}
-	
 }

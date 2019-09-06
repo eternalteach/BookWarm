@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<%@ include file="./includes/header/shopHeader/shopHeader.jsp"%>
+	<%@ include file="./includes/header/header/vertexExHeader.jsp"%>
 </head>
 <body>
 	<%@ include file="./includes/header/shopHeader/shopHeaderNav.jsp"%>
