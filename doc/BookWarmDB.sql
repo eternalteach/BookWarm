@@ -67,23 +67,28 @@ tag_name varchar2(50) not null
 ------------------------------------------------------------
 
 -------------------- create community board --------------------
---community board
+--community board (박기범) (9/6 컬럼 크기, pk이름 수정)
 create table community_board(
-comm_no NUMBER(4) PRIMARY KEY,
+comm_no NUMBER(10),
 user_id VARCHAR2(20),
-comm_subject varchar2(20),
-comm_title VARCHAR2(100),
+comm_subject varchar2(30),
+comm_title VARCHAR2(200),
 comm_content VARCHAR2(3000),
 comm_written_time DATE DEFAULT SYSDATE,
 comm_modify_time DATE DEFAULT SYSDATE,
-comm_clicked NUMBER(4) DEFAULT 0,
-comm_group NUMBER(4),
+comm_clicked NUMBER(10) DEFAULT 0,
+comm_group NUMBER(10),
 comm_step NUMBER(4),
 comm_indent NUMBER(4)
 );
+
+-- community board pk설정, pk를 comm_pk_board로 설정
+ALTER TABLE community_board ADD CONSTRAINT  comm_pk_board primary KEY(comm_no);
+
 --comunity board sequence
 create sequence community_board_seq;
 create sequence community_board_reply_seq;
+
 
 -- community board reply table(9/5 reply->comment로 수정)
 create table community_board_comment(
