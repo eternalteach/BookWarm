@@ -21,6 +21,7 @@ import com.book.warm.vo.CommunityBoardCommentVO;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
+@RequestMapping("CommunityBoardComment/")
 @RestController
 @Log4j
 @AllArgsConstructor
@@ -29,7 +30,7 @@ public class BoardCommunityCommentController {
 	private CommunityBoardCommentService service;
 
 	//add Comment
-	@PostMapping(value = "/communityboardcommentnew", consumes = "application/json", produces = {
+	@PostMapping(value = "/new", consumes = "application/json", produces = {
 			MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> create(@RequestBody CommunityBoardCommentVO communityBoardCommentVO) {
 		log.info("CommunityBoardCommentVO : " + communityBoardCommentVO);
@@ -57,14 +58,14 @@ public class BoardCommunityCommentController {
 	}
 	
 	// remove comment
-	@DeleteMapping(value="/{comm_cmt_no}", produces= {MediaType.TEXT_PLAIN_VALUE})
+	@DeleteMapping(value="{comm_cmt_no}", produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> remove(@PathVariable("comm_cmt_no")int comm_cmt_no){
 		log.info("remove : " + comm_cmt_no);
 		return service.remove(comm_cmt_no)==1 ? new ResponseEntity<>("success",HttpStatus.OK):new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	// modify comment
-	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="/{rno}",consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE})
+	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="/{comm_cmt_no}",consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> modify(@RequestBody CommunityBoardCommentVO communityBoardCommentVO, @PathVariable("comm_cmt_no")int comm_cmt_no){
 		communityBoardCommentVO.setComm_cmt_no(comm_cmt_no);
 		log.info("comm_cmt_no : "+comm_cmt_no);
