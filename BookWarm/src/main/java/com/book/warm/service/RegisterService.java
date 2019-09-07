@@ -28,4 +28,8 @@ public class RegisterService {
 		registerMapper.insertNewUser(userVO);
 	}
 	
+	public int checkDuplicatedId(String user_id) {
+		return registerMapper.checkDuplicatedId(user_id);
+	}
+	
 }

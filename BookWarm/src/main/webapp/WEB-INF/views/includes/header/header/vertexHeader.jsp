@@ -2,6 +2,7 @@
 <% String path = request.getContextPath(); %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <meta charset="utf-8">
     <title>Venue - Responsive HTML5 Template</title>
     <meta name="keywords" content="HTML5 Template" />
@@ -151,7 +152,7 @@
     		
     	})
     	
-    	
+    	// 비밀번호 일치 여부 판단
     	$('#user_pw').on('keyup', function() {
 	    	var pw = $('#user_pw').val();
 	    	var pwConfirm = $('#pwConfirm').val();
@@ -165,6 +166,98 @@
     	})
     	
     	
+    	// 아이디 중복검사(ajax)
+    	$('#user_id').on('blur', function() {
+    		var user_id = $('#user_id').val();
+    		$.ajax({
+    			url : '<%=path%>/idCheck?user_id='+user_id,
+    			type : 'get',
+    			success : function(data) {
+    				console.log("1 = 중복 O / 0 = 중복 X : " + data);
+    				
+    				if(data==1) {
+    					// 1 : 아이디 중복
+    					// 메세지 띄운다.
+    					$('#idConfirmMsg').text("사용중인 아이디 입니다.");
+    					$('#idConfirmMsg').css("color", "red");
+    					// 폼 다 채우고 가입 버튼 눌러도 다음으로 못 넘어가도록 만든다.
+    					$('#submitBtn').attr("disabled", true);
+    				} else {
+    					// 0 : 아이디 중복 X
+    					// 메세지 띄우고, submit버튼 활성화
+    					$('#idConfirmMsg').text("");
+    					$('#submitBtn').attr("disabled", false);
+    				}
+    			}, error : function() {
+    				consol.log("error!");
+    			}
+    		})
+    		
+    	})
+    	
+    	
+    	
+    	
+    	// 전송 버튼 클릭시
+		$('#submitBtn').on('click', function() {
+			// 1. 메일 주소
+			var mail1 = $('#user_mail1').val();
+			var mail2 = $('#user_mail2').val();
+			var mail = mail1 + "@" + mail2;
+			
+			$('#form').append("<input type='hidden' name='user_mail' value='"+mail+"'>");
+			
+			
+			// 2. 생년월일 >> String으로 보내서 httpServletRequest로 받아야 한다.
+			var year = $('#year').val();
+			var month = $('#month').val();
+			var day = $('#day').val();
+			var bday = year+"-"+month+"-"+day;
+			$('#form').append("<input type='hidden' name='user_bday' value='"+bday+"'>");
+			
+			
+			// 3. 폰번호
+			var phone1 = $('#user_phone1').val();
+			var phone2 = $('#user_phone2').val();
+			var phone3 = $('#user_phone3').val();
+			var phone = phone1+"-"+phone2+"-"+phone3;
+			
+			$('#form').append("<input type='hidden' name='user_phone' value='"+phone+"'>");
+			
+			
+			// 4. 주소(상세주소+참고항목)
+			var detailAddr = $('#sample4_detailAddress').val(); // 상세주소
+			var cfAddr =  $('#sample4_extraAddress').val(); // 참고항목
+			var user_addr_detail = detailAddr+cfAddr;
+			$('#form').append("<input type='hidden' name='user_addr_detail' value='"+user_addr_detail+"'>");
+			
+			
+		 	// 모든 창 안 채워져있으면 경고창
+			var user_name = $('#user_name').val(); // 이름
+		 	// mail; // 이메일
+			var user_id = $('#user_id').val(); // 아이디
+			var user_pw = $('#user_pw').val(); // 비번
+			var user_nickname = $('#user_nickname').val(); // 닉네임
+			// bday; // 생일
+			var user_sex_f = $('#user_sex_f'); // 성별_여
+			var user_sex_m = $('#user_sex_m'); // 성별_남
+			// phone; // 폰번호
+			var sample4_postcode = $('#sample4_postcode').val(); // 우편번호
+			var sample4_roadAddress = $('#sample4_roadAddress').val(); // 도로명주소
+			// user_addr_detail; // 상세주소+참고항목
+			
+			if((user_name==""||mail==""||user_id==""||user_pw==""||user_nickname==""||year=="년도"||month=="월"||day=="일"
+					||sample4_postcode==""||sample4_roadAddress==""||cfAddr=="")
+					|| (user_sex_f.prop('checked')==false && user_sex_m.prop('checked') == false) 
+					) {
+				// 하나라도 안 채워져 있는 경우
+				alert("모든 폼을 작성해주세요.");
+			}else {
+				alert("good.");
+				$(this).attr('type', 'submit');
+			}
+		
+		})
     	
     })
     
@@ -184,7 +277,7 @@
     	
     
     </script>
-    
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <!-- checkDuplicatedRegisterPage.jsp -->
     <script>
     	$(document).ready(function() {

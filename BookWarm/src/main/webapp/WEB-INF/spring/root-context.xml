@@ -29,7 +29,7 @@
 		스프링에 SqlSessionFactory를 등록하는 작업은 SqlSessionFactoryBean을 이용한다. 스프링과 연동작업을 처리하는 것은 mybatis-spring이다 -->
 		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 			<property name="dataSource" ref="dataSource"></property>
-			<!-- <property name="mapperLocations" value="classpath:/com/book/warm/mapper/*.xml"></property> -->
+			<property name="mapperLocations" value="classpath:/com/book/warm/mapper/*.xml"></property>
 		</bean>
 		<!-- ./sqlSessionFactory -->
 		

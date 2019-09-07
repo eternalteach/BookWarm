@@ -7,7 +7,7 @@
 
 <body>
 	<%@include file="./includes/header/loginHeader/registerHeaderNav.jsp" %>
-	<%@include file="./includes/content/login/registerSuccessPage.jsp" %>
+	<%@include file="./includes/content/register/registerSuccessPage.jsp" %>
 	<%@include file="./includes/footer/loginFooter/registerFooterNav.jsp" %>
     
 </body>

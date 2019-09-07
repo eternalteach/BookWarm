@@ -15,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
@@ -92,33 +94,42 @@ public class RegisterController {
 			return "/register";
 		}
 		
+		// url로 접근한 경우 >> 회원가입(중복확인)페이지로 보내버린다.
 		return "redirect:/checkDuplicateRegister";
 	}
 	
 	// 회원가입 성공 페이지
 	@RequestMapping(value="/registerSuccess", method=RequestMethod.POST)
 	public String registerSuccess(UserVO userVO) {
-		System.out.println("---------------");
-		System.out.println("name : "+userVO.getUser_name());
-		System.out.println("mail : "+userVO.getUser_mail());
-		System.out.println("id : "+userVO.getUser_id());
-		System.out.println("pw : "+userVO.getUser_pw());
-		System.out.println("nickname : "+userVO.getUser_nickname());
-		System.out.println("birthday : "+userVO.getUser_bday());
-		System.out.println("sex : "+userVO.getUser_sex());
-		System.out.println("phone : "+userVO.getUser_phone());
-		System.out.println("zipcode : "+userVO.getUser_zipcode());
-		System.out.println("address : "+userVO.getUser_addr());
-		System.out.println("address detail : "+userVO.getUser_addr_detail());
-		System.out.println("---------------");
+		
+		// url로 접근한 경우 >> 회원가입(중복확인)페이지로 보내버린다.
+		if(userVO==null)
+			return "redirect:/checkDuplicateRegister";
 		
 		
 		// 받아온 데이터 db에 넣기
 		registerService.insertNewUser(userVO);
-		
-		
 		return "/registerSuccess";
+	}
+	//
+	@RequestMapping(value="/registerSuccess", method=RequestMethod.GET)
+	public String registerSuccessByURL() {
 		
+		// url로 접근한 경우 >> 회원가입(중복확인)페이지로 보내버린다.
+		return "redirect:/checkDuplicateRegister";
 		
 	}
+	
+	
+	// id 중복확인
+	@ResponseBody
+	@RequestMapping(value="/idCheck", method=RequestMethod.GET)
+	public int idCheck(@RequestParam("user_id") String user_id) {
+		System.out.println("user_id : " + user_id);
+		int rtn =  registerService.checkDuplicatedId(user_id);
+		System.out.println("id 체크 완료");
+		return rtn;
+	}
+	
+	
 }

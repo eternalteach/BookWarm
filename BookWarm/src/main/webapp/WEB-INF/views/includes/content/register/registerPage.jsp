@@ -34,6 +34,10 @@
                             <input type="text" class="form-control" name="user_id" id="user_id" placeholder="ID" maxlength="50">
                             <!-- 아이디 중복 확인 버튼 구현하기 -->
                             <button type="button" id="chkDuplicatedId">중복 확인</button>
+                            <!-- 버튼 구현 x, 문자 뜨도록 만들꺼임 -->
+                            <div class="row">
+                                <div class="col-sm"><span id="idConfirmMsg"></span></div>
+                            </div>
                         </div>
                         
                         <div class="form-group">
@@ -132,69 +136,3 @@
     </div>
     
 </div>
-
-<script>
-	$(document).ready(function() {
-		// 전송 버튼 클릭시
-		$('#submitBtn').on('click', function() {
-			// 1. 메일 주소
-			var mail1 = $('#user_mail1').val();
-			var mail2 = $('#user_mail2').val();
-			var mail = mail1 + "@" + mail2;
-			
-			$('#form').append("<input type='hidden' name='user_mail' value='"+mail+"'>");
-			
-			
-			// 2. 생년월일 >> String으로 보내서 httpServletRequest로 받아야 한다.
-			var year = $('#year').val();
-			var month = $('#month').val();
-			var day = $('#day').val();
-			var bday = year+"-"+month+"-"+day;
-			$('#form').append("<input type='hidden' name='user_bday' value='"+bday+"'>");
-			
-			
-			// 3. 폰번호
-			var phone1 = $('#user_phone1').val();
-			var phone2 = $('#user_phone2').val();
-			var phone3 = $('#user_phone3').val();
-			var phone = phone1+"-"+phone2+"-"+phone3;
-			
-			$('#form').append("<input type='hidden' name='user_phone' value='"+phone+"'>");
-			
-			
-			// 4. 주소(상세주소+참고항목)
-			var detailAddr = $('#sample4_detailAddress').val(); // 상세주소
-			var cfAddr =  $('#sample4_extraAddress').val(); // 참고항목
-			var user_addr_detail = detailAddr+cfAddr;
-			$('#form').append("<input type='hidden' name='user_addr_detail' value='"+user_addr_detail+"'>");
-			
-			
-		 	// 모든 창 안 채워져있으면 경고창
-			var user_name = $('#user_name').val(); // 이름
-		 	// mail; // 이메일
-			var user_id = $('#user_id').val(); // 아이디
-			var user_pw = $('#user_pw').val(); // 비번
-			var user_nickname = $('#user_nickname').val(); // 닉네임
-			// bday; // 생일
-			var user_sex_f = $('#user_sex_f'); // 성별_여
-			var user_sex_m = $('#user_sex_m'); // 성별_남
-			// phone; // 폰번호
-			var sample4_postcode = $('#sample4_postcode').val(); // 우편번호
-			var sample4_roadAddress = $('#sample4_roadAddress').val(); // 도로명주소
-			// user_addr_detail; // 상세주소+참고항목
-			
-			if((user_name==""||mail==""||user_id==""||user_pw==""||user_nickname==""||bday==""
-					||sample4_postcode==""||sample4_roadAddress==""||user_addr_detail=="")
-					|| (user_sex_f.prop('checked')==false && user_sex_m.prop('checked') == false) 
-					) {
-				// 하나라도 안 채워져 있는 경우
-				alert("모든 폼을 작성해주세요.");
-			}else {
-				alert("good.");
-				$(this).attr('type', 'submit');
-			}
-		
-		})
-	})
-	
-</script>

@@ -19,29 +19,12 @@ public interface ShopMapper {
 //			"on t1.isbn = t2.isbn \r\n" + 
 //			"where user_id=#{user_id}\r\n" + 
 //			"order by t1.user_id")
-	@Select("select c.*, b.book_title, b.book_price_for_sale, b.book_img, c.cart_cnt*b.book_price_for_sale as total\r\n" + 
-			"		from cart c inner join book b\r\n" + 
-			"		on c.isbn = b.isbn\r\n" + 
-			"		where c.user_id = #{user_id}")
 	public List<CartVO> cartList(@Param("user_id") String user_id);
 	
-	@Delete("delete from cart where user_id = #{user_id} and isbn = #{isbn}")
 	public void removeCart(@Param("user_id") String user_id, @Param("isbn") String isbn);
 	
-//	@Select("select c.*, b.book_title, b.book_price_for_sale, b.book_img, c.cart_cnt*b.book_price_for_sale as total\r\n" + 
-//			"		from cart c inner join book b\r\n" + 
-//			"		on c.isbn = b.isbn\r\n" + 
-//			"		where c.user_id = #{user_id}\r\n" + 
-//			"		and c.cart_no != #{cart_no}")
-//	public List<CartVO> removeCart(@Param("user_id") String user_id, @Param("cart_no") String cart_no);
-	
-	@Update("update cart set cart_cnt=#{cart_cnt} where cart_no=#{cart_no}")
 	public void updateCnt(@Param("cart_cnt") int cart_cnt, @Param("cart_no") String cart_no);
 	
-	@Select("select c.*, b.book_title, b.book_price_for_sale, b.book_img, c.cart_cnt*b.book_price_for_sale as total\r\n" + 
-			"		from cart c inner join book b\r\n" + 
-			"		on c.isbn = b.isbn\r\n" + 
-			"where cart_no=#{cart_no}")
 	public CartVO getCartOne(@Param("cart_no") String cart_no);
 	
 }
