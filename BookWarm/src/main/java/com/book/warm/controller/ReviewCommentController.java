@@ -1,7 +1,5 @@
 package com.book.warm.controller;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.book.warm.service.ReviewCommentService;
+import com.book.warm.vo.CommentPageDTO;
 import com.book.warm.vo.Criteria;
 import com.book.warm.vo.ReviewCommentVO;
 
@@ -27,7 +26,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class ReviewCommentController {
 	
-	private ReviewCommentService rcs;
+	private ReviewCommentService service;
 	
 	// 댓글 입력
 	@PostMapping(value="/new",
@@ -36,7 +35,7 @@ public class ReviewCommentController {
 	public ResponseEntity<String> create(@RequestBody ReviewCommentVO vo) {
 		
 		log.info("ReviewCommentVO: " + vo);
-		int insertCount = rcs.register(vo);
+		int insertCount = service.register(vo);
 		log.info("Comment INSERT COUNT: " + insertCount);
 		
 		return insertCount == 1
@@ -49,14 +48,16 @@ public class ReviewCommentController {
 					produces= {
 								MediaType.APPLICATION_XML_VALUE,
 								MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<List<ReviewCommentVO>> getList(
+	public ResponseEntity<CommentPageDTO> getList(
 			@PathVariable("page") int page,
 			@PathVariable("review_no") int review_no) {
 		
-		log.info("getList");
 		Criteria cri = new Criteria(page, 10);
 		
-		return new ResponseEntity<>(rcs.getList(cri, review_no), HttpStatus.OK);
+		log.info("get Comment List review_no: " + review_no);
+		log.info("cri: " + cri);
+		
+		return new ResponseEntity<>(service.getListPage(cri, review_no), HttpStatus.OK);
 	}
 	
 	// 댓글 조회
@@ -66,7 +67,7 @@ public class ReviewCommentController {
 	public ResponseEntity<ReviewCommentVO> get(@PathVariable("review_cmt_no") int review_cmt_no) {
 		
 		log.info("get: " + review_cmt_no);
-		return new ResponseEntity<>(rcs.get(review_cmt_no), HttpStatus.OK);
+		return new ResponseEntity<>(service.get(review_cmt_no), HttpStatus.OK);
 	}
 	
 	// 댓글 삭제
@@ -76,7 +77,7 @@ public class ReviewCommentController {
 		
 		log.info("remove: " + review_cmt_no);
 		
-		return rcs.remove(review_cmt_no) == 1
+		return service.remove(review_cmt_no) == 1
 				? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
@@ -95,7 +96,7 @@ public class ReviewCommentController {
 		log.info("review_cmt_no: " + review_cmt_no);
 		log.info("modify: " + vo);
 		
-		return rcs.modify(vo) == 1
+		return service.modify(vo) == 1
 				? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}

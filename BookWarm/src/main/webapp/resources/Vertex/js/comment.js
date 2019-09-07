@@ -35,7 +35,8 @@ var commentService = (function(){
 		$.getJSON("/warm/comments/pages/" + review_no + "/" + page + ".json",
 				function(data) {
 					if (callback) {
-						callback(data);
+						// callback(data); // 댓글 목록만 가져오는 경우
+						callback(data.commentCnt, data.list);
 					}
 			}).fail(function(xhr, status, err) {
 			if(error) {

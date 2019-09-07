@@ -25,9 +25,29 @@
  	</update>
  	
  	<select id="getListWithPaging" resultType="com.book.warm.vo.ReviewCommentVO">
- 		select * from review_comment
- 		where review_no = #{review_no}
- 		order by review_cmt_no asc
+ 		
+ 		<![CDATA[
+ 		 select review_cmt_no, review_no, user_id, review_cmt_content, review_cmt_written_date, review_cmt_modified_date 
+ 		 from
+ 			 (
+	 		 select /*+INDEX(review_comment idx_comment) */
+	 		 	 rownum rn, review_cmt_no, review_no, user_id, review_cmt_content, review_cmt_written_date, review_cmt_modified_date
+			 from review_comment
+	 		 where review_no = #{review_no}
+	 	 	 and review_cmt_no > 0
+	 	 	 and rownum <= #{cri.pageNum} * #{cri.amount}
+ 			 )
+ 		 where rn > (#{cri.pageNum} - 1) * #{cri.amount}
+ 		]]>
+ 		
+ 	</select>
+ 	
+ 	<select id="getCountByReviewNo" resultType="int">
+ 		
+ 		<![CDATA[
+ 			select count(review_cmt_no) from review_comment where review_no = #{review_no}
+ 		]]>
+ 		
  	</select>
  	
  </mapper>

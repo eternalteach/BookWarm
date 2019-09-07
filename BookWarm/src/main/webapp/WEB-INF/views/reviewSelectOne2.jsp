@@ -749,11 +749,6 @@
                                     </c:forEach> --%>
                                     
                                 </ul>
-                            
-	                            <div class="panel-footer">
-	                            	 <!-- 댓글 페이지 번호 출력 영역 -->
-	                            	
-	                            </div>
                             </div>
 
                             <div class="post-block-wrap" id="comment-area">
@@ -1097,207 +1092,226 @@
     // 댓글 처리를 위한 comment.js 추가
     <script type="text/javascript" src = "/warm/resources/Vertex/js/comment.js"></script>
     
-    <script type="text/javascript" >
+        <script type="text/javascript" >
         
         $(document).ready(function() {
         
-	        // showList에서 -1일 경우 원래의 태그를 실행하고,
-	        // 수정 버튼을 클릭했을 때 번호를 받아와서 
-	        // var no = -1;
-	        	
-	    	// 댓글 목록
-			var review_no_value = '<c:out value="${review.review_no}"/>';
-			var commentUL = $(".media-list");	
+        // showList에서 -1일 경우 원래의 태그를 실행하고,
+        // 수정 버튼을 클릭했을 때 번호를 받아와서 
+        // var no = -1;
+        	
+    	// 댓글 목록
+		var review_no_value = '<c:out value="${review.review_no}"/>';
+		var commentUL = $(".media-list");	
+		
+		// 수정/삭제를 클릭했을 때. UL 클릭시 이벤트 위임.
+		commentUL.on("click", "button", function() {
 			
-			// 수정/삭제를 클릭했을 때. UL 클릭시 이벤트 위임.
-			commentUL.on("click", "button", function() {
+			var no = $(this).data("review_cmt_no");
+			var oper = $(this).data("oper");
+			
+			var cmt_str = "";
+			
+			var page = 1; //임시
+			
+			
+			if(oper === 'modify') {
+				// 'modify' 클릭시
+				// 코멘트 내용이 입력 창으로 바뀐다. 즉, p태그 내용이 textarea로 바뀐다.
+				// 지금 function이 가리키는 건 버튼. $(this).closest("li").html("");
 				
-				var no = $(this).data("review_cmt_no");
-				var oper = $(this).data("oper");
 				
-				var target = $(this).closest("li");
-				var modifiedCmt = target.find("textarea");
+				commentService.getList({review_no:review_no_value, page: page || 1}, function(list) {
 				
-				if(oper === 'modify') {
-					// 'modify' 클릭시
-					// 코멘트 내용이 입력 창으로 바뀐다. 즉, p태그 내용이 textarea로 바뀐다.
-					// 지금 function이 가리키는 건 버튼. $(this).closest("li").html("");
+				var str = "";
+				
+				for(var i=0, len = list.length || 0; i<len; i++) {
+				
+				
+				cmt_str += "	<div><div class='media-body'><strong class='media-heading'>" + list[i].user_id + "</strong>";
+				cmt_str += "		<small class='date'>" + commentService.displayTime(list[i].review_cmt_written_date) + "</small>";
 					
-					//$(this).closest("li").html("왜 안바뀌어?");
+				cmt_str += "<a href src='/warm/comments/update/' + list[i].review_cmt_no style='font-size:0.5em; '>확인</button>";
+				cmt_str += "<button data-oper='save'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>확인</button>";
+				cmt_str += "<button data-oper='cancel'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>취소</button>";
 					
-					commentService.get(no, function(data) {
-						
-						var cmt_str = "";
+				cmt_str += "	</div>";
 					
-						cmt_str += "	<div><div class='media-body'><strong class='media-heading'>" + data.user_id + "</strong>";
-						cmt_str += "		<small class='date'>" + commentService.displayTime(data.review_cmt_written_date) + "</small>";
-						cmt_str += "<button data-oper='save'  data-review_cmt_no='" + data.review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>저장</button>";
-						cmt_str += "<button data-oper='cancel'  data-review_cmt_no='" + data.review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>취소</button>";
-							
-						cmt_str += "	</div>";
-						cmt_str += "<textarea maxlength='5000' class='form-control' name='content' id='content'>" + data.review_cmt_content + "</textarea>";
-						target.html(cmt_str); 
-						//$(this).closest("li").html(cmt_str); 왜 이렇게 하면 안 되지? 
-					});
+				cmt_str += "<textarea maxlength='5000' class='form-control' name='content' id='content'>" + list[i].review_cmt_content + "</textarea>";
 					
-				} else if(oper === 'delete') {
-					
-					commentService.remove(no, function(result) {
-						
-						if(result === 'success')
-							alert("댓글을 삭제했습니다.");
-						showList(pageNum);
-					});
-				} else if(oper === 'save') {
-					
-					commentService.update({
-						review_cmt_no : no,
-						review_no : review_no_value,
-						review_cmt_content : modifiedCmt.val()
-					}, function(result) {
-						if(result === 'success')
-							alert("댓글이 수정되었습니다.");
-						showList(pageNum);
-					});  
-					
-					
-				} else {
-					// 취소 클릭시
-					showList(-1);
 				}
+				
+				
+				
+				//showList2(1, no);
+				$(this).closest("li").html(cmt_str);
+				
+				});
+				
+				
+			} else {
+				// 'delete' 클릭시
+				
+				commentService.remove(no, function(result) {
+					
+					if(result === 'success')
+						alert("댓글을 삭제했습니다.");
+					showList(1);
+				});
+			}
 		});
 		
 		
-			showList(-1);
+		showList(1);
 		
-			function showList(page) {
+		function showList(page) {
+			
+			commentService.getList({review_no:review_no_value, page: page || 1}, function(list) {
 				
-				commentService.getList({review_no:review_no_value, page: page || 1}, function(commentCnt, list) {
-					
-					if(page == -1) {
-						pageNum = Math.ceil(commentCnt/10.0);
-						showList(pageNum);
-						return;
-					}
-					
-					var str = "";
-					if(list == null || list.length == 0) {
-						//commentUL.html("");
-						return;
-					}
-					for(var i=0, len = list.length || 0; i<len; i++) {
-						
-						
-						str += "<li class='media'>";
-						str += "	<div><div class='media-body'><strong class='media-heading'>" + list[i].user_id + "</strong>";
-						str += "		<small class='date'>" + commentService.displayTime(list[i].review_cmt_written_date) + "</small>";
-						
-						str += "<button data-oper='modify'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>수정</button>";
-						str += "<button data-oper='delete'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>삭제</button>";
-						
-						str += "	</div>";
-						str += "		<p data-review_cmt_no='" + list[i].review_cmt_no + "'>" + list[i].review_cmt_content + "</p></div></li>";
-						
-					}
-					
-					commentUL.html(str);
-					
-					showReplyPage(commentCnt);
-				}); // end function
-			} //end showList
-			
-			
-			
-			// 댓글 페이징 처리
-			
-			var pageNum = 1;
-			var commentPageFooter = $(".panel-footer");
-			
-			function showReplyPage(commentCnt) {
-				
-				var endNum = Math.ceil(pageNum / 10.0) * 10;
-				var startNum = endNum - 9;
-				
-				var prev = startNum != 1;
-				var next = false;
-				
-				if(endNum * 10 >= commentCnt) {
-					endNum = Math.ceil(commentCnt/10.0);
+				var str = "";
+				if(list == null || list.length == 0) {
+					commentUL.html("");
+					return;
 				}
-				
-				if(endNum * 10 < commentCnt) {
-					next = true;
-				}
-				
-				var str = "<ul class='pagenation pull-right'>";
-				
-				if(prev) {
-					str = "<li class='page-item'><a class='page-link' href='" + (startNum - 1) + "'>Previous</a></li>";
-				}
-				
-				for(var i=startNum ; i<=endNum; i++) {
-					var active = pageNum == i ? "active" : "";
-					str += "<li class='page-item " + active + " '><a class='page-link' href='" + i + "'>" + i + "</a></li>";
-				}
-				
-				if(next) {
-					str = "<li class='page-item'><a class='page-link' href='" + (endNum + 1) + "'>Next</a></li>";
-				}
-				
-				str += "</ul></div>";
-				
-				console.log(str);
-				commentPageFooter.html(str);
-			}
-			
-			// 댓글 페이지 번호 클릭시 새 댓글 가져오기
-			
-			commentPageFooter.on("click", "li a", function(e) {
-				
-				e.preventDefault();
-				console.log("page click");
-				
-				var targetPageNum = $(this).attr("href");
-				
-				console.log("targetPageNum: " + targetPageNum);
-				pageNum = targetPageNum;
-				
-				showList(pageNum);
-			});
-			
-
-		
-				// comment 폼이 있고, 여기서 받아서 넘겨야하는 값은 댓글작성자id(user_id), 감상글번호(review_no), 댓글내용(review_cmt_content)
-				// 등록 버튼을 누르면 commentService.add 함수가 작동해서 내용을 등록하게 되는데, 
-				// 등록 후에는 잘 등록되었다는 메시지가 뜨고, 다시 댓글 목록을 갱신하는 것까지.
-				
-				// Comment Form
-				var co_form = $(".co_form");
-				var content = co_form.find("textarea[name='content']"); // Comment 내용
-				var user_id = co_form.find("input[name='user_id']");	// Comment 작성자
-				
-				var commentRegisterBtn = $("#Button1"); // Comment 등록버튼
-				
-				commentRegisterBtn.on("click", function(e) {
+				for(var i=0, len = list.length || 0; i<len; i++) {
 					
-					e.preventDefault();
-					var comment = {
-						review_cmt_content : content.val(),
-						user_id : user_id.val(),
-						review_no : review_no_value
-					};
 					
-					commentService.add(comment, function(result){
-						if(result == "success") {
+					str += "<li class='media'>";
+					str += "	<div><div class='media-body'><strong class='media-heading'>" + list[i].user_id + "</strong>";
+					str += "		<small class='date'>" + commentService.displayTime(list[i].review_cmt_written_date) + "</small>";
+					
+					str += "<button data-oper='modify'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>수정</button>";
+					str += "<button data-oper='delete'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>삭제</button>";
+					
+					str += "	</div>";
+					str += "		<p data-review_cmt_no='" + list[i].review_cmt_no + "'>" + list[i].review_cmt_content + "</p></div></li>";
+					
+					
+					// 수정버튼을 눌렀을 때 해당 댓글의 content부분을 input박스로 드러내면?
+					// 버튼을 클릭했을 때, 해당 버튼의 oper값이 modify라면,
+					// 해당 버튼의 review_cmt_no과 같은 댓글의 저 맨 아래 부분을 
+					// <textarea maxlength="5000" rows="10" placeholder="Comment" class="form-control" name="content" id="content"></textarea>
+					// 이걸로 변경하는 것?
 							
-							alert("댓글이 등록되었습니다.");
-						}
-						co_form.find("textarea[name='content']").val("");
-						showList(-1);
-					});
-					//co_form.submit();
-				});
+					// showList(1);
+					
+					// 삼항연산자 두 번 쓰기.
+					// no을 -1로 설정해놓고, -1이면 원래의 태그를 실행하고, 
+					// 아니면 
+					
+					/* no == list[i].review_cmt_no 
+						? ""		
+						: ""	 */
+							
+					/* <li class="page-item ${pageMaker.cri.pageNum == num ? "active":"" }"></li> */
+					
+					
+				}
 				
+				commentUL.html(str);
+			}); // end function
+		} //end showList
+		
+		
+function showList2(page, no) {
+			
+			console.log("no는요 : " + no);
+			
+			
+			commentService.getList({review_no:review_no_value, page: page || 1}, function(list) {
+				
+				var str = "";
+				
+				for(var i=0, len = list.length || 0; i<len; i++) {
+					
+					
+					commentUL.html("");
+					
+					if(no == list[i].review_cmt_no) {
+						
+						// 클릭한 버튼에 해당하는 댓글 번호가, 조회된 댓글 번호와 같다면,
+						// 그 댓글의 내용을 얻어서 바꿀 수 없나
+						
+						
+						
+					}
+					
+					
+					/* str += "<li class='media'>";
+					str += "	<div><div class='media-body'><strong class='media-heading'>" + list[i].user_id + "</strong>";
+					str += "		<small class='date'>" + commentService.displayTime(list[i].review_cmt_written_date) + "</small>";
+					
+					str += "<a href src='/warm/comments/update/' + list[i].review_cmt_no style='font-size:0.5em; '>확인</button>";
+					str += "<button data-oper='save'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>확인</button>";
+					str += "<button data-oper='cancel'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>취소</button>";
+					
+					str += "	</div>";
+					
+					str += (no == list[i].review_cmt_no) ?  "<textarea maxlength='5000' class='form-control' name='content' id='content'>" + list[i].review_cmt_content + "</textarea>"
+																:  "		<p>" + list[i].review_cmt_content + "</p></div></li>" ;
+					
+					 */
+					 
+					 if(no == list[i].review_cmt_no) {
+						 
+					 }
+					 
+					 
+					
+					// 수정버튼을 눌렀을 때 해당 댓글의 content부분을 input박스로 드러내면?
+					// 버튼을 클릭했을 때, 해당 버튼의 oper값이 modify라면,
+					// 해당 버튼의 review_cmt_no과 같은 댓글의 저 맨 아래 부분을 
+					// <textarea maxlength="5000" rows="10" placeholder="Comment" class="form-control" name="content" id="content"></textarea>
+					// 이걸로 변경하는 것?
+							
+					// showList(1);
+					
+					// 삼항연산자 두 번 쓰기.
+					// no을 -1로 설정해놓고, -1이면 원래의 태그를 실행하고, 
+					// 아니면 
+					
+					
+					
+				}
+				
+				commentUL.html(str);
+			}); // end function
+		} //end showList
+		
+		
+		
+		
+		// comment 폼이 있고, 여기서 받아서 넘겨야하는 값은 댓글작성자id(user_id), 감상글번호(review_no), 댓글내용(review_cmt_content)
+		// 등록 버튼을 누르면 commentService.add 함수가 작동해서 내용을 등록하게 되는데, 
+		// 등록 후에는 잘 등록되었다는 메시지가 뜨고, 다시 댓글 목록을 갱신하는 것까지.
+		
+		// Comment Form
+		var co_form = $(".co_form");
+		var content = co_form.find("textarea[name='content']"); // Comment 내용
+		var user_id = co_form.find("input[name='user_id']");	// Comment 작성자
+		
+		var commentRegisterBtn = $("#Button1"); // Comment 등록버튼
+		
+		commentRegisterBtn.on("click", function(e) {
+			
+			e.preventDefault();
+			var comment = {
+				review_cmt_content : content.val(),
+				user_id : user_id.val(),
+				review_no : review_no_value
+			};
+			
+			commentService.add(comment, function(result){
+				if(result == "success") {
+					
+					alert("댓글이 등록되었습니다.");
+				}
+				co_form.find("textarea[name='content']").val("");
+				showList(1);
+			});
+			//co_form.submit();
+		});
+		
 		
 		
 		

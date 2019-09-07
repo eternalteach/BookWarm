@@ -18,18 +18,18 @@ import lombok.extern.log4j.Log4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class ReviewReplyMapperTests {
+public class ReviewCommentMapperTests {
 	
 	private int[] reviewNoArr = {5,4,3,2,1};
 	
 	
 	@Inject
-	ReviewCommentMapper rrm;
+	ReviewCommentMapper rcm;
 	
 //	@Test
 	public void testMapper() {
 		
-		log.info(rrm);
+		log.info(rcm);
 	}
 	
 //	@Test
@@ -41,10 +41,10 @@ public class ReviewReplyMapperTests {
 			
 			// 게시물의 번호
 			vo.setReview_no(reviewNoArr[i % 5]);
-			vo.setReview_re_content("댓글 테스트합니다: " + i);
-			vo.setUser_id("replyer: " + i);
+			vo.setReview_cmt_content("댓글 테스트합니다: " + i);
+			vo.setUser_id("Comment ID: " + i);
 			
-			rrm.insert(vo);
+			rcm.insert(vo);
 		});
 	}
 	
@@ -53,7 +53,7 @@ public class ReviewReplyMapperTests {
 		
 		int targetNo = 5;
 		
-		ReviewCommentVO vo = rrm.read(targetNo);
+		ReviewCommentVO vo = rcm.read(targetNo);
 		log.info(vo);
 	}
 	
@@ -62,7 +62,7 @@ public class ReviewReplyMapperTests {
 		
 		int targetNo = 5;
 		
-		rrm.delete(targetNo);
+		rcm.delete(targetNo);
 	}
 	
 //	@Test
@@ -70,19 +70,28 @@ public class ReviewReplyMapperTests {
 		
 		int targetNo = 10;
 		
-		ReviewCommentVO vo = rrm.read(10);
-		vo.setReview_re_content("Update Reply");
+		ReviewCommentVO vo = rcm.read(10);
+		vo.setReview_cmt_content("Update Comment");
 		
-		int count = rrm.update(vo);
+		int count = rcm.update(vo);
 		log.info("UPDATE COUNT: " + count);
 	}
 	
-	@Test
+//	@Test
 	public void testList() {
 		
 		Criteria cri = new Criteria();
 		
-		List<ReviewCommentVO> replies = rrm.getListWithPaging(cri, reviewNoArr[0]);
-		replies.forEach(reply -> log.info(reply));
+		List<ReviewCommentVO> comments = rcm.getListWithPaging(cri, reviewNoArr[0]);
+		comments.forEach(comment -> log.info(comment));
+	}
+	
+//	@Test
+	public void testList2() {
+		
+		Criteria cri = new Criteria(2,10);
+		
+		List<ReviewCommentVO> comments = rcm.getListWithPaging(cri, reviewNoArr[4]);
+		comments.forEach(comment -> log.info(comment));
 	}
 }
