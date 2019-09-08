@@ -196,7 +196,7 @@ isbn varchar2(20), --fk설정하기
 --------------- user ---------------(임지현)
 create table user_info(
 user_id varchar2(20) primary key,
-user_pw varchar2(20) not null,
+user_pw varchar2(64) not null,
 user_nickname varchar2(20),
 user_name varchar2(20),
 user_bday date,
