@@ -4,15 +4,10 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.book.warm.mapper.LoginMapper">
-	<select id="cartList" resultType="com.book.warm.vo.UserVO">
+	<select id="loginMember" resultType="com.book.warm.vo.UserVO">
 		select * from user_info where user_id=#{user_id} and user_pw=#{user_pw}
 	</select>
 	
 </mapper>
-
-
-
-
-
 
 

@@ -152,48 +152,62 @@
     		
     	})
     	
+    	var idPwExp = /^[a-zA-Z0-9_]{4,20}$/; // id pw 정규식(숫자&알파벳 대소문자&"_" 사용 가능, 4자리 이상 20자리 이하 )
+    	
     	// 비밀번호 일치 여부 판단
     	$('#user_pw').on('keyup', function() {
 	    	var pw = $('#user_pw').val();
 	    	var pwConfirm = $('#pwConfirm').val();
-    		chkPw(pw, pwConfirm);
+	    	var pwConfirmMsg = $('#pwConfirmMsg');
+	    	
+    		// 비밀번호 형식 체크
+    		if(!idPwExp.test(pw)) {
+    			pwConfirmMsg.text("숫자 또는 알파벳 대소문자 또는 '_'를 사용하여 4자리 이상 20자리 이하의 비밀번호를 입력해주세요.");
+    			pwConfirmMsg.css("color", "red");
+    		}else {
+	    		chkPw(pw, pwConfirm);
+    		}
     	})
     	
     	$('#pwConfirm').on('keyup', function() {
 	    	var pw = $('#user_pw').val();
 	    	var pwConfirm = $('#pwConfirm').val();
-    		chkPw(pw, pwConfirm);
+	    	var pwConfirmMsg = $('#pwConfirmMsg');
+    		
+    		// 비밀번호 형식 체크
+    		if(!idPwExp.test(pw)) {
+    			pwConfirmMsg.text("숫자 또는 알파벳 대소문자 또는 '_'를 사용하여 4자리 이상 20자리 이하의 비밀번호를 입력해주세요.");
+    			pwConfirmMsg.css("color", "red");
+    		}else {
+	    		chkPw(pw, pwConfirm);
+    		}
     	})
     	
     	
     	// 아이디 중복검사(ajax)
     	$('#user_id').on('blur', function() {
     		var user_id = $('#user_id').val();
-    		$.ajax({
-    			url : '<%=path%>/idCheck?user_id='+user_id,
-    			type : 'get',
-    			success : function(data) {
-    				console.log("1 = 중복 O / 0 = 중복 X : " + data);
-    				
-    				if(data==1) {
-    					// 1 : 아이디 중복
-    					// 메세지 띄운다.
-    					$('#idConfirmMsg').text("사용중인 아이디 입니다.");
-    					$('#idConfirmMsg').css("color", "red");
-    					// 폼 다 채우고 가입 버튼 눌러도 다음으로 못 넘어가도록 만든다.
-    					$('#submitBtn').attr("disabled", true);
-    				} else {
-    					// 0 : 아이디 중복 X
-    					// 메세지 띄우고, submit버튼 활성화
-    					$('#idConfirmMsg').text("");
-    					$('#submitBtn').attr("disabled", false);
-    				}
-    			}, error : function() {
-    				consol.log("error!");
-    			}
-    		})
+    		var url = "<%=path%>/idCheck?user_id=" + user_id;
+    		var idConfirmMsg = $('#idConfirmMsg');
     		
+    		// 아이디 형식 검사(4자리 이상, 20자리 이하)
+    		if(idPwExp.test(user_id)) {
+	    		// 아이디 중복검사
+	    		chkDuplicated(url, idConfirmMsg, "아이디");
+    		}else {
+    			idConfirmMsg.text("숫자 또는 알파벳 대소문자 또는 '_'를 사용하여 4자리 이상 20자리 이하의 아이디를 입력해주세요.");
+    			idConfirmMsg.css("color", "red");
+    		}
     	})
+    	
+    	// 닉네임 중복검사(ajax)
+    	$('#user_nickname').on('blur', function(){
+    		var user_nickname = $('#user_nickname').val();
+    		var url = "<%=path%>/nicknameCheck?user_nickname=" + user_nickname;
+    		var nicknameConfirmMsg = $('#nicknameConfirmMsg');
+    		chkDuplicated(url, nicknameConfirmMsg, "닉네임");
+    	})
+    	
     	
     	
     	
@@ -221,9 +235,11 @@
 			var phone2 = $('#user_phone2').val();
 			var phone3 = $('#user_phone3').val();
 			var phone = phone1+"-"+phone2+"-"+phone3;
+			var phoneExp = /^\d{3}-\d{3,4}-\d{4}$/; // 폰번호 정규식
 			
-			$('#form').append("<input type='hidden' name='user_phone' value='"+phone+"'>");
-			
+			if(phoneExp.test(phone)) {
+				$('#form').append("<input type='hidden' name='user_phone' value='"+phone+"'>");
+			}
 			
 			// 4. 주소(상세주소+참고항목)
 			var detailAddr = $('#sample4_detailAddress').val(); // 상세주소
@@ -237,6 +253,7 @@
 		 	// mail; // 이메일
 			var user_id = $('#user_id').val(); // 아이디
 			var user_pw = $('#user_pw').val(); // 비번
+			var pwConfirm = $('#pwConfirm').val(); // 비번 확인
 			var user_nickname = $('#user_nickname').val(); // 닉네임
 			// bday; // 생일
 			var user_sex_f = $('#user_sex_f'); // 성별_여
@@ -245,15 +262,30 @@
 			var sample4_postcode = $('#sample4_postcode').val(); // 우편번호
 			var sample4_roadAddress = $('#sample4_roadAddress').val(); // 도로명주소
 			// user_addr_detail; // 상세주소+참고항목
+			var idConfirmMsg = $('#idConfirmMsg').html(); // id 중복 메세지("" : 중복X)
+			var nicknameConfirmMsg = $('#nicknameConfirmMsg').html(); // nickname 중복 메세지("" : 중복X)
 			
-			if((user_name==""||mail==""||user_id==""||user_pw==""||user_nickname==""||year=="년도"||month=="월"||day=="일"
-					||sample4_postcode==""||sample4_roadAddress==""||cfAddr=="")
-					|| (user_sex_f.prop('checked')==false && user_sex_m.prop('checked') == false) 
-					) {
+			if((user_name==""||mail==""||user_id==""||user_pw==""||user_nickname==""
+					||year=="년도"||month=="월"||day=="일"||sample4_postcode==""
+					||sample4_roadAddress==""||phone1==""||phone2==""||phone3=="")
+					|| (user_sex_f.prop('checked')==false && user_sex_m.prop('checked') == false)
+				) {
 				// 하나라도 안 채워져 있는 경우
 				alert("모든 폼을 작성해주세요.");
-			}else {
-				alert("good.");
+			} else if(idConfirmMsg!="") {
+				// id 중복인 경우
+				alert("중복된 아이디가 존재합니다. 다른 아이디를 등록해주세요.");
+			} else if(user_pw!=pwConfirm) {
+				// 비번 불일치
+				alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.")
+			} else if(nicknameConfirmMsg!="") {
+				// nickname 중복인 경우
+				alert("중복된 닉네임이 존재합니다. 다른 닉네임을 등록해주세요.");
+			} else if(!phoneExp.test(phone)) {
+				// 폰번호에 3-4-4 자리수로 넣지 않은 경우
+				alert(phone);
+				alert("휴대폰 번호를 잘못 입력했습니다. 다시 한번 확인해주세요.");
+			} else {
 				$(this).attr('type', 'submit');
 			}
 		
@@ -261,6 +293,7 @@
     	
     })
     
+    // 비번 일치 확인
     function chkPw(pw, pwConfirm) {
     	if(pw==pwConfirm) {
     		// 비번 == 비번확인
@@ -273,6 +306,34 @@
     	}
     }
     
+    // 아이디, 닉네임 중복확인
+    function chkDuplicated(getUrl, location, msg) {
+		$.ajax({
+			url : getUrl,
+			type : 'get',
+			dataType : 'json',
+			success : function(data) {
+				console.log("1 = 중복 O / 0 = 중복 X : " + data);
+				
+				if(data==1) {
+					// 1 : 아이디 중복
+					// 메세지 띄운다.
+					location.text("사용중인 "+msg+" 입니다.");
+					location.css("color", "red");
+					// 폼 다 채우고 가입 버튼 눌러도 다음으로 못 넘어가도록 만든다.
+					// $('#submitBtn').attr("disabled", true);
+				} else {
+					// 0 : 아이디 중복 X
+					// 메세지 띄우고, submit버튼 활성화
+					location.text("");
+					$('#submitBtn').attr("disabled", false);
+				}
+			}, error : function() {
+				console.log("error!");
+			}
+		})
+	}
+	
  	
     	
     
@@ -305,12 +366,24 @@
     			var user_name = $('#user_name').val();
     			var user_mail1 = $('#user_mail1').val();
     			var user_mail2 = $('#user_mail2').val();
+    			var mail = user_mail1+"@"+user_mail2;
+    			
+    			var mailExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
     			
     			if(user_name=="" || user_mail1=="" || user_mail2=="") {
     				alert("모든 폼을 작성해주세요.");
+    			}else if(user_mail2.split('.').length!=2 || !mailExp.test(mail)) {
+	    			// 이메일 직접 입력하기 선택시 경고창
+	    			// 1. @뒷부분에 ooo.ooo 형태로 안 되어있는경우
+	    			// 2. 특문 들어간 경우
+	    			// 3. 한글 들어간 경우
+    				alert("이메일 주소의 형식이 잘못 되었습니다.");
     			}else {
     				$(this).attr('type', 'submit');
     			}
+    			
+    			
     		})
     		
     	})

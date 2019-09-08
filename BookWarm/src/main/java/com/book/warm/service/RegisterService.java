@@ -31,5 +31,11 @@ public class RegisterService {
 	public int checkDuplicatedId(String user_id) {
 		return registerMapper.checkDuplicatedId(user_id);
 	}
+
+	
+	public int checkDuplicatedNickname(String user_nickname) {
+		return registerMapper.checkDuplicatedNickname(user_nickname);
+	}
+	
 	
 }

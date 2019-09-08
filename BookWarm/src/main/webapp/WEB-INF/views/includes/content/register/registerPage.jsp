@@ -32,8 +32,6 @@
                         <div class="form-group">
                             <label>아이디<span class="required">*</span></label>
                             <input type="text" class="form-control" name="user_id" id="user_id" placeholder="ID" maxlength="50">
-                            <!-- 아이디 중복 확인 버튼 구현하기 -->
-                            <button type="button" id="chkDuplicatedId">중복 확인</button>
                             <!-- 버튼 구현 x, 문자 뜨도록 만들꺼임 -->
                             <div class="row">
                                 <div class="col-sm"><span id="idConfirmMsg"></span></div>
@@ -59,7 +57,9 @@
                         <div class="form-group">
                             <label>닉네임<span class="required">*</span></label>
                             <input type="text" class="form-control" name="user_nickname" id="user_nickname" placeholder="nickname" maxlength="100">
-                            <!-- 닉네임 중복 확인 버튼 추가하기 -->
+                            <div class="row">
+                                <div class="col-sm"><span id="nicknameConfirmMsg"></span></div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>생년월일<span class="required">*</span></label><!-- jquery로 년월일 넣어주기 -->

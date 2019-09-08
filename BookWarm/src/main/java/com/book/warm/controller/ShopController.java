@@ -25,23 +25,24 @@ public class ShopController {
 	@Inject
 	ShopBoardService service;
 	
-	@RequestMapping("/cart")
+	@RequestMapping(path="/cart")
 	public String cart(HttpServletRequest req, Model model) {
-		
+		System.out.println("cart()");
 		// url에서 user_id를 받아온다.
 		String user_id = req.getParameter("user_id");
 		String isbn = req.getParameter("isbn");
+		String pageWithLogin = req.getParameter("pageWithLogin");
+		
 		
 		// 삭제하려는 cart_no가 넘어온 경우 : 삭제 -> 새로 뿌려주기
 		if(isbn != null) 
 			service.removeCart(user_id, isbn);
-		System.out.println(user_id);
 		
-		// 장바구니 화면에 그냥 접속한 경우
-		List<CartVO> list = service.cartList(user_id);
-		
-		model.addAttribute("list", list);
-		
+		// 로그인을 통해서 들어온 url에 한해서만 장바구니 페이지 보여주기
+		if(pageWithLogin.equals("true")) {
+			List<CartVO> list = service.cartList(user_id);
+			model.addAttribute("list", list);
+		}
 		return "/shop-cart";
 	}
 	

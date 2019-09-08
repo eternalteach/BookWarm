@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
+import com.book.warm.encryption.SecurityUtil;
 import com.book.warm.service.LoginService;
 import com.book.warm.service.RegisterService;
 import com.book.warm.service.ShopBoardService;
@@ -38,7 +39,6 @@ public class RegisterController {
 	// 회원가입(중복 확인)페이지 띄우는 controller
 	@RequestMapping(value="/checkDuplicateRegister") 
 	public String checkDuplicateRegister() {
-		
 		return "/checkDuplicateRegister";
 	}
 	
@@ -106,18 +106,22 @@ public class RegisterController {
 		if(userVO==null)
 			return "redirect:/checkDuplicateRegister";
 		
+		// 비번 암호화
+		SecurityUtil sha2 = new SecurityUtil();
+		String encryptPw = sha2.encryptSHA256(userVO.getUser_pw());
+		userVO.setUser_pw(encryptPw);
+		
 		
 		// 받아온 데이터 db에 넣기
 		registerService.insertNewUser(userVO);
 		return "/registerSuccess";
 	}
-	//
+	
+	
+	// url로 접근한 경우 >> 회원가입(중복확인)페이지로 보내버린다.
 	@RequestMapping(value="/registerSuccess", method=RequestMethod.GET)
 	public String registerSuccessByURL() {
-		
-		// url로 접근한 경우 >> 회원가입(중복확인)페이지로 보내버린다.
 		return "redirect:/checkDuplicateRegister";
-		
 	}
 	
 	
@@ -125,11 +129,20 @@ public class RegisterController {
 	@ResponseBody
 	@RequestMapping(value="/idCheck", method=RequestMethod.GET)
 	public int idCheck(@RequestParam("user_id") String user_id) {
-		System.out.println("user_id : " + user_id);
 		int rtn =  registerService.checkDuplicatedId(user_id);
-		System.out.println("id 체크 완료");
 		return rtn;
 	}
+	
+
+	// nickname 중복확인
+	@ResponseBody
+	@RequestMapping(value="/nicknameCheck", method=RequestMethod.GET)
+	public int nicknameCheck(@RequestParam("user_nickname") String user_nickname) {
+		int rtn = registerService.checkDuplicatedNickname(user_nickname);
+		System.out.println(rtn);
+		return rtn;
+	}
+	
 	
 	
 }

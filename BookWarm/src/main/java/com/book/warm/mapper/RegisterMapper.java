@@ -13,6 +13,8 @@ public interface RegisterMapper {
 	public void insertNewUser(UserVO userVO);
 
 	public int checkDuplicatedId(@Param("user_id") String user_id);
+
+	public int checkDuplicatedNickname(@Param("user_nickname") String user_nickname);
 	
 	
 }

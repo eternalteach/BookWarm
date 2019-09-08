@@ -14,8 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.book.warm.encryption.SecurityUtil;
 import com.book.warm.service.LoginService;
 import com.book.warm.service.ShopBoardService;
 import com.book.warm.vo.CartVO;
@@ -30,9 +32,9 @@ public class LoginController {
 	@Inject
 	LoginService loginService;
 	
-	@RequestMapping("/login")
-	public String login(HttpSession session, HttpServletRequest req, Model model) {
-		
+	@RequestMapping(path="/login")
+	public String login(HttpSession session, HttpServletRequest req, RedirectAttributes rttr) {
+		System.out.println("login()");
 		String user = (String) session.getAttribute("user_id");
 		String rtn;
 		
@@ -52,6 +54,11 @@ public class LoginController {
 		// 2. 로그인 성공 여부 확인
 		if(user!=null) {
 			// 로그인 성공
+//			ModelAndView mv = new ModelAndView();
+//			mv.addObject("user_id", user);
+//			rttr.addFlashAttribute("user_id", user);
+//			rtn = "redirect:/shop/cart";
+			rttr.addAttribute("pageWithLogin", true);
 			rtn = "redirect:/shop/cart?user_id="+user;
 		}else {
 			// 로그인 실패 or 로그인페이지 처음 들어갔을 때
@@ -65,12 +72,15 @@ public class LoginController {
 	public String loginAction(HttpServletRequest req, HttpServletResponse res, RedirectAttributes rttr) {
 		
 		HttpSession session = req.getSession();
+		SecurityUtil sha2 = new SecurityUtil();
 		
 		String user_id = req.getParameter("user_id");
 		String user_pw = req.getParameter("user_pw");
 		String remember = req.getParameter("remember");
 		
-		UserVO user = loginService.loginMember(user_id, user_pw);
+		String encryptPw = sha2.encryptSHA256(user_pw);
+		
+		UserVO user = loginService.loginMember(user_id, encryptPw);
 		
 		if(user!=null) {
 			// 로그인 성공
