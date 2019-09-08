@@ -58,10 +58,13 @@
 														<strong class='primary-font'>user00</strong>
 														<small class='pull-right text-muted'>2019-09-05</small>
 													</div>
-													<p>Good Job!!</p>
+													<p>이 글을 본 당신은 행운이 가득한 사람!</p>
 												</div>
 											</li>
 											</ul>
+										</div>
+										<div class="panel-footer">
+										
 										</div>
 									</div>
 								</div>
@@ -119,20 +122,35 @@ $(document).ready(function(){
 	showList(1);
 	
 	function showList(page){
-		commentService.getList({comm_no:comm_noValue,page:page||1},function(list){
+		
+		console.log("show list" + page);
+		
+		commentService.getList({comm_no:comm_noValue,page:page||1},function(commentCnt,list){
+			
+			console.log("commentCnt: " +commentCnt);
+			console.log("list"+list);
+
+			if(page==-1){
+				pageNum==Math.ceil(commentCnt/10.0);
+				showList(pageNum);
+				return;
+			}
+			
 			var str="";
 			if(list ==null||list.length==0){
-				commentUL.html("");
 				return;
 			}
 			for(var i=0, len=list.length||0;i<len;i++){
 				str+="<li class='left clearfix' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>";
-				str+="<div><div class='header'><strong class='primary-font'>"+list[i].user_id+"</strong>";
+				str+="<div><div class='header'><strong class='primary-font'>["+list[i].comm_cmt_no+"]"+list[i].user_id+"</strong>";
 				str+="<small class='pull-right text-muted'>"+list[i].comm_cmt_written_time+"</small></div>";
 				/* str+="<small class='pull-right text-muted'>"+commentService.displayTime(list[i].comm_cmt_written_time)+"</small></div>"; */
 				str+="<p>"+list[i].comm_cmt_content+"</p></div></li>";
 			}
+			
+			
 			commentUL.html(str);
+			showCommentPage(commentCnt);			
 		});
 	} // end showList
 	
@@ -145,6 +163,7 @@ $(document).ready(function(){
 	var modalRemoveBtn=$("#modalRemoveBtn");
 	var modalRegisterBtn=$("#modalRegisterBtn");
 	
+	// Registe comment At Modal
 	$("#addCommentBtn").on("click",function(e){
 		modal.find("input").val("");
 		modalInputCommentDate.closest("div").hide();
@@ -152,6 +171,125 @@ $(document).ready(function(){
 		modalRegisterBtn.show();
 		
 		$(".modal").modal("show");
+	});
+	
+	modalRegisterBtn.on("click",function(e){
+		var comment={
+				comm_cmt_content:modalInputComment.val(),
+				user_id:modalInputUser_id.val(),
+				comm_no:comm_noValue
+		};
+		commentService.add(comment,function(result){
+			alert(result);
+		
+			modal.find("input").val("");
+			$("#myModal").modal('hide');
+			// modal is not hide... t.T
+
+			showList(-1);
+		});
+	});
+	
+	// comment (ul) click event
+	$(".chat").on("click","li",function(e){
+		var comm_cmt_no=$(this).data("comm_cmt_no");
+		commentService.get(comm_cmt_no,function(comment){
+			modalInputComment.val(comment.comm_cmt_content);
+			modalInputUser_id.val(comment.user_id);
+			modalInputCommentDate.val(comment.comm_cmt_written_time).attr("readmonly","readonly");
+			modal.data("comm_cmt_no",comment.comm_cmt_no);
+			
+			modal.find("button[id!='modalCloseBtn']").hide();
+			modalModBtn.show();
+			modalRemoveBtn.show();
+			
+			$(".modal").modal("show");
+		});
+	});
+	
+	// comment modify event
+	modalModBtn.on("click",function(e){
+		var comment={comment_cmt_no:modal.data("comm_cmt_no"), comm_cmt_content:modalInputComment.val()};
+		commentService.update(comment,function(result){
+			alert(result);
+			modal.modal("hide");
+			showList(1);
+		});
+	});
+	
+	// comment remove event
+	modalRemoveBtn.on("click",function(e){
+		var comm_cmt_no=modal.data("comm_cmt_no");
+		commentService.remove(comm_cmt_no,function(result){
+			alert(result);
+			modal.modal("hide");
+			showList(1);
+		});
+	});
+	
+	// comment paging
+	var pageNum=1;
+	var commentPageFooter = $(".panel-footer");
+	
+	function showCommentPage(commentCnt){
+		var endNum=Math.ceil(pageNum/10.0)*10;
+		var startNum = endNum -9;
+		
+		var prev=startNum != 1;
+		var next = false;
+		
+		if(endNum * 10 > commentCnt){
+			endNum=Math.ceil(commentCnt/10.0);
+		}
+		if(endNum*10<commentCnt){
+			next=true;
+		}
+		var str="<ul class='pagination pull right'>";
+		if(prev){
+			str+="<li class='page-item'><a class='page-link'href='"+(startNum-1)+"'>Previous</a></li>";
+		}
+		
+		for(var i= startNum; i<=endNum; i++){
+			var active = pageNum == i? "active":"";
+			str+="<li class='page-item"+active+"'><a class='page-link'href='"+i+"'>"+i+"</a></li>";
+		}
+		if(next){
+			str+="<li class='page-item'><a class='page-link' href='"+(endNum+1)+"'>Next</a></li>";
+		}
+		str+="</ul></div>";
+		console.log(str);
+		commentPageFooter.html(str);
+	}
+	
+	// click new comment page, get new comment
+	commentPageFooter.on("click","li a",function(e){
+		e.preventDefault();
+		console.log("page click");
+		var targetPageNum=$(this).attr("href");
+		console.log("targetPageNum: "+targetPageNum);
+		pageNum=targetPageNum;
+		showList(pageNum);
+	});
+	
+	// modify Btn click event
+	modalModBtn.on("click", function(e){
+		var comment={comm_cmt_no:modal.data("comm_cmt_no"),comm_cmt_content:modalInputComment.val()};
+		commentService.update(comment, function(result){
+			alert(result);
+			modal.modal("hide");
+			showList(pageNum);
+		});
+	});
+	
+	// remove Btn click event
+	modalRemoveBtn.on("click",function(e){
+		var comm_cmt_no=modal.data("comm_cmt_no");
+		
+		commentService.remove(comm_cmt_no,function(result){
+			alert(result);
+			modal.modal("hide");
+			showList(pageNum);
+		});
 	});
 	
 });

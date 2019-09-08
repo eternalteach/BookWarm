@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.book.warm.mapper.CommunityBoardCommentMapper;
+import com.book.warm.page.CommunityCommentPageDTO;
 import com.book.warm.page.Criteria;
 import com.book.warm.vo.CommunityBoardCommentVO;
 
@@ -46,6 +47,12 @@ public class CommunityBoardCommentServiceImpl implements CommunityBoardCommentSe
 	public List<CommunityBoardCommentVO> getList(Criteria criteria, int comm_no) {
 		log.info("get Comment List of a Community Board" + comm_no);
 		return mapper.getCommentListWithPaging(criteria, comm_no);
+	}
+
+	@Override
+	public CommunityCommentPageDTO getListPage(Criteria criteria, int comm_cmt_no) {
+		
+		return new CommunityCommentPageDTO(mapper.getCountByComm_cmt_no(comm_cmt_no),mapper.getCommentListWithPaging(criteria,comm_cmt_no));
 	}
 
 }

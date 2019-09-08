@@ -21,5 +21,5 @@ public interface CommunityBoardCommentMapper {
 	
 	public List<CommunityBoardCommentVO> getCommentListWithPaging(@Param("criteria") Criteria criteria,@Param("comm_no")int comm_no);
 	
-	
+	public int getCountByComm_cmt_no(int comm_cmt_no);
 }

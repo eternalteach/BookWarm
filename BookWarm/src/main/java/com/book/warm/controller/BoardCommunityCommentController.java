@@ -1,7 +1,5 @@
 package com.book.warm.controller;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.book.warm.page.CommunityCommentPageDTO;
 import com.book.warm.page.Criteria;
 import com.book.warm.service.CommunityBoardCommentService;
 import com.book.warm.vo.CommunityBoardCommentVO;
@@ -43,12 +42,13 @@ public class BoardCommunityCommentController {
 	//check comm_no's comment
 	@GetMapping(value = "/pages/{comm_no}/{page}", produces = { MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<List<CommunityBoardCommentVO>> getList(@PathVariable("page") int page,
+	public ResponseEntity<CommunityCommentPageDTO> getList(@PathVariable("page") int page,
 			@PathVariable("comm_no") int comm_no) {
 		log.info("====================get List====================");
 		Criteria criteria = new Criteria(page, 10);
 		log.info(criteria);
-		return new ResponseEntity<>(service.getList(criteria, comm_no), HttpStatus.OK);
+		log.info(comm_no);
+		return new ResponseEntity<>(service.getListPage(criteria, comm_no), HttpStatus.OK);
 	}
 	// get comment
 	@GetMapping(value="{comm_cmt_no}", produces= {MediaType.APPLICATION_ATOM_XML_VALUE,MediaType.APPLICATION_JSON_UTF8_VALUE})

@@ -112,6 +112,22 @@ var commentService = (function() {
 			return [yy,'/',(mm>9?'':'0')+mm,'/',(dd>9?'':'0')+dd].join('');
 		}
 	}
+	
+	function getList(param, callback, error){
+		var comm_no=param.comm_no;
+		var page = param.page||1;
+		
+		$.getJSON("CommunityBoardComment/pages/"+comm_no+"/"+page+".json",
+				function(data){
+			if(callback){
+				callback(data.commentCnt,data.list);
+			}
+		}).fail(function(xhr,status,err){
+			if(error){
+				error();
+			}
+		});
+	}
 
 	return {
 		add : add,
