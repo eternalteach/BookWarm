@@ -752,7 +752,7 @@
                             
 	                            <div class="panel-footer">
 	                            	 <!-- 댓글 페이지 번호 출력 영역 -->
-	                            	
+	                            	 
 	                            </div>
                             </div>
 
@@ -1168,104 +1168,103 @@
 		});
 		
 		
-			showList(-1);
+		showList(-1);
 		
-			function showList(page) {
+		function showList(page) {
 				
-				commentService.getList({review_no:review_no_value, page: page || 1}, function(commentCnt, list) {
+			commentService.getList({review_no:review_no_value, page: page || 1}, function(commentCnt, list) {
 					
-					if(page == -1) {
-						pageNum = Math.ceil(commentCnt/10.0);
-						showList(pageNum);
-						return;
-					}
+				if(page == -1) {
+					pageNum = Math.ceil(commentCnt/10.0);
+					showList(pageNum);
+					return;
+				}
+				
+				var str = "";
+				if(list == null || list.length == 0) {
+					//commentUL.html("");
+					return;
+				}
+				for(var i=0, len = list.length || 0; i<len; i++) {
+						
+						
+					str += "<li class='media'>";
+					str += "	<div><div class='media-body'><strong class='media-heading'>" + list[i].user_id + "</strong>";
+					str += "		<small class='date'>" + commentService.displayTime(list[i].review_cmt_written_date) + "</small>";
 					
-					var str = "";
-					if(list == null || list.length == 0) {
-						//commentUL.html("");
-						return;
-					}
-					for(var i=0, len = list.length || 0; i<len; i++) {
-						
-						
-						str += "<li class='media'>";
-						str += "	<div><div class='media-body'><strong class='media-heading'>" + list[i].user_id + "</strong>";
-						str += "		<small class='date'>" + commentService.displayTime(list[i].review_cmt_written_date) + "</small>";
-						
-						str += "<button data-oper='modify'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>수정</button>";
-						str += "<button data-oper='delete'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>삭제</button>";
-						
-						str += "	</div>";
-						str += "		<p data-review_cmt_no='" + list[i].review_cmt_no + "'>" + list[i].review_cmt_content + "</p></div></li>";
-						
-					}
+					str += "<button data-oper='modify'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>수정</button>";
+					str += "<button data-oper='delete'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>삭제</button>";
 					
-					commentUL.html(str);
+					str += "	</div>";
+					str += "		<p data-review_cmt_no='" + list[i].review_cmt_no + "'>" + list[i].review_cmt_content + "</p></div></li>";
 					
-					showReplyPage(commentCnt);
-				}); // end function
-			} //end showList
-			
-			
-			
-			// 댓글 페이징 처리
-			
-			var pageNum = 1;
-			var commentPageFooter = $(".panel-footer");
-			
-			function showReplyPage(commentCnt) {
-				
-				var endNum = Math.ceil(pageNum / 10.0) * 10;
-				var startNum = endNum - 9;
-				
-				var prev = startNum != 1;
-				var next = false;
-				
-				if(endNum * 10 >= commentCnt) {
-					endNum = Math.ceil(commentCnt/10.0);
 				}
 				
-				if(endNum * 10 < commentCnt) {
-					next = true;
-				}
+				commentUL.html(str);
 				
-				var str = "<ul class='pagenation pull-right'>";
-				
-				if(prev) {
-					str = "<li class='page-item'><a class='page-link' href='" + (startNum - 1) + "'>Previous</a></li>";
-				}
-				
-				for(var i=startNum ; i<=endNum; i++) {
-					var active = pageNum == i ? "active" : "";
-					str += "<li class='page-item " + active + " '><a class='page-link' href='" + i + "'>" + i + "</a></li>";
-				}
-				
-				if(next) {
-					str = "<li class='page-item'><a class='page-link' href='" + (endNum + 1) + "'>Next</a></li>";
-				}
-				
-				str += "</ul></div>";
-				
-				console.log(str);
-				commentPageFooter.html(str);
+				showReplyPage(commentCnt);
+			}); // end function
+		} //end showList
+		
+			
+			
+		// 댓글 페이징 처리
+			
+		var pageNum = 1;
+		var commentPageFooter = $(".panel-footer");
+		
+		function showReplyPage(commentCnt) {
+			
+			var endNum = Math.ceil(pageNum / 10.0) * 10;
+			var startNum = endNum - 9;
+			
+			var prev = startNum != 1;
+			var next = false;
+			
+			if(endNum * 10 >= commentCnt) {
+				endNum = Math.ceil(commentCnt/10.0);
 			}
 			
-			// 댓글 페이지 번호 클릭시 새 댓글 가져오기
+			if(endNum * 10 < commentCnt) {
+				next = true;
+			}
 			
-			commentPageFooter.on("click", "li a", function(e) {
-				
-				e.preventDefault();
-				console.log("page click");
-				
-				var targetPageNum = $(this).attr("href");
-				
-				console.log("targetPageNum: " + targetPageNum);
-				pageNum = targetPageNum;
-				
-				showList(pageNum);
-			});
+			var str = "<ul class='pagenation pull-right'>";
 			
-
+			if(prev) {
+				str = "<li class='page-item'><a class='page-link' href='" + (startNum - 1) + "'>Previous</a></li>";
+			}
+			
+			for(var i=startNum ; i<=endNum; i++) {
+				var active = pageNum == i ? "active" : "";
+				str += "<li class='page-item " + active + " '><a class='page-link' href='" + i + "'>" + i + "</a></li>";
+			}
+			
+			if(next) {
+				str = "<li class='page-item'><a class='page-link' href='" + (endNum + 1) + "'>Next</a></li>";
+			}
+			
+			str += "</ul>";
+			
+			console.log(str);
+			commentPageFooter.html(str);
+		}
+		
+		// 댓글 페이지 번호 클릭시 새 댓글 가져오기
+		
+		commentPageFooter.on("click", "li a", function(e) {
+			
+			e.preventDefault();
+			console.log("page click");
+			
+			var targetPageNum = $(this).attr("href");
+			
+			console.log("targetPageNum: " + targetPageNum);
+			pageNum = targetPageNum;
+			
+			showList(pageNum);
+		});
+		
 		
 				// comment 폼이 있고, 여기서 받아서 넘겨야하는 값은 댓글작성자id(user_id), 감상글번호(review_no), 댓글내용(review_cmt_content)
 				// 등록 버튼을 누르면 commentService.add 함수가 작동해서 내용을 등록하게 되는데, 

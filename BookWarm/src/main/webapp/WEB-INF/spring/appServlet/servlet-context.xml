@@ -23,6 +23,11 @@
 	
 	<context:component-scan base-package="com.book.warm" />
 	
+	<!-- 스프링에서 업로드 처리를 위해 MultipartResolver 타입 객체를 빈으로 등록 -->
+	<beans:bean id="multipartResolver"
+				class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+	</beans:bean>
+	
 	
 	
 </beans:beans>

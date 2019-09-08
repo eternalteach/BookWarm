@@ -72,6 +72,23 @@
                             					<td><textarea name="review_content" cols="80" rows="10"></textarea></td>
                             				</tr>
                             				<tr>
+                            					<td>이미지 첨부</td>
+                            					<td>
+                            						<div class="panel-body">
+                            							<div class="form-group uploadDiv">
+                            								<input type="file" name='uploadFile' multiple>
+                            							</div>
+                            							<div class='uploadResult'>
+                            								<ul>
+                            								
+                            								</ul>
+                            							</div>
+                            							<!-- end form-group uploadDiv -->
+                            						</div> 
+                            						<!-- end panel-body -->
+                            					</td>
+                            				</tr>
+                            				<tr>
                             					<td></td>
                             					<td>
 	                            					<button class="btn btn-outline-secondary">
@@ -257,8 +274,113 @@
         </div>
         <!--End Footer-Wrap-->
     </div>
+    
+    // jQuery 사용을 위해 cdn 추가
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+    <script>
+    	$(document).ready(function(e){
+    		var formObj = $("form");
+    		// 파일 업로드를 위해 폼 제출 기본 동작 막음
+    		$("button[type='submit']").on("click", function(e){
+    			
+    			e.preventDefault();
+    			cosole.log("submit clicked");
+    		});
+    		// 이미지 파일만을 등록할 수 있도록.
+    		var regex = new RegExp("(.*?)\.(jpeg|jpg|png|gif|bmp)$")
+    		
+    		/* var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$"); */
+    		var maxSize = 5242880; //5MB. 추후 수정.
+    		
+    		// 파일 사이즈 및 타입 체크
+    		function checkExtension(fileName, fileSize) {
+    			
+    			if(fileSize >= maxSize) {
+    				alert("파일 사이즈 초과");
+    				return false;
+    			}
+    			
+    			if(!regex.test(fileName)) {
+    				alert("이미지 파일만 등록할 수 있습니다.");
+    				return false;
+    			}
+    			return true;
+    		}
+    		
+    		$("input[type='file']").change(function(e) {
+    			
+    			var formData = new FormData();
+    			var inputFile = $("input[name='uploadFile']");
+    			var files = inputFile[0].files;
+    			console.log(files);
+    			
+    			for(var i=0; i<files.length; i++) {
+    				
+    				if(!checkExtension(files[i].name, files[i].size)) {
+    					return false;
+    				}
+    				formData.append("uploadFile", files[i]);
+    			}
+    			
+    			$.ajax({
+    				url: '/warm/uploadAjaxAction',
+    				processData: false,
+    				contentType: false,
+    				data: formData,
+    				type: 'POST',
+    				dataType: 'json',
+    				success: function(result){
+    					console.log(result);
+    					showUploadResult(result);
+    				}
+    			}); //$.ajax
+    		});
+    		
+    		// 업로드 결과를 화면에 섬네일 등을 만들어 처리
+    		
+    		function showUploadResult(uploadResultArr) {
+    			
+    			if(!uploadResultArr || uploadResultArr.length == 0) { return; }
+    			
+    			var uploadUL = $(".uploadResult ul");
+    			var str = "";
+    			
+    			$(uploadResultArr).each(function(i, obj) {
 
-
+					var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+    					
+    				str += "<li><div>";
+    				str += "<span> " + obj.fileName + "</span>";
+    				str += "<button type='button' data-file=\'" + fileCallPath + "\' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+    				str += "<img src='/warm/display?fileName=" + fileCallPath + "'>";
+    				str += "</div>";
+    				str += "</li>";
+    			});
+    			
+    			uploadUL.append(str);
+    		}
+    		
+    		$(".uploadResult").on("click", "button", function(e) {
+    			
+    			var targetFile = $(this).data("file");
+    			var targetLi = $(this).closest("li");
+    			
+    			$.ajax({
+    				url: '/warm/deleteFile',
+    				data: {fileName: targetFile},
+    				dataType: 'text',
+    				type: 'POST',
+    				success: function(result) {
+    					alert(result);
+    					targetLi.remove();
+    				}
+    			}); // end of ajax
+    		});
+    	}); // end of document.ready
+    </script>
+	
+	
 
     <!-- Libs -->
     <script src="./resources/Vertex/js/jquery.min.js"></script>

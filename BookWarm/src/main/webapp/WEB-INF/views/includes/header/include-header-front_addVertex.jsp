@@ -49,9 +49,9 @@
     <script src="./resources/Vertex/js/imagesloaded.js"></script>
 
     <script src="./resources/Vertex/js/view.min.js?auto"></script>
-    <script src="./resources/Vertex/plugins/aos/aos.js"></script>
+    <!-- <script src="./resources/Vertex/plugins/aos/aos.js"></script>
     <script src="./resources/Vertex/js/theme-core.js"></script>
     <script src="./resources/Vertex/js/theme.js"></script>
-    <script src="./resources/Vertex/js/theme.init.js"></script>
+    <script src="./resources/Vertex/js/theme.init.js"></script> -->
     
    

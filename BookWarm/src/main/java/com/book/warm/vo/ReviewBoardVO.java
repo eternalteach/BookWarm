@@ -1,6 +1,7 @@
 package com.book.warm.vo;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class ReviewBoardVO {
 
@@ -14,7 +15,9 @@ public class ReviewBoardVO {
 	private String review_content;
 	private String review_open;
 	
+	//private int commentCnt; //댓글 수 표시하기 위한 부분. 추후 처리.
 	
+	private List<ReviewAttachVO> attachList;
 	
 	public ReviewBoardVO() {
 		super();
