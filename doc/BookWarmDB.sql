@@ -102,6 +102,8 @@ comm_cmt_group NUMBER(10),
 comm_cmt_step NUMBER(4),
 comm_cmt_indent NUMBER(4));
 
+-- community Board Comment Index
+create index idx_comm_cmt on community_board_comment (comm_no desc, comm_cmt_no asc);
 --comm_no fk설정
 ALTER TABLE community_board_comment ADD CONSTRAINTS comm_no FOREIGN KEY(comm_no) REFERENCES community_board;
 -- community_board_comment pk설정 및 이름 설정
@@ -331,45 +333,6 @@ isbn varchar2(20));
 
 
 
--- sample date (log board, loging board)
-insert into log_board (write_no,user_id,ISBN,write_buy_date)values(seq_logBoard.nextval, 'user00', 'isbn001', sysdate);
-insert into loging_board (isbn,write_no, start_date, start_page, end_date,end_page) values('isbn001',seq_logingBoard.nextval, sysdate, 70, sysdate,500);
-
-select * from log_board;
-select * from loging_board;
-
---테스트
-select * from loging_board where write_no=21;
-
-
-
-
-
---comunity board sample data
-insert into community_board (comm_no, user_id, comm_subject, comm_title, comm_content, comm_clicked, comm_group,comm_step,comm_indent)
-VALUES (community_board_seq.nextval, 'userID02', 'comm_sbject', 'comm_title', 'comm_content' ,0, community_board_seq.currval, 0, 0);
-
--- community board select test
-select * from community_board;
-
--- community board get list test
-select * from community_board order by comm_no desc;
-
-select * from community_board;
--- community board modify test
-update community_board SET comm_title = 'modify', comm_content='수정된 내용12' where comm_no=22;
--- community board delete test
-delete community_board where comm_no=5;
-
---ISBNimg data
-insert into isbn_img (isbn,img_src)VALUES ('isbn001','resources/img/ISBNimg/book001.jpg');
-insert into isbn_img (isbn,img_src)VALUES ('isbn001','resources/img/ISBNimg/book002.jpg');
-insert into isbn_img (isbn,img_src)VALUES ('isbn001','resources/img/ISBNimg/book003.jpg');
-
-select * from isbn_img;
--- getBookImg Test (첫 이미지 가지고오기)
-select * from (select * from isbn_img where isbn='isbn001') where rownum=1;
-delete isbn_img where isbn='isbn001';
 
 
 
