@@ -40,7 +40,7 @@ public class ReviewBoardService {
 		return mapper.getListPerBookWithPaging(isbn, user_id, cri);
 	}
 	
-	public BookThumbnailVO showBookThumbnail(String isbn) {
+	public BookVO showBookThumbnail(String isbn) {
 		return mapper.showBookThumbnail(isbn);
 	}
 

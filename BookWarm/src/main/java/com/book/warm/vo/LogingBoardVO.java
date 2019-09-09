@@ -1,13 +1,31 @@
 package com.book.warm.vo;
 
+import java.sql.Timestamp;
+
 public class LogingBoardVO {
 	private String isbn;
 	private int write_no;
 	private int start_page;
 	private int end_page;
-	private String start_date;
+	private Timestamp start_date;
 	private String end_date; // 참 거짓으로 통계시 마지막 날짜 불러오게 하기. end_date는 입력 마지막날
 	private int record_num;
+
+	public LogingBoardVO(String isbn, int write_no, int start_page, int end_page, Timestamp start_date, String end_date,
+			int record_num) {
+		super();
+		this.isbn = isbn;
+		this.write_no = write_no;
+		this.start_page = start_page;
+		this.end_page = end_page;
+		this.start_date = start_date;
+		this.end_date = end_date;
+		this.record_num = record_num;
+	}
+
+	public LogingBoardVO() {
+		super();
+	}
 
 	public String getIsbn() {
 		return isbn;
@@ -41,26 +59,19 @@ public class LogingBoardVO {
 		this.end_page = end_page;
 	}
 
-	public String getStart_date() {
+	public Timestamp getStart_date() {
 		return start_date;
 	}
 
-	public void setStart_date(String start_date) {
+	public void setStart_date(Timestamp start_date) {
 		this.start_date = start_date;
 	}
 
 	public String getEnd_date() {
-		System.out.println("get 안"+end_date);
-		if (end_date == null || end_date.equals("")) {
-			end_date = "";
-		} else {
-			end_date = "checked";
-		}
 		return end_date;
 	}
 
 	public void setEnd_date(String end_date) {
-		System.out.println("set 안"+end_date);
 		this.end_date = end_date;
 	}
 
@@ -70,22 +81,6 @@ public class LogingBoardVO {
 
 	public void setRecord_num(int record_num) {
 		this.record_num = record_num;
-	}
-
-	public LogingBoardVO(String isbn, int write_no, int start_page, int end_page, String start_date, String end_date,
-			int record_num) {
-		super();
-		this.isbn = isbn;
-		this.write_no = write_no;
-		this.start_page = start_page;
-		this.end_page = end_page;
-		this.start_date = start_date;
-		this.end_date = end_date;
-		this.record_num = record_num;
-	}
-
-	public LogingBoardVO() {
-		super();
 	}
 
 }

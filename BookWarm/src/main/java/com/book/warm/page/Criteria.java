@@ -2,16 +2,17 @@ package com.book.warm.page;
 
 public class Criteria {
 
-	private int pageNum;// page Number
-	private int amount;// Posts per page
-	
-	public Criteria() {
-		this(1, 10);
-	}
+	private int pageNum;
+	private int amount;
 
 	public Criteria(int pageNum, int amount) {
+		super();
 		this.pageNum = pageNum;
 		this.amount = amount;
+	}
+
+	public Criteria() {//야
+		this(1,5);
 	}
 
 	public int getPageNum() {
@@ -29,5 +30,5 @@ public class Criteria {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
-	
+
 }

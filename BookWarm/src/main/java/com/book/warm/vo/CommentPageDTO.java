@@ -2,6 +2,8 @@ package com.book.warm.vo;
 
 import java.util.List;
 
+import com.book.warm.vo.ReviewCommentVO;
+
 public class CommentPageDTO {
 	
 	private int commentCnt;

@@ -7,29 +7,51 @@ public class UserVO {
 	String user_pw;
 	String user_nickname;
 	String user_name;
-	String user_bday; // 생일(날짜)
+	Timestamp user_bday; // �깮�씪(�궇吏�)
 	String user_sex; // f&m
 	String user_phone;
 	String user_mail;
-	int user_zipcode; // 우편번호
-	String user_addr; // 도로명주소
-	String user_addr_detail; // 상세주소+참고항목
-	String user_join_date; // 가입일(날짜)
+	int user_zipcode; // �슦�렪踰덊샇
+	String user_addr; // �룄濡쒕챸二쇱냼
+	String user_addr_detail; // �긽�꽭二쇱냼+李멸퀬�빆紐�
+	String user_join_date; // 媛��엯�씪(�궇吏�)
 	String user_level;
 	int user_tot_price;
 	int user_point;
-	
+	public UserVO(String user_id, String user_pw, String user_nickname, String user_name, Timestamp user_bday,
+			String user_sex, String user_phone, String user_mail, int user_zipcode, String user_addr,
+			String user_addr_detail, String user_join_date, String user_level, int user_tot_price, int user_point) {
+		super();
+		this.user_id = user_id;
+		this.user_pw = user_pw;
+		this.user_nickname = user_nickname;
+		this.user_name = user_name;
+		this.user_bday = user_bday;
+		this.user_sex = user_sex;
+		this.user_phone = user_phone;
+		this.user_mail = user_mail;
+		this.user_zipcode = user_zipcode;
+		this.user_addr = user_addr;
+		this.user_addr_detail = user_addr_detail;
+		this.user_join_date = user_join_date;
+		this.user_level = user_level;
+		this.user_tot_price = user_tot_price;
+		this.user_point = user_point;
+	}
+	public UserVO() {
+		super();
+	}
 	public String getUser_id() {
 		return user_id;
 	}
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	public void setUser_pw(String user_pw) {
-		this.user_pw = user_pw;
-	}
 	public String getUser_pw() {
 		return user_pw;
+	}
+	public void setUser_pw(String user_pw) {
+		this.user_pw = user_pw;
 	}
 	public String getUser_nickname() {
 		return user_nickname;
@@ -43,10 +65,10 @@ public class UserVO {
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
 	}
-	public String getUser_bday() {
+	public Timestamp getUser_bday() {
 		return user_bday;
 	}
-	public void setUser_bday(String user_bday) {
+	public void setUser_bday(Timestamp user_bday) {
 		this.user_bday = user_bday;
 	}
 	public String getUser_sex() {
@@ -109,5 +131,7 @@ public class UserVO {
 	public void setUser_point(int user_point) {
 		this.user_point = user_point;
 	}
+	
+	
 	
 }

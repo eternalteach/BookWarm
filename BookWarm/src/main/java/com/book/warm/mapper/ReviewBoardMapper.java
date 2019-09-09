@@ -2,7 +2,6 @@ package com.book.warm.mapper;
 
 import java.util.List;
 
-import com.book.warm.vo.BookThumbnailVO;
 import com.book.warm.vo.BookVO;
 import com.book.warm.vo.Criteria;
 import com.book.warm.vo.ReviewAttachVO;
@@ -17,7 +16,7 @@ public interface ReviewBoardMapper {
 	
 	public List<ReviewBoardVO> getListPerBookWithPaging(String isbn, String user_id, Criteria cri);
 
-	public BookThumbnailVO showBookThumbnail(String isbn);
+	public BookVO showBookThumbnail(String isbn);
 
 	public ReviewBoardVO selectedReview(int review_no, String user_id);
 
@@ -35,7 +34,7 @@ public interface ReviewBoardMapper {
 	
 	public List<ReviewAttachVO> getAttachList(int review_no);
 	
-	// 첨부파일 처리. 따로 mapper 만들지 않고 review에 추가.
+	// 泥⑤��뙆�씪 泥섎━. �뵲濡� mapper 留뚮뱾吏� �븡怨� review�뿉 異붽�.
 	public void insert(ReviewAttachVO vo);
 	
 	public void delete(String uuid);

@@ -1,5 +1,7 @@
 package com.book.warm.vo;
 
+import com.book.warm.page.Criteria;
+
 public class PagingBoardVO {
 	
 	private int startPage;
