@@ -1,8 +1,14 @@
 package com.book.warm.vo;
 
+
 public class BookCoverVO {
+
 	private String isbn;
 	private String img_src;
+	
+	public BookCoverVO() {
+		super();
+	}
 
 	public String getIsbn() {
 		return isbn;
@@ -25,9 +31,4 @@ public class BookCoverVO {
 		this.isbn = isbn;
 		this.img_src = img_src;
 	}
-
-	public BookCoverVO() {
-		super();
-	}
-
 }
