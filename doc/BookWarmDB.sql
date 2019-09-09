@@ -268,18 +268,18 @@ memo_modify_time date default sysdate
 );
 
 --메모보드 책 댓글
-CREATE TABLE book_reply(
-book_cmt_no number(10,0) primary key,
+CREATE TABLE memo_comment(
+memo_cmt_no number(10,0) primary key,
 memo_no number(10,0), -- fk 설정하기
 user_id varchar2(20) not null,
 isbn varchar2(20) not null,
-book_cmt_content varchar(200) not null,
-book_cmt_written_time date default sysdate,
-book_cmt_modify_time date default sysdate,
-book_cmt_like number(10,0) default 0
+memo_cmt_content varchar(200) not null,
+memo_cmt_written_time date default sysdate,
+memo_cmt_modify_time date default sysdate,
+memo_cmt_like number(10,0) default 0
 );
 -- book_reply memo_no 외래키 설정
-ALTER TABLE book_reply ADD CONSTRAINTS memo_no FOREIGN KEY(memo_no) REFERENCES memo_board;
+ALTER TABLE memo_comment ADD CONSTRAINTS memo_no FOREIGN KEY(memo_no) REFERENCES memo_board;
 ------------------------------------------------------------------------------------------
 
 
