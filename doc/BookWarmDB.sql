@@ -204,29 +204,29 @@ coupon_available char(1) default 'y'
 );
 
 --주문
-create sequence order_seq;
-create table order(
-order_no varchar2(20) primary key,
+create sequence orders_seq;
+create table orders(
+orders_no varchar2(20) primary key,
 user_id varchar2(20) not null,
-order_date date not null,
+orders_date date not null,
 isbn varchar2(20) not null,
-order_cnt number(10,0) not null,
-order_tot number(10,0) not null,
-order_start_date date not null,
-order_pay_date date not null,
+orders_cnt number(10,0) not null,
+orders_tot number(10,0) not null,
+orders_start_date date not null,
+orders_pay_date date not null,
 coupon_no varchar2(20),
 post_no varchar2(20),
 pay_no varchar2(20));
 
-alter table order add constraint fk_pay_no foreign key(pay_no)
+alter table orders add constraint fk_pay_no foreign key(pay_no)
     references pay(pay_no);
 
 
 --주문내역
-create table orderview(
-order_no varchar2(20) primary key,
+create table ordersview(
+orders_no varchar2(20) primary key,
 user_id varchar2(20) not null,
-order_status varchar2(10)
+orders_status varchar2(10)
 );
 
 
