@@ -52,7 +52,19 @@ create table review_comment(
     review_cmt_modified_date date,
     CONSTRAINT pk_review_comment primary key (review_cmt_no)
 );
---파일업로드도 보류..
+create index idx_comment on review_comment(review_no desc, review_cmt_no asc);
+
+--파일첨부(김해랑)
+create table review_attach(
+    uuid varchar2(100) not null,
+    uploadPath varchar2(200) not null,
+    fileName varchar2(100) not null,
+    review_no number(10)
+);
+
+alter table review_attach add constraint pk_attach primary key(uuid);
+alter table review_attach add constraint fk_review_attach foreign key(review_no) references review_board(review_no);
+
 
 --해쉬태그 시퀀스
 create sequence hashtag_seq;
