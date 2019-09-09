@@ -31,7 +31,7 @@ select /*+INDEX(community_board_comment idx_comm_cmt) */ rownum rn, comm_no, com
 	</select>
 	
 	<select id='getCountByComm_cmt_no'	 resultType='int'>
-	select count(comm_cmt_no) from community_board_comment where comm_cmt_no=#{comm_cmt_no}
+	select count(comm_cmt_no) from community_board_comment where comm_no=#{comm_no}
 	</select>
 	
 	

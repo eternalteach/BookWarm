@@ -42,6 +42,7 @@ var commentService = (function() {
 	
 	// remove comment
 	function remove(comm_cmt_no, callback, error){
+		alert("comm_cmt_no in remove function : "+comm_cmt_no);
 		$.ajax({
 			type:'delete',
 			url : 'CommunityBoardComment/'+comm_cmt_no,

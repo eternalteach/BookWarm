@@ -45,8 +45,7 @@
 								<div class='col-lg-12'>
 									<div class='panel panel-default'>
 										<div class='panel-heading'>
-											<i class='fa fa-comments fa-fw'>
-											</i>Comment <button id='addCommentBtn' class='btn btn-primary btn-xs pull-right'>New Comment</button>
+											<h2><i class='fa fa-comments fa-fw'></i>Comment</h2>
 										</div>
 											<div><br/></div>
 										<div class='panel-body'>
@@ -66,6 +65,37 @@
 										<div class="panel-footer">
 										
 										</div>
+										<div>
+											<br/>
+											<br/>
+										</div>
+										<!-- write comment div -->
+										<div class="comment-write">
+											<div class="modal-content">
+            									<div class="modal-header">
+              										<h4 class="modal-title" id="myModalLabel">Comment MODAL</h4>
+            									</div>
+            								<div class="modal-body">
+              									<div class="form-group">
+                									<label>Comment</label> 
+               										<input class="form-control" name='comm_cmt_content' value='New Comment!!!!'>
+              									</div>      
+           										<div class="form-group">
+                									<label>User Name</label> 
+                									<input class="form-control" name='user_id' value='user_id'>
+              									</div>
+              									<div class="form-group">
+                									<label>Comment Date 이 부분은 ajax로 비동기통신 통해 1초마다 시간 갱신되게 해보자</label> 
+               										<input class="form-control" hidden='hidden' name='comm_cmt_written_time' value='2018-01-01 13:13'>
+            									</div>
+     										</div>
+												<div class="modal-footer">
+        											<button id='commentRegisterBtn' type="button" class="btn btn-primary">Register</button>
+      											</div> 
+											</div>
+										</div>
+										
+										
 									</div>
 								</div>
 							</div>
@@ -78,46 +108,14 @@
 						</form>
 					</div>
 					
-					<!-- add Comment Modal -->
-					<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        				<div class="modal-dialog">
-          					<div class="modal-content">
-            						<div class="modal-header">
-              							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              							<h4 class="modal-title" id="myModalLabel">Comment MODAL</h4>
-            						</div>
-            						<div class="modal-body">
-              							<div class="form-group">
-                							<label>Comment</label> 
-               								<input class="form-control" name='comm_cmt_content' value='New Comment!!!!'>
-              							</div>      
-              							<div class="form-group">
-                							<label>User Name</label> 
-                							<input class="form-control" name='user_id' value='user_id'>
-              							</div>
-              							<div class="form-group">
-                							<label>Comment Date</label> 
-               								<input class="form-control" name='comm_cmt_written_time' value='2018-01-01 13:13'>
-              							</div>
-            						</div>
-								<div class="modal-footer">
-        							<button id='modalModBtn' type="button" class="btn btn-warning">Modify</button>
-       								<button id='modalRemoveBtn' type="button" class="btn btn-danger">Remove</button>
-        							<button id='modalRegisterBtn' type="button" class="btn btn-primary">Register</button>
-        							<button id='modalCloseBtn' type="button" class="btn btn-default">Close</button>
-      							</div> 
-							</div>
-          <!-- /.modal-content -->
-        				</div>
-        <!-- /.modal-dialog -->
-      				</div>
-      <!-- end modal -->
 <script type="text/javascript" src="resources/js/comment.js"></script>
 
 <script>
 // comment view code
 $(document).ready(function(){
 	var comm_noValue='<c:out value="${sellectedCommunityBoardPost.comm_no}"/>';
+	console.log("=====================check paging ============================")
+	console.log("comm_noValue : "+comm_noValue);
 	var commentUL=$(".chat");
 	showList(1);
 	
@@ -143,89 +141,16 @@ $(document).ready(function(){
 			for(var i=0, len=list.length||0;i<len;i++){
 				str+="<li class='left clearfix' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>";
 				str+="<div><div class='header'><strong class='primary-font'>["+list[i].comm_cmt_no+"]"+list[i].user_id+"</strong>";
+				str+="<small class='pull-right text-muted'><button id='commentModfiyBtn' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>수정</button> <button id='commentRemoveBtn' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>삭제</button></small></div>";
 				str+="<small class='pull-right text-muted'>"+list[i].comm_cmt_written_time+"</small></div>";
 				/* str+="<small class='pull-right text-muted'>"+commentService.displayTime(list[i].comm_cmt_written_time)+"</small></div>"; */
 				str+="<p>"+list[i].comm_cmt_content+"</p></div></li>";
 			}
 			
-			
 			commentUL.html(str);
 			showCommentPage(commentCnt);			
 		});
 	} // end showList
-	
-	var modal=$(".modal");
-	var modalInputComment=modal.find("input[name='comm_cmt_content']");
-	var modalInputUser_id=modal.find("input[name='user_id']");
-	var modalInputCommentDate=modal.find("input[name='comm_cmt_written_time']");
-	
-	var modalModBtn=$("#modalModBtn");
-	var modalRemoveBtn=$("#modalRemoveBtn");
-	var modalRegisterBtn=$("#modalRegisterBtn");
-	
-	// Registe comment At Modal
-	$("#addCommentBtn").on("click",function(e){
-		modal.find("input").val("");
-		modalInputCommentDate.closest("div").hide();
-		modal.find("button[id!='modalCloseBtn']").hide();
-		modalRegisterBtn.show();
-		
-		$(".modal").modal("show");
-	});
-	
-	modalRegisterBtn.on("click",function(e){
-		var comment={
-				comm_cmt_content:modalInputComment.val(),
-				user_id:modalInputUser_id.val(),
-				comm_no:comm_noValue
-		};
-		commentService.add(comment,function(result){
-			alert(result);
-		
-			modal.find("input").val("");
-			$("#myModal").modal('hide');
-			// modal is not hide... t.T
-
-			showList(-1);
-		});
-	});
-	
-	// comment (ul) click event
-	$(".chat").on("click","li",function(e){
-		var comm_cmt_no=$(this).data("comm_cmt_no");
-		commentService.get(comm_cmt_no,function(comment){
-			modalInputComment.val(comment.comm_cmt_content);
-			modalInputUser_id.val(comment.user_id);
-			modalInputCommentDate.val(comment.comm_cmt_written_time).attr("readmonly","readonly");
-			modal.data("comm_cmt_no",comment.comm_cmt_no);
-			
-			modal.find("button[id!='modalCloseBtn']").hide();
-			modalModBtn.show();
-			modalRemoveBtn.show();
-			
-			$(".modal").modal("show");
-		});
-	});
-	
-	// comment modify event
-	modalModBtn.on("click",function(e){
-		var comment={comment_cmt_no:modal.data("comm_cmt_no"), comm_cmt_content:modalInputComment.val()};
-		commentService.update(comment,function(result){
-			alert(result);
-			modal.modal("hide");
-			showList(1);
-		});
-	});
-	
-	// comment remove event
-	modalRemoveBtn.on("click",function(e){
-		var comm_cmt_no=modal.data("comm_cmt_no");
-		commentService.remove(comm_cmt_no,function(result){
-			alert(result);
-			modal.modal("hide");
-			showList(1);
-		});
-	});
 	
 	// comment paging
 	var pageNum=1;
@@ -238,20 +163,20 @@ $(document).ready(function(){
 		var prev=startNum != 1;
 		var next = false;
 		
-		if(endNum * 10 > commentCnt){
+		if(endNum * 10 >= commentCnt){
 			endNum=Math.ceil(commentCnt/10.0);
 		}
 		if(endNum*10<commentCnt){
 			next=true;
 		}
-		var str="<ul class='pagination pull right'>";
+		var str="<ul class='pagination pull-right'>";
 		if(prev){
-			str+="<li class='page-item'><a class='page-link'href='"+(startNum-1)+"'>Previous</a></li>";
+			str+="<li class='page-item'><a class='page-link' href='"+(startNum-1)+"'>Previous</a></li>";
 		}
 		
 		for(var i= startNum; i<=endNum; i++){
 			var active = pageNum == i? "active":"";
-			str+="<li class='page-item"+active+"'><a class='page-link'href='"+i+"'>"+i+"</a></li>";
+			str+="<li class='page-item "+active+"'><a class='page-link' href='"+i+"'>"+i+"</a></li>";
 		}
 		if(next){
 			str+="<li class='page-item'><a class='page-link' href='"+(endNum+1)+"'>Next</a></li>";
@@ -271,28 +196,81 @@ $(document).ready(function(){
 		showList(pageNum);
 	});
 	
-	// modify Btn click event
-	modalModBtn.on("click", function(e){
-		var comment={comm_cmt_no:modal.data("comm_cmt_no"),comm_cmt_content:modalInputComment.val()};
-		commentService.update(comment, function(result){
+	var commentDiv=$(".comment");
+	var commentDivInputCommentContent=commentDiv.find("input[name='comm_cmt_content']");
+	var commentDivInputUser=commentDiv.find("input[name='user_id']");
+	var commentDivInputCommentDate=commentDiv.find("input[name='comm_cmt_written_time']");
+	
+	var commentModfiyBtn=$("#commentModfiyBtn");
+	var commentRemoveBtn=$("#commentRemoveBtn");
+	var commentRegisterBtn=$("#commentRegisterBtn");
+	
+	// Registe comment At Modal
+	$("#addCommentBtn").on("click",function(e){
+		commentDiv.find("input").val("");
+		commentDivInputCommentDate.closest("div").hide();
+		commentDiv.find("button[id!='modalCloseBtn']").hide();
+		commentRegisterBtn.show();
+		
+	});
+	
+	commentRegisterBtn.on("click",function(e){
+		var comment={
+				comm_cmt_content:commentDivInputCommentContent.val(),
+				user_id:commentDivInputUser.val(),
+				comm_no:comm_noValue
+		};
+		commentService.add(comment,function(result){
 			alert(result);
-			modal.modal("hide");
-			showList(pageNum);
+		
+			commentDiv.find("input").val("");
+
+			showList(-1);
 		});
 	});
 	
-	// remove Btn click event
-	modalRemoveBtn.on("click",function(e){
-		var comm_cmt_no=modal.data("comm_cmt_no");
+	// comment (ul) click event
+	// modify
+  	$(".chat").on("click","#commentModfiyBtn",function(e){
+  		alert("click modify button");
+		var comm_cmt_no=$(this).data("comm_cmt_no");
+  		alert("click button get cmt_no : "+$(this).data("comm_cmt_no"));
 		
+		commentService.get(comm_cmt_no,function(comment){
+			commentDivInputCommentContent.val(comment.comm_cmt_content);
+			commentDivInputUser.val(comment.user_id);
+			commentDivInputCommentDate.val(comment.comm_cmt_written_time).attr("readonly","readonly");
+			commentDiv.data("comm_cmt_no",comment.comm_cmt_no);
+		});
+	});
+	
+	// remove success
+  	$(".chat").on("click","#commentRemoveBtn",function(e){
+		var comm_cmt_no=$(this).data("comm_cmt_no");
 		commentService.remove(comm_cmt_no,function(result){
 			alert(result);
-			modal.modal("hide");
+			showList(pageNum);
+		});
+	}); 
+	
+	// modify Btn click event
+	commentModfiyBtn.on("click", function(e){
+		alert("__ㅠㅠ");
+		var comment={comm_cmt_no:commentDiv.data("comm_cmt_no"),comm_cmt_content:commentDivInputCommentContent.val()};
+		commentService.update(comment, function(result){
+			alert(result);
 			showList(pageNum);
 		});
 	});
 	
 });
+
+/* 
+  하나씩 하자.
+ 1. 삭제 버튼 클릭시 삭제부터
+ 2. 삭제버튼 클릭시 삭제가 안되는 이유는?
+ 
+ */
 </script>
 
 <script>
