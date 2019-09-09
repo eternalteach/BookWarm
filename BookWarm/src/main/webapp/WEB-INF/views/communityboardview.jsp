@@ -73,7 +73,7 @@
 										<div class="comment-write">
 											<div class="modal-content">
             									<div class="modal-header">
-              										<h4 class="modal-title" id="myModalLabel">Comment MODAL</h4>
+              										<h4 class="modal-title" id="myModalLabel">Add Comment</h4>
             									</div>
             								<div class="modal-body">
               									<div class="form-group">
@@ -81,8 +81,8 @@
                										<input class="form-control" name='comm_cmt_content' value='New Comment!!!!'>
               									</div>      
            										<div class="form-group">
-                									<label>User Name</label> 
-                									<input class="form-control" name='user_id' value='user_id'>
+                									<label>User Name, get session</label> 
+                									<input hidden ='hidden' class="form-control" name='user_id' value='tester'>
               									</div>
               									<div class="form-group">
                 									<label>Comment Date 이 부분은 ajax로 비동기통신 통해 1초마다 시간 갱신되게 해보자</label> 
@@ -141,7 +141,7 @@ $(document).ready(function(){
 			for(var i=0, len=list.length||0;i<len;i++){
 				str+="<li class='left clearfix' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>";
 				str+="<div><div class='header'><strong class='primary-font'>["+list[i].comm_cmt_no+"]"+list[i].user_id+"</strong>";
-				str+="<small class='pull-right text-muted'><button id='commentModfiyBtn' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>수정</button> <button id='commentRemoveBtn' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>삭제</button></small></div>";
+				str+="<small class='pull-right text-muted'><button id='commentModfiyBtn' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>수정</button><button id='commentRemoveBtn' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>삭제</button></small></div>";
 				str+="<small class='pull-right text-muted'>"+list[i].comm_cmt_written_time+"</small></div>";
 				/* str+="<small class='pull-right text-muted'>"+commentService.displayTime(list[i].comm_cmt_written_time)+"</small></div>"; */
 				str+="<p>"+list[i].comm_cmt_content+"</p></div></li>";
@@ -206,13 +206,6 @@ $(document).ready(function(){
 	var commentRegisterBtn=$("#commentRegisterBtn");
 	
 	// Registe comment At Modal
-	$("#addCommentBtn").on("click",function(e){
-		commentDiv.find("input").val("");
-		commentDivInputCommentDate.closest("div").hide();
-		commentDiv.find("button[id!='modalCloseBtn']").hide();
-		commentRegisterBtn.show();
-		
-	});
 	
 	commentRegisterBtn.on("click",function(e){
 		var comment={
@@ -222,26 +215,48 @@ $(document).ready(function(){
 		};
 		commentService.add(comment,function(result){
 			alert(result);
-		
 			commentDiv.find("input").val("");
-
 			showList(-1);
 		});
+		commentDiv.find("input").val("");
 	});
 	
 	// comment (ul) click event
 	// modify
   	$(".chat").on("click","#commentModfiyBtn",function(e){
-  		alert("click modify button");
-		var comm_cmt_no=$(this).data("comm_cmt_no");
-  		alert("click button get cmt_no : "+$(this).data("comm_cmt_no"));
+  		var target = $(this).closest("li");
+		let comm_cmt_no=$(this).data("comm_cmt_no");
 		
 		commentService.get(comm_cmt_no,function(comment){
-			commentDivInputCommentContent.val(comment.comm_cmt_content);
+			comm_cmt_content=comment.comm_cmt_content;
 			commentDivInputUser.val(comment.user_id);
 			commentDivInputCommentDate.val(comment.comm_cmt_written_time).attr("readonly","readonly");
 			commentDiv.data("comm_cmt_no",comment.comm_cmt_no);
+
+			// html 내용
+			str="";
+			str+="<div><div class='header'><strong class='primary-font'>["+comm_cmt_no+"]"+commentDivInputUser.val()+"</strong>";
+			str+="<small class='pull-right text-muted'><button id='commentModfiySaveBtn' data-comm_cmt_no='"+comm_cmt_no+"'>저장</button><button id='commentRemoveBtn' data-comm_cmt_no='"+comm_cmt_no+"'>삭제</button></small></div>";
+			str+="<small class='pull-right text-muted'>"+commentDivInputCommentDate.val()+"</small></div>";
+			str+="<textarea class='modifyCommentContent'>"+commentDivInputCommentContent.val()+"</textarea></div>";
+		
+			console.log(str);
+			target.html(str);
 		});
+		
+		
+	});
+	
+	// modify save
+  	$(".chat").on("click","#commentModfiySaveBtn",function(e){
+  		var target = $(this).closest("li");
+		var comm_cmt_no=$(this).data("comm_cmt_no");
+		var comment={comm_cmt_no:commentDiv.data("comm_cmt_no"),comm_cmt_content:$(".modifyCommentContent").val()};
+		commentService.update(comment, function(result){
+			alert(result);
+			showList(pageNum);
+		});
+		
 	});
 	
 	// remove success
@@ -252,25 +267,8 @@ $(document).ready(function(){
 			showList(pageNum);
 		});
 	}); 
-	
-	// modify Btn click event
-	commentModfiyBtn.on("click", function(e){
-		alert("__ㅠㅠ");
-		var comment={comm_cmt_no:commentDiv.data("comm_cmt_no"),comm_cmt_content:commentDivInputCommentContent.val()};
-		commentService.update(comment, function(result){
-			alert(result);
-			showList(pageNum);
-		});
-	});
-	
 });
 
-/* 
-  하나씩 하자.
- 1. 삭제 버튼 클릭시 삭제부터
- 2. 삭제버튼 클릭시 삭제가 안되는 이유는?
- 
- */
 </script>
 
 <script>
