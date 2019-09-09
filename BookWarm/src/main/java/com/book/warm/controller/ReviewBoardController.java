@@ -33,6 +33,7 @@ import com.book.warm.service.ReviewBoardService;
 import com.book.warm.vo.Criteria;
 import com.book.warm.vo.PageDTO;
 import com.book.warm.vo.ReviewAttachFileDTO;
+import com.book.warm.vo.ReviewAttachVO;
 import com.book.warm.vo.ReviewBoardVO;
 
 import lombok.extern.log4j.Log4j;
@@ -152,6 +153,17 @@ public class ReviewBoardController {
 		
 		return "redirect:/reviewSelectOne";
 	}
+	
+	// 게시물 번호 이용해 첨부파일 관련 데이터 json으로 반환
+		@GetMapping(value = "/getAttachList",
+						produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+		@ResponseBody
+		public ResponseEntity<List<ReviewAttachVO>> getAttachList(int review_no) {
+			
+			log.info("getAttachList: " + review_no);
+			return new ResponseEntity<>(service.getAttachList(review_no), HttpStatus.OK);
+		}
+		
 	
 	// =========================== ajax를 이용한 파일 첨부 =======================================
 	

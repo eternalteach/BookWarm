@@ -43,6 +43,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./resources/Vertex/css/custom.css">
+    
 </head>
 
 <body>
@@ -581,9 +582,41 @@
 
                         <article>
 
-                            <figure class="media-wrap">
-                                <img src="./resources/Vertex/img/blog/b-fw-6.jpg" />
-                            </figure>
+<!--                             <figure class="animated-overlay overlay-alt">
+				            	<div class="flexslider thumb-slider">
+                                	<div class="panel panel-default">
+                                		<div class='uploadResult'>
+                                			<ul class="slides">
+                                			</ul>
+                                		</div>
+                                	</div>
+                                </div>
+                            </figure> -->
+                            
+                                   <figure class="animated-overlay overlay-alt col-sm-12">
+                                        <div class="flexslider thumb-slider uploadResult">
+                                            <ul class="slides">
+                                               <!--  <li>
+                                                    <a href="./resources/Vertex/blog-full-width-post.html" class="link-to-post">
+                                                        <img src='./resources/Vertex/img/blog/b-fw-5.jpg' />
+                                                    </a>
+                                                </li> -->
+                                            </ul>
+                                        </div>
+                                    </figure>
+                            
+                            
+                            
+				                <!-- <ul class="slides">
+				                
+				                    <li>
+				                        <a href="./resources/Vertex/blog-full-width-post.html" class="link-to-post">
+				                            <img src='./resources/Vertex/img/blog/b-fw-5.jpg' />
+				                        </a>
+				                    </li>
+				                    
+				                </ul> -->
+                            
 
                             <h3 class="blog-post-caption">${review.review_title}</h3>
                             
@@ -614,7 +647,6 @@
 									</button>
                                 	
                             </form>
-                            
                             
 
                             <div class="post-info clearfix">
@@ -1165,8 +1197,38 @@
 					// 취소 클릭시
 					showList(-1);
 				}
+				
 		});
-		
+			
+			
+			
+			
+			
+		// 첨부파일 가져오기 위한 즉시 실행 함수
+		(function() {
+			console.log("나한테 왜이래여");
+			var review_no = '<c:out value="${review.review_no}"/>';
+			$.getJSON("/warm/getAttachList", {review_no: review_no}, function(arr) {
+						console.log(arr);
+						/* var uploadImgs = $(".uploadResult ul");
+						
+						var str = "";
+						
+						$(arr).each(function(i, attach) {
+							var fileCallPath = encodeURIComponent(attach.uploadPath + "/" + attach.uuid + "_" + attach.fileName);
+							str += "<li data-path = '" + attach.uploadPath + "' data-uuid='" + attach.uuid + "' data-filename='" + attach.fileName + "'><a>";
+							str += "<img src='/warm/display?fileName=" + fileCallPath + "'>";
+							str += "</a>";
+							str += "</li>";
+							alert(str);
+						});
+						/* uploadImgs(str); */
+						/* $(".uploadResult ul").html(str); */
+						
+						/* $(".uploadResult").html(str); */
+			}); // end getJSON
+		})(); // end function
+				
 		
 		showList(-1);
 		
