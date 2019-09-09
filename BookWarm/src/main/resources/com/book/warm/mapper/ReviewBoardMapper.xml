@@ -79,6 +79,22 @@
  		 		)
  	</insert>
  	
+ 	<insert id="registerReviewSelectKey" parameterType="com.book.warm.vo.ReviewBoardVO">
+ 		<selectKey keyProperty="review_no" order="BEFORE" resultType="int">
+ 			select review_board_seq.nextval from dual
+ 		</selectKey>
+ 		
+ 		insert into review_board
+ 				(
+ 				review_no, user_id,
+ 				isbn, review_ref, review_title, review_content, review_open
+ 				) 
+		values (
+				#{review_no}, #{user_id}, #{isbn}, #{review_ref}, 
+ 		 		#{review_title}, #{review_content}, #{review_open}
+ 		 		)
+ 	</insert>
+ 	
  	<delete id="deleteReview">
  		delete from review_board where user_id=#{user_id} and review_no=#{review_no}
  	</delete>

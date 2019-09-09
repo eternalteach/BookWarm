@@ -49,7 +49,7 @@
                             	
                             	
                             		<!-- 작성 페이지. -->
-                            		<form action="register">
+                            		<form action="register" method="POST">
 										<input type="hidden" name="user_id" value="${review.user_id}">
 										<input type="hidden" name="isbn" value="${review.isbn}">
 										<!-- 작성 시간과 수정 시간은 알아서 데이터 입력시에 들어가니 여기엔 필요 없음 -->
@@ -61,7 +61,7 @@
                             				</tr>
                             				<tr>
                             					<td>관련 페이지</td>
-                            					<td><input type="number" name="review_ref"></td>
+                            					<td><input type="number" name="review_ref" min="1" step="1"></td>
                             				</tr>
                             				<tr>
                             					<td>공개여부</td>
@@ -91,7 +91,7 @@
                             				<tr>
                             					<td></td>
                             					<td>
-	                            					<button class="btn btn-outline-secondary">
+	                            					<button type='submit' class="btn btn-outline-secondary">
 								                      	<span class="text ls-1">
 						                            		등록하기
 							                                <i class="icon icon-pen-3"></i>
@@ -285,7 +285,19 @@
     		$("button[type='submit']").on("click", function(e){
     			
     			e.preventDefault();
-    			cosole.log("submit clicked");
+    			console.log("submit clicked");
+    			
+    			var str = "";
+    			
+    			$(".uploadResult ul li").each(function(i, obj){
+    				var jobj = $(obj);
+    				console.dir(jobj);
+    				
+    				str += "<input type='hidden' name='attachList[" + i + "].fileName' value ='" + jobj.data("filename") + "'>";
+    				str += "<input type='hidden' name='attachList[" + i + "].uuid' value ='" + jobj.data("uuid") + "'>";
+    				str += "<input type='hidden' name='attachList[" + i + "].uploadPath' value ='" + jobj.data("path") + "'>";
+    			});
+    			formObj.append(str).submit();
     		});
     		// 이미지 파일만을 등록할 수 있도록.
     		var regex = new RegExp("(.*?)\.(jpeg|jpg|png|gif|bmp)$")
@@ -350,7 +362,8 @@
 
 					var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
     					
-    				str += "<li><div>";
+    				str += "<li data-path ='" + obj.uploadPath + "'";
+    				str += " data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "'><div>";
     				str += "<span> " + obj.fileName + "</span>";
     				str += "<button type='button' data-file=\'" + fileCallPath + "\' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
     				str += "<img src='/warm/display?fileName=" + fileCallPath + "'>";

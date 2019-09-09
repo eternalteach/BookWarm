@@ -5,67 +5,91 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.book.warm.mapper.ReviewBoardMapper;
 import com.book.warm.vo.BookThumbnailVO;
 import com.book.warm.vo.BookVO;
 import com.book.warm.vo.Criteria;
+import com.book.warm.vo.ReviewAttachVO;
 import com.book.warm.vo.ReviewBoardVO;
 import com.book.warm.vo.ReviewBoardVO2;
 
+import lombok.extern.log4j.Log4j;
 
+@Log4j
 @Service
 public class ReviewBoardService {
 	
 	@Inject
-	ReviewBoardMapper rbm;
+	ReviewBoardMapper mapper;
 	
 	public List<ReviewBoardVO2> selectBoardList(String user_id) {
 		
-		return rbm.selectBoardList(user_id);
+		return mapper.selectBoardList(user_id);
 	}
 
 	/*
 	 * public List<ReviewBoardVO> getListPerBook(String isbn, String user_id) {
 	 * 
-	 * return rbm.getListPerBook(isbn, user_id); }
+	 * return mapper.getListPerBook(isbn, user_id); }
 	 */
 	
 	public List<ReviewBoardVO> getListPerBook(String isbn, String user_id, Criteria cri) {
 
-		return rbm.getListPerBookWithPaging(isbn, user_id, cri);
+		return mapper.getListPerBookWithPaging(isbn, user_id, cri);
 	}
 	
 	public BookThumbnailVO showBookThumbnail(String isbn) {
-		return rbm.showBookThumbnail(isbn);
+		return mapper.showBookThumbnail(isbn);
 	}
 
 	public ReviewBoardVO selectedReview(int review_no, String user_id) {
-		return rbm.selectedReview(review_no, user_id);
+		return mapper.selectedReview(review_no, user_id);
 	}
 
 	public BookVO bookInfo(String isbn) {
-		return rbm.bookInfo(isbn);
+		return mapper.bookInfo(isbn);
 	}
 
-	public int registerReview(ReviewBoardVO rbVO) {
+	@Transactional
+	public void registerReview(ReviewBoardVO rbVO) {
 		
+		log.info("register: " + rbVO);
+		mapper.registerReviewSelectKey(rbVO);
 		
-		return rbm.registerReview(rbVO);
+		if(rbVO.getAttachList() == null || rbVO.getAttachList().size() <= 0) {
+			return;
+		}
+		
+		rbVO.getAttachList().forEach(attach -> {
+			
+			attach.setReview_no(rbVO.getReview_no());
+			mapper.insert(attach);
+		});
+		
+//		return mapper.registerReview(rbVO);
 	}
 
 	public int deleteReview(ReviewBoardVO rbVO) {
 
-		return rbm.deleteReview(rbVO);
+		return mapper.deleteReview(rbVO);
 	}
 
 	public int modifyReview(ReviewBoardVO rbVO) {
 		
-		return rbm.modifyReview(rbVO);
+		return mapper.modifyReview(rbVO);
 	}
 	
 	public int getTotal(Criteria cri, String isbn, String user_id) {
 		
-		return rbm.getTotalCount(cri, isbn, user_id);
+		return mapper.getTotalCount(cri, isbn, user_id);
 	}
+	
+	public List<ReviewAttachVO> getAttachList(int review_no) {
+		
+		log.info("get Attach list by review_no" + review_no);
+		return mapper.findByReviewNo(review_no);
+	}
+
 }

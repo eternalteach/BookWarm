@@ -24,12 +24,16 @@ public interface ReviewBoardMapper {
 	public BookVO bookInfo(String isbn);
 
 	public int registerReview(ReviewBoardVO rbVO);
+	
+	public int registerReviewSelectKey(ReviewBoardVO rbVO);
 
 	public int deleteReview(ReviewBoardVO rbVO);
 
 	public int modifyReview(ReviewBoardVO rbVO);
 	
 	public int getTotalCount(Criteria cri, String isbn, String user_id);
+	
+	public List<ReviewAttachVO> getAttachList(int review_no);
 	
 	// 첨부파일 처리. 따로 mapper 만들지 않고 review에 추가.
 	public void insert(ReviewAttachVO vo);
