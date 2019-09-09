@@ -23,8 +23,8 @@ public class ShopListController {
 	public String shop_list(Model model, Criteria criteria) throws Exception {
 		
 		System.out.println("책 리스트");
-		//model.addAttribute("list", shoplistservice.shoplist());
-		//model.addAttribute("list_title", shoplistservice.shoplist2());
+		model.addAttribute("list", shoplistservice.shoplist());
+		model.addAttribute("list_title", shoplistservice.shoplist2());
 		
 		
 		
@@ -32,14 +32,12 @@ public class ShopListController {
 		
 		//페이징 처리
 		model.addAttribute("shoplistpage", shoplistservice.shoplistpage(criteria));
-		model.addAttribute("shoplistpage2", shoplistservice.shoplistpage2(criteria));
 		
 		
 		int total = shoplistservice.gettotalcount(criteria);
 		System.out.println("토탈:"+total);
 		
 		model.addAttribute("pageMaker", new PagingBoardVO(criteria, total));
-		model.addAttribute("pageMaker2", new PagingBoardVO(criteria, total));
 		
 		
 		System.out.println("list:=====" + criteria);

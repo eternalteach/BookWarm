@@ -24,8 +24,6 @@ public interface ShopListMapper {
 	
 	//ÆäÀÌÂ¡ Ã³¸®
 	public List<ShopListBoardVO> shoplistpage(Criteria criteria);
-	public List<ShopListBoardVO> shoplistpage2(Criteria criteria);
-	
 	
 	public int gettotalcount(Criteria criteria);
 	

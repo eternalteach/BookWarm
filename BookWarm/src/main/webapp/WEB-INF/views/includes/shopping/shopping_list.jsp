@@ -242,7 +242,7 @@
 								role="tabpanel" aria-labelledby="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a1">
 								<!-- 제목순으로 책 불러오기 -->
 								<div class="row">
-									<c:forEach items="${shoplistpage2}" var="shop_title">
+									<c:forEach items="${list_title}" var="shop_title">
 										<div class="col-md-2">
 											<figure class="product-shadows product-item">
 												<p>&nbsp;${shop_title.isbn}</p>

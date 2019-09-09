@@ -52,10 +52,6 @@ public class ShopListService {
 		System.out.println("페이징 처리");
 		return shoplistmapper.shoplistpage(criteria);
 	}
-	public List<ShopListBoardVO> shoplistpage2(Criteria criteria) throws Exception{
-		System.out.println("페이징 처리");
-		return shoplistmapper.shoplistpage2(criteria);
-	}
 	
 	
 	//전체 페이지개수
