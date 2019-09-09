@@ -1,4 +1,4 @@
-﻿/* --------------------------------------------
+/* --------------------------------------------
 	MAIN
 -------------------------------------------- */
 
@@ -85,7 +85,7 @@ figure.product-item .shop-action-item {
    border-right: 1px solid #e8e8e8;
 }
 
-figure.product-item .shop-action-item:last-child {
+figure.product-item .shop-action-ite	m:last-child {
    border-right: none;
 }
 
@@ -109,7 +109,7 @@ figure.product-item .product-media {
 }
 
 figure.product-item .product-name {
-   font-size: 18px;
+   font-size: 15px;
    margin-bottom: 5px;
    font-weight: 500;
 }
@@ -529,7 +529,7 @@ ul.mini-list {
 
 
 .single-product-wrap .single-product-inner {
-   margin-top: -100px;
+
    background: #fff;
    padding-top: 30px;
    padding-left: 30px;

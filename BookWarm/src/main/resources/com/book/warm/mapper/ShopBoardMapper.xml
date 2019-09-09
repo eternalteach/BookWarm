@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.book.warm.mapper.ShopMapper">
+	<select id="cartList" resultType="com.book.warm.vo.CartVO">
+		select c.*, b.book_title, b.book_price_for_sale, b.book_img, c.cart_cnt*b.book_price_for_sale as total
+		from cart c inner join book b
+		on c.isbn = b.isbn
+		where c.user_id = #{user_id}
+	</select>
+	
+	<delete id="removeCart">
+		delete from cart where user_id = #{user_id} and isbn = #{isbn}
+	</delete>
+	
+	<update id="updateCnt">
+		update cart set cart_cnt=#{cart_cnt} where cart_no=#{cart_no}
+	</update>
+	
+	<select id="getCartOne" resultType="com.book.warm.vo.CartVO">
+		select c.*, b.book_title, b.book_price_for_sale, b.book_img, c.cart_cnt*b.book_price_for_sale as total
+		from cart c inner join book b
+		on c.isbn = b.isbn
+		where cart_no=#{cart_no}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+

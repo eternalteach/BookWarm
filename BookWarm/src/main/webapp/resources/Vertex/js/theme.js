@@ -2870,6 +2870,7 @@ Description: 	This is a jQuery plugin which allows us to quickly check if an ele
 
 			self.$source.find('.nav-link.active').removeClass('active');
 			self.$source.find('li[data-option-value="' + filter + '"] .nav-link').addClass('active');
+			
 
 			self.options.filter = currentFilter;
 
