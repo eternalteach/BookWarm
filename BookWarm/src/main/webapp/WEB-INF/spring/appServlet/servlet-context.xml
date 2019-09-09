@@ -30,7 +30,7 @@
 	<!-- Interceptor 설정 -->
 	<interceptors>
 		<interceptor>
-				<mapping path="/register/**"/>
+				<mapping path="/register/registerSuccessPage"/>
 				<beans:ref bean="boardInterceptor"/>
 		</interceptor>
 	</interceptors>

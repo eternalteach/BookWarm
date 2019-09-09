@@ -31,6 +31,7 @@ public class RegisterController {
 	// 회원가입(중복 확인)페이지 띄우는 controller
 	@RequestMapping(value="/checkDuplicateRegister") 
 	public String checkDuplicateRegister() {
+		System.out.println("checkDuplicateRegister()");
 		return "/checkDuplicateRegister";
 	}
 	
@@ -121,7 +122,9 @@ public class RegisterController {
 	@ResponseBody
 	@RequestMapping(value="/idCheck", method=RequestMethod.GET)
 	public int idCheck(@RequestParam("user_id") String user_id) {
+		System.out.println("idCheck(), user_id : "+user_id);
 		int rtn =  registerService.checkDuplicatedId(user_id);
+		System.out.println("rtn:"+rtn);
 		return rtn;
 	}
 	

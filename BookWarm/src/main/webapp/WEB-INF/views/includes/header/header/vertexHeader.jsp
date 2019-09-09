@@ -188,7 +188,7 @@
     	// 아이디 중복검사(ajax)
     	$('#user_id').on('blur', function() {
     		var user_id = $('#user_id').val();
-    		var url = "<%=path%>/idCheck?user_id=" + user_id;
+    		var url = "<%=path%>/register/idCheck?user_id=" + user_id;
     		var idConfirmMsg = $('#idConfirmMsg');
     		
     		// 아이디 형식 검사(4자리 이상, 20자리 이하)
@@ -204,7 +204,7 @@
     	// 닉네임 중복검사(ajax)
     	$('#user_nickname').on('blur', function(){
     		var user_nickname = $('#user_nickname').val();
-    		var url = "<%=path%>/nicknameCheck?user_nickname=" + user_nickname;
+    		var url = "<%=path%>/register/nicknameCheck?user_nickname=" + user_nickname;
     		var nicknameConfirmMsg = $('#nicknameConfirmMsg');
     		chkDuplicated(url, nicknameConfirmMsg, "닉네임");
     	})
