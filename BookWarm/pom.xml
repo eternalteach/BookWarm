@@ -13,6 +13,7 @@
 		<org.springframework-version>5.0.7.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.9.0</org.aspectj-version>
 		<org.slf4j-version>1.7.25</org.slf4j-version>
+
 	</properties>
 	<repositories>
 		<repository>
@@ -21,6 +22,7 @@
 		</repository>
 	</repositories>
 	<dependencies>
+
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
@@ -61,6 +63,7 @@
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+
 
 
 		<!-- HikariCP 여러 명의 사용자 동시에 처리해야 하는 웹 애플리케이션의 경우 데이터베이스 연결을 이용할 때 사용하는 

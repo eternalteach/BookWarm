@@ -19,6 +19,7 @@
    <link rel="stylesheet" href="./resources/VertexEx/vendor/owl-carousel/owl.carousel.css" />
    <link rel="stylesheet" href="./resources/VertexEx/vendor/magnific-popup/magnific-popup.css" />
    <link rel="stylesheet" href="./resources/VertexEx/vendor/lite-tooltip/css/litetooltip.css" />
+   <link rel="stylesheet" href="./resources/VertexEx/vendor/bootstrap/css/glyphicon.css" />
    <!-- Theme CSS -->
    <link href="./resources/VertexEx/css/main.css" rel="stylesheet" />
    <link href="./resources/VertexEx/css/main-shortcodes.css" rel="stylesheet" />
@@ -72,6 +73,10 @@
    <script src="./resources/VertexEx/js/theme.js"></script>
    <!-- Custom JS -->
    <script src="./resources/VertexEx/js/custom.js"></script>
+   <!-- 모달창을 위한 jquery문 -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
    
    
    

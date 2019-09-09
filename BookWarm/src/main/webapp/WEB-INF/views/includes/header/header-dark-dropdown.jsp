@@ -20,8 +20,7 @@
 						<div class="header-column">
 							<div class="header-row">
 								<div class="header-logo">
-									<a href="index.html"> <img alt="Vertex" width="120"
-										height="80" src="./resources/VertexEx/img/logo.png">
+									<a href="index.html"> <img alt="logo" width="80" height="100" src="./resources/img/header/Alice_rabbit03.png">
 									</a>
 								</div>
 							</div>
@@ -97,6 +96,3 @@
 			<!-- insert footer -->
 		</div>
 	</div>
-
-</body>
-</html>

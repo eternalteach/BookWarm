@@ -19,7 +19,7 @@
                      <div class="header-row">
                         <div class="header-logo">
                            <a href="index.html">
-                              <img alt="Vertex" width="108" height="72" src="./resources/VertexEx/img/logo-white.png">
+                             <img alt="logo" width="80" height="100" src="./resources/img/header/Alice_rabbit03.png">
                            </a>
                         </div>
                      </div>
@@ -137,27 +137,26 @@
       </header>
       <!--header end-->
 
-      <div class="page">
+            <div class="page">
 
          <section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall bg-overlay--gradient-dark">
 
-            <div class="divimage dzsparallaxer--target w-100" style="height: 120%; background-image: url(./resources/VertexEx/img/banner/b10.jpg);">
+            <div class="divimage dzsparallaxer--target w-100" style="height: 100%; background-image: url(./resources/VertexEx/img/banner/b8.jpg);">
             </div>
 
             <div class="container text-white text-center pt-200 pb-200">
                <div class="row">
 
                   <div class="col-md-12 z-index-1">
-                     <p class="mb-0 o-7 fw-5 ls-1 text-uppercase">Parallax Page Title Example</p>
+                     <p class="mb-0 o-7 fw-5 ls-1 text-uppercase">Record Your Feelings</p>
                      <h2 class="fw-6 fs-54 lh-56">
-                        We are a creative <br /> design <span class="primary-color">studio.</span>
+                        If you look back at your records, <br /> you will know <span class="primary-color">about you.</span>
                      </h2>
 
                      <ol class="breadcrumb clean-breadcrumb text-white mb-0 mt-20 o-8">
-                        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                        <li><a href="#"><i class="fa fa-diamond"></i> Features</a></li>
-                        <li><a href="#"><i class="fa fa-tint"></i> Headers</a></li>
-                        <li><a href="#"><i class="fa fa-header"></i> Transparent Header</a></li>
+                        <li><a href="#"><i class="fa fa-book"></i> Record Loging</a></li>
+                        <li><a href="#"><i class="fa fa-tint"></i> Record your Feel</a></li>
+                        <li><a href="#"><i class="fa fa-diamond"></i> Find More Book</a></li>
                      </ol>
                   </div>
                </div>
@@ -169,6 +168,5 @@
 		<!-- insert footer -->
          
       </div>
+
    </div>
-</body>
-</html>

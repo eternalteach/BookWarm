@@ -1,0 +1,34 @@
+@charset "UTF-8";
+body{
+background-color: white;}
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.library-body {
+	width: 795px;
+	height: 1001px;
+	dispay: block;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: black;
+	background-image:
+		url('../img/library/library_background_bookshelf.png');
+}
+
+.library_emptySpace {
+	width: 95px;
+}
+
+.book-img-location {
+	width: 80px;
+	vertical-align: bottom;
+	padding-bottom: 18px;
+}
+
+.book-thumbnail {
+	height: 100px;
+	width: 80px;
+}
