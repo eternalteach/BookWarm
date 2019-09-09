@@ -30,19 +30,21 @@
                         <div class="product-price-wrap">
 
                            <span class="product-price">
-                              <del class="product-amount"><span class="product-price-currency">정가&nbsp${shop_product.book_price}</span>원</del><br>
+                              <del class="product-amount"><span class="product-price-currency">정가&nbsp<fmt:formatNumber value="${shop_product.book_price}" pattern="###,###,###" /></span>원</del><br>
                               <ins> 
                                  <span class="product-amount">
-                                    <span class="product-price-currency">할인가&nbsp${shop_product.book_price}</span>원
+                                    <span class="product-price-currency">할인가&nbsp<fmt:formatNumber value="${shop_product.book_price_for_sale}" pattern="###,###,###" /></span>원
                                  </span>
                             </ins>
-                           </span>
+                           </span><br>
+                           <span class="product-price-currency">
                            <span class="product-star-rating" title="Rated 4.67 out of 5">
                               <i class="fa fa-star"></i>
                               <i class="fa fa-star"></i>
                               <i class="fa fa-star"></i>
                               <i class="fa fa-star"></i>
                               <i class="fa fa-star"></i>
+                           </span>
                            </span>
                         </div>
 
@@ -53,30 +55,45 @@
  						 <p>${shop_product.translator_name}&nbsp역</p>
                         </div>
 
-                        <form id="qq" class="cart" method="get" enctype="multipart/form-data">
+                           <!-- 수량변경버튼 -->
+                           <form name="cart" method="get" enctype="multipart/form-data">
                            <div class="quantity">
-                              <input type="text" name="quantity" value="1" title="Qty" class="input-text qty text" id="num">
-                              <div class="qty-adjust">
-                                 <i class="fa fa-chevron-up qty-plus" id="plus"></i>
-                                 <i class="fa fa-chevron-down qty-minus" id="minus"></i>
-                              </div>
-                           </div>
-
-                           <button type="submit" class="btn btn-outline-primary btn-md product-btn">
-                              <i class="fa fa-shopping-basket" ></i><span>장바구니</span></a>
-                           </button>
-
-                           <button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="Add to wishlist" data-location="top">
-                             <span>구매</span>
-                           </button>
+								<input type=hidden  title="Qty" class="input-text qty text" name="sell_price" fmt:formatNumber value="${shop_product.book_price_for_sale}" pattern="###,###,###">
+								<input type="text" name="amount" value="1" title="Qty" class="input-text qty text" onchange="change();">
+									<div class="qty-adjust">
+										<i class="fa fa-chevron-up qty-plus" value=" + " onclick="add();"></i>
+										<i class="fa fa-chevron-down qty-minus" value=" - " onclick="del();"></i><br>
+									</div>
+							</div>
+							</form> 
+						
+<!-- 							<div class="qty-adjust">
+							금액 : <input type="text" name="sum" readonly>원
+                            </div> -->
                            
-                        </form>
-                       		
+							<!-- 장바구니로 이동 -->
+                           <a href="/warm/shop_list"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="장바구니로 이동" data-location="top">
+                           <i class="fa fa-shopping-basket" data-title="장바구니로 이동" data-location="top"></i>
+                           <span>장바구니</span>
+                           </button></a>
+							<!-- 구매로이동  -->
+                            <a href="/warm/shop_list"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="구매로 이동" data-location="top">
+                          	<span>구매</span>
+                           </button></a>
                        		<!-- 목록버튼 클릭하면 책 목록으로 이동. -->
-						    <a href="/warm/shop_list"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="Add to wishlist" data-location="top">
+						    <a href="/warm/shop_list"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="목록으로 이동" data-location="top">
                           	<span>목록</span>
                            </button></a>
+                          
                        
+                     <div class="product_meta mb-40">
+                           <span class="tagged_as">
+                      <!--         Tags:
+                              <a href="#" rel="tag">Sweaters</a>,
+                              <a href="#" rel="tag">Turtleneck</a>,
+                              <a href="#" rel="tag">Wool</a> -->
+                           </span>
+                        </div>
 
 
             		    <!-- 줄거리/목차부분  -->
@@ -143,25 +160,20 @@
                                        <div class="img-wrap first-image">
                                          <a href="shop_product?isbn=${bookwriter.isbn}&writer_name=${bookwriter.writer_name}"><img src="${bookwriter.book_img}"></a>
                                        </div>
-                                       <div class="img-wrap second-image">
-                                          <img src="${bookwriter.book_img}">
-                                       </div> 
                                     </div>
 									
                                     <div class="product-details">
                                        <h3 class="product-name"><a href="#">${bookwriter.book_title}</a></h3>
-                                       <span class="product-price">
-                                          <span class="product-amount">
-                                          	 <span class="product-price-currency">${bookwriter.book_price_for_sale}</span>원
-                                          </span>
-                                       </span>
+                                          <class="product-amount">
+                                          	 <class="product-price-currency"><fmt:formatNumber value="${shop_product.book_price}" pattern="###,###,###" />원</class>
                                        <div class="product-star-rating" title="Rated 4.67 out of 5">
                                           <i class="fa fa-star"></i>
                                           <i class="fa fa-star"></i>
                                           <i class="fa fa-star"></i>
                                           <i class="fa fa-star"></i>
-                                          <i class="fa fa-star-half"></i>
+                                          <i class="fa fa-star"></i>
                                        </div>
+                                     
                                     </div> 
                                  </figure>
                               </div>
@@ -176,39 +188,46 @@
               </div>
          </div>
          
-<!--          
-                            <form class="cart" method="get" enctype="multipart/form-data">
-                           <div class="quantity">
-                              <input type="text" name="quantity" value="1" title="Qty" class="input-text qty text" id="num">
-                              <div class="qty-adjust">
-                                 <i class="fa fa-chevron-up qty-plus" id="plus"></i>
-                                 <i class="fa fa-chevron-down qty-minus" id="minus"></i>
-                              </div>
-                           </div>
-        </form> -->
-         
-         
+        <body onload="init();">
         <script type="text/javascript">
-         /* 수량올리기 */
- 		$(document).ready(function(){
- 			var qq = $("#qq");
- 		
- 			$('#plus').on("click", function(){
- 			
- 				 console.log('click');
+ 		var sell_price;
+ 		var amount;
 
- 				 var q= $('#num').attr('value', 2);
- 				 alert(q);
- 				
- 				  
- 				  
- 				 
- 				}); 
- 			 
- 		});
+ 		function init () {
+ 			sell_price = document.cart.sell_price.value; /* 가격 */
+ 			amount = document.cart.amount.value;
+ 			/* document.cart.sum.value = sell_price; 
+ 			change(); */
+ 		}
+		/* 수량증가 */
+ 		function add () {
+ 			/* alert("올리기") */
+ 			hm = document.cart.amount;
+ 			/* sum = document.cart.sum; */
+ 			hm.value ++ ;
+
+ 			/* sum.value = parseInt(hm.value) * sell_price; */
+ 		}
+		/* 수량감소 */
+ 		function del () {
+ 			hm = document.cart.amount;
+ 			/* sum = document.cart.sum; */
+ 				if (hm.value > 1) {
+ 					hm.value -- ;
+ 					/* sum.value = parseInt(hm.value) * sell_price; */
+ 				}
+ 		}
+
+/*  		function change () {
+ 			hm = document.cart.amount;
+ 			sum = document.cart.sum;
+
+ 				if (hm.value < 0) {
+ 					hm.value = 0;
+ 				}
+ 			sum.value = parseInt(hm.value) * sell_price;
+ 		}  */ 
          </script>
-          
-          
-         
+          </body>
          
 </body>
