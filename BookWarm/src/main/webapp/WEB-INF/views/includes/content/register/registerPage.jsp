@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-sm-5">
 
-                    <form class="v-signup v-register" action="<%=path1 %>/registerSuccess" method="post" id="form">
+                    <form class="v-signup v-register" action="<%=path1 %>/register/registerSuccess" method="post" id="form">
                         <div class="form-group">
                             <h2 class="mb-2 mt-0"><strong>회원가입</strong></h2>
                         </div>

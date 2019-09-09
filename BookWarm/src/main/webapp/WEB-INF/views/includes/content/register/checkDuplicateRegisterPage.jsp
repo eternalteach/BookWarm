@@ -12,10 +12,12 @@
             <div class="row">
                 <div class="col-sm-5">
 
-                    <form class="v-signup v-register" action="<%=path1%>/checkDuplicated">
+                    <form class="v-signup v-register" action="<%=path1%>/register/checkDuplicated">
                     
                         <div class="form-group">
                             <h2 class="mb-2 mt-0"><strong>회원가입(중복 확인)</strong></h2>
+                            <%-- <span style="color:red">${msg}</span> --%>
+                            <input type="hidden" id="msg" value="${msg}">
                         </div>
                         
                         

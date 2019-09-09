@@ -152,7 +152,8 @@
     		
     	})
     	
-    	var idPwExp = /^[a-zA-Z0-9_]{4,20}$/; // id pw 정규식(숫자&알파벳 대소문자&"_" 사용 가능, 4자리 이상 20자리 이하 )
+    	var idExp = /^[a-zA-Z0-9_]{3,10}$/; // id 정규식(숫자&알파벳 대소문자&"_" 사용 가능, 4자리 이상 20자리 이하 )
+    	var pwExp = /^[a-zA-Z0-9_]{8,16}$/; // pw 정규식(숫자&알파벳 대소문자&"_" 사용 가능, 4자리 이상 20자리 이하 )
     	
     	// 비밀번호 일치 여부 판단
     	$('#user_pw').on('keyup', function() {
@@ -161,8 +162,8 @@
 	    	var pwConfirmMsg = $('#pwConfirmMsg');
 	    	
     		// 비밀번호 형식 체크
-    		if(!idPwExp.test(pw)) {
-    			pwConfirmMsg.text("숫자 또는 알파벳 대소문자 또는 '_'를 사용하여 4자리 이상 20자리 이하의 비밀번호를 입력해주세요.");
+    		if(!pwExp.test(pw)) {
+    			pwConfirmMsg.text("숫자 또는 알파벳 대소문자 또는 '_'를 사용하여 8자리 이상 16자리 이하의 비밀번호를 입력해주세요.");
     			pwConfirmMsg.css("color", "red");
     		}else {
 	    		chkPw(pw, pwConfirm);
@@ -175,8 +176,8 @@
 	    	var pwConfirmMsg = $('#pwConfirmMsg');
     		
     		// 비밀번호 형식 체크
-    		if(!idPwExp.test(pw)) {
-    			pwConfirmMsg.text("숫자 또는 알파벳 대소문자 또는 '_'를 사용하여 4자리 이상 20자리 이하의 비밀번호를 입력해주세요.");
+    		if(!pwExp.test(pw)) {
+    			pwConfirmMsg.text("숫자 또는 알파벳 대소문자 또는 '_'를 사용하여 8자리 이상 16자리 이하의 비밀번호를 입력해주세요.");
     			pwConfirmMsg.css("color", "red");
     		}else {
 	    		chkPw(pw, pwConfirm);
@@ -191,11 +192,11 @@
     		var idConfirmMsg = $('#idConfirmMsg');
     		
     		// 아이디 형식 검사(4자리 이상, 20자리 이하)
-    		if(idPwExp.test(user_id)) {
+    		if(idExp.test(user_id)) {
 	    		// 아이디 중복검사
 	    		chkDuplicated(url, idConfirmMsg, "아이디");
     		}else {
-    			idConfirmMsg.text("숫자 또는 알파벳 대소문자 또는 '_'를 사용하여 4자리 이상 20자리 이하의 아이디를 입력해주세요.");
+    			idConfirmMsg.text("숫자 또는 알파벳 대소문자 또는 '_'를 사용하여 3자리 이상 10자리 이하의 아이디를 입력해주세요.");
     			idConfirmMsg.css("color", "red");
     		}
     	})
@@ -342,6 +343,12 @@
     <!-- checkDuplicatedRegisterPage.jsp -->
     <script>
     	$(document).ready(function() {
+    		
+    		// 중복메세지 받아오기
+    		var message = $('#msg');
+    		if(message.val()=='true') {
+    			alert("id, pw가 이미 존재하는 유저입니다.");
+    		}
     		
     		// 이메일 선택
     		$('#selectEmail').on('click', function() {

@@ -38,26 +38,22 @@ public class LoginController {
 		String user = (String) session.getAttribute("user_id");
 		String rtn;
 		
-		// 1. 이전 로그인 했을 때 자동로그인 체크했었는지 확인 (user_id쿠키 있는지 확인)
-		Cookie[] cookies = req.getCookies();
-		if(cookies!=null && cookies.length>0) {
-			for(int i=0; i<cookies.length; i++) {
-				if(cookies[i].getName().equals("user_id")) {
-					// 쿠키의 key값이 user_id라면 value를 'user_id'변수에 저장시킨다.
-					user = cookies[i].getValue();
-					// 세션도 만들어줌
-					session.setAttribute("user_id", user);
-				}
-			}
-		}
+//		// 1. 이전 로그인 했을 때 자동로그인 체크했었는지 확인 (user_id쿠키 있는지 확인)
+//		Cookie[] cookies = req.getCookies();
+//		if(cookies!=null && cookies.length>0) {
+//			for(int i=0; i<cookies.length; i++) {
+//				if(cookies[i].getName().equals("user_id")) {
+//					// 쿠키의 key값이 user_id라면 value를 'user_id'변수에 저장시킨다.
+//					user = cookies[i].getValue();
+//					// 세션도 만들어줌
+//					session.setAttribute("user_id", user);
+//				}
+//			}
+//		}
 		
 		// 2. 로그인 성공 여부 확인
 		if(user!=null) {
 			// 로그인 성공
-//			ModelAndView mv = new ModelAndView();
-//			mv.addObject("user_id", user);
-//			rttr.addFlashAttribute("user_id", user);
-//			rtn = "redirect:/shop/cart";
 			rttr.addAttribute("pageWithLogin", true);
 			rtn = "redirect:/shop/cart?user_id="+user;
 		}else {
