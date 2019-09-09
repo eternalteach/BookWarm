@@ -4,7 +4,7 @@
 <%@ page session="false"%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="UTF-8">
 <head>
 <%@ include file="./include-header-front01.jsp"%>
 </head>
@@ -68,7 +68,7 @@
 				class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall bg-overlay--gradient-dark">
 
 				<div class="divimage dzsparallaxer--target w-100"
-					style="height: 120%; background-image: url(./resources/VertexEx/img/banner/b10.jpg);">
+					style="height: 120%; background-image: url(./resources/VertexEx/img/banner/꼬부기피카츄.gif);">
 				</div>
 
 				<div class="container text-white text-center pt-200 pb-200">
@@ -78,7 +78,7 @@
 							<p class="mb-0 o-7 fw-5 ls-1 text-uppercase">Parallax Page
 								Title Example</p>
 							<h2 class="fw-6 fs-54 lh-56">
-								We are a creative <br /> design <span class="primary-color">studio.</span>
+								king
 							</h2>
 
 							<ol class="breadcrumb clean-breadcrumb text-white mb-0 mt-20 o-8">
