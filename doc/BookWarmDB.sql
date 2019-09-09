@@ -218,8 +218,7 @@ coupon_no varchar2(20),
 post_no varchar2(20),
 pay_no varchar2(20));
 
-alter table orders add constraint fk_pay_no foreign key(pay_no)
-    references pay(pay_no);
+
 
 
 --주문내역
@@ -237,7 +236,7 @@ pay_way varchar2(20) not null,
 pay_total number(10,0) not null,
 pay_refund_account varchar2(50) not null
 );
-
+alter table orders add constraint fk_pay_no foreign key(pay_no) references pay(pay_no);
 --------------- cart ---------------(임지현)
 create table cart(
 cart_no number(20) primary key,
