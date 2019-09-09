@@ -7,24 +7,19 @@ import com.book.warm.vo.ShopListBoardVO;
 
 public interface ShopListMapper {
 	
-	////isbn ¼ø¼­·Î ºÒ·¯¿À±â
+	// isbn ìˆœ ë¦¬ìŠ¤íŠ¸
 	public List<ShopListBoardVO> shoplist();
-	
-	//Á¦¸ñ¼ø(¤¡¤¤¤§¤©)¼øÀ¸·Î ºÒ·¯¿À±â
+	// ì œëª© ìˆœ ë¦¬ìŠ¤íŠ¸
 	public List<ShopListBoardVO> shoplist2();
-	
-	//Ã¥ ´­·¶À»¶§ »ó¼¼ÆäÀÌÁö ÀÌµ¿
+	// ìƒì„¸ì •ë³´ ë¶ˆëŸ¬ì˜¤ê¸°
 	public ShopListBoardVO bookdetail(String isbn);
-	
-	//Ã¥¿¡ ´ëÇÑ Àå¸£ °¡Á®¿À±â
+	// ì¥ë¥´ ë¶ˆëŸ¬ì˜¤ê¸°
 	public List<ShopListBoardVO> bookgenre(String isbn);
-	
-	//ÀúÀÚÀÌ¸§ÀÌ °°Àº Ã¥ ºÒ·¯¿À±â
+	// ì €ì ë¶ˆëŸ¬ì˜¤ê¸°
 	public List<ShopListBoardVO> bookwriter(String writer_name);
-	
-	//ÆäÀÌÂ¡ Ã³¸®
+	// í˜ì´ì§• ì²˜ë¦¬
 	public List<ShopListBoardVO> shoplistpage(Criteria criteria);
-	
+	// ì´ í˜ì´ì§€ ìˆ˜
 	public int gettotalcount(Criteria criteria);
 	
 }

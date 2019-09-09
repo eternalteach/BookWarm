@@ -2,7 +2,6 @@ package com.book.warm.vo;
 
 import java.security.Timestamp;
 
-//도서 VO
 public class BookBoardVO {
 	
 	private String isbn;
@@ -21,7 +20,6 @@ public class BookBoardVO {
 	private String book_img;
 
 	
-	//게터세터
 	public String getIsbn() {
 		return isbn;
 	}

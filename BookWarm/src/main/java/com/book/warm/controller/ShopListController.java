@@ -18,11 +18,10 @@ public class ShopListController {
 	@Inject
 	ShopListService shoplistservice;
 	
-	//Ã¥ ¸ñ·Ï ºÒ·¯¿À±â
+	//Ã¥ ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/shop_list", method = RequestMethod.GET)
 	public String shop_list(Model model, Criteria criteria) throws Exception {
 		
-		System.out.println("Ã¥ ¸®½ºÆ®");
 		model.addAttribute("list", shoplistservice.shoplist());
 		model.addAttribute("list_title", shoplistservice.shoplist2());
 		
@@ -30,12 +29,12 @@ public class ShopListController {
 		
 		 System.out.println(criteria.getAmount() + " : "+ criteria.getPageNum());
 		
-		//ÆäÀÌÂ¡ Ã³¸®
+		//ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½
 		model.addAttribute("shoplistpage", shoplistservice.shoplistpage(criteria));
 		
 		
 		int total = shoplistservice.gettotalcount(criteria);
-		System.out.println("ÅäÅ»:"+total);
+		System.out.println("ï¿½ï¿½Å»:"+total);
 		
 		model.addAttribute("pageMaker", new PagingBoardVO(criteria, total));
 		
@@ -44,27 +43,27 @@ public class ShopListController {
 		return "shop_list";
 	}
 	
-	//Ã¥ »ó¼¼ÆäÀÌÁö ÀÌµ¿
+	//Ã¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 	@RequestMapping(value = "/shop_product", method = RequestMethod.GET)
 	public String shop_product(HttpServletRequest req, Model model) throws Exception {
 		
-		System.out.println("Ã¥ »ó¼¼ÆäÀÌÁö");
+		System.out.println("Ã¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		
 		String isbn = req.getParameter("isbn");
 		String wname = req.getParameter("writer_name");
 		
-		//String wname="Á¶¾Ø.K.·Ñ¸µ";
+		//String wname="ï¿½ï¿½ï¿½ï¿½.K.ï¿½Ñ¸ï¿½";
 		System.out.println("=========================================================");
 		System.out.println(wname);
 		
 		
-		//Ã¥ »ó¼¼Á¤º¸ °¡Á®¿À±â
+		//Ã¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		model.addAttribute("shop_product", shoplistservice.bookdetail(isbn));
-		//Ã¥ Àå¸£ °¡Á®¿À±â
+		//Ã¥ ï¿½å¸£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		model.addAttribute("bookgenre", shoplistservice.bookgenre(isbn));
-		//ÀúÀÚÀÇ ´Ù¸¥ Ã¥ ºÒ·¯¿À±â
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ Ã¥ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 		model.addAttribute("bookwriter", shoplistservice.bookwriter(wname));
-		System.out.println("ÀÌ°Íµµ ³ª¿À³ª");
+		System.out.println("ï¿½Ì°Íµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		
 		return "shop_product";
 	}
