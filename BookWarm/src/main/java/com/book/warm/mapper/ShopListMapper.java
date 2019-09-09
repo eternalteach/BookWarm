@@ -2,27 +2,27 @@ package com.book.warm.mapper;
 
 import java.util.List;
 
-import com.book.warm.vo.Criteria;
+import com.book.warm.page.Criteria;
 import com.book.warm.vo.ShopListBoardVO;
 
 public interface ShopListMapper {
 	
-	////isbn ¼ø¼­·Î ºÒ·¯¿À±â
+	////isbn ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<ShopListBoardVO> shoplist();
 	
-	//Á¦¸ñ¼ø(¤¡¤¤¤§¤©)¼øÀ¸·Î ºÒ·¯¿À±â
+	//ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<ShopListBoardVO> shoplist2();
 	
-	//Ã¥ ´­·¶À»¶§ »ó¼¼ÆäÀÌÁö ÀÌµ¿
+	//Ã¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 	public ShopListBoardVO bookdetail(String isbn);
 	
-	//Ã¥¿¡ ´ëÇÑ Àå¸£ °¡Á®¿À±â
+	//Ã¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½å¸£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<ShopListBoardVO> bookgenre(String isbn);
 	
-	//ÀúÀÚÀÌ¸§ÀÌ °°Àº Ã¥ ºÒ·¯¿À±â
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¥ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<ShopListBoardVO> bookwriter(String writer_name);
 	
-	//ÆäÀÌÂ¡ Ã³¸®
+	//ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½
 	public List<ShopListBoardVO> shoplistpage(Criteria criteria);
 	
 	public int gettotalcount(Criteria criteria);

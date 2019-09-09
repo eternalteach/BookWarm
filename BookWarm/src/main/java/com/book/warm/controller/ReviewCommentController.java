@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.book.warm.page.Criteria;
 import com.book.warm.service.ReviewCommentService;
 import com.book.warm.vo.CommentPageDTO;
-import com.book.warm.vo.Criteria;
 import com.book.warm.vo.ReviewCommentVO;
 
 import lombok.AllArgsConstructor;

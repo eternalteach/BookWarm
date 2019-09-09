@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.book.warm.page.Criteria;
 import com.book.warm.vo.CommentPageDTO;
-import com.book.warm.vo.Criteria;
 import com.book.warm.vo.ReviewCommentVO;
 
 public interface ReviewCommentMapper {

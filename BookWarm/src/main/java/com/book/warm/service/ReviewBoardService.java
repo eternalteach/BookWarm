@@ -8,12 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.book.warm.mapper.ReviewBoardMapper;
-import com.book.warm.vo.BookThumbnailVO;
+import com.book.warm.page.Criteria;
 import com.book.warm.vo.BookVO;
-import com.book.warm.vo.Criteria;
 import com.book.warm.vo.ReviewAttachVO;
 import com.book.warm.vo.ReviewBoardVO;
-import com.book.warm.vo.ReviewBoardVO2;
 
 import lombok.extern.log4j.Log4j;
 
@@ -24,11 +22,6 @@ public class ReviewBoardService {
 	@Inject
 	ReviewBoardMapper mapper;
 	
-	public List<ReviewBoardVO2> selectBoardList(String user_id) {
-		
-		return mapper.selectBoardList(user_id);
-	}
-
 	/*
 	 * public List<ReviewBoardVO> getListPerBook(String isbn, String user_id) {
 	 * 

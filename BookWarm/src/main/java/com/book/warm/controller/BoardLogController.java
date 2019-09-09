@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.book.warm.mapper.BookCoverMapper;
 import com.book.warm.mapper.LogingBoardMapper;
 import com.book.warm.page.Criteria;
 import com.book.warm.page.PageDTO;
 import com.book.warm.service.StatisticsFunctionService;
-import com.book.warm.vo.BookCoverVO;
 import com.book.warm.vo.BookVO;
 import com.book.warm.vo.LogingBoardVO;
 
@@ -30,8 +28,6 @@ public class BoardLogController {
 	@Inject
 	LogingBoardMapper logingBoardMapper;
 
-	@Inject
-	BookCoverMapper bookCoverMapper;
 	@Inject
 	StatisticsFunctionService statisticsFunctionService;
 
@@ -62,7 +58,7 @@ public class BoardLogController {
 	}
 
 	@RequestMapping(value = "/boardlogwrite", method = RequestMethod.GET)
-	public String boardLogWrite(BookCoverVO bookCoverVO) throws Exception {
+	public String boardLogWrite(BookVO bookVO) throws Exception {
 		log.info("===== boardLogWrite() =====");
 		return "/boardlogwrite";
 	}
@@ -114,7 +110,7 @@ public class BoardLogController {
 		rttr.addAttribute("modalOpen", "open");
 
 		logingBoardMapper.modifyLoging(logingBoardVO);
-		System.out.println("modifySave¿¡¼­ write_no" + logingBoardVO.getWrite_no());
+		System.out.println("modifySaveï¿½ï¿½ï¿½ï¿½ write_no" + logingBoardVO.getWrite_no());
 		String isbn = logingBoardVO.getIsbn();
 		return "redirect:boardlog?isbn=" + isbn;
 	}

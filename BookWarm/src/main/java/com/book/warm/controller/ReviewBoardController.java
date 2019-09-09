@@ -29,9 +29,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.book.warm.page.Criteria;
+import com.book.warm.page.PageDTO;
 import com.book.warm.service.ReviewBoardService;
-import com.book.warm.vo.Criteria;
-import com.book.warm.vo.PageDTO;
 import com.book.warm.vo.ReviewAttachFileDTO;
 import com.book.warm.vo.ReviewAttachVO;
 import com.book.warm.vo.ReviewBoardVO;
@@ -50,7 +50,7 @@ public class ReviewBoardController {
 	@RequestMapping("/reviewMain")
 	public String recordMain(@RequestParam("user_id") String user_id, Model model) {
 		
-		model.addAttribute("list", service.selectBoardList(user_id));
+		// model.addAttribute("list", service.selectBoardList(user_id)); ReviewBoardVO2
 		
 		return "reviewMain";
 	}

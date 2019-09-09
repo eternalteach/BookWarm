@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.book.warm.mapper.ShopListMapper;
-import com.book.warm.vo.Criteria;
+import com.book.warm.page.Criteria;
 import com.book.warm.vo.ShopListBoardVO;
 
 @Service
@@ -16,47 +16,47 @@ public class ShopListService {
 	@Inject
 	ShopListMapper shoplistmapper;
 	
-	//º£½ºÆ® ¼ø¼­·Î ºÒ·¯¿À±â
+	//ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<ShopListBoardVO> shoplist() throws Exception{
-		System.out.println("ShopList º£½ºÆ®¼øÀ¸·Î ºÒ·¯¿À±â");
+		System.out.println("ShopList ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½");
 
 		return shoplistmapper.shoplist();
 	}
 	
-	//Á¦¸ñ¼ø(¤¡¤¤¤§¤©)¼øÀ¸·Î ºÒ·¯¿À±â
+	//ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<ShopListBoardVO> shoplist2() throws Exception{
-		System.out.println("shoplist2 Á¦¸ñ¼øÀ¸·Î ºÒ·¯¿À±â");
+		System.out.println("shoplist2 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½");
 		return shoplistmapper.shoplist2();
 	}
 	
-	//Ã¥ »ó¼¼Á¤º¸ ºÒ·¯¿À±â
+	//Ã¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 	public ShopListBoardVO bookdetail(String isbn) throws Exception{
-		System.out.println("Ã¥ »ó¼¼Á¤º¸ °¡Á®¿À±â");
+		System.out.println("Ã¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		return shoplistmapper.bookdetail(isbn);
 	}
 	
-	//Ã¥ÀÇ Àå¸£ ºÒ·¯¿À±â
+	//Ã¥ï¿½ï¿½ ï¿½å¸£ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<ShopListBoardVO> bookgenre(String isbn) throws Exception {
-		System.out.println("Àå¸£ ºÒ·¯¿À±â");
+		System.out.println("ï¿½å¸£ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½");
 		return shoplistmapper.bookgenre(isbn);
 	}
 	
-	//´ëÇ¥ÀúÀÚÀÇ ´Ù¸¥ Ã¥µé ºÒ·¯¿À±â
+	//ï¿½ï¿½Ç¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ Ã¥ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<ShopListBoardVO> bookwriter(String writer_name) throws Exception {
-		System.out.println("bookwriter ½ÇÇà");
+		System.out.println("bookwriter ï¿½ï¿½ï¿½ï¿½");
 		return shoplistmapper.bookwriter(writer_name);
 	}
 	
-	//ÆäÀÌÂ¡Ã³¸®
+	//ï¿½ï¿½ï¿½ï¿½Â¡Ã³ï¿½ï¿½
 	public List<ShopListBoardVO> shoplistpage(Criteria criteria) throws Exception{
-		System.out.println("ÆäÀÌÂ¡ Ã³¸®");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½");
 		return shoplistmapper.shoplistpage(criteria);
 	}
 	
 	
-	//ÀüÃ¼ ÆäÀÌÁö°³¼ö
+	//ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public int gettotalcount(Criteria criteria) {
-		System.out.println("ÀüÃ¼°³¼ö");
+		System.out.println("ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½");
 		return shoplistmapper.gettotalcount(criteria);
 	}
 	

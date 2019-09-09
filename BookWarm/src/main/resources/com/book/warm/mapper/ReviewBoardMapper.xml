@@ -5,7 +5,7 @@
  
  <mapper namespace="com.book.warm.mapper.ReviewBoardMapper">
  
- 	<select id="selectBoardList" resultType="com.book.warm.vo.ReviewBoardVO2">
+ 	<!-- <select id="selectBoardList" resultType="com.book.warm.vo.ReviewBoardVO2">
  	
  		select * from
 		(
@@ -17,7 +17,7 @@
 		where sub.rk = 1 and sub.isbn=bc.isbn
 		and user_id = #{user_id}
 		
- 	</select>
+ 	</select> -->
  	
  	<select id="getListPerBook" resultType="com.book.warm.vo.ReviewBoardVO">
  		select * from review_board where isbn = #{param1} and user_id = #{param2} 
@@ -52,12 +52,12 @@
  	
  	</select>
  	
- 	<select id="showBookThumbnail" resultType="com.book.warm.vo.BookThumbnailVO">
+<!--  	<select id="showBookThumbnail" resultType="com.book.warm.vo.BookThumbnailVO">
  		select img_src, book_title, writer_name
 		from book_cover bc, book b, writer w
 		where bc.isbn = #{isbn} 
 		and bc.isbn = b.isbn and b.writer_no = w.writer_no
- 	</select>
+ 	</select> -->
  	
  	<select id="selectedReview" resultType="com.book.warm.vo.ReviewBoardVO">
  		select * from review_board where review_no = #{param1} and user_id = #{param2}

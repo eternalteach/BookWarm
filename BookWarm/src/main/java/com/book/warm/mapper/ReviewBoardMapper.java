@@ -2,15 +2,12 @@ package com.book.warm.mapper;
 
 import java.util.List;
 
+import com.book.warm.page.Criteria;
 import com.book.warm.vo.BookVO;
-import com.book.warm.vo.Criteria;
 import com.book.warm.vo.ReviewAttachVO;
 import com.book.warm.vo.ReviewBoardVO;
-import com.book.warm.vo.ReviewBoardVO2;
 
 public interface ReviewBoardMapper {
-	
-	public List<ReviewBoardVO2> selectBoardList(String user_id);
 	
 	public List<ReviewBoardVO> getListPerBook(String isbn, String user_id);
 	
