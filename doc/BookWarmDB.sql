@@ -530,3 +530,15 @@ insert into coupon values('007','쿠폰7',3,1000,20,to_date('2020-01-01'));
 insert into coupon values('008','쿠폰8',3,5000,30,to_date('2020-01-01'));
 insert into coupon values('009','쿠폰9',1,50000,20,to_date('2020-01-01'));
 insert into coupon values('010','쿠폰10',1,20000,20,to_date('2020-01-01'));
+
+-- coupon_no 테이블 sample data
+insert into coupon_no values('001','aaa','t');
+insert into coupon_no values('002','aaa','t');
+insert into coupon_no values('003','aaa','t');
+insert into coupon_no values('004','aaa','f');
+insert into coupon_no values('002','bbb','t');
+insert into coupon_no values('001','bbb','f');
+insert into coupon_no values('009','ccc','t');
+insert into coupon_no values('005','ddd','t');
+insert into coupon_no values('007','ccc','t');
+insert into coupon_no values('001','ddd','f');
