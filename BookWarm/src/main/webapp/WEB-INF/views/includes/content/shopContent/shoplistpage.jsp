@@ -146,7 +146,7 @@
 								data-toggle="tab"
 								href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a00" role="tab"
 								aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a00"
-								aria-expanded="true">베스트셀러</a></li>
+								aria-expanded="true">제목순</a></li>
 								
 							<!-- 제목순 -->	
 							<li class="nav-item"><a class="nav-link"
@@ -154,7 +154,7 @@
 								data-toggle="tab"								
 								href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11" role="tab" 
 								aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11"
-								aria-expanded="true">제목순</a></li>
+								aria-expanded="true">가격순</a></li>
 							<!-- test//아직 아무것도 없음 -->
     						<li class="nav-item">
                            	 <a class="nav-link " 
@@ -163,7 +163,7 @@
                            	 href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" 
                            	 role="tab" 
                             	aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" 
-                           	 aria-expanded="true">Events</a>
+                           	 aria-expanded="true">인기순</a>
                         	</li>
 								
 						</ul>
@@ -173,18 +173,17 @@
 						
 							<div class="tab-pane fade show active" id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a00"
 								role="tabpanel" aria-labelledby="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a0">
-								<!-- 베스트 순서로 책불러오기  -->
+								<!-- shoptitlelist  -->
 								<div class="row">
-									<c:forEach items="${shoplistpage}" var="shop">
+									<c:forEach items="${shoptitlelist}" var="shop">
 										<div class="col-md-2"">
 											<figure class="product-shadows product-item">
-												<!-- isbn순으로 책 불러오는 확인하기 위해 넣어봄  -->
 												<p>&nbsp;${shop.isbn}</p>
 												
 												<!-- 책 이미지 누르면 책 상세정보로 이동 -->
 												<div class="product-media">
 													<div class="img-wrap first-image">
-														<a href="shop_product?isbn=${shop.isbn}&writer_name=${shop.writer_name}">
+														<a href="shopproduct?isbn=${shop.isbn}&writer_name=${shop.writer_name}">
 														<img src="${shop.book_img}"></a>
 													</div>
 												</div>
@@ -196,8 +195,9 @@
 													<span class="product-posted_in">
 													<a href="#" rel="tag">${shop.writer_name}&nbsp;저</a></span>
 													<span class="product-price"> <span class="product-amount">
-														<span class="product-price-currency">정가&nbsp;${shop.book_price}</span>원<br>
-														<span class="product-price-currency">할인가&nbsp;${shop.book_price_for_sale}</span>원
+														<span class="product-price-currency">정가&nbsp;<fmt:formatNumber value="${shop.book_price}" pattern="###,###,###" /></span>원<br>
+														<span class="product-price-currency">할인가&nbsp;<fmt:formatNumber value="${shop.book_price_for_sale}" pattern="###,###,###" />
+</span>원
 													</span>
 													</span>
 												</div>

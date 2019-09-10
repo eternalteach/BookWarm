@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.book.warm.mapper.ShopListMapper;
 import com.book.warm.page.Criteria;
-import com.book.warm.vo.ShopListBoardVO;
+import com.book.warm.vo.BookVO;
 
 @Service
 public class ShopListService {
@@ -16,48 +16,28 @@ public class ShopListService {
 	@Inject
 	ShopListMapper shoplistmapper;
 	
-	//����Ʈ ������ �ҷ�����
-	public List<ShopListBoardVO> shoplist() throws Exception{
-		System.out.println("ShopList ����Ʈ������ �ҷ�����");
-
-		return shoplistmapper.shoplist();
+	//제목순으로 불러오기
+	public List<BookVO> shoptitlelist() throws Exception{
+		return shoplistmapper.shoptitlelist();
 	}
 	
-	//�����(��������)������ �ҷ�����
-	public List<ShopListBoardVO> shoplist2() throws Exception{
-		System.out.println("shoplist2 ��������� �ҷ�����");
-		return shoplistmapper.shoplist2();
+	//isbn && writer_name으로 책 상세정보 불러오기
+	public List<BookVO> bookdetail(String isbn, String writer_name) throws Exception{
+		return  shoplistmapper.bookdetail(isbn, writer_name);
 	}
 	
-	//å ������ �ҷ�����
-	public ShopListBoardVO bookdetail(String isbn) throws Exception{
-		System.out.println("å ������ ��������");
-		return shoplistmapper.bookdetail(isbn);
+	//writer_name이 같은 다른 책들 불러오기
+	public List<BookVO> bookwritername(String writer_name) throws Exception{
+		return shoplistmapper.bookwritername(writer_name);
 	}
 	
-	//å�� �帣 �ҷ�����
-	public List<ShopListBoardVO> bookgenre(String isbn) throws Exception {
-		System.out.println("�帣 �ҷ�����");
-		return shoplistmapper.bookgenre(isbn);
-	}
-	
-	//��ǥ������ �ٸ� å�� �ҷ�����
-	public List<ShopListBoardVO> bookwriter(String writer_name) throws Exception {
-		System.out.println("bookwriter ����");
-		return shoplistmapper.bookwriter(writer_name);
-	}
-	
-	//����¡ó��
-	public List<ShopListBoardVO> shoplistpage(Criteria criteria) throws Exception{
-		System.out.println("����¡ ó��");
-		return shoplistmapper.shoplistpage(criteria);
-	}
-	
-	
-	//��ü ����������
-	public int gettotalcount(Criteria criteria) {
-		System.out.println("��ü����");
-		return shoplistmapper.gettotalcount(criteria);
-	}
+	/*
+	 * public List<ShopListBoardVO> shoplist2() throws Exception{ return
+	 * shoplistmapper.shoplist2(); }
+	 * 
+	 * 
+	 * public int gettotalcount(Criteria criteria) { return
+	 * shoplistmapper.gettotalcount(criteria); }
+	 */
 	
 }

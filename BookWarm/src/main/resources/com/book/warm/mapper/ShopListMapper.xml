@@ -5,55 +5,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.book.warm.mapper.ShopListMapper">
 
-	<!-- //베스트 순서로 불러오기 -->
-	<select id="shoplist" resultType="com.book.warm.vo.ShopListBoardVO">
-	select isbn, book_title, book_price, book_price_for_sale, writer_name, translator_name, publisher_name, book_img
-	from book, publisher, writer, translator
-	where book.publisher_no = publisher.publisher_no 
-    	  and writer.writer_no = book.writer_no
-    	  and translator.translator_no = book.translator_no
-	order by 1
+	<!-- 제목순으로 책 불러오기 -->
+	<select id="shoptitlelist" resultType="com.book.warm.vo.BookVO">
+	select isbn, book_title, writer_name, translator_name, publisher_name, publisher_name, book_tot_page, book_published_date, 
+            book_price, book_price_for_sale, book_stock, book_intro, book_idx, book_story, book_img
+	from book
+o	order by book_title
+	</select> 
+	
+	<!-- isbn && write_name 으로 bookdetail 불러오기   -->
+	<select id="bookdetail" resultType="com.book.warm.vo.BookVO">
+	select * from book
+	where isbn = #{isbn} and writer_name = #{writer_name}
 	</select>
 	
-	<!-- 테스트용/ 제목순으로 불러오기 -->
-	<select id="shoplist2" resultType="com.book.warm.vo.ShopListBoardVO">
-	select isbn, book_title, book_price, book_price_for_sale, writer_name, translator_name, publisher_name, book_img
-	from book, publisher, writer, translator
-	where book.publisher_no = publisher.publisher_no 
-    	  and writer.writer_no = book.writer_no
-    	  and translator.translator_no = book.translator_no
-	order by 2
-	</select>
-	
-	<!-- 책상세정보 가져오기 -->
-	<select id="bookdetail" resultType="com.book.warm.vo.ShopListBoardVO">
-	select * from book, writer, translator
-	where book.writer_no = writer.writer_no
-	and book.translator_no = translator.translator_no
-	and book.isbn = #{isbn}
-	</select>
-	
-	<!-- 장르이름 불러오기 -->
-	<select id="bookgenre"  resultType="com.book.warm.vo.ShopListBoardVO">
-	select genre, book_title
-	from category, book
-    where book.isbn = category.isbn 
- 	      and book.isbn = #{isbn}
-	</select>
-	
-	<!-- 저자의 다른 책들 불러오기 -->
- 	<select id="bookwriter" resultType="com.book.warm.vo.ShopListBoardVO">
+	<!-- bookwritername 저자이름이 같은 다른 책들 불러오기 -->
+	<select id="bookwritername" resultType="com.book.warm.vo.BookVO">
 	<![CDATA[
-	select book.isbn ,book_img, book_title, writer_name, isbn,book_price_for_sale
-	from book, writer
-	where book.writer_no = writer.writer_no
-    and writer_name = #{writer_name}
-    and rownum <= 5
-    order by book.isbn
-    ]]>
+	select * from (select * from book
+                order by book_title)
+	where writer_name = #{writer_name} 
+	and rownum <= 5
+	]]> 
 	</select>
+
+<!-- 	
 	
-	<!-- 페이징처리 -->
+	
+	페이징처리
 	<select id="shoplistpage" resultType="com.book.warm.vo.ShopListBoardVO">
 	<![CDATA[
 	select isbn, book_title, book_price, book_price_for_sale, writer_name, translator_name, publisher_name , 
@@ -72,7 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    ]]>
 	</select>
 	
-	<!-- 페이징처리 -->
+	페이징처리
 	<select id="shoplistpage2" resultType="com.book.warm.vo.ShopListBoardVO">
 	<![CDATA[
 	select isbn, book_title, book_price, book_price_for_sale, writer_name, translator_name, publisher_name , 
@@ -96,12 +75,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	
-	<!-- 전체 페이지처리  -->
+	전체 페이지처리 
 	<select id="gettotalcount" resultType="int">
 		select count(*) from book, publisher, writer, translator, category
 		where book.publisher_no = publisher.publisher_no 
               		and writer.writer_no = book.writer_no
                 	and book.translator_no = translator.translator_no
                		and book.isbn = category.isbn    
-	</select>
+	</select> -->
 </mapper>

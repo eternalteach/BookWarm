@@ -2,29 +2,35 @@ package com.book.warm.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.book.warm.page.Criteria;
-import com.book.warm.vo.ShopListBoardVO;
+import com.book.warm.vo.BookVO;
+
 
 public interface ShopListMapper {
 	
-	////isbn ������ �ҷ�����
-	public List<ShopListBoardVO> shoplist();
+	//book_title 순서
+	public List<BookVO> shoptitlelist();
 	
-	//�����(��������)������ �ҷ�����
-	public List<ShopListBoardVO> shoplist2();
+	//book detail(상세정보) 불러오기
+	public List<BookVO> bookdetail(@Param("isbn") String isbn, @Param("writer_name") String writer_name);
 	
-	//å �������� �������� �̵�
-	public ShopListBoardVO bookdetail(String isbn);
+	//bookwritername 저자이름이 같은 책 불러오기
+	public List<BookVO> bookwritername(@Param("writer_name") String writer_name);
 	
-	//å�� ���� �帣 ��������
-	public List<ShopListBoardVO> bookgenre(String isbn);
-	
-	//�����̸��� ���� å �ҷ�����
-	public List<ShopListBoardVO> bookwriter(String writer_name);
-	
-	//����¡ ó��
-	public List<ShopListBoardVO> shoplistpage(Criteria criteria);
-	
-	public int gettotalcount(Criteria criteria);
+	/*
+	 * public List<ShopListBoardVO> shoplist2();
+	 * 
+	 * public ShopListBoardVO bookdetail(String isbn);
+	 * 
+	 * public List<ShopListBoardVO> bookgenre(String isbn);
+	 * 
+	 * public List<ShopListBoardVO> bookwriter(String writer_name);
+	 * 
+	 * public List<ShopListBoardVO> shoplistpage(Criteria criteria);
+	 * 
+	 * public int gettotalcount(Criteria criteria);
+	 */
 	
 }
