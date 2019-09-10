@@ -251,6 +251,8 @@ alter table cart add constraint fk_user_id foreign key(user_id)
 alter table cart add constraint fk_isbn foreign key(isbn)
     references book(isbn);
 
+-- cart_no 시퀀스
+create sequence CART_SEQ;
 ---------------------------------------------
 
 --------------- 책으로 답하는 메모보드 ---------------
