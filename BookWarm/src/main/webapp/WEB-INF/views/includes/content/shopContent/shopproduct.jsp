@@ -9,31 +9,27 @@
 
             <div class="container single-product-inner">
                <div class="row">
-
+				<c:forEach items="${bookdetail}" var="bookdetail">	
                   <div class="col-md-4">
-                          <img src="${shop_product.book_img}">
+                        <img src="${bookdetail.book_img}">
                   </div>
 
                   <div class="col-md-6">
-
-					<c:forEach items="${bookgenre}" var="genre">
                      <ol class="breadcrumb clean-breadcrumb">
-                        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i>${genre.genre}</a></li>
-                        <li><a href="#">${genre.book_title}</a></li>
+                        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i>${bookdetail.book_title}</a></li>
                      </ol>
-					</c:forEach>
 					
 					
                      <div class="product-details">
-                        <h2 class="product-name"><a href="#">${shop_product.book_title}</a></h2>
+                        <h2 class="product-name"><a href="#">${bookdetail.book_title}</a></h2>
 
                         <div class="product-price-wrap">
 
                            <span class="product-price">
-                              <del class="product-amount"><span class="product-price-currency">정가&nbsp<fmt:formatNumber value="${shop_product.book_price}" pattern="###,###,###" /></span>원</del><br>
+                              <del class="product-amount"><span class="product-price-currency">정가&nbsp<fmt:formatNumber value="${bookdetail.book_price}" pattern="###,###,###" /></span>원</del><br>
                               <ins> 
                                  <span class="product-amount">
-                                    <span class="product-price-currency">할인가&nbsp<fmt:formatNumber value="${shop_product.book_price_for_sale}" pattern="###,###,###" /></span>원
+                                    <span class="product-price-currency">할인가&nbsp<fmt:formatNumber value="${bookdetail.book_price_for_sale}" pattern="###,###,###" /></span>원
                                  </span>
                             </ins>
                            </span><br>
@@ -51,14 +47,14 @@
 						
 						
                         <div class="product-summary">
-                         <p>${shop_product.writer_name}&nbsp저</p>
- 						 <p>${shop_product.translator_name}&nbsp역</p>
+                         <p>${bookdetail.writer_name}&nbsp저</p>
+ 						 <p>${bookdetail.translator_name}&nbsp역</p>
                         </div>
 
                            <!-- 수량변경버튼 -->
                            <form name="cart" method="get" enctype="multipart/form-data">
                            <div class="quantity">
-								<input type=hidden  title="Qty" class="input-text qty text" name="sell_price" fmt:formatNumber value="${shop_product.book_price_for_sale}" pattern="###,###,###">
+								<input type=hidden  title="Qty" class="input-text qty text" name="sell_price" fmt:formatNumber value="${bookdetail.book_price_for_sale}" pattern="###,###,###">
 								<input type="text" name="amount" value="1" title="Qty" class="input-text qty text" onchange="change();">
 									<div class="qty-adjust">
 										<i class="fa fa-chevron-up qty-plus" value=" + " onclick="add();"></i>
@@ -109,7 +105,7 @@
                               </ul>
                               <div class="tab-content">
                                  <div class="tab-pane active" id="About" role="tabpanel">
-                                    <p>${shop_product.book_intro}</p>
+                                    <p>${bookdetail.book_intro}</p>
                                  </div>
                                  <div class="tab-pane" id="Services" role="tabpanel">
                                     <table class="table table-striped">
@@ -134,6 +130,7 @@
                        <!-- 줄거리/목차 끝  -->
                      </div>
                   </div>
+                  </c:forEach>
                </div>
             </div>
 
@@ -151,7 +148,7 @@
                   </div>
 
                   <div class="row">
-                    <c:forEach items="${bookwriter}" var="bookwriter">
+                    <c:forEach items="${bookwritername}" var="bookwriter">
                      <div class="col-md-2">
 						<figure class="product-shadows product-item">
                         <div class="product-shadows product-item">
@@ -165,7 +162,7 @@
                                     <div class="product-details">
                                        <h3 class="product-name"><a href="#">${bookwriter.book_title}</a></h3>
                                           <class="product-amount">
-                                          	 <class="product-price-currency"><fmt:formatNumber value="${shop_product.book_price}" pattern="###,###,###" />원</class>
+                                          	 <class="product-price-currency"><fmt:formatNumber value="${bookwriter.book_price}" pattern="###,###,###" />원</class>
                                        <div class="product-star-rating" title="Rated 4.67 out of 5">
                                           <i class="fa fa-star"></i>
                                           <i class="fa fa-star"></i>
