@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.book.warm.mapper.ReviewBoardMapper">
+ 
+ 	<!-- <select id="selectBoardList" resultType="com.book.warm.vo.ReviewBoardVO2">
+ 	
+ 		select * from
+		(
+		    select review_no, user_id, review_written_date, review_modify_date, isbn, 
+		    	review_ref, review_title, review_content, review_open, 
+		    	rank() over(partition by isbn order by review_modify_date desc, review_no desc) rk 
+		    from review_board
+		) sub, book_cover bc
+		where sub.rk = 1 and sub.isbn=bc.isbn
+		and user_id = #{user_id}
+		
+ 	</select> -->
+ 	
+ 	<select id="getListPerBook" resultType="com.book.warm.vo.ReviewBoardVO">
+ 		select * from review_board where isbn = #{param1} and user_id = #{param2} 
+ 		order by review_written_date desc
+ 	</select>
+ 	
+ 	<select id="getListPerBookWithPaging" resultType="com.book.warm.vo.ReviewBoardVO">
+ 	
+		<![CDATA[
+		 select 
+		 	review_no, user_id, review_written_date, review_modify_date,
+			isbn, review_ref, review_title, review_content, review_open
+		 from
+		 	(
+		 	
+		 	select /*+INDEX_DESC(review_board pk_review_board) */
+		 		rownum rn, review_no, user_id, review_written_date, review_modify_date,
+				isbn, review_ref, review_title, review_content, review_open
+		 	from review_board where (isbn = #{param1} and user_id = #{param2})
+		 	and rownum <=#{param3.pageNum} * #{param3.amount} 
+		 	)
+		 where rn > (#{param3.pageNum}-1) * #{param3.amount}
+		]]> 	
+ 	
+ 	
+ 	</select>
+ 	
+ 	<select id="getTotalCount" resultType="int">
+ 		
+ 		select count(*) from review_board where isbn = #{param2} and user_id = #{param3} 
+ 		order by review_written_date desc
+ 	
+ 	</select>
+ 	
+<!--  	<select id="showBookThumbnail" resultType="com.book.warm.vo.BookThumbnailVO">
+ 		select img_src, book_title, writer_name
+		from book_cover bc, book b, writer w
+		where bc.isbn = #{isbn} 
+		and bc.isbn = b.isbn and b.writer_no = w.writer_no
+ 	</select> -->
+ 	
+ 	<select id="selectedReview" resultType="com.book.warm.vo.ReviewBoardVO">
+ 		select * from review_board where review_no = #{param1} and user_id = #{param2}
+ 	</select>
+ 	
+ 	<select id="bookInfo" resultType="com.book.warm.vo.BookVO">
+ 		select * from book where isbn = #{isbn}
+ 	</select>
+ 	
+ 	<insert id="registerReview" parameterType="com.book.warm.vo.ReviewBoardVO">
+ 		insert into review_board
+ 				(
+ 				review_no, user_id,
+ 				isbn, review_ref, review_title, review_content, review_open
+ 				) 
+		values (
+				review_board_seq.nextval, #{user_id}, #{isbn}, #{review_ref}, 
+ 		 		#{review_title}, #{review_content}, #{review_open}
+ 		 		)
+ 	</insert>
+ 	
+ 	<insert id="registerReviewSelectKey" parameterType="com.book.warm.vo.ReviewBoardVO">
+ 		<selectKey keyProperty="review_no" order="BEFORE" resultType="int">
+ 			select review_board_seq.nextval from dual
+ 		</selectKey>
+ 		
+ 		insert into review_board
+ 				(
+ 				review_no, user_id,
+ 				isbn, review_ref, review_title, review_content, review_open
+ 				) 
+		values (
+				#{review_no}, #{user_id}, #{isbn}, #{review_ref}, 
+ 		 		#{review_title}, #{review_content}, #{review_open}
+ 		 		)
+ 	</insert>
+ 	
+ 	<delete id="deleteReview">
+ 		delete from review_board where user_id=#{user_id} and review_no=#{review_no}
+ 	</delete>
+ 	
+ 	<update id="modifyReview">
+ 		update review_board
+		set review_modify_date=sysdate, review_title=#{review_title}, review_content=#{review_content},
+    		review_ref=#{review_ref}, review_open=#{review_open}
+		where user_id=#{user_id} and review_no=#{review_no}
+ 	</update>
+ 	
+ 	
+ 	<!-- 첨부파일 처리. 따로 mapper를 만들지 않고 여기에 추가. -->
+ 	<insert id="insert">
+ 		insert into review_attach(uuid, uploadpath, filename, review_no)
+ 		values (#{uuid}, #{uploadPath}, #{fileName}, #{review_no})
+ 	</insert>
+ 
+ 	<delete id="delete">
+ 		delete from review_attach where uuid = #{uuid}
+ 	</delete>
+	
+	<select id="findByReviewNo" resultType="com.book.warm.vo.ReviewAttachVO">
+		select * from review_attach where review_no = #{review_no}
+	</select>
+ </mapper>

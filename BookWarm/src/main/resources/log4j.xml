@@ -15,6 +15,44 @@
 		<level value="info" />
 	</logger>
 	
+	<!-- SQL logger -->
+    <logger name="jdbc.resultsettable" additivity="false">
+        <level value="info" />
+        <appender-ref ref="console" />
+         <appender-ref ref="sql-appender"/>
+    </logger>
+    
+    <logger name="jdbc.audit" additivity="false">
+        <level value="off" />
+        <appender-ref ref="console" />
+        <appender-ref ref="sql-appender"/>
+    </logger>
+      
+    <logger name="jdbc.resultset" additivity="false">
+        <level value="off" />
+        <appender-ref ref="console" />
+        <appender-ref ref="sql-appender"/>
+    </logger>
+     
+    <logger name="jdbc.sqlonly" additivity="false">
+        <level value="info" />
+        <appender-ref ref="console" />
+        <appender-ref ref="sql-appender"/>
+    </logger>
+ 
+    <logger name="jdbc.sqltiming" additivity="false">
+        <level value="off" />
+        <appender-ref ref="console" /> 
+        <appender-ref ref="sql-appender"/>
+    </logger>
+
+    <logger name="jdbc.connection" additivity="false">
+        <level value="off" />
+        <appender-ref ref="console" />
+        <appender-ref ref="sql-appender"/>
+    </logger>
+	
+	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />
@@ -31,7 +69,6 @@
 	<logger name="org.springframework.web">
 		<level value="info" />
 	</logger>
-
 	<!-- Root Logger -->
 	<root>
 		<priority value="warn" />

@@ -3,25 +3,46 @@ package com.book.warm.vo;
 import java.sql.Timestamp;
 
 public class BookVO {
-	int isbn;
-    String book_title;
-    int writer_no;
-    int translator_no;
-    int publisher_no;
-    int book_tot_page;
-    Timestamp book_published_date;
-    int book_price;
-    int book_price_for_sale;
-    int book_stock;
-    String book_intro;
-    String book_idx;
-    String book_story;
-    String book_img;
-    
-	public int getIsbn() {
+	private String isbn;
+	private String book_title;
+	private String writer_name;
+	private String translator_name;
+	private String publisher_name;
+	private int book_tot_page;
+	private Timestamp book_published_date;
+	private int book_price;
+	private int book_price_for_sale;
+	private int book_stock;
+	private String book_intro;
+	private String book_idx;
+	private String book_story;
+	private String book_img;
+	public BookVO(String isbn, String book_title, String writer_name, String translator_name, String publisher_name,
+			int book_tot_page, Timestamp book_published_date, int book_price, int book_price_for_sale, int book_stock,
+			String book_intro, String book_idx, String book_story, String book_img) {
+		super();
+		this.isbn = isbn;
+		this.book_title = book_title;
+		this.writer_name = writer_name;
+		this.translator_name = translator_name;
+		this.publisher_name = publisher_name;
+		this.book_tot_page = book_tot_page;
+		this.book_published_date = book_published_date;
+		this.book_price = book_price;
+		this.book_price_for_sale = book_price_for_sale;
+		this.book_stock = book_stock;
+		this.book_intro = book_intro;
+		this.book_idx = book_idx;
+		this.book_story = book_story;
+		this.book_img = book_img;
+	}
+	public BookVO() {
+		super();
+	}
+	public String getIsbn() {
 		return isbn;
 	}
-	public void setIsbn(int isbn) {
+	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
 	public String getBook_title() {
@@ -30,23 +51,23 @@ public class BookVO {
 	public void setBook_title(String book_title) {
 		this.book_title = book_title;
 	}
-	public int getWriter_no() {
-		return writer_no;
+	public String getWriter_name() {
+		return writer_name;
 	}
-	public void setWriter_no(int writer_no) {
-		this.writer_no = writer_no;
+	public void setWriter_name(String writer_name) {
+		this.writer_name = writer_name;
 	}
-	public int getTranslator_no() {
-		return translator_no;
+	public String getTranslator_name() {
+		return translator_name;
 	}
-	public void setTranslator_no(int translator_no) {
-		this.translator_no = translator_no;
+	public void setTranslator_name(String translator_name) {
+		this.translator_name = translator_name;
 	}
-	public int getPublisher_no() {
-		return publisher_no;
+	public String getPublisher_name() {
+		return publisher_name;
 	}
-	public void setPublisher_no(int publisher_no) {
-		this.publisher_no = publisher_no;
+	public void setPublisher_name(String publisher_name) {
+		this.publisher_name = publisher_name;
 	}
 	public int getBook_tot_page() {
 		return book_tot_page;
@@ -102,7 +123,5 @@ public class BookVO {
 	public void setBook_img(String book_img) {
 		this.book_img = book_img;
 	}
-    
-    
 	
 }

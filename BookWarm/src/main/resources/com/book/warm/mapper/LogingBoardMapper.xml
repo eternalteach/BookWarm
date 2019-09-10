@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.book.warm.mapper.LogingBoardMapper"> 
+	<select id='getList' resultType="com.book.warm.vo.LogingBoardVO">
+		select write_no, start_page, end_page, start_date, end_date, isbn  from loging_board where isbn=#{isbn}
+	</select>
+	<select id='getListWithPaging' resultType="com.book.warm.vo.LogingBoardVO">
+		<![CDATA[
+select write_no, start_page, end_page, start_date, end_date, isbn  from(
+select /*INDEX_DESC(loging_board pk_board)*/ rownum rn, write_no, start_page, end_page, start_date, end_date, isbn  from loging_board where isbn=#{bookVO.isbn} and rownum<=#{criteria.pageNum}*#{criteria.amount})where rn>(#{criteria.pageNum}-1)*#{criteria.amount}
+		]]>
+	</select>
+	<!-- to_char('start_date','yyyy-mm-dd') -->
+	<select id='CountWriteNo' resultType="Integer">
+		select count(*) from loging_board where isbn=#{isbn}
+	</select>
+	
+	<insert id="logingBoard" ><!--  start date 뺀 상태이다 추가해줘야한다. -->
+		insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) values (#{isbn},seq_logingBoard.nextval,#{start_page},#{end_page},to_date('${start_date}','yyyy-mm-dd'),'${end_date}')
+	</insert>
+	<!-- enddate는 따로 기록하지말고 입력 마지막 날짜로 하자. -->
+	<select id="getLogingVOForWriteNo" resultType="com.book.warm.vo.LogingBoardVO" ><!--  start date 뺀 상태이다 추가해줘야한다. -->
+		select write_no, isbn, start_page, end_page, start_date, end_date from loging_board where write_no=#{write_no}
+	</select>
+	<update id="modifyLoging" ><!--  start date 뺀 상태이다 추가해줘야한다. -->
+		update loging_board set isbn=#{isbn}, start_page=#{start_page}, end_page=#{end_page}, start_date=to_date('${start_date}','yyyy-mm-dd'), end_date='${end_date}' where write_no=#{write_no}
+	</update>
+	<delete id="deleteLoging" ><!--  start date 뺀 상태이다 추가해줘야한다. -->
+	delete loging_board where write_no=#{write_no}
+	</delete>
+	<select id='getBookVO' resultType="com.book.warm.vo.BookVO">
+	select * from Book where isbn=#{isbn}
+	</select>
+	
+</mapper>

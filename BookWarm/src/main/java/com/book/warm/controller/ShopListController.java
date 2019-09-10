@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.book.warm.page.Criteria;
 import com.book.warm.service.ShopListService;
-import com.book.warm.vo.Criteria;
 import com.book.warm.vo.PagingBoardVO;
 
 @Controller
@@ -21,7 +21,7 @@ public class ShopListController {
 	//å ��� �ҷ�����
 	@RequestMapping(value = "/shop_list", method = RequestMethod.GET)
 	public String shop_list(Model model, Criteria criteria) throws Exception {
-		
+		System.out.println("å ����Ʈ");
 		model.addAttribute("list", shoplistservice.shoplist());
 		model.addAttribute("list_title", shoplistservice.shoplist2());
 		

@@ -2,7 +2,8 @@ package com.book.warm.vo;
 
 //책순위, 이미지, 제목, 저자, 출판사, 가격 나오는 VO
 //조인해서 결과값만 나오게 하는 class
-public class ShopListBoardVO {
+public class ShopListBoardVO { //오라왐ㄴ오람오리ㅏㅁㅇ;링ㄴ리;ㅁ아ㅓㄹ;마어리ㅏㄴㅇ머;란ㅇ런ㅁㅇ리마얼뫄;ㅁ갸ㅐㅎ ㅁㅂㅈㄷ려ㅗㅇ;ㅑㅐㅁ;ㄱ햊[속ㅁㄷㅎ 
+	//hold modify
 	
 	private String isbn;
 	private String book_title;

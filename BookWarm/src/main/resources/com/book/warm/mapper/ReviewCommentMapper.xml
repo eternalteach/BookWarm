@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.book.warm.mapper.ReviewCommentMapper">
+ 
+ 	<insert id="insert">
+ 		insert into review_comment 
+ 		values(review_comment_seq.nextval, #{review_no}, #{user_id}, #{review_cmt_content}, sysdate, sysdate)
+ 	</insert>
+ 	
+ 	<select id="read" resultType="com.book.warm.vo.ReviewCommentVO">
+ 		select * from review_comment where review_cmt_no = #{review_cmt_no}
+ 	</select>
+ 	
+ 	<delete id="delete">
+ 		delete from review_comment where review_cmt_no = #{review_cmt_no}
+ 	</delete>
+ 	
+ 	<update id="update">
+ 		update review_comment 
+ 		set review_cmt_content = #{review_cmt_content}, review_cmt_modified_date = sysdate
+ 		where review_cmt_no = #{review_cmt_no}
+ 	</update>
+ 	
+ 	<select id="getListWithPaging" resultType="com.book.warm.vo.ReviewCommentVO">
+ 		
+ 		<![CDATA[
+ 		 select review_cmt_no, review_no, user_id, review_cmt_content, review_cmt_written_date, review_cmt_modified_date 
+ 		 from
+ 			 (
+	 		 select /*+INDEX(review_comment idx_comment) */
+	 		 	 rownum rn, review_cmt_no, review_no, user_id, review_cmt_content, review_cmt_written_date, review_cmt_modified_date
+			 from review_comment
+	 		 where review_no = #{review_no}
+	 	 	 and review_cmt_no > 0
+	 	 	 and rownum <= #{cri.pageNum} * #{cri.amount}
+ 			 )
+ 		 where rn > (#{cri.pageNum} - 1) * #{cri.amount}
+ 		]]>
+ 		
+ 	</select>
+ 	
+ 	<select id="getCountByReviewNo" resultType="int">
+ 		
+ 		<![CDATA[
+ 			select count(review_cmt_no) from review_comment where review_no = #{review_no}
+ 		]]>
+ 		
+ 	</select>
+ 	
+ </mapper>
+ 

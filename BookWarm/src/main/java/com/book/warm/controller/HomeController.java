@@ -12,4 +12,12 @@ public class HomeController {
 		return "/index";
 	}
 	
+	@RequestMapping(value = "library", method = RequestMethod.GET)
+	public String library() {
+		return "/library";
+	}
+	@RequestMapping(value = "first_page", method = RequestMethod.GET)
+	public String first_page() {
+		return "/first_page";
+	}
 }

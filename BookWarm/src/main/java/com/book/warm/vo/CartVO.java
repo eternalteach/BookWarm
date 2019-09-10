@@ -1,6 +1,6 @@
 package com.book.warm.vo;
 
-public class CartVO {
+public class CartVO { // hold modify
 	int cart_no;
 	String user_id;
 	int isbn;
