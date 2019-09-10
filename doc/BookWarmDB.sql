@@ -303,73 +303,73 @@ isbn varchar2(20) not null);
                 
 -------------------------sample data--------------------------------------------------
 
--- book 테이블 sample data
+-- book 테이블 sample data(지현)
 insert into book(isbn, book_title, writer_name, publisher_name, book_price_for_sale, book_stock, book_img)
-values('1','책1','작가1','출판사1','3000',50, '/resources/img/isbnImg/book1.jpg');
+values('1','책1','작가1','출판사1','3000',50, '/warm/resources/img/isbn_img/book1.jpg');
 
 insert into book(isbn, book_title, writer_name, publisher_name, book_price_for_sale, book_stock, book_img)
-values('2','책2','작가2','출판사2','5000',20, '/resources/img/isbnImg/book2.jpg');
+values('2','책2','작가2','출판사2','5000',20, '/warm/resources/img/isbn_img/book2.jpg');
 
 insert into book(isbn, book_title, writer_name, publisher_name, book_price_for_sale, book_stock, book_img)
-values('3','책3','작가3','출판사3','4500', 25, '/resources/img/isbnImg/book3.jpg');
+values('3','책3','작가3','출판사3','4500', 25, '/warm/resources/img/isbn_img/book3.jpg');
 
 insert into book(isbn, book_title, writer_name, publisher_name, book_price_for_sale, book_stock, book_img)
-values('4','책4','작가4','출판사4','10000',37, '/resources/img/isbnImg/book4.jpg');
+values('4','책4','작가4','출판사4','10000',37, '/warm/resources/img/isbn_img/book4.jpg');
 
 insert into book(isbn, book_title, writer_name, publisher_name, book_price_for_sale, book_stock, book_img)
-values('5','책5','작가5','출판사5','6500',50, '/resources/img/isbnImg/book5.jpg');
+values('5','책5','작가5','출판사5','6500',50, '/warm/resources/img/isbn_img/book5.jpg');
 
 insert into book(isbn, book_title, writer_name, publisher_name, book_price_for_sale, book_stock, book_img)
-values('6','책6','작가6','출판사6','7000',23, '/resources/img/isbnImg/book6.jpg');
+values('6','책6','작가6','출판사6','7000',23, '/warm/resources/img/isbn_img/book6.jpg');
 
 insert into book(isbn, book_title, writer_name, publisher_name, book_price_for_sale, book_stock, book_img)
-values('7','책7','작가7','출판사7','5000',51, '/resources/img/isbnImg/book7.jpg');
+values('7','책7','작가7','출판사7','5000',51, '/warm/resources/img/isbn_img/book7.jpg');
 
 insert into book(isbn, book_title, writer_name, publisher_name, book_price_for_sale, book_stock, book_img)
-values('8','책8','작가8','출판사8','6900',80, '/resources/img/isbnImg/book8.jpg');
+values('8','책8','작가8','출판사8','6900',80, '/warm/resources/img/isbn_img/book8.jpg');
 
 insert into book(isbn, book_title, writer_name, publisher_name, book_price_for_sale, book_stock, book_img)
-values('9','책9','작가9','출판사9','8200',44, '/resources/img/isbnImg/book9.jpg');
+values('9','책9','작가9','출판사9','8200',44, '/warm/resources/img/isbn_img/book9.jpg');
 
 insert into book(isbn, book_title, writer_name, publisher_name, book_price_for_sale, book_stock, book_img)
-values('10','책10','작가10','출판사10','3100',50, '/resources/img/isbnImg/book10.jpg');
+values('10','책10','작가10','출판사10','3100',50, '/warm/resources/img/isbn_img/book10.jpg');
 
 commit;
 
--- user_info 테이블 sample data
+-- user_info 테이블 sample data(지현)
 insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR)
-values('aaa','11111111','user1','유저1',TO_DATE('1994-12-31'),'f', '010-1231-1231', 'aaa@naver.com', 12345, '서울특별시 영등포구 양평동1가');
+values('aaa','ee79976c9380d5e337fc1c095ece8c8f22f91f306ceeb161fa51fecede2c4ba1','user1','유저1',TO_DATE('1994-12-31'),'f', '010-1231-1231', 'aaa@naver.com', 12345, '서울특별시 영등포구 양평동1가');
 
 insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR)
-values('bbb','11111111','user2','유저2',TO_DATE('1994-1-3'),'f', '010-1231-1232', 'bbb@naver.com', 12312, '서울특별시 영등포구 양평동2가');
+values('bbb','ee79976c9380d5e337fc1c095ece8c8f22f91f306ceeb161fa51fecede2c4ba1','user2','유저2',TO_DATE('1994-1-3'),'f', '010-1231-1232', 'bbb@naver.com', 12312, '서울특별시 영등포구 양평동2가');
 
 insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR)
-values('ccc','11111111','user3','유저3',TO_DATE('1994-2-20'),'m', '010-1211-1231', 'ccc@naver.com', 12245, '서울특별시 영등포구 당산동1가');
+values('ccc','ee79976c9380d5e337fc1c095ece8c8f22f91f306ceeb161fa51fecede2c4ba1','user3','유저3',TO_DATE('1994-2-20'),'m', '010-1211-1231', 'ccc@naver.com', 12245, '서울특별시 영등포구 당산동1가');
 
 insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR)
-values('ddd','11111111','user4','유저4',TO_DATE('1994-8-3'),'f', '010-1111-1231', 'ddd@naver.com', 11145, '서울특별시 영등포구 문래동5가');
+values('ddd','ee79976c9380d5e337fc1c095ece8c8f22f91f306ceeb161fa51fecede2c4ba1','user4','유저4',TO_DATE('1994-8-3'),'f', '010-1111-1231', 'ddd@naver.com', 11145, '서울특별시 영등포구 문래동5가');
 
 insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR)
-values('eee','11111111','user5','유저5',TO_DATE('1994-4-5'),'m', '010-1212-1111', 'eee@naver.com', 55555, '서울특별시 영등포구 양평동5가');
+values('eee','ee79976c9380d5e337fc1c095ece8c8f22f91f306ceeb161fa51fecede2c4ba1','user5','유저5',TO_DATE('1994-4-5'),'m', '010-1212-1111', 'eee@naver.com', 55555, '서울특별시 영등포구 양평동5가');
 
 insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR)
-values('fff','11111111','user6','유저6',TO_DATE('1994-2-20'),'m', '010-2222-1231', 'fff@naver.com', 12333, '서울특별시 영등포구 문래동1가');
+values('fff','ee79976c9380d5e337fc1c095ece8c8f22f91f306ceeb161fa51fecede2c4ba1','user6','유저6',TO_DATE('1994-2-20'),'m', '010-2222-1231', 'fff@naver.com', 12333, '서울특별시 영등포구 문래동1가');
 
 insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR)
-values('ggg','11111111','user7','유저7',TO_DATE('1994-2-24'),'m', '010-2822-1231', 'ggg@naver.com', 15133, '서울특별시 영등포구 영등포동1가');
+values('ggg','ee79976c9380d5e337fc1c095ece8c8f22f91f306ceeb161fa51fecede2c4ba1','user7','유저7',TO_DATE('1994-2-24'),'m', '010-2822-1231', 'ggg@naver.com', 15133, '서울특별시 영등포구 영등포동1가');
 
 insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR)
-values('hhh','11111111','user8','유저8',TO_DATE('1994-9-27'),'f', '010-2022-1231', 'hhh@naver.com', 12333, '서울특별시 영등포구 문래동1가');
+values('hhh','ee79976c9380d5e337fc1c095ece8c8f22f91f306ceeb161fa51fecede2c4ba1','user8','유저8',TO_DATE('1994-9-27'),'f', '010-2022-1231', 'hhh@naver.com', 12333, '서울특별시 영등포구 문래동1가');
 
 insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR)
-values('iii','11111111','user9','유저9',TO_DATE('1994-9-20'),'m', '010-2113-1231', 'iii@naver.com', 15133, '서울특별시 영등포구 영등포동1가');
+values('iii','ee79976c9380d5e337fc1c095ece8c8f22f91f306ceeb161fa51fecede2c4ba1','user9','유저9',TO_DATE('1994-9-20'),'m', '010-2113-1231', 'iii@naver.com', 15133, '서울특별시 영등포구 영등포동1가');
 
 insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR)
-values('jjj','11111111','user10','유저10',TO_DATE('1984-9-20'),'m', '010-2183-1231', 'jjj@naver.com', 15133, '서울특별시 영등포구 영등포동1가');
+values('jjj','ee79976c9380d5e337fc1c095ece8c8f22f91f306ceeb161fa51fecede2c4ba1','user10','유저10',TO_DATE('1984-9-20'),'m', '010-2183-1231', 'jjj@naver.com', 15133, '서울특별시 영등포구 영등포동1가');
 
 commit;
 
--- cart 테이블 sample data
+-- cart 테이블 sample data(지현)
 insert into cart
 values(CART_SEQ.nextval, 'aaa', '1', 30);
 
