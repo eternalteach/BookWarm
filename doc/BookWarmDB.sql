@@ -517,3 +517,16 @@ insert into book(isbn, book_title, writer_name, translator_name, publisher_name,
                     book_price, book_price_for_sale, book_stock, book_story,  book_img)
 values(101010, '해리 포터와 비밀의 방', '조앤.K.롤링', '김혜원', 'Pottermore from J.K. Rowling', 300, '2017/07/17', 10500, 10800, 200, 
         '과 악의 대립 속에서 평범한 어린 소년이 한 사람의 영웅으로 성장해나간다는 보편적인 테마',   './resources/VertexEx/img/shop/해리포터2.jpg');          
+
+
+-- coupon테이블 sample data
+insert into coupon values('001','쿠폰1',1,10000,5,to_date('2020-01-01'));
+insert into coupon values('002','쿠폰2',1,1000,10,to_date('2020-01-01'));
+insert into coupon values('003','쿠폰3',1,2000,10,to_date('2020-01-01'));
+insert into coupon values('004','쿠폰4',2,3000,5,to_date('2020-01-01'));
+insert into coupon values('005','쿠폰5',2,5000,10,to_date('2020-01-01'));
+insert into coupon values('006','쿠폰6',2,10000,20,to_date('2020-01-01'));
+insert into coupon values('007','쿠폰7',3,1000,20,to_date('2020-01-01'));
+insert into coupon values('008','쿠폰8',3,5000,30,to_date('2020-01-01'));
+insert into coupon values('009','쿠폰9',1,50000,20,to_date('2020-01-01'));
+insert into coupon values('010','쿠폰10',1,20000,20,to_date('2020-01-01'));
