@@ -14,7 +14,7 @@ user_zipcode number(10,0) not null,
 user_addr varchar2(100) not null,
 user_addr_detail varchar2(100),
 user_join_date date default sysdate,
-user_level varchar2(10) default 'egg',
+user_level number(1) default '1',
 user_tot_price number(15,0),
 user_point number(10,0),
 constraint pk_user_info primary key(user_id)
@@ -243,10 +243,9 @@ constraint fk_msg_table_get_id FOREIGN KEY(msg_get_id)
 create table coupon(
 coupon_no varchar2(15),
 coupon_name varchar2(20) not null,
-coupon_req varchar2(100),
+coupon_req number(1),
 coupon_use_req varchar2(100),
 coupon_discount_percent number(10,0),
-coupon_discount_price number(10,0),
 coupon_validate date not null,
 constraint pk_coupon primary key(coupon_no)
 );
