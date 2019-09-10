@@ -37,6 +37,22 @@ book_img varchar2(100),
 constraint pk_book primary key(isbn)
 );
 
+--------------- 저자명 --------------- 
+create table authors (
+isbn varchar2(20) not null,
+author varchar2(100) not null,
+constraint fk_authors FOREIGN KEY(isbn)
+           REFERENCES book(isbn)           
+);
+
+--------------- 역자명 --------------- 
+create table translators (
+isbn varchar2(20) not null,
+translator varchar2(100) not null,
+constraint fk_translators FOREIGN KEY(isbn)
+           REFERENCES book(isbn)           
+);
+
 --------------- 책속 한줄 글귀 ---------------
 create table book_clause(
 isbn varchar2(20) not null,
