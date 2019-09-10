@@ -14,10 +14,15 @@ public class OrdersVO {
 	private String coupon_no;
 	private String post_no;
 	private String pay_no;
+	private String orders_status;
+	
+	public OrdersVO() {
+		super();
+	}
 
 	public OrdersVO(String orders_no, String user_id, Timestamp orders_date, String isbn, int orders_cnt,
 			int orders_tot, Timestamp orders_start_date, Timestamp orders_pay_date, String coupon_no, String post_no,
-			String pay_no) {
+			String pay_no, String orders_status) {
 		super();
 		this.orders_no = orders_no;
 		this.user_id = user_id;
@@ -30,10 +35,7 @@ public class OrdersVO {
 		this.coupon_no = coupon_no;
 		this.post_no = post_no;
 		this.pay_no = pay_no;
-	}
-
-	public OrdersVO() {
-		super();
+		this.orders_status = orders_status;
 	}
 
 	public String getOrders_no() {
@@ -123,5 +125,15 @@ public class OrdersVO {
 	public void setPay_no(String pay_no) {
 		this.pay_no = pay_no;
 	}
+
+	public String getOrders_status() {
+		return orders_status;
+	}
+
+	public void setOrders_status(String orders_status) {
+		this.orders_status = orders_status;
+	}
+
+	
 
 }
