@@ -19,6 +19,21 @@
 		
  	</select> -->
  	
+ 	<select id="selectBoardList" resultType="com.book.warm.vo.ReviewBoardVO">
+ 		select review_no, user_id, review_written_date, review_modify_date, sub.isbn, 
+		    	review_ref, review_title, review_content, review_open, book_title, writer_name, book_img
+		from
+		(
+		    select review_no, user_id, review_written_date, review_modify_date, isbn, 
+		    	review_ref, review_title, review_content, review_open, 
+		    	rank() over(partition by isbn order by review_modify_date desc, review_no desc) rk 
+		    from review_board
+		) sub, book b
+		where sub.rk = 1 and sub.isbn=b.isbn
+         		and user_id = #{user_id}
+ 	</select>
+ 	
+ 	
  	<select id="getListPerBook" resultType="com.book.warm.vo.ReviewBoardVO">
  		select * from review_board where isbn = #{param1} and user_id = #{param2} 
  		order by review_written_date desc
@@ -32,7 +47,6 @@
 			isbn, review_ref, review_title, review_content, review_open
 		 from
 		 	(
-		 	
 		 	select /*+INDEX_DESC(review_board pk_review_board) */
 		 		rownum rn, review_no, user_id, review_written_date, review_modify_date,
 				isbn, review_ref, review_title, review_content, review_open
@@ -41,7 +55,6 @@
 		 	)
 		 where rn > (#{param3.pageNum}-1) * #{param3.amount}
 		]]> 	
- 	
  	
  	</select>
  	
