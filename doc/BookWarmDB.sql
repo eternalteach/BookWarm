@@ -25,7 +25,7 @@ isbn varchar2(20) not null,
 review_ref number(10,0),
 review_title varchar2(200) not null,
 review_content varchar2(2000) not null,
-review_open varchar2(1) default 'N');
+review_open varchar2(7));
 
 ----댓글
 create sequence review_comment_seq;
