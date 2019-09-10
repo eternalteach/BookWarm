@@ -1,7 +1,6 @@
 -------------------- create log, loging board --------------------
 
 -- logBoard, logingBoard sequence 생성
-create sequence seq_logBoard;
 create sequence seq_logingBoard;
 
 
