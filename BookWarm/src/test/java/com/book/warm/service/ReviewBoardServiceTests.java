@@ -7,8 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.book.warm.service.ReviewBoardService;
-import com.book.warm.vo.Criteria;
+import com.book.warm.page.Criteria;
 
 import lombok.extern.log4j.Log4j;
 

@@ -5,12 +5,11 @@ import java.util.stream.IntStream;
 
 import javax.inject.Inject;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.book.warm.vo.Criteria;
+import com.book.warm.page.Criteria;
 import com.book.warm.vo.ReviewCommentVO;
 
 import lombok.extern.log4j.Log4j;
