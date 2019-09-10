@@ -14,7 +14,7 @@ user_zipcode number(10,0) not null,
 user_addr varchar2(100) not null,
 user_addr_detail varchar2(100),
 user_join_date date default sysdate,
-user_level varchar2(10) default 'egg',
+user_level number(1) default '1',
 user_tot_price number(15,0),
 user_point number(10,0),
 constraint pk_user_info primary key(user_id)
@@ -243,10 +243,9 @@ constraint fk_msg_table_get_id FOREIGN KEY(msg_get_id)
 create table coupon(
 coupon_no varchar2(15),
 coupon_name varchar2(20) not null,
-coupon_req varchar2(100),
+coupon_req number(1),
 coupon_use_req varchar2(100),
 coupon_discount_percent number(10,0),
-coupon_discount_price number(10,0),
 coupon_validate date not null,
 constraint pk_coupon primary key(coupon_no)
 );
@@ -403,35 +402,35 @@ commit;
 
 -- user_info 테이블 sample data(지현)
 
-insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT)
-values('aaa','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user1','유저1',TO_DATE('1994-12-31'),'f', '010-1231-1231', 'aaa@naver.com', 12345, '서울특별시 영등포구 양평동1가',0,0);
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('aaa','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user1','유저1',TO_DATE('1994-12-31'),'f', '010-1231-1231', 'aaa@naver.com', 12345, '서울특별시 영등포구 양평동1가',0,0, 1, sysdate);
 
-insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT)
-values('bbb','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user2','유저2',TO_DATE('1994-1-3'),'f', '010-1231-1232', 'bbb@naver.com', 12312, '서울특별시 영등포구 양평동2가',0,0);
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('bbb','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user2','유저2',TO_DATE('1994-1-3'),'f', '010-1231-1232', 'bbb@naver.com', 12312, '서울특별시 영등포구 양평동2가',0,0, 1, sysdate);
 
-insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT)
-values('ccc','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user3','유저3',TO_DATE('1994-2-20'),'m', '010-1211-1231', 'ccc@naver.com', 12245, '서울특별시 영등포구 당산동1가',0,0);
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('ccc','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user3','유저3',TO_DATE('1994-2-20'),'m', '010-1211-1231', 'ccc@naver.com', 12245, '서울특별시 영등포구 당산동1가',0,0, 1, sysdate);
 
-insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT)
-values('ddd','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user4','유저4',TO_DATE('1994-8-3'),'f', '010-1111-1231', 'ddd@naver.com', 11145, '서울특별시 영등포구 문래동5가',0,0);
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('ddd','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user4','유저4',TO_DATE('1994-8-3'),'f', '010-1111-1231', 'ddd@naver.com', 11145, '서울특별시 영등포구 문래동5가',0,0, 1, sysdate);
 
-insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT)
-values('eee','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user5','유저5',TO_DATE('1994-4-5'),'m', '010-1212-1111', 'eee@naver.com', 55555, '서울특별시 영등포구 양평동5가',0,0);
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('eee','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user5','유저5',TO_DATE('1994-4-5'),'m', '010-1212-1111', 'eee@naver.com', 55555, '서울특별시 영등포구 양평동5가',0,0, 1, sysdate);
 
-insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT)
-values('fff','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user6','유저6',TO_DATE('1994-2-20'),'m', '010-2222-1231', 'fff@naver.com', 12333, '서울특별시 영등포구 문래동1가',0,0);
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('fff','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user6','유저6',TO_DATE('1994-2-20'),'m', '010-2222-1231', 'fff@naver.com', 12333, '서울특별시 영등포구 문래동1가',0,0, 1, sysdate);
 
-insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT)
-values('ggg','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user7','유저7',TO_DATE('1994-2-24'),'m', '010-2822-1231', 'ggg@naver.com', 15133, '서울특별시 영등포구 영등포동1가',0,0);
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('ggg','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user7','유저7',TO_DATE('1994-2-24'),'m', '010-2822-1231', 'ggg@naver.com', 15133, '서울특별시 영등포구 영등포동1가',0,0, 1, sysdate);
 
-insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT)
-values('hhh','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user8','유저8',TO_DATE('1994-9-27'),'f', '010-2022-1231', 'hhh@naver.com', 12333, '서울특별시 영등포구 문래동1가',0,0);
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('hhh','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user8','유저8',TO_DATE('1994-9-27'),'f', '010-2022-1231', 'hhh@naver.com', 12333, '서울특별시 영등포구 문래동1가',0,0, 1, sysdate);
 
-insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT)
-values('iii','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user9','유저9',TO_DATE('1994-9-20'),'m', '010-2113-1231', 'iii@naver.com', 15133, '서울특별시 영등포구 영등포동1가',0,0);
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('iii','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user9','유저9',TO_DATE('1994-9-20'),'m', '010-2113-1231', 'iii@naver.com', 15133, '서울특별시 영등포구 영등포동1가',0,0, 1, sysdate);
 
-insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT)
-values('jjj','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user10','유저10',TO_DATE('1984-9-20'),'m', '010-2183-1231', 'jjj@naver.com', 15133, '서울특별시 영등포구 영등포동1가',0,0);
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('jjj','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user10','유저10',TO_DATE('1984-9-20'),'m', '010-2183-1231', 'jjj@naver.com', 15133, '서울특별시 영등포구 영등포동1가',0,0, 1, sysdate);
 
 commit;
 
@@ -467,3 +466,54 @@ insert into cart
 values(CART_SEQ.nextval, 'ddd', '6', 2);
 
 commit;
+
+-------------------양경운 book test 데이터--------------------------------
+insert into book(isbn, book_title, writer_name, publisher_name, book_tot_page, book_published_date,
+                    book_price, book_price_for_sale, book_stock, book_story, book_img)
+values(111111, '여행의 이유', '김영하', '문학동네', 300, '2019/05/31', 13500, 9500, 100, '추방과 멀미,상처를 몽땅 흡수한 물건들로부터 달아나기,오직 현재',
+        './resources/VertexEx/img/shop/1.jpg');
+        
+insert into book(isbn, book_title, writer_name, publisher_name, book_tot_page, book_published_date,
+                    book_price, book_price_for_sale, book_stock, book_story, book_img)
+values(222222, '대도시의 사랑법', '박상영', '창비', 300, '2019/07/24', 14000, 9800, 100, '여름밤, 나의 아름다운 도시, 어쩌면 너 때문에 젊은 소설의 첨단, 박상영 신작 소설',
+        './resources/VertexEx/img/shop/2.jpg');
+        
+insert into book(isbn, book_title, writer_name, publisher_name, book_tot_page, book_published_date,
+                    book_price, book_price_for_sale, book_stock,book_story, book_img)
+values(333333, '지구에서 한아뿐', '정세랑', '난다', 300, '2019/08/02', 13000, 9100, 200, 
+        '우주 가장자리에서 일어나 모두가 기억하게 된, 외계인 경민과 지구인 한아의 아주 희귀한 종류의 사랑 이야기!','./resources/VertexEx/img/shop/3.jpg');
+
+insert into book(isbn, book_title, writer_name, translator_name, publisher_name, book_tot_page, book_published_date,
+                    book_price, book_price_for_sale, book_stock, book_story, book_img)
+values(444444, '숨', '테드 창', '김상훈', '엘리', 300, '2019/07/01', 16500, 12000, 200, 
+        '상인과 연금술사의 문', './resources/VertexEx/img/shop/5.jpg');
+        
+insert into book(isbn, book_title, writer_name, translator_name, publisher_name, book_tot_page, book_published_date,
+                    book_price, book_price_for_sale, book_stock,book_story, book_img)
+values(555555, '지금 나에게 필요한 긍정심리학', '류쉬안', '임보미', '다연', 300, '2019/07/19', 13000, 9100, 200, '나를 발전시키는 뜻밖의 심리학 2탄',
+        './resources/VertexEx/img/shop/8.jpg');
+        
+insert into book(isbn, book_title, writer_name, translator_name, publisher_name, book_tot_page, book_published_date,
+                    book_price, book_price_for_sale, book_stock,book_story, book_img)
+values(666666, '팩트풀니스', '한스 로슬링, 올라 로슬링', '이창신', '김영사', 300, '2019/02/28', 19800, 11880, 200, 
+        '전 세계 100만부 돌파! 세계 지성계를 사로잡은 글로벌 베스트셀러 마침내 출간!', './resources/VertexEx/img/shop/4.jpg');   
+        
+insert into book(isbn, book_title, writer_name, translator_name, publisher_name, book_tot_page, book_published_date,
+                    book_price, book_price_for_sale, book_stock, book_story,  book_img)
+values(777777, '해리 포터와 마법사의 돌', '조앤.K.롤링', '김혜원', 'Pottermore from J.K. Rowling', 300, '2016/08/18', 10050, 10050, 200, 
+        '제1장 살아남은 아이',  './resources/VertexEx/img/shop/해리포터1.jpg');   
+        
+insert into book(isbn, book_title, writer_name, translator_name, publisher_name, book_tot_page, book_published_date,
+                    book_price, book_price_for_sale, book_stock, book_story, book_img)
+values(888888, '해리 포터와 죽음의 성물', '조앤.K.롤링', '김혜원', 'Pottermore from J.K. Rowling', 300, '2017/07/25', 10050, 10050, 200, 
+        '해리 포터로 사는 일은 늘 힘들고, 어른이 되어서도 상황은 크게 나아지지 않는다.',   './resources/VertexEx/img/shop/해리포터6.jpg');  
+        
+insert into book(isbn, book_title, writer_name, translator_name, publisher_name, book_tot_page, book_published_date,
+                    book_price, book_price_for_sale, book_stock,book_story,  book_img)
+values(999999, '신비한 동물 사전', '조앤.K.롤링', '강동혁', 'Pottermore', 300, '2017/07/17', 10500, 10500, 200, 
+        '마법 동물학자인 뉴트 스캐맨더가 뉴욕에 도착했을 때만해도',  './resources/VertexEx/img/shop/신비한동물사전.jpg');  
+        
+insert into book(isbn, book_title, writer_name, translator_name, publisher_name, book_tot_page, book_published_date,
+                    book_price, book_price_for_sale, book_stock, book_story,  book_img)
+values(101010, '해리 포터와 비밀의 방', '조앤.K.롤링', '김혜원', 'Pottermore from J.K. Rowling', 300, '2017/07/17', 10500, 10800, 200, 
+        '과 악의 대립 속에서 평범한 어린 소년이 한 사람의 영웅으로 성장해나간다는 보편적인 테마',   './resources/VertexEx/img/shop/해리포터2.jpg');          
