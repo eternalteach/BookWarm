@@ -18,6 +18,7 @@ public class UserVO {
 	String user_level;
 	int user_tot_price;
 	int user_point;
+	
 	public UserVO(String user_id, String user_pw, String user_nickname, String user_name, Timestamp user_bday,
 			String user_sex, String user_phone, String user_mail, int user_zipcode, String user_addr,
 			String user_addr_detail, String user_join_date, String user_level, int user_tot_price, int user_point) {

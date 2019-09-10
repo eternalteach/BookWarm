@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.book.warm.mapper.ShopMapper">
-	<select id="cartList" resultType="com.book.warm.vo.CartVO">
+	<select id="cartList" resultType="com.book.warm.vo.CartJoinBookVO">
 		select c.*, b.book_title, b.book_price_for_sale, b.book_img, c.cart_cnt*b.book_price_for_sale as total
 		from cart c inner join book b
 		on c.isbn = b.isbn
@@ -19,12 +19,25 @@
 		update cart set cart_cnt=#{cart_cnt} where cart_no=#{cart_no}
 	</update>
 	
-	<select id="getCartOne" resultType="com.book.warm.vo.CartVO">
+	<select id="getCartOne" resultType="com.book.warm.vo.CartJoinBookVO">
 		select c.*, b.book_title, b.book_price_for_sale, b.book_img, c.cart_cnt*b.book_price_for_sale as total
 		from cart c inner join book b
 		on c.isbn = b.isbn
 		where cart_no=#{cart_no}
 	</select>
+	
+	<select id="getUserInfo" resultType="com.book.warm.vo.UserVO">
+		select user_id, user_name, user_phone, user_zipcode, user_addr, user_addr_detail, user_tot_price, user_point
+		from user_info
+		where user_id=#{user_id}
+	</select>
+	
+	<select id="getCoupon" resultType="com.book.warm.vo.CouponNoVO">
+		select *
+		from coupon_no
+		where user_id=#{user_id}
+	</select>
+	
 	
 </mapper>
 
