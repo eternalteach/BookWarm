@@ -13,11 +13,17 @@ public interface ShopListMapper {
 	//book_title 순서
 	public List<BookVO> shoptitlelist();
 	
+	//bookprice(저렴) tnstj
+	public List<BookVO> bookpricelist();
+	
 	//book detail(상세정보) 불러오기
 	public List<BookVO> bookdetail(@Param("isbn") String isbn, @Param("writer_name") String writer_name);
 	
 	//bookwritername 저자이름이 같은 책 불러오기
 	public List<BookVO> bookwritername(@Param("writer_name") String writer_name);
+
+	//별점수 불러오기
+
 	
 	/*
 	 * public List<ShopListBoardVO> shoplist2();

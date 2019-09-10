@@ -705,8 +705,8 @@
                            <article class="v_blog-item v_blog-item-related v_blog-grid">
                               <div class="v_blog-item-inner">
                                  <div class="v_blog-item-media">
-                                    <a href="shop_product?isbn=${shop.isbn}&writer_name=${shop.writer_name}">
-                                      <img src="${shop.book_img}">
+                                    <a href="shopproduct?isbn=${shop.isbn}&writer_name=${shop.writer_name}">
+                                      <span><img src="${shop.book_img}"></span>
                                     </a>
                                  </div>
                                  <div class="v_blog-item-content">

@@ -21,8 +21,10 @@ public class ShopListController {
 	@RequestMapping(value = "/shoplist", method = RequestMethod.GET)
 	public String shop_list(Model model, Criteria criteria) throws Exception {
 		
+		System.out.println("==================shoplist====================================");
 		model.addAttribute("shoptitlelist", shoplistservice.shoptitlelist());
-
+		model.addAttribute("bookpricelist", shoplistservice.bookpricelist());
+		
 		return "shoplist";
 	}
 	

@@ -8,9 +8,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 제목순으로 책 불러오기 -->
 	<select id="shoptitlelist" resultType="com.book.warm.vo.BookVO">
 	select isbn, book_title, writer_name, translator_name, publisher_name, publisher_name, book_tot_page, book_published_date, 
-            book_price, book_price_for_sale, book_stock, book_intro, book_idx, book_story, book_img
+            book_price, book_price_for_sale, book_stock, book_story, book_img
 	from book
 o	order by book_title
+	</select> 
+	
+	<!-- 가격순(저렴한 순)으로 불러오기  -->
+	<select id="bookpricelist" resultType="com.book.warm.vo.BookVO">
+	select isbn, book_title, writer_name, translator_name, publisher_name, publisher_name, book_tot_page, book_published_date, 
+            book_price, book_price_for_sale, book_stock, book_story, book_img
+	from book
+o	order by book_price_for_sale
 	</select> 
 	
 	<!-- isbn && write_name 으로 bookdetail 불러오기   -->
@@ -27,6 +35,16 @@ o	order by book_title
 	where writer_name = #{writer_name} 
 	and rownum <= 5
 	]]> 
+	</select>
+
+	<!-- 책에 대한 별 점수 가져오기  -->
+	<select id="bookstar" resultType="com.book.warm.vo.BookVO">
+	select b.isbn, b.book_title, bs.user_id, bs.star
+	from book b, book_star bs
+	where b.isbn = bs.isbn
+a	and b.isbn = #{isbn} 
+	and bs.user_id = #{user_id}
+	and bs.star = #{star};
 	</select>
 
 <!-- 	

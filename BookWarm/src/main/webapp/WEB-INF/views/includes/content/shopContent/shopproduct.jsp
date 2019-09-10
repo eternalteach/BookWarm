@@ -35,6 +35,7 @@
                            </span><br>
                            <span class="product-price-currency">
                            <span class="product-star-rating" title="Rated 4.67 out of 5">
+                           <!-- 나중에 booksatr로 가져올거임 별점수  -->
                               <i class="fa fa-star"></i>
                               <i class="fa fa-star"></i>
                               <i class="fa fa-star"></i>
@@ -77,7 +78,7 @@
                           	<span>구매</span>
                            </button></a>
                        		<!-- 목록버튼 클릭하면 책 목록으로 이동. -->
-						    <a href="/warm/shop_list"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="목록으로 이동" data-location="top">
+						    <a href="/warm/shoplist"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="목록으로 이동" data-location="top">
                           	<span>목록</span>
                            </button></a>
                           
@@ -99,13 +100,13 @@
                                  <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#About" role="tab">줄거리</a>
                                  </li>
-                                 <li class="nav-item">
+                                 <!-- <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#Services" role="tab">목차</a>
-                                 </li>
+                                 </li> -->
                               </ul>
                               <div class="tab-content">
                                  <div class="tab-pane active" id="About" role="tabpanel">
-                                    <p>${bookdetail.book_intro}</p>
+                                    <p>${bookdetail.book_story}</p>
                                  </div>
                                  <div class="tab-pane" id="Services" role="tabpanel">
                                     <table class="table table-striped">
@@ -124,7 +125,7 @@
                                        </tbody>
                                     </table>
                                  </div>
-                              </div>
+                              </div> 
                            </div>
                         </div>
                        <!-- 줄거리/목차 끝  -->

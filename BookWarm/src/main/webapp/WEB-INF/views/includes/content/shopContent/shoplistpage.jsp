@@ -163,7 +163,7 @@
                            	 href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" 
                            	 role="tab" 
                             	aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" 
-                           	 aria-expanded="true">인기순</a>
+                           	 aria-expanded="true">별점순</a>
                         	</li>
 								
 						</ul>
@@ -207,7 +207,7 @@
 								</div>
 								
 									
-								<!-- 베스트셀러 페이징처리 -->
+								<!-- shoptitlelist 페이징처리 -->
 								<nav aria-label="Page navigation example">
 								<ul class="pagination justify-content-center">
 									<c:if test="${pageMaker.prev}">
@@ -233,23 +233,23 @@
 									<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
 								</form>
 							</div>
-							<!-- 베스트 순서로 책불러오기 끝 -->
+							<!-- 끝 -->
 
 
 								
-							<!-- 제목순으로 책 불러오기  -->
+							<!-- 가격순 책 불러오기  -->
 							<div class="tab-pane fade" id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11"
 								role="tabpanel" aria-labelledby="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a1">
-								<!-- 제목순으로 책 불러오기 -->
+								<!-- bookpricelist 책 불러오기 -->
 								<div class="row">
-									<c:forEach items="${list_title}" var="shop_title">
+									<c:forEach items="${bookpricelist}" var="shop_title">
 										<div class="col-md-2">
 											<figure class="product-shadows product-item">
 												<p>&nbsp;${shop_title.isbn}</p>
 												<div class="product-media">
 													<div class="img-wrap first-image">
 														<!-- 책 이미지 누르면 책 상세 페이지로 이동 -->
-														<a href="shop_product?isbn=${shop_title.isbn}&writer_name=${shop_title.writer_name}"><img src="${shop_title.book_img}"></a>
+														<a href="shopproduct?isbn=${shop_title.isbn}&writer_name=${shop_title.writer_name}"><img src="${shop_title.book_img}"></a>
 													</div>
 												</div>
 
@@ -257,7 +257,8 @@
 													<h3 class="product-name"><a href="#">${shop_title.book_title}</a></h3>
 													<span class="product-posted_in"><a href="#" rel="tag">${shop_title.writer_name}&nbsp;저</a></span>
 													<span class="product-price"> <span class="product-amount">
-													<span class="product-price-currency">${shop_title.book_price_for_sale}</span>원
+														<span class="product-price-currency">정가&nbsp;<fmt:formatNumber value="${shop_title.book_price}" pattern="###,###,###" /></span>원<br>
+														<span class="product-price-currency">할인가&nbsp;<fmt:formatNumber value="${shop_title.book_price_for_sale}" pattern="###,###,###" /></span>
 													</span>
 													</span>
 												</div>
@@ -265,35 +266,8 @@
 										</div>
 									</c:forEach>
 								</div>
-								
-								
-								 <!-- 제목순 페이징 처리 시작 -->
-								<nav aria-label="Page navigation example">
-								<ul class="pagination justify-content-center">
-									<c:if test="${pageMaker.prev}">
-									<li class="page-item disabled">
-										<a class="page-link" href="${pageMaker.startPage -1}" tabindex="-1">Previous</a>
-									</li>
-									</c:if>
-									
-								 	<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
-								 	<li class="page-item ${pageMaker.cri.pageNum == num? "active":""}"><a class="page-link" href="${num }">${num }</a></li>
-									</c:forEach> 
-									
-									<c:if test="${pageMaker.next}">
-									<li class="page-item">
-									<a class="page-link" href="${pageMaker.startPage +1}">Next</a>
-									</li>
-									</c:if>
-								</ul>
-								</nav>
-								
-								<form id='actionForm' action="/warm/shop_list" method='get'>
-									<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
-									<input type='hidden' name='amount' value='${pageMaker2.cri.amount }'>
-								</form> 
 							</div>
-							<!-- 제목순으로 불러오기 끝  -->
+							<!-- bookpricelist 불러오기 끝  -->
 							
 							<!-- test창  -->
 								 <div class="tab-pane fade " id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" role="tabpanel" aria-labelledby="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a2">
@@ -301,11 +275,11 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <p>
-                                               	 테스트
+                                               	별점순으로 책 불러올거임
                                                 </p>
-                                                <p>
+                                              <!--   <p>
                                                    	테스트22
-                                                </p>
+                                                </p> -->
                                             </div>
                                         </div>
                                     </div>
