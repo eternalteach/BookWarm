@@ -9,6 +9,7 @@ public class LibraryVO {
 	private String list_type;
 	private String isbn;
 	private Timestamp list_added_date;
+	
 	public LibraryVO(String user_id, int list_no, String list_img_src, String list_type, String isbn,
 			Timestamp list_added_date) {
 		super();
