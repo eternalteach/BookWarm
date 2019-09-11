@@ -67,6 +67,11 @@
 <!-- 							<div class="qty-adjust">
 							금액 : <input type="text" name="sum" readonly>원
                             </div> -->
+                            
+                            
+                            
+                            
+                            
                            
 							<!-- 장바구니로 이동 -->
                            <a href="/warm/shop_list"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="장바구니로 이동" data-location="top">
@@ -85,12 +90,12 @@
                        
                      <div class="product_meta mb-40">
                            <span class="tagged_as">
-                      <!--         Tags:
+                              <!-- Tags:
                               <a href="#" rel="tag">Sweaters</a>,
                               <a href="#" rel="tag">Turtleneck</a>,
-                              <a href="#" rel="tag">Wool</a> -->
+                              <a href="#" rel="tag">Wool</a> --> 
                            </span>
-                        </div>
+                     </div>
 
 
             		    <!-- 줄거리/목차부분  -->

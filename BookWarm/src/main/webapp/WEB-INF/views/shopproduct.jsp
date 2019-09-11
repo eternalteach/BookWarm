@@ -9,7 +9,6 @@
 	<%@ include file="./includes/header/header-dark-dropdown.jsp"%>
 </head>
 <body>
-	<%-- <%@ include file="./includes/header/shopHeader/shopHeaderNav.jsp"%> --%>
 	<%@ include file="./includes/content/shopContent/shopproduct.jsp"%>
 	<%@ include file="./includes/footer/shopFooter/shopFooterNav.jsp"%>	
 </body>
