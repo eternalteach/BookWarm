@@ -272,6 +272,7 @@ pay_refund_account varchar2(50) not null,
 constraint pk_pay primary key(pay_no)
 );
 
+create SEQUENCE pay_seq;
 
 --주문
 create sequence orders_seq;
