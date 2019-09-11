@@ -255,6 +255,16 @@
 			<version>2.8.2</version>
 		</dependency>
 
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
+		<!-- 웹소켓 -->
+		<dependency>
+   			 <groupId>org.springframework</groupId>
+   		 	<artifactId>spring-websocket</artifactId>
+    		<version>5.0.7.RELEASE</version>
+		</dependency>
+		
+
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
