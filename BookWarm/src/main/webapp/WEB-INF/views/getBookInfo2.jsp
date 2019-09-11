@@ -4,61 +4,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="includes/header/header-transparent.jsp"%>
 <!-- context -->
-
-제목 검색 :
-<input id='search' name='search' type='text'>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+isbn 검색 : <input id='search' name='search' type='text'>
 <button onclick="searchTitle($('#search').val());">검색</button>
-
-title :
-<input id='title' name='title' type='text'>
-contents :
-<input id='contents' name='contents' type='text'>
-url :
-<input id='url' name='url' type='text'>
-isbn :
-<input id='isbn' name='isbn' type='text'>
-datetime :
-<input id='datetime' name='datetime' type='text'>
-authors :
-<input id='authors' name='authors' type='text'>
-publisher :
-<input id='publisher' name='publisher' type='text'>
-translators :
-<input id='translators' name='translators' type='text'>
-price :
-<input id='price' name='price' type='text'>
-sale_price :
-<input id='sale_price' name='sale_price' type='text'>
-thumbnail :
-<input id='thumbnail' name='thumbnail' type='text'>
-<div>
-<input id='status' name='status' type='text'>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<textarea id='bookData'>22222</textarea>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<button id='click'>버튼</button>
-</div>
-<br/>
-<br/>
-<br/>
-<br/>
-
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"
-              integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-              crossorigin="anonymous"></script>
- 
 <div id="getBookTable"></div>
-
-
-
 
 <script>
 let bookData="";
@@ -91,23 +40,30 @@ $('#datetime').val(date.split('T')[0]); */
 /*latest : 최신순,accuracy : 정확도  */
  function makeBookTable(bookData){
 	 let option = [
- 	    {field:"title",      width:200},
- 	    {field:"contents", width:100},
- 	    {field:"url", width:100},
  	    {field:"isbn", width:100},
+ 	    {field:"title",      width:200},
  	    {field:"authors", width:100},
- 	    {field:"publisher", width:100},
  	    {field:"translators", width:100},
+ 	    {field:"publisher", width:100},
+ 	    {field:"datetime",   width:100},
  	    {field:"price", width:100},
  	    {field:"sale_price", width:100},
+ 	    {field:"contents", width:100},
  	    {field:"thumbnail", width:100},
- 	    {field:"status", width:100},
- 	    {field:"datetime",   width:100}
- 	
+ 	    {field:"url", width:100},
+ 	    {field:"status", width:100}
  	];
 
  	var getBookTable = $("#getBookTable");
  	var table = $("<table>").appendTo(getBookTable);
+ 	$.each( bookData.documents, function( index, row) {
+		var tr = $("<tr>").appendTo(table);
+		$.each( option, function( i, fieldInfo ) {
+			var td = $("<td>").appendTo(tr);
+			td.html( row[fieldInfo.field]);
+ 	    });
+ 	});
+ 	
  	$.each( bookData.documents, function( index, row) {
 		var tr = $("<tr>").appendTo(table);
 		$.each( option, function( i, fieldInfo ) {

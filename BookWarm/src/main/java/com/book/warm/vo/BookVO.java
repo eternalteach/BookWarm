@@ -12,11 +12,15 @@ public class BookVO {
 	private Timestamp book_published_date;
 	private int book_price;
 	private int book_price_for_sale;
-	private int book_stock;
 	private String book_intro;
-	private String book_idx;
-	private String book_story;
 	private String book_img;
+
+	private String book_story;
+	private String book_idx;
+	private int book_stock;
+	
+	
+	
 	public BookVO(String isbn, String book_title, String writer_name, String translator_name, String publisher_name,
 			int book_tot_page, Timestamp book_published_date, int book_price, int book_price_for_sale, int book_stock,
 			String book_intro, String book_idx, String book_story, String book_img) {
