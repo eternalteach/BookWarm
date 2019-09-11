@@ -1,63 +1,46 @@
-//package com.book.warm.service;
-//
-//import java.util.List;
-//
-//import javax.inject.Inject;
-//
-//import org.springframework.stereotype.Service;
-//
-//import com.book.warm.mapper.ShopListMapper;
-//import com.book.warm.page.Criteria;
-//import com.book.warm.vo.ShopListBoardVO;
-//
-//@Service
-//public class ShopListService {
-//
-//	@Inject
-//	ShopListMapper shoplistmapper;
-//	
-//	//����Ʈ ������ �ҷ�����
-//	public List<ShopListBoardVO> shoplist() throws Exception{
-//		System.out.println("ShopList ����Ʈ������ �ҷ�����");
-//
-//		return shoplistmapper.shoplist();
-//	}
-//	
-//	//�����(��������)������ �ҷ�����
-//	public List<ShopListBoardVO> shoplist2() throws Exception{
-//		System.out.println("shoplist2 ��������� �ҷ�����");
-//		return shoplistmapper.shoplist2();
-//	}
-//	
-//	//å ������ �ҷ�����
-//	public ShopListBoardVO bookdetail(String isbn) throws Exception{
-//		System.out.println("å ������ ��������");
-//		return shoplistmapper.bookdetail(isbn);
-//	}
-//	
-//	//å�� �帣 �ҷ�����
-//	public List<ShopListBoardVO> bookgenre(String isbn) throws Exception {
-//		System.out.println("�帣 �ҷ�����");
-//		return shoplistmapper.bookgenre(isbn);
-//	}
-//	
-//	//��ǥ������ �ٸ� å�� �ҷ�����
-//	public List<ShopListBoardVO> bookwriter(String writer_name) throws Exception {
-//		System.out.println("bookwriter ����");
-//		return shoplistmapper.bookwriter(writer_name);
-//	}
-//	
-//	//����¡ó��
-//	public List<ShopListBoardVO> shoplistpage(Criteria criteria) throws Exception{
-//		System.out.println("����¡ ó��");
-//		return shoplistmapper.shoplistpage(criteria);
-//	}
-//	
-//	
-//	//��ü ����������
-//	public int gettotalcount(Criteria criteria) {
-//		System.out.println("��ü����");
-//		return shoplistmapper.gettotalcount(criteria);
-//	}
-//	
-//}
+package com.book.warm.service;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import com.book.warm.mapper.ShopListMapper;
+import com.book.warm.page.Criteria;
+import com.book.warm.vo.BookVO;
+
+@Service
+public class ShopListService {
+
+	@Inject
+	ShopListMapper shoplistmapper;
+	
+	//제목순으로 불러오기
+	public List<BookVO> shoptitlelist() throws Exception{
+		return shoplistmapper.shoptitlelist();
+	}
+	
+	//가격(저렴한순)으로 불러오기
+	public List<BookVO> bookpricelist() throws Exception{
+		return shoplistmapper.bookpricelist();
+	}
+	
+	
+	//isbn && writer_name으로 책 상세정보 불러오기
+	public List<BookVO> bookdetail(String isbn, String writer_name) throws Exception{
+		return  shoplistmapper.bookdetail(isbn, writer_name);
+	}
+	
+	//writer_name이 같은 다른 책들 불러오기
+	public List<BookVO> bookwritername(String writer_name) throws Exception{
+		return shoplistmapper.bookwritername(writer_name);
+	}
+	
+	/*
+	 * 
+	 * public int gettotalcount(Criteria criteria) { return
+	 * shoplistmapper.gettotalcount(criteria); }
+	 */
+	
+}
