@@ -5,8 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.book.warm.vo.CartJoinBookVO;
-import com.book.warm.vo.CartVO;
-import com.book.warm.vo.CouponNoVO;
+import com.book.warm.vo.CouponVO;
 import com.book.warm.vo.UserVO;
 
 public interface ShopMapper {
@@ -29,6 +28,6 @@ public interface ShopMapper {
 
 	public UserVO getUserInfo(@Param("user_id") String user_id);
 
-	public CouponNoVO[] getCoupon(@Param("user_id") String user_id);
+	public List<CouponVO> getCouponList(@Param("user_id") String user_id);
 	
 }

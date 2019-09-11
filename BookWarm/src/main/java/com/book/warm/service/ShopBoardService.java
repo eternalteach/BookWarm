@@ -8,8 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.book.warm.mapper.ShopMapper;
 import com.book.warm.vo.CartJoinBookVO;
-import com.book.warm.vo.CartVO;
-import com.book.warm.vo.CouponNoVO;
+import com.book.warm.vo.CouponVO;
 import com.book.warm.vo.UserVO;
 
 @Service
@@ -38,8 +37,8 @@ public class ShopBoardService {
 		return shopMapper.getUserInfo(user_id);
 	}
 
-	public CouponNoVO[] getCoupon(String user_id) {
-		return shopMapper.getCoupon(user_id);
+	public List<CouponVO> getCouponList(String user_id) {
+		return shopMapper.getCouponList(user_id);
 	}
 
 

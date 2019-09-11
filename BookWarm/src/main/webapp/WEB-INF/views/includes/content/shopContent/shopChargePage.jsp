@@ -31,7 +31,7 @@
                            <div class="form-header pt-0 pl-0">
                               <h4 class="fs-24">결제 상세 정보</h4>
                            </div>
-                           <form method="post" action="/" id="accountx">
+                           <form method="post" action="/" id="accountx" name="chargeForm">
                               <div class="form-body pl-0">
 
                                  <div class="spacer-b30">
@@ -187,6 +187,21 @@
                                           </tr>
                                           <tr class="cart_item">
                                              <td class="cart-product-name">
+                                                <strong>할인</strong>
+                                             </td>
+                                             <td class="cart-product-name">
+                                                -<span class="amount" id="discountPoint">0</span>(포인트 할인)
+                                             </td>
+                                          </tr>
+                                          <tr class="cart_item">
+                                          	 <td class="cart-product-name">
+                                             </td>
+                                          	 <td class="cart-product-name">
+                                             	-<span class="amount" id="discountCoupon">0</span>(쿠폰 할인)
+                                             </td>
+                                          </tr>
+                                          <tr class="cart_item">
+                                             <td class="cart-product-name">
                                                 <strong>결제 금액</strong>
                                              </td>
 
@@ -276,16 +291,13 @@
                                           <span class="field-icon"><i class="fa fa-barcode"></i></span>
                                        </label>
                                     </div><!-- end section -->
-
-                                    <div class="section colm colm6">
-                                       <p> <a href="#" class="smart-link"> What is this? </a>  </p>
-                                    </div><!-- end section -->
                                  </div><!-- end frm-row section -->
                               </div><!-- end .form-body section -->
+                              
                               <div class="form-footer">
                                  <button type="submit" class="btn btn-primary w-100">Proceed to confirm </button>
                               </div><!-- end .form-footer section -->
-                           </form>
+                           </form><!-- end form -->
                         </div>
                      </div>
                   </div>
@@ -295,7 +307,7 @@
 
       </div>
 
-      <div class="modal fade" id="exampleModalLabel33" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel33" aria-hidden="true">
+      <!-- <div class="modal fade" id="exampleModalLabel33" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel33" aria-hidden="true">
          <div class="modal-dialog" style="max-width:345px" role="document">
             <div class="modal-content">
                <div class="modal-header">
@@ -340,7 +352,7 @@
                </div>
             </div>
          </div>
-      </div>
+      </div> -->
    </div>
 
 </body>

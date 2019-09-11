@@ -10,13 +10,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.book.warm.service.ShopBoardService;
 import com.book.warm.vo.CartJoinBookVO;
-import com.book.warm.vo.CartVO;
-import com.book.warm.vo.CouponNoVO;
+import com.book.warm.vo.CouponVO;
 import com.book.warm.vo.UserVO;
 
 /**
@@ -112,11 +112,24 @@ public class ShopController {
 	}
 	
 	// 쿠폰 고르기창
-	@RequestMapping("/pickCoupon")
+	@RequestMapping(value="/pickCoupon")
 	public String pickCoupon(HttpSession session, Model model) {
 		String user_id = (String) session.getAttribute("user_id");
 		
-		CouponNoVO[] couponList = service.getCoupon(user_id);
+		// 현재 로그인한 user가 가지고 있는 쿠폰을 list로 받아온다.
+		List<CouponVO> couponList = service.getCouponList(user_id);
+		model.addAttribute("couponList", couponList);
+		
+		return "/couponList";
+	}
+	
+	// 쿠폰 선택
+	@RequestMapping("/useCoupon")
+	public String useCoupon(HttpSession session, HttpServletRequest req, Model model) {
+		String user_id = (String) session.getAttribute("user_id");
+		
+		// 현재 로그인한 user가 가지고 있는 쿠폰을 list로 받아온다.
+		List<CouponVO> couponList = service.getCouponList(user_id);
 		model.addAttribute("couponList", couponList);
 		
 		return "/couponList";

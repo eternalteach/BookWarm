@@ -584,6 +584,8 @@
    			}else {
    				// 가용포인트>=사용포인트 -> 사용 포인트에 입력
    				$('#usePoint').text(point);
+   				// 최종금액에 반영
+   				$('#discountPoint').text("<td class='cart-product-name'>-<span class='amount' id='discount'>"+point+"(포인트)</span></td>");
    			}
   			}else {
   				// 숫자가 아닌 값 입력 시 -> 경고창, 입력부분 비워버리기
@@ -602,6 +604,17 @@
   		// 쿠폰선택 클릭했을 때, 
   		$('#pickCoupon').on('click', function() {
   			window.open('<%=context%>/shop/pickCoupon','pickCoupon','width=430,height=500,location=no,status=no,scrollbars=yes');
+  			<%-- $.ajax({
+  				url: '<%=context%>/shop/pickCoupon',
+  				type: 'post',
+  				dataType: 'json',
+  				success: function(data) {
+  					console.log("ajax성공: "+data);
+		  			window.open(data,'pickCoupon','width=430,height=500,location=no,status=no,scrollbars=yes');
+  				}, error: function() {
+  					console.log("error!");
+  				}
+  			}) --%>
   		})
   	})
 </script>
