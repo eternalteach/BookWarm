@@ -9,6 +9,9 @@ import com.book.warm.vo.ReviewBoardVO;
 
 public interface ReviewBoardMapper {
 	
+
+//	public List<ReviewBoardVO> selectBoardList(String user_id);
+	
 	public List<ReviewBoardVO> getListPerBook(String isbn, String user_id);
 	
 	public List<ReviewBoardVO> getListPerBookWithPaging(String isbn, String user_id, Criteria cri);
@@ -37,4 +40,5 @@ public interface ReviewBoardMapper {
 	public void delete(String uuid);
 	
 	public List<ReviewAttachVO> findByReviewNo(int review_no);
+
 }

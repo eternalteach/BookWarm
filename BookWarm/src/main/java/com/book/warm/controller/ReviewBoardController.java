@@ -50,7 +50,7 @@ public class ReviewBoardController {
 	@RequestMapping("/reviewMain")
 	public String recordMain(@RequestParam("user_id") String user_id, Model model) {
 		
-		// model.addAttribute("list", service.selectBoardList(user_id)); ReviewBoardVO2
+//		model.addAttribute("list", service.selectBoardList(user_id));
 		
 		return "reviewMain";
 	}
@@ -67,11 +67,40 @@ public class ReviewBoardController {
 	// 책별 감상 목록
 	@RequestMapping("/reviewPerBook")
 	public String reviewPerBook(ReviewBoardVO rbVO, Criteria cri, Model model) {
+		
+		
+		List<ReviewBoardVO> reviewList = service.getListPerBook(rbVO.getIsbn(), rbVO.getUser_id(), cri);
+		
+		for(ReviewBoardVO review:reviewList) {
+			// 가져온 리뷰 리스트에서 리뷰 번호에 따른 첨부파일들을 rbVO에 세팅.
+			review.setAttachList(service.getAttachList(review.getReview_no()));
+		}
+		
+		
 
-		model.addAttribute("list", service.getListPerBook(rbVO.getIsbn(), rbVO.getUser_id(), cri));
+		model.addAttribute("list", reviewList);
 		model.addAttribute("thumbnail", service.showBookThumbnail(rbVO.getIsbn()));
 		int total = service.getTotal(cri, rbVO.getIsbn(), rbVO.getUser_id());
+		
 		System.out.println("total : " + total);
+		
+		
+		// 어떻게 첨부파일 목록을 넘겨주지...?
+		// 보여주는 페이지는 reviewPerBook페이지.
+		// 보여지는 목록은 해당하는 user의 하나의 책에 대한 리뷰들.
+		// 받아오는 정보는 ReviewBoardVO List.
+		// attachList는 여기에 하나의 데이터로 있기는 하지만 리스트기도 하고, db에 없어서 mapper에 넣어주기도 뭐함.
+		// 차라리 해쉬맵같은 걸로 넣어줄까여..?
+		// 1. selectOne과 똑같은 방법으로 한다.
+		//    javascript로 review_no을 받아서 그에 따른 첨부파일을 조회하는 방법.
+		//    문제는 여기엔 review_no이 여러개라는 것? 아니면  ajax?
+		
+		// 그냥 여기서 list를 더해주면 안되나?
+		
+		
+		System.out.println("혹시 list가 있나여");
+		rbVO.setAttachList(service.getAttachList(rbVO.getReview_no()));
+		System.out.println(rbVO.getAttachList());
 		
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		return "reviewPerBook";

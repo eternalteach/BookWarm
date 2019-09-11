@@ -582,40 +582,29 @@
 
                         <article>
 
-<!--                             <figure class="animated-overlay overlay-alt">
-				            	<div class="flexslider thumb-slider">
-                                	<div class="panel panel-default">
-                                		<div class='uploadResult'>
+                            <!-- <figure class="media-wrap animated-overlay overlay-alt">
+                                		<div class='uploadResult thumb-slider'>
                                 			<ul class="slides">
+                                				
                                 			</ul>
                                 		</div>
-                                	</div>
-                                </div>
                             </figure> -->
-                            
-                                   <figure class="animated-overlay overlay-alt col-sm-12">
-                                        <div class="flexslider thumb-slider uploadResult">
+                                   <figure class="animated-overlay overlay-alt">
+                                        <div class=" thumb-slider uploadResult">
                                             <ul class="slides">
-                                               <!--  <li>
+                                            	<!-- <li>
                                                     <a href="./resources/Vertex/blog-full-width-post.html" class="link-to-post">
-                                                        <img src='./resources/Vertex/img/blog/b-fw-5.jpg' />
+                                                        <img src='./resources/Vertex/img/blog/b-fw-4.jpg' />
                                                     </a>
-                                                </li> -->
+                                                </li>
+                                            	<li data-path = '2019\09\11' data-uuid='123615ac-cb83-4fae-9d37-07da6ee2a531' data-filename='cat_1.jpg'>
+	                                            	<a class="link-to-post">
+	                                            		<img src='/warm/display?fileName=2019%5C09%5C11%2F123615ac-cb83-4fae-9d37-07da6ee2a531_cat_1.jpg'>
+	                                            	</a>
+                                            	</li> -->
                                             </ul>
                                         </div>
                                     </figure>
-                            
-                            
-                            
-				                <!-- <ul class="slides">
-				                
-				                    <li>
-				                        <a href="./resources/Vertex/blog-full-width-post.html" class="link-to-post">
-				                            <img src='./resources/Vertex/img/blog/b-fw-5.jpg' />
-				                        </a>
-				                    </li>
-				                    
-				                </ul> -->
                             
 
                             <h3 class="blog-post-caption">${review.review_title}</h3>
@@ -1210,7 +1199,11 @@
 			var review_no = '<c:out value="${review.review_no}"/>';
 			$.getJSON("/warm/getAttachList", {review_no: review_no}, function(arr) {
 						console.log(arr);
-						/* var uploadImgs = $(".uploadResult ul");
+						
+						// 여기서 해야할 것은, review_no을 받아서 그 글에 달려있는 첨부 파일들을 하나씩 li로 달아주는 건데..
+						
+						// 여기가 이미지들을 담을 공간.
+						var uploadImgs = $(".uploadResult ul");
 						
 						var str = "";
 						
@@ -1220,12 +1213,10 @@
 							str += "<img src='/warm/display?fileName=" + fileCallPath + "'>";
 							str += "</a>";
 							str += "</li>";
-							alert(str);
 						});
-						/* uploadImgs(str); */
-						/* $(".uploadResult ul").html(str); */
 						
-						/* $(".uploadResult").html(str); */
+						uploadImgs.html(str); 
+						
 			}); // end getJSON
 		})(); // end function
 				

@@ -22,6 +22,12 @@ public class ReviewBoardService {
 	@Inject
 	ReviewBoardMapper mapper;
 	
+
+//	public List<ReviewBoardVO> selectBoardList(String user_id) {
+//		
+//		return mapper.selectBoardList(user_id);
+//	}
+	
 	/*
 	 * public List<ReviewBoardVO> getListPerBook(String isbn, String user_id) {
 	 * 
@@ -29,7 +35,7 @@ public class ReviewBoardService {
 	 */
 	
 	public List<ReviewBoardVO> getListPerBook(String isbn, String user_id, Criteria cri) {
-
+		
 		return mapper.getListPerBookWithPaging(isbn, user_id, cri);
 	}
 	
@@ -84,5 +90,6 @@ public class ReviewBoardService {
 		log.info("get Attach list by review_no" + review_no);
 		return mapper.findByReviewNo(review_no);
 	}
+
 
 }

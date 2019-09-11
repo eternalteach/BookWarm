@@ -45,11 +45,11 @@
                             <div>
                                 <ul>
                                     <li><a href="#">
-                                			<img src="${thumbnail.img_src}">
+                                			<img src="${thumbnail.book_img}">
                             			</a>
                             		</li>
-                                    <li>${thumbnail.book_title}</li>
-                                    <li>${thumbnail.writer_name}</li>
+                                    <li style="text-align:center">${thumbnail.book_title}</li>
+                                    <li style="text-align:center">${thumbnail.writer_name}</li>
                                 </ul>
                             </div>
                             
@@ -220,6 +220,43 @@
                             <c:set var="tmp_date" value="${fmt_date}"/>
                             
 								<li class="v-blog-item col-sm-12">
+									
+									<c:if test="${not empty vo.attachList}">
+									<figure class="animated-overlay overlay-alt">
+                                        <div class="flexslider thumb-slider">
+                                            <ul class="slides">
+                                            
+											<c:forEach items="${vo.attachList}" var="img">
+											
+										
+							<!-- var fileCallPath = encodeURIComponent(attach.uploadPath + "/" + attach.uuid + "_" + attach.fileName);
+							str += "<li data-path = '" + attach.uploadPath + "' data-uuid='" + attach.uuid + "' data-filename='" + attach.fileName + "'>";
+							str += "<img src='/warm/display?fileName=" + fileCallPath + "'>";
+							str += "</li>"; -->
+											
+											
+												<li>
+                                                    <a href="./resources/Vertex/blog-full-width-post.html" class="link-to-post">
+                                                        <img id='aa' src='"${img.uploadPath}" + "/" + "${img.uuid}"+ "_" + "${img.fileName}"'/>
+                                                    </a>
+                                                </li> 
+											
+                                               <!--  <li>
+                                                    <a href="./resources/Vertex/blog-full-width-post.html" class="link-to-post">
+                                                        <img src='./resources/Vertex/img/blog/b-fw-5.jpg' />
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="./resources/Vertex/blog-full-width-post.html" class="link-to-post">
+                                                        <img src='./resources/Vertex/img/blog/b-fw-4.jpg' />
+                                                    </a>
+                                                </li> -->
+                                                </c:forEach>
+                                            </ul>
+                                        </div>
+                                    </figure>
+									</c:if>
+								
 
                                     <div class="post-content no-thumb clearfix">
 
@@ -406,6 +443,23 @@
         <script type="text/javascript">
         	$(document).ready(function() {
         		
+        		function encode(url) {
+        			return encodeURIComponent(url);
+        		}
+        		
+        		var tt = document.getElementById('aa').src;
+        		console.log(tt);
+        		console.log("전: " + tt);
+        		
+				document.getElementById('aa').src = '/warm/display?fileName=' + encodeURIComponent(tt);
+				
+				console.log("후: " + tt);
+				
+				var fileCallPath = encodeURIComponent("${img.uploadPath}" + "/" + "${img.uuid}" + "_" + "${img.fileName}");
+				console.log(fileCallPath);
+        		
+				
+				
         		var actionForm = $("#actionForm");
         		
         		$(".page-link").on("click", function(e) {
@@ -452,6 +506,27 @@
         		$("#regBtn").on("click", function() {
         			self.location = "/board/register";
         		}); */
+        		
+        		
+        		
+        		(function() {
+//        			첨부파일 조회
+					
+        			function get(review_no, callback, error) {
+        				
+        				$.get("/warm/getAttachList/" + review_no + ".json", function(arr) {
+        					
+        					if(callback) {
+        						callback(result);
+        					}
+        				}).fail(function(xhr, status, err) {
+        					if(error) {
+        						error();
+        					}
+        				});
+        			}
+        		});
+        		
         		
         	});
         </script>
