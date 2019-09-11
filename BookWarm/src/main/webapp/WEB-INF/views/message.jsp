@@ -6,14 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ㅡe</title>
+<title>쪽지</title>
 </head>
 <body>
 	<%@ include file="./includes/header/header-dark-dropdown.jsp"%>
 	
 	
 
-	<%@ include file="./includes/content/message/messagelistPage.jsp"%>
+	<%@ include file="./includes/content/message/msglistPage.jsp"%>
 	
 	
 	<%@ include file="./includes/footer/shopFooter/shopFooterNav.jsp"%>	

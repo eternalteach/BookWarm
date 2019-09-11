@@ -12,8 +12,38 @@
 
 
             <section class="section-medium section-arrow--bottom-center section-arrow-primary-color bg-primary">
+            
+            
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
                <div class="container">
                   <div class="row">
+                  
+                  
+                  
                      <div class="col-md-12 text-white text-center">
                         <h2 class="section-title "> What Others Say About Us</h2>
                        <p class="section-sub-title">
@@ -28,8 +58,7 @@
             <section class="section-primary t-bordered">
 
                <div class="container">
- 
-
+ 		
                   <div class="row testimonial-three testimonial-three--col-three">
 
                      <div class="col-md-4 testimonial-three-col">
@@ -162,6 +191,9 @@
                         <a class="btn standard transparent-light" href="#" target="_self">
                            <span class="text"><i class="fa fa-cart-plus mr-5"></i> Purchase now!</span>
                         </a>
+                         <a class="btn standard transparent-light" href="#" target="_self">
+                          <span class="text"><i class="fa fa-cart-plus mr-5"></i> Purchase now!</span>
+                         </a>
                      </div>
                   </div>
                </div>
