@@ -27,7 +27,12 @@ public class GetBookController {
 		log.info("parsingJson : " + parsingJson);
 		
 		log.info("parsingJson.getDocuments().get(0).getIsbn()"+parsingJson.getDocuments().get(0).getIsbn().substring(11)); // get isbn(13char)
-		log.info("parsingJson.getDocuments().get(0).getIsbn()"+parsingJson.getDocuments().get(0).getAuthors()); // get isbn(13char)
+		log.info("parsingJson.getDocuments().get(0).getIsbn()"+parsingJson.getDocuments().get(0).getAuthors().toString()); // get isbn(13char)
+		log.info("parsingJson.getDocuments().get(0).getIsbn()"+parsingJson.getDocuments().get(1).getAuthors().toString()); // get isbn(13char)
+		log.info("parsingJson.getDocuments().get(0).getIsbn()"+parsingJson.getDocuments().get(2).getAuthors().toString()); // get isbn(13char)
+		log.info("parsingJson.getDocuments().get(0).getIsbn()"+parsingJson.getDocuments().get(3).getAuthors().toString()); // get isbn(13char)
+		log.info("parsingJson.getDocuments().get(0).getIsbn()"+parsingJson.getDocuments().get(4).getAuthors().toString()); // get isbn(13char)
+		log.info("parsingJson.getDocuments().get(0).getIsbn()"+parsingJson.getDocuments().get(5).getAuthors().toString()); // get isbn(13char)
 		return parsingJson!=null ? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
