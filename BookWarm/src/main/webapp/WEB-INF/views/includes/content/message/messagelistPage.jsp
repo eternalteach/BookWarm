@@ -35,7 +35,7 @@
                      <div class="col-md-4 testimonial-three-col">
                         <div class="testimonial-inner">
                            <div class="testimonial-image" itemprop="image">
-                              <img width="180" height="180" src="img/avatars/a1.jpeg">
+                              <img width="180" height="180" src="./resources/VertexEx/img/avatars/a1.jpeg">
                            </div>
                            <div class="testimonial-content">
                               <p>
@@ -54,7 +54,7 @@
                      <div class="col-md-4 testimonial-three-col">
                         <div class="testimonial-inner">
                            <div class="testimonial-image" itemprop="image">
-                              <img width="180" height="180" src="img/avatars/a2.jpeg">
+                              <img width="180" height="180" src="./resources/VertexEx/img/avatars/a2.jpeg">
                            </div>
 
                            <div class="testimonial-content">
@@ -74,7 +74,7 @@
                      <div class="col-md-4 testimonial-three-col">
                         <div class="testimonial-inner">
                            <div class="testimonial-image" itemprop="image">
-                              <img width="180" height="180" src="img/avatars/a3.jpeg">
+                              <img width="180" height="180" src="./resources/VertexEx/img/avatars/a3.jpeg">
                            </div>
                            <div class="testimonial-content">
                               <p>
@@ -93,7 +93,7 @@
                      <div class="col-md-4 testimonial-three-col">
                         <div class="testimonial-inner">
                            <div class="testimonial-image" itemprop="image">
-                              <img width="180" height="180" src="img/avatars/a4.jpg">
+                              <img width="180" height="180" src="./resources/VertexEx/img/avatars/a4.jpg">
                            </div>
 
                            <div class="testimonial-content">
@@ -113,7 +113,7 @@
                      <div class="col-md-4 testimonial-three-col">
                         <div class="testimonial-inner">
                            <div class="testimonial-image" itemprop="image">
-                              <img width="180" height="180" src="img/avatars/a5.jpg">
+                              <img width="180" height="180" src="./resources/VertexEx/img/avatars/a5.jpg">
                            </div>
                            <div class="testimonial-content">
                               <p>
@@ -132,7 +132,7 @@
                      <div class="col-md-4 testimonial-three-col">
                         <div class="testimonial-inner">
                            <div class="testimonial-image" itemprop="image">
-                              <img width="180" height="180" src="img/avatars/a6.jpeg">
+                              <img width="180" height="180" src="./resources/VertexEx/img/avatars/a6.jpeg">
                            </div>
 
                            <div class="testimonial-content">

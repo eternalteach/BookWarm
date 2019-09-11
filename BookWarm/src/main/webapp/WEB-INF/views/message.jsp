@@ -6,16 +6,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ㅡe</title>
 </head>
 <body>
-	<%@ include file="./includes/header/header-semi-transparent-light.jsp"%>
+	<%@ include file="./includes/header/header-dark-dropdown.jsp"%>
 	
 	
 
 	<%@ include file="./includes/content/message/messagelistPage.jsp"%>
 	
 	
-	<%@ include file="./includes/footer/footer-1.jsp"%>
+	<%@ include file="./includes/footer/shopFooter/shopFooterNav.jsp"%>	
 </body>
 </html>
