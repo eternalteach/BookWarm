@@ -23,7 +23,7 @@ public class HomeController {
 	@RequestMapping(value = "getBookInfo2", method = RequestMethod.GET)
 	public String first_page() {
 		log.info("============================= getBookInfo ===========================");
-		System.out.println("parsingJson Å×½ºÆ®");
+		System.out.println("parsingJson : ");
 		return "/getBookInfo2";
 	}
 
