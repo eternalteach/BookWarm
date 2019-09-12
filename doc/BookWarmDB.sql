@@ -32,8 +32,8 @@ book_published_date DATE,
 book_price number(10,0),
 book_price_for_sale number(10,0),
 book_stock varchar2(15),
-book_story varchar2(500),
-book_img varchar2(100),
+book_story varchar2(1500),
+book_img varchar2(500),
 constraint pk_book primary key(isbn)
 );
 
