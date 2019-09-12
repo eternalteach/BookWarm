@@ -11,5 +11,6 @@ public interface AddBookDetailInfoMapper {
 	public int addBook(List<BookVO> bookVOList);
 	public int addAuthors(List<AuthorsVO> authorsVOList);
 	public int addTranslators(List<TranslatorsVO> translatorsVOList);
+	public BookVO getBook(String isbn);
 	
 }

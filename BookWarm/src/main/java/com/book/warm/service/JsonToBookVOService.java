@@ -20,25 +20,37 @@ import lombok.extern.log4j.Log4j;
 @Service
 @Log4j
 public class JsonToBookVOService {
+
+	@Inject
+	AddBookDetailInfoMapper mapper;
+
 	public List<BookVO> JsonToBookVO(ParsingJson parsingJson) {
 		log.info("=============== JsonToBookVO ===============");
 		List<BookVO> bookVOList = new ArrayList<BookVO>();
 		for (int BookCnt = 0; BookCnt < parsingJson.getDocuments().size(); BookCnt++) {
-			String isbn = parsingJson.getDocuments().get(BookCnt).getIsbn().split(" ")[1];
-			String book_title = parsingJson.getDocuments().get(BookCnt).getTitle();
-			String writer_name = parsingJson.getDocuments().get(BookCnt).getAuthors().toString();
-			String translator_name = parsingJson.getDocuments().get(BookCnt).getTranslators().toString();
-			String publisher_name = parsingJson.getDocuments().get(BookCnt).getPublisher();
-			Integer book_tot_page = 1000;
-			Timestamp book_published_date = Function.StringToTimestampForAPI(parsingJson.getDocuments().get(BookCnt).getDatetime());
-			Integer book_price = parsingJson.getDocuments().get(BookCnt).getPrice();
-			Integer book_price_for_sale = parsingJson.getDocuments().get(BookCnt).getSalePrice()!=null?parsingJson.getDocuments().get(BookCnt).getSalePrice():0;
-			String book_stock = parsingJson.getDocuments().get(BookCnt).getStatus();
-			String book_story = parsingJson.getDocuments().get(BookCnt).getContents();
-			String book_img = parsingJson.getDocuments().get(BookCnt).getThumbnail();
-			BookVO bookVO = new BookVO(isbn,book_title,writer_name,translator_name,publisher_name,book_tot_page,book_published_date,book_price,book_price_for_sale,book_stock,book_story,book_img);
-			bookVOList.add(bookVO);
+			String isbnTo13Char = parsingJson.getDocuments().get(BookCnt).getIsbn().split(" ")[1];
+			if (mapper.getBook(isbnTo13Char) == null) {
+				String book_title = parsingJson.getDocuments().get(BookCnt).getTitle();
+				String writer_name = parsingJson.getDocuments().get(BookCnt).getAuthors().toString();
+				String translator_name = parsingJson.getDocuments().get(BookCnt).getTranslators().toString();
+				String publisher_name = parsingJson.getDocuments().get(BookCnt).getPublisher();
+				Integer book_tot_page = 1000;
+				Timestamp book_published_date = Function
+						.StringToTimestampForAPI(parsingJson.getDocuments().get(BookCnt).getDatetime());
+				Integer book_price = parsingJson.getDocuments().get(BookCnt).getPrice();
+				Integer book_price_for_sale = parsingJson.getDocuments().get(BookCnt).getSalePrice() != null
+						? parsingJson.getDocuments().get(BookCnt).getSalePrice()
+						: book_price;
+				String book_stock = parsingJson.getDocuments().get(BookCnt).getStatus();
+				String book_story = parsingJson.getDocuments().get(BookCnt).getContents();
+				String book_img = parsingJson.getDocuments().get(BookCnt).getThumbnail();
+				BookVO bookVO = new BookVO(isbnTo13Char, book_title, writer_name, translator_name, publisher_name,
+						book_tot_page, book_published_date, book_price, book_price_for_sale, book_stock, book_story,
+						book_img);
+				bookVOList.add(bookVO);
+			}
 		}
+		log.info("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*:" + bookVOList.toString());
 		return bookVOList;
 	}
 
@@ -49,9 +61,11 @@ public class JsonToBookVOService {
 		for (int BookIndex = 0; BookIndex < numOfBooks; BookIndex++) {
 			int numOfAuthors = parsingJson.getDocuments().get(BookIndex).getAuthors().size();
 			for (int authorsNum = 0; authorsNum < numOfAuthors; authorsNum++) {
-				String author = parsingJson.getDocuments().get(BookIndex).getAuthors().get(authorsNum);
 				String isbnTo13Char = parsingJson.getDocuments().get(BookIndex).getIsbn().split(" ")[1];
-				authrosVOList.add(new AuthorsVO(isbnTo13Char, author));
+				if (mapper.getBook(isbnTo13Char) == null) {
+					String author = parsingJson.getDocuments().get(BookIndex).getAuthors().get(authorsNum);
+					authrosVOList.add(new AuthorsVO(isbnTo13Char, author));
+				}
 			}
 		}
 		return authrosVOList;
@@ -62,15 +76,29 @@ public class JsonToBookVOService {
 		List<TranslatorsVO> translatorsVOList = new ArrayList<TranslatorsVO>();
 		int numOfBooks = parsingJson.getDocuments().size();
 		for (int BookIndex = 0; BookIndex < numOfBooks; BookIndex++) {
-			if (!(parsingJson.getDocuments().get(BookIndex).getTranslators().size()==0)) {
+			if (!(parsingJson.getDocuments().get(BookIndex).getTranslators().size() == 0)) {
 				int numOfTranslators = parsingJson.getDocuments().get(BookIndex).getTranslators().size();
 				for (int translatorsNum = 0; translatorsNum < numOfTranslators; translatorsNum++) {
-					String translator = parsingJson.getDocuments().get(BookIndex).getTranslators().get(translatorsNum);
 					String isbnTo13Char = parsingJson.getDocuments().get(BookIndex).getIsbn().split(" ")[1];
-					translatorsVOList.add(new TranslatorsVO(isbnTo13Char, translator));
+					if (mapper.getBook(isbnTo13Char) == null) {
+						String translator = parsingJson.getDocuments().get(BookIndex).getTranslators()
+								.get(translatorsNum);
+						translatorsVOList.add(new TranslatorsVO(isbnTo13Char, translator));
+					}
 				}
 			}
 		}
 		return translatorsVOList;
+	}
+
+	public int saveBookInfoToDB(ParsingJson parsingJson) {
+		log.info("=============== saveBookInfoToDB ===============");
+		int saveResult = 0;
+		if (!(JsonToBookVO(parsingJson).isEmpty())) {
+			saveResult += mapper.addBook(JsonToBookVO(parsingJson));
+			saveResult += mapper.addAuthors(JsonToAuthorsVO(parsingJson));
+			saveResult += mapper.addTranslators(JsonToTranslatorsVO(parsingJson));
+		}
+		return saveResult;
 	}
 }
