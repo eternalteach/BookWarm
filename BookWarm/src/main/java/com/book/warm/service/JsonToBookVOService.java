@@ -50,7 +50,6 @@ public class JsonToBookVOService {
 				bookVOList.add(bookVO);
 			}
 		}
-		log.info("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*:" + bookVOList.toString());
 		return bookVOList;
 	}
 
@@ -62,9 +61,10 @@ public class JsonToBookVOService {
 			int numOfAuthors = parsingJson.getDocuments().get(BookIndex).getAuthors().size();
 			for (int authorsNum = 0; authorsNum < numOfAuthors; authorsNum++) {
 				String isbnTo13Char = parsingJson.getDocuments().get(BookIndex).getIsbn().split(" ")[1];
-				if (mapper.getBook(isbnTo13Char) == null) {
-					String author = parsingJson.getDocuments().get(BookIndex).getAuthors().get(authorsNum);
-					authrosVOList.add(new AuthorsVO(isbnTo13Char, author));
+				String author = parsingJson.getDocuments().get(BookIndex).getAuthors().get(authorsNum);
+				AuthorsVO authorVO = new AuthorsVO(isbnTo13Char, author);
+				if (mapper.getAuthors(authorVO) == null) {
+					authrosVOList.add(authorVO);
 				}
 			}
 		}
@@ -79,11 +79,12 @@ public class JsonToBookVOService {
 			if (!(parsingJson.getDocuments().get(BookIndex).getTranslators().size() == 0)) {
 				int numOfTranslators = parsingJson.getDocuments().get(BookIndex).getTranslators().size();
 				for (int translatorsNum = 0; translatorsNum < numOfTranslators; translatorsNum++) {
+					// 유효성 검사 추가하기 ( 이미 같은 값이 있을 때 안 넣게 하기
 					String isbnTo13Char = parsingJson.getDocuments().get(BookIndex).getIsbn().split(" ")[1];
-					if (mapper.getBook(isbnTo13Char) == null) {
-						String translator = parsingJson.getDocuments().get(BookIndex).getTranslators()
-								.get(translatorsNum);
-						translatorsVOList.add(new TranslatorsVO(isbnTo13Char, translator));
+					String translator = parsingJson.getDocuments().get(BookIndex).getTranslators().get(translatorsNum);
+					TranslatorsVO translatorVO = new TranslatorsVO(isbnTo13Char, translator);
+					if (mapper.getTranslators(translatorVO) == null) {
+						translatorsVOList.add(translatorVO);
 					}
 				}
 			}
@@ -95,8 +96,15 @@ public class JsonToBookVOService {
 		log.info("=============== saveBookInfoToDB ===============");
 		int saveResult = 0;
 		if (!(JsonToBookVO(parsingJson).isEmpty())) {
+			log.info("BookVO 저장");
 			saveResult += mapper.addBook(JsonToBookVO(parsingJson));
+		}
+		if (!(JsonToAuthorsVO(parsingJson).isEmpty())) {
+			log.info("AuthorsVO 저장");
 			saveResult += mapper.addAuthors(JsonToAuthorsVO(parsingJson));
+		}
+		if (!(JsonToTranslatorsVO(parsingJson).isEmpty())) {
+			log.info("TranslatorsVO 저장");
 			saveResult += mapper.addTranslators(JsonToTranslatorsVO(parsingJson));
 		}
 		return saveResult;

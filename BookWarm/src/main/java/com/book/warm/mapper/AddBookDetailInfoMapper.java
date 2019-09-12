@@ -9,8 +9,15 @@ import com.book.warm.vo.TranslatorsVO;
 public interface AddBookDetailInfoMapper {
 
 	public int addBook(List<BookVO> bookVOList);
+
 	public int addAuthors(List<AuthorsVO> authorsVOList);
+
 	public int addTranslators(List<TranslatorsVO> translatorsVOList);
+
 	public BookVO getBook(String isbn);
-	
+
+	public AuthorsVO getAuthors(AuthorsVO authorsVO);
+
+	public TranslatorsVO getTranslators(TranslatorsVO translatorsVO);
+
 }

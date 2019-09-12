@@ -28,4 +28,11 @@
 	select * from book where isbn=#{isbn}
 	</select>
 	
+	<select id='getAuthors' parameterType='com.book.warm.vo.AuthorsVO' resultType='com.book.warm.vo.AuthorsVO'>
+	select * from authors where isbn=#{isbn} and author=#{author}
+	</select>
+	<select id='getTranslators' parameterType='com.book.warm.vo.TranslatorsVO' resultType='com.book.warm.vo.TranslatorsVO'>
+	select * from TRANSLATORS where isbn=#{isbn} and translator=#{translator}
+	</select>
+
 </mapper>
