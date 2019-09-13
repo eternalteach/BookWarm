@@ -4,6 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import lombok.extern.log4j.Log4j;
+
+
+@Log4j
 @Controller
 public class HomeController {
 	
@@ -16,8 +20,13 @@ public class HomeController {
 	public String library() {
 		return "/library";
 	}
-	@RequestMapping(value = "first_page", method = RequestMethod.GET)
+	@RequestMapping(value = "getBookInfo2", method = RequestMethod.GET)
 	public String first_page() {
-		return "/first_page";
+		log.info("============================= getBookInfo ===========================");
+		System.out.println("parsingJson : ");
+		return "/getBookInfo2";
 	}
+
+
+	
 }
