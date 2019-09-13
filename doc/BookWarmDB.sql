@@ -66,7 +66,7 @@ constraint fk_book_clause FOREIGN KEY(isbn)
 create table library(
 user_id varchar2(20) not null,
 list_no number(10,0) default 1,
-list_img_src varchar2(100),
+list_img_src varchar2(500),
 list_type varchar2(10) default 'basic',
 isbn varchar2(20) not null,
 list_added_date date default sysdate,
