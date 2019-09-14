@@ -7,7 +7,7 @@
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="resources/js/getbook.js"></script>
+<script type="text/javascript" src="/warm/resources/js/getbook.js"></script>
 <style>
 table.tmp {
     border-collapse: collapse;

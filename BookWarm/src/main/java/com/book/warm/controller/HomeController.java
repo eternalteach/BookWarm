@@ -20,15 +20,15 @@ public class HomeController {
 		return "/preview";
 	}
 	
-	@RequestMapping(value = "library", method = RequestMethod.GET)
+	@RequestMapping(value = "/library", method = RequestMethod.GET)
 	public String library() {
 		return "/library";
 	}
-	@RequestMapping(value = "getBookInfo2", method = RequestMethod.GET)
+	@RequestMapping(value = "/getBookInfo2", method = RequestMethod.GET)
 	public String first_page() {
 		log.info("============================= getBookInfo ===========================");
 		System.out.println("parsingJson : ");
-		return "/getBookInfo2";
+		return "getBookInfo2";
 	}
 
 

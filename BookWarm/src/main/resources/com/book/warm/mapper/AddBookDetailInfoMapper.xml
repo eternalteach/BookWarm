@@ -5,33 +5,47 @@
 <mapper namespace="com.book.warm.mapper.AddBookDetailInfoMapper">
 
 	<insert id='addBook' parameterType="java.util.List">
-		<foreach item="item" index="index" collection="list" open="INSERT ALL"  close="SELECT * FROM DUAL" >
-		into book (isbn, book_title, writer_name, translator_name, publisher_name, book_tot_page, book_published_date, book_price, book_price_for_sale, book_stock, book_story, book_img) values
- 		 (#{item.isbn}, #{item.book_title}, #{item.writer_name}, #{item.translator_name}, #{item.publisher_name}, #{item.book_tot_page}, #{item.book_published_date}, #{item.book_price}, #{item.book_price_for_sale}, #{item.book_stock}, #{item.book_story}, #{item.book_img})
-		</foreach>
+		insert into book (isbn, book_title,
+		writer_name, translator_name, publisher_name, book_tot_page,
+		book_published_date, book_price, book_price_for_sale, book_stock,
+		book_story, book_img) values
+		(#{isbn}, #{book_title}, #{writer_name}, #{translator_name}, #{publisher_name},
+		#{book_tot_page}, #{book_published_date}, #{book_price},
+		#{book_price_for_sale}, #{book_stock}, #{book_story}, #{book_img})
 	</insert>
-	
+	<!-- 리스트로 다중 등록시 <insert id='addBook' parameterType="java.util.List"> <foreach 
+		item="item" index="index" collection="list" open="INSERT ALL" close="SELECT 
+		* FROM DUAL"> <![CDATA[ into book (isbn, book_title, writer_name, translator_name, 
+		publisher_name, book_tot_page, book_published_date, book_price, book_price_for_sale, 
+		book_stock, book_story, book_img) values (#{item.isbn}, #{item.book_title}, 
+		#{item.writer_name}, #{item.translator_name}, #{item.publisher_name}, #{item.book_tot_page}, 
+		#{item.book_published_date}, #{item.book_price}, #{item.book_price_for_sale}, 
+		#{item.book_stock}, #{item.book_story}, #{item.book_img}) ]]> </foreach> 
+		</insert> -->
+
 	<insert id='addAuthors' parameterType="java.util.List">
-		<foreach item="item" index="index" collection="list" open="INSERT ALL"  close="SELECT * FROM DUAL" >
-		into AUTHORS (isbn, author) values
-		 (#{item.isbn},#{item.author})
-		</foreach>
+		insert into AUTHORS (isbn,
+		author) values
+		(#{isbn},#{author})
 	</insert>
 	<insert id='addTranslators' parameterType="java.util.List">
-		<foreach item="item" index="index" collection="list" open="INSERT ALL"  close="SELECT * FROM DUAL" >
-		into translators (isbn, translator) values
-		 (#{item.isbn},#{item.translator})
-		</foreach>
+		insert into translators
+		(isbn, translator) values
+		(#{isbn},#{translator})
 	</insert>
-	
+
 	<select id='getBook' resultType='com.book.warm.vo.BookVO'>
-	select * from book where isbn=#{isbn}
+		select * from book where isbn=#{isbn}
 	</select>
-	
-	<select id='getAuthors' parameterType='com.book.warm.vo.AuthorsVO' resultType='com.book.warm.vo.AuthorsVO'>
-	select * from authors where isbn=#{isbn} and author=#{author}
+
+	<select id='getAuthors'
+		parameterType='com.book.warm.vo.AuthorsVO'
+		resultType='com.book.warm.vo.AuthorsVO'>
+		select * from authors where isbn=#{isbn} and author=#{author}
 	</select>
-	<select id='getTranslators' parameterType='com.book.warm.vo.TranslatorsVO' resultType='com.book.warm.vo.TranslatorsVO'>
+	<select id='getTranslators'
+		parameterType='com.book.warm.vo.TranslatorsVO'
+		resultType='com.book.warm.vo.TranslatorsVO'>
 	select * from TRANSLATORS where isbn=#{isbn} and translator=#{translator}
 	</select>
 
