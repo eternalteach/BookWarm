@@ -1,13 +1,6 @@
-<%@page import="java.util.Date"%>
-<%@page import="java.text.SimpleDateFormat"%>
 <%
 	String context = request.getContextPath();
-	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
-	String todayAll = formatter.format(new Date());
-	String[] today = todayAll.split("-", 3);
-	int year = Integer.parseInt(today[0]);
 %>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <meta charset="utf-8">
@@ -463,6 +456,45 @@
 			delivery();
 		})
 
+		// 수량을 올릴 때마다 UI에 반영 & db에 반영
+		/* $('.cnt').click(function() {
+			var price;
+			var cnt;
+			var tot;
+			var totAllItems = 0;
+			var changeSubTotal = 0;
+			
+			// 모든 튜플의 수량을 가져온다.
+			$('.cnt').each(function(index, item) {
+				price = $('.price').eq(index).html();
+				cnt = item.value;
+				tot = price * cnt; // 각 튜플마다의 총액
+				totAllItems = totAllItems + tot; // 장바구니 총액
+				
+				// 각각 물품 총액에 반영
+				$('.tot').eq(index).html(tot);
+				
+				// 체크박스 O -> subtotal 적용
+				// 체크박스 X -> subtotal 적용 X
+				if($('.chkbox').eq(index).prop('checked')==true) {
+					changeSubTotal = changeSubTotal + parseInt($('.tot').eq(index).html());
+				}
+			})
+			
+			// 장바구니 총액에 반영
+			$('.totAllItems').html("<strong>" + totAllItems + "원</strong>");
+			// subTotal에 반영
+			$('.subTotal').html(changeSubTotal+"원");
+		}) */
+
+		// 삭제 버튼 클릭 >> 클릭한거 hidden처리
+		$('.fa-trash').on('click', function() {
+			// 1. 클릭한 것의 id를 가져온다
+			var getId = "#item-" + $(this).prop("id");
+			alert($(getId).prop("class"));
+			// 2. 그 id와 동일한 id를 가진 tr을 hidden
+			$(getId).attr("hidden", true);
+		})
 		
 		// 상단에 있는 체크박스 클릭시 >> 모두 선택 or 모두 선택 해제
 		$('#selectAll').on('click', function() {
@@ -563,62 +595,6 @@
         }).open();
     }
 </script>
-
-<script>
-  	$(document).ready(function() {
-  		
-  		// 적립금 사용
-  		$('#applyPoint').on('click', function() {
-  			var point = $('#point').val(); // 사용하려고 입력한 포인트
-  			var availablePoint = parseInt($('#availablePoint').text()); // 가용포인트
-  			var numExp = /[0-9]/; // 숫자만 입력하는 정규식
-  			
-  			if(numExp.test(point)) {
-  				// 받아온 값이 숫자면 parseInt 해준다.
-  				point = parseInt(point);
-   			
-  				if(availablePoint<point) {
-     			// 가용포인트<사용하려는 포인트 -> 경고창
-   				alert("가용 포인트는 "+availablePoint+"p 입니다.");
-   				$('#point').val('');
-   			}else {
-   				// 가용포인트>=사용포인트 -> 사용 포인트에 입력
-   				$('#usePoint').text(point);
-   				// 최종금액에 반영
-   				$('#discountPoint').text("<td class='cart-product-name'>-<span class='amount' id='discount'>"+point+"(포인트)</span></td>");
-   			}
-  			}else {
-  				// 숫자가 아닌 값 입력 시 -> 경고창, 입력부분 비워버리기
-  				alert('숫자만 입력 가능합니다.');
-  				alert(point);
-  				$('#point').val('');
-  			}
-  			
-  		})
-  		
-  		// 카드 결제 >> expired year (현재년도~10년뒤)
-  		for(var i = <%=year%>; i < <%=year+10%>; i++) {
-  			$('#cardyear').append('<option value='+i+'>'+i+'</option>')
-  		}
-  		
-  		// 쿠폰선택 클릭했을 때, 
-  		$('#pickCoupon').on('click', function() {
-  			window.open('<%=context%>/shop/pickCoupon','pickCoupon','width=430,height=500,location=no,status=no,scrollbars=yes');
-  			<%-- $.ajax({
-  				url: '<%=context%>/shop/pickCoupon',
-  				type: 'post',
-  				dataType: 'json',
-  				success: function(data) {
-  					console.log("ajax성공: "+data);
-		  			window.open(data,'pickCoupon','width=430,height=500,location=no,status=no,scrollbars=yes');
-  				}, error: function() {
-  					console.log("error!");
-  				}
-  			}) --%>
-  		})
-  	})
-</script>
-
 <!-- /shopChargePage.jsp에서 사용 -->
 
 

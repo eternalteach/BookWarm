@@ -219,14 +219,16 @@
 			var mail1 = $('#user_mail1').val();
 			var mail2 = $('#user_mail2').val();
 			var mail = mail1 + "@" + mail2;
+			
 			$('#form').append("<input type='hidden' name='user_mail' value='"+mail+"'>");
+			
 			
 			// 2. 생년월일 >> String으로 보내서 httpServletRequest로 받아야 한다.
 			var year = $('#year').val();
 			var month = $('#month').val();
 			var day = $('#day').val();
 			var bday = year+"-"+month+"-"+day;
-			$('#form').append("<input type='hidden' name='user_bday_string' value='"+bday+"'>");
+			$('#form').append("<input type='hidden' name='user_bday' value='"+bday+"'>");
 			
 			
 			// 3. 폰번호

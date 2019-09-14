@@ -16,6 +16,7 @@
                             <h2 class="mb-2 mt-0"><strong>회원가입</strong></h2>
                         </div>
                         
+                        
                         <div class="form-group">
                             <label>이름<span class="required">*</span></label>
                             <input type="text" class="form-control" value="${user_name}" name="user_name" id="user_name" maxlength="100" readonly>
@@ -87,7 +88,7 @@
                             <label>주소<span class="required">*</span></label>
                            	<div class="row">
                            		<div class="col-sm">
-                               	   <input type="text" id="sample4_postcode" name="user_zipcode" class="form-control" placeholder="우편번호" readonly>
+                               	   <input type="text" id="sample4_postcode" name="user_zipcode" class="form-control" placeholder="우편번호">
                                 </div>
                                 <div class="col-sm">
                                 	<input type="button" class="btn btn-primary pull-right no-margin-bottom no-margin-right" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
@@ -96,13 +97,13 @@
                              
                              <div class="row">
                                 <div class="col-sm">
-                               		<input type="text" id="sample4_roadAddress" name="user_addr" class="form-control" placeholder="도로명주소" readonly>
+                               		<input type="text" id="sample4_roadAddress" name="user_addr" class="form-control" placeholder="도로명주소">
                                 </div>
                              </div>
                              
                              <div class="row">
                                 <div class="col-sm">
-                                   <input type="text" id="sample4_jibunAddress" class="form-control" placeholder="지번주소" readonly>
+                                   <input type="text" id="sample4_jibunAddress" class="form-control" placeholder="지번주소">
                                 </div>
                              </div>
                                 
@@ -114,7 +115,7 @@
                                 </div>
 
                                 <div class="col-sm">
-                                   <input type="text" id="sample4_extraAddress" class="form-control" placeholder="참고항목" readonly>
+                                   <input type="text" id="sample4_extraAddress" class="form-control" placeholder="참고항목">
                                 </div>
                              </div>
                         </div>

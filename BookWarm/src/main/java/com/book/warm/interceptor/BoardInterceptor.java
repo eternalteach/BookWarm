@@ -18,9 +18,7 @@ public class BoardInterceptor extends HandlerInterceptorAdapter {
 		// session 객체를 가져온다.
 		HttpSession session = request.getSession();
 		// login처리를 담당하는 사용자 정보를 담고있는 객체를 가져옴
-		String member = (String)session.getAttribute("user_id");
-		
-		System.out.println("login 상태, id : "+member);
+		UserVO member = (UserVO)session.getAttribute("user_id");
 		
 		if(member==null) {
 			// 로그인 안 돼있는 상태면 로그인 폼으로 돌려보냄.

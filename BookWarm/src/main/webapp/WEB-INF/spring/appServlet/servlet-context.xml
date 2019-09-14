@@ -39,10 +39,6 @@
 				<mapping path="/register/registerSuccessPage"/>
 				<beans:ref bean="boardInterceptor"/>
 		</interceptor>
-		<interceptor>
-				<mapping path="/shop/**"/>
-				<beans:ref bean="boardInterceptor"/>
-		</interceptor>
 	</interceptors>
 	
 </beans:beans>

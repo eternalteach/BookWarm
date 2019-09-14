@@ -1,8 +1,5 @@
 package com.book.warm.controller;
 
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.util.Date;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -94,67 +91,10 @@ public class RegisterController {
 		return "redirect:/register/checkDuplicateRegister";
 	}
 	
-//	// 회원가입 
-//	@RequestMapping(value="/registerSuccess", method=RequestMethod.POST)
-//	public String registerSuccess(UserVO userVO, HttpServletRequest req) {
-//		System.out.println("registerSuccess()");
-//		// url로 접근한 경우 >> 회원가입(중복확인)페이지로 보내버린다.
-//		if(userVO==null)
-//			return "redirect:/checkDuplicateRegister";
-//		
-//		// 비번 암호화
-//		SecurityUtil sha2 = new SecurityUtil();
-//		String encryptPw = sha2.encryptSHA256(userVO.getUser_pw());
-//		userVO.setUser_pw(encryptPw);
-//		
-//		// user_bday : String->timestamp로 변환 후 setUser_bday()하기
-////		String user_bday = req.getParameter("user_bday");
-////		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-////		Date date = null;
-////		
-////		try {
-////			date = sdf.parse(user_bday);
-////		} catch (ParseException e) {
-////			e.printStackTrace();
-////		}
-////		
-////		System.out.println(date);
-////		
-//		System.out.println("폰번 : "+userVO.getUser_phone());		
-//		
-//		String str=req.getParameter("user_bday");
-//		
-//		System.out.println("user_bday : " + str);
-//		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd"); 
-//		java.util.Date t;
-//		try {
-//			t = sdf.parse(str);
-//			java.sql.Date st = new java.sql.Date(t.getTime());
-//			java.sql.Timestamp sts = new java.sql.Timestamp(t.getTime());
-//			
-//			userVO.setUser_bday(sts);
-//			System.out.println("성공");
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} 
-//		
-//		
-//		
-//		
-//		
-//		
-//
-//		
-//		// 받아온 데이터 db에 넣기
-//		registerService.insertNewUser(userVO);
-//		return "/registerSuccess";
-//	}
-	
-	// 회원가입 
+	// 회원가입 성공 페이지
 	@RequestMapping(value="/registerSuccess", method=RequestMethod.POST)
-	public String registerSuccess(UserVO userVO, HttpServletRequest req) {
-		System.out.println("registerSuccess()");
+	public String registerSuccess(UserVO userVO) {
+		
 		// url로 접근한 경우 >> 회원가입(중복확인)페이지로 보내버린다.
 		if(userVO==null)
 			return "redirect:/checkDuplicateRegister";
@@ -164,52 +104,11 @@ public class RegisterController {
 		String encryptPw = sha2.encryptSHA256(userVO.getUser_pw());
 		userVO.setUser_pw(encryptPw);
 		
-		String str = req.getParameter("user_bday_string");
-		
-		// String->Timestamp 방법1
-//		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd"); 
-//		java.util.Date t;
-//		try {
-//			t = sdf.parse(str);
-//			java.sql.Date st = new java.sql.Date(t.getTime());
-//			java.sql.Timestamp sts = new java.sql.Timestamp(t.getTime());
-//			
-//			userVO.setUser_bday(sts);
-//			System.out.println("성공");
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} 
-		
-		// String->Timestamp 방법2
-		str += " 00:00:00";
-		Timestamp ts = Timestamp.valueOf(str);
-		userVO.setUser_bday(ts);
-		
-		
+		System.out.println(userVO.getUser_pw());
 		// 받아온 데이터 db에 넣기
 		registerService.insertNewUser(userVO);
 		return "/registerSuccess";
 	}
-	
-//	// 회원가입 
-//	@RequestMapping(value="/registerSuccess", method=RequestMethod.POST)
-//	public String registerSuccess(UserVO userVO, HttpServletRequest req) {
-//		System.out.println("registerSuccess()");
-//		// url로 접근한 경우 >> 회원가입(중복확인)페이지로 보내버린다.
-//		if(userVO==null)
-//			return "redirect:/checkDuplicateRegister";
-//		
-//		// 비번 암호화
-//		SecurityUtil sha2 = new SecurityUtil();
-//		String encryptPw = sha2.encryptSHA256(userVO.getUser_pw());
-//		userVO.setUser_pw(encryptPw);
-//		
-//		System.out.println(userVO.getUser_pw());
-//		// 받아온 데이터 db에 넣기
-//		registerService.insertNewUser(userVO);
-//		return "/registerSuccess";
-//	}
 	
 	
 	// url로 접근한 경우 >> 회원가입(중복확인)페이지로 보내버린다.

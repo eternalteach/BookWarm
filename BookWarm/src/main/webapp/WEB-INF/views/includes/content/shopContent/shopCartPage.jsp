@@ -82,12 +82,32 @@
 		                                    </td>
 		                                    <!-- 쓰레기통 모양 아이콘 -->
 		                                    <td class="cart-product-remove">
-		                                       <a href="<%=path1%>/shop/removeCartItem?user_id=${vo.user_id}&isbn=${vo.isbn}" class="remove" title="Remove this item"><i class="fa fa-trash"></i></a>
+		                                       <%-- <a href="<%=path%>/shop/shop-cart?user_id=${vo.user_id}&isbn=${vo.isbn}" class="remove" title="Remove this item"><i class="fa fa-trash"></i></a> --%>
+		                                       <i class="fa fa-trash" id="${idx.count}"></i>
 		                                    </td>
 		                                 </tr>
 		                                 <!-- 한 개 기준(끝) -->
 		                              </c:forEach>
                               	  </div>
+	                              
+	                              
+                                 <!-- 쿠폰코드 있는 부분 -->
+                                 <tr class="cart-footer_item">
+                                    <td colspan="6" class="pt-35 pb-35 pl-0">
+                                       <div class="row">
+                                          <div class="col-md-4">
+                                             <div class="form-group">
+                                                <input class="form-control" type="text" placeholder="Enter Coupon Code.." id="example-text-input">
+                                             </div>
+                                          </div>
+
+                                          <div class="col-md-3">
+                                             <a href="#" class="btn btn-primary">쿠폰 적용</a>
+                                          </div>
+
+                                       </div>
+                                    </td>
+                                 </tr>
                               </tbody>
                            </table>
                         </div>
