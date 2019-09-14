@@ -2,12 +2,11 @@ package com.book.warm.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 
-import com.book.warm.vo.CartVO;
+import com.book.warm.vo.CartJoinBookVO;
+import com.book.warm.vo.CouponVO;
+import com.book.warm.vo.UserVO;
 
 public interface ShopMapper {
 	
@@ -19,12 +18,16 @@ public interface ShopMapper {
 //			"on t1.isbn = t2.isbn \r\n" + 
 //			"where user_id=#{user_id}\r\n" + 
 //			"order by t1.user_id")
-	public List<CartVO> cartList(@Param("user_id") String user_id);
+	public List<CartJoinBookVO> cartList(@Param("user_id") String user_id);
 	
 	public void removeCart(@Param("user_id") String user_id, @Param("isbn") String isbn);
 	
 	public void updateCnt(@Param("cart_cnt") int cart_cnt, @Param("cart_no") String cart_no);
 	
-	public CartVO getCartOne(@Param("cart_no") String cart_no);
+	public CartJoinBookVO getCartOne(@Param("cart_no") String cart_no);
+
+	public UserVO getUserInfo(@Param("user_id") String user_id);
+
+	public List<CouponVO> getCouponList(@Param("user_id") String user_id);
 	
 }
