@@ -7,6 +7,7 @@
 <html lang="kr">
 <head>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="resources/js/logintest.js"></script> 
 <link rel="stylesheet" href="./resources/css/main.css" />
 </head>
 <body>
@@ -129,6 +130,9 @@
 			$("." + modalname).fadeIn(300);
 		}
 		$(document).ready(function() {
+			var user_id=sessionStorage.getItem('user_id');
+			alert("유저 아이디" + user_id);
+			
 			$("#modal").hide();
 
 			$(".close").on('click', function(e) {

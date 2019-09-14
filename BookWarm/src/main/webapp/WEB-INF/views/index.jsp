@@ -18,7 +18,7 @@
  그 뒤 로그인 성공시 서재페이지로 이동, 비회원 미리보기는 새 창 띄워서 소개창 만들기 -->
 		<!-- 로그인 성공시 library 페이지로 이동 -->
 		<!-- 로그인 실패시 실패원인 띄우기 -->
-		임시로 만든 로그인 성공시 이동 링크 <a href="library">서재로 이동</a>
+		임시로 만든 로그인 성공시 이동 링크 <a href="#" id='gotolibrary'>서재로 이동</a> <!-- 나중에 지우기 -->
 	</div>
 		<div id="modal">
 			<div class="modal-library login-modal">
@@ -47,5 +47,14 @@
 			});
 
 		});
+		
+		// 나중에 지우기
+		$(document).ready(function(){
+			$("#gotolibrary").on("click",function(e){
+				sessionStorage.setItem('user_id', 'aaa');
+				$("#gotolibrary").attr("href","library");
+			})
+			
+		})
 	</script>
 </body>

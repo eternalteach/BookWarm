@@ -604,3 +604,6 @@
 
 <!-- Custom JS -->
 <script src="<%=context%>/resources/VertexEx/js/custom.js"></script>
+
+<!-- login 확인하기 -->
+<script type="text/javascript" src="resources/js/logintest.js"></script> 
