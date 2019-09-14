@@ -20,4 +20,6 @@ public interface AddBookDetailInfoMapper {
 
 	public TranslatorsVO getTranslators(TranslatorsVO translatorsVO);
 
+	public List<BookVO> getBookList();
+
 }

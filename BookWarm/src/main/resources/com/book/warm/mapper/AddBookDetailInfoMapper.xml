@@ -35,4 +35,8 @@
 	select * from TRANSLATORS where isbn=#{isbn} and translator=#{translator}
 	</select>
 
+	<select id='getBookList' resultType='com.book.warm.vo.BookVO'>
+	select * from book
+	</select>
+
 </mapper>

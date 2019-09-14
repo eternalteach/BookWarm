@@ -64,7 +64,7 @@ alert(title);
           data:{
               query: title,
               page:1,
-              size:1,
+              size:20,
              target:'title'
           },
           success : function(result){

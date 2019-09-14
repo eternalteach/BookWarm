@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.book.warm.mapper.LibraryMapper">
+
+	<insert id='addMyBook' parameterType='com.book.warm.vo.LibraryVO'>
+		insert into library (user_id, list_no, list_img_src, list_type, isbn) values(#{user_id},#{list_no},#{list_img_src},#{list_type},#{isbn})
+	</insert>
+	
+	<select id='getListNoCnt'  resultType='int'>
+	select count(list_no) from library where list_no=#{list_no} 
+	</select>
+
+</mapper>

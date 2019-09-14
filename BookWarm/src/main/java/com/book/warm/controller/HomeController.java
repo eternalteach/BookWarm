@@ -15,6 +15,10 @@ public class HomeController {
 	public String index() {
 		return "/index";
 	}
+	@RequestMapping(value = "/preview", method = RequestMethod.GET)
+	public String preview() {
+		return "/preview";
+	}
 	
 	@RequestMapping(value = "library", method = RequestMethod.GET)
 	public String library() {
