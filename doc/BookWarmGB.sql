@@ -1,417 +1,447 @@
+--------------- user ---------------(임지현)
+create table user_info(
+user_id varchar2(20),
+user_pw varchar2(64) not null,
+user_nickname varchar2(20) not null,
+user_name varchar2(20) not null,
+user_bday date not null,
+user_sex char(1) not null,
+user_phone varchar2(20) not null,
+user_mail varchar2(50) not null,
+user_zipcode number(10,0) not null,
+user_addr varchar2(100) not null,
+user_addr_detail varchar2(100),
+user_join_date date default sysdate,
+user_level number(1) default '1',
+user_tot_price number(15,0),
+user_point number(10,0),
+constraint pk_user_info primary key(user_id)
+);                     
+-------------------- book --------------------
+
+create table book(
+isbn varchar2(20),
+book_title varchar2(200) not null,
+writer_name varchar2(100)  not null,
+translator_name varchar2(100),
+publisher_name varchar2(100) not null,
+book_tot_page number(10,0) default 1000,
+book_published_date DATE,
+book_price number(10,0),
+book_price_for_sale number(10,0),
+book_stock varchar2(15),
+book_story varchar2(1500),
+book_img varchar2(500),
+constraint pk_book primary key(isbn)
+);
+
+--------------- 저자명 --------------- 
+create table authors (
+isbn varchar2(20) not null,
+author varchar2(100) not null,
+constraint fk_authors FOREIGN KEY(isbn)
+           REFERENCES book(isbn)           
+);
+
+--------------- 역자명 --------------- 
+create table translators (
+isbn varchar2(20) not null,
+translator varchar2(100) not null,
+constraint fk_translators FOREIGN KEY(isbn)
+           REFERENCES book(isbn)           
+);
+
+--------------- 책속 한줄 글귀 ---------------
+create table book_clause(
+isbn varchar2(20) not null,
+clause varchar2(300) not null,
+constraint fk_book_clause FOREIGN KEY(isbn)
+           REFERENCES book(isbn)
+);
+
+------------------내 서재------------------------------------
+
+create table library(
+user_id varchar2(20) not null,
+list_no number(10,0) default 1,
+list_img_src varchar2(100),
+list_type varchar2(10) default 'basic',
+isbn varchar2(20) not null,
+list_added_date date default sysdate,
+constraint fk_library FOREIGN KEY(user_id)
+           REFERENCES user_info(user_id)
+);
+
 -------------------- create log, loging board --------------------
 
 -- logBoard, logingBoard sequence 생성
-create sequence seq_logBoard;
 create sequence seq_logingBoard;
 
--- logBoard 보드 생성
-create table log_board(
-write_no number(10,0) PRIMARY key,
-user_id varchar2(50) not null,
-write_written_date date default sysdate,
-isbn VARCHAR2(20) not null,
-write_buy_date date ,
-read_amount number(10,0),
-read_stop number(10,0),
-read_star number(1,0)
-);
-		insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) values ('1',seq_logingBoard.nextval,270,400,to_date('19911011','yyyymmdd'),'');
-        insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) values ('2',seq_logingBoard.nextval,370,420,to_date('19911011','yyyymmdd'),'');
-        insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) values ('3',seq_logingBoard.nextval,580,610,to_date('19911011','yyyymmdd'),'checked');
-        
-        --재귀복사 insert into loging_board(isbn, write_no, start_page, end_page, start_date, end_date) (select isbn, seq_logingBoard.nextval, start_page,end_page,start_date,end_date from loging_board);
-select write_no, start_page, end_page, to_char(start_date,'yyyy-dd-mm') , end_date, isbn 
-from loging_board where isbn='isbn001' ;
-select * from loging_board;
-select write_no, start_page, end_page, start_date, end_date, isbn  from(
---페이징처리
-select /*INDEX_DESC(loging_board pk_board)*/ rownum rn, write_no, start_page, end_page, start_date, end_date, isbn  from loging_board where isbn='isbn002' and rownum<=20)where rn<10;
-
-
-
--- logingBoard 보드 생성
+-- logingBoard 보드 생성(기범)
 create table loging_board(
-isbn varchar2(20),
-write_no number(10,0) PRIMARY key,
-start_page number(4,0) default 1 not null,
-end_page number(4,0) not null,
+isbn varchar2(20) not null,
+user_id VARCHAR2(20) not null,
+write_no number(10,0),
+start_page number(10,0) default 1 not null,
+end_page number(10,0) not null,
 start_date date default sysdate,
-end_date varchar2(10) default 'false'); 
+end_date varchar2(10) default 'false',
+constraint pk_loging_board primary key(write_no),
+constraint fk_loging_board FOREIGN KEY(user_id)
+                REFERENCES user_info(user_id)
+);
 
-ALTER INDEX SYS_C007061 RENAME TO comm_index; 
+create table book_star (
+isbn varchar2(20) not null,
+user_id VARCHAR2(20) not null,
+star number(2,0) not null,
+constraint fk_book_star_isbn FOREIGN KEY(isbn)
+                REFERENCES book(isbn),
+constraint fk_book_star_user_id FOREIGN KEY(user_id)
+                REFERENCES user_info(user_id)
+);
 
-drop table loging_board;
 
 --독서감상테이블 감상번호 시퀀스
-create sequence review_no_seq;
---독서감상 테이블
+create sequence review_board_seq;
+
+--독서감상 테이블 (김해랑)
 create table review_board(
-review_no  NUMBER (10,0) primary key,
-user_id VARCHAR2(50),
+review_no  NUMBER (10,0),
+user_id VARCHAR2(20) not null,
 review_written_date date default sysdate,
 review_modify_date date default sysdate,
-isbn varchar2(20),
-review_ref number(4,0),
-review_title varchar2(200),
-review_content varchar2(2000),
-review_open varchar2(1) default 'N');
+isbn varchar2(20) not null,
+review_ref number(10,0),
+review_title varchar2(200) not null,
+review_content varchar2(2000) not null,
+review_open varchar2(7),
+constraint pk_review_board primary key(review_no),
+constraint fk_review_board FOREIGN KEY(user_id)
+                REFERENCES user_info(user_id)
+);
 
 ----댓글
---create sequence rno_seq;
---
-----댓글 테이블
---create table opinion_reply(
---rno number(10,0) primary key,
---opinion_no number(10),
---userid varchar2(20),
---re_content varchar2(200)
---);
---파일업로드도 보류..
+create sequence review_comment_seq;
+
+----댓글 테이블 (김해랑)(9/5 review_reply -> review_comment로 수정)
+create table review_comment(
+    review_cmt_no number(10,0),
+    review_no number(10,0) not null,
+    user_id varchar2(20) not null,
+    review_cmt_content varchar2(200) not null,
+    review_cmt_written_date date default sysdate,
+    review_cmt_modified_date date default sysdate,
+    CONSTRAINT pk_review_comment primary key (review_cmt_no),
+    constraint fk_review_comment FOREIGN KEY(review_no)
+               REFERENCES review_board(review_no)
+);
+create index idx_review_comment on review_comment(review_no desc, review_cmt_no asc);
+
+
+--파일첨부(김해랑)
+create table review_attach(
+    uuid varchar2(100),
+    uploadPath varchar2(200) not null,
+    fileName varchar2(100) not null,
+    review_no number(10,0) not null,
+    constraint pk_review_attach primary key(uuid),
+    constraint fk_review_attach FOREIGN KEY(review_no)
+               REFERENCES review_board(review_no)
+);
+
 
 --해쉬태그 시퀀스
 create sequence hashtag_seq;
---해쉬태그 테이블 
+
+--해쉬태그 테이블 (김해랑 사용 예정 - 보류)
 create table hashtag(
-opinion_no number(10,0),
-tag_name varchar2(50) not null
+review_no number(10,0) not null,
+tag_name varchar2(50) not null,
+constraint fk_hashtag FOREIGN KEY(review_no)
+           REFERENCES review_board(review_no)
 );
 
-
-
-------------------------------------------------------------
 
 -------------------- create community board --------------------
---community board
+
+--community board (박기범) (9/6 컬럼 크기, pk이름 수정)
 create table community_board(
-comm_no NUMBER(10),
-user_id VARCHAR2(20),
+comm_no NUMBER(10,0),
+user_id VARCHAR2(20) not null,
 comm_subject varchar2(30),
-comm_title VARCHAR2(200),
-comm_content VARCHAR2(3000),
+comm_title VARCHAR2(200) not null,
+comm_content VARCHAR2(2000) not null,
 comm_written_time DATE DEFAULT SYSDATE,
 comm_modify_time DATE DEFAULT SYSDATE,
-comm_clicked NUMBER(10) DEFAULT 0,
-comm_group NUMBER(10),
-comm_step NUMBER(4),
-comm_indent NUMBER(4)
+comm_clicked NUMBER(10,0) DEFAULT 0,
+comm_group NUMBER(10,0),
+comm_step NUMBER(10,0),
+comm_indent NUMBER(10,0),
+constraint pk_community_board primary key(comm_no)
 );
-
--- pk설정, comm의 pk를 comm_pk_board로 설정
-ALTER TABLE community_board ADD CONSTRAINT comm_pk_board primary KEY(comm_no);
 
 --comunity board sequence
 create sequence community_board_seq;
 create sequence community_board_comment_seq;
 
--- community_board_comment table
+-- community_board_comment table (박기범)
 create table community_board_comment(
-comm_no number(10),
-comm_cmt_no NUMBER(10),
-user_id VARCHAR2(20),
-comm_cmt_content VARCHAR2(3000),
+comm_no number(10,0) not null,
+comm_cmt_no NUMBER(10,0),
+user_id VARCHAR2(20) not null,
+comm_cmt_content VARCHAR2(2000) not null,
 comm_cmt_written_time DATE DEFAULT SYSDATE,
 comm_cmt_modify_time DATE DEFAULT SYSDATE,
 comm_cmt_deleted char(1) default 'n',
-comm_cmt_group NUMBER(10),
-comm_cmt_step NUMBER(4),
-comm_cmt_indent NUMBER(4));
-
---comm_no fk설정
-ALTER TABLE community_board_comment ADD CONSTRAINTS comm_no FOREIGN KEY(comm_no) REFERENCES community_board;
--- community_board_comment pk설정 및 이름 설정
-ALTER TABLE community_board_comment ADD CONSTRAINT comm_cmt_pk_board primary KEY(comm_cmt_no);
-------------------------------------------------------------
-
--------------------- book --------------------
---book ISBNimg
-create table Book_cover(
-isbn varchar2(20),
-img_src VARCHAR2(1000)
+comm_cmt_group NUMBER(10,0),
+comm_cmt_step NUMBER(10,0),
+comm_cmt_indent NUMBER(10,0),
+constraint pk_community_board_comment primary key(comm_cmt_no),
+constraint fk_community_board_comment FOREIGN KEY(comm_no)
+           REFERENCES community_board(comm_no)
 );
 
---book
-create table book(
-isbn varchar2(20) primary key,
-book_title varchar2(50) not null,
-writer_no number(20) ,
-translator_no number(20),
-publisher_no number(20),
-book_tot_page number(5) ,
-book_published_date DATE,
-book_price number(7) not null,
-book_price_for_sale number(7),
-book_stock number(10) not null,
-book_intro varchar2(500),
-book_idx varchar2(500),
-book_story varchar2(500),
-book_img varchar2(100)
-);
---drop table book;
-select * from book;
-insert into book(isbn, BOOK_TITLE, WRITER_NO, TRANSLATOR_NO, PUBLISHER_NO, BOOK_TOT_PAGE, BOOK_PUBLISHED_DATE, BOOK_PRICE, BOOK_PRICE_FOR_SALE, BOOK_STOCK, BOOK_INTRO, BOOK_IDX, BOOK_STORY, BOOK_IMG)
-values(1,'해리포터 1',1,26,26,500,'2019/09/01',10500,10000,26,'The official playscript of the original West End production of Harry Potter and the Cursed Child.',
-'제1장 리들 하우스','마법사 세계의 최대 게임인 퀴디치 월드컵 중 볼드모트의 상징인 어둠의 표식이','resources/img/BookCover/book001.jpg');
-insert into book(isbn, BOOK_TITLE, WRITER_NO, TRANSLATOR_NO, PUBLISHER_NO, BOOK_TOT_PAGE, BOOK_PUBLISHED_DATE, BOOK_PRICE, BOOK_PRICE_FOR_SALE, BOOK_STOCK, BOOK_INTRO, BOOK_IDX, BOOK_STORY, BOOK_IMG)
-values(2,'해리포터 2',1,26,26,500,'2019/09/01',10500,10000,26,'The official playscript of the original West End production of Harry Potter and the Cursed Child.',
-'제1장 리들 하우스','마법사 세계의 최대 게임인 퀴디치 월드컵 중 볼드모트의 상징인 어둠의 표식이','resources/img/BookCover/book002.jpg');
-insert into book(isbn, BOOK_TITLE, WRITER_NO, TRANSLATOR_NO, PUBLISHER_NO, BOOK_TOT_PAGE, BOOK_PUBLISHED_DATE, BOOK_PRICE, BOOK_PRICE_FOR_SALE, BOOK_STOCK, BOOK_INTRO, BOOK_IDX, BOOK_STORY, BOOK_IMG)
-values(3,'해리포터 1',1,26,26,500,'2019/09/01',10500,10000,26,'The official playscript of the original West End production of Harry Potter and the Cursed Child.',
-'제1장 리들 하우스','마법사 세계의 최대 게임인 퀴디치 월드컵 중 볼드모트의 상징인 어둠의 표식이','resources/img/BookCover/book003.jpg');
----------------------------------------------
-
---------------- 작가 ---------------
-create table writer(
-    writer_no number(10,0), 
-    writer_name varchar(50),
-    writer_info varchar(50)
-    );
----------------------------------------------
---------------- 역자 ---------------
-create table translator(
-translator_no number(20) primary Key,
-translator_name varchar2(20) not null,
-translator_info varchar2(200)
-);
----------------------------------------------
---------------- 출판사 ---------------
-create sequence publisher_seq;
-create table publisher(
-    publisher_no number(20,0) primary key,
-    publisher_name varchar(50) not null,
-    publisher_phone number(20,0),
-    publisher_addr varchar(50) 
-);
-
----------------------------------------------
-
-
-
---------------- 카테고리 ---------------
-create table category (
-isbn varchar2(20) not null,
-genre varchar2(20) not null
-);
----------------------------------------------
---------------- 책속 한줄 글귀 ---------------
-create table book_clause(
-isbn varchar2(20) not null,
-clause varchar2(300) not null
-);
----------------------------------------------
-
---결제
-create table pay(
-pay_no varchar2(20) primary key,
-pay_way varchar2(20) not null,
-pay_total number(10,0) not null,
-pay_refund_account varchar2(50) not null
-);
-
---------------- cart ---------------
-create table cart(
-cart_no number(20) primary key,
-user_id varchar2(20), -- fk 설정하기
-isbn varchar2(20), --fk설정하기
-cart_cnt number(20));
-
----------------------------------------------
-
---------------- user ---------------
-create table user_info(
-userid varchar2(20) primary key,
-userpw varchar2(20) not null,
-user_nickname varchar2(20),
-user_name varchar2(20),
-user_bday date,
-user_sex char(1),
-user_phone varchar2(20),
-user_mail varchar2(50),
-user_zipcode number(10,0),
-user_addr varchar2(100),
-user_addr_detail varchar2(100),
-user_join_date date,
-user_level varchar2(10),
-user_tot_price number(30,0),
-user_point number(20,0),
-user_agree char(1)
-);
+-- community Board Comment Index
+create index idx_comm_cmt on community_board_comment (comm_no desc, comm_cmt_no asc);
+ 
+---------------------------------------------------------------
 
 --친구
 create table friend(
-userid varchar2(20),
-friend_id varchar2(20));
+user_id varchar2(20) not null,
+friend_id varchar2(20) not null,
+constraint fk_friend_user_id FOREIGN KEY(user_id)
+           REFERENCES user_info(user_id),
+constraint fk_friend_friend_id FOREIGN KEY(friend_id)
+           REFERENCES user_info(user_id)
+);
+
 
 --메시지 기능
 create sequence msg_seq;
+
 create table msg_table(
-msg_no number(20,0),
-msg_send_id varchar2(20),
-msg_get_id varchar2(20),
-msg_title varchar2(20),
-msg_content varchar2(500),
+msg_no number(10,0),
+msg_send_id varchar2(20) not null,
+msg_get_id varchar2(20) not null,
+msg_title varchar2(200) not null,
+msg_content varchar2(2000) not null,
 msg_send_time date default sysdate,
-msg_read_time date default sysdate
+msg_read_time date default sysdate,
+constraint pk_msg_table primary key(msg_no),
+constraint fk_msg_table_send_id FOREIGN KEY(msg_send_id)
+           REFERENCES user_info(user_id),
+constraint fk_msg_table_get_id FOREIGN KEY(msg_get_id)
+           REFERENCES user_info(user_id)
 );
 
---내 서재
-create table library(
-userid varchar2(20),
-list_no number(20,0)
-list_type varchar2(10),
-isbn varchar2(20),
-list_added_date date default sysdate
-);
-
-
---회원등급 (이건 왜 필요하지?)
-create table user_level(
-user_level varchar2(10) not null,
-level_qualification(100) not null);
 
 --쿠폰
 create table coupon(
-coupon_no varchar2(15) primary key,
+coupon_no varchar2(15),
 coupon_name varchar2(20) not null,
-coupon_req varchar2(100),
-coupon_use_req varchar2(100),
+coupon_req number(1),
+coupon_use_req number(6),
 coupon_discount_percent number(10,0),
-coupon_discount_price number(10,0),
-coupon_validate date not null
+coupon_validate date not null,
+constraint pk_coupon primary key(coupon_no)
 );
+
 
 --보유 쿠폰
 create table coupon_no(
-coupon_no varchar2(15),
-userid varchar2(20),
-coupon_available char(1) default 'y'
+coupon_no varchar2(15) not null,
+user_id varchar2(20) not null,
+coupon_available char(1) default 'y',
+constraint fk_coupon_no_coupon_no FOREIGN KEY(coupon_no)
+           REFERENCES coupon(coupon_no),
+constraint fk_coupon_no_user_id FOREIGN KEY(user_id)
+           REFERENCES user_info(user_id)
+);
+
+
+--결제
+create table pay(
+pay_no varchar2(20),
+pay_way varchar2(20) not null,
+pay_total number(10,0) not null,
+pay_refund_account varchar2(50) not null,
+constraint pk_pay primary key(pay_no)
 );
 
 --주문
-create sequence order_seq;
-create table order(
-order_no varchar2(20) primary key,
-userid varchar2(20) not null,
-order_date date not null,
-isbn varchar2(20),
-order_cnt number(10,0) not null,
-order_tot number(10,0) not null,
-order_start_date date,
-order_pay_date date,
+create sequence orders_seq;
+create table orders(
+orders_no varchar2(20),
+user_id varchar2(20) not null,
+orders_date date not null,
+isbn varchar2(20) not null,
+orders_cnt number(10,0) not null,
+orders_tot number(10,0) not null,
+orders_start_date date not null,
+orders_pay_date date not null,
 coupon_no varchar2(20),
 post_no varchar2(20),
-pay_no varchar2(20));
-
-
---주문내역
-create table orderview(
-order_no varchar2(20) primary key,
-userid varchar2(20),
-order_status varchar2(10)
+pay_no varchar2(20) not null,
+orders_status varchar2(10),
+constraint pk_orders primary key(orders_no),
+constraint fk_orders_pay_no FOREIGN KEY(pay_no)
+           REFERENCES pay(pay_no)
 );
+-- cf. 주문 테이블에 fk가 더 있을 수 있어 fk_테이블명_컬럼명 으로 fk 명명.
+
+
+--------------- cart ---------------(임지현)
+
+create table cart(
+cart_no number(20),
+user_id varchar2(20) not null, -- fk 설정하기
+isbn varchar2(20) not null, --fk설정하기
+cart_cnt number(20),
+constraint pk_cart primary key(cart_no),
+constraint fk_cart_user_id FOREIGN KEY(user_id)
+           REFERENCES user_info(user_id),
+constraint fk_cart_isbn FOREIGN KEY(isbn)
+           REFERENCES book(isbn)
+);
+
+-- cart_no 시퀀스
+create sequence CART_SEQ;
 
 
 --------------- 책으로 답하는 메모보드 ---------------
+
 -- 메모보드 시퀀스 생성
 create sequence memo_board_seq;
 create sequence book_reply_seq;
 
 CREATE TABLE memo_board(
-memo_no number(20) primary key,
-user_id varchar2(20),
-memo_title_b varchar2(100),
-memo_content_b varchar(3000),
+memo_no number(10,0),
+user_id varchar2(20) not null,
+memo_content_b varchar(2000) not null,
 memo_written_time date default sysdate,
-memo_modify_time date default sysdate
+memo_modify_time date default sysdate,
+constraint pk_memo_board primary key(memo_no)
 );
 
 --메모보드 책 댓글
-CREATE TABLE book_reply(
-book_re_no number(20) primary key,
-memo_no number(20), -- fk 설정하기
-user_id varchar2(20),
-isbn varchar2(20),
-book_re_content varchar(500),
-book_re_written_time date default sysdate,
-book_re_modify_time date default sysdate,
-book_re_like number(10) default 0
+CREATE TABLE memo_comment(
+memo_cmt_no number(10,0),
+memo_no number(10,0) not null, -- fk 설정하기
+user_id varchar2(20) not null,
+isbn varchar2(20) not null,
+memo_cmt_content varchar(200) not null,
+memo_cmt_written_time date default sysdate,
+memo_cmt_modify_time date default sysdate,
+memo_cmt_like number(10,0) default 0,
+constraint pk_memo_comment primary key(memo_cmt_no),
+constraint fk_memo_comment FOREIGN KEY(memo_no)
+           REFERENCES memo_board(memo_no)
 );
--- book_reply memo_no 외래키 설정
-ALTER TABLE book_reply ADD CONSTRAINTS memo_no FOREIGN KEY(memo_no) REFERENCES memo_board;
-------------------------------------------------------------------------------------------
-
-
-
-
-
 
 
 ------------------------------ MD추천 (큐레이션) ------------------------------
 create sequence curation_seq;
 
 create table curation (
-curation_no number(10) primary key,
+curation_no number(10),
 curation_name varchar2(20) not null,
-isbn varchar2(20));
+isbn varchar2(20) not null,
+constraint pk_curation primary key(curation_no)
+);
 
----------------------------------------------------------------------------
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+-------------------------sample data--------------------------------------------------
 
+-- user_info 테이블 sample data(지현)
 
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('aaa','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user1','유저1',TO_DATE('1994-12-31'),'f', '010-1231-1231', 'aaa@naver.com', 12345, '서울특별시 영등포구 양평동1가',0,1000, 1, sysdate);
 
--- sample date (log board, loging board)
-insert into log_board (write_no,user_id,ISBN,write_buy_date)values(seq_logBoard.nextval, 'user00', 'isbn001', sysdate);
-insert into loging_board (isbn,write_no, start_date, start_page, end_date,end_page) values('isbn001',seq_logingBoard.nextval, sysdate, 70, sysdate,500);
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('bbb','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user2','유저2',TO_DATE('1994-1-3'),'f', '010-1231-1232', 'bbb@naver.com', 12312, '서울특별시 영등포구 양평동2가',0,500, 2, sysdate);
 
-select * from log_board;
-select * from loging_board;
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('ccc','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user3','유저3',TO_DATE('1994-2-20'),'m', '010-1211-1231', 'ccc@naver.com', 12245, '서울특별시 영등포구 당산동1가',0,700, 1, sysdate);
 
---테스트
-select * from loging_board where write_no=21;
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('ddd','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user4','유저4',TO_DATE('1994-8-3'),'f', '010-1111-1231', 'ddd@naver.com', 11145, '서울특별시 영등포구 문래동5가',0,20000, 1, sysdate);
 
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('eee','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user5','유저5',TO_DATE('1994-4-5'),'m', '010-1212-1111', 'eee@naver.com', 55555, '서울특별시 영등포구 양평동5가',0,2000, 3, sysdate);
 
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('fff','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user6','유저6',TO_DATE('1994-2-20'),'m', '010-2222-1231', 'fff@naver.com', 12333, '서울특별시 영등포구 문래동1가',0,500, 2, sysdate);
 
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('ggg','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user7','유저7',TO_DATE('1994-2-24'),'m', '010-2822-1231', 'ggg@naver.com', 15133, '서울특별시 영등포구 영등포동1가',0,1000, 3, sysdate);
 
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('hhh','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user8','유저8',TO_DATE('1994-9-27'),'f', '010-2022-1231', 'hhh@naver.com', 12333, '서울특별시 영등포구 문래동1가',0,0, 1, sysdate);
 
---comunity board sample data
-insert into community_board (comm_no, user_id, comm_subject, comm_title, comm_content, comm_clicked, comm_group,comm_step,comm_indent)
-VALUES (community_board_seq.nextval, 'userID02', 'comm_sbject', 'comm_title', 'comm_content' ,0, community_board_seq.currval, 0, 0);
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('iii','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user9','유저9',TO_DATE('1994-9-20'),'m', '010-2113-1231', 'iii@naver.com', 15133, '서울특별시 영등포구 영등포동1가',0,0, 1, sysdate);
 
--- community board select test
-select * from community_board;
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('jjj','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','user10','유저10',TO_DATE('1984-9-20'),'m', '010-2183-1231', 'jjj@naver.com', 15133, '서울특별시 영등포구 영등포동1가',0,0, 1, sysdate);
 
--- community board get list test
-select * from community_board order by comm_no desc;
+commit;
 
-select * from community_board;
--- community board modify test
-update community_board SET comm_title = 'modify', comm_content='수정된 내용12' where comm_no=22;
--- community board delete test
-delete community_board where comm_no=5;
+                                                          
+                                                          
+-- community_board sample_Data
+insert into community_board values(COMMUNITY_BOARD_SEQ.nextval, 'admin1', '말머리','말랑말랑','해랑해랑',sysdate,sysdate,0,0,0,0);
+insert into community_board values(COMMUNITY_BOARD_SEQ.nextval, 'admin1', '창의력제로','커피가땡기는아침','달달한 자바칩이필요해',sysdate,sysdate,0,0,0,0);
+insert into community_board values(COMMUNITY_BOARD_SEQ.nextval, 'admin1', '라이언이보고있다','누가누가 늦게오나','경운씨가  먼저왔네',sysdate,sysdate,0,0,0,0);
+insert into community_board values(COMMUNITY_BOARD_SEQ.nextval, 'admin2', '아프지마요','아프면 병원가야지','푹 쉬고 나오셔요',sysdate,sysdate,0,0,0,0);
+insert into community_board values(COMMUNITY_BOARD_SEQ.nextval, 'admin2', '정상적인','샘플 데이터 입력','이 글은 정상적인가?',sysdate,sysdate,0,0,0,0);
+insert into community_board values(COMMUNITY_BOARD_SEQ.nextval, 'admin3', '귀찮다','나한테 왜그래','목이너무아프잖아',sysdate,sysdate,0,0,0,0);
+insert into community_board values(COMMUNITY_BOARD_SEQ.nextval, 'admin3', '양경운','메롱>ㅜ<','크하하하하하',sysdate,sysdate,0,0,0,0);
+insert into community_board values(COMMUNITY_BOARD_SEQ.nextval, 'admin3', '페이징처리','할때마다보이게','게시글은 10개로끊자',sysdate,sysdate,0,0,0,0);
+insert into community_board values(COMMUNITY_BOARD_SEQ.nextval, 'admin2', '임지현','바아아아보','푸헬헬헬헬',sysdate,sysdate,0,0,0,0);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
 
---ISBNimg data
-insert into book_cover (isbn,img_src)VALUES ('isbn001','resources/img/ISBNimg/book001.jpg');
-insert into book_cover (isbn,img_src)VALUES ('isbn001','resources/img/ISBNimg/book002.jpg');
-insert into book_cover (isbn,img_src)VALUES ('isbn001','resources/img/ISBNimg/book003.jpg');
+--community_board_comment Sample_Data
+insert into community_board_comment values(1, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin1', '댓글내용',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment values(1, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin2', '감사합니다',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment values(1, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin3', '나는요',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment values(1, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin1', '오빠가',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment values(1, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin2', '좋은걸',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment values(2, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin3', '어떻게',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment values(2, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin1', '좋은날',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment values(2, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin2', '아이유',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment values(2, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin3', '와 귀찮다',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment values(2, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin1', '댓글 언제 각 게시글마다 다 달지?',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
 
-select * from book_cover;
--- getBookImg Test (첫 이미지 가지고오기)
-select * from (select * from book_cover where isbn='isbn001') where rownum=1;
-delete book_cover where isbn='isbn001';
-
-
-select * from community_board;
-
-select * from community_board_comment;
-
---페이징처리 한 community board 리스트 불러오기
-select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_group,comm_step,comm_indent from(
-select rownum rn, comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_group,comm_step,comm_indent from(
-select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_group,comm_step,comm_indent  from community_board
-  order by comm_group desc, comm_step asc
-  )
-  ) where rn> 10 AND rn<=20;
-
-
-select * from(
-select rownum rn, comm_no, comm_cmt_no, user_id,comm_cmt_content,comm_cmt_written_time,comm_cmt_modify_time, comm_cmt_deleted,comm_cmt_group,comm_cmt_step,comm_cmt_indent from(
-select * from community_board_comment where comm_no=5
-  order by comm_cmt_group desc, comm_cmt_step asc)) where rn> (1-1)*10 AND rn<=1*10;

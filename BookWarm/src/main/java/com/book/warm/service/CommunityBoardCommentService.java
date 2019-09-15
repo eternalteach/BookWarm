@@ -6,6 +6,7 @@ import com.book.warm.page.CommunityCommentPageDTO;
 import com.book.warm.page.Criteria;
 import com.book.warm.vo.CommunityBoardCommentVO;
 
+
 public interface CommunityBoardCommentService {
 
 	public int register(CommunityBoardCommentVO communityBoardCommentVO);
