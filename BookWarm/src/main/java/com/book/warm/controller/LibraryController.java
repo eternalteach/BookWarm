@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.book.warm.mapper.LibraryMapper;
-import com.book.warm.vo.CommunityBoardVO;
 import com.book.warm.vo.LibraryVO;
 
 import lombok.extern.log4j.Log4j;
@@ -22,12 +21,6 @@ public class LibraryController {
 	@Inject
 	LibraryMapper mapper;
 
-
-	@RequestMapping(value = "/aaaaaaaaaa", method = RequestMethod.POST)
-	public String communityBoardSaveWrite(CommunityBoardVO communityBoardVO) throws Exception {
-		log.info("==================== communityBoardSaveWrite() ====================");
-		return "redirect:aaaaaaaaaaa";
-	}
 	@RequestMapping(value = "/library", method = RequestMethod.GET)
 	public String library(HttpSession session,HttpServletRequest request, LibraryVO libraryVO, Model model) throws Exception {
 		log.info("==================== communityBoardSaveWrite() ====================");
