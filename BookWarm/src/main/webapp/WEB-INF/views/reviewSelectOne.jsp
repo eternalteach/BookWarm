@@ -979,11 +979,11 @@
         <!--End Footer-Wrap-->
     </div>
     
-    // jQuery 사용을 위해 cdn 추가
+    <!-- jQuery 사용을 위해 cdn 추가 -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     
     
-    // 댓글 처리를 위한 comment.js 추가
+    <!-- 댓글 처리를 위한 comment.js 추가 -->
     <script type="text/javascript" src = "/warm/resources/Vertex/js/comment.js"></script>
     
     <script type="text/javascript" >
