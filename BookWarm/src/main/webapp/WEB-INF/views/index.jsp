@@ -49,12 +49,11 @@
 		});
 		
 		// 나중에 지우기
-		$(document).ready(function(){
+		 $(document).ready(function(){
 			$("#gotolibrary").on("click",function(e){
-				sessionStorage.setItem('user_id', 'aaa');
+				/* sessionStorage.setItem('user_id', 'aaa'); */
 				$("#gotolibrary").attr("href","library");
-			})
-			
-		})
+			});
+		}); 
 	</script>
 </body>

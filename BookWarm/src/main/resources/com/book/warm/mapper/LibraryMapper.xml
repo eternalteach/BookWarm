@@ -11,5 +11,9 @@
 	<select id='getListNoCnt'  resultType='int'>
 	select count(list_no) from library where list_no=#{list_no} 
 	</select>
+	
+	<select id='getLibraryBooks'  resultType='com.book.warm.vo.LibraryVO'>
+	select * from library where user_id=#{user_id} AND list_no=1 
+	</select>
 
 </mapper>
