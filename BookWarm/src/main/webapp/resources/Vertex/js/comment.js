@@ -28,7 +28,7 @@ var commentService = (function(){
 	
 //	댓글 불러오기
 	function getList(param, callback, error) {
-		
+
 		var review_no = param.review_no;
 		var page = param.page || 1;
 		

@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -98,7 +100,6 @@ public class ReviewBoardController {
 		// 그냥 여기서 list를 더해주면 안되나?
 		
 		
-		System.out.println("혹시 list가 있나여");
 		rbVO.setAttachList(service.getAttachList(rbVO.getReview_no()));
 		System.out.println(rbVO.getAttachList());
 		
@@ -149,15 +150,18 @@ public class ReviewBoardController {
 	}
 	
 	@RequestMapping("/delete")
-	public String delete(ReviewBoardVO rbVO, RedirectAttributes rttr) {
+	public String delete(ReviewBoardVO rbVO, Criteria cri, RedirectAttributes rttr) {
 		
-		// 삭제하는 데 필요한 건 review_no. id도 필요한가...?
-		service.deleteReview(rbVO);
+		List<ReviewAttachVO> attachList = service.getAttachList(rbVO.getReview_no());
+		if(service.deleteReview(rbVO)==1) { // 리뷰 삭제에 성공시
+			deleteFiles(attachList);
+			rttr.addFlashAttribute("result", "success");
+		}
 		
 		rttr.addAttribute("isbn", rbVO.getIsbn());
 		rttr.addAttribute("user_id", rbVO.getUser_id());
 		
-		return "redirect:/reviewPerBook";
+		return "redirect:/reviewPerBook" + cri.getListLink();
 	}
 	
 	@RequestMapping("/modifyReview")
@@ -328,4 +332,26 @@ public class ReviewBoardController {
 		return false;
 	}
 	
+	private void deleteFiles(List<ReviewAttachVO> attachList) {
+		
+		if(attachList == null || attachList.size() == 0) {
+			return;
+		}
+		
+		log.info("delete attach files");
+		log.info(attachList);
+		
+		attachList.forEach(attach -> {
+			try {
+				Path file = Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\" + attach.getUuid() + "_" + attach.getFileName());
+				Files.deleteIfExists(file);
+				if(Files.probeContentType(file).startsWith("image")) {
+					Path thumbNail = Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\s_" + attach.getUuid() + "_" + attach.getFileName());
+					Files.delete(thumbNail);
+				}
+			} catch(Exception e) {
+				log.error("delete file error" + e.getMessage());
+			} // end catch
+		}); // end forEach
+	}
 }

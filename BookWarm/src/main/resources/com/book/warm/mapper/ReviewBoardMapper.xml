@@ -161,4 +161,13 @@
 	<select id="findByReviewNo" resultType="com.book.warm.vo.ReviewAttachVO">
 		select * from review_attach where review_no = #{review_no}
 	</select>
+	
+	<delete id="deleteAll">
+		delete review_attach where review_no = #{review_no}
+	</delete>
+	
+	<select id="getOldFiles" resultType="com.book.warm.vo.ReviewAttachVO">
+		select * from review_attach where uploadpath = to_char(sysdate -1, 'yyyy\mm\dd')
+	</select>
+	
  </mapper>

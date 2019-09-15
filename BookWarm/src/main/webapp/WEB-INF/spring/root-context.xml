@@ -3,7 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
@@ -52,4 +54,8 @@
 		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
 	</bean> -->
 		<context:component-scan base-package="com.book.warm.service"/>
+		
+		<!-- 스케줄러 이용, 파일을 체크하기 위해 추가 -->
+		<context:component-scan base-package="com.book.warm.task"/>
+		<task:annotation-driven/>
 </beans>

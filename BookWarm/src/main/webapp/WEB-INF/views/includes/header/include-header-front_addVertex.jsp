@@ -54,4 +54,22 @@
     <script src="./resources/Vertex/js/theme.js"></script>
     <script src="./resources/Vertex/js/theme.init.js"></script> -->
     
-   
+   	<style>
+  	
+  	.uploadResult ul {
+  		display: flex;
+  		flex-flow: row;
+  		/* justify-content: center; */
+  		align-items: center;
+  	}
+  	
+  	.uploadResult ul li {
+  		list-style: none;
+  		padding: 10px;
+  	}
+  	
+  	.uploadResult ul li img {
+  		width: 80px;
+  	}
+  	
+   	</style>

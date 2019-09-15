@@ -40,5 +40,9 @@ public interface ReviewBoardMapper {
 	public void delete(String uuid);
 	
 	public List<ReviewAttachVO> findByReviewNo(int review_no);
+	
+	public void deleteAll(int review_no);
+	
+	public List<ReviewAttachVO> getOldFiles();
 
 }

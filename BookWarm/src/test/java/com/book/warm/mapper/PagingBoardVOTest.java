@@ -22,8 +22,8 @@ public class PagingBoardVOTest {
 	@Test
 	public void test() {
 		Criteria cri = new Criteria();
-		List<ShopListBoardVO> list = shoplistmapper.shoplistpage(cri);
-		
+//		List<ShopListBoardVO> list = shoplistmapper.shoplistpage(cri);
+//		
 	}
 
 }

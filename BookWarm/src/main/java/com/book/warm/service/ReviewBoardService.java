@@ -69,15 +69,27 @@ public class ReviewBoardService {
 		
 //		return mapper.registerReview(rbVO);
 	}
-
+	
+	@Transactional
 	public int deleteReview(ReviewBoardVO rbVO) {
-
+		// review 삭제시 첨부파일도 함께 삭제
+		mapper.deleteAll(rbVO.getReview_no());
 		return mapper.deleteReview(rbVO);
 	}
 
-	public int modifyReview(ReviewBoardVO rbVO) {
+	@Transactional
+	public boolean modifyReview(ReviewBoardVO rbVO) {
 		
-		return mapper.modifyReview(rbVO);
+		mapper.deleteAll(rbVO.getReview_no());
+		boolean modifyResult = mapper.modifyReview(rbVO) == 1;
+		
+		if(modifyResult && rbVO.getAttachList() != null && rbVO.getAttachList().size() > 0) {
+			rbVO.getAttachList().forEach(attach -> {
+				attach.setReview_no(rbVO.getReview_no());
+				mapper.insert(attach);
+			});
+		}
+		return modifyResult;
 	}
 	
 	public int getTotal(Criteria cri, String isbn, String user_id) {
