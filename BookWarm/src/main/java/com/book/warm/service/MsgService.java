@@ -33,5 +33,4 @@ public class MsgService {
 		return msgmapper.msgdelete(msg_no);
 	}
 	
-	//페이징처리 나중에 추가예정
 }

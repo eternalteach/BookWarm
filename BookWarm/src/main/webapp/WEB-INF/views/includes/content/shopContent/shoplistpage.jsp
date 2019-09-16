@@ -249,7 +249,7 @@
 												<div class="product-media">
 													<div class="img-wrap first-image">
 														<!-- 책 이미지 누르면 책 상세 페이지로 이동 -->
-														<a href="shopproduct?isbn=${shop_title.isbn}&writer_name=${shop_title.writer_name}"><img src="${shop_title.book_img}"></a>
+														<a href="shopproduct?isbn=${shop_title.isbn}&writer_name=encodeURI(${shop_title.writer_name})"><img src="${shop_title.book_img}"></a>
 													</div>
 												</div>
 

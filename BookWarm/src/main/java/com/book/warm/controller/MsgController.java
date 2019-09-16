@@ -11,16 +11,16 @@ import com.book.warm.service.MsgService;
 
 @Controller
 public class MsgController {
-	
+
 	@Inject
 	MsgService msgservice;
-	
+
 	@RequestMapping(value = "/message", method = RequestMethod.GET)
 	public String message(Model model) throws Exception {
 		model.addAttribute("msglist", msgservice.msglist());
 		return "message";
 	}
-	
+
 	@RequestMapping(value = "/messaginsert", method = RequestMethod.GET)
 	public String megr(Model model) throws Exception {
 		model.addAttribute("msglist", msgservice.msglist());
