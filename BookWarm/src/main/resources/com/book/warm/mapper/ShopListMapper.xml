@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select isbn, book_title, writer_name, translator_name, publisher_name, publisher_name, book_tot_page, book_published_date, 
             book_price, book_price_for_sale, book_stock, book_story, book_img
 	from book
-o	order by book_title
+	order by book_title
 	</select> 
 	
 	<!-- 가격순(저렴한 순)으로 불러오기  -->
@@ -42,7 +42,7 @@ o	order by book_price_for_sale
 	select b.isbn, b.book_title, bs.user_id, bs.star
 	from book b, book_star bs
 	where b.isbn = bs.isbn
-a	and b.isbn = #{isbn} 
+	and b.isbn = #{isbn} 
 	and bs.user_id = #{user_id}
 	and bs.star = #{star};
 	</select>

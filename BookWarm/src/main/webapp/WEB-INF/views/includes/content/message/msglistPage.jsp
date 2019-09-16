@@ -60,7 +60,8 @@
                <div class="container">
  		
                   <div class="row testimonial-three testimonial-three--col-three">
-
+					
+					<c:forEach items="${msglist}" var="msglist">
                      <div class="col-md-4 testimonial-three-col">
                         <div class="testimonial-inner">
                            <div class="testimonial-image" itemprop="image">
@@ -68,18 +69,17 @@
                            </div>
                            <div class="testimonial-content">
                               <p>
-                                 Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec,
-                                 vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
-                                 Nullam dictum felis eu pede mollis pretium.
+                                ${msglist.msg_content}
                               </p>
                            </div>
                            <div class="testimonial-meta">
-                              <strong class="testimonial-name" itemprop="name">Anna Vandana</strong>
-                              <span class="testimonial-job-title" itemprop="jobTitle">CEO</span> – <a class="testimonial-link" href="#" target="_blank">Media Wiki</a>
+                              <strong class="testimonial-name" itemprop="name">${msglist.msg_title}</strong>
+                              <span class="testimonial-job-title" itemprop="jobTitle">${msglist.msg_send_id}</span> – <a class="testimonial-link" href="#" target="_blank">Media Wiki</a>
                            </div>
                         </div>
                      </div>
-
+                     </c:forEach>
+						
                      <div class="col-md-4 testimonial-three-col">
                         <div class="testimonial-inner">
                            <div class="testimonial-image" itemprop="image">
@@ -188,8 +188,9 @@
                   <div class="xpromo-wrap col-sm-12">
                      <div class="xpromo-bar promo-button bg-primary">
                         <p class="text-white">Ready to get started to use vertex ?</p>
-                        <a class="btn standard transparent-light" href="#" target="_self">
-                           <span class="text"><i class="fa fa-cart-plus mr-5"></i> Purchase now!</span>
+                        <a class="btn standard transparent-light" href="messaginsert" target="_self">
+                        	<!-- 모달창으로 쪽지 보내기 할거임  -->
+                           <span class="text"><i class="fa fa-cart-plus mr-5"></i>쪽지 보내기</span>
                         </a>
                          <a class="btn standard transparent-light" href="#" target="_self">
                           <span class="text"><i class="fa fa-cart-plus mr-5"></i> Purchase now!</span>

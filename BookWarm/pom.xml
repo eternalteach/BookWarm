@@ -254,6 +254,26 @@
 			<artifactId>jackson-dataformat-xml</artifactId>
 			<version>2.9.6</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+		<dependency>
+    		<groupId>com.fasterxml.jackson.core</groupId>
+    		<artifactId>jackson-core</artifactId>
+   			 <version>2.9.6</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+		<dependency>
+   			 <groupId>com.fasterxml.jackson.core</groupId>
+    		<artifactId>jackson-annotations</artifactId>
+    		<version>2.9.6</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
+		<!-- 웹소켓 -->
+		<dependency>
+   			 <groupId>org.springframework</groupId>
+   		 	<artifactId>spring-websocket</artifactId>
+    		<version>${org.springframework-version}</version>
+		</dependency>
+		
 
 		<!-- JAVA인스턴스를 JSON타입 문자열로 변환할 일이 필요하므로 gson라이브러리 추가 -->
 		<dependency>
@@ -263,14 +283,7 @@
 		</dependency>
 
 
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
-		<!-- 웹소켓 -->
-		<dependency>
-   			 <groupId>org.springframework</groupId>
-   		 	<artifactId>spring-websocket</artifactId>
-    		<version>5.0.7.RELEASE</version>
-		</dependency>
-		
+	
 
 		<!-- Test -->
 		<dependency>
