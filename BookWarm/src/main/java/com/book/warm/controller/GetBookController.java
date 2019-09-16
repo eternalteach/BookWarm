@@ -18,7 +18,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("*/getbook/")
+@RequestMapping("getbook/")
 public class GetBookController {
 	@Inject
 	JsonToBookVOService jsonToBookVOService;

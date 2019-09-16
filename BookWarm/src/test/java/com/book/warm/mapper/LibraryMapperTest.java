@@ -36,7 +36,7 @@ public class LibraryMapperTest {
 			String user_id = "aaa";
 			// 리스트 개수 확인하는 쿼리 필요하다
 			// 이미 등록된 책은 등록되지 않도록 한다.
-			int list_no = 1; // 리스트 개수 확인 후 등록하게 해야한다. 한 페이지당 리스트 20개
+			int list_no = bookNum; // 리스트 개수 확인 후 등록하게 해야한다. 한 페이지당 리스트 20개
 			String list_type = "장르01";
 			libraryVO.setUser_id(user_id);
 			libraryVO.setIsbn(isbn);

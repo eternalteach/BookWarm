@@ -14,7 +14,7 @@ public class BookVO {
 	private int book_price_for_sale;
 	private String book_stock;
 	private String book_story;
-	private String book_img;
+	private String book_img="";
 
 	public BookVO(String isbn, String book_title, String writer_name, String translator_name, String publisher_name,
 			int book_tot_page, Timestamp book_published_date, int book_price, int book_price_for_sale,
