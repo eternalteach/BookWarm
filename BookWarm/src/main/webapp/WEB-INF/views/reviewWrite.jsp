@@ -55,7 +55,7 @@
                             				</tr>
                             				<tr>
                             					<td nowrap>관련 페이지</td>
-                            					<td><input type="number" name="review_ref" min="0" max="99999" step="1" value="0" onkeypress="keyEvent(event)" onkeyup="delChar(event)">
+                            					<td><input type="number" name="review_ref" min="0" max="99999" step="1" value="0" onkeypress="keyEvent(event)" onkeyup="delChar(event)" style="ime-mode:disabled">
                             						(0페이지 입력시 관련 페이지가 표시되지 않습니다.)
                             					</td>
                             				</tr>
@@ -284,11 +284,19 @@
     		if(code < 48 || code > 57) {
 				event.preventDefault();
     		} 
+    		
     	}
     	// 한글 입력시 초기화, 99999페이지를 넘어가면 초기화
     	function delChar(event) {
     		var eVal = event.target.value;
     		eVal = eVal.replace(/[^0-9]/g, "");
+    		
+    		/* var korChk = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+    		if(korChk.test(eVal)) {
+    			alert("ID에 한글이 포함되어 있습니다.");
+    			return;
+    		} */
+    		var eVal = event.target.value;
     		if(eVal > 99999) {
     			alert("0~99999 사이의 값을 입력해주세요.");
     			event.target.value = "";
@@ -296,14 +304,6 @@
     	}
     
     	$(document).ready(function(){
-    		
-    		// 참고 페이지에 숫자 외의 값이 입력되지 않도록 제어
-    		/* $("input[name='review_ref']").onkeypress = function(e) {
-    			alert("asdf");
-    			console.log(e.keyCode);
-    			
-    		}; */
-    		
     		
     		var formObj = $("form");
     		// 파일 업로드를 위해 폼 제출 기본 동작 막음

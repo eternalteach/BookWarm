@@ -13,29 +13,24 @@ import com.book.warm.vo.BookVO;
 @Service
 public class ShopListService {
 
-	@Inject
-	ShopListMapper shoplistmapper;
-	
-	//제목순으로 불러오기
-	public List<BookVO> shoptitlelist() throws Exception{
-		return shoplistmapper.shoptitlelist();
-	}
-	
-	//가격(저렴한순)으로 불러오기
-	public List<BookVO> bookpricelist() throws Exception{
-		return shoplistmapper.bookpricelist();
-	}
-	
-	
-	//isbn && writer_name으로 책 상세정보 불러오기
-	public List<BookVO> bookdetail(String isbn, String writer_name) throws Exception{
-		return  shoplistmapper.bookdetail(isbn, writer_name);
-	}
-	
-	//writer_name이 같은 다른 책들 불러오기
-	public List<BookVO> bookwritername(String writer_name) throws Exception{
-		return shoplistmapper.bookwritername(writer_name);
-	}
+	/*
+	 * @Inject ShopListMapper shoplistmapper;
+	 * 
+	 * //제목순으로 불러오기 public List<BookVO> shoptitlelist() throws Exception{ return
+	 * shoplistmapper.shoptitlelist(); }
+	 * 
+	 * //가격(저렴한순)으로 불러오기 public List<BookVO> bookpricelist() throws Exception{
+	 * return shoplistmapper.bookpricelist(); }
+	 * 
+	 * 
+	 * //isbn && writer_name으로 책 상세정보 불러오기 public List<BookVO> bookdetail(String
+	 * isbn, String writer_name) throws Exception{ return
+	 * shoplistmapper.bookdetail(isbn, writer_name); }
+	 * 
+	 * //writer_name이 같은 다른 책들 불러오기 public List<BookVO> bookwritername(String
+	 * writer_name) throws Exception{ return
+	 * shoplistmapper.bookwritername(writer_name); }
+	 */
 	
 	/*
 	 * 

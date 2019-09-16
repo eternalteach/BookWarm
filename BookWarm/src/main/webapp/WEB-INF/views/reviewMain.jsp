@@ -37,7 +37,7 @@
                      </aside>
                   </div> -->
 
-                  <div class="col-md-8 right-side-sidebar v_blog-medium pt-70">
+                  <div class="col-md-12 v_blog-medium pt-70">
 
 
 				<!-- 블로그에 글 넣기 시도 -->
@@ -45,34 +45,38 @@
 				
 				<c:forEach items="${list}" var="vo">
 				
-<div class="post-content no-thumb clearfix">
+				<div class="post-content no-thumb clearfix">
 				    <article class="v_blog-item">
                         <div class="v_blog-item-inner row">
-                           <div class="v_blog-item-media col-md-5">
+                        
+                           <!-- 여기가 이미지 들어가는 부분 -->
+                           <div class="v_blog-item-media col-md-2">
                               <a href="/warm/reviewPerBook?user_id=${vo.user_id}&isbn=${vo.isbn}">
-                                 <img class="w-100" src="${vo.img_src}" />
+                                 <img class="w-100" src="${vo.book_img}"/>
                               </a>
                            </div>
+                           
+                           <!-- 최근 작성한 리뷰가 들어가는 부분 -->
                            <div class="v_blog-item-content col-md-7">
+                           
                               <div class="v_blog-item-header">
                                  <ul class="v_blog-item-meta">
-                                    <li class="v_blog-item-author">
+                                    <%-- <li class="v_blog-item-author">
                                        <span>By </span> <a href="#">${vo.user_id}</a>
-                                    </li>
+                                    </li> --%>
                                     <li class="v_blog-item-date">
                                        <time class="" datetime="2018-06-30T10:47:48+00:00">
-                                          ${vo.review_modify_date}
+                                          최근 감상 작성일 ${vo.review_modify_date}
                                        </time>
                                     </li>
-                                    <li class="v_blog-item-comments">No Comments</li>
-                                    <li class="v_blog-item-like-counter"><span>22 Likes</span></li>
+                                    <li class="v_blog-item-counter"><span>작성한 감상 n개</span></li>
                                  </ul>
 
                                  <a href="./resources/VertexEx/blog-post-standard.html" rel="bookmark">
                                     <h2 class="v_blog-item-title" itemprop="name headline"><%-- ${vo.review_title} --%></h2>
                                  </a>
                               </div>
-
+	
                               <div itemprop="articleBody">
                                  <p>
                                  	${vo.review_content}
@@ -81,14 +85,16 @@
                                     <span>Reviews about this book</span>
                                  </a>
                               </div>
+                              
                            </div>
+                           
                         </div>
                      </article>
-</div>                     
+				</div>                     
 				</c:forEach>
 
 
-                     <article class="v_blog-item">
+                    <!--  <article class="v_blog-item">
                         <div class="v_blog-item-inner row">
                            <div class="v_blog-item-media col-md-5">
                               <a href="#">
@@ -126,7 +132,7 @@
                               </div>
                            </div>
                         </div>
-                     </article>
+                     </article> -->
 
                      <div class="row">
                         <div class="col-md-12">

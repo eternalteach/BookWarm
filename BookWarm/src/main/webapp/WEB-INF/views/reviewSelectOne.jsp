@@ -563,11 +563,13 @@
                         <h1>Standard Post</h1>
                     </div>
                     <div class="col-md-4">
+                    <c:if test="${user_id == review.user_id}">
                         <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
-                            <li><a href="#">내 서재</a></li>
+                            <li><a href="/warm/library?user_id=${user_id}">내 서재</a></li>
                             <li><a href="#" class="oper" data-oper='list'>${book.book_title}</a></li>
                             <li class="active">Standard Post</li>
                         </ul>
+					</c:if>
                     </div>
                 </div>
             </div>
@@ -607,7 +609,9 @@
 									<div class="panel-group" style="position:relative">
 										<div class="panel-heading" style="text-align:right; margin-bottom:10px">
 											<span class="text ls-1" style="font-size:25px; padding:8px">
-										  		<a data-toggle="collapse" href="#collapse1" style="color:gray">… </a>
+												<c:if test="${user_id == review.user_id}">
+										  			<a data-toggle="collapse" href="#collapse1" style="color:gray">… </a>
+										  		</c:if>
 											</span>	
 										</div>
 										<div id="collapse1" class="collapse" style="position:absolute; right:0; border-radius:5%; text-align:right; background-color:white; box-shadow: 3px 3px 5px lightgrey">
@@ -625,27 +629,6 @@
 											</div>
 										</div>
 									</div>
-									
-									
-									<!-- <span>
-									<button type="button" class="pull-right" style="background:transparent; border:none" data-toggle="collapse" data-target="#menu">
-										<span class="text ls-1" style="color:grey; font-size:25px">
-										  …
-										</span>
-									</button>
-									</span>
-										<div id="menu" class="collapse" style="width:100px; margin-right:0%">
-											<div>
-												<a href="#">
-													수정하기
-												</a>
-											</div>
-											<div >
-												<a href="#">
-													삭제하기
-												</a>
-											</div>
-										</div> -->
                                 	
                             </form>
 							</div>
@@ -724,40 +707,6 @@
                                     </div>
                                 </div>
                                 
-                                
-								
-								<!-- about 섹션, 나중에 해당 아이디의 글 보러가기로 쓸 수도 있을 것 같아 일단 주석처리. -->
-								
-                                <!-- <div class="author-info-wrap clearfix">
-                                    <div class="author-avatar">
-                                        <img alt='author' src='./resources/Vertex/img/team/t5.png' class='avatar photo' />
-                                    </div>
-                                    <div class="author-bio">
-                                        <div class="author-name">
-                                            <h3>About <span>Vertex Templates</span></h3>
-                                        </div>
-                                        <div class="author-bio-text">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquam massa quis mauris
-                                            sollicitudin commodo venenatis ligula commodo. Sed blandit
-                                            convallis dignissim. Pellentesque pharetra velit.
-                                        </div>
-
-                                        <div class="clearfix pt-4">
-                                            <a href="#" class="social-icon si-dark si-small si-facebook" title="Facebook">
-                                                <i class="si-icon-facebook"></i>
-                                                <i class="si-icon-facebook"></i>
-                                            </a>
-                                            <a href="#" class="social-icon si-dark si-small si-twitter" title="Twitter">
-                                                <i class="si-icon-twitter"></i>
-                                                <i class="si-icon-twitter"></i>
-                                            </a>
-                                            <a href="#" class="social-icon si-dark si-small si-instagram" title="Instagram">
-                                                <i class="si-icon-instagram"></i>
-                                                <i class="si-icon-instagram"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div> -->
                             </section>
 							
 							<!-- related article section 삭제 -->
@@ -792,8 +741,7 @@
                                             
                                             <!-- 나중에 로그인과 연동해 처리하고 일단은 그냥 입력받기 -->
                                             <div class="col-sm-4">
-                                                <label>Your ID <span class="required">*</span></label>
-                                                <input type="text" value="" maxlength="100" placeholder="Your ID" class="form-control" name="user_id" id="name">
+                                                <input type="hidden" value="${user_id}" maxlength="100" class="form-control" name="user_id" id="name" readonly>
                                             </div>
                                             
                                         
@@ -817,13 +765,18 @@
                                             <div class="col-sm-12">
                                             	<!-- 지금대로면 딱히 레이블이 필요 없음 -->
                                                 <!-- <label>Comment <span class="required">*</span></label> --> 
-                                                <textarea maxlength="5000" rows="10" placeholder="Comment" class="form-control" name="content" id="content"></textarea>
+                                                <c:if test="${empty user_id}">
+                                                	<c:set var="read" value="readonly"/>
+                                            	</c:if>
+                                                	<textarea maxlength="5000" rows="10" ${read} placeholder="댓글은 로그인한 사용자만 작성할 수 있습니다." class="form-control" name="content" id="content"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <button name="submit" type="submit" id="Button1" class="btn v-btn v-btn-default no-three-d">Post comment</button>
+                                        	<c:if test="${!empty user_id}">
+                                            	<button name="submit" type="submit" id="Button1" class="btn v-btn v-btn-default no-three-d">Post comment</button>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </form>

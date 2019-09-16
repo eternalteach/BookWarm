@@ -6,11 +6,12 @@ import com.book.warm.page.Criteria;
 import com.book.warm.vo.BookVO;
 import com.book.warm.vo.ReviewAttachVO;
 import com.book.warm.vo.ReviewBoardVO;
+import com.book.warm.vo.ReviewMainVO;
 
 public interface ReviewBoardMapper {
 	
 
-//	public List<ReviewBoardVO> selectBoardList(String user_id);
+	public List<ReviewMainVO> selectBoardList(String user_id);
 	
 	public List<ReviewBoardVO> getListPerBook(String isbn, String user_id);
 	
@@ -18,8 +19,10 @@ public interface ReviewBoardMapper {
 
 	public BookVO showBookThumbnail(String isbn);
 
-	public ReviewBoardVO selectedReview(int review_no, String user_id);
+//	public ReviewBoardVO selectedReview(int review_no, String user_id); // 리뷰 조회에 아이디는 필요 없음.
+	public ReviewBoardVO selectedReview(int review_no);
 
+	
 	public BookVO bookInfo(String isbn);
 
 	public int registerReview(ReviewBoardVO rbVO);

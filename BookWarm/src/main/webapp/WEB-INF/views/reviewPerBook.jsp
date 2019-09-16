@@ -12,7 +12,7 @@
     
     <div role="main" class="main">
 
-        <section class="page-header">
+        <section class="page-header" style="margin-bottom:10px">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-8 text-left">
@@ -31,24 +31,25 @@
             </div>
         </section>
 
-        <div class="v-page-wrap has-left-sidebar has-one-sidebar">
+        <div class="v-page-wrap has-left-sidebar has-one-sidebar" style="margin-top:0px">
             <div class="container">
                 <div class="row">
 
                     
 
-                    <aside class="sidebar left-sidebar col-sm-3">
+                    <aside class="sidebar left-sidebar col-sm-3" style="margin-top:20px">
                     
                     	<!-- 사이드바에 해당 책 이미지와 책 제목+작가 띄워보기. -->
                     	
                     	<section>
                             <div>
                                 <ul>
-                                    <li><a href="#">
-                                			<img src="${thumbnail.book_img}">
+                                    <li>
+                                    	<a href="#">
+                                			<img src="${thumbnail.book_img}" style="display:block; margin:auto">
                             			</a>
                             		</li>
-                                    <li style="text-align:center">${thumbnail.book_title}</li>
+                                    <li style="text-align:center; margin:5px">${thumbnail.book_title}</li>
                                     <li style="text-align:center">${thumbnail.writer_name}</li>
                                 </ul>
                             </div>
@@ -66,7 +67,7 @@
                         </section>
                         
 
-                        <section class="widget widget_sf_recent_custom_comments clearfix">
+                        <!-- <section class="widget widget_sf_recent_custom_comments clearfix">
                             <div class="widget-heading clearfix">
                                 <h4 class="v-heading"><span>Recent Comments</span></h4>
                             </div>
@@ -126,7 +127,7 @@
                                     </div>
                                 </li>
                             </ul>
-                        </section>
+                        </section> -->
 
                         <section class="widget v-tag-cloud-widget clearfix">
                             <div class="widget-heading clearfix">
@@ -153,26 +154,9 @@
 
                             <ul class="v-blog-items row standard-items clearfix">
                             
-                            <style>
-                            	.btnPerBook {
-                            		font-weight:500;
-                            		font-size:12px;
-                            		font-family:"Poppins",Arial,Helvetica,Tahoma,sans-serif;
-                            		color:#77838f;
-                            		letter-spacing: 0.7px;
-                            		padding: 2px 11px;
-                            		margin: 0 6px 8px 6px;
-                            		line-height:18px;
-                            		position:absolute;
-                            		right:0;
-                            	}
-                            </style>
-                            
                             <!-- 감상 작성 버튼 추가 -->
-                            <li class="col-sm-12" style="margin-bottom:0">
+                            <li class="col-sm-12" style="margin-top:10px">
                             	<div class="pull-right">
-                            	
-                            	
                             	
                             	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${list[0].isbn}&user_id=${list[0].user_id}">
 		                            	<span class="text ls-1">
@@ -186,36 +170,15 @@
 		                            		<i class="fa fa-book"></i>
 		                            	</span>
                             	</a><br>
-                            	<%-- <a class="btn btn-outline-secondary" href="/warm/reviewMain?isbn=${list[0].isbn}&user_id=${list[0].user_id}">
-		                            	<span class="text ls-1">
-		                            		서재로 돌아가기
-		                            	</span>
-                            	</a> --%>
                             	</div>
                             </li>
-                            
-                            <%-- <!-- 감상 작성 버튼 추가 -->
-                            <li class="v-blog-item col-sm-12">
-                            	<a class="btn btn-outline-secondary" href="/warm/reviewWrite?isbn=${list[0].isbn}&user_id=${list[0].user_id}">
-		                            	<span class="text ls-1">
-		                            		Write Review
-			                                <i class="icon icon-pen-3"></i>
-		                            	</span>
-                            	</a>
-                            	<a class="btn btn-outline-secondary" href="/warm/reviewMain?isbn=${list[0].isbn}&user_id=${list[0].user_id}">
-		                            	<span class="text ls-1">
-		                            		서재로 돌아가기
-		                            	</span>
-                            	</a>
-                            </li> --%>
-                            
                             
                             <!-- 8/28 책별 감상 뿌리기 -->
                             <c:forEach items="${list}" var="vo">
                             
 	                        <!-- 8/29 날짜 형식 변환: 달을 영어로 출력하기 위해 언어 변경, format을 필요 데이터만 필요한 형태로 변환 -->    
 	                        <fmt:setLocale value="en_US" scope="session"/>
-                            <fmt:formatDate var="fmt_date" value="${vo.review_modify_date}" pattern="ddMMM"/>
+                            <fmt:formatDate var="fmt_date" value="${vo.review_written_date}" pattern="ddMMM"/>
                             <!-- 		작성일 혹은 수정일을 쪼개서 형식에 맞게 넣기 위한 c태그 추가 -->
                             <c:set var="tmp_date" value="${fmt_date}"/>
                             
@@ -248,7 +211,11 @@
                                                     <span class="text-sep">|</span>
 
                                                     <span class="blog-categories minor-meta">
-                                                        <a href="#">News</a>, <a href="#">Updates</a> <span class="text-sep">|</span>
+                                                        <a href="#">${vo.review_modify_date}
+                                                        <c:if test="${vo.review_modify_date != vo.review_written_date}">
+                                                        	(수정됨)
+                                                        </c:if>
+                                                        </a> <span class="text-sep">|</span>
 
                                                         <span class="comment-container minor-meta" id="${vo.review_no}">
                                                             <!-- 댓글 수가 입력될 공간 -->

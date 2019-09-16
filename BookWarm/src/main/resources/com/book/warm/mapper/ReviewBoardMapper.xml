@@ -5,7 +5,7 @@
  
  <mapper namespace="com.book.warm.mapper.ReviewBoardMapper">
  
- 	<!-- <select id="selectBoardList" resultType="com.book.warm.vo.ReviewBoardVO2">
+ 	<select id="selectBoardList" resultType="com.book.warm.vo.ReviewMainVO">
  	
  		select * from
 		(
@@ -13,11 +13,11 @@
 		    	review_ref, review_title, review_content, review_open, 
 		    	rank() over(partition by isbn order by review_modify_date desc, review_no desc) rk 
 		    from review_board
-		) sub, book_cover bc
-		where sub.rk = 1 and sub.isbn=bc.isbn
+		) sub, book b
+		where sub.rk = 1 and sub.isbn=b.isbn
 		and user_id = #{user_id}
 		
- 	</select> -->
+ 	</select>
  	
  	<!-- <select id="selectBoardList" resultMap="reviewPerBookResult">
  		select review_no, user_id, review_written_date, review_modify_date, sub.isbn, 
@@ -101,7 +101,7 @@
  	</select>
  	
  	<select id="selectedReview" resultType="com.book.warm.vo.ReviewBoardVO">
- 		select * from review_board where review_no = #{param1} and user_id = #{param2}
+ 		select * from review_board where review_no = #{review_no}
  	</select>
  	
  	<select id="bookInfo" resultType="com.book.warm.vo.BookVO">

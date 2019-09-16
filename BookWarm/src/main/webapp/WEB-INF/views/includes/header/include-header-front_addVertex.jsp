@@ -72,4 +72,17 @@
   		width: 80px;
   	}
   	
+  	.btnPerBook {
+    	font-weight:500;
+    	font-size:12px;
+    	font-family:"Poppins",Arial,Helvetica,Tahoma,sans-serif;
+    	color:#77838f;
+     	letter-spacing: 0.7px;
+     	padding: 2px 11px;
+     	margin: 0 6px 8px 6px;
+     	line-height:18px;
+      	position:absolute;
+       	right:0;
+     }
+  	
    	</style>

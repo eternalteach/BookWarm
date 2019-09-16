@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -52,7 +54,7 @@ public class ReviewBoardController {
 	@RequestMapping("/reviewMain")
 	public String recordMain(@RequestParam("user_id") String user_id, Model model) {
 		
-//		model.addAttribute("list", service.selectBoardList(user_id));
+		model.addAttribute("list", service.selectBoardList(user_id));
 		
 		return "reviewMain";
 	}
@@ -68,37 +70,22 @@ public class ReviewBoardController {
 	
 	// 책별 감상 목록
 	@RequestMapping("/reviewPerBook")
-	public String reviewPerBook(ReviewBoardVO rbVO, Criteria cri, Model model) {
+	public String reviewPerBook(HttpSession session, HttpServletRequest request, ReviewBoardVO rbVO, Criteria cri, Model model) {
 		
-		
-		List<ReviewBoardVO> reviewList = service.getListPerBook(rbVO.getIsbn(), rbVO.getUser_id(), cri);
+		session = request.getSession();
+		String user_id = (String) session.getAttribute("user_id");
+		List<ReviewBoardVO> reviewList = service.getListPerBook(rbVO.getIsbn(), user_id, cri);
 		
 		for(ReviewBoardVO review:reviewList) {
 			// 가져온 리뷰 리스트에서 리뷰 번호에 따른 첨부파일들을 rbVO에 세팅.
 			review.setAttachList(service.getAttachList(review.getReview_no()));
 		}
-		
-		
 
 		model.addAttribute("list", reviewList);
 		model.addAttribute("thumbnail", service.showBookThumbnail(rbVO.getIsbn()));
-		int total = service.getTotal(cri, rbVO.getIsbn(), rbVO.getUser_id());
+		int total = service.getTotal(cri,  rbVO.getIsbn(), user_id);
 		
 		System.out.println("total : " + total);
-		
-		
-		// 어떻게 첨부파일 목록을 넘겨주지...?
-		// 보여주는 페이지는 reviewPerBook페이지.
-		// 보여지는 목록은 해당하는 user의 하나의 책에 대한 리뷰들.
-		// 받아오는 정보는 ReviewBoardVO List.
-		// attachList는 여기에 하나의 데이터로 있기는 하지만 리스트기도 하고, db에 없어서 mapper에 넣어주기도 뭐함.
-		// 차라리 해쉬맵같은 걸로 넣어줄까여..?
-		// 1. selectOne과 똑같은 방법으로 한다.
-		//    javascript로 review_no을 받아서 그에 따른 첨부파일을 조회하는 방법.
-		//    문제는 여기엔 review_no이 여러개라는 것? 아니면  ajax?
-		
-		// 그냥 여기서 list를 더해주면 안되나?
-		
 		
 		rbVO.setAttachList(service.getAttachList(rbVO.getReview_no()));
 		System.out.println(rbVO.getAttachList());
@@ -109,14 +96,15 @@ public class ReviewBoardController {
 	
 	// 감상 하나만 보기
 	@RequestMapping("/reviewSelectOne")
-	public String reviewSelectOne(@RequestParam("review_no") int review_no, 
-										// 여기서 리뷰 조회시 작성자의 id를 굳이 param으로 받아올 필요는 없음.
-										// 
-										@RequestParam("user_id") String user_id,
+	public String reviewSelectOne(HttpSession session, HttpServletRequest request, 
+										@RequestParam("review_no") int review_no, 
 									    @RequestParam("isbn") String isbn, 
 									    @ModelAttribute("cri") Criteria cri, Model model) {
 		
-		model.addAttribute("review", service.selectedReview(review_no, user_id));
+		session = request.getSession();
+		
+		model.addAttribute("user_id", (String) session.getAttribute("user_id"));
+		model.addAttribute("review", service.selectedReview(review_no));
 		model.addAttribute("book", service.bookInfo(isbn));
 		return "reviewSelectOne";
 	}
@@ -167,7 +155,7 @@ public class ReviewBoardController {
 	@RequestMapping("/modifyReview")
 	public String modify(ReviewBoardVO rbVO, @ModelAttribute("cri") Criteria cri, Model model) {
 		
-		rbVO = service.selectedReview(rbVO.getReview_no(), rbVO.getUser_id());
+		rbVO = service.selectedReview(rbVO.getReview_no());
 		
 		model.addAttribute("review", rbVO);
 		

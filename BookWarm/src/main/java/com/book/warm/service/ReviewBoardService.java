@@ -12,6 +12,7 @@ import com.book.warm.page.Criteria;
 import com.book.warm.vo.BookVO;
 import com.book.warm.vo.ReviewAttachVO;
 import com.book.warm.vo.ReviewBoardVO;
+import com.book.warm.vo.ReviewMainVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -23,10 +24,10 @@ public class ReviewBoardService {
 	ReviewBoardMapper mapper;
 	
 
-//	public List<ReviewBoardVO> selectBoardList(String user_id) {
-//		
-//		return mapper.selectBoardList(user_id);
-//	}
+	public List<ReviewMainVO> selectBoardList(String user_id) {
+		
+		return mapper.selectBoardList(user_id);
+	}
 	
 	/*
 	 * public List<ReviewBoardVO> getListPerBook(String isbn, String user_id) {
@@ -43,8 +44,8 @@ public class ReviewBoardService {
 		return mapper.showBookThumbnail(isbn);
 	}
 
-	public ReviewBoardVO selectedReview(int review_no, String user_id) {
-		return mapper.selectedReview(review_no, user_id);
+	public ReviewBoardVO selectedReview(int review_no) {
+		return mapper.selectedReview(review_no);
 	}
 
 	public BookVO bookInfo(String isbn) {
