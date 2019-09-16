@@ -6,7 +6,7 @@
 <br />
 <br />
 <br />
-<form method="post" id="submitloging" action="boardLogWriteSave">
+<form method="post" id="submitloging" action="recordWriteSave">
 	<table style="margin-left:auto; margin-right:auto;">
 		<tr>
 			<td>isbn : <input type="text" name="isbn" value="${bookCoverVO.isbn}"><br /></td>&nbsp;책 이미지 넣기

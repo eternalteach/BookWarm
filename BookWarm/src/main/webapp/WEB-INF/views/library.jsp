@@ -74,7 +74,7 @@
 					<!-- user_id는 session으로 해당 컨트롤러나 jsp에서 꺼내 사용하기 get방식으로 isbn만 다음페이지로 넘기기
 				삭제는 비동기통신으로 처리하기-->
 					<a href="reviewMain?isbn=${UserBooks.isbn}"><span>Review<!--  / 필요정보 user_id isbn  --></span></a><br />
-					<a href="boardlog?isbn=${UserBooks.isbn}"><span>Record<%--  / user_id : ${UserBooks.user_id}, isbn : ${UserBooks.isbn} --%></span></a><br />
+					<a href="record?isbn=${UserBooks.isbn}"><span>Record<%--  / user_id : ${UserBooks.user_id}, isbn : ${UserBooks.isbn} --%></span></a><br />
 					<a href="library/delete?isbn=${UserBooks.isbn}"><span>Delete<%--  / user_id : ${UserBooks.user_id}, isbn : ${UserBooks.isbn} --%></span></a><br />
 				</div>
 			</div>

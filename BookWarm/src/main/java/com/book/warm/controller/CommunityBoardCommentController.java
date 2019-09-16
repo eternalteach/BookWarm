@@ -24,7 +24,7 @@ import lombok.extern.log4j.Log4j;
 @RestController
 @Log4j
 @AllArgsConstructor
-public class BoardCommunityCommentController {
+public class CommunityBoardCommentController {
 
 	private CommunityBoardCommentService service;
 
