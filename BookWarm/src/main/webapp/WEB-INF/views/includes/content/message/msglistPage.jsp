@@ -168,44 +168,38 @@
 					</div>
 				</div>
 			</section>
-<script src="<%=context%>/resources/js/messgae.js" type="text/javascript"></script>
+			
 
 			<section class="section-primary p-none">
 				<div class="row fw-row">
 					<div class="xpromo-wrap col-sm-12">
 						<div class="xpromo-bar promo-button bg-primary">
-							<a id="send" class="btn standard transparent-light" target="self">
-								<!-- 모달창으로 쪽지 보내기 할거임  --> 
-								<span class="text"><i class="fa fa-cart-plus mr-5"></i>쪽지 보내기</span>
-							</a> <!-- <a class="btn standard transparent-light" href="#"
-								target="_self"> <span class="text"><i
-									class="fa fa-cart-plus mr-5"></i> Purchase now!</span>
+							<a id="send" class="btn standard transparent-light" href="#myModal" target="self" data-toggle="modal">
+							<span class="text"><i class="fa fa-cart-plus mr-5"></i>쪽지 보내기</span>
+							</a>
+							<!-- <a class="btn standard transparent-light" href="#"	target="_self"> <span class="text">
+							<i class="fa fa-cart-plus mr-5"></i> Purchase now!</span>
 							</a> -->
 						</div>
 					</div>
 				</div>
-			</section>
+			</section>	
 		</div>
 
 	</div>
 </div>
 
-
-<!-- Style Swicher -->
-<!--<script src="vendor/style-switcher/style.switcher.js" id="styleSwitcherScript" data-base-path="" data-skin-src=""></script>
-   <script src="vendor/style-switcher/style.switcher.localstorage.js"></script>-->
-
-
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
-	<div class="modal-dialog">
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
-		<!-- MOdal content -->
+	<div class="modal-dialog modal-sm">
+
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times</button>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 id="modal-title" class="modal-title"></h4>
 			</div>
+			
 			<div class="modal-body">
 				<table class="table">
 					<tr>
@@ -222,16 +216,17 @@
 					</tr>
 				</table>
 			</div>
+			
 			<div class="modal-footer">
 				<button id="modalSubmit" type="button" class="btn btn-success">보내기</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 			</div>
 		</div>
 	</div>
-</div>
+</div> 
 
 
-
+<script src="<%=context%>/resources/js/messgae.js" type="text/javascript"></script>
 
 
 </body>

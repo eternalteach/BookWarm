@@ -5,24 +5,29 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.book.warm.page.Criteria;
+import com.book.warm.vo.BookListVO;
 import com.book.warm.vo.BookVO;
 
 
 public interface ShopListMapper {
 	
 	//book_title 순서
-	public List<BookVO> shoptitlelist();
+	public List<BookListVO> shoptitlelist();
 	
 	//bookprice(저렴) tnstj
-	public List<BookVO> bookpricelist();
+	public List<BookListVO> bookpricelist();
 	
 	//book detail(상세정보) 불러오기
-	public List<BookVO> bookdetail(@Param("isbn") String isbn, @Param("writer_name") String writer_name);
+	public List<BookListVO> bookdetail(@Param("isbn") String isbn);
+	
 	
 	//bookwritername 저자이름이 같은 책 불러오기
-	public List<BookVO> bookwritername(@Param("writer_name") String writer_name);
+	public List<BookListVO> bookwritername(@Param("author") String author);
 
 	//별점수 불러오기
+	
+	//페이징
+	public List<BookVO> booklistpage(Criteria criteria);
 
 	
 	/*

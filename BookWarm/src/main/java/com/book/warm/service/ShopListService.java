@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.book.warm.mapper.ShopListMapper;
-import com.book.warm.page.Criteria;
+import com.book.warm.vo.BookListVO;
 import com.book.warm.vo.BookVO;
 
 @Service
@@ -17,24 +17,24 @@ public class ShopListService {
 	ShopListMapper shoplistmapper;
 	
 	//제목순으로 불러오기
-	public List<BookVO> shoptitlelist() throws Exception{
+	public List<BookListVO> shoptitlelist() throws Exception{
 		return shoplistmapper.shoptitlelist();
 	}
 	
 	//가격(저렴한순)으로 불러오기
-	public List<BookVO> bookpricelist() throws Exception{
+	public List<BookListVO> bookpricelist() throws Exception{
 		return shoplistmapper.bookpricelist();
 	}
 	
 	
 	//isbn && writer_name으로 책 상세정보 불러오기
-	public List<BookVO> bookdetail(String isbn, String writer_name) throws Exception{
-		return  shoplistmapper.bookdetail(isbn, writer_name);
+	public List<BookListVO> bookdetail(String isbn) throws Exception{
+		return  shoplistmapper.bookdetail(isbn);
 	}
 	
 	//writer_name이 같은 다른 책들 불러오기
-	public List<BookVO> bookwritername(String writer_name) throws Exception{
-		return shoplistmapper.bookwritername(writer_name);
+	public List<BookListVO> bookwritername(String author) throws Exception{
+		return shoplistmapper.bookwritername(author);
 	}
 	
 	/*

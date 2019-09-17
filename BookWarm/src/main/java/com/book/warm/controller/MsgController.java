@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.book.warm.service.MsgService;
 
+import lombok.extern.log4j.Log4j;
+
 @Controller
+@Log4j
 public class MsgController {
 
 	@Inject

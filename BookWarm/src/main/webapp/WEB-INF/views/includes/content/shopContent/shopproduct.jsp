@@ -74,16 +74,16 @@
                             
                            
 							<!-- 장바구니로 이동 -->
-                           <a href="/warm/shop_list"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="장바구니로 이동" data-location="top">
+                           <a href="/warm/shop/shop-cart"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="장바구니로 이동" data-location="top">
                            <i class="fa fa-shopping-basket" data-title="장바구니로 이동" data-location="top"></i>
                            <span>장바구니</span>
                            </button></a>
 							<!-- 구매로이동  -->
-                            <a href="/warm/shop_list"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="구매로 이동" data-location="top">
+                            <a href="/warm/shop/shop-charge"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="구매로 이동" data-location="top">
                           	<span>구매</span>
                            </button></a>
                        		<!-- 목록버튼 클릭하면 책 목록으로 이동. -->
-						    <a href="/warm/shoplist"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="목록으로 이동" data-location="top">
+						    <a href="/warm/shop/shoplist"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="목록으로 이동" data-location="top">
                           	<span>목록</span>
                            </button></a>
                           
@@ -161,7 +161,7 @@
                                  <figure class="product-shadows product-item">
                                     <div class="product-media">
                                        <div class="img-wrap first-image">
-                                         <a href="shop_product?isbn=${bookwriter.isbn}&writer_name=${bookwriter.writer_name}"><img src="${bookwriter.book_img}"></a>
+                                         <a href="shopproduct?isbn=${bookwriter.isbn}&author=${bookwriter.author}"><img src="${bookwriter.book_img}"></a>
                                        </div>
                                     </div>
 									

@@ -2,6 +2,7 @@ package com.book.warm.controller;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,16 +13,23 @@ import com.book.warm.page.Criteria;
 import com.book.warm.service.ShopListService;
 import com.book.warm.vo.PagingBoardVO;
 
+import lombok.extern.log4j.Log4j;
+
 @Controller
+@RequestMapping("/shop")
+@Log4j
 public class ShopListController {
 	
 	@Inject
 	ShopListService shoplistservice;
 	
 	@RequestMapping(value = "/shoplist", method = RequestMethod.GET)
-	public String shop_list(Model model, Criteria criteria) throws Exception {
+	public String shoplist(HttpSession session, HttpServletRequest request, Model model, Criteria criteria) throws Exception {
+		log.info("==================shoplist====================================");
 		
-		System.out.println("==================shoplist====================================");
+		session = request.getSession();
+		String user_id =(String)session.getAttribute("user_id");
+		
 		model.addAttribute("shoptitlelist", shoplistservice.shoptitlelist());
 		model.addAttribute("bookpricelist", shoplistservice.bookpricelist());
 		
@@ -29,17 +37,17 @@ public class ShopListController {
 	}
 	
 	@RequestMapping(value = "/shopproduct", method = RequestMethod.GET)
-	public String shop_product(HttpServletRequest req, Model model) throws Exception {
+	public String shop_product(HttpSession session, HttpServletRequest request, Model model) throws Exception {
+		log.info("=========================== shopproduct ==============================");
+		session = request.getSession();
+		String isbn = request.getParameter("isbn");
+		String author = request.getParameter("author");
 		
-		String isbn = req.getParameter("isbn");
-		String wname = req.getParameter("writer_name");
+		log.info("isbn : "+isbn);
+		log.info("author :" + author);
 		
-		System.out.println("=========================== shopproduct ==============================");
-		System.out.println("isbn : "+isbn);
-		System.out.println("작가명 :" +wname);
-		
-		model.addAttribute("bookdetail", shoplistservice.bookdetail(isbn, wname));
-		model.addAttribute("bookwritername", shoplistservice.bookwritername(wname));
+		model.addAttribute("bookdetail", shoplistservice.bookdetail(isbn));
+		model.addAttribute("bookwritername", shoplistservice.bookwritername(author));
 		
 		return "shopproduct";
 	}

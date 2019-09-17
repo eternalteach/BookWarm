@@ -1,39 +1,5 @@
+<% String path1 = request.getContextPath(); %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Vertex - Responsive HTML5 Bootstrap Template</title>
-<meta name="keywords" content="HTML5 Template" />
-<meta name="description" content="Vertex - Responsive HTML5 Template">
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<link rel="shortcut icon" type="image/png" href="img/favicon.png" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Web Fonts  -->
-<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
-<!-- Libs CSS -->
-<link href="./resources/Vertex/css/bootstrap.min.css" rel="stylesheet" />
-<link href="./resources/Vertex/css/style.css" rel="stylesheet" />
-<link href="./resources/Vertex/css/font-awesome.min.css" rel="stylesheet" />
-<link href="./resources/Vertex/css/streamline-icon.css" rel="stylesheet" />
-<link href="./resources/Vertex/css/header.css" rel="stylesheet" />
-<link href="./resources/Vertex/css/portfolio.css" rel="stylesheet" />
-<link href="./resources/Vertex/css/blog.css" rel="stylesheet" />
-<link href="./resources/Vertex/css/v-animation.css" rel="stylesheet" />
-<link href="./resources/Vertex/css/v-bg-stylish.css" rel="stylesheet" />
-<link href="./resources/Vertex/css/font-icons.css" rel="stylesheet" />
-<link href="./resources/Vertex/css/shortcodes.css" rel="stylesheet" />
-<link href="./resources/Vertex/css/utilities.css" rel="stylesheet" />
-<link href="./resources/Vertex/css/theme-responsive.css" rel="stylesheet" />
-<link href="./resources/Vertex/plugins/aos/aos.css" rel="stylesheet" />
-<link href="./resources/Vertex/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
-<link href="./resources/Vertex/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
-<!-- Skin -->
-<link rel="stylesheet" href="./resources/Vertex/css/skin/default.css">
-<!-- Custom CSS -->
-<link rel="stylesheet" href="./resources/Vertex/css/custom.css">
-</head>
-
 <body>
 	<!--Header-->
 	<header id="header" class="header-effect-shrink"
@@ -183,7 +149,7 @@
 												<!-- 책 이미지 누르면 책 상세정보로 이동 -->
 												<div class="product-media">
 													<div class="img-wrap first-image">
-														<a href="shopproduct?isbn=${shop.isbn}&writer_name=${shop.writer_name}">
+														<a href="shopproduct?isbn=${shop.isbn}&author=${shop.author}">
 														<img src="${shop.book_img}"></a>
 													</div>
 												</div>
@@ -193,7 +159,9 @@
 														<a href="#">${shop.book_title}</a>
 													</h3>
 													<span class="product-posted_in">
-													<a href="#" rel="tag">${shop.writer_name}&nbsp;저</a></span>
+													<a rel="tag">${shop.writer_name}&nbsp;저</a></span>
+													<span class="product-posted_in">
+													<a rel="tag">${shop.translator_name}&nbsp;저</a></span>
 													<span class="product-price"> <span class="product-amount">
 														<span class="product-price-currency">정가&nbsp;<fmt:formatNumber value="${shop.book_price}" pattern="###,###,###" /></span>원<br>
 														<span class="product-price-currency">할인가&nbsp;<fmt:formatNumber value="${shop.book_price_for_sale}" pattern="###,###,###" />
@@ -249,7 +217,7 @@
 												<div class="product-media">
 													<div class="img-wrap first-image">
 														<!-- 책 이미지 누르면 책 상세 페이지로 이동 -->
-														<a href="shopproduct?isbn=${shop_title.isbn}&writer_name=encodeURI(${shop_title.writer_name})"><img src="${shop_title.book_img}"></a>
+														<a href="shopproduct?isbn=${shop_title.isbn}&author=${shop_title.author}"><img src="${shop_title.book_img}"></a>
 													</div>
 												</div>
 
@@ -459,6 +427,10 @@
 			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 			actionForm.submit();
 			});
+		
+			
+		
+		
 		
 	});
 	</script>
