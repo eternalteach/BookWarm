@@ -74,9 +74,10 @@ public class LoginController {
 		String user_pw = req.getParameter("user_pw");
 		String remember = req.getParameter("remember");
 		
-		String encryptPw = sha2.encryptSHA256(user_pw);
+//		===========> 로그인 시큐리티 적용으로 비번 암호화 해제
+//		String encryptPw = sha2.encryptSHA256(user_pw);
 		
-		UserVO user = loginService.loginMember(user_id, encryptPw);
+		UserVO user = loginService.loginMember(user_id, user_pw);
 		
 		if(user!=null) {
 			// 로그인 성공

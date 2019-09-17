@@ -6,7 +6,7 @@
 
       <div class="page has-sidebar has-right-sidebar bordered">
 
-         <section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall b-bordered bg-overlay--gradient-dark">
+         <!-- <section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall b-bordered bg-overlay--gradient-dark">
 
             <div class="divimage dzsparallaxer--target w-100" style="height: 120%; background-image: url(./resources/VertexEx/img/main/slide-01.jpg);">
             </div>
@@ -22,22 +22,111 @@
                   </div>
                </div>
             </div>
-         </section>
+         </section> -->
 
-         <div class="page-inner">
-
+         <div class="page-inner has-left-sidebar has-one-sidebar">
             <div class="container">
                <div class="row">
 					
 				<!-- 감상 메인 페이지에서 사이드바 안 쓸 듯 -->
-                  <!-- <div class="col-md-3 left-side-sidebar pt-70">
+                  <div class="col-md-4 left-side-sidebar pt-70">
 
                      <aside class="sidebar">
-						<section></section>                        
-                     </aside>
-                  </div> -->
+						<section>
+							<div>
+								<ul>
+									<li>가장 최근에 서재에 담은 책: </li>
+									<li>이 달 읽은 책 수: </li>
+								</ul>
+							</div>
+						</section> 
+						
+						<section class="widget widget_sf_recent_custom_comments clearfix">
+                            <div class="widget-heading clearfix">
+                                <h4 class="v-heading"><span>Recent Comments</span></h4>
+                            </div>
+                            <ul class="recent-comments-list">
+                            	
+                            	<li class="comment">
+                                    <div class="comment-wrap clearfix">
+                                        <div class="comment-avatar">
+                                            <img src="./resources/Vertex/img/team/t3.png" class="avatar" height="30" width="30" />
+                                        </div>
+                                        <div class="comment-content">
+                                            <div class="comment-body">
+                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
+                                                    <p>Praesent eros mauris dolor</p>
+                                                </a>
+                                            </div>
+                                            <div class="comment-meta">
+                                                <span class="comment-author">Vertex</span> <span class="comment-date">20 hours ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
 
-                  <div class="col-md-12 v_blog-medium pt-70">
+                                <li class="comment">
+                                    <div class="comment-wrap clearfix">
+                                        <div class="comment-avatar">
+                                            <img src="./resources/Vertex/img/team/t3.png" class="avatar" height="30" width="30" />
+                                        </div>
+                                        <div class="comment-content">
+                                            <div class="comment-body">
+                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
+                                                    <p>Praesent eros mauris dolor</p>
+                                                </a>
+                                            </div>
+                                            <div class="comment-meta">
+                                                <span class="comment-author">Vertex</span> <span class="comment-date">20 hours ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="comment">
+                                    <div class="comment-wrap clearfix">
+                                        <div class="comment-avatar">
+                                            <img src="./resources/Vertex/img/team/t1.png" class="avatar" height="30" width="30" />
+                                        </div>
+                                        <div class="comment-content">
+                                            <div class="comment-body">
+                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
+                                                    <p>Omnis iste natus error sit dolor </p>
+                                                </a>
+                                            </div>
+                                            <div class="comment-meta">
+                                                <span class="comment-author">Guest</span> <span class="comment-date">5 hours ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="comment">
+                                    <div class="comment-wrap clearfix">
+                                        <div class="comment-avatar">
+                                            <img src="./resources/Vertex/img/team/t4.png" class="avatar" height="30" width="30" />
+                                        </div>
+                                        <div class="comment-content">
+                                            <div class="comment-body">
+                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
+                                                    <p>Sed tellus ante aliquam eget</p>
+                                                </a>
+                                            </div>
+                                            <div class="comment-meta">
+                                                <span class="comment-author">Admin</span> <span class="comment-date">2 days ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </section>
+						
+						                       
+                     </aside>
+                     
+                  </div>
+
+                  <div class="col-md-8 v_blog-medium pt-70 pull-right">
 
 
 				<!-- 블로그에 글 넣기 시도 -->
@@ -45,7 +134,7 @@
 				
 				<c:forEach items="${list}" var="vo">
 				
-				<div class="post-content no-thumb clearfix">
+				<div class="post-content no-thumb clearfix" style="margin:20px">
 				    <article class="v_blog-item">
                         <div class="v_blog-item-inner row">
                         
@@ -60,7 +149,7 @@
                            <div class="v_blog-item-content col-md-7">
                            
                               <div class="v_blog-item-header">
-                                 <ul class="v_blog-item-meta">
+                                 <ul class="v_blog-item-meta" style="list-style-type: none; padding-left:0px">
                                     <%-- <li class="v_blog-item-author">
                                        <span>By </span> <a href="#">${vo.user_id}</a>
                                     </li> --%>
@@ -158,7 +247,7 @@
          </div>
 
          <footer class="footer footer-2 footer-dark" id="footer-2">
-            <div class="main">
+           <!--  <div class="main">
                <div class="container">
                   <div class="row">
                      <div class="col-md-4 col-sm-6">
@@ -252,7 +341,7 @@
                      </div>
                   </div>
                </div>
-            </div>
+            </div> -->
 
             <div class="copyright">
                <div class="container">
