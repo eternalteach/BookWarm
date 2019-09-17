@@ -13,7 +13,7 @@ var getBookService = (function() {
 					data:{
 					query: title,
 					page:1,
-					size:20,
+					size: 20,
 					target:'title'
 		          },
 		          success : function(result){

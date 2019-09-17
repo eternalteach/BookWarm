@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<!-- <section class="section-small main-color"> background white-->
-<!-- <section class="section-primary alternate-color b-bordered"> -->
 <section class="section-primary alternate-color b-bordered">
 	<div class="container">
 		<div class="row">
@@ -52,7 +50,7 @@
 									data-plugin-options="{&quot;decimals&quot;: 0}">${recordNum}</strong></a>
 							</div>
 							<div class="special-heading text-left">
-								<a href="boardlogwrite?isbn=${bookVO.isbn}">&nbsp; &nbsp;<strong
+								<a href="recordwrite?isbn=${bookVO.isbn}">&nbsp; &nbsp;<strong
 									class="primary-color">Record write</strong>
 								</a>
 							</div>
@@ -163,7 +161,7 @@
 															</c:if>
 														</ul>
 													</nav>
-													<form id='actionForm' action='boardlog' method='get'>
+													<form id='actionForm' action='record' method='get'>
 														<input type='hidden' id='pageNum' name='pageNum'
 															value='${pageMaker.cri.pageNum}'> <input
 															type='hidden' id='amount' name='amount'
@@ -214,7 +212,7 @@
 		$(".move").on("click",function(e){
 			e.preventDefault();
 			actionForm.append("<input type='hidden' name='write_no' value='"+$(this).attr("href")+"'>");
-			actionForm.attr("action","boardlogmodify");
+			actionForm.attr("action","recordmodify");
 			actionForm.submit();
 		})
 		

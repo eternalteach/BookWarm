@@ -1,6 +1,7 @@
 package com.book.warm.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -10,19 +11,19 @@ import com.book.warm.vo.LogingBoardVO;
 @Service
 public class StatisticsFunctionService {
 
-	public int logingPage(ArrayList<LogingBoardVO> list, BookVO bookVO) {
+	public int logingPage(List<LogingBoardVO> list, BookVO bookVO) {
 		if(list.size()==-1||list.size()==0) {
 			System.out.println("list.size() : "+list.size());
 			return 0;
 		}
 		int total = bookVO.getBook_tot_page();
 
-		int[] realReadPage = new int[total]; // ì±…ì˜ ?½???˜?´ì§? 0?œ¼ë¡? ì´ˆê¸°?™”
+		int[] realReadPage = new int[total]; // ì±…ì˜ ?ï¿½ï¿½???ï¿½ï¿½?ï¿½ï¿½ï¿½? 0?ï¿½ï¿½ï¿½? ì´ˆê¸°?ï¿½ï¿½
 		for (int i = 0; i < total; i++) {
 			realReadPage[i] = 0;
 		}
 
-		for (int j = 0; j < list.size(); j++) { // ?½?? ?˜?´ì§? ì²´í¬?•˜ê¸?
+		for (int j = 0; j < list.size(); j++) { // ?ï¿½ï¿½?? ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ì²´í¬?ï¿½ï¿½ï¿½?
 			int readStartPage = list.get(j).getStart_page();
 			int readEndPage = list.get(j).getEnd_page();
 			for (int i = readStartPage - 1; i < readEndPage; i++) {
@@ -30,7 +31,7 @@ public class StatisticsFunctionService {
 			}
 		}
 
-		int countPage = 0; // ?½?? ?˜?´ì§? ?ˆ˜ ì¹´ìš´?Š¸
+		int countPage = 0; // ?ï¿½ï¿½?? ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½ ì¹´ìš´?ï¿½ï¿½
 		for (int i = 0; i < total; i++) {
 			if (realReadPage[i] != 0) {
 				countPage++;
@@ -39,7 +40,7 @@ public class StatisticsFunctionService {
 		return countPage;
 	}
 
-	public int firstPage(ArrayList<LogingBoardVO> list) {
+	public int firstPage(List<LogingBoardVO> list) {
 		if(list.size()==-1||list.size()==0) {
 			System.out.println("list.size() : "+list.size());
 			return 0;
@@ -54,7 +55,7 @@ public class StatisticsFunctionService {
 		return firstpage;
 	}
 
-	public int endPage(ArrayList<LogingBoardVO> list) {
+	public int endPage(List<LogingBoardVO> list) {
 		if(list.size()==-1||list.size()==0) {
 			System.out.println("list.size() : "+list.size());
 			return 0;
