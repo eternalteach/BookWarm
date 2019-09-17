@@ -3,9 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%-- <%
-	String context = request.getContextPath();
-%> --%>
+<% String path = request.getContextPath(); %>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -15,20 +13,11 @@
 <script type="text/javascript"
 	src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="resources/js/logintest.js"></script>
-<link rel="stylesheet" href="resources/css/main.css" />
+<link rel="stylesheet" href="<%=path%>/resources/css/main.css" />
 </head>
-<body>
-	library 페이지입니다.
-	<br /> 이 페이지는 서재 페이지로 로그인 페이지 이후 들어올 수 있습니다.
-	<br /> 서재 그림이 배경 전체화면을 차지하고, 책을 클릭시 해당 책의 정보나 로그, 리뷰, 상세페이지를 볼 수 있는
-	모달창 띄우기
-	<br /> 책 이미지는 책 등록시 이미지 경로 저장해놓았다가 띄우는 방식으로 한다. 따라서 서재에 들어갈 책들 정보에는 책
-	이미지 경로 저장해야 한다.
-	<br /> -=====================================책 검색해서 기록 작성하는 링크는 여기서도
-	등록하게 해야할듯..? 어떤 방식으로 등록할지 해랑씨에게 물어보자.
-	<br />
-	<a href="javascript:openModal('modal-searchBooks')"><button
-			id='addBook'>책 등록하기</button></a>
+<body style="background-image: url('<%=path%>/resources/img/background/snow01.gif');">
+	<a href="javascript:openModal('modal-searchBooks')"><button id='addBook'>책 등록하기</button></a>
+	<a href="<%=path%>/reviewMain?user_id=aaa"><button>감상 메인페이지</button></a>
 	<!-- 이 페이지에서 추가로 구현해야 할 것들
 	 1. SQL에 책 더미데이터 만들기 (테스트에서 만들기 완료)
 	 1.1 책 등록하기 구현 (책 등록하는 것은 모달창으로 책 검색하여 등록하도록 한다.)
