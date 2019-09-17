@@ -69,6 +69,26 @@
 <link href="<%=context%>/resources/VertexEx/css/responsive.css" rel="stylesheet" />
 <link href="<%=context%>/resources/VertexEx/css/utilities.css" rel="stylesheet" />
 <link href="<%=context%>/resources/VertexEx/css/skins/default.css" rel="stylesheet" />
+
+
+<link href="<%=context%>/resources/Vertex/css/bootstrap.min.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/style.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/font-awesome.min.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/streamline-icon.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/header.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/portfolio.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/blog.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/v-animation.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/v-bg-stylish.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/font-icons.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/shortcodes.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/utilities.css" rel="stylesheet" />
+<link href="<%=context%>/resources/VertexEx/css/main-shortcodes.css" rel="stylesheet" /><!-- modal -->
+<link href="<%=context%>/resources/Vertex/css/theme-responsive.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/plugins/aos/aos.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
+
 <link href="<%=context%>/resources/VertexEx/smartforms/JavascriptTemplates/css/smart-addons.css" rel="stylesheet" />
 <link href="<%=context%>/resources/VertexEx/smartforms/Templates/css/smart-forms.css" rel="stylesheet" />
 
@@ -82,8 +102,14 @@
 <script src="<%=context%>/resources/VertexEx/js/custom.js"></script>
 <!-- Theme Initialization -->
 <script src="<%=context%>/resources/VertexEx/js/theme.js"></script>
-
-
+<!-- Style Swicher -->
+<link href="<%=context%>/resources/VertexEx/vendor/style-switcher/style-switcher.css" rel="stylesheet" />
+<link href="<%=context%>/resources/VertexEx/vendor/style-switcher/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
+	<!-- Smart Form Elements -->
+<script src="<%=context%>/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-custom.min.js"></script>
+<script src="<%=context%>/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery.placeholder.min.js"></script>
+<script src="<%=context%>/resources/VertexEx/smartforms/JavascriptTemplates/js/select2.full.min.js"></script>
+<script src="<%=context%>/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-combo.min.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(
 			function($) {
@@ -358,7 +384,7 @@
 		text-align: center;
 	}
 </style>
-<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+
 <script>
 
 	$(document).ready(function() {

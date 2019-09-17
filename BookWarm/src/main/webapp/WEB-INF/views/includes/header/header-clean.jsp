@@ -19,10 +19,10 @@
 					<div class="header-row">
 						<div class="header-column justify-content-center">
 							<div class="header-row">
-								<div class="header-nav header-nav-top-line justify-content-center">
 									<div align="center">
 										<a href="library"> <img alt="logo" width="80" height="100" src="<%=path%>/resources/img/header/Alice_rabbit03.png"></a>
 									</div>
+								<div class="header-nav header-nav-top-line justify-content-center">
 									<div class="header-nav-main header-nav-main-effect-2 header-nav-main-sub-effect-1">
 										<!-- 탑 메뉴 -->
 										<%@ include file="./include-header-top-nav.jsp"%>
