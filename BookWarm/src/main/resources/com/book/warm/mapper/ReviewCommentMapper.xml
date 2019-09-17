@@ -50,6 +50,18 @@
  		
  	</select>
  	
+ 	<select id="getCommentsOnMyReview" resultType="com.book.warm.vo.ReviewCommentVO">
+ 		<![CDATA[
+ 			select review_cmt_no, review_no, user_id, review_cmt_content, review_cmt_written_date, md
+			from (select rownum rn, review_cmt_no, rc.review_no, rc.user_id, review_cmt_content, review_cmt_written_date, review_cmt_modified_date md
+			      from review_comment rc, review_board rb
+			      where rc.review_no = rb.review_no
+			      and rb.user_id = 'aaa'
+			      order by md desc)
+			where rownum<=5;
+ 		]]>
+ 	</select>
+ 	
  	
  </mapper>
  

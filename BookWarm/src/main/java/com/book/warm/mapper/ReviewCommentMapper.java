@@ -26,4 +26,6 @@ public interface ReviewCommentMapper {
 	public int getCountByReviewNo(int review_no);
 	
 	public CommentPageDTO getListPage(Criteria cri, int review_no);
+
+	public List<ReviewCommentVO> getCommentsOnMyReview(String user_id);
 }

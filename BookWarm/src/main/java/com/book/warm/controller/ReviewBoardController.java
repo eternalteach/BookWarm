@@ -52,7 +52,11 @@ public class ReviewBoardController {
 	
 	// 내가 쓴 모든 리뷰가 최근 수정일 순 - 책별로 나타남
 	@RequestMapping("/reviewMain")
-	public String recordMain(@RequestParam("user_id") String user_id, Model model) {
+	public String recordMain(HttpSession session, HttpServletRequest request, 
+							/*@RequestParam("user_id") String user_id,*/ Model model) {
+		
+		session = request.getSession();
+		String user_id = (String) session.getAttribute("user_id");
 		
 		model.addAttribute("list", service.selectBoardList(user_id));
 		

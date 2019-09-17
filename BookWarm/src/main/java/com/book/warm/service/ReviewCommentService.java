@@ -44,6 +44,11 @@ public class ReviewCommentService {
 		return new CommentPageDTO(
 				mapper.getCountByReviewNo(review_no),
 				mapper.getListWithPaging(cri, review_no));
-	};
+	}
+	
+	public List<ReviewCommentVO> getCommentsOnMyReview(String user_id) {
+		return mapper.getCommentsOnMyReview(user_id);
+	}
+
 	
 }
