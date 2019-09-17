@@ -23,6 +23,11 @@ public class HomeController {
 		// 여기까지 지우기
 		return "/index";
 	}
+	@RequestMapping(value = "/index2", method = RequestMethod.GET)
+	public String index2() {
+		log.info("============================= index2 ===========================");
+		return "/index2";
+	}
 
 	@RequestMapping(value = "/preview", method = RequestMethod.GET)
 	public String preview() {

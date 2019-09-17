@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<!-- <section class="section-small main-color"> background white-->
-<!-- <section class="section-primary alternate-color b-bordered"> -->
 <section class="section-primary alternate-color b-bordered">
 	<div class="container">
 		<div class="row">
