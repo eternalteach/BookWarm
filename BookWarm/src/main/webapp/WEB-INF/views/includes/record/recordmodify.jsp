@@ -5,7 +5,7 @@
 	<br/>
 	<br/>
 	<br/>
-<form method="post" id="submitloging" action="boardLogModifySave">
+<form method="post" id="submitloging" action="recordModifySave">
 	<input type="text" name="write_no" value="${willModifyLoging.write_no}" hidden="hidden">
 	<table style="margin-left:auto; margin-right:auto;">
 		<tr>
@@ -29,7 +29,7 @@
 		</tr>
 		<tr>
 			<td><button type="submit" class="button btn-primary">Re Record</button>
-	<a href="boardLogDelete?write_no=${willModifyLoging.write_no}"><button type="button" class="button btn-primary">Delete</button></a>	
+	<a href="recordDelete?write_no=${willModifyLoging.write_no}"><button type="button" class="button btn-primary">Delete</button></a>	
 			</td>
 		</tr>
 	</table>

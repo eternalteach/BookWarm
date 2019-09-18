@@ -2,37 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ include file="includes/header/header-transparent-navonly.jsp"%>
-<link href="resources/Vertex/css/bootstrap.min.css" rel="stylesheet" />
-<link href="resources/Vertex/css/style.css" rel="stylesheet" />
-<link href="resources/Vertex/css/font-awesome.min.css" rel="stylesheet" />
-<link href="resources/Vertex/css/streamline-icon.css" rel="stylesheet" />
-<link href="resources/Vertex/css/header.css" rel="stylesheet" />
-<link href="resources/Vertex/css/portfolio.css" rel="stylesheet" />
-<link href="resources/Vertex/css/blog.css" rel="stylesheet" />
-<link href="resources/Vertex/css/v-animation.css" rel="stylesheet" />
-<link href="resources/Vertex/css/v-bg-stylish.css" rel="stylesheet" />
-<link href="resources/Vertex/css/font-icons.css" rel="stylesheet" />
-<link href="resources/Vertex/css/shortcodes.css" rel="stylesheet" />
-<link href="resources/Vertex/css/utilities.css" rel="stylesheet" />
-<link href="resources/VertexEx/css/main-shortcodes.css" rel="stylesheet" /><!-- modal -->
-<link href="resources/Vertex/css/theme-responsive.css" rel="stylesheet" />
-<link href="resources/Vertex/plugins/aos/aos.css" rel="stylesheet" />
-<link href="resources/Vertex/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
-<link href="resources/Vertex/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
-
-
-<!-- Theme CSS -->
-<link href="./resources/VertexEx/smartforms/Templates/css/smart-forms.css" rel="stylesheet" />
-
-<!-- Style Swicher -->
-<link href="./resources/VertexEx/vendor/style-switcher/style-switcher.css" rel="stylesheet" />
-<link href="./resources/VertexEx/vendor/style-switcher/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
-	<!-- Smart Form Elements -->
-<script src="./resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-custom.min.js"></script>
-<script src="./resources/VertexEx/smartforms/JavascriptTemplates/js/jquery.placeholder.min.js"></script>
-<script src="./resources/VertexEx/smartforms/JavascriptTemplates/js/select2.full.min.js"></script>
-<script src="./resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-combo.min.js"></script>
+<%@ include file="includes/header/header-clean.jsp"%>
 
 <div class="page has-sidebar has-right-sidebar bordered">
 	<div class="page-inner">

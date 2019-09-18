@@ -393,3 +393,6 @@
     		
     	})
 	</script>
+	
+<!-- login 확인하기 -->
+<script type="text/javascript" src="resources/js/logintest.js"></script> 

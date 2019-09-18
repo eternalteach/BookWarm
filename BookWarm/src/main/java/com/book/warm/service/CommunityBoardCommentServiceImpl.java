@@ -51,7 +51,7 @@ public class CommunityBoardCommentServiceImpl implements CommunityBoardCommentSe
 
 	@Override
 	public CommunityCommentPageDTO getListPage(Criteria criteria, int comm_cmt_no) {
-		
+		log.info("CommunityCommentPageDTO");
 		return new CommunityCommentPageDTO(mapper.getCountByComm_cmt_no(comm_cmt_no),mapper.getCommentListWithPaging(criteria,comm_cmt_no));
 	}
 

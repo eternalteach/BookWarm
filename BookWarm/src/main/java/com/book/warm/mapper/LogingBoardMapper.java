@@ -1,6 +1,6 @@
 package com.book.warm.mapper;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -10,9 +10,9 @@ import com.book.warm.vo.LogingBoardVO;
 
 public interface LogingBoardMapper {
 
-	public ArrayList<LogingBoardVO> getListWithPaging(@Param("criteria") Criteria criteria,@Param("bookVO") BookVO bookVO);
+	public List<LogingBoardVO> getListWithPaging(@Param("criteria") Criteria criteria,@Param("bookVO") BookVO bookVO,@Param("user_id") String user_id);
 
-	public Integer CountWriteNo(BookVO bookVO);
+	public Integer CountWriteNo(@Param("bookVO")BookVO bookVO,@Param("user_id") String user_id);
 	
 	public int logingBoard(LogingBoardVO logingBoardVO);
 

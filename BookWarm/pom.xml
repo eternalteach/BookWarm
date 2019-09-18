@@ -33,8 +33,15 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.3</version>
 		</dependency>
-		
-		
+
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson Json 
+			객체 자바객체로 변환시 사용 -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.5</version>
+		</dependency>
+
 
 		<!-- 오라클 JDBC 드라이버 -->
 		<dependency>
