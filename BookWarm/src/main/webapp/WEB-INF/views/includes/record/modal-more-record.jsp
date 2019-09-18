@@ -26,12 +26,9 @@
 											</div>
 											<div class="section">
 												<div class="spacer-b15">
-													<input type="text" id="startRead" class="slider-input"
-														value="${startPage}" hidden="hidden"> <input
-														type="text" id="endRead" class="slider-input"
-														value="${endPage}" hidden="hidden"> <input
-														type="text" id="bookTotalPage"
-														value="${bookVO.book_tot_page}" hidden="hidden">
+													<input type="text" id="startRead" class="slider-input" value="${startPage}" hidden="hidden"> 
+													<input type="text" id="endRead" class="slider-input" value="${endPage}" hidden="hidden"> 
+													<input type="text" id="bookTotalPage" value="${bookVO.book_tot_page}" hidden="hidden">
 												</div>
 												<div class="slider-wrapper">
 													<div id="slider-range"></div>
@@ -53,8 +50,10 @@
 														value="${start_date}" pattern="yyyy-MM-dd" />
 											</span> <span class="comment-container minor-meta">
 													&nbsp;&nbsp;p.${loginglist.start_page}&nbsp;&nbsp;-&nbsp;p.${loginglist.end_page}
-											</span> <span class="text-sep">&nbsp;|&nbsp;</span> <a class="move"
-												href="recordmodify?write_no=${loginglist.write_no}">Modify</a>
+											</span> <span class="text-sep">&nbsp;|&nbsp;</span> 
+											<a href="javascript:openModal('modal-modify-record')"><button class="recordModifyBtn" data-write_no="${loginglist.write_no}" style="border: none;">Modify</button></a>
+											<button class="recordDeleteBtn" data-write_no="${loginglist.write_no}" style="border: none;">Delete</button>
+<!-- 버튼 클릭시 수정할 record번호 얻어서 비동기통신 통해 데이터 받아오고, 수정 하는 모달에 뿌려주기 -->
 											</span>
 										</div>
 									</c:forEach>

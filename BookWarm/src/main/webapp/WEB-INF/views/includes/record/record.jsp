@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <script type="text/javascript" src="<%=path%>/resources/js/record.js"></script>
+<script type="text/javascript" src="<%=path%>/resources/js/DateJsonToJsp.js"></script>
 <section class="section-primary alternate-color b-bordered">
 	<div class="container">
 		<div class="row">
@@ -50,7 +51,7 @@
 							</div>
 							<div class="special-heading text-left">
 							<!-- open add record modal -->
-								<a id="dididi" class="ididid" href="javascript:openModal('modal-add-record')">&nbsp; &nbsp;<strong class="primary-color">Record write</strong>
+								<a href="javascript:openModal('modal-add-record')">&nbsp; &nbsp;<strong class="primary-color">Record write</strong>
 								</a>
 							</div>
 						</div>
@@ -69,5 +70,7 @@
 	<%@ include file="./modal-more-record.jsp"%>
 	<!-- 기록 쓰는 모달창 -->
 	<%@ include file="./modal-add-record.jsp"%>
+	<!-- 기록 수정하는 모달창 -->
+	<%@ include file="./modal-modify-record.jsp"%>
 	</div>
 </div>

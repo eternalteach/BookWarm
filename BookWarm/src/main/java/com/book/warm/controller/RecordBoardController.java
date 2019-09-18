@@ -12,13 +12,16 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.book.warm.page.CommunityCommentPageDTO;
 import com.book.warm.page.Criteria;
 import com.book.warm.page.PageDTO;
 import com.book.warm.service.RecordService;
@@ -76,7 +79,24 @@ public class RecordBoardController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	// record 수정시 write_no 하나로 그 record 가져오기
+	@GetMapping(value = "recordModify/{write_no}", produces = { MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<LogingBoardVO> get(@PathVariable("write_no") String write_no) {
+		log.info("==================== get ====================");
+		log.info("write_no : " + write_no);
+		log.info("user id in getList : "+recordService.getRecord(write_no).getUser_id());
+		return new ResponseEntity<>(recordService.getRecord(write_no), HttpStatus.OK);
+	}
 	
+	// record 수정시 write_no 하나로 그 record 가져오기
+	@GetMapping(value = "recordRemove/{write_no}", produces = { MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<Integer> recordRemove(@PathVariable("write_no") String write_no) {
+		log.info("==================== recordRemove ====================");
+		log.info("write_no : " + write_no);
+		return new ResponseEntity<>(recordService.deleteRecord(write_no), HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "/recordDelete", method = RequestMethod.GET)
 	public String recordDelete(@Param("write_no") String write_no, Criteria cri, RedirectAttributes rttr)
@@ -92,37 +112,11 @@ public class RecordBoardController {
 		return "redirect:record?isbn=" + isbn;
 	}
 
-	/*
-	 * @RequestMapping(value = "/recordWriteSave", method = RequestMethod.POST)
-	 * public String recordWriteSave(HttpSession session, LogingBoardVO
-	 * logingBoardVO) throws Exception { log.info("===== recordWriteSave() =====");
-	 * String user_id=(String)session.getAttribute("user_id");
-	 * logingBoardVO.setUser_id(user_id); logingBoardVO.getEnd_date();
-	 * log.info("시작 날짜 : "+logingBoardVO.getStart_date());
-	 * log.info("완독여부  : "+logingBoardVO.getEnd_date());
-	 * recordService.addRecord(logingBoardVO); return "redirect:record?isbn=" +
-	 * logingBoardVO.getIsbn(); }
-	 */
-
-	@RequestMapping(value = "/recordmodify", method = RequestMethod.GET)
-	public String recordmodify(@Param("write_no") String write_no, Model model,
-			@ModelAttribute("criteria") Criteria criteria, RedirectAttributes rttr) throws Exception {
-		log.info("===== recordmodify() =====");
-		LogingBoardVO willModifyLoging = recordService.getRecord(write_no);
-		model.addAttribute("willModifyLoging", willModifyLoging);
-		return "/recordmodify";
-	}
-
-	@RequestMapping(value = "/recordModifySave", method = RequestMethod.POST)
-	public String boardLogModifySave(LogingBoardVO logingBoardVO, Criteria criteria,
-			RedirectAttributes rttr) throws Exception {
-		log.info("===== recordModifySave() =====");
-		rttr.addAttribute("amount",criteria.getAmount());
-		rttr.addAttribute("pageNum",criteria.getPageNum());
-		rttr.addAttribute("modalOpen", "open");
-
-		recordService.modifyRecord(logingBoardVO);
-		String isbn = logingBoardVO.getIsbn();
-		return "redirect:record?isbn=" + isbn;
+	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="recordModifySave/{write_no}",consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> modify(@RequestBody LogingBoardVO logingBoardVO, @PathVariable("write_no")int write_no){
+		log.info("========================= modify =========================");
+		logingBoardVO.setWrite_no(write_no);
+		log.info("write_no : "+write_no);
+		return recordService.modifyRecord(logingBoardVO)==1 ? new ResponseEntity<>("success",HttpStatus.OK): new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
 	}
 }
