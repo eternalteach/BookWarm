@@ -32,43 +32,25 @@ public class LoginController {
 	@Inject
 	LoginService loginService;
 	
-	@RequestMapping(path="/login")
-	public String login(HttpSession session, HttpServletRequest req, RedirectAttributes rttr) {
-		System.out.println("login()");
-		String user = (String) session.getAttribute("user_id");
-		String rtn;
-		
-//		// 1. 이전 로그인 했을 때 자동로그인 체크했었는지 확인 (user_id쿠키 있는지 확인)
-//		Cookie[] cookies = req.getCookies();
-//		if(cookies!=null && cookies.length>0) {
-//			for(int i=0; i<cookies.length; i++) {
-//				if(cookies[i].getName().equals("user_id")) {
-//					// 쿠키의 key값이 user_id라면 value를 'user_id'변수에 저장시킨다.
-//					user = cookies[i].getValue();
-//					// 세션도 만들어줌
-//					session.setAttribute("user_id", user);
-//				}
-//			}
-//		}
-		
-		// 2. 로그인 성공 여부 확인
-		if(user!=null) {
-			// 로그인 성공
-			rttr.addAttribute("pageWithLogin", true);
-			rtn = "redirect:/shop/cart?user_id="+user;
-		}else {
-			// 로그인 실패 or 로그인페이지 처음 들어갔을 때
-			rtn = "/login";
-		}
-		
-		return rtn;
-	}
+	/*
+	 * @RequestMapping(path="/login") public String login(HttpSession session,
+	 * HttpServletRequest req, RedirectAttributes rttr) {
+	 * System.out.println("login()"); String user = (String)
+	 * session.getAttribute("user_id"); String rtn;
+	 * 
+	 * 
+	 * 
+	 * // 2. 로그인 성공 여부 확인 if(user!=null) { // 로그인 성공 rtn = "redirect:library"; }else
+	 * { // 로그인 실패 or 로그인페이지 처음 들어갔을 때 rtn = "/login"; }
+	 * 
+	 * return rtn; }
+	 */
 	
 	@RequestMapping(value="/loginAction", method=RequestMethod.POST)
 	public String loginAction(HttpServletRequest req, HttpServletResponse res, RedirectAttributes rttr) {
 		
 		HttpSession session = req.getSession();
-		SecurityUtil sha2 = new SecurityUtil();
+//		SecurityUtil sha2 = new SecurityUtil();
 		
 		String user_id = req.getParameter("user_id");
 		String user_pw = req.getParameter("user_pw");

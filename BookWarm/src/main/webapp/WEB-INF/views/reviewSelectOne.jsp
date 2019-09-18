@@ -941,7 +941,6 @@
     
     <script type="text/javascript" >
 
-	
 	// 첨부파일 가져오기 위한 즉시 실행 함수
 	(function() {
 		var review_no = '<c:out value="${review.review_no}"/>';
@@ -1190,6 +1189,7 @@
     	$(document).ready(function() {
     		
     		// 작성한 감상글 수정/삭제, 목록으로 돌아가기
+    		
     		var operForm = $("#operForm");
     		/* var opers = operForm.find(".oper"); */
     		var opers = $(".oper");

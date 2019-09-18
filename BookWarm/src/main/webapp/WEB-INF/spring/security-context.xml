@@ -10,13 +10,14 @@
 	<bean id="customAccessDenied" class="com.book.warm.security.CustomAccessDeniedHandler"></bean>
 	<bean id="customLoginSuccess" class="com.book.warm.security.CustomLoginSuccessHandler"></bean>
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<bean id="customUserDetailsService" class="com.book.warm.security.CustomUserDetailsService"></bean>
 
 	<security:http auto-config="true" use-expressions="true">
 	
 		<security:intercept-url pattern="/sample/all" access="permitAll"/>
 		<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')"/>
 		<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')"/>	
-			
+		
 		<security:access-denied-handler ref="customAccessDenied"/>
 		
 		<security:form-login 
@@ -25,20 +26,18 @@
 		
 		<security:logout logout-url="/customLogout" invalidate-session="true" />
 		
+		<security:remember-me
+					data-source-ref="dataSource" token-validity-seconds="604800"/>
+					
+		<security:logout logout-url="/customLogout" invalidate-session="true"
+					delete-cookies="remember-me, JSESSION_ID" />
+		
 	</security:http>
 	
 	<security:authentication-manager>
 		
-		<security:authentication-provider>
-			<!-- <security:user-service>
-				<security:user name="member" password="{noop}member" authorities="ROLE_MEMBER" />
-				<security:user name="admin" password="{noop}admin" authorities="ROLE_MEMBER, ROLE_ADMIN" />
-				
-			</security:user-service> -->
-			
-			<security:jdbc-user-service data-source-ref="dataSource" 
-						users-by-username-query="select user_id, user_pw, enabled from user_info where user_id=?"
-						authorities-by-username-query="select user_id, authority from authorities where user_id=?"/>
+		<security:authentication-provider
+					user-service-ref="customUserDetailsService">
 			
 			<security:password-encoder ref = "bcryptPasswordEncoder" />
 			

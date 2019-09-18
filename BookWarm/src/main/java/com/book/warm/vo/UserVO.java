@@ -1,6 +1,7 @@
 package com.book.warm.vo;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class UserVO {
 	String user_id;
@@ -18,7 +19,9 @@ public class UserVO {
 	String user_level;
 	int user_tot_price;
 	int user_point;
+	
 	String enabled;
+	private List<AuthVO> authList;
 	
 	public UserVO() {
 		super();
@@ -27,7 +30,7 @@ public class UserVO {
 	public UserVO(String user_id, String user_pw, String user_nickname, String user_name, Timestamp user_bday,
 			String user_sex, String user_phone, String user_mail, int user_zipcode, String user_addr,
 			String user_addr_detail, String user_join_date, String user_level, int user_tot_price, int user_point,
-			String enabled) {
+			String enabled, List<AuthVO> authList) {
 		super();
 		this.user_id = user_id;
 		this.user_pw = user_pw;
@@ -45,6 +48,7 @@ public class UserVO {
 		this.user_tot_price = user_tot_price;
 		this.user_point = user_point;
 		this.enabled = enabled;
+		this.authList = authList;
 	}
 
 	public String getUser_id() {
@@ -174,6 +178,15 @@ public class UserVO {
 	public void setEnabled(String enabled) {
 		this.enabled = enabled;
 	}
+
+	public List<AuthVO> getAuthList() {
+		return authList;
+	}
+
+	public void setAuthList(List<AuthVO> authList) {
+		this.authList = authList;
+	}
+
 	
 	
 	

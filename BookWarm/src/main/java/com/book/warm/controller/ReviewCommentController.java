@@ -101,18 +101,19 @@ public class ReviewCommentController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@GetMapping(value="/users/{user_id}",
-			produces= {
-						MediaType.APPLICATION_XML_VALUE,
-						MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<ReviewCommentVO> getListOnMyReview(
-		@PathVariable("user_id") String user_id) {
-	
-	
-	log.info("get Comment List user_id: " + user_id);
-	
-	return new ResponseEntity<>(service.getCommentsOnMyReview(user_id), HttpStatus.OK);
-	}
+	/*
+	 * @GetMapping(value="/users/{user_id}", produces= {
+	 * MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE })
+	 * public ResponseEntity<ReviewCommentVO> getListOnMyReview(
+	 * 
+	 * @PathVariable("user_id") String user_id) {
+	 * 
+	 * 
+	 * log.info("get Comment List user_id: " + user_id);
+	 * 
+	 * return new ResponseEntity<>(service.getCommentsOnMyReview(user_id),
+	 * HttpStatus.OK); }
+	 */
 	
 	
 }
