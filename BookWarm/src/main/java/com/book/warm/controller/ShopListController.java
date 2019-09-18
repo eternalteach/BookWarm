@@ -46,18 +46,13 @@ public class ShopListController {
 	@RequestMapping(value = "/shopproduct", method = RequestMethod.GET)
 	public String shop_product(HttpSession session, HttpServletRequest request, Model model) throws Exception {
 		log.info("=========================== shopproduct ==============================");
-		
 		session = request.getSession();
 		String user_id =(String)session.getAttribute("user_id");
-		
-		log.info("session에 있는 user_id : " + user_id);
-		
 		String isbn = request.getParameter("isbn");
-		
 		BookListVO booklistvo = shoplistservice.bookdetail(isbn);
 		String author = booklistvo.getAuthor();
 		
-		
+		log.info("session에 있는 user_id : " + user_id);
 		log.info("isbn : "+isbn);
 		log.info("author :" + author);
 		

@@ -45,20 +45,14 @@
                            </span>
                         </div>
 
-						
-						
                         <div class="product-summary">
                       <%--    <c:if test="${empty bookdetail.author}">
       					</c:if> --%>
       					
                          <p>${bookdetail.writer_name}&nbsp저</p>
-                         
-                         	
                           <c:if test="${bookdetail.translator_name != '[]'}">
  						 <p>${bookdetail.translator_name}&nbsp역</p>
  						 </c:if>
- 						 
- 						 
                         </div>
 
                            <!-- 수량변경버튼 -->
@@ -72,18 +66,9 @@
 									</div>
 							</div>
 							</form> 
-						
-<!-- 							<div class="qty-adjust">
-							금액 : <input type="text" name="sum" readonly>원
-                            </div> -->
-                            
-                            
-                            
-                            
-                            
                            
 							<!-- 장바구니로 이동 -->
-                           <a href="/warm/shop/cart?user_id=${user_id}"><button id="cart" type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="장바구니로 이동" data-location="top">
+                           <a href="/warm/shop/cart?user_id=${user_id}&isbn=${bookdetail.isbn}"><button id="cart" type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="장바구니로 이동" data-location="top">
                            <i class="fa fa-shopping-basket" data-title="장바구니로 이동" data-location="top"></i>
                            <span>장바구니</span>
                            </button></a>

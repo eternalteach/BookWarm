@@ -26,25 +26,19 @@ public class ShopListService {
 		return shoplistmapper.bookpricelist();
 	}
 	
+	//가격(비싼순)
 	public List<BookListVO> bookpricelist2() throws Exception{
 		return shoplistmapper.bookpricelist2();
 	}
 	
-	//isbn && writer_name으로 책 상세정보 불러오기
+	//isbn 으로 책 상세정보 불러오기
 	public BookListVO bookdetail(String isbn) throws Exception{
 		return  shoplistmapper.bookdetail(isbn);
 	}
 	
-	//writer_name이 같은 다른 책들 불러오기
+	//author이 같은 다른 책들 불러오기
 	public List<BookListVO> bookwritername(String author) throws Exception{
 		return shoplistmapper.bookwritername(author);
 	}
 
-	
-	/*
-	 * 
-	 * public int gettotalcount(Criteria criteria) { return
-	 * shoplistmapper.gettotalcount(criteria); }
-	 */
-	
 }

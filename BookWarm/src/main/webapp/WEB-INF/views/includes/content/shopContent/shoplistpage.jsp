@@ -164,8 +164,6 @@
 													<a rel="tag" id="translastor_name"><%-- ${shop.translator_name}&nbsp;저 --%></a></span>
 													<span class="product-price"> <span class="product-amount">
 														<span class="product-price-currency">정가&nbsp;<fmt:formatNumber value="${shop.book_price}" pattern="###,###,###" /></span>원<br>
-														<span class="product-price-currency">할인가&nbsp;<fmt:formatNumber value="${shop.book_price_for_sale}" pattern="###,###,###" />
-</span>원
 													</span>
 													</span>
 												</div>
@@ -199,7 +197,6 @@
 													<span class="product-posted_in"><a href="#" rel="tag">${shop_title.writer_name}&nbsp;저</a></span>
 													<span class="product-price"> <span class="product-amount">
 														<span class="product-price-currency">정가&nbsp;<fmt:formatNumber value="${shop_title.book_price}" pattern="###,###,###" /></span>원<br>
-														<span class="product-price-currency">할인가&nbsp;<fmt:formatNumber value="${shop_title.book_price_for_sale}" pattern="###,###,###" /></span>
 													</span>
 													</span>
 												</div>
@@ -230,7 +227,6 @@
 													<span class="product-posted_in"><a href="#" rel="tag">${bookpricelist2.writer_name}&nbsp;저</a></span>
 													<span class="product-price"> <span class="product-amount">
 														<span class="product-price-currency">정가&nbsp;<fmt:formatNumber value="${bookpricelist2.book_price}" pattern="###,###,###" /></span>원<br>
-														<span class="product-price-currency">할인가&nbsp;<fmt:formatNumber value="${bookpricelist2.book_price_for_sale}" pattern="###,###,###" /></span>
 													</span>
 													</span>
 													</div>

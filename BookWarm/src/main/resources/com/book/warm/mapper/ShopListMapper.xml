@@ -16,8 +16,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     order by book.book_title
     ]]>  -->
     <![CDATA[	
-    select * from book
-    order by book_title
+    select * from (
+    	select * 
+    	from book 
+    	order by book_title
+    	)
+   	where rownum <= 18
     ]]>
 	</select> 
 	
@@ -32,9 +36,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     order by book.book_price_for_sale
     ]]>  -->
     <![CDATA[	
-    select * from book
-    where rownum <= 24
-    order by book_price_for_sale
+    select * from  (
+    	select * 
+    	from book 
+    	order by book_price_for_sale
+    	)
+    where rownum <= 18
     ]]>	
 	</select> 
 	
@@ -50,9 +57,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     order by book.book_price_for_sale desc
     ]]>  -->	
     <![CDATA[	
-    select * from book
-    where rownum <= 24
-    order by book_price_for_sale desc
+    select * from  (
+    	select * 
+    	from book 
+    	order by book_price_for_sale desc
+    	)
+    where rownum <= 18
     ]]>	
 	</select> 
 	
