@@ -31,25 +31,17 @@
                            <div class="form-header pt-0 pl-0">
                               <h4 class="fs-24">결제 상세 정보</h4>
                            </div>
-
-                           <form method="post" action="/" id="accountx">
+                           <form method="post" action="/" id="accountx" name="chargeForm">
                               <div class="form-body pl-0">
 
                                  <div class="spacer-b30">
                                     <div class="tagline"><span>배송지 정보</span></div><!-- .tagline -->
                                  </div>
-
+                                 
                                  <div class="section">
                                     <label class="field prepend-icon">
                                        <input type="text" name="name" id="name" class="gui-input" placeholder="이름">
                                        <span class="field-icon"><i class="fa fa-user"></i></span>
-                                    </label>
-                                 </div><!-- end section -->
-
-                                 <div class="section">
-                                    <label class="field prepend-icon">
-                                       <input type="email" name="email" id="email" class="gui-input" placeholder="Email">
-                                       <span class="field-icon"><i class="fa fa-envelope"></i></span>
                                     </label>
                                  </div><!-- end section -->
 
@@ -71,7 +63,7 @@
                                     <div class="section colm colm4">
 	                                    <label class="field prepend-icon">
 	                                    	<span class="field-icon"><i class="fa fa-map-marker"></i></span>
-	                                    	<input type="button" class="btn" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+	                                    	<input type="button" class="btn btn-primary" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
 	                                    </label>
                                    	</div>
 	                             </div>
@@ -84,7 +76,9 @@
                                        <input type="text" id="sample4_jibunAddress" class="gui-input" placeholder="지번주소">
                                     </div><!-- end section -->
                                  </div><!-- end frm-row section -->
+                                 
                                  <span id="guide" style="color:#999;display:none"></span>
+	                             
 	                             <div class="frm-row">
                                     <div class="section colm colm6">
                                        <input type="text" id="sample4_detailAddress" class="gui-input" placeholder="상세주소">
@@ -109,18 +103,43 @@
 		                            <div class="tagline"><span>할인 및 적립</span></div><!-- .tagline -->
 		                         </div>
                                  
+                                 <div class="frm-row"><!-- class에 가운데정렬 하는 클래스 주기! -->
+                                 	<div class="section colm colm2">
+                                 		쿠폰
+                                 	</div>
+                                   	<div class="section colm colm6">
+                                   		<label class="field">
+                                    	   <input type="text" id="coupon" name="coupon" class="gui-input" placeholder="쿠폰" readonly>
+	                                    </label>
+                                    </div>
+                                    <div class="section colm colm3">
+	                                    <label class="field">
+	                                    	<input type="button" class="btn btn-primary" id="pickCoupon" value="쿠폰 적용">
+	                                    </label>
+                                   	</div>
+	                             </div>
                                  
-                                 
-                                 
-                                 
-                                 
-                                 
-                                 
-                                 
-                                 
-                                 
-                                 
-                                 
+                                 <div class="frm-row"><!-- class에 가운데정렬 하는 클래스 주기! -->
+                                 	<div class="section colm colm2">
+                                 		적립금
+                                 	</div>
+                                   	<div class="section colm">
+                                   		<label class="field">
+                                    	   <input type="text" id="point" class="gui-input" placeholder="적립금">
+	                                    </label>
+                                    </div>
+                                    <div class="section colm">
+	                                    <label class="field">
+	                                    	<input type="button" class="btn btn-primary" id="applyPoint" value="사용하기">
+	                                    </label>
+                                   	</div>
+                                    <div class="section colm">
+	                                    <label class="field">
+	                                    	가용 포인트 <span id="availablePoint">${userVO.user_point}</span>p / 사용 <span name="usePoint" id="usePoint">0</span>p
+	                                    </label>
+                                   	</div>
+	                             </div>
+	                             
                               </div><!-- end .form-body section -->
                            </form>
                         </div>
@@ -164,6 +183,21 @@
 
                                              <td class="cart-product-name">
                                                 <span class="amount">${delivery}</span>
+                                             </td>
+                                          </tr>
+                                          <tr class="cart_item">
+                                             <td class="cart-product-name">
+                                                <strong>할인</strong>
+                                             </td>
+                                             <td class="cart-product-name">
+                                                -<span class="amount" id="discountPoint">0</span>(포인트 할인)
+                                             </td>
+                                          </tr>
+                                          <tr class="cart_item">
+                                          	 <td class="cart-product-name">
+                                             </td>
+                                          	 <td class="cart-product-name">
+                                             	-<span class="amount" id="discountCoupon">0</span>(쿠폰 할인)
                                              </td>
                                           </tr>
                                           <tr class="cart_item">
@@ -223,7 +257,6 @@
                                     <div class="section colm colm6">
                                        <label for="cardmonth" class="field select">
                                           <select id="cardmonth" name="cardmonth">
-                                             <option value="">Expiry month...</option>
                                              <option value="01">01 - Jan</option>
                                              <option value="02">02 - Feb</option>
                                              <option value="03">03 - Mar</option>
@@ -243,22 +276,7 @@
 
                                     <div class="section colm colm6">
                                        <label class="field select">
-                                          <select id="cardyear" name="cardyear">
-                                             <option value="">Expiry year...</option>
-                                             <option value="2014">2014</option>
-                                             <option value="2015">2015</option>
-                                             <option value="2016">2016</option>
-                                             <option value="2017">2017</option>
-                                             <option value="2018">2018</option>
-                                             <option value="2019">2019</option>
-                                             <option value="2020">2020</option>
-                                             <option value="2021">2021</option>
-                                             <option value="2022">2022</option>
-                                             <option value="2023">2023</option>
-                                             <option value="2024">2024</option>
-                                             <option value="2025">2025</option>
-                                             <option value="2026">2026</option>
-                                          </select>
+                                          <select id="cardyear" name="cardyear" id="cardyear"></select>
                                           <i class="arrow double"></i>
                                        </label>
                                     </div><!-- end section -->
@@ -273,16 +291,13 @@
                                           <span class="field-icon"><i class="fa fa-barcode"></i></span>
                                        </label>
                                     </div><!-- end section -->
-
-                                    <div class="section colm colm6">
-                                       <p> <a href="#" class="smart-link"> What is this? </a>  </p>
-                                    </div><!-- end section -->
                                  </div><!-- end frm-row section -->
                               </div><!-- end .form-body section -->
+                              
                               <div class="form-footer">
                                  <button type="submit" class="btn btn-primary w-100">Proceed to confirm </button>
                               </div><!-- end .form-footer section -->
-                           </form>
+                           </form><!-- end form -->
                         </div>
                      </div>
                   </div>
@@ -292,7 +307,7 @@
 
       </div>
 
-      <div class="modal fade" id="exampleModalLabel33" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel33" aria-hidden="true">
+      <!-- <div class="modal fade" id="exampleModalLabel33" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel33" aria-hidden="true">
          <div class="modal-dialog" style="max-width:345px" role="document">
             <div class="modal-content">
                <div class="modal-header">
@@ -337,7 +352,7 @@
                </div>
             </div>
          </div>
-      </div>
+      </div> -->
    </div>
 
 </body>

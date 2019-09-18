@@ -10,7 +10,9 @@
 	
 	<insert id="insertNewUser" parameterType="com.book.warm.vo.UserVO">
 		insert into user_info
-		values(#{user_id}, #{user_pw}, #{user_nickname}, #{user_name}, TO_DATE(#{user_bday}), #{user_sex}, #{user_phone}, #{user_mail}, #{user_zipcode}, #{user_addr}, #{user_addr_detail}, sysdate, '앨리스', 0, 0)
+		values(#{user_id}, #{user_pw}, #{user_nickname}, #{user_name}, #{user_bday}, #{user_sex}, #{user_phone}, #{user_mail}, #{user_zipcode}, #{user_addr}, #{user_addr_detail}, sysdate, 1, 0, 0)
+<!-- 		insert into user_info
+		values(#{user_id}, #{user_pw}, #{user_nickname}, #{user_name}, TO_DATE(#{user_bday}), #{user_sex}, #{user_phone}, #{user_mail}, #{user_zipcode}, #{user_addr}, #{user_addr_detail}, sysdate, 1, 0, 0) -->
 	</insert>
 	
 	<select id="checkDuplicatedId" resultType="java.lang.Integer">
