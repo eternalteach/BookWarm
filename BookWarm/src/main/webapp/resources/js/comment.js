@@ -20,7 +20,7 @@ var commentService = (function() {
 					error(er);
 				}
 			}
-		})
+		});
 	}
 	
 	//get comment list

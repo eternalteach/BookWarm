@@ -24,23 +24,18 @@
 						<span>Reading</span>
 					</div>
 					<div class="progress">
-						<div class="progress-bar progress-bar-primary"
-							data-appear-progress-animation="${reading}%"></div>
+						<div class="progress-bar progress-bar-primary" data-appear-progress-animation="${reading}%"></div>
 						<span class="progress-bar-tooltip">${reading}%</span>
 					</div>
 					<div class="content-grid-item col-md-12">
 						<div class="counters">
 							<div class="progress-label">
-								<span>ReadingPage</span>&nbsp; &nbsp;<strong
-									class="primary-color" data-to="${readPageNum}"
-									data-plugin-options="{&quot;decimals&quot;: 0}">${readPageNum}</strong>
+								<span>ReadingPage</span>&nbsp; &nbsp;<strong class="primary-color" data-to="${readPageNum}" data-plugin-options="{&quot;decimals&quot;: 0}">${readPageNum}</strong>
 							</div>
 						</div>
 						<div class="counters">
 							<div class="progress-label">
-								<span>TotalPage</span>&nbsp; &nbsp;<strong class="primary-color"
-									data-to="${bookVO.book_tot_page}"
-									data-plugin-options="{&quot;decimals&quot;: 0}">${bookVO.book_tot_page}</strong>
+								<span>TotalPage</span>&nbsp; &nbsp;<strong class="primary-color" data-to="${bookVO.book_tot_page}" data-plugin-options="{&quot;decimals&quot;: 0}">${bookVO.book_tot_page}</strong>
 							</div>
 						</div>
 						<div class="counters">

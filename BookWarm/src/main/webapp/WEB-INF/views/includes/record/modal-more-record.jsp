@@ -11,14 +11,14 @@
 						<li class="v-blog-item col-sm-12">
 							<div class="post-content no-thumb clearfix">
 								<div class="post-header">
-									<span class="blog-author minor-meta"> Posted by <span
-										class="entry-author-link"> <span class="vcard author">
-												<span class="v-blog-item-details"> <a href="#"
-													title="Posts by HB-Themes" rel="author">작성자</a>
+									<span class="blog-author minor-meta"> Posted by 
+										<span class="entry-author-link"> 
+											<span class="vcard author">
+												<span class="v-blog-item-details"> <a href="#" title="Posts by HB-Themes" rel="author">작성자</a></span>
 											</span>
 										</span>
 									</span>
-									</span>
+									
 									<div class="smart-forms">
 										<section class="sidebar-widget bordered-sidebar">
 											<div class="heading">
@@ -40,23 +40,25 @@
 											</div>
 										</section>
 									</div>
-
-									<c:forEach items="${loginglist}" var="loginglist">
+									
+									<div class="recordView">
+									<%-- <c:forEach items="${loginglist}" var="loginglist">
+									
 										<div class="post-meta-info" style="text-align: center;">
-											<span class="blog-categories minor-meta"> <span
-												class="comment-container minor-meta"> <fmt:parseDate
-														value="${loginglist.start_date}" var="start_date"
-														pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
-														value="${start_date}" pattern="yyyy-MM-dd" />
-											</span> <span class="comment-container minor-meta">
-													&nbsp;&nbsp;p.${loginglist.start_page}&nbsp;&nbsp;-&nbsp;p.${loginglist.end_page}
-											</span> <span class="text-sep">&nbsp;|&nbsp;</span> 
+											<span class="blog-categories minor-meta"> 
+											<span class="comment-container minor-meta"> 
+												<fmt:parseDate value="${loginglist.start_date}" var="start_date" pattern="yyyy-MM-dd HH:mm:ss" /> 
+												<fmt:formatDate value="${start_date}" pattern="yyyy-MM-dd" />
+											</span>
+											<span class="comment-container minor-meta"> &nbsp;&nbsp;p.${loginglist.start_page}&nbsp;&nbsp;-&nbsp;p.${loginglist.end_page}</span> 
+											<span class="text-sep">&nbsp;|&nbsp;</span> 
 											<a href="javascript:openModal('modal-modify-record')"><button class="recordModifyBtn" data-write_no="${loginglist.write_no}" style="border: none;">Modify</button></a>
 											<button class="recordDeleteBtn" data-write_no="${loginglist.write_no}" style="border: none;">Delete</button>
-<!-- 버튼 클릭시 수정할 record번호 얻어서 비동기통신 통해 데이터 받아오고, 수정 하는 모달에 뿌려주기 -->
 											</span>
 										</div>
-									</c:forEach>
+										
+									</c:forEach> --%>
+									</div>
 									<br />
 									<!-- paging -->
 

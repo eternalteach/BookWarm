@@ -39,6 +39,7 @@
 
 	$(document).ready(function() {
 		$("#modal").hide();
+		showList();
 		$(".close").on('click', function(e) {
 			if (!($(e.target).hasClass("modal-record"))) {
 				$("#modal").fadeOut(300);
@@ -58,6 +59,7 @@
 				$("#modifyStart_date").val(displayTimeService.displayTime(record.start_date));
 				$("#modifyWrite_no").val(record.write_no);
 				$("#modifyEnd_date").prop("checked",record.end_date);
+				showList();
 			});
 		});
 		
@@ -67,9 +69,48 @@
 			
 			recordService.remove(write_no,function(result){
 				alert(result);
-				//삭제 후 list 다시 가지고오기
+				showList();
 			});
 		});
+		
+		function showList(){
+			console.log("show list");
+			var recordView=$(".recordView");
+			var user_id="${user_id}";
+			var isbn= ${bookVO.isbn};
+			alert("user_id : "+user_id);
+			alert("isbn : "+isbn);
+			// user_id 와 isbn 받아오기
+			recordService.getList({user_id:user_id,isbn:isbn},function(result){
+				alert("getList 함수 종료 후");
+				console.log("getList 함수 종료 후");
+				console.log(result);
+				console.log(result.length);
+				
+				var str="";
+				if(result ==null||result.length==0){
+					return;
+				}
+				alert(result.length+"리스트 길이")
+				for(var i=0;i<result.length;i++){
+					str+="<div class='post-meta-info' style='text-align: center;'>";
+					str+="<span class='blog-categories minor-meta'>";
+					str+="<span class='comment-container minor-meta'>"; 
+					
+					str+=result[i].start_date;
+					str+="</span>"
+					str+="<span class='comment-container minor-meta'> &nbsp;&nbsp;p."+result[i].start_page+"&nbsp;&nbsp;-&nbsp;p."+result[i].start_page+"}</span>";
+					str+="<span class='text-sep'>&nbsp;|&nbsp;</span>"; 
+					str+="<a href='javascript:openModal('modal-modify-record')'><button class='recordModifyBtn' data-write_no='"+result[i].write_no+"' style='border: none;'>Modify</button></a>";
+					str+="<button class='recordDeleteBtn' data-write_no='"+result[i].write_no+"' style='border: none;'>Delete</button>";
+					str+="</span>";
+					str+="</div>";
+				}
+				recordView.html(str);
+				console.log(str);
+				console.log("recordView.html(str) 종료 후");
+			});
+		} // end showList
 		
 	});
 	

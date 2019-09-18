@@ -13,21 +13,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.book.warm.page.CommunityCommentPageDTO;
 import com.book.warm.page.Criteria;
 import com.book.warm.page.PageDTO;
 import com.book.warm.service.RecordService;
 import com.book.warm.service.StatisticsFunctionService;
 import com.book.warm.vo.BookVO;
-import com.book.warm.vo.CommunityBoardCommentVO;
 import com.book.warm.vo.LogingBoardVO;
 
 import lombok.extern.log4j.Log4j;
@@ -49,8 +45,9 @@ public class RecordBoardController {
 		log.info("===== record() =====");
 		String user_id=(String)session.getAttribute("user_id");
 		log.info(user_id);
+		model.addAttribute("user_id",user_id);
 		bookVO = recordService.getBook(bookVO.getIsbn());// get isbn and set all bookVO attr
-		List<LogingBoardVO> logingList = recordService.getList(criteria, bookVO,user_id);
+		List<LogingBoardVO> logingList = recordService.getList(user_id, bookVO.getIsbn());
 		model.addAttribute("loginglist", logingList);
 		model.addAttribute("pageMaker", new PageDTO(criteria, 123)); // inject totalPageNum
 
@@ -98,20 +95,6 @@ public class RecordBoardController {
 		return new ResponseEntity<>(recordService.deleteRecord(write_no), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/recordDelete", method = RequestMethod.GET)
-	public String recordDelete(@Param("write_no") String write_no, Criteria cri, RedirectAttributes rttr)
-			throws Exception {
-		log.info("===== recordDelete() =====");
-		rttr.addAttribute("pageNum", cri.getPageNum());
-		rttr.addAttribute("amount", cri.getAmount());
-		rttr.addAttribute("modalOpen", "open");
-
-		LogingBoardVO willDeleteLoging = recordService.getRecord(write_no);
-		recordService.deleteRecord(write_no);
-		String isbn = willDeleteLoging.getIsbn();
-		return "redirect:record?isbn=" + isbn;
-	}
-
 	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="recordModifySave/{write_no}",consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> modify(@RequestBody LogingBoardVO logingBoardVO, @PathVariable("write_no")int write_no){
 		log.info("========================= modify =========================");
@@ -119,4 +102,13 @@ public class RecordBoardController {
 		log.info("write_no : "+write_no);
 		return recordService.modifyRecord(logingBoardVO)==1 ? new ResponseEntity<>("success",HttpStatus.OK): new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
 	}
+	
+	//check comm_no's comment
+		@GetMapping(value = "getRecordList/{user_id}/{isbn}", produces = { MediaType.APPLICATION_XML_VALUE,
+				MediaType.APPLICATION_JSON_UTF8_VALUE })
+		public ResponseEntity<List<LogingBoardVO>> getList(@PathVariable("user_id") String user_id,
+				@PathVariable("isbn") String isbn) {
+			log.info("====================get List====================");
+			return new ResponseEntity<>(recordService.getList(user_id, isbn), HttpStatus.OK);
+		}
 }

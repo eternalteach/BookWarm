@@ -25,9 +25,9 @@ public class RecordService {
 		return mapper.getBookVO(isbn);
 	}
 
-	public List<LogingBoardVO> getList(Criteria criteria, BookVO bookVO, String user_id) {
+	public List<LogingBoardVO> getList(String user_id, String isbn) {
 		log.info("========== getList() ==========");
-		return mapper.getListWithPaging(criteria, bookVO, user_id);
+		return mapper.getList(user_id, isbn);
 	}
 
 	public Integer getCount(BookVO bookVO, String user_id) {
