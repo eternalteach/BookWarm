@@ -120,7 +120,7 @@
 								data-toggle="tab"								
 								href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11" role="tab" 
 								aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11"
-								aria-expanded="true">가격순</a></li>
+								aria-expanded="true">낮은 가격순</a></li>
 							<!-- test//아직 아무것도 없음 -->
     						<li class="nav-item">
                            	 <a class="nav-link " 
@@ -129,7 +129,7 @@
                            	 href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" 
                            	 role="tab" 
                             	aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" 
-                           	 aria-expanded="true">별점순</a>
+                           	 aria-expanded="true">높은 가격순</a>
                         	</li>
 								
 						</ul>
@@ -149,7 +149,7 @@
 												<!-- 책 이미지 누르면 책 상세정보로 이동 -->
 												<div class="product-media">
 													<div class="img-wrap first-image">
-														<a href="shopproduct?isbn=${shop.isbn}&author=${shop.author}">
+														<a href="shopproduct?isbn=${shop.isbn}">
 														<img src="${shop.book_img}"></a>
 													</div>
 												</div>
@@ -161,7 +161,7 @@
 													<span class="product-posted_in">
 													<a rel="tag">${shop.writer_name}&nbsp;저</a></span>
 													<span class="product-posted_in">
-													<a rel="tag">${shop.translator_name}&nbsp;저</a></span>
+													<a rel="tag" id="translastor_name"><%-- ${shop.translator_name}&nbsp;저 --%></a></span>
 													<span class="product-price"> <span class="product-amount">
 														<span class="product-price-currency">정가&nbsp;<fmt:formatNumber value="${shop.book_price}" pattern="###,###,###" /></span>원<br>
 														<span class="product-price-currency">할인가&nbsp;<fmt:formatNumber value="${shop.book_price_for_sale}" pattern="###,###,###" />
@@ -174,35 +174,8 @@
 									</c:forEach>
 								</div>
 								
-									
-								<!-- shoptitlelist 페이징처리 -->
-								<nav aria-label="Page navigation example">
-								<ul class="pagination justify-content-center">
-									<c:if test="${pageMaker.prev}">
-									<li class="page-item disabled">
-										<a class="page-link" href="${pageMaker.startPage -1}" tabindex="-1">Previous</a>
-									</li>
-									</c:if>
-									
-								 	<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
-								 	<li class="page-item ${pageMaker.cri.pageNum == num? "active":""}"><a class="page-link" href="${num }">${num }</a></li>
-									</c:forEach> 
-									
-									<c:if test="${pageMaker.next}">
-									<li class="page-item">
-									<a class="page-link" href="${pageMaker.startPage +1}">Next</a>
-									</li>
-									</c:if>
-								</ul>
-								</nav>
-								
-								<form id='actionForm' action="/warm/shop_list" method='get'>
-									<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
-									<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
-								</form>
 							</div>
 							<!-- 끝 -->
-
 
 								
 							<!-- 가격순 책 불러오기  -->
@@ -217,7 +190,7 @@
 												<div class="product-media">
 													<div class="img-wrap first-image">
 														<!-- 책 이미지 누르면 책 상세 페이지로 이동 -->
-														<a href="shopproduct?isbn=${shop_title.isbn}&author=${shop_title.author}"><img src="${shop_title.book_img}"></a>
+														<a href="shopproduct?isbn=${shop_title.isbn}"><img src="${shop_title.book_img}"></a>
 													</div>
 												</div>
 
@@ -237,29 +210,38 @@
 							</div>
 							<!-- bookpricelist 불러오기 끝  -->
 							
-							<!-- test창  -->
+							<!-- 높은 가격순   -->
 								 <div class="tab-pane fade " id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" role="tabpanel" aria-labelledby="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a2">
 
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <p>
-                                               	별점순으로 책 불러올거임
-                                                </p>
-                                              <!--   <p>
-                                                   	테스트22
-                                                </p> -->
-                                            </div>
-                                        </div>
+                                     <div class="row">
+                                     <c:forEach items="${bookpricelist2}" var="bookpricelist2">
+										<div class="col-md-2">
+											<figure class="product-shadows product-item">
+												<p>&nbsp;${bookpricelist2.isbn}</p>
+												<div class="product-media">
+													<div class="img-wrap first-image">
+														<!-- 책 이미지 누르면 책 상세 페이지로 이동 -->
+														<a href="shopproduct?isbn=${bookpricelist2.isbn}"><img src="${bookpricelist2.book_img}"></a>
+													</div>
+												</div>
+
+												<div class="product-details">
+													<h3 class="product-name"><a href="#">${bookpricelist2.book_title}</a></h3>
+													<span class="product-posted_in"><a href="#" rel="tag">${bookpricelist2.writer_name}&nbsp;저</a></span>
+													<span class="product-price"> <span class="product-amount">
+														<span class="product-price-currency">정가&nbsp;<fmt:formatNumber value="${bookpricelist2.book_price}" pattern="###,###,###" /></span>원<br>
+														<span class="product-price-currency">할인가&nbsp;<fmt:formatNumber value="${bookpricelist2.book_price_for_sale}" pattern="###,###,###" /></span>
+													</span>
+													</span>
+													</div>
+												</figure>
+											</div>
+										</c:forEach>
                                     </div>
-							<!-- test창끝  -->
+                                </div>
+							</div>
 						</div>
-						<!-- 책 불러오는 리스트 끝 -->
-						
-						
-						
-						
 					</div>
-				</div>
 				<!--End Horizontal Tab - Clean-->
 			</div>
 		</div>
@@ -414,25 +396,5 @@
 	<!-- 이게있어야 스크립트 작동ㅠㅠ -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	
-	<!-- 페이징 스크립트 -->
-	<script type="text/javascript">
-	
-		$(document).ready(function(){
-		var actionForm = $("#actionForm");
-	
-		$(".page-item a").on("click", function(e){
-		
-			e.preventDefault();
-			console.log('click');
-			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-			actionForm.submit();
-			});
-		
-			
-		
-		
-		
-	});
-	</script>
 </body>
 </html>

@@ -26,9 +26,12 @@ public class ShopListService {
 		return shoplistmapper.bookpricelist();
 	}
 	
+	public List<BookListVO> bookpricelist2() throws Exception{
+		return shoplistmapper.bookpricelist2();
+	}
 	
 	//isbn && writer_name으로 책 상세정보 불러오기
-	public List<BookListVO> bookdetail(String isbn) throws Exception{
+	public BookListVO bookdetail(String isbn) throws Exception{
 		return  shoplistmapper.bookdetail(isbn);
 	}
 	
@@ -36,6 +39,7 @@ public class ShopListService {
 	public List<BookListVO> bookwritername(String author) throws Exception{
 		return shoplistmapper.bookwritername(author);
 	}
+
 	
 	/*
 	 * 

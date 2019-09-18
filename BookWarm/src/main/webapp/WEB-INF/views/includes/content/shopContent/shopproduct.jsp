@@ -9,7 +9,7 @@
 
             <div class="container single-product-inner">
                <div class="row">
-				<c:forEach items="${bookdetail}" var="bookdetail">	
+				
                   <div class="col-md-4">
                         <img src="${bookdetail.book_img}">
                   </div>
@@ -48,8 +48,17 @@
 						
 						
                         <div class="product-summary">
+                      <%--    <c:if test="${empty bookdetail.author}">
+      					</c:if> --%>
+      					
                          <p>${bookdetail.writer_name}&nbsp저</p>
+                         
+                         	
+                          <c:if test="${bookdetail.translator_name != '[]'}">
  						 <p>${bookdetail.translator_name}&nbsp역</p>
+ 						 </c:if>
+ 						 
+ 						 
                         </div>
 
                            <!-- 수량변경버튼 -->
@@ -74,7 +83,7 @@
                             
                            
 							<!-- 장바구니로 이동 -->
-                           <a href="/warm/shop/shop-cart"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="장바구니로 이동" data-location="top">
+                           <a href="/warm/shop/cart?user_id=${user_id}"><button id="cart" type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="장바구니로 이동" data-location="top">
                            <i class="fa fa-shopping-basket" data-title="장바구니로 이동" data-location="top"></i>
                            <span>장바구니</span>
                            </button></a>
@@ -105,30 +114,10 @@
                                  <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#About" role="tab">줄거리</a>
                                  </li>
-                                 <!-- <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#Services" role="tab">목차</a>
-                                 </li> -->
                               </ul>
                               <div class="tab-content">
                                  <div class="tab-pane active" id="About" role="tabpanel">
                                     <p>${bookdetail.book_story}</p>
-                                 </div>
-                                 <div class="tab-pane" id="Services" role="tabpanel">
-                                    <table class="table table-striped">
-                                       <tbody>
-                                          <tr>
-                                             <td>1</td>
-                                             <td>목차</td>
-                                             <td>@mdo</td>
-                                          </tr>
-                                          <tr>
-                                             <td>2</td>
-                                             <td>Jacob</td>
-                                             <td>Thornton</td>
-                                             <td>@fat</td>
-                                          </tr>
-                                       </tbody>
-                                    </table>
                                  </div>
                               </div> 
                            </div>
@@ -136,7 +125,6 @@
                        <!-- 줄거리/목차 끝  -->
                      </div>
                   </div>
-                  </c:forEach>
                </div>
             </div>
 
@@ -161,7 +149,7 @@
                                  <figure class="product-shadows product-item">
                                     <div class="product-media">
                                        <div class="img-wrap first-image">
-                                         <a href="shopproduct?isbn=${bookwriter.isbn}&author=${bookwriter.author}"><img src="${bookwriter.book_img}"></a>
+                                         <a href="shopproduct?isbn=${bookwriter.isbn}"><img src="${bookwriter.book_img}"></a>
                                        </div>
                                     </div>
 									
@@ -191,6 +179,9 @@
               </div>
          </div>
          
+         
+         
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <body onload="init();">
         <script type="text/javascript">
  		var sell_price;
@@ -230,6 +221,21 @@
  				}
  			sum.value = parseInt(hm.value) * sell_price;
  		}  */ 
+ 		
+ 	/* 	function cart_click() {
+ 			alert("버튼1을 누르셨습니다.");
+ 		} */
+ 		
+ 		$(document).ready(function(){
+ 		$("#cart").on("click", function(e){
+ 			
+			alert("장바구니에 등록하시겠습니까?");
+			console.log('click');
+			
+			});
+ 		});
+ 		
+ 		
          </script>
           </body>
          

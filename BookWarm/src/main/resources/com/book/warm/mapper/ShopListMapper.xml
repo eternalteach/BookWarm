@@ -7,43 +7,76 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 제목순으로 책 불러오기 -->
 	<select id="shoptitlelist" resultType="com.book.warm.vo.BookListVO">
+<!-- 	<![CDATA[
 	select book.isbn, book.book_title, book.writer_name, book.translator_name, book.publisher_name, book.book_tot_page, book.book_published_date, 
-           book.book_price, book.book_price_for_sale, book.book_stock, book.book_story, book.book_img, authors.author, translators.translator
-    from book, authors, translators
-    where book.isbn = authors.isbn and book.isbn = translators.isbn
-    order by book.book_title	
+           book.book_price, book.book_price_for_sale, book.book_stock, book.book_story, book.book_img, authors.author
+    from book, authors
+    where book.isbn = authors.isbn
+    and rownum <= 18
+    order by book.book_title
+    ]]>  -->
+    <![CDATA[	
+    select * from book
+    order by book_title
+    ]]>
 	</select> 
 	
 	
 	<!-- 가격순(저렴한 순)으로 불러오기  -->
 	<select id="bookpricelist" resultType="com.book.warm.vo.BookListVO">
+<!-- 	<![CDATA[
 	select book.isbn, book.book_title, book.writer_name, book.translator_name, book.publisher_name, book.book_tot_page, book.book_published_date, 
-           book.book_price, book.book_price_for_sale, book.book_stock, book.book_story, book.book_img, authors.author, translators.translator
-    from book, authors, translators
-    where book.isbn = authors.isbn and book.isbn = translators.isbn
+           book.book_price, book.book_price_for_sale, book.book_stock, book.book_story, book.book_img, authors.author
+    from book, authors
+    where book.isbn = authors.isbn
     order by book.book_price_for_sale
+    ]]>  -->
+    <![CDATA[	
+    select * from book
+    where rownum <= 24
+    order by book_price_for_sale
+    ]]>	
+	</select> 
+	
+	
+	<!-- 높은 가격순 -->
+	<select id="bookpricelist2" resultType="com.book.warm.vo.BookListVO">
+<!-- 	<![CDATA[
+	select book.isbn, book.book_title, book.writer_name, book.translator_name, book.publisher_name, book.book_tot_page, book.book_published_date, 
+           book.book_price, book.book_price_for_sale, book.book_stock, book.book_story, book.book_img, authors.author
+    from book, authors
+    where book.isbn = authors.isbn
+    and rownum <= 18
+    order by book.book_price_for_sale desc
+    ]]>  -->	
+    <![CDATA[	
+    select * from book
+    where rownum <= 24
+    order by book_price_for_sale desc
+    ]]>	
 	</select> 
 	
 	<!-- isbn으로 책 상세정보 불러오기   -->
 	<select id="bookdetail" resultType="com.book.warm.vo.BookListVO">
+    <![CDATA[
     select bk.isbn, bk.book_title, bk.writer_name, bk.translator_name, bk.publisher_name, bk.book_tot_page, bk.book_published_date, 
-           bk.book_price, bk.book_price_for_sale, bk.book_stock, bk.book_story, bk.book_img, au.author, tr.translator
-    from book bk, authors au, translators tr
+           bk.book_price, bk.book_price_for_sale, bk.book_stock, bk.book_story, bk.book_img, au.author
+    from book bk, authors au
     where bk.isbn = au.isbn 
-    and bk.isbn = tr.isbn
     and bk.isbn = #{isbn}
+    and rownum <= 1
+    ]]> 
 	</select>
 	
 	<!-- bookwritername 저자이름이 같은 다른 책들 불러오기 -->
 	<select id="bookwritername" resultType="com.book.warm.vo.BookListVO">
 	<![CDATA[
-    select * from (select bk.isbn, bk.book_title, bk.writer_name, bk.translator_name, bk.publisher_name, bk.book_tot_page, bk.book_published_date, 
-           				bk.book_price, bk.book_price_for_sale, bk.book_stock, bk.book_story, bk.book_img, au.author, tr.translator
-    				from book bk, authors au, translators tr
+	select * from (select bk.isbn, bk.book_title, bk.writer_name, bk.translator_name, bk.publisher_name, bk.book_tot_page, bk.book_published_date, 
+           				bk.book_price, bk.book_price_for_sale, bk.book_stock, bk.book_story, bk.book_img, au.author
+    				from book bk, authors au
    					where bk.isbn = au.isbn 
-    				and bk.isbn = tr.isbn
     				order by bk.isbn)
-	where author = #{author} 
+	where author =#{author}
 	and rownum <= 6
 	]]> 
 	</select>
@@ -58,58 +91,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	and bs.star = #{star};
 	</select>
 
-<!-- 	
-	
-	
-	페이징처리
-	<select id="shoplistpage" resultType="com.book.warm.vo.ShopListBoardVO">
-	<![CDATA[
-	select isbn, book_title, book_price, book_price_for_sale, writer_name, translator_name, publisher_name , 
-       		 book_tot_page, book_intro, book_idx, book_story, BOOK_IMG, genre
-	from (
-       		 select/*index_desc(book SYS_C007190)*/ 
-            		rownum rn, book.isbn, book_title, book_price, book_price_for_sale, writer_name, translator_name, publisher_name, 
-             		book_tot_page, book_intro, book_idx, book_story, BOOK_IMG, genre 
-      			  from  book, publisher, writer, translator, category
-        			where book.publisher_no = publisher.publisher_no 
-              		and writer.writer_no = book.writer_no
-                	and book.translator_no = translator.translator_no
-               		and book.isbn = category.isbn    
-               		and rownum <= #{pageNum} * #{amount})
-	where rn > (#{pageNum}-1) * #{amount}
-   ]]>
-	</select>
-	
-	페이징처리
-	<select id="shoplistpage2" resultType="com.book.warm.vo.ShopListBoardVO">
-	<![CDATA[
-	select isbn, book_title, book_price, book_price_for_sale, writer_name, translator_name, publisher_name , 
-       		 book_tot_page, book_intro, book_idx, book_story, BOOK_IMG, genre
-	from (
-       		 select/*index_desc(book SYS_C007190)*/ 
-            		rownum rn, book.isbn, book_title, book_price, book_price_for_sale, writer_name, translator_name, publisher_name, 
-             		book_tot_page, book_intro, book_idx, book_story, BOOK_IMG, genre 
-      			  from  book, publisher, writer, translator, category
-        			where book.publisher_no = publisher.publisher_no 
-              		and writer.writer_no = book.writer_no
-                	and book.translator_no = translator.translator_no
-               		and book.isbn = category.isbn    
-               		and rownum <= #{pageNum} * #{amount})
-	where rn > (#{pageNum}-1) * #{amount}
-	order by book_title
-   ]]>
-	</select>
-	
-	
-	
-	
-	
-	전체 페이지처리 
-	<select id="gettotalcount" resultType="int">
-		select count(*) from book, publisher, writer, translator, category
-		where book.publisher_no = publisher.publisher_no 
-              		and writer.writer_no = book.writer_no
-                	and book.translator_no = translator.translator_no
-               		and book.isbn = category.isbn    
-	</select> -->
 </mapper>

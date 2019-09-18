@@ -17,8 +17,10 @@ public interface ShopListMapper {
 	//bookprice(저렴) tnstj
 	public List<BookListVO> bookpricelist();
 	
+	public List<BookListVO> bookpricelist2();
+	
 	//book detail(상세정보) 불러오기
-	public List<BookListVO> bookdetail(@Param("isbn") String isbn);
+	public BookListVO bookdetail(@Param("isbn") String isbn);
 	
 	
 	//bookwritername 저자이름이 같은 책 불러오기
@@ -28,6 +30,7 @@ public interface ShopListMapper {
 	
 	//페이징
 	public List<BookVO> booklistpage(Criteria criteria);
+
 
 	
 	/*
