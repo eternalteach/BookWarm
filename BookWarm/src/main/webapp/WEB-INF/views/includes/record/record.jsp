@@ -50,7 +50,7 @@
 							</div>
 							<div class="special-heading text-left">
 							<!-- open add record modal -->
-								<a href="javascript:openModal('modal-add-record')">&nbsp; &nbsp;<strong class="primary-color">Record write</strong>
+								<a id="dididi" class="ididid" href="javascript:openModal('modal-add-record')">&nbsp; &nbsp;<strong class="primary-color">Record write</strong>
 								</a>
 							</div>
 						</div>

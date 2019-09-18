@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <!-- 기록 쓰는 모달창 -->
-<div id="modalRecordDetail" class="modal-add-record modal-record">
+<div id="modal-add-record" class="modal-add-record modal-record">
 	<div class="row">
 		<div class="con">
 			<div class="col-sm-15 v-blog-wrap">
