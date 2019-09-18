@@ -73,7 +73,7 @@
                            <span>장바구니</span>
                            </button></a>
 							<!-- 구매로이동  -->
-                            <a href="/warm/shop/shop-charge"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="구매로 이동" data-location="top">
+                            <a href="/warm/shop/shop-charge"><button id="pay" type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="구매로 이동" data-location="top">
                           	<span>구매</span>
                            </button></a>
                        		<!-- 목록버튼 클릭하면 책 목록으로 이동. -->
@@ -211,17 +211,22 @@
  			alert("버튼1을 누르셨습니다.");
  		} */
  		
+ 		
  		$(document).ready(function(){
+ 			
  		$("#cart").on("click", function(e){
  			
 			alert("장바구니에 등록하시겠습니까?");
-			console.log('click');
 			
 			});
+ 		
+ 		$("#pay").on("click", function(e){
+ 			
+			alert("구매로 이동하시겠습니까?");
+			
+			});
+ 		
  		});
  		
- 		
-         </script>
-          </body>
-         
+      </script>
 </body>
