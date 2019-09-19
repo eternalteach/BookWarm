@@ -34,7 +34,7 @@ public class LibraryController {
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String library(HttpSession session,HttpServletRequest request, Model model) throws Exception {
-		log.info("==================== communityBoardSaveWrite() ====================");
+		log.info("==================== library() ====================");
 		//유저 아이디 aaa로 세션에서 받아올 예정
 		session=request.getSession();
 		String user_id=(String)session.getAttribute("user_id");
@@ -59,7 +59,7 @@ public class LibraryController {
 		@PostMapping(value = "/addBook", consumes = "application/json", produces = {
 				MediaType.TEXT_PLAIN_VALUE })
 		public ResponseEntity<String> addBook(HttpSession session, HttpServletRequest request,@RequestBody LibraryVO libraryVO) {
-			log.info("ISBN : " + libraryVO.getIsbn());
+			log.info("==================== addBook() ====================");
 			session=request.getSession();
 			String user_id=(String)session.getAttribute("user_id");
 			BookVO bookVO = (bookMapper.getBook(libraryVO.getIsbn()));
@@ -68,8 +68,6 @@ public class LibraryController {
 			libraryVO.setList_img_src(bookVO.getBook_img());
 			libraryVO.setList_type("장르01");
 			libraryVO.setList_no(19);
-			log.info(libraryVO.getIsbn());
-			log.info(libraryVO.getList_added_date());
 			int insertCount = mapper.addMyBook(libraryVO);
 			log.info("Comment INSERT COUNT : " + insertCount);
 			return insertCount == 1 ? new ResponseEntity<>("success", HttpStatus.OK)

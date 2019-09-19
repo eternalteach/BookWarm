@@ -19,18 +19,18 @@
 						</div>
 					</div>
 				</article>
-				<div class="progress-bars v2">
+				<div class="progress-bars v2 frontRecordInfo">
 					<div class="progress-label">
 						<span>Reading</span>
 					</div>
 					<div class="progress">
-						<div class="progress-bar progress-bar-primary" data-appear-progress-animation="${reading}%"></div>
-						<span class="progress-bar-tooltip">${reading}%</span>
+						<div id="reading" class="progress-bar progress-bar-primary" data-appear-progress-animation="${recordInfo.reading}%"></div>
+						<span class="progress-bar-tooltip">${recordInfo.reading}%</span>
 					</div>
 					<div class="content-grid-item col-md-12">
 						<div class="counters">
 							<div class="progress-label">
-								<span>ReadingPage</span>&nbsp; &nbsp;<strong class="primary-color" data-to="${readPageNum}" data-plugin-options="{&quot;decimals&quot;: 0}">${readPageNum}</strong>
+								<span>ReadingPage</span>&nbsp; &nbsp;<strong class="primary-color" data-to="${recordInfo.readPageNum}" data-plugin-options="{&quot;decimals&quot;: 0}">${recordInfo.readPageNum}</strong>
 							</div>
 						</div>
 						<div class="counters">

@@ -12,7 +12,7 @@ public interface LogingBoardMapper {
 
 	public List<LogingBoardVO> getList(@Param("user_id") String user_id, @Param("isbn") String isbn);
 
-	public Integer CountWriteNo(@Param("bookVO")BookVO bookVO,@Param("user_id") String user_id);
+	public Integer CountWriteNo(@Param("bookVO")BookVO bookVO, @Param("user_id") String user_id);
 	
 	public int logingBoard(LogingBoardVO logingBoardVO);
 

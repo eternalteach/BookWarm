@@ -87,12 +87,29 @@ var recordService = (function() {
 		});
 	}
 	
+	function getFrontRecordInfo(param, callback, error){
+		var user_id=param.user_id;
+		var isbn = param.isbn;
+		
+		$.getJSON("reload/"+user_id+"/"+isbn+".json",
+				function(data){
+			if(callback){
+				callback(data);
+			}
+		}).fail(function(xhr,status,err){
+			if(error){
+				error();
+			}
+		});
+	}
+	
 	
 	return {
 		getList:getList,
 		add : add,
 		get:get,
 		update:update,
-		remove:remove
+		remove:remove,
+		getFrontRecordInfo:getFrontRecordInfo
 	};
 })();

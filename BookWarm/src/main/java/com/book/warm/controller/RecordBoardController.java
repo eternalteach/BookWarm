@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.book.warm.function.RecordFunction;
+import com.book.warm.page.CommunityCommentPageDTO;
 import com.book.warm.page.Criteria;
 import com.book.warm.page.PageDTO;
 import com.book.warm.service.RecordService;
@@ -36,35 +38,46 @@ public class RecordBoardController {
 	RecordService recordService;
 
 	@Inject
+	RecordFunction recordFunction;
+	
+	@Inject
 	StatisticsFunctionService statisticsFunctionService;
 
 	@RequestMapping(value = "/record", method = RequestMethod.GET)
 	// add task - get book command(need total page)
-	public String boardLog(Model model, @Param("bookVO") BookVO bookVO, Criteria criteria, HttpServletRequest req,HttpSession session)
+	public String record(Model model, @Param("bookVO") BookVO bookVO,  HttpServletRequest req,HttpSession session)
 			throws Exception {
 		log.info("===== record() =====");
 		String user_id=(String)session.getAttribute("user_id");
-		log.info(user_id);
-		model.addAttribute("user_id",user_id);
 		bookVO = recordService.getBook(bookVO.getIsbn());// get isbn and set all bookVO attr
 		List<LogingBoardVO> logingList = recordService.getList(user_id, bookVO.getIsbn());
-		model.addAttribute("loginglist", logingList);
-		model.addAttribute("pageMaker", new PageDTO(criteria, 123)); // inject totalPageNum
-
-		int readPageNum = statisticsFunctionService.logingPage(logingList, bookVO); //
-		int logingCount = recordService.getCount(bookVO,user_id); 
-		int bookTotalPage = bookVO.getBook_tot_page(); /* tmp value, please modify this code */
-		double reading = ((double) readPageNum / (double) bookTotalPage) * 100; // 
-		model.addAttribute("startPage", statisticsFunctionService.firstPage(logingList));
-		model.addAttribute("endPage", statisticsFunctionService.endPage(logingList));
-		model.addAttribute("readPageNum", readPageNum);
-		model.addAttribute("reading", reading);
-		model.addAttribute("recordNum", logingCount);
+		int recordNum= recordService.getCount(bookVO, user_id);
+		
+		recordFunction.setRecordFunction(logingList, bookVO, user_id);
 		model.addAttribute("bookVO", bookVO);
-		model.addAttribute("modalOpen", req.getParameter("modalOpen"));
+		model.addAttribute("user_id",user_id);
+		model.addAttribute("recordNum", recordNum);
+		model.addAttribute("recordInfo",recordFunction);
 		return "/record";
 	}
 
+		@GetMapping(value = "/reload/{user_id}/{isbn}", produces = { MediaType.APPLICATION_XML_VALUE,
+				MediaType.APPLICATION_JSON_UTF8_VALUE })
+		public ResponseEntity<RecordFunction> recordGetList(Model model, @PathVariable("user_id") String user_id,
+				@PathVariable("isbn") String isbn) {
+			log.info("====================get List====================");
+			BookVO bookVO = recordService.getBook(isbn);
+			List<LogingBoardVO> logingList = recordService.getList(user_id, bookVO.getIsbn());
+			 
+			recordFunction.setRecordFunction(logingList, bookVO, user_id);
+			log.info("recordInfo.getRecordNum ================"+recordFunction.getRecordNum());
+			model.addAttribute("bookVO", bookVO);
+			model.addAttribute("user_id",user_id);
+			return new ResponseEntity<>(recordFunction, HttpStatus.OK);
+		}
+		
+	
+	
 	@PostMapping(value = "/recordwrite", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> recordWrite(HttpSession session, @RequestBody LogingBoardVO logingBoardVO) {
 		log.info("========== recordWrite ==========");

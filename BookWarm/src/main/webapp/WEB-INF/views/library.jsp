@@ -15,7 +15,7 @@
 <script type="text/javascript" src="resources/js/logintest.js"></script>
 <link rel="stylesheet" href="<%=path%>/resources/css/main.css" />
 </head>
-<body style="background-image: url('<%=path%>/resources/img/background/snow01.gif');">
+<body style="background-image: url('<%=path%>/resources/img/background/star01.gif');">
 	<a href="javascript:openModal('modal-searchBooks')"><button id='addBook'>책 등록하기</button></a>
 	<a href="<%=path%>/reviewMain?user_id=aaa"><button>감상 메인페이지</button></a>
 	<!-- 이 페이지에서 추가로 구현해야 할 것들

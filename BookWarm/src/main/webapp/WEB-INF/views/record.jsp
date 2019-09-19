@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="includes/header/header-clean.jsp"%>
-
+<link rel="stylesheet" href="<%=path%>/resources/css/main.css" />
 <div class="page has-sidebar has-right-sidebar bordered">
 	<div class="page-inner">
 		<div class="container">

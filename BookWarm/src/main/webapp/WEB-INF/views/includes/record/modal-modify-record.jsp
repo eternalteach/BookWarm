@@ -45,51 +45,7 @@
 
 									<script>
 										// submit -> check start_page > end_page -> submit
-										$(document).ready(function() {
-															$('#submitModifyRecord').submit(
-																			function(e) {
-																				e.preventDefault();
-																				var write_no = $("#modifyWrite_no").val();
-																				var start_page = $("#modifyStart_page").val();
-																				var end_page = $("#modifyEnd_page").val();
-																				var start_date = $("#modifyStart_date").val();
-																				var user_id = $("#modifyUser_id").val();
-																				alert(user_id);
-																				start_date += "T00:00:00.000+09:00";
-																				$("#submit_start_date").val(start_date);
-																				var end_date=$("#modifyEnd_date").prop("checked");
-																				if (start_page > end_page) {
-																					alert("시작 페이지는 종료 페이지보다 클 수 없습니다.");
-																					return false;
-																				}
-																				
-																				var logingVO={
-																						write_no:write_no,
-																						user_id:user_id,
-																						start_page:start_page,
-																						end_page:end_page,
-																						start_date:start_date,
-																						end_date:end_date
-																				};
-																				
-																				recordService.update(logingVO,function(result){
-																				console.log("update 안");
-																					alert(result);
-																					// showlist 해야한다.
-																				});
-																				
-																				
-																				$(".modal").fadeOut(300);
-																				$(".modal-modify-record").fadeOut(300);
-																				
-																				$("#modifyWrite_no").val("");
-																				$("#modifyStart_date").val("");
-																				$("#modifyEnd_page").val("");
-																				$("#modifyStart_page").val("");
-																				$("#modifyEnd_date").prop("checked",false);
-																			// modal-more-record 를 다시 호출하기
-																			});
-														});
+										
 									</script>
 
 									<button type='button' class='modalClose'><a href="javascript:;" class="close">Close</a></button>

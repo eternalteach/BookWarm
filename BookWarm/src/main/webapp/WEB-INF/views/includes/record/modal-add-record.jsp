@@ -41,50 +41,6 @@
 										</table>
 									</form>
 
-									<script>
-										// submit -> check start_page > end_page -> submit
-										$(document).ready(function() {
-															$('#submitloging').submit(
-																			function(e) {
-																				e.preventDefault();
-																				var isbn = $("#isbn").val();
-																				var start_page = $("#start_page").val();
-																				var end_page = $("#end_page").val();
-																				var start_date = $("#start_date").val();
-																				var datetime = $("#datetime")
-																				var end_date=$("#end_date").prop("checked");
-																				start_date += "T00:00:00.000+09:00";
-																				$("#submit_start_date").val(start_date);
-																				alert("start_date3" + $("#submit_start_date").val());
-																				
-																				if (start_page > end_page) {
-																					alert("시작 페이지는 종료 페이지보다 클 수 없습니다.");
-																					return false;
-																				}
-																				
-																				var logingVO={
-																						isbn:isbn,
-																						start_page:start_page,
-																						end_page:end_page,
-																						start_date:start_date,
-																						end_date:end_date
-																				};
-																				
-																				recordService.add(logingVO,function(result){
-																					alert(result);
-																					// showlist 해야한다.
-																				});
-																				// modal-add-record 숨기기
-																				$(".modal-add-record").hide();
-																				$("#isbn").val("");
-																				$("#start_page").val("");
-																				$("#end_page").val("");
-																				$("#start_date").val("");
-																				$("#end_date").prop("checked",false);
-																			});
-														});
-									</script>
-
 									<button type='button' class='modalClose'><a href="javascript:;" class="close">Close</a></button>
 									
 								</div>
