@@ -59,10 +59,15 @@
                            <form name="cart" method="get" enctype="multipart/form-data">
                            <div class="quantity">
 								<input type=hidden  title="Qty" class="input-text qty text" name="sell_price" fmt:formatNumber value="${bookdetail.book_price_for_sale}" pattern="###,###,###">
-								<input type="text" name="amount" value="1" title="Qty" class="input-text qty text" onchange="change();">
+								<!-- <input type="text" name="amount" value="1" title="Qty" class="input-text qty text" onchange="change();"> -->
 									<div class="qty-adjust">
-										<i class="fa fa-chevron-up qty-plus" value=" + " onclick="add();"></i>
-										<i class="fa fa-chevron-down qty-minus" value=" - " onclick="del();"></i><br>
+<!-- 										<i class="fa fa-chevron-up qty-plus" value=" + " onclick="add();"></i>
+										<i class="fa fa-chevron-down qty-minus" value=" - " onclick="del();"></i><br> -->
+										<select class="input-text qty text" name = "amount">
+										<c:forEach begin="1" end="10" var="i">
+											<option value="${i}">${i}</option>
+										</c:forEach>
+										</select>
 									</div>
 							</div>
 							</form> 
@@ -73,7 +78,7 @@
                            <span>장바구니</span>
                            </button></a>
 							<!-- 구매로이동  -->
-                            <a href="/warm/shop/shop-charge"><button id="pay" type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="구매로 이동" data-location="top">
+                            <a href="/warm/shop/charge?cart_no=${cart_no}&delivery=&subTotal="><button id="pay" type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="구매로 이동" data-location="top">
                           	<span>구매</span>
                            </button></a>
                        		<!-- 목록버튼 클릭하면 책 목록으로 이동. -->
