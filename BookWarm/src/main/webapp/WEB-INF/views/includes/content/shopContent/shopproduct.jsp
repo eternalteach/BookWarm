@@ -80,9 +80,9 @@
                            <span>장바구니</span>
                            </button></a>
 							<!-- 구매로이동  -->
-                            <a href="/warm/shop/charge?cart_no=${cart_no}&delivery=&subTotal="><button id="pay" type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="구매로 이동" data-location="top">
+<%--                             <a href="/warm/shop/charge?cart_no=${cart_no}&delivery=&subTotal="><button id="pay" type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="구매로 이동" data-location="top">
                           	<span>구매</span>
-                           </button></a>
+                           </button></a> --%>
                        		<!-- 목록버튼 클릭하면 책 목록으로 이동. -->
 						    <a href="/warm/shop/shoplist"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="목록으로 이동" data-location="top">
                           	<span>목록</span>
@@ -173,68 +173,21 @@
          
          
          
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <body onload="init();">
-        <script type="text/javascript">
- 		var sell_price;
- 		var amount;
-
- 		function init () {
- 			sell_price = document.cart.sell_price.value; /* 가격 */
- 			amount = document.cart.amount.value;
- 			/* document.cart.sum.value = sell_price; 
- 			change(); */
- 		}
-		/* 수량증가 */
- 		function add () {
- 			/* alert("올리기") */
- 			hm = document.cart.amount;
- 			/* sum = document.cart.sum; */
- 			hm.value ++ ;
-
- 			/* sum.value = parseInt(hm.value) * sell_price; */
- 		}
-		/* 수량감소 */
- 		function del () {
- 			hm = document.cart.amount;
- 			/* sum = document.cart.sum; */
- 				if (hm.value > 1) {
- 					hm.value -- ;
- 					/* sum.value = parseInt(hm.value) * sell_price; */
- 				}
- 		}
-
-/*  		function change () {
- 			hm = document.cart.amount;
- 			sum = document.cart.sum;
-
- 				if (hm.value < 0) {
- 					hm.value = 0;
- 				}
- 			sum.value = parseInt(hm.value) * sell_price;
- 		}  */ 
- 		
- 	/* 	function cart_click() {
- 			alert("버튼1을 누르셨습니다.");
- 		} */
- 		
- 		
+     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+     <script type="text/javascript">
+ 		//버튼 클릭시 이벤트
  		$(document).ready(function(){
  			
  		$("#cart").on("click", function(e){
- 			
 			alert("장바구니에 등록하시겠습니까?");
-			
 			});
  		
  		$("#pay").on("click", function(e){
- 			
 			alert("구매로 이동하시겠습니까?");
-			
 			});
- 		
  		});
  		
+ 		//amount넘기기
  		$(document).ready(function(){
  		    $("#select_count").on("change", function(){
  		    	
