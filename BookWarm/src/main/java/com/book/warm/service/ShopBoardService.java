@@ -33,6 +33,14 @@ public class ShopBoardService {
 		return shopMapper.getCartOne(cart_no);
 	}
 	
+	//추가코드
+	public void insertcart(CartVO cartvo) {
+		shopMapper.insertcart(cartvo);
+	}
+	public void updatecart(CartVO cartvo) {
+		shopMapper.updatecart(cartvo);
+	}
+	
 	
 	
 	

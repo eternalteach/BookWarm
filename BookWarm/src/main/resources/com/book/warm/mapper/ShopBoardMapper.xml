@@ -16,7 +16,9 @@
 	</delete>
 	
 	<update id="updateCnt">
-		update cart set cart_cnt=#{cart_cnt} where cart_no=#{cart_no}
+		update cart 
+		set cart_cnt=#{cart_cnt} 
+		where cart_no=#{cart_no}
 	</update>
 	
 	<select id="getCartOne" resultType="com.book.warm.vo.CartVO">
@@ -26,8 +28,27 @@
 		where cart_no=#{cart_no}
 	</select>
 	
+	<!-- 추가  -->
+	<!-- 장바구니에 아무것도 없을 경우 책 뿌려주기  -->
+	<select id="insertcart" parameterType="com.book.warm.vo.CartVO">
+	insert into cart(cart_no, user_id, isbn, cart_cnt)
+	values(CART_SEQ.nextval,  #{user_id}, #{isbn}, 1)
+	</select>
+	<!-- 장바구니에 똑같은 책이 있다면 수량만 올려주기 -->
+	<update id="updatecart">
+	 update cart
+	 set cart_cnt = cart_cnt + #{cart_cnt}
+	 where user_id = #{user_id}
+	 and isbn = #{isbn}
+	</update>
+	
+<!-- 	<select id="countcart" resultType="int">
+	select count(*)
+ 	from cart
+ 	where user_id = #{user_id}
+ 	and isbn = #{isbn}
+	</select> -->
 </mapper>
-
 
 
 

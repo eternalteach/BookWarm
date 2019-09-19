@@ -27,4 +27,8 @@ public interface ShopMapper {
 	
 	public CartVO getCartOne(@Param("cart_no") String cart_no);
 	
+	//추가코드
+	public void insertcart(CartVO cartvo);
+	public void updatecart(CartVO cartvo);
+	
 }

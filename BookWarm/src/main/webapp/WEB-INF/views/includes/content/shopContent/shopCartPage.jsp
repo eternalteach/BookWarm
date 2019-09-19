@@ -101,8 +101,11 @@
                                              </div>
                                           </div>
 
-                                          <div class="col-md-3">
+                                          <div class="col-md-2">
                                              <a href="#" class="btn btn-primary">쿠폰 적용</a>
+                                          </div>
+                                          <div class="col-md-2">
+                                             <a href="/warm/shop/shoplist" class="btn btn-primary">책 리스트</a>
                                           </div>
 
                                        </div>
