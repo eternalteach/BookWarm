@@ -109,7 +109,7 @@ public class LogingBoardVO {
 
 	public String getEnd_date() {
 		System.out.println("==================end_date : "+this.end_date);
-		if(this.end_date==null||this.end_date.equals("false")) {
+		if(this.end_date==null||this.end_date.equals("false")||this.end_date.equals("")) {
 			this.end_date="false";
 			System.out.println("==================end_date : "+this.end_date);
 		}else {

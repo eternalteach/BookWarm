@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.book.warm.mapper.ShopMapper">
-	<select id="cartList" resultType="com.book.warm.vo.CartVO">
+	<select id="cartList" resultType="com.book.warm.vo.CartJoinBookVO">
 		select c.*, b.book_title, b.book_price_for_sale, b.book_img, c.cart_cnt*b.book_price_for_sale as total
 		from cart c inner join book b
 		on c.isbn = b.isbn
@@ -21,7 +21,7 @@
 		where cart_no=#{cart_no}
 	</update>
 	
-	<select id="getCartOne" resultType="com.book.warm.vo.CartVO">
+	<select id="getCartOne" resultType="com.book.warm.vo.CartJoinBookVO">
 		select c.*, b.book_title, b.book_price_for_sale, b.book_img, c.cart_cnt*b.book_price_for_sale as total
 		from cart c inner join book b
 		on c.isbn = b.isbn
@@ -48,6 +48,31 @@
  	where user_id = #{user_id}
  	and isbn = #{isbn}
 	</select> -->
+	<select id="getUserInfo" resultType="com.book.warm.vo.UserVO">
+		select user_id, user_name, user_phone, user_zipcode, user_addr, user_addr_detail, user_tot_price, user_point
+		from user_info
+		where user_id=#{user_id}
+	</select>
+	
+	<select id="getCouponList" resultType="com.book.warm.vo.CouponVO">
+		<![CDATA[
+			select t1.coupon_no, t1.coupon_name, t1.coupon_req, t1.coupon_use_req, t1.coupon_discount_percent, t1.coupon_validate
+			from (select c1.user_id, c2.*
+			    from coupon_no c1 inner join coupon c2
+			    on c1.coupon_no = c2.coupon_no
+			    where c1.user_id=#{user_id} 
+			        and c1.coupon_available='t' 
+			        and c2.coupon_validate>sysdate) t1 inner join
+			    (select user_id, user_level
+			    from user_info
+			    where user_id=#{user_id}) t2
+			on t1.user_id = t2.user_id
+			where t1.coupon_req<=t2.user_level
+			order by t1.coupon_no
+		]]>
+	</select>
+	
+	
 </mapper>
 
 

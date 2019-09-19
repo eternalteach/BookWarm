@@ -1,6 +1,13 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%
 	String context = request.getContextPath();
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+	String todayAll = formatter.format(new Date());
+	String[] today = todayAll.split("-", 3);
+	int year = Integer.parseInt(today[0]);
 %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <meta charset="utf-8">
@@ -69,6 +76,26 @@
 <link href="<%=context%>/resources/VertexEx/css/responsive.css" rel="stylesheet" />
 <link href="<%=context%>/resources/VertexEx/css/utilities.css" rel="stylesheet" />
 <link href="<%=context%>/resources/VertexEx/css/skins/default.css" rel="stylesheet" />
+
+
+<link href="<%=context%>/resources/Vertex/css/bootstrap.min.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/style.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/font-awesome.min.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/streamline-icon.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/header.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/portfolio.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/blog.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/v-animation.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/v-bg-stylish.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/font-icons.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/shortcodes.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/css/utilities.css" rel="stylesheet" />
+<link href="<%=context%>/resources/VertexEx/css/main-shortcodes.css" rel="stylesheet" /><!-- modal -->
+<link href="<%=context%>/resources/Vertex/css/theme-responsive.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/plugins/aos/aos.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
+<link href="<%=context%>/resources/Vertex/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
+
 <link href="<%=context%>/resources/VertexEx/smartforms/JavascriptTemplates/css/smart-addons.css" rel="stylesheet" />
 <link href="<%=context%>/resources/VertexEx/smartforms/Templates/css/smart-forms.css" rel="stylesheet" />
 
@@ -82,8 +109,14 @@
 <script src="<%=context%>/resources/VertexEx/js/custom.js"></script>
 <!-- Theme Initialization -->
 <script src="<%=context%>/resources/VertexEx/js/theme.js"></script>
-
-
+<!-- Style Swicher -->
+<link href="<%=context%>/resources/VertexEx/vendor/style-switcher/style-switcher.css" rel="stylesheet" />
+<link href="<%=context%>/resources/VertexEx/vendor/style-switcher/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
+	<!-- Smart Form Elements -->
+<script src="<%=context%>/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-custom.min.js"></script>
+<script src="<%=context%>/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery.placeholder.min.js"></script>
+<script src="<%=context%>/resources/VertexEx/smartforms/JavascriptTemplates/js/select2.full.min.js"></script>
+<script src="<%=context%>/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-combo.min.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(
 			function($) {
@@ -358,7 +391,7 @@
 		text-align: center;
 	}
 </style>
-<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+
 <script>
 
 	$(document).ready(function() {
@@ -437,13 +470,13 @@
 		}) */
 
 		// 삭제 버튼 클릭 >> 클릭한거 hidden처리
-		$('.fa-trash').on('click', function() {
-			// 1. 클릭한 것의 id를 가져온다
-			var getId = "#item-" + $(this).prop("id");
-			alert($(getId).prop("class"));
-			// 2. 그 id와 동일한 id를 가진 tr을 hidden
-			$(getId).attr("hidden", true);
-		})
+		//$('.fa-trash').on('click', function() {
+		//	// 1. 클릭한 것의 id를 가져온다
+		//	var getId = "#item-" + $(this).prop("id");
+		//	alert($(getId).prop("class"));
+		////	// 2. 그 id와 동일한 id를 가진 tr을 hidden
+		//	$(getId).attr("hidden", true);
+		//})
 		
 		// 상단에 있는 체크박스 클릭시 >> 모두 선택 or 모두 선택 해제
 		$('#selectAll').on('click', function() {
@@ -544,4 +577,47 @@
         }).open();
     }
 </script>
-<!-- /shopChargePage.jsp에서 사용 -->
+
+<script>
+  	$(document).ready(function() {
+  		
+  		// 적립금 사용
+  		$('#applyPoint').on('click', function() {
+  			var point = $('#point').val(); // 사용하려고 입력한 포인트
+  			var availablePoint = parseInt($('#availablePoint').text()); // 가용포인트
+  			var numExp = /[0-9]/; // 숫자만 입력하는 정규식
+  			
+  			if(numExp.test(point)) {
+  				// 받아온 값이 숫자면 parseInt 해준다.
+  				point = parseInt(point);
+   			
+  				if(availablePoint<point) {
+     			// 가용포인트<사용하려는 포인트 -> 경고창
+   				alert("가용 포인트는 "+availablePoint+"p 입니다.");
+   				$('#point').val('');
+   			}else {
+   				// 가용포인트>=사용포인트 -> 사용 포인트에 입력
+   				$('#usePoint').text(point);
+   				// 최종금액에 반영
+   				$('#discountPoint').text("<td class='cart-product-name'>-<span class='amount' id='discount'>"+point+"(포인트)</span></td>");
+   			}
+  			}else {
+  				// 숫자가 아닌 값 입력 시 -> 경고창, 입력부분 비워버리기
+  				alert('숫자만 입력 가능합니다.');
+  				alert(point);
+  				$('#point').val('');
+  			}
+  			
+  		})
+  		
+  		// 카드 결제 >> expired year (현재년도~10년뒤)
+  		for(var i = <%=year%>; i < <%=year+10%>; i++) {
+  			$('#cardyear').append('<option value='+i+'>'+i+'</option>')
+  		}
+  		
+  		// 쿠폰선택 클릭했을 때, 
+  		$('#pickCoupon').on('click', function() {
+  			window.open('<%=context%>/shop/pickCoupon','pickCoupon','width=430,height=500,location=no,status=no,scrollbars=yes');
+  		})
+  	})
+</script>
