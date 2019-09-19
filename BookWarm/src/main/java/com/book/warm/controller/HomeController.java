@@ -13,16 +13,16 @@ import lombok.extern.log4j.Log4j;
 @Controller
 public class HomeController {
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String index(HttpSession session, HttpServletRequest request) {
-		log.info("============================= index ===========================");
-		// 임시로그인 나중에 지우기
-		session = request.getSession(false);
-		session.setAttribute("user_id", "aaa");
-		log.info((String)session.getAttribute("user_id"));
-		// 여기까지 지우기
-		return "/index";
-	}
+//	@RequestMapping(value = "/index", method = RequestMethod.GET)
+//	public String index(HttpSession session, HttpServletRequest request) {
+//		log.info("============================= index ===========================");
+//		// 임시로그인 나중에 지우기
+//		session = request.getSession(false);
+//		session.setAttribute("user_id", "aaa");
+//		log.info((String)session.getAttribute("user_id"));
+//		// 여기까지 지우기
+//		return "/index";
+//	}
 
 	@RequestMapping(value = "/preview", method = RequestMethod.GET)
 	public String preview() {

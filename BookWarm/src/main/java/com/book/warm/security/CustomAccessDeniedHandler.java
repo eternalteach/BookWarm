@@ -18,7 +18,8 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 	public void handle(HttpServletRequest request,
 						  HttpServletResponse response, 
 						  AccessDeniedException accessException) throws IOException, ServletException {
-		
+		log.info(request.getAttribute("csrf"));
+		log.info(request.getAttribute("csrf2"));
 		log.error("Access Denied handler");
 		log.error("Redirect");
 		response.sendRedirect("/warm/accessError");

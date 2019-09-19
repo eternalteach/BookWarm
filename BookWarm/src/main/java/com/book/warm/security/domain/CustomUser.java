@@ -22,6 +22,7 @@ public class CustomUser extends User {
 			String enabled, Collection<? extends GrantedAuthority> authList) {
 		
 		super(user_id, user_pw, authList);
+		System.out.println("CustomUser생성자ㅏㅏㅏ");
 		
 	}
 	
@@ -31,14 +32,18 @@ public class CustomUser extends User {
 				.map(auth -> new SimpleGrantedAuthority(auth.getAuthority()))
 				.collect(Collectors.toList()));
 		
+		System.out.println("CustomUser생성자ㅏㅏㅏ22222");
+
 		this.user = vo;
 	}
 
 	public static long getSerialversionuid() {
+		System.out.println("getSerialversionuid랍니다ㅏㅏㅏㅏㅏㅏㅏ");
 		return serialVersionUID;
 	}
 
 	public UserVO getUser() {
+		System.out.println("getUser();;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;");
 		return user;
 	}
 

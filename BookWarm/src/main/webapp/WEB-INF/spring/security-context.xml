@@ -8,21 +8,21 @@
 							http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="customAccessDenied" class="com.book.warm.security.CustomAccessDeniedHandler"></bean>
-	<bean id="customLoginSuccess" class="com.book.warm.security.CustomLoginSuccessHandler"></bean>
-	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 	<bean id="customUserDetailsService" class="com.book.warm.security.CustomUserDetailsService"></bean>
 
 	<security:http auto-config="true" use-expressions="true">
 	
-		<security:intercept-url pattern="/sample/all" access="permitAll"/>
+		<!-- <security:intercept-url pattern="/sample/all" access="permitAll"/>
 		<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')"/>
-		<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')"/>	
+		<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')"/>	 -->
+		
+		<security:intercept-url pattern="/library" access="hasRole('ROLE_MEMBER')"/>
+		<!-- <security:intercept-url pattern="/index" access="permitAll"/> -->
 		
 		<security:access-denied-handler ref="customAccessDenied"/>
 		
-		<security:form-login 
-					login-page="/customLogin"
-					authentication-success-handler-ref="customLoginSuccess"/>
+		<security:form-login login-page="/index"/>
 		
 		<security:logout logout-url="/customLogout" invalidate-session="true" />
 		
@@ -36,10 +36,9 @@
 	
 	<security:authentication-manager>
 		
-		<security:authentication-provider
-					user-service-ref="customUserDetailsService">
+		<security:authentication-provider user-service-ref="customUserDetailsService">
 			
-			<security:password-encoder ref = "bcryptPasswordEncoder" />
+			<security:password-encoder ref="bcryptPasswordEncoder" />
 			
 		</security:authentication-provider>
 	

@@ -13,7 +13,7 @@
 	</select>
 	
 	<select id='getLibraryBooks'  resultType='com.book.warm.vo.LibraryVO'>
-	select * from library where user_id=#{user_id} AND list_no=1 
+	select * from library where user_id=#{user_id} 
 	</select>
 
 </mapper>

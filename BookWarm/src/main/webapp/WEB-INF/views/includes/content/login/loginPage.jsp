@@ -23,27 +23,30 @@
                               <div class="form-header header-primary">
                                  <h4><i class="fa fa-sign-in"></i>Login</h4>
                               </div><!-- end .form-header section -->
-
 <!--                               <form method="post" action="/warm/loginAction" id="contact"> -->
-                              <form method="post" action="login" id="contact">
+                              <form method="post" action="/warm/library" id="contact">
                                  <div class="form-body">
+									  <p style="color:red"><c:out value="${error}"/></p>
+									  <p style="color:red"><c:out value="${logout}"/></p>
 
                                     <div class="section">
                                        <label class="field prepend-icon"> <!-- 아이디 입력하는 부분 -->
-                                          <input type="text" name="user_id" id="username" class="gui-input" placeholder="Enter username">
+                                          <input type="text" name="username" id="username" class="gui-input" placeholder="Enter username">
                                           <span class="field-icon"><i class="fa fa-user"></i></span>
                                        </label>
                                     </div><!-- end section -->
 
                                     <div class="section">
                                        <label class="field prepend-icon"> <!-- 비밀번호 입력하는 부분 -->
-                                          <input type="password" name="use_pw" id="user_pw" class="gui-input" placeholder="Enter password">
+                                          <input type="password" name="password" id="user_pw" class="gui-input" placeholder="Enter password">
                                           <span class="field-icon"><i class="fa fa-lock"></i></span>
                                        </label>
                                     </div><!-- end section -->
                                     
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-
+                                    <input type="hidden" class="csrf" name="csrf" value="${_csrf.parameterName}" />
+                                    <input type="hidden" class="csrf2" name="csrf2" value="${_csrf.token}" />
+									
                                     <div class="section">
                                        <label class="switch block">
                                           <input type="checkbox" name="remember-me" id="remember-me" checked> <!-- null 또는 on값이 들어간다. -->
@@ -70,8 +73,11 @@
  <script>
  	
  $(".btn-success").on("click", function(e) {
-	 
+	 console.log("csrf : "+$(".csrf").val());
+	 console.log("csrf2 : "+$(".csrf2").val());
 	e.preventDefault();
+	var username = $("input[name='username']").val();
+	alert(username);
 	$("#contact").submit();
- });
+ }); 
  </script>

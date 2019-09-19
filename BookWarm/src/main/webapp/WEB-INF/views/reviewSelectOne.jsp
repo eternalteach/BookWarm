@@ -949,7 +949,7 @@
 					// 여기서 해야할 것은, review_no을 받아서 그 글에 달려있는 첨부 파일들을 하나씩 li로 달아주는 건데..
 					// 여기가 이미지들을 담을 공간.
 					var uploadImgs = $(".uploadResult");
-					var flex = $(".flexslider");
+					/* var flex = $(".flexslider"); */
 					var str = uploadImgs.html() + "";
 					
 					$(arr).each(function(i, attach) {
