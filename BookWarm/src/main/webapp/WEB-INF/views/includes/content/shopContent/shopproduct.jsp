@@ -45,6 +45,8 @@
                            </span>
                         </div>
 
+
+
                         <div class="product-summary">
                       <%--    <c:if test="${empty bookdetail.author}">
       					</c:if> --%>
@@ -66,14 +68,14 @@
 									</div>
 							</div>
 							</form>  --%>
-										<select class="input-text qty text" name = "amount">
+										<select id="select_count"class="input-text qty text" name = "amount">
 										<c:forEach begin="1" end="10" var="i">
 											<option value="${i}">${i}</option>
 										</c:forEach>
 										</select>
                            
 							<!-- 장바구니로 이동 -->
-                           <a href="/warm/shop/cart?user_id=${user_id}&isbn=${bookdetail.isbn}"><button id="cart" type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="장바구니로 이동" data-location="top">
+                           <a id="cart_get" href="/warm/shop/cart?user_id=${user_id}&isbn=${bookdetail.isbn}&amount="><button id="cart" type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="장바구니로 이동" data-location="top">
                            <i class="fa fa-shopping-basket" data-title="장바구니로 이동" data-location="top"></i>
                            <span>장바구니</span>
                            </button></a>
@@ -233,5 +235,17 @@
  		
  		});
  		
+ 		$(document).ready(function(){
+ 		    $("#select_count").on("change", function(){
+ 		    	
+ 		    	var val = $(this).val(); 		    	
+ 		     	var pre = $("#cart_get").attr("href");
+ 		    	
+ 		     	console.log(pre.toString()  + val.toString());     	 
+ 		     	$("#cart_get").attr("href",pre.toString()  + val.toString());     	
+ 		        console.log($(this).val());
+ 		       
+ 		    });
+ 		});
       </script>
 </body>
