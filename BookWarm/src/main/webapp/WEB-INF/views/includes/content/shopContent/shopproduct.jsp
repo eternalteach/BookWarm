@@ -56,21 +56,21 @@
                         </div>
 
                            <!-- 수량변경버튼 -->
-                           <form name="cart" method="get" enctype="multipart/form-data">
+<%--                            <form name="cart" method="get" enctype="multipart/form-data">
                            <div class="quantity">
 								<input type=hidden  title="Qty" class="input-text qty text" name="sell_price" fmt:formatNumber value="${bookdetail.book_price_for_sale}" pattern="###,###,###">
 								<!-- <input type="text" name="amount" value="1" title="Qty" class="input-text qty text" onchange="change();"> -->
 									<div class="qty-adjust">
 <!-- 										<i class="fa fa-chevron-up qty-plus" value=" + " onclick="add();"></i>
 										<i class="fa fa-chevron-down qty-minus" value=" - " onclick="del();"></i><br> -->
+									</div>
+							</div>
+							</form>  --%>
 										<select class="input-text qty text" name = "amount">
 										<c:forEach begin="1" end="10" var="i">
 											<option value="${i}">${i}</option>
 										</c:forEach>
 										</select>
-									</div>
-							</div>
-							</form> 
                            
 							<!-- 장바구니로 이동 -->
                            <a href="/warm/shop/cart?user_id=${user_id}&isbn=${bookdetail.isbn}"><button id="cart" type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="장바구니로 이동" data-location="top">

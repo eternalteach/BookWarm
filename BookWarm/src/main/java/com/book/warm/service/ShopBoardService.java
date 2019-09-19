@@ -44,10 +44,10 @@ public class ShopBoardService {
 
 	
 	//추가코드
-	public void insertcart(CartVO cartvo) {
+	public void insertcart(CartJoinBookVO cartvo) {
 		shopMapper.insertcart(cartvo);
 	}
-	public void updatecart(CartVO cartvo) {
+	public void updatecart(CartJoinBookVO cartvo) {
 		shopMapper.updatecart(cartvo);
 	}
 	
