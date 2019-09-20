@@ -98,7 +98,7 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="v-heading-v2">
-							<h3>Centered</h3>
+							<h3>bookwarm</h3>
 						</div>
 					</div>
 
@@ -193,7 +193,7 @@
 												</div>
 
 												<div class="product-details">
-													<h3 class="product-name"><a href="#">${shop_title.book_title}</a></h3>
+													<h3 class="product-name"><a href="shopproduct?isbn=${shop_title.isbn}">${shop_title.book_title}</a></h3>
 													<span class="product-posted_in"><a href="#" rel="tag">${shop_title.writer_name}&nbsp;저</a></span>
 													<span class="product-price"> <span class="product-amount">
 														<span class="product-price-currency">정가&nbsp;<fmt:formatNumber value="${shop_title.book_price}" pattern="###,###,###" /></span>원<br>
@@ -223,7 +223,7 @@
 												</div>
 
 												<div class="product-details">
-													<h3 class="product-name"><a href="#">${bookpricelist2.book_title}</a></h3>
+													<h3 class="product-name"><a href="shopproduct?isbn=${bookpricelist2.isbn}">${bookpricelist2.book_title}</a></h3>
 													<span class="product-posted_in"><a href="#" rel="tag">${bookpricelist2.writer_name}&nbsp;저</a></span>
 													<span class="product-price"> <span class="product-amount">
 														<span class="product-price-currency">정가&nbsp;<fmt:formatNumber value="${bookpricelist2.book_price}" pattern="###,###,###" /></span>원<br>
@@ -245,7 +245,7 @@
 
 
 	<!--Footer-시작<<나중에는 뺄꺼임-->
-	<div class="footer-wrap">
+<!-- 	<div class="footer-wrap">
 		<footer>
 			<div class="container">
 				<div class="row">
@@ -368,7 +368,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!--End Footer-Wrap-->
 
 	<!-- Libs -->
