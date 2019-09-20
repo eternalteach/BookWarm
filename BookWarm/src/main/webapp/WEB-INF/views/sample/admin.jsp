@@ -15,13 +15,13 @@
 <h1>/sample/admin page</h1>
 
 
-<p>principal : <sec:authentication property="principal" /></p>
+<%-- <p>principal : <sec:authentication property="principal" /></p>
 <p>UserVO : <sec:authentication property="principal.user" /></p>
 <p>사용자이름 : <sec:authentication property="principal.user.user_name" /></p>
 <p>사용자아이디 : <sec:authentication property="principal.user.user_id" /></p>
 <p>사용자이메일 : <sec:authentication property="principal.user.user_mail" /></p>
 <p>사용자 권한 리스트 : <sec:authentication property="principal.user.authList" /></p>
-
+ --%>
 <a href="/warm/customLogout">Logout</a>
 </body>
 </html>

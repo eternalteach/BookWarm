@@ -5,6 +5,7 @@ import java.security.Principal;
 import javax.inject.Inject;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class LibraryController {
 	LibraryMapper mapper;
 	
 	@RequestMapping(value = "/library", method = RequestMethod.GET)
-	@PreAuthorize("isAuthenticated()")
+//	@PreAuthorize("isAuthenticated()")
 	public String library2(Model model) throws Exception {
 		
 
@@ -33,17 +34,19 @@ public class LibraryController {
 	}
 	
 	@RequestMapping(value = "/library", method = RequestMethod.POST)
-	@PreAuthorize("isAuthenticated()")
-	public String library(Principal principal, Model model) throws Exception {
+//	@PreAuthorize("isAuthenticated()")
+	public String library(Model model) throws Exception {
 		
 		System.out.println("library!!!!!!!!!!!");
 		
-		System.out.println(principal);
-		System.out.println("principal.toString()" + principal.toString());
-		System.out.println("principal.getName(): " + principal.getName());
-
+//		System.out.println(auth);
+//		System.out.println("auth.getPrincipal()" + auth.getPrincipal());
+//		System.out.println("auth.getName(): " + auth.getName());
+//
+//		
+//		String user_id = auth.getName();
 		
-		String user_id = principal.getName();
+		String user_id = "aaa";
 		
 		model.addAttribute("libraryBooks",mapper.getLibraryBooks(user_id));
 		

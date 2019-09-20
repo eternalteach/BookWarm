@@ -11,19 +11,19 @@ import com.book.warm.vo.UserVO;
 
 import lombok.extern.log4j.Log4j;
 
-@RunWith(SpringRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
-@Log4j
-public class MemberMapperTests {
-	
-	@Inject
-	private MemberMapper mapper;
-	
-	@Test
-	public void testRead() {
-		
-		UserVO vo = mapper.read("admin9");
-		log.info(vo);
-		vo.getAuthList().forEach(authVO -> log.info(authVO));
-	}
-}
+//@RunWith(SpringRunner.class)
+//@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+//@Log4j
+//public class MemberMapperTests {
+//	
+//	@Inject
+//	private MemberMapper mapper;
+//	
+//	@Test
+//	public void testRead() {
+//		
+//		UserVO vo = mapper.read("admin9");
+//		log.info(vo);
+//		vo.getAuthList().forEach(authVO -> log.info(authVO));
+//	}
+//}

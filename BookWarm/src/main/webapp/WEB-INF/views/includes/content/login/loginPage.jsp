@@ -26,6 +26,7 @@
 <!--                               <form method="post" action="/warm/loginAction" id="contact"> -->
                               <form method="post" action="/warm/library" id="contact">
                                  <div class="form-body">
+                                 
 									  <p style="color:red"><c:out value="${error}"/></p>
 									  <p style="color:red"><c:out value="${logout}"/></p>
 
@@ -44,8 +45,8 @@
                                     </div><!-- end section -->
                                     
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                    <input type="hidden" class="csrf" name="csrf" value="${_csrf.parameterName}" />
-                                    <input type="hidden" class="csrf2" name="csrf2" value="${_csrf.token}" />
+                                    <%-- <input type="hidden" class="csrf" name="csrf" value="${_csrf.parameterName}" />
+                                    <input type="hidden" class="csrf2" name="csrf2" value="${_csrf.token}" /> --%>
 									
                                     <div class="section">
                                        <label class="switch block">
@@ -72,12 +73,8 @@
    
  <script>
  	
- $(".btn-success").on("click", function(e) {
-	 console.log("csrf : "+$(".csrf").val());
-	 console.log("csrf2 : "+$(".csrf2").val());
+ /* $(".btn-success").on("click", function(e) {
 	e.preventDefault();
-	var username = $("input[name='username']").val();
-	alert(username);
 	$("#contact").submit();
- }); 
+ });  */
  </script>
