@@ -55,7 +55,8 @@
 	delete from cart
 	where cart_no = #{cart_no}
 	</delete>
-
+	<!-- ============================================================== -->
+	
 	<select id="getUserInfo" resultType="com.book.warm.vo.UserVO">
 		select user_id, user_name, user_phone, user_zipcode, user_addr, user_addr_detail, user_tot_price, user_point
 		from user_info

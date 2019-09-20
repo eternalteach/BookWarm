@@ -29,10 +29,6 @@ public class ShopBoardService {
 	public void updateCnt(int cart_cnt, String cart_no) {
 		shopMapper.updateCnt(cart_cnt, cart_no);
 	}
-//	public void updateCnt(CartJoinBookVO cartvo) {
-//		shopMapper.updateCnt(cartvo);
-//	}
-	
 	public CartJoinBookVO getCartOne(String cart_no) {
 		return shopMapper.getCartOne(cart_no);
 	}
@@ -44,8 +40,6 @@ public class ShopBoardService {
 	public List<CouponVO> getCouponList(String user_id) {
 		return shopMapper.getCouponList(user_id);
 	}
-
-
 	
 	//====================추가코드==========================
 	public void insertcart(CartJoinBookVO cartvo) {
@@ -60,23 +54,7 @@ public class ShopBoardService {
 	public void delete(int cart_no) {
 		shopMapper.delete(cart_no);
 	}
+	//==================================================
 	
-	
-	
-	
-//	@Inject
-//	SqlSessionTemplate sqlSession;
-//	
-////	public List<CartVO> cartList(String user_id) {
-////		return sqlSession.selectList("shopping.listCart", user_id);
-////	}
-//	
-//	public List<CartVO> cartList(String user_id) {
-//		return sqlSession.selectList("shopping.listCart", user_id);
-//	}
-//	
-//	public List<CartVO> removeCart(CartVO cartVO) {
-//		return sqlSession.selectList("shopping.removeCart", cartVO);
-//	}
 	
 }
