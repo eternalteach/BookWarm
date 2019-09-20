@@ -35,11 +35,13 @@
                               <thead>
                                  <tr>
                                     <th class="cart-product-remove"><input type="checkbox" id="selectAll" checked></th>
+                                    <th class="cart-product-thumbnail">isbn</th>
                                     <th class="cart-product-thumbnail">&nbsp;</th>
                                     <th class="cart-product-name">도서 정보</th>
                                     <th class="cart-product-price">가 격</th>
                                     <th class="cart-product-quantity">수 량</th>
                                     <th class="cart-product-subtotal">총 액</th>
+                                    <th class="cart-product-subtotal">&nbsp;</th>
                                  </tr>
                               </thead>
                               
@@ -54,6 +56,9 @@
 		                                  	<!-- 체크박스 -->
 		                                    <td class="cart-product-checkbox">
 		                                       <input type="checkbox" class="chkbox" name="cart_no" value="${vo.cart_no}"checked>
+		                                    </td>
+		                                    <td class="cart-product-thumbnail">
+		                                       <a href="#"><img width="64" height="64">${vo.isbn}</a>
 		                                    </td>
 											<!-- 책 이미지(사진) -->
 		                                    <td class="cart-product-thumbnail">
