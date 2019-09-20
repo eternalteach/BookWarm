@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.book.warm.service.ShopBoardService;
+import com.book.warm.service.ShopListService;
 import com.book.warm.vo.CartJoinBookVO;
 import com.book.warm.vo.CouponVO;
 import com.book.warm.vo.UserVO;
@@ -26,7 +27,9 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/shop")
 @Log4j
 public class ShopController {
-
+	
+	@Inject
+	ShopListService shoplistservice;
 	@Inject
 	ShopBoardService service;
 	
@@ -117,13 +120,14 @@ public class ShopController {
 
 	@RequestMapping("/charge")
 	public String charge(HttpServletRequest req, Model model, HttpSession session) {
-		log.info("=================removeCartItem()==========================");
+		log.info("=================charge()==========================");
 		
 		String subTotal = req.getParameter("subTotal"); // 체크한 물품 총액
 		String delivery = req.getParameter("delivery"); // 배송비(2500원 or 무료)
 		String cart_no[] = req.getParameterValues("cart_no"); // 장바구니에 담아둔 책 cart_no
 		String user_id = (String) session.getAttribute("user_id"); // 로그인한 유저의 아이디 받아온다.
-
+		String isbn = req.getParameter("isbn");
+		
 		List<CartJoinBookVO> list = new ArrayList<CartJoinBookVO>();
 		CartJoinBookVO cartJoinBookVO;
 		
@@ -136,7 +140,7 @@ public class ShopController {
 			// list에 붙인다.
 			list.add(cartJoinBookVO);
 		}
-
+		model.addAttribute("isbn", isbn);
 		model.addAttribute("list", list);
 		model.addAttribute("subTotal", subTotal);
 		model.addAttribute("delivery", delivery);

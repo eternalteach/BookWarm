@@ -1,5 +1,8 @@
 package com.book.warm.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,6 +16,8 @@ import com.book.warm.page.Criteria;
 import com.book.warm.service.ShopBoardService;
 import com.book.warm.service.ShopListService;
 import com.book.warm.vo.BookListVO;
+import com.book.warm.vo.CartJoinBookVO;
+import com.book.warm.vo.UserVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -24,7 +29,7 @@ public class ShopListController {
 	@Inject
 	ShopListService shoplistservice;
 	@Inject
-	ShopBoardService service;
+	ShopBoardService shopboardservice;
 	
 	@RequestMapping(value = "/shoplist", method = RequestMethod.GET)
 	public String shoplist(HttpSession session, HttpServletRequest request, Model model, Criteria criteria) throws Exception {
@@ -61,6 +66,13 @@ public class ShopListController {
 		model.addAttribute("bookdetail", shoplistservice.bookdetail(isbn));
 		model.addAttribute("bookwritername", shoplistservice.bookwritername(author));
 		
+		//구매버튼으로 넘길때 받아 올 것들
+		String cart_no = request.getParameter("cart_no");  
+		String subTotal = request.getParameter("subTotal"); // 체크한 물품 총액
+		String delivery = request.getParameter("delivery"); // 배송비(2500원 or 무료)
+		List<CartJoinBookVO> list = new ArrayList<CartJoinBookVO>();
+		UserVO userVO = shopboardservice.getUserInfo(user_id);
+		System.out.println(cart_no);
 		return "shopproduct";
 	}
 	
