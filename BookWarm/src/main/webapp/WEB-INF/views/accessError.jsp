@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<h1> You don't go Home</h1>
+<h1> ACCESS DENIED. 이글을 본 당신은 집에가지 못합니다. </h1>
 
 <h2><c:out value="${SPRING_SECURITY_403_EXCEPTION.getMessage()}"/></h2>
 <h2><c:out value="${msg}"/></h2>

@@ -45,8 +45,6 @@
                                     </div><!-- end section -->
                                     
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                    <%-- <input type="hidden" class="csrf" name="csrf" value="${_csrf.parameterName}" />
-                                    <input type="hidden" class="csrf2" name="csrf2" value="${_csrf.token}" /> --%>
 									
                                     <div class="section">
                                        <label class="switch block">
