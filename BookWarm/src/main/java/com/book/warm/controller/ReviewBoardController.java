@@ -7,6 +7,7 @@ import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,6 +22,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -50,34 +52,30 @@ public class ReviewBoardController {
 	@Inject
 	ReviewBoardService service;
 	
-	// 내가 쓴 모든 리뷰가 최근 수정일 순 - 책별로 나타남
-	@RequestMapping("/reviewMain")
-	public String recordMain(HttpSession session, HttpServletRequest request, 
-							/*@RequestParam("user_id") String user_id,*/ Model model) {
+	@GetMapping("/reviewMain")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public void recordMain(Principal principal, Model model) {
 		
-		session = request.getSession();
-		String user_id = (String) session.getAttribute("user_id");
+		model.addAttribute("list", service.selectBoardList(principal.getName()));
 		
-		model.addAttribute("list", service.selectBoardList(user_id));
-		
-		return "reviewMain";
 	}
 	
 	// 책별 감상 목록
-	@RequestMapping("/reviewPerBook2")
-	public String reviewPerBook2(ReviewBoardVO rbVO, Criteria cri, Model model) {
-		
-		model.addAttribute("list", service.getListPerBook(rbVO.getIsbn(), rbVO.getUser_id(), cri));
-		model.addAttribute("thumbnail", service.showBookThumbnail(rbVO.getIsbn()));
-		return "reviewPerBook2";
-	}
+//	@RequestMapping("/reviewPerBook2")
+//	public String reviewPerBook2(ReviewBoardVO rbVO, Criteria cri, Model model) {
+//		
+//		model.addAttribute("list", service.getListPerBook(rbVO.getIsbn(), rbVO.getUser_id(), cri));
+//		model.addAttribute("thumbnail", service.showBookThumbnail(rbVO.getIsbn()));
+//		return "reviewPerBook2";
+//	}
 	
 	// 책별 감상 목록
 	@RequestMapping("/reviewPerBook")
-	public String reviewPerBook(HttpSession session, HttpServletRequest request, ReviewBoardVO rbVO, Criteria cri, Model model) {
+	@PreAuthorize("isAuthenticated()")
+	public String reviewPerBook(Principal principal, ReviewBoardVO rbVO, Criteria cri, Model model) {
 		
-		session = request.getSession();
-		String user_id = (String) session.getAttribute("user_id");
+		String user_id = principal.getName();
+		
 		List<ReviewBoardVO> reviewList = service.getListPerBook(rbVO.getIsbn(), user_id, cri);
 		
 		for(ReviewBoardVO review:reviewList) {

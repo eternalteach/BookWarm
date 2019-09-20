@@ -23,32 +23,13 @@ public class LibraryController {
 	LibraryMapper mapper;
 	
 	@RequestMapping(value = "/library", method = RequestMethod.GET)
-//	@PreAuthorize("isAuthenticated()")
-	public String library2(Model model) throws Exception {
+	@PreAuthorize("isAuthenticated()")
+	public String library(Principal principal, Model model) throws Exception {
 		
-
-		String user_id = "aaa";
-		model.addAttribute("libraryBooks",mapper.getLibraryBooks(user_id));
+		System.out.println(principal);
+		System.out.println("principal.getName(): " + principal.getName());
 		
-		return "library";
-	}
-	
-	@RequestMapping(value = "/library", method = RequestMethod.POST)
-//	@PreAuthorize("isAuthenticated()")
-	public String library(Model model) throws Exception {
-		
-		System.out.println("library!!!!!!!!!!!");
-		
-//		System.out.println(auth);
-//		System.out.println("auth.getPrincipal()" + auth.getPrincipal());
-//		System.out.println("auth.getName(): " + auth.getName());
-//
-//		
-//		String user_id = auth.getName();
-		
-		String user_id = "aaa";
-		
-		model.addAttribute("libraryBooks",mapper.getLibraryBooks(user_id));
+		model.addAttribute("libraryBooks",mapper.getLibraryBooks(principal.getName()));
 		
 		return "library";
 	}

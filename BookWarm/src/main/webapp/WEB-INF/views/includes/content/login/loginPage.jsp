@@ -23,10 +23,8 @@
                               <div class="form-header header-primary">
                                  <h4><i class="fa fa-sign-in"></i>Login</h4>
                               </div><!-- end .form-header section -->
-<!--                               <form method="post" action="/warm/loginAction" id="contact"> -->
-                              <form method="post" action="/warm/library" id="contact">
+                              <form method="post" action="login" id="contact">
                                  <div class="form-body">
-                                 
 									  <p style="color:red"><c:out value="${error}"/></p>
 									  <p style="color:red"><c:out value="${logout}"/></p>
 
@@ -71,8 +69,8 @@
    
  <script>
  	
- /* $(".btn-success").on("click", function(e) {
+/*  $(".btn-success").on("click", function(e) {
 	e.preventDefault();
 	$("#contact").submit();
- });  */
+ }); */ 
  </script>

@@ -23,5 +23,4 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 		log.error("Redirect....");
 		response.sendRedirect("/warm/accessError");
 	}
-	
 }

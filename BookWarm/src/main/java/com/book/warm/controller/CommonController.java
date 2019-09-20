@@ -1,9 +1,13 @@
 package com.book.warm.controller;
 
+import java.security.Principal;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import lombok.extern.log4j.Log4j;
 
@@ -18,8 +22,17 @@ public class CommonController {
 		model.addAttribute("msg", "Access Denied");
 	}
 	
-	@GetMapping("/customLogin")
-	public void loginInput(String error, String logout, Model model) {
+	@GetMapping("/index")
+	public void loginInput(Principal principal, String error, String logout, Model model) {
+		
+		// index로 들어왔을 때, 로그인이 된 사용자라면 사용자의 id를 받아서 library로 가게 하고,
+		// 아니라면 그냥 로그인 창을 띄운다.
+		
+		// 로그인을 시도했을 때(form 제출했을 때)
+		// 로그인 성공하면 library페이지로 가고, 로그인에 실패하면 같은 페이지 redirect가 될 것임.
+		
+		// 다른 페이지들의 경우 모두 로그인이 된 사용자만 접근 가능.
+		// 
 		
 		log.info("error: " + error);
 		log.info("logout: " + logout);
@@ -31,5 +44,20 @@ public class CommonController {
 		if(logout != null) {
 			model.addAttribute("logout", "Logout!!");
 		}
+		
+		
+	
+	}
+	
+	@GetMapping("/customLogout")
+	public void logoutGet() {
+		
+		log.info("custom logout");
+	}
+	
+	@PostMapping("/customLogout")
+	public void logoutPost() {
+		
+		log.info("post custom logout");
 	}
 }
