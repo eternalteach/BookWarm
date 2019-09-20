@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.book.warm.mapper.ShopMapper;
@@ -28,6 +29,9 @@ public class ShopBoardService {
 	public void updateCnt(int cart_cnt, String cart_no) {
 		shopMapper.updateCnt(cart_cnt, cart_no);
 	}
+//	public void updateCnt(CartJoinBookVO cartvo) {
+//		shopMapper.updateCnt(cartvo);
+//	}
 	
 	public CartJoinBookVO getCartOne(String cart_no) {
 		return shopMapper.getCartOne(cart_no);
@@ -43,12 +47,18 @@ public class ShopBoardService {
 
 
 	
-	//추가코드
+	//====================추가코드==========================
 	public void insertcart(CartJoinBookVO cartvo) {
 		shopMapper.insertcart(cartvo);
 	}
+	public int countcart(String isbn, String user_id) {
+		return shopMapper.countcart(isbn, user_id);
+	}
 	public void updatecart(CartJoinBookVO cartvo) {
 		shopMapper.updatecart(cartvo);
+	}
+	public void delete(int cart_no) {
+		shopMapper.delete(cart_no);
 	}
 	
 	

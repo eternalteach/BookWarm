@@ -10,8 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.book.warm.service.ShopBoardService;
@@ -19,43 +17,77 @@ import com.book.warm.vo.CartJoinBookVO;
 import com.book.warm.vo.CouponVO;
 import com.book.warm.vo.UserVO;
 
+import lombok.extern.log4j.Log4j;
+
 /**
  * Handles requests for the application home page.
  */
 @Controller
 @RequestMapping("/shop")
+@Log4j
 public class ShopController {
 
 	@Inject
 	ShopBoardService service;
-
-	@RequestMapping(path = "/cart")
-	public String cart(HttpServletRequest req, Model model) {
+	
+	//장바구니 추가
+	@RequestMapping("/insertcart")
+	public String insert(HttpSession session, HttpServletRequest req, Model model, CartJoinBookVO cartvo) {
+		log.info("====================insertcart()==========================");
+		session = req.getSession();
 		
-		// url에서 user_id를 받아온다.
-		String user_id = req.getParameter("user_id");
+		String user_id =(String)session.getAttribute("user_id");
+		String isbn = req.getParameter("isbn");
+		String cart_cnt = req.getParameter("cart_cnt");//책 권수
+		
+		cartvo.setUser_id(user_id);
+		
+		//장바구니에 기존상품이 있는지 검사!!	
+		int countCart = service.countcart(isbn, user_id);
+		log.info("장바구니에 기존상품이 있는지 검사" + countCart);
+		log.info("select  책 권수:" + cart_cnt);
+		
+		//insert
+		if(countCart == 0) {
+			service.insertcart(cartvo);
+			log.info("insert  구문 실행" + countCart);
+		}else {
+			service.updatecart(cartvo);	
+			log.info("update 구문 실행" + countCart);
+		}		
+		return "redirect:/shop/cart";
+	}
+	
+	@RequestMapping(path = "/cart")
+	public String cart(HttpSession session, HttpServletRequest req, Model model, CartJoinBookVO cartvo) {
+		log.info("=================cart()==========================");
+		session = req.getSession();	
+
+		String user_id =(String)session.getAttribute("user_id");
+		cartvo.setUser_id(user_id);
 		
 		List<CartJoinBookVO> list = service.cartList(user_id);
+		
 		model.addAttribute("list", list);
-
 		return "/shop-cart";
 	}
-
+	
 	@RequestMapping("/removeCartItem")
 	public String removeCartItem(HttpServletRequest req, RedirectAttributes rttr) {
-		System.out.println("removeCartItem()");
+		log.info("=================removeCartItem()==========================");
 		// url에서 user_id를 받아온다.
 		String user_id = req.getParameter("user_id");
 		String isbn = req.getParameter("isbn");
+		int cart_no = Integer.parseInt(req.getParameter("cart_no"));
 
-		// 삭제하려는 cart_no가 넘어온 경우 : 삭제 -> 새로 뿌려주기
-		if (isbn != null)
-			service.removeCart(user_id, isbn);
+//		// 삭제하려는 cart_no가 넘어온 경우 : 삭제 -> 새로 뿌려주기
+//		if (isbn != null)
+//			service.removeCart(user_id, isbn);
+		service.delete(cart_no);
 		
-		rttr.addAttribute("user_id", user_id);
-
 		return "redirect:/shop/cart";
 	}
+	
 
 	@RequestMapping("/cntUp")
 	public String cntUp(HttpServletRequest req, Model model) {
@@ -85,6 +117,8 @@ public class ShopController {
 
 	@RequestMapping("/charge")
 	public String charge(HttpServletRequest req, Model model, HttpSession session) {
+		log.info("=================removeCartItem()==========================");
+		
 		String subTotal = req.getParameter("subTotal"); // 체크한 물품 총액
 		String delivery = req.getParameter("delivery"); // 배송비(2500원 or 무료)
 		String cart_no[] = req.getParameterValues("cart_no"); // 장바구니에 담아둔 책 cart_no
