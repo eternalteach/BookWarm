@@ -18,6 +18,7 @@
 <body style="background-image: url('<%=path%>/resources/img/background/star01.gif');">
 	<a href="javascript:openModal('modal-searchBooks')"><button id='addBook'>책 등록하기</button></a>
 	<a href="<%=path%>/reviewMain?user_id=aaa"><button>감상 메인페이지</button></a>
+	<a href="<%=path%>/shop/shoplist"><button>책 리스트</button></a>
 	<!-- 이 페이지에서 추가로 구현해야 할 것들
 	 1. SQL에 책 더미데이터 만들기 (테스트에서 만들기 완료)
 	 1.1 책 등록하기 구현 (책 등록하는 것은 모달창으로 책 검색하여 등록하도록 한다.)

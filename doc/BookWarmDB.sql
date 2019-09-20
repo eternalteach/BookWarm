@@ -32,8 +32,8 @@ book_published_date DATE,
 book_price number(10,0),
 book_price_for_sale number(10,0),
 book_stock varchar2(15),
-book_story varchar2(500),
-book_img varchar2(100),
+book_story varchar2(1500),
+book_img varchar2(500),
 constraint pk_book primary key(isbn)
 );
 
@@ -66,7 +66,7 @@ constraint fk_book_clause FOREIGN KEY(isbn)
 create table library(
 user_id varchar2(20) not null,
 list_no number(10,0) default 1,
-list_img_src varchar2(100),
+list_img_src varchar2(500),
 list_type varchar2(10) default 'basic',
 isbn varchar2(20) not null,
 list_added_date date default sysdate,
@@ -271,8 +271,6 @@ pay_total number(10,0) not null,
 pay_refund_account varchar2(50) not null,
 constraint pk_pay primary key(pay_no)
 );
-
-create SEQUENCE pay_seq;
 
 --주문
 create sequence orders_seq;
@@ -543,3 +541,127 @@ insert into coupon_no values('009','ccc','t');
 insert into coupon_no values('005','ddd','t');
 insert into coupon_no values('007','ccc','t');
 insert into coupon_no values('001','ddd','f');
+                                                          
+                                                          
+-- community_board sample_Data
+insert into community_board values(COMMUNITY_BOARD_SEQ.nextval, 'admin1', '말머리','말랑말랑','해랑해랑',sysdate,sysdate,0,0,0,0);
+insert into community_board values(COMMUNITY_BOARD_SEQ.nextval, 'admin1', '창의력제로','커피가땡기는아침','달달한 자바칩이필요해',sysdate,sysdate,0,0,0,0);
+insert into community_board values(COMMUNITY_BOARD_SEQ.nextval, 'admin1', '라이언이보고있다','누가누가 늦게오나','경운씨가  먼저왔네',sysdate,sysdate,0,0,0,0);
+insert into community_board values(COMMUNITY_BOARD_SEQ.nextval, 'admin2', '아프지마요','아프면 병원가야지','푹 쉬고 나오셔요',sysdate,sysdate,0,0,0,0);
+insert into community_board values(COMMUNITY_BOARD_SEQ.nextval, 'admin2', '정상적인','샘플 데이터 입력','이 글은 정상적인가?',sysdate,sysdate,0,0,0,0);
+insert into community_board values(COMMUNITY_BOARD_SEQ.nextval, 'admin3', '귀찮다','나한테 왜그래','목이너무아프잖아',sysdate,sysdate,0,0,0,0);
+insert into community_board values(COMMUNITY_BOARD_SEQ.nextval, 'admin3', '양경운','메롱>ㅜ<','크하하하하하',sysdate,sysdate,0,0,0,0);
+insert into community_board values(COMMUNITY_BOARD_SEQ.nextval, 'admin3', '페이징처리','할때마다보이게','게시글은 10개로끊자',sysdate,sysdate,0,0,0,0);
+insert into community_board values(COMMUNITY_BOARD_SEQ.nextval, 'admin2', '임지현','바아아아보','푸헬헬헬헬',sysdate,sysdate,0,0,0,0);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+insert into community_board (COMM_NO,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT) (select COMMUNITY_BOARD_SEQ.nextval,USER_ID,COMM_SUBJECT,COMM_TITLE,COMM_CONTENT,COMM_WRITTEN_TIME,COMM_MODIFY_TIME,COMM_CLICKED,COMM_GROUP,COMM_STEP,COMM_INDENT from community_board);
+
+--community_board_comment Sample_Data
+insert into community_board_comment values(1, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin1', '댓글내용',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment values(1, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin2', '감사합니다',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment values(1, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin3', '나는요',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment values(1, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin1', '오빠가',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment values(1, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin2', '좋은걸',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment values(2, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin3', '어떻게',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment values(2, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin1', '좋은날',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment values(2, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin2', '아이유',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment values(2, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin3', '와 귀찮다',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment values(2, COMMUNITY_BOARD_COMMENT_SEQ.nextval,'admin1', '댓글 언제 각 게시글마다 다 달지?',sysdate,sysdate,'n',0,0,0);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+insert into community_board_comment (COMM_NO,COMM_CMT_NO,USER_ID,COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT) (select COMMUNITY_BOARD_COMMENT_SEQ.nextval, COMMUNITY_BOARD_COMMENT_SEQ.nextval,USER_ID, COMM_CMT_CONTENT,COMM_CMT_WRITTEN_TIME,COMM_CMT_MODIFY_TIME,COMM_CMT_DELETED,COMM_CMT_GROUP,COMM_CMT_STEP,COMM_CMT_INDENT from community_board_comment);
+
+
+-- ReviewBoard SampleData based on 지현's Book Data
+                                  
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN)
+values (REVIEW_BOARD_SEQ.nextval,'aaa',to_date('19/08/27','RR/MM/DD'),to_date('19/08/27','RR/MM/DD'),'1',0,'첫감상',' 원래는 미즈마블에 대한 감상이었는데 책이 바뀌었어요 원글내용-> 블라블라블라 오늘은 2019년 8월 30일 금요일 금요일!금요일!! 금요일 오후 4시 56분입니다 여러분 즐거운 금요일','checked');
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN) 
+values (REVIEW_BOARD_SEQ.nextval,'aaa',to_date('19/08/28','RR/MM/DD'),to_date('19/08/28','RR/MM/DD'),'1',0,'제목2','를 읽다 쓰는 두 번째 감상',null);
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN) 
+values (REVIEW_BOARD_SEQ.nextval,'aaa',to_date('19/08/28','RR/MM/DD'),to_date('19/08/28','RR/MM/DD'),'1',0,'제목3','을 읽다 쓰는 세에에에번째 감상',null);
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN) 
+values (REVIEW_BOARD_SEQ.nextval,'aaa',to_date('19/09/02','RR/MM/DD'),to_date('19/09/02','RR/MM/DD'),'1',15,'공개여부작동체크(비공개)','하하하',null);
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN) 
+values (REVIEW_BOARD_SEQ.nextval,'aaa',to_date('19/09/02','RR/MM/DD'),to_date('19/09/02','RR/MM/DD'),'1',1315,'공개여부작동체크(공개)','공개합니다!','checked');
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN) 
+values (REVIEW_BOARD_SEQ.nextval,'aaa',to_date('19/09/09','RR/MM/DD'),to_date('19/09/09','RR/MM/DD'),'1',3,'9시 50분','오전','checked');
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN) 
+values (REVIEW_BOARD_SEQ.nextval,'aaa',to_date('19/09/09','RR/MM/DD'),to_date('19/09/09','RR/MM/DD'),'1',1,'ㅇ','ㄴ','checked');
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN) 
+values (REVIEW_BOARD_SEQ.nextval,'aaa',to_date('19/09/09','RR/MM/DD'),to_date('19/09/09','RR/MM/DD'),'1',1,'썸네일어디갔어','gkgkgk','checked');
+
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN) 
+values (REVIEW_BOARD_SEQ.nextval,'aaa',to_date('19/09/01','RR/MM/DD'),to_date('19/09/04','RR/MM/DD'),'3',5,'작성 첫 시도-----','asdf',null);
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN) 
+values (REVIEW_BOARD_SEQ.nextval,'aaa',to_date('19/09/01','RR/MM/DD'),to_date('19/09/01','RR/MM/DD'),'3',5,'작성 첫 시도가 아니었네','asdf',null);
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN) 
+values (REVIEW_BOARD_SEQ.nextval,'aaa',to_date('19/09/03','RR/MM/DD'),to_date('19/09/03','RR/MM/DD'),'3',947,'밤 9시 47분','왔다갔다 페이징','checked');
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN) 
+values (REVIEW_BOARD_SEQ.nextval,'aaa',to_date('19/09/01','RR/MM/DD'),to_date('19/09/03','RR/MM/DD'),'3',155,'된 거야?수정','ㅁㄴㅇㄹasdf',null);
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN) 
+values (REVIEW_BOARD_SEQ.nextval,'aaa',to_date('19/09/01','RR/MM/DD'),to_date('19/09/01','RR/MM/DD'),'3',3,'빌려둔거보고싶다','어제 보려고 했는데 스파이더맨 봄','checked');
+
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN) 
+values (REVIEW_BOARD_SEQ.nextval,'aaa',to_date('19/06/05','RR/MM/DD'),to_date('19/06/05','RR/MM/DD'),'5',0,'제목8','를 읽고 쓰는 첫 번째 감상',null);
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN) 
+values (REVIEW_BOARD_SEQ.nextval,'aaa',to_date('19/06/15','RR/MM/DD'),to_date('19/06/15','RR/MM/DD'),'5',0,'제목9','를 읽고 쓰는 두 번째 감상',null);
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN) 
+values (REVIEW_BOARD_SEQ.nextval,'aaa',to_date('19/06/25','RR/MM/DD'),to_date('19/06/25','RR/MM/DD'),'5',0,'제목10','를 읽고 쓰는 세 번째 감상',null);
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN) 
+values (REVIEW_BOARD_SEQ.nextval,'aaa',to_date('19/09/09','RR/MM/DD'),to_date('19/09/09','RR/MM/DD'),'5',3,'9시 50분','오전',null);
+
+
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN) 
+values (REVIEW_BOARD_SEQ.nextval,'ddd',to_date('19/07/01','RR/MM/DD'),to_date('19/07/01','RR/MM/DD'),'1',0,'제목5','를 읽고 쓰는 첫 번째 감상',null);
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN) 
+values (REVIEW_BOARD_SEQ.nextval,'ddd',to_date('19/07/13','RR/MM/DD'),to_date('19/07/15','RR/MM/DD'),'1',0,'제목4','를 읽고 쓰는 두 번째 감상',null);
+Insert into BOOK.REVIEW_BOARD (REVIEW_NO,USER_ID,REVIEW_WRITTEN_DATE,REVIEW_MODIFY_DATE,ISBN,REVIEW_REF,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_OPEN) 
+values (REVIEW_BOARD_SEQ.nextval,'ddd',to_date('19/07/20','RR/MM/DD'),to_date('19/07/20','RR/MM/DD'),'1',0,'제목7','를 읽고 쓰는 세 번째 감상은 조금 길게 써볼게여 길 때 어떻게 나오는지 궁금하니까 할 말은 없지만 빈 칸을 채운다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ현재시간오후다섯시 칠분이구요 끝날 때까지 한 시간이 남았네여 그러면 저녁먹고~ 스터디하고~오늘 어디까지 끝낼 수 있을까여 모르겠습니다','checked');
+
+
+                                                          
+-- Review Comment Sample Data
+
+                        
+
+Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONTENT,REVIEW_CMT_WRITTEN_DATE,REVIEW_CMT_MODIFIED_DATE) values (review_comment_seq.nextval,1,'bbb','으하하하핳핳ㅎㅎ수정됐어요!--',to_date('19/09/04','RR/MM/DD'),to_date('19/09/07','RR/MM/DD'));
+Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONTENT,REVIEW_CMT_WRITTEN_DATE,REVIEW_CMT_MODIFIED_DATE) values (review_comment_seq.nextval,3,'bbb','댓글 테스트합니다: 2',to_date('19/09/05','RR/MM/DD'),to_date('19/09/05','RR/MM/DD'));
+Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONTENT,REVIEW_CMT_WRITTEN_DATE,REVIEW_CMT_MODIFIED_DATE) values (review_comment_seq.nextval,2,'bbb','댓글 테스트합니다: 3',to_date('19/09/05','RR/MM/DD'),to_date('19/09/05','RR/MM/DD'));
+Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONTENT,REVIEW_CMT_WRITTEN_DATE,REVIEW_CMT_MODIFIED_DATE) values (review_comment_seq.nextval,5,'bbb','댓글 테스트합니다: 5',to_date('19/09/05','RR/MM/DD'),to_date('19/09/05','RR/MM/DD'));
+Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONTENT,REVIEW_CMT_WRITTEN_DATE,REVIEW_CMT_MODIFIED_DATE) values (review_comment_seq.nextval,4,'bbb','댓글 테스트합니다: 6',to_date('19/09/05','RR/MM/DD'),to_date('19/09/05','RR/MM/DD'));
+Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONTENT,REVIEW_CMT_WRITTEN_DATE,REVIEW_CMT_MODIFIED_DATE) values (review_comment_seq.nextval,3,'ccc','댓글 테스트합니다: 7',to_date('19/09/05','RR/MM/DD'),to_date('19/09/05','RR/MM/DD'));
+Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONTENT,REVIEW_CMT_WRITTEN_DATE,REVIEW_CMT_MODIFIED_DATE) values (review_comment_seq.nextval,2,'ccc','댓글 테스트합니다: 8',to_date('19/09/05','RR/MM/DD'),to_date('19/09/05','RR/MM/DD'));
+Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONTENT,REVIEW_CMT_WRITTEN_DATE,REVIEW_CMT_MODIFIED_DATE) values (review_comment_seq.nextval,1,'ccc','물음표살인마가 닉네임을 확인했다',to_date('19/09/05','RR/MM/DD'),to_date('19/09/05','RR/MM/DD'));
+Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONTENT,REVIEW_CMT_WRITTEN_DATE,REVIEW_CMT_MODIFIED_DATE) values (review_comment_seq.nextval,5,'ccc','댓글 테스트합니다: 10',to_date('19/09/05','RR/MM/DD'),to_date('19/09/05','RR/MM/DD'));
+Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONTENT,REVIEW_CMT_WRITTEN_DATE,REVIEW_CMT_MODIFIED_DATE) values (review_comment_seq.nextval,1,'ddd','댓글 추가해여!',to_date('19/09/05','RR/MM/DD'),to_date('19/09/05','RR/MM/DD'));
+Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONTENT,REVIEW_CMT_WRITTEN_DATE,REVIEW_CMT_MODIFIED_DATE) values (review_comment_seq.nextval,1,'eee','JS Test',to_date('19/09/05','RR/MM/DD'),to_date('19/09/05','RR/MM/DD'));
+Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONTENT,REVIEW_CMT_WRITTEN_DATE,REVIEW_CMT_MODIFIED_DATE) values (review_comment_seq.nextval,1,'aaa','수정합니다ㅏㅏㅏㅏㅏㅏ',to_date('19/09/05','RR/MM/DD'),to_date('19/09/05','RR/MM/DD'));
+Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONTENT,REVIEW_CMT_WRITTEN_DATE,REVIEW_CMT_MODIFIED_DATE) values (review_comment_seq.nextval,1,'aaa','JS Test',to_date('19/09/05','RR/MM/DD'),to_date('19/09/05','RR/MM/DD'));
+Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONTENT,REVIEW_CMT_WRITTEN_DATE,REVIEW_CMT_MODIFIED_DATE) values (review_comment_seq.nextval,1,'bbb','asd',to_date('19/09/06','RR/MM/DD'),to_date('19/09/06','RR/MM/DD'));
+Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONTENT,REVIEW_CMT_WRITTEN_DATE,REVIEW_CMT_MODIFIED_DATE) values (review_comment_seq.nextval,1,'ccc','asdg',to_date('19/09/06','RR/MM/DD'),to_date('19/09/06','RR/MM/DD'));
+Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONTENT,REVIEW_CMT_WRITTEN_DATE,REVIEW_CMT_MODIFIED_DATE) values (review_comment_seq.nextval,1,'ddd','asdf',to_date('19/09/06','RR/MM/DD'),to_date('19/09/06','RR/MM/DD'));
+Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONTENT,REVIEW_CMT_WRITTEN_DATE,REVIEW_CMT_MODIFIED_DATE) values (review_comment_seq.nextval,1,'eee','asdf',to_date('19/09/06','RR/MM/DD'),to_date('19/09/06','RR/MM/DD'));
+Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONTENT,REVIEW_CMT_WRITTEN_DATE,REVIEW_CMT_MODIFIED_DATE) values (review_comment_seq.nextval,1,'ddd','d',to_date('19/09/06','RR/MM/DD'),to_date('19/09/06','RR/MM/DD'));
+Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONTENT,REVIEW_CMT_WRITTEN_DATE,REVIEW_CMT_MODIFIED_DATE) values (review_comment_seq.nextval,1,'asdf','asdf',to_date('19/09/06','RR/MM/DD'),to_date('19/09/06','RR/MM/DD'));
+
+
+                                                          
