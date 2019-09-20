@@ -1,4 +1,5 @@
-﻿   <div class="wrapper">
+﻿<% String path = request.getContextPath(); %>
+   <div class="wrapper">
       <div class="page has-sidebar has-right-sidebar bordered">
 
          <section class="page-header b-bordered t-bordered">
@@ -114,7 +115,7 @@
                                     </div>
                                     <div class="section colm colm3">
 	                                    <label class="field">
-	                                    	<input type="button" class="btn btn-primary" id="pickCoupon" value="쿠폰 적용">
+	                                    	<a href="javascript:pickCoupon()"><button type="button" class="btn btn-primary" id="pickCoupon">쿠폰적용</button></a>
 	                                    </label>
                                    	</div>
 	                             </div>
@@ -175,6 +176,7 @@
 				                           		<td class="cart-product-name amount">${list.total}원</td>
 				                             </tr>
 							   			  </c:forEach>
+							   			  <%-- <input type="hidden" id="total" value="${subTotal}"> --%>
 							   			  
                                           <tr class="cart_item">
                                              <td class="cart-product-name">
@@ -182,7 +184,7 @@
                                              </td>
 
                                              <td class="cart-product-name">
-                                                <span class="amount">${delivery}</span>
+                                                <span class="amount" id="delivery">${delivery}</span>
                                              </td>
                                           </tr>
                                           <tr class="cart_item">
@@ -206,7 +208,7 @@
                                              </td>
 
                                              <td class="cart-product-name">
-                                                <span class="amount color"><strong>${subTotal}</strong></span>
+                                                <span class="amount color"><strong id="finalPay">${subTotal}</strong></span>
                                              </td>
                                           </tr>
                                        </tbody>
@@ -217,6 +219,7 @@
 
                                  <div class="spacer-t40 spacer-b30">
                                     <div class="tagline"><span> 결제 정보 </span></div><!-- .tagline -->
+                                    <input type="hidden" id="total" value="${subTotal}">
                                  </div>
 
                                  <div class="section">
@@ -304,56 +307,15 @@
                </div>
             </section>
          </div>
-
       </div>
 
-      <!-- <div class="modal fade" id="exampleModalLabel33" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel33" aria-hidden="true">
-         <div class="modal-dialog" style="max-width:345px" role="document">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel33">Login via</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                  </button>
-               </div>
-               <div class="modal-body">
-                  <div class="clearfix" id="login-dp">
-
-                     <div class="social-buttons text-center">
-                        <a href="#" class="btn btn-fb ls-0"><i class="fa fa-facebook"></i> Facebook</a>
-                        <a href="#" class="btn btn-tw ls-0"><i class="fa fa-twitter"></i> Twitter</a>
-                     </div>
-                     <div class="special-heading line center">
-                        <h5 class="special-heading-inner mb-10"><span class="o-7"> or </span></h5>
-                     </div>
-                     <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                        <div class="form-group">
-                           <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                           <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
-                        </div>
-                        <div class="form-group">
-                           <label class="sr-only" for="exampleInputPassword2">Password</label>
-                           <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-                           <div class="help-block text-right pt-10 fs-13"><a href="" class="read-more">Forget the password ?</a></div>
-                        </div>
-                        <div class="form-group">
-                           <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-                        </div>
-                        <div class="checkbox-custom checkbox-default">
-                           <input id="RememberMe" name="rememberme" type="checkbox">
-                           <label for="RememberMe"> keep me logged-in</label>
-                        </div>
-                     </form>
-
-                     <div class="bottom text-center">
-                        New here ? <a href="#"><b>Join Us</b></a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div> -->
    </div>
-
+   
+	<%@ include file="./modal-shopCharge-script.jsp"%>
+	<!-- 쿠폰 선택하는 모달창 -->
+	<%@ include file="./couponList.jsp"%>
+	
+	
+	
 </body>
 </html>

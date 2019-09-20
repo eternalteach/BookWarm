@@ -107,20 +107,22 @@ public class ShopController {
 		model.addAttribute("subTotal", subTotal);
 		model.addAttribute("delivery", delivery);
 		model.addAttribute("userVO", userVO);
-		
+		System.out.println("subTotal"+subTotal);
 		return "/shop-charge";
 	}
 	
 	// 쿠폰 고르기창
 	@RequestMapping(value="/pickCoupon")
-	public String pickCoupon(HttpSession session, Model model) {
+	@ResponseBody
+	public List<CouponVO> pickCoupon(HttpSession session, Model model) {
 		String user_id = (String) session.getAttribute("user_id");
 		
 		// 현재 로그인한 user가 가지고 있는 쿠폰을 list로 받아온다.
 		List<CouponVO> couponList = service.getCouponList(user_id);
-		model.addAttribute("couponList", couponList);
+		// model.addAttribute("couponList", couponList);
 		
-		return "/couponList";
+		// return "/couponList";
+		return couponList;
 	}
 	
 	// 쿠폰 선택

@@ -438,45 +438,6 @@
 			delivery();
 		})
 
-		// 수량을 올릴 때마다 UI에 반영 & db에 반영
-		/* $('.cnt').click(function() {
-			var price;
-			var cnt;
-			var tot;
-			var totAllItems = 0;
-			var changeSubTotal = 0;
-			
-			// 모든 튜플의 수량을 가져온다.
-			$('.cnt').each(function(index, item) {
-				price = $('.price').eq(index).html();
-				cnt = item.value;
-				tot = price * cnt; // 각 튜플마다의 총액
-				totAllItems = totAllItems + tot; // 장바구니 총액
-				
-				// 각각 물품 총액에 반영
-				$('.tot').eq(index).html(tot);
-				
-				// 체크박스 O -> subtotal 적용
-				// 체크박스 X -> subtotal 적용 X
-				if($('.chkbox').eq(index).prop('checked')==true) {
-					changeSubTotal = changeSubTotal + parseInt($('.tot').eq(index).html());
-				}
-			})
-			
-			// 장바구니 총액에 반영
-			$('.totAllItems').html("<strong>" + totAllItems + "원</strong>");
-			// subTotal에 반영
-			$('.subTotal').html(changeSubTotal+"원");
-		}) */
-
-		// 삭제 버튼 클릭 >> 클릭한거 hidden처리
-		//$('.fa-trash').on('click', function() {
-		//	// 1. 클릭한 것의 id를 가져온다
-		//	var getId = "#item-" + $(this).prop("id");
-		//	alert($(getId).prop("class"));
-		////	// 2. 그 id와 동일한 id를 가진 tr을 hidden
-		//	$(getId).attr("hidden", true);
-		//})
 		
 		// 상단에 있는 체크박스 클릭시 >> 모두 선택 or 모두 선택 해제
 		$('#selectAll').on('click', function() {
@@ -581,6 +542,19 @@
 <script>
   	$(document).ready(function() {
   		
+  		var total = parseInt($('#total').val()); // 총 도서 금액
+  		var delivery = $('#delivery').html(); // 배송비(2500원 or 무료)
+		var finalTotal; // 최종 금액
+		
+  		// 결제 금액에 총 도서 금액 + 배송비 넣기
+		if(delivery == "2500원") {
+			finalTotal = total+2500;
+		}else {
+			finalTotal = total;
+		}
+		$('#finalPay').html(finalTotal);
+  		
+  		
   		// 적립금 사용
   		$('#applyPoint').on('click', function() {
   			var point = $('#point').val(); // 사용하려고 입력한 포인트
@@ -589,18 +563,21 @@
   			
   			if(numExp.test(point)) {
   				// 받아온 값이 숫자면 parseInt 해준다.
-  				point = parseInt(point);
+  				point  = parseInt(point);
    			
   				if(availablePoint<point) {
-     			// 가용포인트<사용하려는 포인트 -> 경고창
-   				alert("가용 포인트는 "+availablePoint+"p 입니다.");
-   				$('#point').val('');
-   			}else {
-   				// 가용포인트>=사용포인트 -> 사용 포인트에 입력
-   				$('#usePoint').text(point);
-   				// 최종금액에 반영
-   				$('#discountPoint').text("<td class='cart-product-name'>-<span class='amount' id='discount'>"+point+"(포인트)</span></td>");
-   			}
+	     			// 가용포인트<사용하려는 포인트 -> 경고창
+	   				alert("가용 포인트는 "+availablePoint+"p 입니다.");
+	   				$('#point').val('');
+	   			}else {
+	   				// 가용포인트>=사용포인트 -> 사용 포인트에 입력
+	   				$('#usePoint').text(point);
+	   				// 최종금액(포인트 할인)에 반영
+	   				$('#discountPoint').html(point);
+	   				// 결제 금액에 반영///////////////////////////////////////////////////////
+	   				var bookPrice = $('#total').val(); // 총 도서 금액
+	   				$('#finalPay').html(bookPrice.substring(0,bookPrice.lastIndexOf("원"))-point);
+	   			}
   			}else {
   				// 숫자가 아닌 값 입력 시 -> 경고창, 입력부분 비워버리기
   				alert('숫자만 입력 가능합니다.');
@@ -615,9 +592,10 @@
   			$('#cardyear').append('<option value='+i+'>'+i+'</option>')
   		}
   		
-  		// 쿠폰선택 클릭했을 때, 
-  		$('#pickCoupon').on('click', function() {
-  			window.open('<%=context%>/shop/pickCoupon','pickCoupon','width=430,height=500,location=no,status=no,scrollbars=yes');
-  		})
+  		
+  		
+  		
+  		
+  		
   	})
 </script>

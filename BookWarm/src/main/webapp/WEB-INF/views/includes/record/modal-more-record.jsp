@@ -61,7 +61,7 @@
 									<br />
 									<!-- paging -->
 
-									<br />
+									<br/>
 									<button type='button' class='modalClose'>
 										<a href="javascript:;" class="close">Close</a>
 									</button>
