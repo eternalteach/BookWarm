@@ -74,9 +74,9 @@
                            </form>
                            
 							<!-- 구매로이동  -->
-                            <a href="/warm/shop/charge?cart_no=${cart_no}&delivery=&subTotal="><button id="pay" type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="구매로 이동" data-location="top">
+                           <%--  <a href="/warm/shop/charge?cart_no=${cart_no}&delivery=&subTotal="><button id="pay" type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="구매로 이동" data-location="top">
                           	<span>구매</span>
-                           </button></a>
+                           </button></a> --%>
                            
                        		<!-- 목록버튼 클릭하면 책 목록으로 이동. -->
 						    <a href="/warm/shop/shoplist"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="목록으로 이동" data-location="top">
