@@ -7,15 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>쪽지</title>
+<%@ include file="./includes/header/header/vertexHeader.jsp"%>
 </head>
 <body>
-	<%@ include file="./includes/header/header-dark-dropdown.jsp"%>
-	
-	
+<%@ include file="./includes/header/shopHeader/shopHeaderNav.jsp"%>	
+<%@ include file="./includes/content/message/msglistPage.jsp"%>
 
-	<%@ include file="./includes/content/message/msglistPage.jsp"%>
-	
-	
-	<%@ include file="./includes/footer/shopFooter/shopFooterNav.jsp"%>	
+<%-- <%@ include file="./includes/footer/shopFooter/shopFooterNav.jsp"%>	
+ --%>
 </body>
 </html>

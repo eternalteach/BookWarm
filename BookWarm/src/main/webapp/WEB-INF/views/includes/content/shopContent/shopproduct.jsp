@@ -1,30 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <body class="bg-white">
-
    <div class="wrapper">
-
       <div class="page has-sidebar has-left-sidebar bordered single-product-wrap">
-
          <div class="page-inner no-border">
-
             <div class="container single-product-inner">
                <div class="row">
-				
                   <div class="col-md-4">
-                        <img src="${bookdetail.book_img}">
+                    <img src="${bookdetail.book_img}">
                   </div>
 
                   <div class="col-md-6">
                      <ol class="breadcrumb clean-breadcrumb">
                         <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i>${bookdetail.book_title}</a></li>
                      </ol>
-					
-					
                      <div class="product-details">
                         <h2 class="product-name"><a href="#">${bookdetail.book_title}</a></h2>
-
                         <div class="product-price-wrap">
-
                            <span class="product-price">
                               <del class="product-amount"><span class="product-price-currency">정가&nbsp<fmt:formatNumber value="${bookdetail.book_price}" pattern="###,###,###" /></span>원</del><br>
                               <ins> 
@@ -45,12 +36,9 @@
                            </span>
                         </div>
 
-
-
                         <div class="product-summary">
                       <%--    <c:if test="${empty bookdetail.author}">
       					</c:if> --%>
-      					
                          <p>${bookdetail.writer_name}&nbsp저</p>
                           <c:if test="${bookdetail.translator_name != '[]'}">
  						 <p>${bookdetail.translator_name}&nbsp역</p>
@@ -92,7 +80,6 @@
                            </span>
                      </div>
 
-
             		    <!-- 줄거리/목차부분  -->
                         <div class="clearfix">
                            <div class="tab-wrap clean-tab">
@@ -113,7 +100,6 @@
                   </div>
                </div>
             </div>
-
 
 			<!-- 대표저서  -->
              <section class="section-big main-color">
@@ -150,7 +136,6 @@
                                           <i class="fa fa-star"></i>
                                           <i class="fa fa-star"></i> -->
                                        </div>
-                                     
                                     </div> 
                                  </figure>
                               </div>
@@ -164,8 +149,6 @@
 				</div>
               </div>
          </div>
-         
-         
          
      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
      <script type="text/javascript">
