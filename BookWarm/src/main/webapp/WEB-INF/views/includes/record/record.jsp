@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script type="text/javascript" src="<%=path%>/resources/js/record.js"></script>
-<script type="text/javascript" src="<%=path%>/resources/js/DateJsonToJsp.js"></script>
+<script type="text/javascript" src="/warm/resources/js/record.js"></script>
+<script type="text/javascript" src="/warm/resources/js/DateJsonToJsp.js"></script>
 <section class="section-primary alternate-color b-bordered">
 	<div class="container">
 		<div class="row">
@@ -42,13 +42,10 @@
 							<div class="progress-label">
 							<!-- open more record modal -->
 								<span>Record</span>&nbsp; &nbsp;
-								<a href="javascript:openModal('modal-more-record')"><strong class="primary-color" data-to="${recordNum}" data-plugin-options="{&quot;decimals&quot;: 0}">${recordNum}</strong></a>
+								<a href="#modal-more-record" data-toggle="modal" ><strong class="primary-color" data-to="${recordNum}" data-plugin-options="{&quot;decimals&quot;: 0}">${recordNum}</strong></a>
 							</div>
-							<div class="special-heading text-left">
 							<!-- open add record modal -->
-								<a href="javascript:openModal('modal-add-record')">&nbsp; &nbsp;<strong class="primary-color">Record write</strong>
-								</a>
-							</div>
+								<button type="button" class="btn" data-toggle="modal" data-target="#modal-add-record">Record Write</button>
 						</div>
 					</div>
 				</div>
@@ -58,14 +55,36 @@
 </section>
 
 
-	<%@ include file="./modal-record-script.jsp"%>
-<div id='overlay' >
-	<div id="modal" class="modal">
-	<!-- 기록 보는 모달창 -->
-	<%@ include file="./modal-more-record.jsp"%>
-	<!-- 기록 쓰는 모달창 -->
-	<%@ include file="./modal-add-record.jsp"%>
-	<!-- 기록 수정하는 모달창 -->
-	<%@ include file="./modal-modify-record.jsp"%>
-	</div>
+<%@ include file="./modal-record-script.jsp"%>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal-more-record" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+    <div class="modal-dialog undefined">
+        <div class="modal-content">
+            <div class="modal-body post-content">
+                <%@ include file="./modal-more-record.jsp"%>
+            </div>
+        </div>
+    </div>
 </div>
+
+<div class="modal fade" id="modal-add-record" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+    <div class="modal-dialog undefined">
+        <div class="modal-content">
+                <%@ include file="./modal-add-record.jsp"%>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-modify-record" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+    <div class="modal-dialog undefined">
+        <div class="modal-content">
+            <div class="modal-body post-content">
+                <%@ include file="./modal-modify-record.jsp"%>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal End -->
+

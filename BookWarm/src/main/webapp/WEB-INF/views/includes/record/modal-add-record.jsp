@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- 기록 쓰는 모달창 -->
-<div id="modal-add-record" class="modal-add-record modal-record">
-	<div class="row">
-		<div class="post-content ">
+		<div class="modal-body post-content">
 			<div class="post-header form-header">
 				<form id="submitloging" class="form-horizontal" >
 					<div class="form-body">
@@ -39,7 +37,7 @@
 						<div class="form-group form-inline">
 							<label for="end_date" class="col-sm-4 control-label">완독여부</label>
 							<div>
-								<input type="checkbox" id="end_date" class="col-sm-10" name="end_date">
+								<input type="checkbox" id="end_date" name="end_date">
 							</div>
 						</div>
 					</div>
@@ -50,11 +48,9 @@
 						</div>
 						<div class="col-sm-1"></div>
 						<div class="cta-btn form-inline">
-						<button type="button" class="modal-close close" >Close</button>
+						<button type="button" class="close col-sm-6" data-dismiss="modal">Close</button>
 						</div>
 					</div>
 				</form>
 			</div>
 		</div>
-	</div>
-</div>

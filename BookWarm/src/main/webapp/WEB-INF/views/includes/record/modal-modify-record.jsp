@@ -1,61 +1,57 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- 기록 수정하는 모달창 -->
-<div id="modal-modify-record" class="modal-modify-record modal-record">
-	<div class="row">
-		<div class="con">
-			<div class="col-sm-15 v-blog-wrap">
-				<div class="v-blog-items-wrap blog-standard">
-					<ul class="v-blog-items row standard-items clearfix">
-						<li class="v-blog-item col-sm-12">
-							<div class="post-content no-thumb clearfix">
-								<div class="post-header smart-wrap">
-
-									<form id="submitModifyRecord" >
-										<table style="margin-left: auto; margin-right: auto;">
-											<tr>
-												<!-- 여기에 write_no 불러와서 추가하기 -->
-												<td><input type="text" id="modifyWrite_no" name="write_no" hidden='hidden' ><br /></td>
-												<td><input type="text" id="modifyUser_id" name="user_id" hidden='hidden' ><br /></td>
-											</tr>
-											<tr>
-												<td>start_page : <input type="number" id="modifyStart_page" name="start_page"><br /></td>
-											</tr>
-											<tr>
-												<td>end_page : <input type="number" id="modifyEnd_page" name="end_page"><br /></td>
-											</tr>
-											<tr>
-												<td>Reading_date : <input type="date" id="modifyStart_date" value=""><br />
-												<input type="text" hidden='hidden' id="submit_start_date" name="start_date" value="">
-												<input type="datetime-local" hidden='hidden' id="datetime" name="" value="">
-												</td>
-											</tr>
-											<!-- 추후 date 선택시 오늘 날짜 초과는 입력불가 추가하기 -->
-											<tr>
-												<td>완독여부 : <input type="checkbox" id="modifyEnd_date" name="end_date"><br />
-												</td>
-											</tr>
-											<tr>
-												<td><button type="submit" class='close'>Re Record</button>
-												</td>
-											</tr>
-										</table>
-									</form>
-
-									<script>
-										// submit -> check start_page > end_page -> submit
-										
-									</script>
-
-									<button type='button' class='modal-close close' >CLOSE</button>
-									
-								</div>
+			<div class="post-header form-header">
+				<form id="submitModifyRecord" class="form-horizontal" >
+					<div class="form-body">
+						<input type="text" id="modifyWrite_no" name="write_no" hidden='hidden' >
+						<input type="text" id="modifyUser_id" name="user_id" hidden='hidden' >
+						<input type="text" id="isbn" name="isbn" hidden='hidden' value="${bookVO.isbn}"><br />
+						<input type="text" hidden='hidden' id="submit_start_date" name="start_date">
+						<input type="datetime-local" hidden='hidden' id="datetime">
+						
+						<div class="form-group form-inline">
+							<div class="col-sm-4 special-heading word-underline-2">
+								<span class="close">Record</span>
 							</div>
-						</li>
-					</ul>
-				</div>
+						</div>
+						<div class="form-group form-inline">
+							<label for="modifyStart_page" class="col-sm-4 control-label">Start Page</label>
+							<div class="col-sm-8">
+								<input type="number" id="modifyStart_page" class="col-sm-10 btn-outline-secondary" name="start_page">
+							</div>
+						</div>
+													
+						<div class="form-group form-inline">
+							<label for="modifyEnd_page" class="col-sm-4 control-label">End Page</label>
+							<div class="col-sm-8">
+								<input type="number" id="modifyEnd_page" class="col-sm-10 btn-outline-secondary" name="end_page">
+							</div>
+						</div>
+												
+						<div class="form-group form-inline">
+							<label for="modifyStart_date" class="col-sm-4 control-label">읽은 날</label>
+							<div class="col-sm-8">
+								<input type="date" id="modifyStart_date" class="col-sm-10 btn-outline-secondary" name="start_date">
+							</div>
+						</div>
+													
+						<div class="form-group form-inline">
+							<label for="modifyEnd_date" class="col-sm-4 control-label">완독여부</label>
+							<div>
+								<input type="checkbox" id="modifyEnd_date" name="end_date">
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-footer form-inline pull-right">
+						<div class="form-inline">
+						<button type="submit" class="close">Record</button>
+						</div>
+						<div class="col-sm-1"></div>
+						<div class="cta-btn form-inline">
+						<button type="button" class="close col-sm-6" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</form>
 			</div>
-		</div>
-	</div>
-</div>
+

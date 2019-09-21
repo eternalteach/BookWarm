@@ -4,33 +4,8 @@
 
 
 <script type="text/javascript">
-	// 클릭한 모달창 띄우기
-	function openModal(modalname) {
-				$("#modal ").fadeIn(300);
-				$(".modal-record").hide();
-				$("." + modalname).fadeIn(300);
-				
-	}
-
-	//esc키 눌렀을 때 모달창 끄기
-	$(document).keydown(function(event) {
-		if (event.which == '27') {
-			$("#modal").fadeOut(300);
-			$(".modal-record").fadeOut(300);
-		}
-	});
-
-	$(document).ready(function() {
-		$("#modal").hide();
-		showList();
-		$(".modal-close").on('click', function(e) {
-			if (!($(e.target).hasClass("modal-record"))) {
-				$("#modal").fadeOut(300);
-				$(".modal-record").fadeOut(300);
-			}
-		});
-		
 		$(document).ready(function() {
+			showList();
 			$('#submitloging').submit(
 							function(e) {
 								e.preventDefault();
@@ -73,7 +48,6 @@
 								showList();
 								showFrontRecordInfo();
 							});
-		});
 		
 			$('#submitModifyRecord').submit(
 							function(e) {
@@ -83,7 +57,6 @@
 								var end_page = $("#modifyEnd_page").val();
 								var start_date = $("#modifyStart_date").val();
 								var user_id = $("#modifyUser_id").val();
-								alert(user_id);
 								start_date += "T00:00:00.000+09:00";
 								$("#submit_start_date").val(start_date);
 								var end_date=$("#modifyEnd_date").prop("checked");
@@ -104,40 +77,31 @@
 								recordService.update(logingVO,function(result){
 								console.log("update 안");
 									alert(result);
-									// showlist 해야한다.
 								});
-								
-								
-								$(".modal").fadeOut(300);
-								$(".modal-modify-record").fadeOut(300);
 								
 								$("#modifyWrite_no").val("");
 								$("#modifyStart_date").val("");
 								$("#modifyEnd_page").val("");
 								$("#modifyStart_page").val("");
 								$("#modifyEnd_date").prop("checked",false);
-							// modal-more-record 를 다시 호출하기
 								showList();
 								showFrontRecordInfo();
 							});
 		
-		// modal-more-record의 삭제 버튼 클릭
+		// modal-more-record의 modify or delete 버튼 클릭시 이벤트
 		$(".recordView").on("click","button", function(e){
+			console.log("recordView Click");
+			console.log("write_no"+$(this).closest("tr").attr("data-write_no"));
+			console.log("class"+$(this).closest("td").attr("data-write_no"));
+			var recordViewWrite_no=$(this).closest("tr").attr("data-write_no");
 			
-			if($(this).attr("class")=="recordDeleteBtn"){
-				var write_no=$(this).attr("data-write_no");
-				alert("write_no : "+write_no);
-				recordService.remove(write_no,function(result){
+			if($(this).closest("td").attr("class")=="recordDeleteBtnTD"){
+				console.log("recordView DeleteBtn Click");
+				recordService.remove(recordViewWrite_no,function(result){
 				alert(result);
-				
 				});
-			}
-			
-			if($(this).attr("class")=="recordModifyBtn"){
-
-				var write_no=$(this).attr("data-write_no");
-				
-				recordService.get(write_no,function(record){
+			} else if($(this).closest("td").attr("class")=="recordModifyBtnTD"){
+				recordService.get(recordViewWrite_no,function(record){
 					console.log("recordService.get 사용후 function 내부 record 값"+record);
 					$("#modifyStart_page").val(record.start_page);
 					$("#modifyUser_id").val(record.user_id);
@@ -145,9 +109,7 @@
 					$("#modifyStart_date").val(displayTimeService.displayTime(record.start_date));
 					$("#modifyWrite_no").val(record.write_no);
 					$("#modifyEnd_date").prop("checked",record.end_date);
-					
 				});
-				
 			}
 			
 			showList();
@@ -157,31 +119,32 @@
 		function showList(){
 			console.log("show list");
 			var recordView=$(".recordView");
-			
 			var user_id="${user_id}";
 			var isbn= ${bookVO.isbn};
-			// user_id 와 isbn 받아오기
+
 			recordService.getList({user_id:user_id,isbn:isbn},function(result){
 				var str="";
 				if(result ==null||result.length==0){
 					recordView.html(str);
 					return;
 				}
-				str+="<table class='recordTable'><tr>";
+				
+				str+="<div class='post-meta-info' style='text-align: center;'>";
+				str+="<table class='recordTable'>";
 				for(var i=0;i<result.length;i++){
-					str+="<div class='post-meta-info' style='text-align: center;'>";
-					str+="<span class='blog-categories minor-meta'><td class='recordYear'>";
-					str+="<span class='comment-container minor-meta'>"; 
-					str+=displayTimeService.displayTime(result[i].start_date);
-					str+="</span></td>"
-					str+="<span class='comment-container minor-meta'> <td class='divPage'><span class='text-sep'>&nbsp;|&nbsp;</span></td><td class='recordPage'>&nbsp;p."+result[i].start_page+"</td><td class='divPage'>-</td><td class='recordPage'>&nbsp;p."+result[i].end_page+"</td></span>";
-					str+="<td class='divPage'><span class='text-sep'>&nbsp;|&nbsp;</span></td>"; 
-					str+="<td class='recordModifyBtnTD'><a href="+"\""+"javascript:openModal("+"'modal-modify-record')"+"\""+"><button class='recordModifyBtn transparent' data-write_no='"+result[i].write_no+"' style='border: none;'><i class='icon icon-pen-3'></i></button></a></td>";
-					str+="<td class='recordDeleteBtnTD'><button class='recordDeleteBtn transparent' data-write_no='"+result[i].write_no+"' style='border: none;'><i class='fa fa-trash-o'></i></button></td>";
-					str+="</span>";
-					str+="</div></tr>";
+					str+="<tr data-write_no='"+result[i].write_no+"'>";
+					str+="<td class='recordYear'><span class='blog-categories comment-container minor-meta'>"+displayTimeService.displayTime(result[i].start_date)+"</span></td>";
+					str+="<td class='divPage'><span class='comment-container minor-meta text-sep'>&nbsp;|&nbsp;</span></td>";
+					str+="<td class='recordPage'><span class='comment-container minor-meta text-sep'>&nbsp;p."+result[i].start_page+"</span></td>";
+					str+="<td class='divPage'>-</td>";
+					str+="<td class='recordPage'><span class='comment-container minor-meta text-sep'>&nbsp;p."+result[i].end_page+"</span></td>";
+					str+="<td class='divPage'><span class='comment-container minor-meta text-sep'>&nbsp;|&nbsp;</span></td>"; 
+					str+="<td class='recordModifyBtnTD'><button class='transparent' data-write_no='"+result[i].write_no+"' data-toggle='modal' data-target='#modal-modify-record' style='border: none;'><i class='icon icon-pen-3'></i></button></td>";
+					str+="<td class='recordDeleteBtnTD'><button class='transparent' data-write_no='"+result[i].write_no+"' style='border: none;'><i class='fa fa-trash-o'></i></button></td>";
+					str+="</tr>";
 				}
-				str+="</table>";
+					str+="</table>";
+					str+="</div>";
 				recordView.html(str);
 			});
 			
@@ -200,7 +163,7 @@
 				str+="<span>Reading</span>";
 				str+="</div>";
 				str+="<div class='progress'>";
-				str+="<div class='progress-bar progress-bar-primary' data-appear-progress-animation='"+recordInfo.reading+"%' style=\"width: "+recordInfo.reading+"%;\"></div>";
+				str+="<div id='reading' class='progress-bar progress-bar-primary' data-appear-progress-animation='"+recordInfo.reading+"%'></div>";
 				str+="<span class='progress-bar-tooltip'>"+recordInfo.reading+"%</span>";
 				str+="</div>";
 				str+="<div class='content-grid-item col-md-12'>";
@@ -217,12 +180,9 @@
 				str+="<div class='counters'>";
 				str+="<div class='progress-label'>";
 				str+="<span>Record</span>&nbsp; &nbsp;";
-				str+="<a href=\"javascript:openModal('modal-more-record')\"><strong class='primary-color' data-to=\""+recordInfo.logingCount+"\" data-plugin-options=\"{&quot;decimals&quot;: 0}\">"+recordInfo.logingCount+"</strong></a>";
+				str+="<a href='#modal-more-record' data-toggle='modal'><strong class='primary-color' data-to=\""+recordInfo.logingCount+"\" data-plugin-options=\"{&quot;decimals&quot;: 0}\">"+recordInfo.logingCount+"</strong></a>";
 				str+="</div>";
-				str+="<div class='special-heading text-left'>";
-				str+="<a href=\"javascript:openModal('modal-add-record')\">&nbsp; &nbsp;<strong class='primary-color'>Record write</strong>";
-				str+="</a>";
-				str+="</div>";
+				str+="<button type='button' class='btn' data-toggle='modal' data-target='#modal-add-record'>Record Write</button>";
 				str+="</div>";
 				str+="</div>";
 				frontRecordInfo.html(str);
