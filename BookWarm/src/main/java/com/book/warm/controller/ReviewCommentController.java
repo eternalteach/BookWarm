@@ -3,6 +3,7 @@ package com.book.warm.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +30,7 @@ public class ReviewCommentController {
 	private ReviewCommentService service;
 	
 	// 댓글 입력
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value="/new",
 					 consumes = "application/json",
 					 produces = { MediaType.TEXT_PLAIN_VALUE })
@@ -71,9 +73,11 @@ public class ReviewCommentController {
 	}
 	
 	// 댓글 삭제
+	@PreAuthorize("principal.username == #vo.user_id")
 	@DeleteMapping(value = "/{review_cmt_no}",
 					   produces = { MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> remove(@PathVariable("review_cmt_no") int review_cmt_no) {
+	public ResponseEntity<String> remove(@RequestBody ReviewCommentVO vo,
+												  @PathVariable("review_cmt_no") int review_cmt_no) {
 		
 		log.info("remove: " + review_cmt_no);
 		
@@ -83,6 +87,7 @@ public class ReviewCommentController {
 	}
 	
 	// 댓글 수정
+	@PreAuthorize("principal.username == #vo.user_id")
 	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH },
 						  value = "/{review_cmt_no}",
 						  consumes = "application/json",
@@ -101,19 +106,6 @@ public class ReviewCommentController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	/*
-	 * @GetMapping(value="/users/{user_id}", produces= {
-	 * MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE })
-	 * public ResponseEntity<ReviewCommentVO> getListOnMyReview(
-	 * 
-	 * @PathVariable("user_id") String user_id) {
-	 * 
-	 * 
-	 * log.info("get Comment List user_id: " + user_id);
-	 * 
-	 * return new ResponseEntity<>(service.getCommentsOnMyReview(user_id),
-	 * HttpStatus.OK); }
-	 */
-	
+
 	
 }

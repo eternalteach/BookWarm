@@ -62,11 +62,13 @@ var commentService = (function(){
 	
 	
 //	댓글 삭제
-	function remove(review_cmt_no, callback, error) {
+	function remove(review_cmt_no, user_id, callback, error) {
 		
 		$.ajax({
 			type : 'delete',
 			url : '/warm/comments/' + review_cmt_no,
+			data : JSON.stringify({review_cmt_no:review_cmt_no, user_id : user_id}),
+			contentType : "application/json; charset=utf-8",
 			success : function(deleteResult, status, xhr) {
 				if(callback) {
 					callback(deleteResult);

@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 
 <!DOCTYPE html>
 
@@ -477,10 +479,10 @@
                                                                 <div class="signup-form">
                                                                     <span class="top-sub-title text-color-light-3">MEMBERSHIP</span>
                                                                     <h2 class="text-4 mb-4 mt-1">Sign Up</h2>
-                                                                    <form action="#" id="frmSignUp" method="post">
+                                                                    <form action="login" id="frmSignUp" method="post">
                                                                         <div class="form-row">
                                                                             <div class="form-group col mb-2">
-                                                                                <input type="text" value="" class="form-control" name="name" id="signUpName" placeholder="Full Name" required>
+                                                                                <input type="text" value="" class="form-control" name="username" id="signUpName" placeholder="Full Name" required>
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-row">
@@ -555,6 +557,8 @@
     </header>
     <!--End Header-->
 
+	<sec:authentication property="principal.username" var="user_id"/>
+	
     <div role="main" class="main">
         <section class="page-header">
             <div class="container">
@@ -568,6 +572,9 @@
                             <li><a href="/warm/library?user_id=${user_id}">내 서재</a></li>
                             <li><a href="#" class="oper" data-oper='list'>${book.book_title}</a></li>
                             <li class="active">Standard Post</li>
+                            
+                            <li><a href="/warm/customLogout">로그아웃합시다ㅏㅏㅏ</a></li>
+                            
                         </ul>
 					</c:if>
                     </div>
@@ -739,7 +746,6 @@
                                                 <!-- <input type="hidden" value="" maxlength="100" placeholder="user_id" class="form-control" name="user_id" id="name"> -->
                                                 <input type="hidden" value="${review.review_no}" maxlength="100" class="form-control" name="review_no">
                                             
-                                            <!-- 나중에 로그인과 연동해 처리하고 일단은 그냥 입력받기 -->
                                             <div class="col-sm-4">
                                                 <input type="hidden" value="${user_id}" maxlength="100" class="form-control" name="user_id" id="name" readonly>
                                             </div>
@@ -768,6 +774,9 @@
                                                 <c:if test="${empty user_id}">
                                                 	<c:set var="read" value="readonly"/>
                                             	</c:if>
+                                            	<%-- <c:choose>
+                                            		<c:when test="${ }"
+                                            	</c:choose> --%>
                                                 	<textarea maxlength="5000" rows="10" ${read} placeholder="댓글은 로그인한 사용자만 작성할 수 있습니다." class="form-control" name="content" id="content"></textarea>
                                             </div>
                                         </div>
@@ -982,6 +991,7 @@
 				
 				var target = $(this).closest("li");
 				var modifiedCmt = target.find("textarea");
+				var cmtUser_id = target.find("strong");
 				
 				if(oper === 'modify') {
 					// 'modify' 클릭시
@@ -998,7 +1008,6 @@
 						cmt_str += "		<small class='date'>" + commentService.displayTime(data.review_cmt_written_date) + "</small>";
 						cmt_str += "<button data-oper='save'  data-review_cmt_no='" + data.review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>저장</button>";
 						cmt_str += "<button data-oper='cancel'  data-review_cmt_no='" + data.review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>취소</button>";
-							
 						cmt_str += "	</div>";
 						cmt_str += "<textarea maxlength='5000' class='form-control' name='content' id='content'>" + data.review_cmt_content + "</textarea>";
 						target.html(cmt_str); 
@@ -1007,7 +1016,7 @@
 					
 				} else if(oper === 'delete') {
 					
-					commentService.remove(no, function(result) {
+					commentService.remove(no, cmtUser_id.text(), function(result) {
 						
 						if(result === 'success')
 							alert("댓글을 삭제했습니다.");
@@ -1021,7 +1030,8 @@
 						commentService.update({
 							review_cmt_no : no,
 							review_no : review_no_value,
-							review_cmt_content : modifiedCmt.val()
+							review_cmt_content : modifiedCmt.val(),
+							user_id : cmtUser_id.text()
 						}, function(result) {
 							if(result === 'success')
 								alert("댓글이 수정되었습니다.");
@@ -1036,13 +1046,8 @@
 				
 		});
 			
-			
-			
-			
-				
-		
 		showList(-1);
-		
+				
 		function showList(page) {
 				
 			commentService.getList({review_no:review_no_value, page: page || 1}, function(commentCnt, list) {
@@ -1065,8 +1070,12 @@
 					str += "	<div><div class='media-body'><strong class='media-heading'>" + list[i].user_id + "</strong>";
 					str += "		<small class='date'>" + commentService.displayTime(list[i].review_cmt_written_date) + "</small>";
 					
+					if(list[i].user_id == '${user_id}') {
+						// 로그인한 아이디와 댓글 작성자 아이디가 같아야만 수정/삭제 버튼이 보이도록
 					str += "<button data-oper='modify'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>수정</button>";
 					str += "<button data-oper='delete'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>삭제</button>";
+					
+					}
 					
 					str += "	</div>";
 					str += "		<p data-review_cmt_no='" + list[i].review_cmt_no + "'>" + list[i].review_cmt_content + "</p></div></li>";
@@ -1144,6 +1153,11 @@
 			// 등록 버튼을 누르면 commentService.add 함수가 작동해서 내용을 등록하게 되는데, 
 			// 등록 후에는 잘 등록되었다는 메시지가 뜨고, 다시 댓글 목록을 갱신하는 것까지.
 			
+			
+			var csrfHeaderName = "${_csrf.headerName}";
+			var csrfTokenValue = "${_csrf.token}";
+			
+			
 			// Comment Form
 			var co_form = $(".co_form");
 			var content = co_form.find("textarea[name='content']"); // Comment 내용
@@ -1165,7 +1179,7 @@
 						user_id : user_id.val(),
 						review_no : review_no_value
 					};
-						
+					 
 					commentService.add(comment, function(result){
 						if(result == "success") {
 							
@@ -1176,7 +1190,11 @@
 					});
 				}
 			}); // end of commentRegisterBtn.onclick
-				
+			
+			//AJax spring security header
+			$(document).ajaxSend(function(e, xhr, options) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			});
 		
        }); // end of document.ready
     	

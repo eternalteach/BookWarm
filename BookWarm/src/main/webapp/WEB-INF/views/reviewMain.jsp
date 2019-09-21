@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <%@ include file="./includes/header/header-dark-dropdown.jsp"%>
 
@@ -34,6 +35,12 @@
                      <aside class="sidebar">
 						<section>
 							<div>
+								<ul>
+									<h4>
+										<strong><sec:authentication property="principal.user.user_name"/></strong>
+										님의 독서기록
+									</h4>
+								</ul>
 								<ul>
 									<li>가장 최근에 서재에 담은 책: </li>
 									<li>이 달 읽은 책 수: </li>

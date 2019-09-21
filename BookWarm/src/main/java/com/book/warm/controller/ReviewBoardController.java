@@ -78,10 +78,10 @@ public class ReviewBoardController {
 		
 		List<ReviewBoardVO> reviewList = service.getListPerBook(rbVO.getIsbn(), user_id, cri);
 		
-		for(ReviewBoardVO review:reviewList) {
-			// 가져온 리뷰 리스트에서 리뷰 번호에 따른 첨부파일들을 rbVO에 세팅.
-			review.setAttachList(service.getAttachList(review.getReview_no()));
-		}
+//		for(ReviewBoardVO review:reviewList) {
+//			// 가져온 리뷰 리스트에서 리뷰 번호에 따른 첨부파일들을 rbVO에 세팅.
+//			review.setAttachList(service.getAttachList(review.getReview_no()));
+//		}
 
 		model.addAttribute("list", reviewList);
 		model.addAttribute("thumbnail", service.showBookThumbnail(rbVO.getIsbn()));
@@ -89,8 +89,8 @@ public class ReviewBoardController {
 		
 		System.out.println("total : " + total);
 		
-		rbVO.setAttachList(service.getAttachList(rbVO.getReview_no()));
-		System.out.println(rbVO.getAttachList());
+//		rbVO.setAttachList(service.getAttachList(rbVO.getReview_no()));
+//		System.out.println(rbVO.getAttachList());
 		
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		return "reviewPerBook";
@@ -98,14 +98,11 @@ public class ReviewBoardController {
 	
 	// 감상 하나만 보기
 	@RequestMapping("/reviewSelectOne")
-	public String reviewSelectOne(HttpSession session, HttpServletRequest request, 
-										@RequestParam("review_no") int review_no, 
+	@PreAuthorize("isAuthenticated()")
+	public String reviewSelectOne(@RequestParam("review_no") int review_no, 
 									    @RequestParam("isbn") String isbn, 
 									    @ModelAttribute("cri") Criteria cri, Model model) {
 		
-		session = request.getSession();
-		
-		model.addAttribute("user_id", (String) session.getAttribute("user_id"));
 		model.addAttribute("review", service.selectedReview(review_no));
 		model.addAttribute("book", service.bookInfo(isbn));
 		return "reviewSelectOne";

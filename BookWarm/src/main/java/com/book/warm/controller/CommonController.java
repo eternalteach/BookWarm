@@ -22,8 +22,20 @@ public class CommonController {
 		model.addAttribute("msg", "Access Denied");
 	}
 	
+	
+	@GetMapping("/home")
+	public String home() {
+		
+		return "index";
+	}
+	
 	@GetMapping("/index")
 	public void loginInput(Principal principal, String error, String logout, Model model) {
+		
+		
+		// 다른 페이지에 접속하려고 하면 띄워지는 로그인 페이지.
+		// 그럼 여기 말고 다른 메인 접속 메서드를 만들어놓으면 index로 가게 하면 어떤가여
+		
 		
 		// index로 들어왔을 때, 로그인이 된 사용자라면 사용자의 id를 받아서 library로 가게 하고,
 		// 아니라면 그냥 로그인 창을 띄운다.
@@ -45,8 +57,6 @@ public class CommonController {
 			model.addAttribute("logout", "Logout!!");
 		}
 		
-		
-	
 	}
 	
 	@GetMapping("/customLogout")

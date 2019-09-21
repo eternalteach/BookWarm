@@ -21,6 +21,10 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 		
 		log.error("Access Denied Handler");
 		log.error("Redirect....");
+		
+		log.info("이유: " + accessException.getCause());
+		log.info("메시지: " + accessException.getMessage());
+		
 		response.sendRedirect("/warm/accessError");
 	}
 }
