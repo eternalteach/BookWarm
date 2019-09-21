@@ -24,7 +24,7 @@
 									<div class="recordView"></div>
 									<br />
 									<br />
-									<button type='button' class='modalClose'>
+									<button type='button' class='modal-close'>
 										<a href="javascript:;" class="close">Close</a>
 									</button>
 								</div>

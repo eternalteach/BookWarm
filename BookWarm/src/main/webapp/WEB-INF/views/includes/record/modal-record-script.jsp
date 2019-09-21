@@ -23,7 +23,7 @@
 	$(document).ready(function() {
 		$("#modal").hide();
 		showList();
-		$(".close").on('click', function(e) {
+		$(".modal-close").on('click', function(e) {
 			if (!($(e.target).hasClass("modal-record"))) {
 				$("#modal").fadeOut(300);
 				$(".modal-record").fadeOut(300);

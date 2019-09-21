@@ -10,7 +10,7 @@
 					<ul class="v-blog-items row standard-items clearfix">
 						<li class="v-blog-item col-sm-12">
 							<div class="post-content no-thumb clearfix">
-								<div class="post-header">
+								<div class="post-header smart-wrap">
 
 									<form id="submitModifyRecord" >
 										<table style="margin-left: auto; margin-right: auto;">
@@ -37,7 +37,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td><button type="submit" class="button btn-primary">Re Record</button>
+												<td><button type="submit" class='close'>Re Record</button>
 												</td>
 											</tr>
 										</table>
@@ -48,7 +48,7 @@
 										
 									</script>
 
-									<button type='button' class='modalClose'><a href="javascript:;" class="close">Close</a></button>
+									<button type='button' class='modal-close close' >CLOSE</button>
 									
 								</div>
 							</div>
