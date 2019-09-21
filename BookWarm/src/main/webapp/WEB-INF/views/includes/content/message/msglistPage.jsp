@@ -1,4 +1,3 @@
-<% String context = request.getContextPath(); %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -151,6 +150,5 @@
             $('a[href=' + window.location.hash + ']').tab('show');
         });
     </script>
-
 </body>
 </html>
