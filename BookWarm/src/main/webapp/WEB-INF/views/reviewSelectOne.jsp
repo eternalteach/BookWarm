@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 
 <!DOCTYPE html>
 
@@ -477,10 +479,10 @@
                                                                 <div class="signup-form">
                                                                     <span class="top-sub-title text-color-light-3">MEMBERSHIP</span>
                                                                     <h2 class="text-4 mb-4 mt-1">Sign Up</h2>
-                                                                    <form action="#" id="frmSignUp" method="post">
+                                                                    <form action="login" id="frmSignUp" method="post">
                                                                         <div class="form-row">
                                                                             <div class="form-group col mb-2">
-                                                                                <input type="text" value="" class="form-control" name="name" id="signUpName" placeholder="Full Name" required>
+                                                                                <input type="text" value="" class="form-control" name="username" id="signUpName" placeholder="Full Name" required>
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-row">
@@ -555,6 +557,8 @@
     </header>
     <!--End Header-->
 
+	<sec:authentication property="principal.username" var="user_id"/>
+	
     <div role="main" class="main">
         <section class="page-header">
             <div class="container">
@@ -563,62 +567,40 @@
                         <h1>Standard Post</h1>
                     </div>
                     <div class="col-md-4">
+                    <c:if test="${user_id == review.user_id}">
                         <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
-                            <li><a href="./resources/Vertex/index.html">Blog</a></li>
-                            <li><a href="./resources/Vertex/index.html">Post</a></li>
+                            <li><a href="/warm/library?user_id=${user_id}">내 서재</a></li>
+                            <li><a href="#" class="oper" data-oper='list'>${book.book_title}</a></li>
                             <li class="active">Standard Post</li>
+                            
+                            <li><a href="/warm/customLogout">로그아웃합시다ㅏㅏㅏ</a></li>
+                            
                         </ul>
+					</c:if>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="v-page-wrap has-right-sidebar has-one-sidebar">
+        <div class="v-page-wrap">
             <div class="container">
 
                 <div class="row">
 
-                    <div class="col-sm-9">
+                    <div class="col-sm-9" style="margin-left:auto; margin-right:auto;">
 
                         <article>
-
-<!--                             <figure class="animated-overlay overlay-alt">
-				            	<div class="flexslider thumb-slider">
-                                	<div class="panel panel-default">
-                                		<div class='uploadResult'>
-                                			<ul class="slides">
-                                			</ul>
-                                		</div>
-                                	</div>
+                            <!-- 첨부이미지가 있는 경우 -->
+                            <figure class="animated-overlay overlay-alt" style="margin-bottom:20px">
+                                <div class="flexslider thumb-slider">
+                                     <ul class="slides uploadResult">
+                                               
+                                     </ul>
                                 </div>
-                            </figure> -->
+                            </figure>
                             
-                                   <figure class="animated-overlay overlay-alt col-sm-12">
-                                        <div class="flexslider thumb-slider uploadResult">
-                                            <ul class="slides">
-                                               <!--  <li>
-                                                    <a href="./resources/Vertex/blog-full-width-post.html" class="link-to-post">
-                                                        <img src='./resources/Vertex/img/blog/b-fw-5.jpg' />
-                                                    </a>
-                                                </li> -->
-                                            </ul>
-                                        </div>
-                                    </figure>
-                            
-                            
-                            
-				                <!-- <ul class="slides">
-				                
-				                    <li>
-				                        <a href="./resources/Vertex/blog-full-width-post.html" class="link-to-post">
-				                            <img src='./resources/Vertex/img/blog/b-fw-5.jpg' />
-				                        </a>
-				                    </li>
-				                    
-				                </ul> -->
-                            
-
-                            <h3 class="blog-post-caption">${review.review_title}</h3>
+							<div>
+                            <h3 class="blog-post-caption" style="margin-bottom:5px">${review.review_title}</h3>
                             
                             <!-- 게시글 조회 화면에서 수정 / 삭제 / 목록으로 돌아가기 버튼 -->
                             <!-- script를 통해 각각 버튼을 클릭했을 때 다른 action을 취하도록 한다. -->
@@ -630,38 +612,43 @@
                                 	<input type='hidden' name='pageNum' value='${cri.pageNum}'>
                                 	<input type='hidden' name='amount' value='${cri.amount}'>
                                 	
-                                	<button type="submit" data-oper='modify' class="btn btn-outline-secondary">
-										<span class="text ls-1">
-										    수정하기
-										</span>
-									</button>
-									<button type="submit" data-oper='delete' class="btn btn-outline-secondary">
-										<span class="text ls-1">
-										    삭제하기
-										</span>
-									</button>
-									<button type="submit" data-oper='list' class="btn btn-outline-secondary">
-										<span class="text ls-1">
-										    목록으로
-										</span>
-									</button>
+									
+									<div class="panel-group" style="position:relative">
+										<div class="panel-heading" style="text-align:right; margin-bottom:10px">
+											<span class="text ls-1" style="font-size:25px; padding:8px">
+												<c:if test="${user_id == review.user_id}">
+										  			<a data-toggle="collapse" href="#collapse1" style="color:gray">… </a>
+										  		</c:if>
+											</span>	
+										</div>
+										<div id="collapse1" class="collapse" style="position:absolute; right:0; border-radius:5%; text-align:right; background-color:white; box-shadow: 3px 3px 5px lightgrey">
+											<div style="padding:5px; border-bottom: 1px solid #F1F3F7">
+												<a href="#" class="oper" data-oper='modify' style="margin:8px; color:gray">
+													<i class="fa fa-cut"></i>
+													수정하기
+												</a>
+											</div>
+											<div style="padding:5px">
+												<a href="#" class="oper" data-oper='remove' style="margin:8px; color:gray">
+													<i class="fa fa-trash-o"></i>
+													삭제하기
+												</a>
+											</div>
+										</div>
+									</div>
                                 	
                             </form>
-                            
-
-                            <div class="post-info clearfix">
+							</div>
+                            <div class="post-info clearfix" style="z-index:1">
                                 <span class="vcard author">
                                 	
                                 	<fmt:formatDate var="written_date" value="${review.review_written_date}" pattern="yyyy. MM. dd"/>
                                 
-                                    Posted by <a href="./resources/Vertex/page-about-me.html" class="fn">${review.user_id}</a>
-                                    on <span class="date updated">${written_date}<!-- November 9, 2018 --></span><br>
-                                    after reading <a href="./resources/Vertex/blog-standard-post.html">${book.book_title}</a>, 
-                                    page <a href="./resources/Vertex/blog-standard-post.html">${review.review_ref}</a>
+                                    <a href="./resources/Vertex/page-about-me.html" class="fn">${review.user_id}</a>님이
+                                    <span class="date updated">${written_date}<!-- November 9, 2018 --></span>에 작성한 글입니다.<br>
+                                    <a href="./resources/Vertex/blog-standard-post.html">${book.book_title}</a> 
+                                    <c:if test="${review.review_ref != 0}">(${review.review_ref}페이지)</c:if>
                                 </span>
-                                <div class="like-info">
-                                    <div class="comments-wrapper"><a href="./resources/Vertex/#comment-area"><i class="icon-bubble-comment-1 mr-2"></i><span>3 Comments</span></a></div>
-                                </div>
                             </div>
 
                             <section class="article-body-wrap">
@@ -696,6 +683,10 @@
                                 <div class="si-share clearfix">
                                     <span>Share this Post:</span>
                                     <div>
+                         
+										<a href="javascript:shareStory()">
+											<img src="https://developers.kakao.com/sdk/js/resources/story/icon_small.png"/>
+										</a>
                                         <a href="#" class="social-icon si-borderless si-text-color si-facebook" title="Facebook">
                                             <i class="si-icon-facebook"></i>
                                             <i class="si-icon-facebook"></i>
@@ -723,63 +714,16 @@
                                     </div>
                                 </div>
                                 
-                                
-								
-								<!-- about 섹션, 나중에 해당 아이디의 글 보러가기로 쓸 수도 있을 것 같아 일단 주석처리. -->
-								
-                                <!-- <div class="author-info-wrap clearfix">
-                                    <div class="author-avatar">
-                                        <img alt='author' src='./resources/Vertex/img/team/t5.png' class='avatar photo' />
-                                    </div>
-                                    <div class="author-bio">
-                                        <div class="author-name">
-                                            <h3>About <span>Vertex Templates</span></h3>
-                                        </div>
-                                        <div class="author-bio-text">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquam massa quis mauris
-                                            sollicitudin commodo venenatis ligula commodo. Sed blandit
-                                            convallis dignissim. Pellentesque pharetra velit.
-                                        </div>
-
-                                        <div class="clearfix pt-4">
-                                            <a href="#" class="social-icon si-dark si-small si-facebook" title="Facebook">
-                                                <i class="si-icon-facebook"></i>
-                                                <i class="si-icon-facebook"></i>
-                                            </a>
-                                            <a href="#" class="social-icon si-dark si-small si-twitter" title="Twitter">
-                                                <i class="si-icon-twitter"></i>
-                                                <i class="si-icon-twitter"></i>
-                                            </a>
-                                            <a href="#" class="social-icon si-dark si-small si-instagram" title="Instagram">
-                                                <i class="si-icon-instagram"></i>
-                                                <i class="si-icon-instagram"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div> -->
                             </section>
 							
 							<!-- related article section 삭제 -->
 							
                             <div class="comments-wrap">
 
-                                <h3 class="v-heading"><span>3 Comments</span></h3>
+                                <h3 class="v-heading cmtCnt"><span></span></h3>
 
                                 <ul class="media-list">
-                                
-                                	<%-- <c:forEach items="${comments}" var="comment">
-                                    <li class="media" data-review_cmt_no='12'>
-                                        <a class="pull-left" href="#">
-                                            <img class="media-object" src="./resources/Vertex/img/team/t5.png">
-                                        </a>
-                                        
-                                        <div class="media-body">
-                                            <h4 class="media-heading">${comment.user_id}<span class="date">${comment.review_cmt_written_date}</span> <span><a class="comment-link" href="#">Comment</a> </span></h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla Cras purus odio, in vulputate at, tempus viverra turpis.</p>
-                                        </div>
-                                    </li>
-                                    </c:forEach> --%>
-                                    
+									<!-- 댓글 영역 -->                                    
                                 </ul>
                             
 	                            <div class="panel-footer">
@@ -802,10 +746,8 @@
                                                 <!-- <input type="hidden" value="" maxlength="100" placeholder="user_id" class="form-control" name="user_id" id="name"> -->
                                                 <input type="hidden" value="${review.review_no}" maxlength="100" class="form-control" name="review_no">
                                             
-                                            <!-- 나중에 로그인과 연동해 처리하고 일단은 그냥 입력받기 -->
                                             <div class="col-sm-4">
-                                                <label>Your ID <span class="required">*</span></label>
-                                                <input type="text" value="" maxlength="100" placeholder="Your ID" class="form-control" name="user_id" id="name">
+                                                <input type="hidden" value="${user_id}" maxlength="100" class="form-control" name="user_id" id="name" readonly>
                                             </div>
                                             
                                         
@@ -829,13 +771,21 @@
                                             <div class="col-sm-12">
                                             	<!-- 지금대로면 딱히 레이블이 필요 없음 -->
                                                 <!-- <label>Comment <span class="required">*</span></label> --> 
-                                                <textarea maxlength="5000" rows="10" placeholder="Comment" class="form-control" name="content" id="content"></textarea>
+                                                <c:if test="${empty user_id}">
+                                                	<c:set var="read" value="readonly"/>
+                                            	</c:if>
+                                            	<%-- <c:choose>
+                                            		<c:when test="${ }"
+                                            	</c:choose> --%>
+                                                	<textarea maxlength="5000" rows="10" ${read} placeholder="댓글은 로그인한 사용자만 작성할 수 있습니다." class="form-control" name="content" id="content"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <button name="submit" type="submit" id="Button1" class="btn v-btn v-btn-default no-three-d">Post comment</button>
+                                        	<c:if test="${!empty user_id}">
+                                            	<button name="submit" type="submit" id="Button1" class="btn v-btn v-btn-default no-three-d">Post comment</button>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </form>
@@ -843,137 +793,6 @@
                         </article>
                     </div>
 
-                    <aside class="sidebar right-sidebar col-sm-3">
-                        <section class="widget v-search-widget clearfix">
-                            <form role="search" method="get" id="searchform" class="searchform" action="#">
-                                <div class="form-group">
-                                    <input class="form-control" type="text" value="" name="s" id="s" placeholder="Search" />
-                                </div>
-                            </form>
-                        </section>
-
-                        <section class="widget v-category-widget clearfix">
-                            <div class="widget-heading clearfix">
-                                <h4 class="v-heading"><span>Categories</span></h4>
-                            </div>
-                            <ul>
-                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Web Design</a> </li>
-                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Bootstrap</a> </li>
-                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Business</a> </li>
-                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">JQuery</a> </li>
-                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Gaming</a> </li>
-                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Photography</a> </li>
-                            </ul>
-                        </section>
-                        <section class="widget v-recent-entry-widget clearfix">
-                            <div class="widget-heading clearfix">
-                                <h4 class="v-heading"><span>Recent Posts</span></h4>
-                            </div>
-                            <ul>
-                                <li>
-                                    <a href="./resources/Vertex/blog-standard-post.html">Amazing Standard Post</a>
-                                    <span class="post-date">March 12, 2018</span>
-                                </li>
-                                <li>
-                                    <a href="./resources/Vertex/blog-full-width-post.html">Full Width Media Post</a>
-                                    <span class="post-date">September 25, 2018</span>
-                                </li>
-                                <li>
-                                    <a href="./resources/Vertex/blog-video-post.html">Perfect Video Post</a>
-                                    <span class="post-date">November 19, 2018</span>
-                                </li>
-                                <li>
-                                    <a href="./resources/Vertex/blog-slideshow-post.html">Amazing Slideshow post</a>
-                                    <span class="post-date">November 21, 2018</span>
-                                </li>
-                                <li>
-                                    <a href="./resources/Vertex/blog-standard-post.html">Text-only Post</a>
-                                    <span class="post-date">March 23, 2018</span>
-                                </li>
-                            </ul>
-                        </section>
-
-
-                        <section class="widget v-tag-cloud-widget clearfix">
-                            <div class="widget-heading clearfix">
-                                <h4 class="v-heading"><span>Tags</span></h4>
-                            </div>
-                            <div class="tagcloud">
-                                <ul class='wp-tag-cloud'>
-                                    <li><a href="#">CSS 3</a></li>
-                                    <li><a href="#">HTML 5</a></li>
-                                    <li><a href="#">Lifestyle</a></li>
-                                    <li><a href="#">Mobile</a></li>
-                                    <li><a href="#">News</a></li>
-                                    <li><a href="#">PHP</a></li>
-                                    <li><a href="#">Social</a></li>
-                                    <li><a href="#">video</a></li>
-                                    <li><a href="#">WordPress</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                        <section class="widget widget_sf_recent_custom_comments clearfix">
-                            <div class="widget-heading clearfix">
-                                <h4 class="v-heading"><span>Recent Comments</span></h4>
-                            </div>
-                            <ul class="recent-comments-list">
-
-                                <li class="comment">
-                                    <div class="comment-wrap clearfix">
-                                        <div class="comment-avatar">
-                                            <img src="./resources/Vertex/img/team/t3.png" class="avatar" height="100" width="100" />
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="comment-body">
-                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
-                                                    <p>Praesent eros mauris dolor</p>
-                                                </a>
-                                            </div>
-                                            <div class="comment-meta">
-                                                <span class="comment-author">Vertex</span> <span class="comment-date">20 hours ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="comment">
-                                    <div class="comment-wrap clearfix">
-                                        <div class="comment-avatar">
-                                            <img src="./resources/Vertex/img/team/t1.png" class="avatar" height="100" width="100" />
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="comment-body">
-                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
-                                                    <p>Omnis iste natus error sit dolor </p>
-                                                </a>
-                                            </div>
-                                            <div class="comment-meta">
-                                                <span class="comment-author">Guest</span> <span class="comment-date">5 hours ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="comment">
-                                    <div class="comment-wrap clearfix">
-                                        <div class="comment-avatar">
-                                            <img src="./resources/Vertex/img/team/t4.png" class="avatar" height="100" width="100" />
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="comment-body">
-                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
-                                                    <p>Sed tellus ante aliquam eget</p>
-                                                </a>
-                                            </div>
-                                            <div class="comment-meta">
-                                                <span class="comment-author">Admin</span> <span class="comment-date">2 days ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </section>
-                    </aside>
                 </div>
             </div>
         </div>
@@ -1122,17 +941,40 @@
         <!--End Footer-Wrap-->
     </div>
     
-    // jQuery 사용을 위해 cdn 추가
+    <!-- jQuery 사용을 위해 cdn 추가 -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     
     
-    // 댓글 처리를 위한 comment.js 추가
+    <!-- 댓글 처리를 위한 comment.js 추가 -->
     <script type="text/javascript" src = "/warm/resources/Vertex/js/comment.js"></script>
     
     <script type="text/javascript" >
-        
+
+	// 첨부파일 가져오기 위한 즉시 실행 함수
+	(function() {
+		var review_no = '<c:out value="${review.review_no}"/>';
+		$.getJSON("/warm/getAttachList", {review_no: review_no}, function(arr) {
+					console.log(arr);
+					// 여기서 해야할 것은, review_no을 받아서 그 글에 달려있는 첨부 파일들을 하나씩 li로 달아주는 건데..
+					// 여기가 이미지들을 담을 공간.
+					var uploadImgs = $(".uploadResult");
+					/* var flex = $(".flexslider"); */
+					var str = uploadImgs.html() + "";
+					
+					$(arr).each(function(i, attach) {
+						var fileCallPath = encodeURIComponent(attach.uploadPath + "/" + attach.uuid + "_" + attach.fileName);
+						str += "<li data-path = '" + attach.uploadPath + "' data-uuid='" + attach.uuid + "' data-filename='" + attach.fileName + "'><a>";
+						str += "<img src='/warm/display?fileName=" + fileCallPath + "'>";
+						str += "</a>";
+						str += "</li>";
+					});
+					
+					uploadImgs.html(str); 
+					
+		}); // end getJSON
+	})(); // end function
+	
         $(document).ready(function() {
-        
 	        // showList에서 -1일 경우 원래의 태그를 실행하고,
 	        // 수정 버튼을 클릭했을 때 번호를 받아와서 
 	        // var no = -1;
@@ -1149,6 +991,7 @@
 				
 				var target = $(this).closest("li");
 				var modifiedCmt = target.find("textarea");
+				var cmtUser_id = target.find("strong");
 				
 				if(oper === 'modify') {
 					// 'modify' 클릭시
@@ -1165,7 +1008,6 @@
 						cmt_str += "		<small class='date'>" + commentService.displayTime(data.review_cmt_written_date) + "</small>";
 						cmt_str += "<button data-oper='save'  data-review_cmt_no='" + data.review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>저장</button>";
 						cmt_str += "<button data-oper='cancel'  data-review_cmt_no='" + data.review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>취소</button>";
-							
 						cmt_str += "	</div>";
 						cmt_str += "<textarea maxlength='5000' class='form-control' name='content' id='content'>" + data.review_cmt_content + "</textarea>";
 						target.html(cmt_str); 
@@ -1174,7 +1016,7 @@
 					
 				} else if(oper === 'delete') {
 					
-					commentService.remove(no, function(result) {
+					commentService.remove(no, cmtUser_id.text(), function(result) {
 						
 						if(result === 'success')
 							alert("댓글을 삭제했습니다.");
@@ -1182,16 +1024,20 @@
 					});
 				} else if(oper === 'save') {
 					
-					commentService.update({
-						review_cmt_no : no,
-						review_no : review_no_value,
-						review_cmt_content : modifiedCmt.val()
-					}, function(result) {
-						if(result === 'success')
-							alert("댓글이 수정되었습니다.");
-						showList(pageNum);
-					});  
-					
+					if($.trim(modifiedCmt.val()) == '') {
+						alert("내용을 입력해주세요.");
+					} else {
+						commentService.update({
+							review_cmt_no : no,
+							review_no : review_no_value,
+							review_cmt_content : modifiedCmt.val(),
+							user_id : cmtUser_id.text()
+						}, function(result) {
+							if(result === 'success')
+								alert("댓글이 수정되었습니다.");
+							showList(pageNum);
+						});  
+					}
 					
 				} else {
 					// 취소 클릭시
@@ -1200,38 +1046,8 @@
 				
 		});
 			
-			
-			
-			
-			
-		// 첨부파일 가져오기 위한 즉시 실행 함수
-		(function() {
-			console.log("나한테 왜이래여");
-			var review_no = '<c:out value="${review.review_no}"/>';
-			$.getJSON("/warm/getAttachList", {review_no: review_no}, function(arr) {
-						console.log(arr);
-						/* var uploadImgs = $(".uploadResult ul");
-						
-						var str = "";
-						
-						$(arr).each(function(i, attach) {
-							var fileCallPath = encodeURIComponent(attach.uploadPath + "/" + attach.uuid + "_" + attach.fileName);
-							str += "<li data-path = '" + attach.uploadPath + "' data-uuid='" + attach.uuid + "' data-filename='" + attach.fileName + "'><a>";
-							str += "<img src='/warm/display?fileName=" + fileCallPath + "'>";
-							str += "</a>";
-							str += "</li>";
-							alert(str);
-						});
-						/* uploadImgs(str); */
-						/* $(".uploadResult ul").html(str); */
-						
-						/* $(".uploadResult").html(str); */
-			}); // end getJSON
-		})(); // end function
-				
-		
 		showList(-1);
-		
+				
 		function showList(page) {
 				
 			commentService.getList({review_no:review_no_value, page: page || 1}, function(commentCnt, list) {
@@ -1254,14 +1070,19 @@
 					str += "	<div><div class='media-body'><strong class='media-heading'>" + list[i].user_id + "</strong>";
 					str += "		<small class='date'>" + commentService.displayTime(list[i].review_cmt_written_date) + "</small>";
 					
+					if(list[i].user_id == '${user_id}') {
+						// 로그인한 아이디와 댓글 작성자 아이디가 같아야만 수정/삭제 버튼이 보이도록
 					str += "<button data-oper='modify'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>수정</button>";
 					str += "<button data-oper='delete'  data-review_cmt_no='" + list[i].review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>삭제</button>";
+					
+					}
 					
 					str += "	</div>";
 					str += "		<p data-review_cmt_no='" + list[i].review_cmt_no + "'>" + list[i].review_cmt_content + "</p></div></li>";
 					
 				}
-				
+				// 댓글 수 표시
+				$(".cmtCnt span").html(commentCnt + " Comments");
 				commentUL.html(str);
 				
 				showReplyPage(commentCnt);
@@ -1291,7 +1112,7 @@
 				next = true;
 			}
 			
-			var str = "<ul class='pagenation pull-right'>";
+			var str = "<ul class='pagination pull-right'>";
 			
 			if(prev) {
 				str = "<li class='page-item'><a class='page-link' href='" + (startNum - 1) + "'>Previous</a></li>";
@@ -1328,26 +1149,37 @@
 		});
 		
 		
-				// comment 폼이 있고, 여기서 받아서 넘겨야하는 값은 댓글작성자id(user_id), 감상글번호(review_no), 댓글내용(review_cmt_content)
-				// 등록 버튼을 누르면 commentService.add 함수가 작동해서 내용을 등록하게 되는데, 
-				// 등록 후에는 잘 등록되었다는 메시지가 뜨고, 다시 댓글 목록을 갱신하는 것까지.
+			// comment 폼이 있고, 여기서 받아서 넘겨야하는 값은 댓글작성자id(user_id), 감상글번호(review_no), 댓글내용(review_cmt_content)
+			// 등록 버튼을 누르면 commentService.add 함수가 작동해서 내용을 등록하게 되는데, 
+			// 등록 후에는 잘 등록되었다는 메시지가 뜨고, 다시 댓글 목록을 갱신하는 것까지.
+			
+			
+			var csrfHeaderName = "${_csrf.headerName}";
+			var csrfTokenValue = "${_csrf.token}";
+			
+			
+			// Comment Form
+			var co_form = $(".co_form");
+			var content = co_form.find("textarea[name='content']"); // Comment 내용
+			var user_id = co_form.find("input[name='user_id']");	// Comment 작성자
+			
+			var commentRegisterBtn = $("#Button1"); // Comment 등록버튼
+			
+			commentRegisterBtn.on("click", function(e) {
 				
-				// Comment Form
-				var co_form = $(".co_form");
-				var content = co_form.find("textarea[name='content']"); // Comment 내용
-				var user_id = co_form.find("input[name='user_id']");	// Comment 작성자
+				e.preventDefault();
 				
-				var commentRegisterBtn = $("#Button1"); // Comment 등록버튼
-				
-				commentRegisterBtn.on("click", function(e) {
+				// 댓글이 공백인 경우 체크
+				if($.trim(content.val()) == '') {
+					alert("내용을 입력해주세요.");
+				} else {
 					
-					e.preventDefault();
 					var comment = {
 						review_cmt_content : content.val(),
 						user_id : user_id.val(),
 						review_no : review_no_value
 					};
-					
+					 
 					commentService.add(comment, function(result){
 						if(result == "success") {
 							
@@ -1356,58 +1188,15 @@
 						co_form.find("textarea[name='content']").val("");
 						showList(-1);
 					});
-					//co_form.submit();
-				});
-				
-		
-		
-		
-		
-		
-		/* //for commentService add test
-		commentService.add(
-			{review_cmt_content:"JS Test", user_id:"누구게", review_no : review_no_value}
-			,
-			function(result) {
-				alert("result: " + result);
-			}
-		);
-		
-		//for commentService getList test
-		commentService.getList({review_no : review_no_value, page:1}, function(list){
+				}
+			}); // end of commentRegisterBtn.onclick
 			
-			for(var i=0, len = list.length||0; i<len; i++) {
-				console.log(list[i]);
-			}
-		});
+			//AJax spring security header
+			$(document).ajaxSend(function(e, xhr, options) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			});
 		
-		//for commentService remove test
-		commentService.remove(2, function(count) {
-			
-			console.log(count);
-			
-			if(count === "success") {
-				alert("Removed");
-			}
-		}, function(err) {
-			alert('Error');
-		}); 
-		
-		//for commentService modify test
-		commentService.update({
-			review_cmt_no : 14,
-			review_no : review_no_value,
-			review_cmt_content : "수정합니다ㅏㅏㅏㅏㅏㅏ"
-		}, function(result) {
-			alert("수정 완료");
-		}); 
-		
-		//for commentService get test
-		commentService.get(10, function(data) {
-			console.log(data);
-		});*/
-		
-        });
+       }); // end of document.ready
     	
     </script>	
     
@@ -1418,10 +1207,12 @@
     	$(document).ready(function() {
     		
     		// 작성한 감상글 수정/삭제, 목록으로 돌아가기
-    		var operForm = $("#operForm");
-    		var buttons = operForm.find("button");
     		
-    		buttons.on("click", function(e) {
+    		var operForm = $("#operForm");
+    		/* var opers = operForm.find(".oper"); */
+    		var opers = $(".oper");
+    		
+    		opers.on("click", function(e) {
     			
     			e.preventDefault();
     			
@@ -1454,6 +1245,20 @@
     		
     	});
     </script>
+    
+               
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+
+	<script type='text/javascript'>
+	    Kakao.init('8df864120cb346a88564c4c65d1b0233');
+	    function shareStory() {
+	      Kakao.Story.share({
+	        url: 'http://localhost:8282/warm/reviewSelectOne?isbn=${review.isbn}&user_id=${review.user_id}&review_no=${review.review_no}#',
+	        text: 'BookWarm에서 작성한 리뷰입니다: ${review.review_title}'
+	      });
+	    }
+	</script>
 
 
     <!-- Libs -->

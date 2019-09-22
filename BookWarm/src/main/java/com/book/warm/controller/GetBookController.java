@@ -26,7 +26,7 @@ public class GetBookController {
 	@Inject
 	AddBookDetailInfoMapper mapper;
 	
-	@PostMapping(value = "bookinfo", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
+	@PostMapping(value = "/bookinfo", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> saveBookInfo(@RequestBody ParsingJson parsingJson) {
 		log.info("saveBookInfo result : "+jsonToBookVOService.saveBookInfoToDB(parsingJson));
 		return parsingJson != null ? new ResponseEntity<>("success", HttpStatus.OK)

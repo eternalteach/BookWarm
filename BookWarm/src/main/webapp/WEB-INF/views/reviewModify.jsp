@@ -35,22 +35,16 @@
                 </div>
             </div>
         </section>
-
-        <div class="v-page-wrap has-left-sidebar has-one-sidebar">
+        
+        <div class="v-page-wrap">
             <div class="container">
                 <div class="row">
-
-                    <aside class="sidebar left-sidebar col-sm-3">
                     
-                    </aside>
-                    
-                    
-					<div class="col-sm-9 v-blog-wrap">
+					<div class="col-sm-9 v-blog-wrap" style="margin:auto; position:relative">
 
                         <div class="v-blog-items-wrap blog-standard">
 
                             <ul class="v-blog-items row standard-items clearfix">
-                            	
                             	
                             	<li>
                         
@@ -63,14 +57,16 @@
                             			<input type="hidden" name="amount" value="${cri.amount}">
 										<!-- 작성 시간과 수정 시간은 알아서 데이터 입력시에 들어가니 여기엔 필요 없음 -->
 
-                            			<table>
+                            			<table style="table-layout:fixed">
                             				<tr>
-                            					<td>제목</td>
+                            					<td nowrap>제목</td>
                             					<td><input type="text" name="review_title" value="${review.review_title}"></td>
                             				</tr>
                             				<tr>
-                            					<td>관련 페이지</td>
-                            					<td><input type="number" name="review_ref" value="${review.review_ref}"></td>
+                            					<td nowrap>관련 페이지</td>
+                            					<td><input type="number" name="review_ref" min="0" step="1" value="${review.review_ref}" onkeypress="keyEvent(event)" onkeyup="delChar(event)">
+                            						(0페이지 입력시 관련 페이지가 표시되지 않습니다.)
+                            					</td>
                             				</tr>
                             				<tr>
                             					<td>공개여부</td>
@@ -78,24 +74,40 @@
                             				</tr>
                             				<tr>
                             					<td>내용</td>
-                            					<td><textarea name="review_content" cols="80" rows="10">${review.review_content}</textarea></td>
+                            					<td><textarea name="review_content" style="width:100%" rows="10">${review.review_content}</textarea></td>
+                            				</tr>
+                            				<tr>
+                            					<td>첨부 이미지</td>
+                            					<td>
+                            						<div class="panel-body" style="background-color:#b5b5b5">
+                            							<div class="form-group uploadDiv">
+                            								<input type="file" name='uploadFile' multiple>
+                            							</div>
+                            							<div class='uploadResult'>
+                            								<ul>
+                            								
+                            								</ul>
+                            							</div>
+                            							<!-- end form-group uploadDiv -->
+                            						</div> 
+                            						<!-- end panel-body -->
+                            					</td>
                             				</tr>
                             				<tr>
                             					<td></td>
                             					<td>
 	                            					<button class="btn btn-outline-secondary" data-oper='modify' >
 								                      	<span class="text ls-1">
-						                            		수정하기
-							                                <i class="icon icon-pen-3"></i>
+						                            		저장하기
+							                                <i class="i fa fa-check"></i>
 						                            	</span>    
 								                    </button>
 								                    <button class="btn btn-outline-secondary" data-oper='list' >
 								                      	<span class="text ls-1">
-						                            		돌아가기
-							                                <i class="icon icon-pen-3"></i>
+						                            		취소하기
+							                                <i class="i fa fa-undo"></i>
 						                            	</span>    
 								                    </button>
-								                    
 					                            </td>
                             				</tr>
                             			</table>
@@ -103,10 +115,8 @@
                             		</form>
                             	</li>
                             
-                            
                             </ul>
 
-                            
                         </div>
                     </div>
                 </div>
@@ -262,6 +272,60 @@
 	
     $(document).ready(function() {
     	
+    	// input number에서 '-', '.'을 입력하지 못하도록 함
+    	function keyEvent(event) {
+    		console.log(event.keyCode);
+    		event = event || window.event;
+    		var code = event.keyCode;
+    		if(code < 48 || code > 57) {
+				event.preventDefault();
+    		} 
+    	}
+    	// 한글 입력시 초기화, 99999페이지를 넘어가면 초기화
+    	function delChar(event) {
+    		var eVal = event.target.value;
+    		eVal = eVal.replace(/[^0-9]/g, "");
+    		if(eVal > 99999) {
+    			alert("0~99999 사이의 값을 입력해주세요.");
+    			event.target.value = "";
+    		}
+    	}
+    	
+    	// 첨부 파일을 불러오기 위한 즉시실행함수
+    	(function() {
+    		var review_no = '<c:out value="${review.review_no}"/>';
+    		
+    		$.getJSON("/warm/getAttachList", {review_no: review_no}, function(arr) {
+    			
+    			var str = "";
+    			
+    			$(arr).each(function(i, attach) {
+    				
+    				var fileCallPath = encodeURIComponent(attach.uploadPath + "/s_" + attach.uuid + "_" + attach.fileName);
+    				
+    				str += "<li data-path='" + attach.uploadPath + "' data-uuid='" + attach.uuid + "' data-filename='" + attach.fileName + "'><div>";
+    				str += "<span>" + attach.fileName + "</span>";
+    				str += "<button type='button' data-file=\'" + fileCallPath + "\'";
+    				str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+    				str += "<img src='/warm/display?fileName=" + fileCallPath + "'>";
+    				str += "</div>";
+    				str += "</li>";
+    			});
+    			
+    			$(".uploadResult ul").html(str);
+    		}); // end getJSON
+    	})(); // end function
+    	
+    	// 화면상에서의 파일 삭제. 실제 수정을 누르기 전엔 실제 파일이 삭제되지 않음.
+    	$(".uploadResult").on("click", "button", function(e) {
+    		
+    		if(confirm("파일을 삭제하시겠습니까?")) {
+    			var targetLi = $(this).closest("li");
+    			targetLi.remove();
+    		}
+    	});
+    	
+    	
     	var operForm = $("#operForm");
 		
 		$('button').on("click", function(e) {
@@ -298,11 +362,111 @@
 			// -> 요청할 주소 : modify
 			// -> 넘겨야 하는 정보 : user_id, review_no, user_
 			//							Criteria(pageNum, amount) (들어올 때의 페이지로 돌아가기 위함)
-			operForm.submit();
+			
+			if($.trim($("input[name='review_title']").val()) == '') {
+    				alert("제목을 입력해주세요.");
+    			} else if ($.trim($("textarea").val()) == '') {
+    				alert("내용을 입력해주세요.");
+    			} else if ($.trim($("input[type='number']").val()) == '') {
+    				$("input[type='number']").val(0); 
+    			} else {
+    				
+    				var str = "";
+    				
+    				$(".uploadResult ul li").each(function(i, obj) {
+    					
+    					var jobj = $(obj);
+    					
+    					str += "<input type='hidden' name='attachList[" + i + "].fileName' value ='" + jobj.data("filename") + "'>";
+        				str += "<input type='hidden' name='attachList[" + i + "].uuid' value ='" + jobj.data("uuid") + "'>";
+        				str += "<input type='hidden' name='attachList[" + i + "].uploadPath' value ='" + jobj.data("path") + "'>";
+        			
+    				});
+					operForm.append(str).submit();
+    			}
 			
 			
+		}); // end of button.on click
+		
+		// 이미지 파일만을 등록할 수 있도록.
+		var regex = new RegExp("(.*?)\.(jpeg|jpg|png|gif|bmp)$")
+		
+		/* var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$"); */
+		var maxSize = 5242880; //5MB. 추후 수정.
+		
+		// 파일 사이즈 및 타입 체크
+		function checkExtension(fileName, fileSize) {
+			
+			if(fileSize >= maxSize) {
+				alert("파일 사이즈 초과");
+				return false;
+			}
+			
+			if(!regex.test(fileName)) {
+				alert("이미지 파일만 등록할 수 있습니다.");
+				return false;
+			}
+			return true;
+		}
+		
+		$("input[type='file']").change(function(e) {
+			
+			var formData = new FormData();
+			var inputFile = $("input[name='uploadFile']");
+			var files = inputFile[0].files;
+			console.log(files);
+			
+			for(var i=0; i<files.length; i++) {
+				
+				if(!checkExtension(files[i].name, files[i].size)) {
+					return false;
+				}
+				formData.append("uploadFile", files[i]);
+			}
+			
+			$.ajax({
+				url: '/warm/uploadAjaxAction',
+				processData: false,
+				contentType: false,
+				data: formData,
+				type: 'POST',
+				dataType: 'json',
+				success: function(result){
+					console.log(result);
+					showUploadResult(result);
+				}
+			}); //$.ajax
 		});
-    });
+		
+		// 업로드 결과를 화면에 섬네일 등을 만들어 처리
+		
+		function showUploadResult(uploadResultArr) {
+			
+			if(!uploadResultArr || uploadResultArr.length == 0) { return; }
+			
+			var uploadUL = $(".uploadResult ul");
+			var str = "";
+			
+			$(uploadResultArr).each(function(i, obj) {
+
+				var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+					
+				str += "<li data-path ='" + obj.uploadPath + "'";
+				str += " data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "'><div>";
+				str += "<span> " + obj.fileName + "</span>";
+				str += "<button type='button' data-file=\'" + fileCallPath + "\' class='btn btn-warning btn-circle'>";
+				str += "<i class='fa fa-times'></i></button><br>";
+				str += "<img src='/warm/display?fileName=" + fileCallPath + "'>";
+				str += "</div>";
+				str += "</li>";
+			});
+			
+			uploadUL.append(str);
+		}
+		
+    }); // end of document ready
+    
+    
     
     </script>
 

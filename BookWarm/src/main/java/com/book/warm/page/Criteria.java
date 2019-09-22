@@ -1,5 +1,7 @@
 package com.book.warm.page;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 public class Criteria {
 
 	private int pageNum;
@@ -11,7 +13,7 @@ public class Criteria {
 		this.amount = amount;
 	}
 
-	public Criteria() {//야
+	public Criteria() {
 		this(1,5);
 	}
 
@@ -29,6 +31,14 @@ public class Criteria {
 
 	public void setAmount(int amount) {
 		this.amount = amount;
+	}
+	
+	public String getListLink() {
+		
+		UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
+				.queryParam("pageNum",  this.pageNum)
+				.queryParam("amount", this.getAmount());
+		return builder.toUriString();
 	}
 
 }

@@ -29,16 +29,11 @@
             </div>
         </section>
 
-        <div class="v-page-wrap has-left-sidebar has-one-sidebar">
+        <div class="v-page-wrap">
             <div class="container">
                 <div class="row">
-
-                    <aside class="sidebar left-sidebar col-sm-3">
                     
-                    </aside>
-                    
-                    
-					<div class="col-sm-9 v-blog-wrap">
+					<div class="col-sm-9 v-blog-wrap" style="position:relative; margin:auto">
 
                         <div class="v-blog-items-wrap blog-standard">
 
@@ -47,21 +42,22 @@
                             	
                             	<li>
                             	
-                            	
                             		<!-- 작성 페이지. -->
                             		<form action="register" method="POST">
 										<input type="hidden" name="user_id" value="${review.user_id}">
 										<input type="hidden" name="isbn" value="${review.isbn}">
 										<!-- 작성 시간과 수정 시간은 알아서 데이터 입력시에 들어가니 여기엔 필요 없음 -->
                             		
-                            			<table>
+                            			<table style="table-layout:fixed">
                             				<tr>
                             					<td>제목</td>
                             					<td><input type="text" name="review_title"></td>
                             				</tr>
                             				<tr>
-                            					<td>관련 페이지</td>
-                            					<td><input type="number" name="review_ref" min="1" step="1"></td>
+                            					<td nowrap>관련 페이지</td>
+                            					<td><input type="number" name="review_ref" min="0" max="99999" step="1" value="0" onkeypress="keyEvent(event)" onkeyup="delChar(event)" style="ime-mode:disabled">
+                            						(0페이지 입력시 관련 페이지가 표시되지 않습니다.)
+                            					</td>
                             				</tr>
                             				<tr>
                             					<td>공개여부</td>
@@ -69,12 +65,12 @@
                             				</tr>
                             				<tr>
                             					<td>내용</td>
-                            					<td><textarea name="review_content" cols="80" rows="10"></textarea></td>
+                            					<td><textarea name="review_content" style="width:100%" rows="10"></textarea></td>
                             				</tr>
                             				<tr>
                             					<td>이미지 첨부</td>
                             					<td>
-                            						<div class="panel-body">
+                            						<div class="panel-body" style="background-color:#b5b5b5;">
                             							<div class="form-group uploadDiv">
                             								<input type="file" name='uploadFile' multiple>
                             							</div>
@@ -279,7 +275,36 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     
     <script>
-    	$(document).ready(function(e){
+    	
+    	// input number에서 '-', '.'을 입력하지 못하도록 함
+    	function keyEvent(event) {
+    		console.log(event.keyCode);
+    		event = event || window.event;
+    		var code = event.keyCode;
+    		if(code < 48 || code > 57) {
+				event.preventDefault();
+    		} 
+    		
+    	}
+    	// 한글 입력시 초기화, 99999페이지를 넘어가면 초기화
+    	function delChar(event) {
+    		var eVal = event.target.value;
+    		eVal = eVal.replace(/[^0-9]/g, "");
+    		
+    		/* var korChk = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+    		if(korChk.test(eVal)) {
+    			alert("ID에 한글이 포함되어 있습니다.");
+    			return;
+    		} */
+    		var eVal = event.target.value;
+    		if(eVal > 99999) {
+    			alert("0~99999 사이의 값을 입력해주세요.");
+    			event.target.value = "";
+    		}
+    	}
+    
+    	$(document).ready(function(){
+    		
     		var formObj = $("form");
     		// 파일 업로드를 위해 폼 제출 기본 동작 막음
     		$("button[type='submit']").on("click", function(e){
@@ -297,7 +322,18 @@
     				str += "<input type='hidden' name='attachList[" + i + "].uuid' value ='" + jobj.data("uuid") + "'>";
     				str += "<input type='hidden' name='attachList[" + i + "].uploadPath' value ='" + jobj.data("path") + "'>";
     			});
-    			formObj.append(str).submit();
+
+    			if($.trim($("input[name='review_title']").val()) == '') {
+    				alert("제목을 입력해주세요.");
+    			} else if ($.trim($("textarea").val()) == '') {
+    				alert("내용을 입력해주세요.");
+    			} else if ($.trim($("input[type='number']").val()) == '') {
+    				$("input[type='number']").val(0); 
+    			} else {
+    				
+	    			formObj.append(str).submit();
+    			}
+    			
     		});
     		// 이미지 파일만을 등록할 수 있도록.
     		var regex = new RegExp("(.*?)\.(jpeg|jpg|png|gif|bmp)$")
@@ -365,7 +401,8 @@
     				str += "<li data-path ='" + obj.uploadPath + "'";
     				str += " data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "'><div>";
     				str += "<span> " + obj.fileName + "</span>";
-    				str += "<button type='button' data-file=\'" + fileCallPath + "\' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+    				str += "<button type='button' data-file=\'" + fileCallPath + "\' class='btn btn-warning btn-circle'>";
+    				str += "<i class='fa fa-times'></i></button><br>";
     				str += "<img src='/warm/display?fileName=" + fileCallPath + "'>";
     				str += "</div>";
     				str += "</li>";

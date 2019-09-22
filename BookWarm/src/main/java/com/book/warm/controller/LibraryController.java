@@ -1,12 +1,11 @@
 package com.book.warm.controller;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import java.security.Principal;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import javax.inject.Inject;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.book.warm.mapper.AddBookDetailInfoMapper;
 import com.book.warm.mapper.LibraryMapper;
-import com.book.warm.vo.BookVO;
-import com.book.warm.vo.LibraryVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -29,17 +26,15 @@ public class LibraryController {
 	@Inject
 	LibraryMapper mapper;
 	
-	@Inject
-	AddBookDetailInfoMapper bookMapper;
-
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String library(HttpSession session,HttpServletRequest request, Model model) throws Exception {
-		log.info("==================== library() ====================");
-		//유저 아이디 aaa로 세션에서 받아올 예정
-		session=request.getSession();
-		String user_id=(String)session.getAttribute("user_id");
-		log.info("session에 있는 user_id : " + user_id);
-		model.addAttribute("libraryBooks",mapper.getLibraryBooks(user_id));
+	@PreAuthorize("isAuthenticated()")
+	public String library(Principal principal, Model model) throws Exception {
+		
+		System.out.println(principal);
+		System.out.println("principal.getName(): " + principal.getName());
+		
+		model.addAttribute("libraryBooks",mapper.getLibraryBooks(principal.getName()));
+		
 		return "library";
 	}
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
@@ -74,4 +69,15 @@ public class LibraryController {
 					: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	@PreAuthorize("isAuthenticated()")
+	public String libraryPOST(Principal principal, Model model) throws Exception {
+		
+		System.out.println(principal);
+		System.out.println("principal.getName(): " + principal.getName());
+		
+		model.addAttribute("libraryBooks",mapper.getLibraryBooks(principal.getName()));
+		
+		return "library";
+	}
 }

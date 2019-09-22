@@ -5,6 +5,9 @@ import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,11 +15,14 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -46,32 +52,45 @@ public class ReviewBoardController {
 	@Inject
 	ReviewBoardService service;
 	
-	// 내가 쓴 모든 리뷰가 최근 수정일 순 - 책별로 나타남
-	@RequestMapping("/reviewMain")
-	public String recordMain(@RequestParam("user_id") String user_id, Model model) {
+	@GetMapping("/reviewMain")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public void recordMain(Principal principal, Model model) {
 		
-		// model.addAttribute("list", service.selectBoardList(user_id)); ReviewBoardVO2
+		model.addAttribute("list", service.selectBoardList(principal.getName()));
 		
-		return "reviewMain";
 	}
 	
 	// 책별 감상 목록
-	@RequestMapping("/reviewPerBook2")
-	public String reviewPerBook2(ReviewBoardVO rbVO, Criteria cri, Model model) {
-		
-		model.addAttribute("list", service.getListPerBook(rbVO.getIsbn(), rbVO.getUser_id(), cri));
-		model.addAttribute("thumbnail", service.showBookThumbnail(rbVO.getIsbn()));
-		return "reviewPerBook2";
-	}
+//	@RequestMapping("/reviewPerBook2")
+//	public String reviewPerBook2(ReviewBoardVO rbVO, Criteria cri, Model model) {
+//		
+//		model.addAttribute("list", service.getListPerBook(rbVO.getIsbn(), rbVO.getUser_id(), cri));
+//		model.addAttribute("thumbnail", service.showBookThumbnail(rbVO.getIsbn()));
+//		return "reviewPerBook2";
+//	}
 	
 	// 책별 감상 목록
 	@RequestMapping("/reviewPerBook")
-	public String reviewPerBook(ReviewBoardVO rbVO, Criteria cri, Model model) {
+	@PreAuthorize("isAuthenticated()")
+	public String reviewPerBook(Principal principal, ReviewBoardVO rbVO, Criteria cri, Model model) {
+		
+		String user_id = principal.getName();
+		
+		List<ReviewBoardVO> reviewList = service.getListPerBook(rbVO.getIsbn(), user_id, cri);
+		
+//		for(ReviewBoardVO review:reviewList) {
+//			// 가져온 리뷰 리스트에서 리뷰 번호에 따른 첨부파일들을 rbVO에 세팅.
+//			review.setAttachList(service.getAttachList(review.getReview_no()));
+//		}
 
-		model.addAttribute("list", service.getListPerBook(rbVO.getIsbn(), rbVO.getUser_id(), cri));
+		model.addAttribute("list", reviewList);
 		model.addAttribute("thumbnail", service.showBookThumbnail(rbVO.getIsbn()));
-		int total = service.getTotal(cri, rbVO.getIsbn(), rbVO.getUser_id());
+		int total = service.getTotal(cri,  rbVO.getIsbn(), user_id);
+		
 		System.out.println("total : " + total);
+		
+//		rbVO.setAttachList(service.getAttachList(rbVO.getReview_no()));
+//		System.out.println(rbVO.getAttachList());
 		
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		return "reviewPerBook";
@@ -79,14 +98,12 @@ public class ReviewBoardController {
 	
 	// 감상 하나만 보기
 	@RequestMapping("/reviewSelectOne")
+	@PreAuthorize("isAuthenticated()")
 	public String reviewSelectOne(@RequestParam("review_no") int review_no, 
-										// 여기서 리뷰 조회시 작성자의 id를 굳이 param으로 받아올 필요는 없음.
-										// 
-										@RequestParam("user_id") String user_id,
 									    @RequestParam("isbn") String isbn, 
 									    @ModelAttribute("cri") Criteria cri, Model model) {
 		
-		model.addAttribute("review", service.selectedReview(review_no, user_id));
+		model.addAttribute("review", service.selectedReview(review_no));
 		model.addAttribute("book", service.bookInfo(isbn));
 		return "reviewSelectOne";
 	}
@@ -120,21 +137,24 @@ public class ReviewBoardController {
 	}
 	
 	@RequestMapping("/delete")
-	public String delete(ReviewBoardVO rbVO, RedirectAttributes rttr) {
+	public String delete(ReviewBoardVO rbVO, Criteria cri, RedirectAttributes rttr) {
 		
-		// 삭제하는 데 필요한 건 review_no. id도 필요한가...?
-		service.deleteReview(rbVO);
+		List<ReviewAttachVO> attachList = service.getAttachList(rbVO.getReview_no());
+		if(service.deleteReview(rbVO)==1) { // 리뷰 삭제에 성공시
+			deleteFiles(attachList);
+			rttr.addFlashAttribute("result", "success");
+		}
 		
 		rttr.addAttribute("isbn", rbVO.getIsbn());
 		rttr.addAttribute("user_id", rbVO.getUser_id());
 		
-		return "redirect:/reviewPerBook";
+		return "redirect:/reviewPerBook" + cri.getListLink();
 	}
 	
 	@RequestMapping("/modifyReview")
 	public String modify(ReviewBoardVO rbVO, @ModelAttribute("cri") Criteria cri, Model model) {
 		
-		rbVO = service.selectedReview(rbVO.getReview_no(), rbVO.getUser_id());
+		rbVO = service.selectedReview(rbVO.getReview_no());
 		
 		model.addAttribute("review", rbVO);
 		
@@ -299,4 +319,26 @@ public class ReviewBoardController {
 		return false;
 	}
 	
+	private void deleteFiles(List<ReviewAttachVO> attachList) {
+		
+		if(attachList == null || attachList.size() == 0) {
+			return;
+		}
+		
+		log.info("delete attach files");
+		log.info(attachList);
+		
+		attachList.forEach(attach -> {
+			try {
+				Path file = Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\" + attach.getUuid() + "_" + attach.getFileName());
+				Files.deleteIfExists(file);
+				if(Files.probeContentType(file).startsWith("image")) {
+					Path thumbNail = Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\s_" + attach.getUuid() + "_" + attach.getFileName());
+					Files.delete(thumbNail);
+				}
+			} catch(Exception e) {
+				log.error("delete file error" + e.getMessage());
+			} // end catch
+		}); // end forEach
+	}
 }

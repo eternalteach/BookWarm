@@ -3,7 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
@@ -22,6 +24,10 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.book.warm" />
+	
+	<!-- 스프링 시큐리티 어노테이션 활성화를 위한 설정 -->
+	<security:global-method-security
+				pre-post-annotations="enabled" secured-annotations="enabled"/>
 	
 	<!-- 인터셉터 객체 생성 -->
 	<beans:bean id="boardInterceptor" class="com.book.warm.interceptor.BoardInterceptor">
