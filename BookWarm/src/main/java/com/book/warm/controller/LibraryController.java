@@ -34,4 +34,15 @@ public class LibraryController {
 		return "library";
 	}
 
+	@RequestMapping(value = "/library", method = RequestMethod.POST)
+	@PreAuthorize("isAuthenticated()")
+	public String libraryPOST(Principal principal, Model model) throws Exception {
+		
+		System.out.println(principal);
+		System.out.println("principal.getName(): " + principal.getName());
+		
+		model.addAttribute("libraryBooks",mapper.getLibraryBooks(principal.getName()));
+		
+		return "library";
+	}
 }

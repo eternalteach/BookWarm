@@ -31,7 +31,9 @@
 					
 				<!-- 감상 메인 페이지에서 사이드바 안 쓸 듯 -->
                   <div class="col-md-4 left-side-sidebar pt-70">
-
+                  
+                  	 <!-- 임시 로그아웃 -->
+					 <a href="/warm/customLogout">로그아웃</a>
                      <aside class="sidebar">
 						<section>
 							<div>

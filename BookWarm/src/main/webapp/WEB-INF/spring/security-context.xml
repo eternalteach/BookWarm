@@ -15,14 +15,17 @@
 		
 		<security:access-denied-handler ref="customAccessDenied"/>
 
+		<security:intercept-url pattern="/index" access="permitAll"/>
+<!-- 
+		<security:intercept-url pattern="/**" access="isAuthenticated()"/> -->
+		
 		<!-- <security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')"/>
 		<security:intercept-url pattern="/library" access="hasRole('ROLE_MEMBER')"/> -->
 		
-		<security:intercept-url pattern="/index" access="permitAll"/>
 		
 		<security:access-denied-handler ref="customAccessDenied"/>
 		
-		<security:form-login login-page="/index"/>
+		<security:form-login login-page="/index" default-target-url="/library"/>
 		
 		<security:logout logout-url="/customLogout" invalidate-session="true" />
 		
