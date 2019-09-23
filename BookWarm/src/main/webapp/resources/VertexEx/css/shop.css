@@ -449,9 +449,9 @@ ul.mini-list {
    margin-left: 10px;
 }
 
-.single-product-wrap .single-product-inner .product-price-wrap {
+/* .single-product-wrap .single-product-inner .product-price-wrap {
    margin-bottom: 30px;
-}
+} */
 
 .single-product-wrap .single-product-inner .quantity .minus,
 .single-product-wrap .single-product-inner .quantity input.qty {
