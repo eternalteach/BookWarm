@@ -3,9 +3,13 @@ package com.book.warm.controller;
 import java.security.Principal;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.book.warm.mapper.AddBookDetailInfoMapper;
 import com.book.warm.mapper.LibraryMapper;
+import com.book.warm.vo.BookVO;
+import com.book.warm.vo.LibraryVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -25,6 +31,8 @@ public class LibraryController {
 
 	@Inject
 	LibraryMapper mapper;
+	@Inject
+	AddBookDetailInfoMapper bookMapper;
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	@PreAuthorize("isAuthenticated()")
