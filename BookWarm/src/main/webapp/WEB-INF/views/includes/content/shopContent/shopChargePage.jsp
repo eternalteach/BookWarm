@@ -186,19 +186,25 @@
                                              <td class="cart-product-name">
                                                 <span class="amount" id="delivery">${delivery}</span>
                                              </td>
+                                             <td class="cart-product-name">
+                                             </td>
+                                             <td class="cart-product-name">
+                                             </td>
+                                             <td class="cart-product-name">
+                                             </td>
                                           </tr>
                                           <tr class="cart_item">
                                              <td class="cart-product-name">
                                                 <strong>할인</strong>
                                              </td>
-                                             <td class="cart-product-name">
+                                             <td class="cart-product-name" colspan="4">
                                                 -<span class="amount" id="discountPoint">0</span>(포인트 할인)
                                              </td>
                                           </tr>
                                           <tr class="cart_item">
                                           	 <td class="cart-product-name">
                                              </td>
-                                          	 <td class="cart-product-name">
+                                          	 <td class="cart-product-name" colspan="4">
                                              	-<span class="amount" id="discountCoupon">0</span>(쿠폰 할인)
                                              </td>
                                           </tr>
@@ -207,7 +213,7 @@
                                                 <strong>결제 금액</strong>
                                              </td>
 
-                                             <td class="cart-product-name">
+                                             <td class="cart-product-name" colspan="4">
                                                 <span class="amount color"><strong id="finalPay">${subTotal}</strong></span>
                                              </td>
                                           </tr>
@@ -314,8 +320,5 @@
 	<%@ include file="./modal-shopCharge-script.jsp"%>
 	<!-- 쿠폰 선택하는 모달창 -->
 	<%@ include file="./couponList.jsp"%>
-	
-	
-	
 </body>
 </html>

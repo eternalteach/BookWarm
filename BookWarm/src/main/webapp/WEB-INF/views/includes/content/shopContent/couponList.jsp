@@ -6,4 +6,3 @@
 <div id="modal">
 </div>
 
-

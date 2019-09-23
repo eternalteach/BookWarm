@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
 
     <!-- Libs CSS -->
-    <link href="<%=path %>/resources/Vertex/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="resources/Vertex/css/bootstrap.min.css" rel="stylesheet" />
     <link href="<%=path %>/resources/Vertex/css/style.css" rel="stylesheet" />
     <link href="<%=path %>/resources/Vertex/css/font-awesome.min.css" rel="stylesheet" />
     <link href="<%=path %>/resources/Vertex/css/streamline-icon.css" rel="stylesheet" />

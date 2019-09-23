@@ -544,18 +544,39 @@
   		
   		var total = parseInt($('#total').val()); // 총 도서 금액
   		var delivery = $('#delivery').html(); // 배송비(2500원 or 무료)
-		var finalTotal; // 최종 금액
+		var finalPay; // 최종 금액 >> 계속 사용할 변수임
 		
   		// 결제 금액에 총 도서 금액 + 배송비 넣기
 		if(delivery == "2500원") {
-			finalTotal = total+2500;
+			finalPay = total+2500;
 		}else {
-			finalTotal = total;
+			finalPay = total;
 		}
-		$('#finalPay').html(finalTotal);
+		$('#finalPay').html(finalPay);
+		
+		
+		
+		// 쿠폰 사용
+		$('#modal').on('click', 'button', function() {
+			$('#coupon').attr('value', $(this).val());
+	
+			var bookPrice = $('#total').val();
+			bookPrice = bookPrice.substring(0,bookPrice.lastIndexOf('원')); // 책 판매 총액
+			var discounted = $(this).attr('data-abc')/100*bookPrice; // 쿠폰 할인 금액
+	
+			// -0(쿠폰할인) << 이 부분에 빠지는 금액만큼 넣어주기
+			$('#discountCoupon').html($(this).attr('data-abc')/100*bookPrice);
+	
+			// 전체 금액에서 빼주기(결제금액 = 결제금액-포인트 할인금액-쿠폰할인금액(discounted))
+			$('#finalPay').html(finalPay-$('#point').val()-discounted);
+			
+			// 모달 종료
+			$('#modal').fadeOut(500);
+		});
   		
-  		
-  		// 적립금 사용
+		
+		
+  		// 적립금(포인트) 사용
   		$('#applyPoint').on('click', function() {
   			var point = $('#point').val(); // 사용하려고 입력한 포인트
   			var availablePoint = parseInt($('#availablePoint').text()); // 가용포인트
@@ -574,14 +595,14 @@
 	   				$('#usePoint').text(point);
 	   				// 최종금액(포인트 할인)에 반영
 	   				$('#discountPoint').html(point);
-	   				// 결제 금액에 반영///////////////////////////////////////////////////////
-	   				var bookPrice = $('#total').val(); // 총 도서 금액
-	   				$('#finalPay').html(bookPrice.substring(0,bookPrice.lastIndexOf("원"))-point);
+	   				// 결제 금액에 반영
+	   				$('#finalPay').html(finalPay-point-$('#discountCoupon').html());
 	   			}
+  				
+  				
   			}else {
   				// 숫자가 아닌 값 입력 시 -> 경고창, 입력부분 비워버리기
   				alert('숫자만 입력 가능합니다.');
-  				alert(point);
   				$('#point').val('');
   			}
   			
