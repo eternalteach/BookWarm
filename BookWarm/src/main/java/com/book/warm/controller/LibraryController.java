@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,8 +33,10 @@ public class LibraryController {
 	@Inject
 	AddBookDetailInfoMapper bookMapper;
 	
+	@Inject
+	AddBookDetailInfoMapper bookMapper;
+	
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	@PreAuthorize("isAuthenticated()")
 	public String library(Principal principal, Model model) throws Exception {
 		
 		System.out.println(principal);
@@ -45,13 +46,23 @@ public class LibraryController {
 		
 		return "library";
 	}
+
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	public String libraryPOST(Principal principal, Model model) throws Exception {
+		
+		System.out.println(principal);
+		System.out.println("principal.getName(): " + principal.getName());
+		
+		model.addAttribute("libraryBooks",mapper.getLibraryBooks(principal.getName()));
+		
+		return "library";
+	}
+	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String modify(HttpSession session, HttpServletRequest request,BookVO bookVO) throws Exception {
+	public String modify(Principal principal, BookVO bookVO) throws Exception {
 		log.info("==================== delete() ====================");
-		//유저 아이디 aaa로 세션에서 받아올 예정
-		session=request.getSession();
-		String user_id=(String)session.getAttribute("user_id");
-		log.info("session에 있는 user_id : " + user_id);
+		
+		String user_id=principal.getName();
 		String isbn=bookVO.getIsbn();
 		log.info("isbn : "+isbn);
 		log.info(mapper.deleteLibraryList(user_id,isbn));
@@ -61,10 +72,9 @@ public class LibraryController {
 	//add Comment
 		@PostMapping(value = "/addBook", consumes = "application/json", produces = {
 				MediaType.TEXT_PLAIN_VALUE })
-		public ResponseEntity<String> addBook(HttpSession session, HttpServletRequest request,@RequestBody LibraryVO libraryVO) {
+		public ResponseEntity<String> addBook(Principal principal,@RequestBody LibraryVO libraryVO) {
 			log.info("==================== addBook() ====================");
-			session=request.getSession();
-			String user_id=(String)session.getAttribute("user_id");
+			String user_id=principal.getName();
 			BookVO bookVO = (bookMapper.getBook(libraryVO.getIsbn()));
 			libraryVO.setUser_id(user_id);
 			libraryVO.setIsbn(bookVO.getIsbn());
@@ -77,15 +87,4 @@ public class LibraryController {
 					: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-	@RequestMapping(value = "", method = RequestMethod.POST)
-	@PreAuthorize("isAuthenticated()")
-	public String libraryPOST(Principal principal, Model model) throws Exception {
-		
-		System.out.println(principal);
-		System.out.println("principal.getName(): " + principal.getName());
-		
-		model.addAttribute("libraryBooks",mapper.getLibraryBooks(principal.getName()));
-		
-		return "library";
-	}
 }
