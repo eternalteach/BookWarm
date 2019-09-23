@@ -1,21 +1,5 @@
 
 
--- 권한 테이블
-create table authorities (
-    user_id varchar2(20) not null,
-    authority varchar2(50) not null,
-    constraint fk_authorities foreign key(user_id) references user_info(user_id)
-);
-create unique index idx_auth on authorities(user_id, authority);
-
--- 자동로그인을 위한 테이블
-create table persistent_logins (
-    username varchar2(20) not null,
-    series varchar(64) primary key,
-    token varchar(64) not null,
-    last_used timestamp not null
-);
-
 --------------- user ---------------(임지현)
 create table user_info(
 user_id varchar2(20),
@@ -33,7 +17,6 @@ user_join_date date default sysdate,
 user_level number(1) default '1',
 user_tot_price number(15,0),
 user_point number(10,0),
-enabled char(1) default '1',
 constraint pk_user_info primary key(user_id)
 );                     
 -------------------- book --------------------
