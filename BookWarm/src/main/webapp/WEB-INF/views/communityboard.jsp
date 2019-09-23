@@ -1,9 +1,20 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ include file="includes/header/header-transparent-navonly.jsp"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="/warm/resources/js/logintest.js"></script>
+<%@ include file="includes/header/script-vertexEx.jsp"%>
+<link rel="stylesheet" href="resources/css/main.css" />
+</head>
+<body>
 <div class="page-inner">
 	<section class="section-primary b-bordered">
 		<div class="container">
