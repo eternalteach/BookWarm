@@ -57,7 +57,6 @@ public class LibraryController {
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String modify(Principal principal, BookVO bookVO) throws Exception {
 		log.info("==================== delete() ====================");
-		
 		String user_id=principal.getName();
 		String isbn=bookVO.getIsbn();
 		log.info("isbn : "+isbn);
