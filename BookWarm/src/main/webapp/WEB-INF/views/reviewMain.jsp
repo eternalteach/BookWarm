@@ -136,6 +136,26 @@
                   </div>
 
                   <div class="col-md-8 v_blog-medium pt-70 pull-right">
+                  
+                  <!-- 감상 작성 버튼 추가 -->
+                            <!-- <li class="col-sm-12" style="margin-top:10px"> -->
+                            <div class="post-content no-thumb clearfix" style="margin:20px">
+                            	<div class="pull-right">
+                            	
+                            	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${thumbnail.isbn}&user_id=${user_id}">
+		                            	<span class="text ls-1">
+		                            		감상 더하기
+			                                <i class="icon icon-pen-3"></i>
+		                            	</span>
+                            	</a><br>
+                            	<a class="btnPerBook" href="/warm/library">
+		                            	<span class="text ls-1">
+		                            		서재로 돌아가기
+		                            		<i class="fa fa-book"></i>
+		                            	</span>
+                            	</a><br>
+                            	</div>
+                            <!-- </li> -->
 
 
 				<!-- 블로그에 글 넣기 시도 -->

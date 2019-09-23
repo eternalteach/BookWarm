@@ -1,8 +1,9 @@
 package com.book.warm.controller;
 
+import java.security.Principal;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,13 +28,8 @@ public class ShopListController {
 	ShopBoardService service;
 	
 	@RequestMapping(value = "/shoplist", method = RequestMethod.GET)
-	public String shoplist(HttpSession session, HttpServletRequest request, Model model, Criteria criteria) throws Exception {
+	public String shoplist(Model model, Criteria criteria) throws Exception {
 		log.info("==================shoplist====================================");
-		
-		session = request.getSession();
-		String user_id =(String)session.getAttribute("user_id");
-		log.info("session에 있는 user_id : " + user_id);
-		
 		
 		model.addAttribute("shoptitlelist", shoplistservice.shoptitlelist());
 		model.addAttribute("bookpricelist", shoplistservice.bookpricelist());
@@ -44,10 +40,9 @@ public class ShopListController {
 	
 	//책 상세정보 보기
 	@RequestMapping(value = "/shopproduct", method = RequestMethod.GET)
-	public String shop_product(HttpSession session, HttpServletRequest request, Model model) throws Exception {
+	public String shop_product(Principal principal, HttpServletRequest request, Model model) throws Exception {
 		log.info("=========================== shopproduct ==============================");
-		session = request.getSession();
-		String user_id =(String)session.getAttribute("user_id");
+		String user_id = principal.getName();
 		String isbn = request.getParameter("isbn");
 		BookListVO booklistvo = shoplistservice.bookdetail(isbn);
 		String author = booklistvo.getAuthor();

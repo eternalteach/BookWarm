@@ -4,12 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 읽어온 날짜를 형식에 맞게 자르기 위해 taglib 추가 -->
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <%@ include file="./includes/header/header-from-vertex.jsp" %>
     
-	
+	<sec:authentication property="principal.username" var="user_id"/>
 
-    
     <div role="main" class="main">
 
         <section class="page-header" style="margin-bottom:10px">
@@ -158,13 +158,13 @@
                             <li class="col-sm-12" style="margin-top:10px">
                             	<div class="pull-right">
                             	
-                            	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${list[0].isbn}&user_id=${list[0].user_id}">
+                            	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${thumbnail.isbn}&user_id=${user_id}">
 		                            	<span class="text ls-1">
 		                            		감상 더하기
 			                                <i class="icon icon-pen-3"></i>
 		                            	</span>
                             	</a><br>
-                            	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${list[0].isbn}&user_id=${list[0].user_id}">
+                            	<a class="btnPerBook" href="/warm/library">
 		                            	<span class="text ls-1">
 		                            		서재로 돌아가기
 		                            		<i class="fa fa-book"></i>

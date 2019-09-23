@@ -19,7 +19,7 @@
 </head>
 <body style="background-image: url('<%=path%>/resources/img/background/star01.gif');">
 	<a href="javascript:openModal('modal-searchBooks')"><button id='addBook'>책 등록하기</button></a>
-	<a href="<%=path%>/reviewMain?user_id=aaa"><button>감상 메인페이지</button></a>
+	<a href="<%=path%>/reviewMain"><button>감상 메인페이지</button></a>
 	<a href="<%=path%>/shop/shoplist"><button>책 리스트</button></a>
 	<!-- 이 페이지에서 추가로 구현해야 할 것들
 	 1. SQL에 책 더미데이터 만들기 (테스트에서 만들기 완료)
@@ -65,7 +65,7 @@
 				<div class="con">
 					<!-- user_id는 session으로 해당 컨트롤러나 jsp에서 꺼내 사용하기 get방식으로 isbn만 다음페이지로 넘기기
 				삭제는 비동기통신으로 처리하기-->
-					<a href="reviewMain?isbn=${UserBooks.isbn}"><span>Review<!--  / 필요정보 user_id isbn  --></span></a><br />
+					<a href="reviewPerBook?isbn=${UserBooks.isbn}"><span>Review<!--  / 필요정보 user_id isbn  --></span></a><br />
 					<a href="record?isbn=${UserBooks.isbn}"><span>Record<%--  / user_id : ${UserBooks.user_id}, isbn : ${UserBooks.isbn} --%></span></a><br />
 					<a href="library/delete?isbn=${UserBooks.isbn}"><span>Delete<%--  / user_id : ${UserBooks.user_id}, isbn : ${UserBooks.isbn} --%></span></a><br />
 				</div>

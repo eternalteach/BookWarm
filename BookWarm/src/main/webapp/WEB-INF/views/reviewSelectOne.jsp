@@ -1191,10 +1191,10 @@
 				}
 			}); // end of commentRegisterBtn.onclick
 			
-			//AJax spring security header
-			$(document).ajaxSend(function(e, xhr, options) {
+			//AJax spring security header - csrf disabled 됐으므로 주석처리
+			/* $(document).ajaxSend(function(e, xhr, options) {
 				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-			});
+			}); */
 		
        }); // end of document.ready
     	

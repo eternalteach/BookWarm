@@ -53,7 +53,6 @@ public class ReviewBoardController {
 	ReviewBoardService service;
 	
 	@GetMapping("/reviewMain")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void recordMain(Principal principal, Model model) {
 		
 		model.addAttribute("list", service.selectBoardList(principal.getName()));
@@ -71,7 +70,6 @@ public class ReviewBoardController {
 	
 	// 책별 감상 목록
 	@RequestMapping("/reviewPerBook")
-	@PreAuthorize("isAuthenticated()")
 	public String reviewPerBook(Principal principal, ReviewBoardVO rbVO, Criteria cri, Model model) {
 		
 		String user_id = principal.getName();
@@ -82,6 +80,7 @@ public class ReviewBoardController {
 //			// 가져온 리뷰 리스트에서 리뷰 번호에 따른 첨부파일들을 rbVO에 세팅.
 //			review.setAttachList(service.getAttachList(review.getReview_no()));
 //		}
+		System.out.println(reviewList);
 
 		model.addAttribute("list", reviewList);
 		model.addAttribute("thumbnail", service.showBookThumbnail(rbVO.getIsbn()));
@@ -98,7 +97,6 @@ public class ReviewBoardController {
 	
 	// 감상 하나만 보기
 	@RequestMapping("/reviewSelectOne")
-	@PreAuthorize("isAuthenticated()")
 	public String reviewSelectOne(@RequestParam("review_no") int review_no, 
 									    @RequestParam("isbn") String isbn, 
 									    @ModelAttribute("cri") Criteria cri, Model model) {
