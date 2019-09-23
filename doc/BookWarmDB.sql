@@ -10,7 +10,7 @@ create unique index idx_auth on authorities(user_id, authority);
 
 -- 자동로그인을 위한 테이블
 create table persistent_logins (
-    user_id varchar2(20) not null,
+    username varchar2(20) not null,
     series varchar(64) primary key,
     token varchar(64) not null,
     last_used timestamp not null
