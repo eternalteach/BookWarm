@@ -29,7 +29,7 @@ public class UserVO {
 
 	public UserVO(String user_id, String user_pw, String user_nickname, String user_name, Timestamp user_bday,
 			String user_sex, String user_phone, String user_mail, int user_zipcode, String user_addr,
-			String user_addr_detail, String user_join_date, String user_level, int user_tot_price, int user_point,
+			String user_addr_detail, String user_join_date, int user_level, int user_tot_price, int user_point,
 			String enabled, List<AuthVO> authList) {
 		super();
 		this.user_id = user_id;
@@ -147,11 +147,11 @@ public class UserVO {
 		this.user_join_date = user_join_date;
 	}
 
-	public String getUser_level() {
+	public int getUser_level() {
 		return user_level;
 	}
 
-	public void setUser_level(String user_level) {
+	public void setUser_level(int user_level) {
 		this.user_level = user_level;
 	}
 
