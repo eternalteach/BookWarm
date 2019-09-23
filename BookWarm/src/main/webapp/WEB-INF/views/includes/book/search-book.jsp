@@ -2,13 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%
-	String context = request.getContextPath();
-%>
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="<%=context%>/resources/js/getbook.js"></script>
-<script type="text/javascript" src="<%=context%>/resources/js/addBook.js"></script>
+<script type="text/javascript" src="/warm/resources/js/getbook.js"></script>
+<script type="text/javascript" src="/warm/resources/js/addBook.js"></script>
 제목 검색 : <input id='search' name='search' type='text'>
 <button onclick="searchTitle($('#search').val());">검색</button>
 

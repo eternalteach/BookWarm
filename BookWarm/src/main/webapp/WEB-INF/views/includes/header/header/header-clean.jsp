@@ -2,9 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%
-	String path = request.getContextPath();
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +17,7 @@
 						<div class="header-column justify-content-center">
 							<div class="header-row">
 									<div align="center">
-										<a href="library"> <img alt="logo" width="80" height="100" src="<%=path%>/resources/img/header/Alice_rabbit03.png"></a>
+										<a href="library"> <img alt="logo" width="80" height="100" src="resources/img/header/Alice_rabbit03.png"></a>
 									</div>
 								<div class="header-nav header-nav-top-line justify-content-center">
 									<div class="header-nav-main header-nav-main-effect-2 header-nav-main-sub-effect-1">
