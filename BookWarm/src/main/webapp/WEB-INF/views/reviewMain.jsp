@@ -2,7 +2,33 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
-<%@ include file="./includes/header/header-dark-dropdown.jsp"%>
+<%@ include file="includes/header/header/header-dark-dropdown.jsp"%>
+
+<div role="main" class="main">
+        <section class="page-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-8 text-left">
+                        <h1>Standard Post</h1>
+                    </div>
+                    <div class="col-md-4">
+                    <c:if test="${user_id == review.user_id}">
+                        <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
+                            <li><a href="/warm/library?user_id=${user_id}">내 서재</a></li>
+                            <li><a href="#" class="oper" data-oper='list'>${book.book_title}</a></li>
+                            <li class="active">Standard Post</li>
+                            
+                            <li><a href="/warm/customLogout">로그아웃합시다ㅏㅏㅏ</a></li>
+                            
+                        </ul>
+					</c:if>
+                    </div>
+                </div>
+            </div>
+        </section>
+</div>
+
+<%-- <%@ include file="./includes/header/header-dark-dropdown.jsp"%> --%>
 
 
       <div class="page has-sidebar has-right-sidebar bordered">
@@ -142,7 +168,7 @@
                             <div class="post-content no-thumb clearfix" style="margin:20px">
                             	<div class="pull-right">
                             	
-                            	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${thumbnail.isbn}&user_id=${user_id}">
+                            	<a class="btnPerBook" href="/warm/reviewWrite">
 		                            	<span class="text ls-1">
 		                            		감상 더하기
 			                                <i class="icon icon-pen-3"></i>

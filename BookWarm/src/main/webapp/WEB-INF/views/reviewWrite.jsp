@@ -6,7 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
- <%@ include file="./includes/header/header-from-vertex.jsp" %>
+ <%@ include file="includes/header/header/header-from-vertex.jsp" %>
  
     <div role="main" class="main">
 
@@ -45,6 +45,17 @@
                             		<!-- 작성 페이지. -->
                             		<form action="register" method="POST">
 										<input type="hidden" name="user_id" value="${review.user_id}">
+										
+										
+										
+										<!-- isbn은 책별 리뷰 페이지에서 작성을 눌렀을 때는 값이 넘어오니까 그 값을 hidden처리해..줄까? 아니면 -->
+										<!-- 선택만 그걸로 되게 하고.. 그 목록을 선택지로 띄울까. -->
+										
+										<select name="isbn">
+											<option value="">책 선택</option>
+											<%-- <c:forEach item=""></c:forEach> --%>
+										</select>
+										
 										<input type="hidden" name="isbn" value="${review.isbn}">
 										<!-- 작성 시간과 수정 시간은 알아서 데이터 입력시에 들어가니 여기엔 필요 없음 -->
                             		
