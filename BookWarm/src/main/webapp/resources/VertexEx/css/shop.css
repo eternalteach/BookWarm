@@ -535,8 +535,11 @@ ul.mini-list {
    padding-left: 30px;
    padding-right: 30px;
 }
+.product-name {
+	padding-bottom:25px;
+}
 
-.single-product-wrap .single-product-inner .product-name {
+.single-product-wrap .single-product-inner {
    margin-bottom: 40px;
    border-bottom: 2px solid #f2f2f2;
    padding-bottom: 45px;

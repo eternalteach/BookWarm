@@ -33,9 +33,6 @@ public class LibraryController {
 	@Inject
 	AddBookDetailInfoMapper bookMapper;
 	
-	@Inject
-	AddBookDetailInfoMapper bookMapper;
-	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String library(Principal principal, Model model) throws Exception {
 		

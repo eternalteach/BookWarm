@@ -27,7 +27,7 @@ public class MemberTests {
 	@Inject
 	private DataSource ds;
 	
-//	@Test
+	//@Test
 	public void testInsertMember() {
 		
 		String sql = "insert into user_info(user_id, user_pw, user_nickname, user_name, user_bday, user_sex, user_phone, "

@@ -46,25 +46,24 @@
                         </div>
 
 							<!-- 장바구니로 이동  -->
-							<form name ="form1" method="get" action="/warm/shop/insertcart"  style="width:버튼크기;float:left;">
+							<form name ="form1" method="get" action="/warm/shop/insertcart"  style="float:left;">
 								<select class="input-text qty text" name = "cart_cnt">
 								<c:forEach begin="1" end="10" var="i">
 									<option value="${i}">${i}</option>
 								</c:forEach>
 								</select>
-	                           <a id="cart_get" href="/warm/shop/insertcarts">
 	                           <button id="cart" type="submit" 
 	                           name="isbn" value="${bookdetail.isbn }" 
 	                           class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="장바구니로 이동" data-location="top">
 	                           <i class="fa fa-shopping-basket" data-title="장바구니로 이동" data-location="top"></i>
 	                           <span>장바구니</span>
-	                           </button></a>
+	                           </button>
                            </form>
                            
 							<!-- 구매로이동  -->
-                            <a href="/warm/shop/charge"><button id="pay" type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="구매로 이동" data-location="top">
+                            <!-- <a href="/warm/shop/charge"><button id="pay" type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="구매로 이동" data-location="top">
                           	<span>구매</span>
-                           </button></a> 
+                           </button></a>  -->
                            
                        		<!-- 목록버튼 클릭하면 책 목록으로 이동. -->
 						    <a href="/warm/shop/shoplist"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="목록으로 이동" data-location="top">

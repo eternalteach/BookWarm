@@ -1,5 +1,7 @@
 package com.book.warm.controller;
 
+import java.security.Principal;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -19,14 +21,12 @@ public class MsgController {
 	MsgService msgservice;
 
 	@RequestMapping(value = "/message", method = RequestMethod.GET)
-	public String message(Model model) throws Exception {
+	public String message(Principal principal, Model model) throws Exception {
+		log.info("=================messgae=============================");
+		String user_id =principal.getName();
+		
 		model.addAttribute("msglist", msgservice.msglist());
 		return "message";
 	}
 
-	@RequestMapping(value = "/messaginsert", method = RequestMethod.GET)
-	public String megr(Model model) throws Exception {
-		model.addAttribute("msglist", msgservice.msglist());
-		return "messaginsert";
-	}
 }
