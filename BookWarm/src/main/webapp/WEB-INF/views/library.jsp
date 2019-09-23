@@ -11,6 +11,9 @@
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="/warm/resources/js/library.js"></script>
+<script type="text/javascript" src="/warm/resources/js/getbook.js"></script>
+<script type="text/javascript" src="/warm/resources/js/addBook.js"></script>
+
 <%@ include file="includes/header/script-vertexEx.jsp"%>
 <link rel="stylesheet" href="resources/css/main.css" />
 </head>
@@ -24,65 +27,32 @@
 				<td colspan="9" style="width: 795px;"></td>
 			</tr>
 			<c:forEach var="row" begin="0" end="4">
-			<tr style="height: 71px;">
-				<td colspan="9" style="width: 795px;"></td>
-			</tr>
-			<tr style="height: 100px;">
-				<c:forEach var="colum" begin="0" end="3">
+				<tr style="height: 71px;">
+					<td colspan="9" style="width: 795px;"></td>
+				</tr>
+				<tr style="height: 100px;">
+					<c:forEach var="colum" begin="0" end="3">
+						<td class="library_emptySpace"></td>
+						<td class="tdnum${row*4+colum}"></td>
+					</c:forEach>
 					<td class="library_emptySpace"></td>
-					<td class="tdnum${row*4+colum}"></td>
-				</c:forEach>
-				<td class="library_emptySpace"></td>
-			</tr>
-			<tr style="height: 20px;">
-				<td colspan="9" style="width: 795px;"></td>
-			</tr>
+				</tr>
+				<tr style="height: 20px;">
+					<td colspan="9" style="width: 795px;"></td>
+				</tr>
 			</c:forEach>
 		</table>
 	</div>
-	
-	<script>
-	$(document).ready(function(){
-		showList();
-		
-		
-		$(".deleteMyBook").on("click",function(){
-			let isbn=$(this).closest("button").attr("data-isbn");
-			console.log("deleteMyBook.closest('button').isbn"+isbn);
-			libraryService.remove(isbn,function(result){
-				alert(result);
-				showList();
-			})
-		})
-		
-		// show library book list
-		function showList(){
-			libraryService.getList(function(libraryBooks){
-				console.log("libraryService.getList 안");
-				for(let i=0;i<20;i++){
-					let str=".tdnum"+i;
-					if(i<libraryBooks.length){
-					console.log("str : "+str);
-					$(str).html("<a data-toggle=\"modal\" data-target=\"#modal"+libraryBooks[i].isbn+"\"><img class=\"book-thumbnail\" src=\""+libraryBooks[i].list_img_src+"\"></a>");
-					}else{
-						$(str).html("");
-					}
-				}
-				// 모달 닫기
-				$(".fade").hide();
-			});
-		}
-		
-		
-	});
-	</script>
 	
 <!-- library Modal -->
 <div class="modal fade" id="modal-library" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
     <div class="modal-dialog undefined">
         <div class="modal-content">
             <div class="modal-body post-content">
-                <%@ include file="includes/book/search-book.jsp"%>
+             		  제목 검색 : <input id='search' name='search' type='text' class="col-sm-9">
+				<button class="searchBtn">검색</button>
+                
+                <div id="getBookTable"></div>
             </div>
         </div>
     </div>
@@ -108,3 +78,113 @@
 </c:forEach>
 <!-- End library Modal -->
 </body>
+<script>
+$(document).ready(function(){
+	showList();
+	let bookData="";
+	var getBookTable=$("#getBookTable");
+	
+	
+	// 책 데이터 받아오면 받은걸로 테이블 만들기
+	function makeBookTable(bookData){
+		console.log("makeBookTable에서 받은 "+bookData);
+		 let option = [
+	 	    {field:"isbn"},
+	 	    {field:"thumbnail"},
+	 	    {field:"title"},
+	 	    {field:"authors"},
+	 	    {field:"datetime"}
+	 	];
+
+	 	getBookTable.html("");
+	 	var table = $("<table class='tmp'>").appendTo(getBookTable);
+	 	
+	  	$.each( bookData.documents, function( index, row) {
+			var tr = $("<tr>").appendTo(table);
+			let isbn="";
+			$.each( option, function( i, fieldInfo ) {
+				if(fieldInfo.field=="isbn"){
+					
+					tr.attr("class",row[fieldInfo.field].substring(11));
+					isbn=row[fieldInfo.field].substring(11);
+					
+				} else {
+					
+					var td = $("<td>").appendTo(tr);
+					
+					if(fieldInfo.field=="thumbnail"){
+						
+					var img=$("<img class='bookCover'>").appendTo(td);
+					img.attr("src", src=row[fieldInfo.field]);
+						
+					}else if (fieldInfo.field=="datetime"){
+						
+					td.html( row[fieldInfo.field].substring(0,10));
+					
+					} else if (fieldInfo.field=="title"){
+						td.html("<button class='search-books'>"+row[fieldInfo.field]+"</button>");
+						
+					}else{
+						
+					td.html( row[fieldInfo.field]);
+					
+					}
+				}
+	 	    });
+	 	});
+	  
+	 }//end makeBookTable
+	
+	
+	 $(document).ready(function(){
+	 	
+		// 찾은 책 클릭시 추가, 삭제 이벤트
+	 	getBookTable.on("click","button",function(e){
+		 	var targetISBN = $(this).closest("tr").attr("class");
+		 	var userAddBook={isbn:targetISBN};
+		 	console.log("targetISBN"+targetISBN);
+	 		addBookService.add(userAddBook,function(result){
+		 		alert(result);
+		 		showList();
+		 		});
+	 	});
+	 	
+	 	$(".deleteMyBook").on("click",function(){
+			let isbn=$(this).closest("button").attr("data-isbn");
+			console.log("deleteMyBook.closest('button').isbn"+isbn);
+			libraryService.remove(isbn,function(result){
+				alert(result);
+				// close modal
+				$(".fade").hide();
+				showList();
+			});
+		}); // end deleteMyBook
+		
+		$(".searchBtn").on("click",function(){
+		var searchT=$('#search').val();
+			getBookService.searchTitle(searchT,function(result){
+				console.log("result : "+result);
+				getBookService.getBookData(result);
+				makeBookTable(result);
+			});
+		});
+	 }); //end ready
+	 
+	 
+	
+	// show library book list
+	function showList(){
+		libraryService.getList(function(libraryBooks){
+			for(let i=0;i<20;i++){
+				let str=".tdnum"+i;
+				if(i<libraryBooks.length){
+				$(str).html("<a data-toggle=\"modal\" data-target=\"#modal"+libraryBooks[i].isbn+"\"><img class=\"book-thumbnail\" src=\""+libraryBooks[i].list_img_src+"\"></a>");
+				}else{
+					$(str).html("");
+				}
+			}
+			
+		});
+	}
+});
+</script>

@@ -3,7 +3,8 @@ console.log("getBookService Module..........................................");
 var getBookService = (function() {
 
 	// search book
-	 function searchTitle(title){
+	 function searchTitle(title,callback, error){
+		 console.log("========== searchTitle() ==========");
 		    event.preventDefault();
 		    if(title !== undefined && title !== ""){
 		        $.ajax({
@@ -16,20 +17,18 @@ var getBookService = (function() {
 					size: 20,
 					target:'title'
 		          },
-		          success : function(result){
-		     		 bookData=result;
-		     		getBookData(bookData, function(result){
-		     			alert(result);
-		     		});
-		     		makeBookTable(result);
-		          }
+		          success : function(result, status, xhr) {
+						if (callback) {
+							callback(result);
+						}
+					}
 		      });
 		    }
 		}  
 	
 		// get book data
 		function getBookData(bookData, callback, error) { 
-			console.log("commentService..............................................");
+			console.log("========== getBookData() ==========");
 
 			$.ajax({
 				type : 'post',
