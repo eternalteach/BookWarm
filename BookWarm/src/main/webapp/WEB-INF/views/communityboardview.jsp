@@ -10,11 +10,11 @@
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript" src="/warm/resources/js/logintest.js"></script>
 <%@ include file="includes/header/script-vertexEx.jsp"%>
 <link rel="stylesheet" href="resources/css/main.css" />
 </head>
 <body>
+<%@ include file="includes/header/header-topnav.jsp"%>
 					<div>
 						<table width="500" cellpadding="0" cellspacing="0" border="1">
 							<tr>
@@ -152,7 +152,6 @@ $(document).ready(function(){
 				str+="<div><div class='header'><strong class='primary-font'>["+list[i].comm_cmt_no+"]"+list[i].user_id+"</strong>";
 				str+="<small class='pull-right text-muted'><button id='commentModfiyBtn' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>수정</button><button id='commentRemoveBtn' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>삭제</button></small></div>";
 				str+="<small class='pull-right text-muted'>"+list[i].comm_cmt_written_time+"</small></div>";
-				/* str+="<small class='pull-right text-muted'>"+commentService.displayTime(list[i].comm_cmt_written_time)+"</small></div>"; */
 				str+="<p>"+list[i].comm_cmt_content+"</p></div></li>";
 			}
 			

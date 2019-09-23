@@ -18,6 +18,9 @@ var getBookService = (function() {
 		          },
 		          success : function(result){
 		     		 bookData=result;
+		     		getBookData(bookData, function(result){
+		     			alert(result);
+		     		});
 		     		makeBookTable(result);
 		          }
 		      });
@@ -47,6 +50,7 @@ var getBookService = (function() {
 		}	
 
 	return {
-		getBookData : getBookData
+		getBookData : getBookData,
+		searchTitle:searchTitle
 	};
 })();

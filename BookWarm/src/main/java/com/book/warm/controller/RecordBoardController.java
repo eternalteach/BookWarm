@@ -41,7 +41,6 @@ public class RecordBoardController {
 	StatisticsFunctionService statisticsFunctionService;
 
 	@RequestMapping(value = "/record", method = RequestMethod.GET)
-	// add task - get book command(need total page)
 	public String record(Model model, @Param("bookVO") BookVO bookVO, Principal principal)
 			throws Exception {
 		log.info("===== record() =====");

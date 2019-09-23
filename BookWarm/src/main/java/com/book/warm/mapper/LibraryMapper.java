@@ -16,5 +16,6 @@ public interface LibraryMapper {
 
 	public int deleteLibraryList(@Param("user_id")String user_id, @Param("isbn")String isbn);
 	
+	public int deleteMyBook(@Param("user_id")String user_id, @Param("isbn")String isbn);
 	
 }

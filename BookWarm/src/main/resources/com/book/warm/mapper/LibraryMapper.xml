@@ -22,4 +22,8 @@
 	update library set list_no=-1 where user_id=#{user_id} and isbn=#{isbn}
 	</update>
 	
+	<delete id='deleteMyBook'>
+	delete library where user_id=#{user_id} and isbn=#{isbn}
+	</delete>
+	
 </mapper>
