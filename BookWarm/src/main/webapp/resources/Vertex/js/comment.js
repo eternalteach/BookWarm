@@ -28,7 +28,7 @@ var commentService = (function(){
 	
 //	댓글 불러오기
 	function getList(param, callback, error) {
-		
+
 		var review_no = param.review_no;
 		var page = param.page || 1;
 		
@@ -45,13 +45,30 @@ var commentService = (function(){
 		});
 	}
 	
+// 내가 쓴 글에 달린 최근 댓글 5개 불러오기	
+	function getAll(param, callback, error) {
+		
+		$.getJSON("/warm/comments/users/" + user_id,
+				function(data) {
+					if(callback) {
+						callback(data);
+					}
+		}).fail(function(xhr, status, err) {
+			if(error) {
+				error();
+			}
+		})
+	}
+	
 	
 //	댓글 삭제
-	function remove(review_cmt_no, callback, error) {
+	function remove(review_cmt_no, user_id, callback, error) {
 		
 		$.ajax({
 			type : 'delete',
 			url : '/warm/comments/' + review_cmt_no,
+			data : JSON.stringify({review_cmt_no:review_cmt_no, user_id : user_id}),
+			contentType : "application/json; charset=utf-8",
 			success : function(deleteResult, status, xhr) {
 				if(callback) {
 					callback(deleteResult);

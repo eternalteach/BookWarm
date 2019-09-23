@@ -12,6 +12,7 @@ import com.book.warm.page.Criteria;
 import com.book.warm.vo.BookVO;
 import com.book.warm.vo.ReviewAttachVO;
 import com.book.warm.vo.ReviewBoardVO;
+import com.book.warm.vo.ReviewMainVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -22,6 +23,12 @@ public class ReviewBoardService {
 	@Inject
 	ReviewBoardMapper mapper;
 	
+
+	public List<ReviewMainVO> selectBoardList(String user_id) {
+		
+		return mapper.selectBoardList(user_id);
+	}
+	
 	/*
 	 * public List<ReviewBoardVO> getListPerBook(String isbn, String user_id) {
 	 * 
@@ -29,7 +36,7 @@ public class ReviewBoardService {
 	 */
 	
 	public List<ReviewBoardVO> getListPerBook(String isbn, String user_id, Criteria cri) {
-
+		
 		return mapper.getListPerBookWithPaging(isbn, user_id, cri);
 	}
 	
@@ -37,8 +44,8 @@ public class ReviewBoardService {
 		return mapper.showBookThumbnail(isbn);
 	}
 
-	public ReviewBoardVO selectedReview(int review_no, String user_id) {
-		return mapper.selectedReview(review_no, user_id);
+	public ReviewBoardVO selectedReview(int review_no) {
+		return mapper.selectedReview(review_no);
 	}
 
 	public BookVO bookInfo(String isbn) {
@@ -63,15 +70,27 @@ public class ReviewBoardService {
 		
 //		return mapper.registerReview(rbVO);
 	}
-
+	
+	@Transactional
 	public int deleteReview(ReviewBoardVO rbVO) {
-
+		// review 삭제시 첨부파일도 함께 삭제
+		mapper.deleteAll(rbVO.getReview_no());
 		return mapper.deleteReview(rbVO);
 	}
 
-	public int modifyReview(ReviewBoardVO rbVO) {
+	@Transactional
+	public boolean modifyReview(ReviewBoardVO rbVO) {
 		
-		return mapper.modifyReview(rbVO);
+		mapper.deleteAll(rbVO.getReview_no());
+		boolean modifyResult = mapper.modifyReview(rbVO) == 1;
+		
+		if(modifyResult && rbVO.getAttachList() != null && rbVO.getAttachList().size() > 0) {
+			rbVO.getAttachList().forEach(attach -> {
+				attach.setReview_no(rbVO.getReview_no());
+				mapper.insert(attach);
+			});
+		}
+		return modifyResult;
 	}
 	
 	public int getTotal(Criteria cri, String isbn, String user_id) {
@@ -84,5 +103,6 @@ public class ReviewBoardService {
 		log.info("get Attach list by review_no" + review_no);
 		return mapper.findByReviewNo(review_no);
 	}
+
 
 }

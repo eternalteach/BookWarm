@@ -35,11 +35,13 @@
                               <thead>
                                  <tr>
                                     <th class="cart-product-remove"><input type="checkbox" id="selectAll" checked></th>
+                                    <th class="cart-product-thumbnail">isbn</th>
                                     <th class="cart-product-thumbnail">&nbsp;</th>
                                     <th class="cart-product-name">도서 정보</th>
                                     <th class="cart-product-price">가 격</th>
                                     <th class="cart-product-quantity">수 량</th>
                                     <th class="cart-product-subtotal">총 액</th>
+                                    <th class="cart-product-subtotal">&nbsp;</th>
                                  </tr>
                               </thead>
                               
@@ -55,6 +57,9 @@
 		                                    <td class="cart-product-checkbox">
 		                                       <input type="checkbox" class="chkbox" name="cart_no" value="${vo.cart_no}"checked>
 		                                    </td>
+		                                    <td class="cart-product-thumbnail">
+		                                       <a href="#"><img width="64" height="64">${vo.isbn}</a>
+		                                    </td>
 											<!-- 책 이미지(사진) -->
 		                                    <td class="cart-product-thumbnail">
 		                                       <a href="#"><img width="64" height="64" src="${vo.book_img}"></a>
@@ -69,7 +74,7 @@
 		                                    </td>
 											<!-- 수량 -->
 		                                    <td class="cart-product-quantity">
-		                                       <div class="form-group">
+		                                       <div class="form-group" name="cart_cnt">
 		                                       	  <a href="<%=path1 %>/shop/cntDown?user_id=${vo.user_id}&cart_no=${vo.cart_no}&cart_cnt=${vo.cart_cnt}">-&nbsp&nbsp&nbsp</a>
 		                                       	  ${vo.cart_cnt}
 		                                       	  <a href="<%=path1 %>/shop/cntUp?user_id=${vo.user_id}&cart_no=${vo.cart_no}&cart_cnt=${vo.cart_cnt}">&nbsp&nbsp&nbsp+</a>
@@ -82,7 +87,7 @@
 		                                    </td>
 		                                    <!-- 쓰레기통 모양 아이콘 -->
 		                                    <td class="cart-product-remove">
-		                                       <a href="<%=path1%>/shop/removeCartItem?user_id=${vo.user_id}&isbn=${vo.isbn}" class="remove" title="Remove this item"><i class="fa fa-trash"></i></a>
+		                                       <a href="<%=path1%>/shop/removeCartItem?cart_no=${vo.cart_no}" class="remove" title="Remove this item"><i class="fa fa-trash"></i></a>
 		                                    </td>
 		                                 </tr>
 		                                 <!-- 한 개 기준(끝) -->

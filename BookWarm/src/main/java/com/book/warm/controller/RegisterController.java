@@ -103,19 +103,12 @@ public class RegisterController {
 		if(userVO==null)
 			return "redirect:/checkDuplicateRegister";
 		
-		// 비번 암호화
-		SecurityUtil sha2 = new SecurityUtil();
-		String encryptPw = sha2.encryptSHA256(userVO.getUser_pw());
-		userVO.setUser_pw(encryptPw);
-		
-		String str = req.getParameter("user_bday_string");
-		
-		// String->Timestamp
-		str += " 00:00:00";
-		Timestamp ts = Timestamp.valueOf(str);
-		userVO.setUser_bday(ts);
-		
-		
+		/* ===========> 로그인 시큐리티 적용으로 비번 암호화 해제
+		 * // 비번 암호화 SecurityUtil sha2 = new SecurityUtil(); String encryptPw =
+		 * sha2.encryptSHA256(userVO.getUser_pw()); userVO.setUser_pw(encryptPw);
+		 * 
+		 * System.out.println(userVO.getUser_pw());
+		 */
 		// 받아온 데이터 db에 넣기
 		registerService.insertNewUser(userVO);
 		return "/registerSuccess";

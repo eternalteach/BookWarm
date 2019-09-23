@@ -12,7 +12,7 @@
     
     <div role="main" class="main">
 
-        <section class="page-header">
+        <section class="page-header" style="margin-bottom:10px">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-8 text-left">
@@ -31,25 +31,26 @@
             </div>
         </section>
 
-        <div class="v-page-wrap has-left-sidebar has-one-sidebar">
+        <div class="v-page-wrap has-left-sidebar has-one-sidebar" style="margin-top:0px">
             <div class="container">
                 <div class="row">
 
                     
 
-                    <aside class="sidebar left-sidebar col-sm-3">
+                    <aside class="sidebar left-sidebar col-sm-3" style="margin-top:20px">
                     
                     	<!-- 사이드바에 해당 책 이미지와 책 제목+작가 띄워보기. -->
                     	
                     	<section>
                             <div>
                                 <ul>
-                                    <li><a href="#">
-                                			<img src="${thumbnail.img_src}">
+                                    <li>
+                                    	<a href="#">
+                                			<img src="${thumbnail.book_img}" style="display:block; margin:auto">
                             			</a>
                             		</li>
-                                    <li>${thumbnail.book_title}</li>
-                                    <li>${thumbnail.writer_name}</li>
+                                    <li style="text-align:center; margin:5px">${thumbnail.book_title}</li>
+                                    <li style="text-align:center">${thumbnail.writer_name}</li>
                                 </ul>
                             </div>
                             
@@ -65,49 +66,8 @@
                             </form>
                         </section>
                         
-                        
-                        <section class="widget v-category-widget clearfix">
-                            <div class="widget-heading clearfix">
-                                <h4 class="v-heading"><span>Categories</span></h4>
-                            </div>
-                            <ul>
-                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Web Design</a> </li>
-                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Bootstrap</a> </li>
-                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Business</a> </li>
-                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">JQuery</a> </li>
-                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Gaming</a> </li>
-                                <li><a href="./resources/Vertex/blog-standard-post.html" title="View all posts">Photography</a> </li>
-                            </ul>
-                        </section>
-                        <section class="widget v-recent-entry-widget clearfix">
-                            <div class="widget-heading clearfix">
-                                <h4 class="v-heading"><span>Recent Posts</span></h4>
-                            </div>
-                            <ul>
-                                <li>
-                                    <a href="./resources/Vertex/blog-standard-post.html">Amazing Standard Post</a>
-                                    <span class="post-date">March 12, 2018</span>
-                                </li>
-                                <li>
-                                    <a href="./resources/Vertex/blog-full-width-post.html">Full Width Media Post</a>
-                                    <span class="post-date">September 25, 2018</span>
-                                </li>
-                                <li>
-                                    <a href="./resources/Vertex/blog-video-post.html">Perfect Video Post</a>
-                                    <span class="post-date">November 19, 2014</span>
-                                </li>
-                                <li>
-                                    <a href="./resources/Vertex/blog-slideshow-post.html">Amazing Slideshow post</a>
-                                    <span class="post-date">November 21, 2018</span>
-                                </li>
-                                <li>
-                                    <a href="./resources/Vertex/blog-standard-post.html">Text-only Post</a>
-                                    <span class="post-date">March 23, 2018</span>
-                                </li>
-                            </ul>
-                        </section>
 
-                        <section class="widget widget_sf_recent_custom_comments clearfix">
+                        <!-- <section class="widget widget_sf_recent_custom_comments clearfix">
                             <div class="widget-heading clearfix">
                                 <h4 class="v-heading"><span>Recent Comments</span></h4>
                             </div>
@@ -167,7 +127,7 @@
                                     </div>
                                 </li>
                             </ul>
-                        </section>
+                        </section> -->
 
                         <section class="widget v-tag-cloud-widget clearfix">
                             <div class="widget-heading clearfix">
@@ -195,32 +155,35 @@
                             <ul class="v-blog-items row standard-items clearfix">
                             
                             <!-- 감상 작성 버튼 추가 -->
-                            <li class="v-blog-item col-sm-12">
-                            	<a class="btn btn-outline-secondary" href="/warm/reviewWrite?isbn=${list[0].isbn}&user_id=${list[0].user_id}">
+                            <li class="col-sm-12" style="margin-top:10px">
+                            	<div class="pull-right">
+                            	
+                            	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${list[0].isbn}&user_id=${list[0].user_id}">
 		                            	<span class="text ls-1">
-		                            		Write Review
+		                            		감상 더하기
 			                                <i class="icon icon-pen-3"></i>
 		                            	</span>
-                            	</a>
-                            	<a class="btn btn-outline-secondary" href="/warm/reviewMain?isbn=${list[0].isbn}&user_id=${list[0].user_id}">
+                            	</a><br>
+                            	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${list[0].isbn}&user_id=${list[0].user_id}">
 		                            	<span class="text ls-1">
 		                            		서재로 돌아가기
+		                            		<i class="fa fa-book"></i>
 		                            	</span>
-                            	</a>
+                            	</a><br>
+                            	</div>
                             </li>
-                            
                             
                             <!-- 8/28 책별 감상 뿌리기 -->
                             <c:forEach items="${list}" var="vo">
                             
 	                        <!-- 8/29 날짜 형식 변환: 달을 영어로 출력하기 위해 언어 변경, format을 필요 데이터만 필요한 형태로 변환 -->    
 	                        <fmt:setLocale value="en_US" scope="session"/>
-                            <fmt:formatDate var="fmt_date" value="${vo.review_modify_date}" pattern="ddMMM"/>
+                            <fmt:formatDate var="fmt_date" value="${vo.review_written_date}" pattern="ddMMM"/>
                             <!-- 		작성일 혹은 수정일을 쪼개서 형식에 맞게 넣기 위한 c태그 추가 -->
                             <c:set var="tmp_date" value="${fmt_date}"/>
                             
-								<li class="v-blog-item col-sm-12">
-
+								<li class="v-blog-item col-sm-12" style="margin-top:20px">
+									
                                     <div class="post-content no-thumb clearfix">
 
                                         <div class="v-post-date pull-left">
@@ -236,7 +199,7 @@
 												
                                                 <div class="post-meta-info">
                                                     <span class="blog-author minor-meta">
-                                                        Posted by
+                                                        	글쓴이
                                                         <span class="entry-author-link">
                                                             <span class="vcard author">
                                                                 <span class="v-blog-item-details">
@@ -248,11 +211,15 @@
                                                     <span class="text-sep">|</span>
 
                                                     <span class="blog-categories minor-meta">
-                                                        <a href="#">News</a>, <a href="#">Updates</a> <span class="text-sep">|</span>
+                                                        <a href="#">${vo.review_modify_date}
+                                                        <c:if test="${vo.review_modify_date != vo.review_written_date}">
+                                                        	(수정됨)
+                                                        </c:if>
+                                                        </a> <span class="text-sep">|</span>
 
-                                                        <span class="comment-container minor-meta">
-                                                            <a href="./resources/Vertex/blog-standard-post.html#comment-area" class="comments-link">3 comments </a>
-                                                        </span>
+                                                        <span class="comment-container minor-meta" id="${vo.review_no}">
+                                                            <!-- 댓글 수가 입력될 공간 -->
+                                                   		</span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -261,8 +228,8 @@
                                                     ${vo.review_content}
                                                 </p>
                                             </div>
-                                            <a class="btn v-btn standard white sf-icon-stroke" style="float:right" href="/warm/reviewSelectOne?user_id=${vo.user_id}&review_no=${vo.review_no}&isbn=${vo.isbn}">
-                                                <i class="icon-arrow-32"></i><span class="text">Read more</span>
+                                            <a class="btn v-btn standard white" style="float:right" href="/warm/reviewSelectOne?user_id=${vo.user_id}&review_no=${vo.review_no}&isbn=${vo.isbn}">
+                                                <i class="icon-arrow-32" style="font-size:11px"></i><span class="text"> Read more</span>
                                             </a>
                                         </div>
                                     </div>
@@ -270,77 +237,6 @@
                                 
 							</c:forEach>                                
 
-
-
-                                
-                                <li class="v-blog-item col-sm-12">
-                                
-                                    <figure class="animated-overlay overlay-alt">
-                                        <div class="flexslider thumb-slider">
-                                            <ul class="slides">
-                                                <li>
-                                                    <a href="./resources/Vertex/blog-full-width-post.html" class="link-to-post">
-                                                        <img src='./resources/Vertex/img/blog/b-fw-5.jpg' />
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="./resources/Vertex/blog-full-width-post.html" class="link-to-post">
-                                                        <img src='./resources/Vertex/img/blog/b-fw-4.jpg' />
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </figure>
-                                    
-                                    
-                                    <div class="post-content">
-
-                                        <div class="v-post-date pull-left">
-                                            <span class="day">17</span>
-                                            <span class="month">Mar</span>
-                                            <div class="like-holder like-button"><i class="fa fa-heart"></i>18</div>
-                                        </div>
-                                        <div class="post-inner">
-                                            <div class="post-header">
-                                                <h2 class="title"><a href="./resources/Vertex/blog-full-width-post.html">How to Boost Your Business Email Writing Skills</a></h2>
-
-                                                <div class="post-meta-info">
-                                                    <span class="blog-author minor-meta">
-                                                        Posted by
-                                                        <span class="entry-author-link">
-                                                            <span class="vcard author">
-                                                                <span class="v-blog-item-details">
-                                                                    <a href="#" title="Posts by HB-Themes" rel="author">Vertex</a>
-                                                                </span>
-                                                            </span>
-                                                        </span>
-                                                    </span>
-                                                    <span class="text-sep">|</span>
-
-                                                    <span class="blog-categories minor-meta">
-                                                        <a href="#">News</a>, <a href="#">Updates</a> <span class="text-sep">|</span>
-
-                                                        <span class="comment-container minor-meta">
-                                                            <a href="./resources/Vertex/blog-slideshow-post.html#comment-area" class="comments-link">3 comments </a>
-                                                        </span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="v-blog-post-description">
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquam massa quis mauris sollicitudin
-                                                    commodo venenatis ligula commodo. Sed blandit convallis dignissim. Pellentesque pharetra velit eu velit
-                                                    elementum et convallis erat vulputate. Sed in nulla ut elit mollis posuere. Praesent a felis accumsan
-                                                    neque interdum molestie…
-                                                </p>
-                                            </div>
-                                            <a class="btn v-btn standard white sf-icon-stroke" href="./resources/Vertex/blog-full-width-post-2.html">
-                                                <i class="icon-arrow-32"></i><span class="text">Read more</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                               
                             </ul>
 
                             <nav aria-label="...">
@@ -406,6 +302,23 @@
         <script type="text/javascript">
         	$(document).ready(function() {
         		
+        		/* function encode(url) {
+        			return encodeURIComponent(url);
+        		}
+        		
+        		var tt = document.getElementById('aa').src;
+        		console.log(tt);
+        		console.log("전: " + tt);
+        		
+				document.getElementById('aa').src = '/warm/display?fileName=' + encodeURIComponent(tt);
+				
+				console.log("후: " + tt);
+				
+				var fileCallPath = encodeURIComponent("${img.uploadPath}" + "/" + "${img.uuid}" + "_" + "${img.fileName}");
+				console.log(fileCallPath); */
+        		
+				
+				
         		var actionForm = $("#actionForm");
         		
         		$(".page-link").on("click", function(e) {
@@ -455,6 +368,29 @@
         		
         	});
         </script>
+        
+    <!-- 댓글 처리를 위한 comment.js 추가 -->
+    <script type="text/javascript" src = "/warm/resources/Vertex/js/comment.js"></script>
+    
+    <script>
+    	
+    	// 댓글 수를 표시하기 위한 즉시실행함수.
+    	var cmtCntArr = $(".comment-container");
+    	(function() {
+    		$(cmtCntArr).each(function(i, cmt) {
+    			var cmtATag = cmtCntArr.eq(i);
+    			var review_no = cmt.id;
+    			var str="";
+    			commentService.getList({review_no: review_no}, function(commentCnt) {
+    				str += "<a><i class='fa fa-commenting-o' style='transform:scaleX(-1)'></i> " + commentCnt + "</a>";
+					cmtATag.html(str);    			
+    			});
+    		});
+    		
+    	})();
+    	
+    </script>
+    
 
 <%@ include file="./includes/footer/footer-6 from Vertex.jsp" %>
     </div>

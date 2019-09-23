@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.book.warm.mapper.ShopMapper;
@@ -28,7 +29,6 @@ public class ShopBoardService {
 	public void updateCnt(int cart_cnt, String cart_no) {
 		shopMapper.updateCnt(cart_cnt, cart_no);
 	}
-	
 	public CartJoinBookVO getCartOne(String cart_no) {
 		return shopMapper.getCartOne(cart_no);
 	}
@@ -40,25 +40,21 @@ public class ShopBoardService {
 	public List<CouponVO> getCouponList(String user_id) {
 		return shopMapper.getCouponList(user_id);
 	}
-
-
 	
+	//====================추가코드==========================
+	public void insertcart(CartJoinBookVO cartvo) {
+		shopMapper.insertcart(cartvo);
+	}
+	public int countcart(String isbn, String user_id) {
+		return shopMapper.countcart(isbn, user_id);
+	}
+	public void updatecart(CartJoinBookVO cartvo) {
+		shopMapper.updatecart(cartvo);
+	}
+	public void delete(int cart_no) {
+		shopMapper.delete(cart_no);
+	}
+	//==================================================
 	
-	
-	
-//	@Inject
-//	SqlSessionTemplate sqlSession;
-//	
-////	public List<CartVO> cartList(String user_id) {
-////		return sqlSession.selectList("shopping.listCart", user_id);
-////	}
-//	
-//	public List<CartVO> cartList(String user_id) {
-//		return sqlSession.selectList("shopping.listCart", user_id);
-//	}
-//	
-//	public List<CartVO> removeCart(CartVO cartVO) {
-//		return sqlSession.selectList("shopping.removeCart", cartVO);
-//	}
 	
 }

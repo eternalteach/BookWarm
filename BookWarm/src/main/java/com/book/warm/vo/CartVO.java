@@ -12,12 +12,6 @@ public class CartVO { // hold modify
 	public void setCart_no(int cart_no) {
 		this.cart_no = cart_no;
 	}
-	public int getCart_cnt() {
-		return cart_cnt;
-	}
-	public void setCart_cnt(int cart_cnt) {
-		this.cart_cnt = cart_cnt;
-	}
 	public String getUser_id() {
 		return user_id;
 	}

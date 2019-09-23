@@ -50,6 +50,7 @@ public class CommunityBoardCommentController {
 		log.info(comm_no);
 		return new ResponseEntity<>(service.getListPage(criteria, comm_no), HttpStatus.OK);
 	}
+	
 	// get comment
 	@GetMapping(value="{comm_cmt_no}", produces= {MediaType.APPLICATION_ATOM_XML_VALUE,MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<CommunityBoardCommentVO> get(@PathVariable("comm_cmt_no")int comm_cmt_no){

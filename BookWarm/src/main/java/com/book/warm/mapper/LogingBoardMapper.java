@@ -10,9 +10,9 @@ import com.book.warm.vo.LogingBoardVO;
 
 public interface LogingBoardMapper {
 
-	public List<LogingBoardVO> getListWithPaging(@Param("criteria") Criteria criteria,@Param("bookVO") BookVO bookVO,@Param("user_id") String user_id);
+	public List<LogingBoardVO> getList(@Param("user_id") String user_id, @Param("isbn") String isbn);
 
-	public Integer CountWriteNo(@Param("bookVO")BookVO bookVO,@Param("user_id") String user_id);
+	public Integer CountWriteNo(@Param("bookVO")BookVO bookVO, @Param("user_id") String user_id);
 	
 	public int logingBoard(LogingBoardVO logingBoardVO);
 

@@ -2,12 +2,10 @@ package com.book.warm.service;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.book.warm.mapper.LogingBoardMapper;
-import com.book.warm.page.Criteria;
 import com.book.warm.vo.BookVO;
 import com.book.warm.vo.LogingBoardVO;
 
@@ -17,7 +15,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class RecordService {
 
-	@Inject
+	@Autowired
 	LogingBoardMapper mapper;
 
 	public BookVO getBook(String isbn) {
@@ -25,13 +23,16 @@ public class RecordService {
 		return mapper.getBookVO(isbn);
 	}
 
-	public List<LogingBoardVO> getList(Criteria criteria, BookVO bookVO, String user_id) {
+	public List<LogingBoardVO> getList(String user_id, String isbn) {
 		log.info("========== getList() ==========");
-		return mapper.getListWithPaging(criteria, bookVO, user_id);
+		return mapper.getList(user_id, isbn);
 	}
 
 	public Integer getCount(BookVO bookVO, String user_id) {
 		log.info("========== getCount() ==========");
+		log.info("getCount : bookVO.getIsbn()"+bookVO.getIsbn());
+		log.info("getCount : user_id"+user_id);
+		log.info(mapper);
 		return mapper.CountWriteNo(bookVO, user_id);
 	}
 

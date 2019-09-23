@@ -22,6 +22,8 @@
 								<div class="header-logo">
 									<a href="index.html"> <img alt="logo" width="80" height="100" src="./resources/img/header/Alice_rabbit03.png">
 									</a>
+									<!-- 임시 로그아웃 -->
+					 <a href="/warm/customLogout">로그아웃</a>
 								</div>
 							</div>
 						</div>

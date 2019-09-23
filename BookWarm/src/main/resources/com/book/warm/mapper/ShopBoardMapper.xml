@@ -10,13 +10,16 @@
 		on c.isbn = b.isbn
 		where c.user_id = #{user_id}
 	</select>
-	
+
 	<delete id="removeCart">
-		delete from cart where user_id = #{user_id} and isbn = #{isbn}
+		delete from cart 
+		where cart_no = #{cart_no}
 	</delete>
 	
 	<update id="updateCnt">
-		update cart set cart_cnt=#{cart_cnt} where cart_no=#{cart_no}
+		update cart 
+		set cart_cnt=#{cart_cnt} 
+		where cart_no=#{cart_no}
 	</update>
 	
 	<select id="getCartOne" resultType="com.book.warm.vo.CartJoinBookVO">
@@ -25,6 +28,34 @@
 		on c.isbn = b.isbn
 		where cart_no=#{cart_no}
 	</select>
+	
+	
+	<!-- ======================추가코드==============================  -->
+	<!-- 장바구니추가 -->
+	<select id="insertcart" parameterType="com.book.warm.vo.CartVO">
+	insert into cart(cart_no, user_id, isbn, cart_cnt)
+	values(CART_SEQ.nextval,  #{user_id}, #{isbn}, #{cart_cnt})
+	</select>
+	<!-- 장바구니 동일한 레코드 확인 -->
+ 	<select id="countcart" resultType="int">
+		select count(*)
+		from cart
+		where user_id = #{user_id}
+		and isbn = #{isbn}
+	</select> 
+	<!-- 동일한 제품이 존재하면 수정  -->
+	<update id="updatecart">
+	update cart
+	set cart_cnt = cart_cnt + #{cart_cnt}
+	where user_id = #{user_id}
+	and isbn = #{isbn}	
+	</update>	
+	<!-- 삭제 -->
+	<delete id="delete">
+	delete from cart
+	where cart_no = #{cart_no}
+	</delete>
+	<!-- ============================================================== -->
 	
 	<select id="getUserInfo" resultType="com.book.warm.vo.UserVO">
 		select user_id, user_name, user_phone, user_zipcode, user_addr, user_addr_detail, user_tot_price, user_point
@@ -52,7 +83,6 @@
 	
 	
 </mapper>
-
 
 
 

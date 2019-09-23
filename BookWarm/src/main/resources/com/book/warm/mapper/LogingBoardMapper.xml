@@ -5,13 +5,13 @@
 <mapper namespace="com.book.warm.mapper.LogingBoardMapper"> 
 
 	<select id='getList' resultType="com.book.warm.vo.LogingBoardVO">
-		select write_no, start_page, end_page, start_date, end_date, isbn  from loging_board where isbn=#{isbn}  AND user_id=#{user_id}
+		select write_no, start_page, end_page, start_date, end_date, isbn ,user_id from loging_board where isbn=#{isbn}  AND user_id=#{user_id}
 	</select>
 
 	<select id='getListWithPaging' resultType="com.book.warm.vo.LogingBoardVO">
 		<![CDATA[
-select write_no, start_page, end_page, start_date, end_date, isbn  from(
-select /*INDEX_DESC(loging_board pk_board)*/ rownum rn, write_no, start_page, end_page, start_date, end_date, isbn  from loging_board where isbn=#{bookVO.isbn}  AND user_id=#{user_id} and rownum<=#{criteria.pageNum}*#{criteria.amount})where rn>(#{criteria.pageNum}-1)*#{criteria.amount}
+select user_id, write_no, start_page, end_page, start_date, end_date, isbn  from(
+select /*INDEX_DESC(loging_board pk_board)*/ rownum rn, write_no, start_page, end_page, start_date, end_date, isbn,user_id  from loging_board where isbn=#{bookVO.isbn}  AND user_id=#{user_id} and rownum<=#{criteria.pageNum}*#{criteria.amount})where rn>(#{criteria.pageNum}-1)*#{criteria.amount}
 		]]>
 	</select>
 	<!-- to_char('start_date','yyyy-mm-dd') -->
@@ -24,11 +24,11 @@ select /*INDEX_DESC(loging_board pk_board)*/ rownum rn, write_no, start_page, en
 	</insert>
 	<!-- enddate는 따로 기록하지말고 입력 마지막 날짜로 하자. -->
 	<select id="getLogingVOForWriteNo" resultType="com.book.warm.vo.LogingBoardVO" >
-		select write_no, isbn, start_page, end_page, start_date, end_date from loging_board where write_no=#{write_no}
+		select write_no, isbn, start_page, end_page, start_date, end_date ,user_id from loging_board where write_no=#{write_no}
 	</select>
 	
 	<update id="modifyLoging" >
-		update loging_board set isbn=#{isbn}, start_page=#{start_page}, end_page=#{end_page}, start_date=#{start_date}, end_date='${end_date}' where write_no=#{write_no}
+		update loging_board set start_page=#{start_page}, end_page=#{end_page}, start_date=#{start_date}, end_date='${end_date}' where write_no=#{write_no} and user_id=#{user_id}
 	</update>
 	
 	<delete id="deleteLoging" >

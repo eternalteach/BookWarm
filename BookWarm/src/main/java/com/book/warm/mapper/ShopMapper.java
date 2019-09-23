@@ -30,4 +30,11 @@ public interface ShopMapper {
 
 	public List<CouponVO> getCouponList(@Param("user_id") String user_id);
 	
+	//=================추가코드==========================================
+	public void insertcart(CartJoinBookVO cartvo);
+	public int  countcart(@Param("isbn")String isbn, @Param("user_id") String user_id);
+	public void updatecart(CartJoinBookVO cartvo);
+	public void delete(int cart_no);
+	//===============================================================
+	
 }
