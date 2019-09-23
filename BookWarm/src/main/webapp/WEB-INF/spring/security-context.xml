@@ -13,15 +13,16 @@
 
 	<security:http auto-config="true" use-expressions="true">
 		
+		<security:csrf disabled="true"/>
 		<security:access-denied-handler ref="customAccessDenied"/>
-
+		
 		<security:intercept-url pattern="/index" access="permitAll"/>
-<!-- 
-		<security:intercept-url pattern="/**" access="isAuthenticated()"/> -->
+		<security:intercept-url pattern="/register" access="permitAll"/>
+		<security:intercept-url pattern="/preview" access="permitAll"/>
+		<security:intercept-url pattern="/***" access="isAuthenticated()"/>
 		
-		<!-- <security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')"/>
-		<security:intercept-url pattern="/library" access="hasRole('ROLE_MEMBER')"/> -->
-		
+		<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')"/>
+		<!-- <security:intercept-url pattern="/library" access="hasRole('ROLE_MEMBER')"/> -->
 		
 		<security:access-denied-handler ref="customAccessDenied"/>
 		

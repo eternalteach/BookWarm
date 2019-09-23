@@ -1,9 +1,9 @@
 package com.book.warm.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -20,9 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.book.warm.function.RecordFunction;
-import com.book.warm.page.CommunityCommentPageDTO;
-import com.book.warm.page.Criteria;
-import com.book.warm.page.PageDTO;
 import com.book.warm.service.RecordService;
 import com.book.warm.service.StatisticsFunctionService;
 import com.book.warm.vo.BookVO;
@@ -45,10 +42,10 @@ public class RecordBoardController {
 
 	@RequestMapping(value = "/record", method = RequestMethod.GET)
 	// add task - get book command(need total page)
-	public String record(Model model, @Param("bookVO") BookVO bookVO,  HttpServletRequest req,HttpSession session)
+	public String record(Model model, @Param("bookVO") BookVO bookVO, Principal principal)
 			throws Exception {
 		log.info("===== record() =====");
-		String user_id=(String)session.getAttribute("user_id");
+		String user_id = principal.getName();
 		bookVO = recordService.getBook(bookVO.getIsbn());// get isbn and set all bookVO attr
 		List<LogingBoardVO> logingList = recordService.getList(user_id, bookVO.getIsbn());
 		int recordNum= recordService.getCount(bookVO, user_id);
@@ -79,9 +76,9 @@ public class RecordBoardController {
 	
 	
 	@PostMapping(value = "/recordwrite", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> recordWrite(HttpSession session, @RequestBody LogingBoardVO logingBoardVO) {
+	public ResponseEntity<String> recordWrite(Principal principal, @RequestBody LogingBoardVO logingBoardVO) {
 		log.info("========== recordWrite ==========");
-		String user_id=(String)session.getAttribute("user_id");
+		String user_id = principal.getName();
 		logingBoardVO.setUser_id(user_id);
 		int insertCount = recordService.addRecord(logingBoardVO);
 		log.info("Comment INSERT COUNT : " + insertCount);
