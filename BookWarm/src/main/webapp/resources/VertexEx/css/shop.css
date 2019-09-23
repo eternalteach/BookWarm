@@ -527,8 +527,11 @@ ul.mini-list {
    margin-bottom: 10px;
 }
 
+.single-product-inner{
+	padding-top: 100px;
+}
 
-.single-product-wrap .single-product-inner {
+.single-product-wrap {
 
    background: #fff;
    padding-top: 150px;

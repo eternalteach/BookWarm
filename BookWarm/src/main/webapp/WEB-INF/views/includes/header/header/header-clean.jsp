@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<%@ include file="./header/vertexExHeader.jsp"%>
+<%@ include file="./vertexExHeader.jsp"%>
 </head>
 <body>
 	<div class="wrapper">
