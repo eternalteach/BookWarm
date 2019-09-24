@@ -1,5 +1,4 @@
 <%@page import="com.book.warm.service.RegisterService"%>
-<% String path = request.getContextPath(); %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -15,47 +14,47 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
 
     <!-- Libs CSS -->
-    <link href="<%=path %>/resources/Vertex/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="<%=path %>/resources/Vertex/css/style.css" rel="stylesheet" />
-    <link href="<%=path %>/resources/Vertex/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="<%=path %>/resources/Vertex/css/streamline-icon.css" rel="stylesheet" />
-    <link href="<%=path %>/resources/Vertex/css/header.css" rel="stylesheet" />
-    <link href="<%=path %>/resources/Vertex/css/portfolio.css" rel="stylesheet" />
-    <link href="<%=path %>/resources/Vertex/css/blog.css" rel="stylesheet" />
-    <link href="<%=path %>/resources/Vertex/css/v-animation.css" rel="stylesheet" />
-    <link href="<%=path %>/resources/Vertex/css/v-bg-stylish.css" rel="stylesheet" />
-    <link href="<%=path %>/resources/Vertex/css/font-icons.css" rel="stylesheet" />
-    <link href="<%=path %>/resources/Vertex/css/shortcodes.css" rel="stylesheet" />
-    <link href="<%=path %>/resources/Vertex/css/utilities.css" rel="stylesheet" />
-    <link href="<%=path %>/resources/Vertex/css/theme-responsive.css" rel="stylesheet" />
-    <link href="<%=path %>/resources/Vertex/plugins/aos/aos.css" rel="stylesheet" />
-    <link href="<%=path %>/resources/Vertex/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
-    <link href="<%=path %>/resources/Vertex/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
+    <link href="/warm/resources/Vertex/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/warm/resources/Vertex/css/style.css" rel="stylesheet" />
+    <link href="/warm/resources/Vertex/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/warm/resources/Vertex/css/streamline-icon.css" rel="stylesheet" />
+    <link href="/warm/resources/Vertex/css/header.css" rel="stylesheet" />
+    <link href="/warm/resources/Vertex/css/portfolio.css" rel="stylesheet" />
+    <link href="/warm/resources/Vertex/css/blog.css" rel="stylesheet" />
+    <link href="/warm/resources/Vertex/css/v-animation.css" rel="stylesheet" />
+    <link href="/warm/resources/Vertex/css/v-bg-stylish.css" rel="stylesheet" />
+    <link href="/warm/resources/Vertex/css/font-icons.css" rel="stylesheet" />
+    <link href="/warm/resources/Vertex/css/shortcodes.css" rel="stylesheet" />
+    <link href="/warm/resources/Vertex/css/utilities.css" rel="stylesheet" />
+    <link href="/warm/resources/Vertex/css/theme-responsive.css" rel="stylesheet" />
+    <link href="/warm/resources/Vertex/plugins/aos/aos.css" rel="stylesheet" />
+    <link href="/warm/resources/Vertex/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
+    <link href="/warm/resources/Vertex/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
 
     <!-- Skin -->
-    <link rel="stylesheet" href="<%=path %>/resources/Vertex/css/skin/default.css">
+    <link rel="stylesheet" href="/warm/resources/Vertex/css/skin/default.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="<%=path %>/resources/Vertex/css/custom.css">
+    <link rel="stylesheet" href="/warm/resources/Vertex/css/custom.css">
     
     <!-- Libs -->
-    <script src="<%=path %>/resources/Vertex/js/jquery.min.js"></script>
-    <script src="<%=path %>/resources/Vertex/js/popper.js"></script>
-    <script src="<%=path %>/resources/Vertex/js/bootstrap.min.js"></script>
-    <script src="<%=path %>/resources/Vertex/js/jquery.flexslider-min.js"></script>
-    <script src="<%=path %>/resources/Vertex/js/jquery.easing.js"></script>
-    <script src="<%=path %>/resources/Vertex/js/jquery.fitvids.js"></script>
-    <script src="<%=path %>/resources/Vertex/js/jquery.carouFredSel.min.js"></script>
-    <script src="<%=path %>/resources/Vertex/js/jquery.validate.js"></script>
-    <script src="<%=path %>/resources/Vertex/js/theme-plugins.js"></script>
-    <script src="<%=path %>/resources/Vertex/js/jquery.isotope.min.js"></script>
-    <script src="<%=path %>/resources/Vertex/js/imagesloaded.js"></script>
-    <script src="<%=path %>/resources/Vertex/js/view.min.js?auto"></script>
-    <script src="<%=path %>/resources/Vertex/plugins/aos/aos.js"></script>
+    <script src="/warm/resources/Vertex/js/jquery.min.js"></script>
+    <script src="/warm>/resources/Vertex/js/popper.js"></script>
+    <script src="/warm/resources/Vertex/js/bootstrap.min.js"></script>
+    <script src="/warm/resources/Vertex/js/jquery.flexslider-min.js"></script>
+    <script src="/warm/resources/Vertex/js/jquery.easing.js"></script>
+    <script src="/warm/resources/Vertex/js/jquery.fitvids.js"></script>
+    <script src="/warm/resources/Vertex/js/jquery.carouFredSel.min.js"></script>
+    <script src="/warm/resources/Vertex/js/jquery.validate.js"></script>
+    <script src="/warm/resources/Vertex/js/theme-plugins.js"></script>
+    <script src="/warm/resources/Vertex/js/jquery.isotope.min.js"></script>
+    <script src="/warm>/resources/Vertex/js/imagesloaded.js"></script>
+    <script src="/warm/resources/Vertex/js/view.min.js?auto"></script>
+    <script src="/warm/resources/Vertex/plugins/aos/aos.js"></script>
 
-    <script src="<%=path %>/resources/Vertex/js/theme-core.js"></script>
-    <script src="<%=path %>/resources/Vertex/js/theme.js"></script>
-    <script src="<%=path %>/resources/Vertex/js/theme.init.js"></script>
+    <script src="/warm/resources/Vertex/js/theme-core.js"></script>
+    <script src="/warm/resources/Vertex/js/theme.js"></script>
+    <script src="/warm/resources/Vertex/js/theme.init.js"></script>
     
     
     <!-- registerPage.jsp에서 사용하는 스크립트 -->
@@ -188,7 +187,7 @@
     	// 아이디 중복검사(ajax)
     	$('#user_id').on('blur', function() {
     		var user_id = $('#user_id').val();
-    		var url = "<%=path%>/register/idCheck?user_id=" + user_id;
+    		var url = "/warm/register/idCheck?user_id=" + user_id;
     		var idConfirmMsg = $('#idConfirmMsg');
     		
     		// 아이디 형식 검사(4자리 이상, 20자리 이하)
@@ -204,7 +203,7 @@
     	// 닉네임 중복검사(ajax)
     	$('#user_nickname').on('blur', function(){
     		var user_nickname = $('#user_nickname').val();
-    		var url = "<%=path%>/register/nicknameCheck?user_nickname=" + user_nickname;
+    		var url = "/warm/register/nicknameCheck?user_nickname=" + user_nickname;
     		var nicknameConfirmMsg = $('#nicknameConfirmMsg');
     		chkDuplicated(url, nicknameConfirmMsg, "닉네임");
     	})
@@ -395,4 +394,4 @@
 	</script>
 	
 <!-- login 확인하기 -->
-<script type="text/javascript" src="resources/js/logintest.js"></script> 
+<script type="text/javascript" src="/warm/resources/js/logintest.js"></script> 

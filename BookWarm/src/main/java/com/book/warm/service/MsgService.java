@@ -17,17 +17,17 @@ public class MsgService {
 	@Inject
 	MsgMapper msgmapper;
 	
-	public List<MsgTableVO> msglist() throws Exception{
-		return msgmapper.msglist();
+	public List<MsgTableVO> msglist(String msg_get_id) {
+		return msgmapper.msglist(msg_get_id);
+	}
+	public List<MsgTableVO> msglist2(String msg_send_id) {
+		return msgmapper.msglist2(msg_send_id);
+	}
+	//
+	public void msginsert(MsgTableVO msgvo) {
+		msgmapper.msginsert(msgvo);
 	}
 	
-	public int msginsert(MsgTableVO msgvo) throws Exception{
-		return msgmapper.msginsert(msgvo);
-	}
-
-	public MsgTableVO msgread(int msg_no) throws Exception{
-		return msgmapper.msgread(msg_no);
-	}
 	
 	public int msgdelete(int msg_no) throws Exception{
 		return msgmapper.msgdelete(msg_no);

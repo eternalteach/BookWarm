@@ -33,13 +33,16 @@
 					<div class="col-sm-3 v-right-sidebar-wrap pt-8">
 						<!--Tab-->
 						<ul id="myTab" class="nav v-right-sidebar-inner">
+							<li><a class="aa" href="#modal-msg" data-toggle="modal" data-target="#modal"
+							class="nav v-right-sidebar-inner" >
+							쪽지 보내기</a></li>
+							
 							<li><a href="#counters" data-toggle="tab"
 								class="active show"> <i class="fa fa-star-o"></i>받은쪽지함
 							</a></li>
 							<li><a href="#recent-posts" data-toggle="tab"> <i
-									class="fa fa-calendar"></i>보낸 쪽지함
+									class="fa fa-calendar"></i>보낸쪽지함
 							</a></li>
-
 						</ul>
 						<!--End Tab-->
 					</div>
@@ -60,11 +63,14 @@
 												</div>
 												<div class="blog-list-content">
 													<h6 class="special">
-														<a href="#">${msglist.msg_title}</a>
+														<a href="#">제목 : ${msglist.msg_title}</a>
 													</h6>
-													<small>${msglist.msg_get_id}</small>
+													<small>보낸 사람 ${msglist.msg_send_id}</small>
+													<small>받는 사람 ${msglist2.msg_get_id}</small>
 													<div class="blog-list-item-excerpt">
-														<p>${msglist.msg_content}</p>
+														<p>내용 : ${msglist.msg_content}</p>
+														<a class="aa" href="#modal-msg" data-toggle="modal" data-target="#modal">
+													답장하기</a>
 													</div>
 												</div>
 											</div>
@@ -82,28 +88,7 @@
 											<div class="blog-list-item-date">
 												03<span>Mar</span>
 											</div>
-											<div class="blog-list-content">
-												<h6 class="special">
-													<a href="#">Standard Image Post</a>
-												</h6>
-												<small>5 Comments</small>
-												<div class="blog-list-item-excerpt">
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-														elit. Aliquam bibendum, libero eu rutrum feugiat, urna
-														orci porta, Lorem ipsum dolor sit amet, consectetur
-														adipiscing elit</p>
-													<a href="#" class="read-more">Read More</a>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-md-6">
-										<div class="v-blog-recent-post">
-											<div class="blog-list-item-date">
-												03<span>Mar</span>
-											</div>
-											<div class="blog-list-content">
+											<!-- <div class="blog-list-content">
 												<h6 class="special">
 													<a href="#" title="Youtube Post">Full Width Media Post</a>
 												</h6>
@@ -113,12 +98,20 @@
 														elit. Aliquam bibendum, libero eu rutrum feugiat, urna
 														orci porta, Lorem ipsum dolor sit amet, consectetur
 														adipiscing elit</p>
-													<a href="#modal-msg" class="read-more" data-toggle="modal">
-														<strong class="primary-color" data-to="${recordNum}"
-														data-plugin-options="{&quot;decimals&quot;: 0}">답장하기</strong>
+													<a class="aa" href="#modal-msg" data-toggle="modal" data-target="#modal">
+													<img class="read-more">답장하기
 													</a>
 												</div>
-											</div>
+											</div> -->
+											<div class="blog-list-content">
+													<h6 class="special">
+														<a href="#">제목 : ${msglist2.msg_title}</a>
+													</h6>
+													<small>보낸 사람 ${msglist2.msg_send_id}</small>
+													<small>받는 사람 ${msglist2.msg_get_id}</small>
+													<div class="blog-list-item-excerpt">
+														<p>내용 : ${msglist2.msg_content}</p>
+												</div>
 										</div>
 									</div>
 								</div>
@@ -134,53 +127,28 @@
 
 	</div>
 	
-
-	
-	<%@ include file="./msg_modal.jsp"%>
-	<!-- 모달  -->
-	<div class="modal fade" id="#modal-msg" tabindex="-1"
-		role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
-		<div class="modal-dialog undefined">
-			<div class="modal-content">
-				<div class="modal-body post-content">
-
-
-
-
-						<!-- 수정해야함 -->
-						<div class="post-header form-header">
-			<%-- 	<h3> <span class="blog-author minor-meta"> Posted by 
-		<span class="entry-author-link"> 
-			<span class="vcard author">
-				<span class="v-blog-item-details"> <a href="#" title="Posts by HB-Themes" rel="author">${user_id}</a></span>
-			</span>
-		</span>
-	</span></h3>
-
-	<div class="center" style="overflow:auto; width:340px; height:250px;">
-		<!-- recordView는 JS로 처리 -->
-		<div class="recordView"></div>
-	</div>
-	<div class="form-horizontal center">
-		<br/>
-		<button type="button" class="close col-sm-6" data-dismiss="modal">Close</button>
-		<br/>
-	</div> --%>
-	하하
-</div>
-<!--  -->
-						
-
-
-
-
+<!-- 모달창 -->
+<div class="modal fade" id="modal${UserBooks.isbn}" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+    <div class="modal-dialog undefined">
+        <div class="modal-content">
+            <div class="modal-body post-content">
+				<div class="form-inline" style="width:100px">
+					<div class="aa">
+						<form action="/warm/send">
+						보낸사람<input name="msg_get_id" type="text"><br><br>
+						  받는 사람<input name="msg_send_id" type="text"><br><br>
+						 제목 <input name="msg_title" type="text"><br><br>
+						  <textarea name="msg_content" style="width:400px; height:300px;"></textarea><br>
+						  <input type="submit" value="보내기">
+						 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						</form>
+					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-	
-	
-	
+            </div>
+        </div>
+    </div>
+</div>
+
 	<!-- Libs -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/popper.js"></script>
@@ -205,18 +173,6 @@
 		$(document).ready(function() {
 			$('a[href=' + window.location.hash + ']').tab('show');
 		});
-		
-		
-		
-		$(document).ready(function(){
-			
-			$(#)
-			
-		})
-		
-		
-		
-		
 		
 		
 		

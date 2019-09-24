@@ -9,16 +9,14 @@ import com.book.warm.vo.MsgTableVO;
 
 public interface MsgMapper {
 	
-	public List<MsgTableVO> msglist();
-
-	public int msginsert(MsgTableVO msgvo);
+	public List<MsgTableVO> msglist(String msg_get_id);
+	public List<MsgTableVO> msglist2(@Param("msg_send_id") String msg_send_id);
+	
+	public void msginsert(MsgTableVO msgvo);
 	
 	public MsgTableVO msgread(int msg_no);
 	
 	public int msgdelete(int msg_no);
 	
-	public List<MsgTableVO> msgpaging(
-			@Param("cri") Criteria cri,
-			@Param("msg_no") int msg_no);
 	
 }

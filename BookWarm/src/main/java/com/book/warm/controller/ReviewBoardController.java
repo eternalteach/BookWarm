@@ -53,7 +53,6 @@ public class ReviewBoardController {
 	ReviewBoardService service;
 	
 	@GetMapping("/reviewMain")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void recordMain(Principal principal, Model model) {
 		
 		model.addAttribute("list", service.selectBoardList(principal.getName()));
