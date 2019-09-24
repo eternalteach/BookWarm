@@ -13,7 +13,7 @@ public interface CommunityBoardCommentMapper {
 	
 	public int insertComment(CommunityBoardCommentVO communityBoardCommentVO);
 	
-	public CommunityBoardCommentVO readComment(int comm_cmt_no);
+	public CommunityBoardCommentVO readComment(@Param("comm_cmt_no")int comm_cmt_no,@Param("user_id")String user_id);
 	
 	public int deleteComment(int comm_cmt_no);
 	
