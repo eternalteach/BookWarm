@@ -48,7 +48,7 @@
          					</div>
          					<div class="form-horizontal">
            						<div class="form-group from-inline">
-             						<label>조회수&nbsp;${sellectedCommunityBoardPost.comm_clicked}&nbsp;&nbsp; <i class="fa fa-heart"></i> &nbsp;${sellectedCommunityBoardPost.comm_like}</label> 
+             						<label>조회수&nbsp;${sellectedCommunityBoardPost.comm_clicked}&nbsp;&nbsp; <%-- <i class="fa fa-heart"></i> &nbsp;${sellectedCommunityBoardPost.comm_like} --%></label> 
            						</div>   
            						<div class="form-group from-horizentar pull-right">
 									<a class="submit" href="communityboard"><button type="button" class="btn btn-sm btn-outline-secondary">List</button></a>

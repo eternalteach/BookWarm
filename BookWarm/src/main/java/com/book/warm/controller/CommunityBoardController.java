@@ -41,6 +41,7 @@ public class CommunityBoardController {
 	@RequestMapping(value = "/communityboardview", method = RequestMethod.GET)
 	public String communityBoardView(Model model,CommunityBoardVO communityBoardVO,@ModelAttribute("criteria") Criteria criteria) throws Exception {
 		log.info("==================== communityBoardView() ====================");
+		communityBoardMapper.hit(communityBoardVO.getComm_no());
 		CommunityBoardVO sellectedCommunityBoardPost = communityBoardMapper.getCommunityBoardOne(communityBoardVO.getComm_no());
 		model.addAttribute("sellectedCommunityBoardPost", sellectedCommunityBoardPost);
 		return "/communityboardview";

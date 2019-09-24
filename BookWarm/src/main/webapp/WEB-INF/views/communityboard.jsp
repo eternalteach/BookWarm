@@ -31,7 +31,8 @@
 							<th>제목</th>
 							<th>작성자</th>
 							<th>날짜</th>
-							<th>조회수</th>
+							<!-- <th>조회수</th> -->
+							<th><i class="fa fa-heart"></i></th>
 						</tr>
 						<c:forEach items="${communityBoardList}" var="communityBoard">
 							<tr>
@@ -41,6 +42,7 @@
 								<td>${communityBoard.user_id}</td>
 								<td>${communityBoard.comm_written_time}</td>
 								<td>${communityBoard.comm_clicked}</td>
+								<%-- <td>${communityBoard.comm_like}</td> --%>
 							</tr>
 						</c:forEach>
 					</table>

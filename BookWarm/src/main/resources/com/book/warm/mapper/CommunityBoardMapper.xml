@@ -64,4 +64,9 @@ select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,co
 		where
 		comm_group=#{comm_group} and comm_step>#{comm_step}
 	</update>
+	<update id='hit'>
+		update community_board set comm_clicked=comm_clicked+1
+		where
+		comm_no=#{comm_no}
+	</update>
 </mapper>

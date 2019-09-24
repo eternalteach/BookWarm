@@ -16,42 +16,52 @@
 </head>
 <body>
 <%@ include file="includes/header/header-topnav.jsp"%>
-<div>
-	<form action="communityBoardSaveReplyWrite" method="post">
-		<table width="500" cellpadding="0" cellspacing="0" border="1">
-			<input type="text" hidden='hidden' name="comm_group"
-				value="${replyWriteCommunityBoardPost.comm_group}">
-			<input type="text" hidden='hidden' name="comm_indent"
-				value="${replyWriteCommunityBoardPost.comm_indent}">
-			<input type="text" hidden='hidden' name="comm_step"
-				value="${replyWriteCommunityBoardPost.comm_step}">
-			<input type='text' hidden='hidden' id='pageNum' name='pageNum'
-				value='${criteria.pageNum}'>
-			<input type='text' hidden='hidden' id='amount' name='amount'
-				value='${criteria.amount}'>
-			<tr>
-				<td>작성자</td>
-				<td><input type="text" name="user_id" value=""></td>
-			</tr>
-			<tr>
-				<td>제목</td>
-				<td><input type="text" name="comm_title" placeholder="${replyWriteCommunityBoardPost.comm_title}"></td>
-			</tr>
-			<tr>
-				<td>말머리</td>
-				<td><input type="text" name="comm_subject" placeholder="${replyWriteCommunityBoardPost.comm_subject}">
-				</td>
-			</tr>
-			<tr>
-				<td>내용</td>
-				<td><textarea rows="10" name="comm_content" placeholder="${replyWriteCommunityBoardPost.comm_content}"></textarea></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" value="저장">&nbsp;&nbsp;
-					<a href="communityboard">List</a> &nbsp;&nbsp;
-			</tr>
-		</table>
-	</form>
+<div class="container center-block">
+	<div class='row'>
+		<div class='col-lg-12'>
+			<div class='panel panel-default'>
+				<div class="comment-write">
+					<div class="modal-content">
+					<form action="communityBoardSaveReplyWrite" method="post">
+						<div class="modal-body col-lg-12">
+							<div class="form-inline">
+								<textarea class="col-lg-2 " rows="1" name="comm_subject" placeholder="${replyWriteCommunityBoardPost.comm_subject}"></textarea>
+								<textarea class="col-lg-10 " rows="1" name="comm_title" placeholder="${replyWriteCommunityBoardPost.comm_title}"></textarea>
+							</div>
+						</div>
+       					<div class="col-lg-12">
+							<h3> <span class="blog-author minor-meta"> Posted by 
+								<span class="entry-author-link"> 
+									<span class="vcard author">
+										<span class="v-blog-item-details"> <a href="#" title="Posts by HB-Themes" rel="author">${user_id}</a></span>
+										</span>
+									</span>
+								</span>
+							</h3>
+         					<div class="form-group">
+         						<div class="form-control card" style="height:400px;">
+         							<textarea  name="comm_content" rows="20" placeholder="${replyWriteCommunityBoardPost.comm_content}"></textarea>
+         						</div>
+         					</div>
+         					<div class="form-horizontal">
+           						<div class="form-group from-horizentar pull-right">
+									<button type="submit" class="btn btn-sm btn-outline-secondary">Record</button>
+									<a href="communityboard"><button type="button" class="btn btn-sm btn-outline-secondary">List</button></a>
+           						</div>   
+         					</div>
+						</div>
+							<input type="text" hidden='hidden' name="comm_group" value="${replyWriteCommunityBoardPost.comm_group}">
+							<input type="text" hidden='hidden' name="comm_indent" value="${replyWriteCommunityBoardPost.comm_indent}">
+							<input type="text" hidden='hidden' name="comm_step" value="${replyWriteCommunityBoardPost.comm_step}">
+							<input type='text' hidden='hidden' id='pageNum' name='pageNum' value='${criteria.pageNum}'>
+							<input type='text' hidden='hidden' id='amount' name='amount' value='${criteria.amount}'>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+
 
 <%@ include file="includes/footer/footer-1.jsp"%>
