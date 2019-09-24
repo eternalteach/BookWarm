@@ -156,7 +156,7 @@
                             <li class="col-sm-12" style="margin-top:10px">
                             	<div class="pull-right">
                             	
-                            	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${thumbnail.isbn}&user_id=${user_id}">
+                            	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${bookVO.isbn}&user_id=${user_id}">
 		                            	<span class="text ls-1">
 		                            		감상 더하기
 			                                <i class="icon icon-pen-3"></i>

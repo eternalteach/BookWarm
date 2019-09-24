@@ -17,6 +17,12 @@
 	select * from library where user_id=#{user_id} AND list_no<20 AND list_no >=0 order by list_no
 	]]>
 	</select>
+	
+	<select id='getMyList'  resultType='com.book.warm.vo.LibraryVO'>
+	<![CDATA[
+	select * from library where user_id=#{user_id} order by list_added_date desc
+	]]>
+	</select>
 
 	<update id='deleteLibraryList'>
 	update library set list_no=-1 where user_id=#{user_id} and isbn=#{isbn}

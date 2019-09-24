@@ -16,7 +16,7 @@
 </head>
 <body style="background-image: url('/warm/resources/img/background/star01.gif');">
 	<button type="button" class="btn" data-toggle="modal" data-target="#modal-library">modal-library</button>
-	<a href="reviewMain?user_id=aaa"><button>감상 메인페이지</button></a>
+	<a href="reviewMain"><button>감상 메인페이지</button></a>
 	<a href="shop/shoplist"><button>책 리스트</button></a>
 	<div class="library-body">
 		<table class="margin-zero" style="width: 795px; height: 1001px;">
@@ -64,7 +64,7 @@
 					<div class="cont">
 						<!-- user_id는 session으로 해당 컨트롤러나 jsp에서 꺼내 사용하기 get방식으로 isbn만 다음페이지로 넘기기
 					삭제는 비동기통신으로 처리하기-->
-						<a href="reviewMain?isbn=${UserBooks.isbn}"><h4>Review</h4></a>
+						<a href="reviewPerBook?isbn=${UserBooks.isbn}"><h4>Review</h4></a>
 						<a href="record?isbn=${UserBooks.isbn}"><h4>Record</h4></a>
 						<a href="library/delete?isbn=${UserBooks.isbn}"><h4>Delete</h4></a>
 					</div>
