@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<sec:authentication property="principal.username" var="user_id"/>
+
 <!DOCTYPE html>
 
 <html>
@@ -35,7 +39,7 @@
 						<ul id="myTab" class="nav v-right-sidebar-inner">
 							<li><a class="aa" href="#modal-msg" data-toggle="modal" data-target="#modal"
 							class="nav v-right-sidebar-inner" >
-							쪽지 보내기</a></li>
+							<i class="fa fa-star-o"></i>쪽지 보내기</a></li>
 							
 							<li><a href="#counters" data-toggle="tab"
 								class="active show"> <i class="fa fa-star-o"></i>받은쪽지함
@@ -57,6 +61,7 @@
 								<div class="row">
 									<div class="col-md-9 left-side-sidebar">
 										<c:forEach items="${msglist}" var="msglist">
+										<fmt:formatDate var="fmt_date" value="${vo.review_written_date}" pattern="ddMMM"/>
 											<div class="v-blog-recent-post">
 												<div class="blog-list-item-date">
 													03<span>Mar</span>
@@ -65,8 +70,8 @@
 													<h6 class="special">
 														<a href="#">제목 : ${msglist.msg_title}</a>
 													</h6>
-													<small>보낸 사람 ${msglist.msg_send_id}</small>
-													<small>받는 사람 ${msglist2.msg_get_id}</small>
+													<small>보낸 사람${msglist.msg_send_id}</small>
+													<small>받는 사람 ${msglist.msg_get_id}</small>
 													<div class="blog-list-item-excerpt">
 														<p>내용 : ${msglist.msg_content}</p>
 														<a class="aa" href="#modal-msg" data-toggle="modal" data-target="#modal">
@@ -84,6 +89,7 @@
 							<div class="tab-pane fade" id="recent-posts">
 								<div class="row">
 									<div class="col-md-6">
+										<c:forEach items="${msglist2}" var="msglist2">
 										<div class="v-blog-recent-post">
 											<div class="blog-list-item-date">
 												03<span>Mar</span>
@@ -108,12 +114,13 @@
 														<a href="#">제목 : ${msglist2.msg_title}</a>
 													</h6>
 													<small>보낸 사람 ${msglist2.msg_send_id}</small>
-													<small>받는 사람 ${msglist2.msg_get_id}</small>
+													<small>받는 사람${msglist2.msg_get_id}</small>
 													<div class="blog-list-item-excerpt">
 														<p>내용 : ${msglist2.msg_content}</p>
 												</div>
 										</div>
 									</div>
+									</c:forEach>
 								</div>
 							</div>
 							<!--EndRecent Posts-->
@@ -132,11 +139,11 @@
     <div class="modal-dialog undefined">
         <div class="modal-content">
             <div class="modal-body post-content">
-				<div class="form-inline" style="width:100px">
+				<div class="form-inline" style="width:100px" >
 					<div class="aa">
 						<form action="/warm/send">
-						보낸사람<input name="msg_get_id" type="text"><br><br>
-						  받는 사람<input name="msg_send_id" type="text"><br><br>
+						보낸사람<input name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
+						  받는 사람<input name="msg_get_id" type="text"><br><br>
 						 제목 <input name="msg_title" type="text"><br><br>
 						  <textarea name="msg_content" style="width:400px; height:300px;"></textarea><br>
 						  <input type="submit" value="보내기">
