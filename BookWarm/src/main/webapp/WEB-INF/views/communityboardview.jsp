@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-
+<sec:authentication property="principal.username" var="user_id"/>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -52,7 +52,7 @@
            						</div>   
            						<div class="form-group from-horizentar pull-right">
 									<a class="submit" href="communityboard"><button type="button" class="btn btn-sm btn-outline-secondary">List</button></a>
-									<a class="submit" href="communityboardmodify"><button  type="button" class="btn btn-sm">Modify</button></a>
+									<c:if test="${user_id==sellectedCommunityBoardPost.user_id}"><a class="submit" href="communityboardmodify"><button  type="button" class="btn btn-sm">Modify</button></a></c:if>
 									<a class="submit" href="communityboardreplywrite"><button  type="button" class="btn btn-sm btn-secondary">Reply</button></a>
            						</div>   
          					</div>
@@ -135,8 +135,12 @@ $(document).ready(function(){
 			for(var i=0, len=list.length||0;i<len;i++){
 				str+="<li class='left clearfix' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>";
 				str+="<div class='header'><strong class='primary-font'>"+list[i].user_id+"</strong>";
-				str+="<small class='pull-right text-muted'><button id='commentModfiyBtn' class='btn close' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>수정</button><button id='commentRemoveBtn'  class='btn close' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>삭제</button></small></div>";
-				str+="<div class='header'><small class='form-inline'>"+list[i].comm_cmt_content+"</small>";
+				str+="<p class='pull-right text-muted'>";
+				if('${user_id}'==list[i].user_id){
+				str+="<button id='commentModfiyBtn' class='btn close' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>수정</button><button id='commentRemoveBtn'  class='btn close' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>삭제</button>";
+				}
+				str+="</p></div>";
+				str+="<div class='header'><p class='form-inline'>"+list[i].comm_cmt_content+"</p>";
 				str+="<small class='pull-right text-muted'> 작성일 : "+list[i].comm_cmt_written_time+"</br>&nbsp;</small></div></li>";
 			}
 			

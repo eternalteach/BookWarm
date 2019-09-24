@@ -1,6 +1,8 @@
 package com.book.warm.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -76,8 +78,9 @@ public class CommunityBoardController {
 		return "redirect:communityboard";
 	}
 	@RequestMapping(value = "/communityBoardSaveReplyWrite", method = RequestMethod.POST)
-	public String communityBoardSaveReplyWrite(RedirectAttributes rttr, CommunityBoardVO communityBoardVO, Criteria criteria) throws Exception {
+	public String communityBoardSaveReplyWrite(RedirectAttributes rttr, CommunityBoardVO communityBoardVO, Criteria criteria,Principal principal) throws Exception {
 		log.info("==================== communityBoardSaveReplyWrite() ====================");
+		communityBoardVO.setUser_id(principal.getName());
 		communityBoardMapper.insertCommunityBoardReplyWrite(communityBoardVO);
 		communityBoardMapper.replyshape(communityBoardVO);
 		rttr.addAttribute("amount",criteria.getAmount());
@@ -94,8 +97,9 @@ public class CommunityBoardController {
 	}
 	
 	@RequestMapping(value = "/communityBoardSaveWrite", method = RequestMethod.POST)
-	public String communityBoardSaveWrite(CommunityBoardVO communityBoardVO) throws Exception {
+	public String communityBoardSaveWrite(CommunityBoardVO communityBoardVO,Principal principal) throws Exception {
 		log.info("==================== communityBoardSaveWrite() ====================");
+		communityBoardVO.setUser_id(principal.getName());
 		communityBoardMapper.insertCommunityBoardWrite(communityBoardVO);
 		return "redirect:communityboard";
 	}
