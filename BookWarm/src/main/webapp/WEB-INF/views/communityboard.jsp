@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="resources/css/main.css" />
 </head>
 <body>
+<%@ include file="includes/header/header-topnav.jsp"%>
+
 <div class="page-inner">
 	<section class="section-primary b-bordered">
 		<div class="container">

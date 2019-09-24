@@ -29,9 +29,6 @@
 	<security:global-method-security
 				pre-post-annotations="enabled" secured-annotations="enabled"/>
 	
-	<!-- 인터셉터 객체 생성 -->
-	<beans:bean id="boardInterceptor" class="com.book.warm.interceptor.BoardInterceptor">
-	</beans:bean>
 	
 	<!-- 스프링에서 업로드 처리를 위해 MultipartResolver 타입 객체를 빈으로 등록 -->
 	<beans:bean id="multipartResolver"
@@ -39,16 +36,6 @@
 	</beans:bean>
 	
 	
-	<!-- Interceptor 설정 -->
-	<interceptors>
-		<interceptor>
-				<mapping path="/register/registerSuccessPage"/>
-				<beans:ref bean="boardInterceptor"/>
-		</interceptor>
-		<interceptor>
-				<mapping path="/shop/**"/>
-				<beans:ref bean="boardInterceptor"/>
-		</interceptor>
-	</interceptors>
+	
 	
 </beans:beans>

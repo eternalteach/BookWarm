@@ -1,12 +1,5 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%
-	String context = request.getContextPath();
-	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
-	String todayAll = formatter.format(new Date());
-	String[] today = todayAll.split("-", 3);
-	int year = Integer.parseInt(today[0]);
-%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -17,106 +10,107 @@
 <meta name="description" content="Vertex - Responsive HTML5 Template">
 <meta name="author" content="bootstraptemplates.net">
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link rel="shortcut icon" href="<%=context%>/resources/VertexEx/img/favicon.png" type="image/x-icon" />
-<link rel="apple-touch-icon" href="<%=context%>/resources/VertexEx/img/apple-touch-icon.png">
+<link rel="shortcut icon" href="/warm/resources/VertexEx/img/favicon.png" type="image/x-icon" />
+<link rel="apple-touch-icon" href="/warm/resources/VertexEx/img/apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Cabin:400,600,700" rel="stylesheet">
 
 <!-- Vendor -->
-<script src="<%=context%>/resources/VertexEx/vendor/jquery/jquery.js"></script>
-<script src="<%=context%>/resources/VertexEx/vendor/jquery/jquery.nav.js"></script>
-<script src="<%=context%>/resources/VertexEx/vendor/jquery/jquery.validate.js"></script>
-<script src="<%=context%>/resources/VertexEx/vendor/jquery.appear/jquery.appear.min.js"></script>
-<script src="<%=context%>/resources/VertexEx/vendor/jquery.easing/jquery.easing.min.js"></script>
-<script src="<%=context%>/resources/VertexEx/vendor/jquery-cookie/jquery-cookie.min.js"></script>
-<script src="<%=context%>/resources/VertexEx/vendor/magnific-popup/jquery.magnific-popup.js"></script>
-<script src="<%=context%>/resources/VertexEx/vendor/modernizr/modernizr.min.js"></script>
-<script src="<%=context%>/resources/VertexEx/vendor/tether/tether.min.js"></script>
-<script src="<%=context%>/resources/VertexEx/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="<%=context%>/resources/VertexEx/vendor/menuzord/menuzord.js"></script>
-<script src="<%=context%>/resources/VertexEx/vendor/sticky/jquery.sticky.min.js"></script>
-<script src="<%=context%>/resources/VertexEx/vendor/isotope/jquery.isotope.min.js"></script>
-<script src="<%=context%>/resources/VertexEx/vendor/respond/respond.js"></script>
-<script src="<%=context%>/resources/VertexEx/vendor/images-loaded/imagesloaded.js"></script>
-<script src="<%=context%>/resources/VertexEx/vendor/owl-carousel/owl.carousel.js"></script>
-<script src="<%=context%>/resources/VertexEx/vendor/wow/wow.min.js"></script>
-<script src="<%=context%>/resources/VertexEx/vendor/lite-tooltip/js/litetooltip.js"></script>
-<script src="<%=context%>/resources/VertexEx/js/theme-plugins.js"></script>
-<script src="<%=context%>/resources/VertexEx/vendor/smoothscroll/smooth.scroll.min.js"></script>
+<script src="/warm/resources/VertexEx/vendor/jquery/jquery.js"></script>
+<script src="/warm/resources/VertexEx/vendor/jquery/jquery.nav.js"></script>
+<script src="/warm/resources/VertexEx/vendor/jquery/jquery.validate.js"></script>
+<script src="/warm/resources/VertexEx/vendor/jquery.appear/jquery.appear.min.js"></script>
+<script src="/warm/resources/VertexEx/vendor/jquery.easing/jquery.easing.min.js"></script>
+<script src="/warm/resources/VertexEx/vendor/jquery-cookie/jquery-cookie.min.js"></script>
+<script src="/warm/resources/VertexEx/vendor/magnific-popup/jquery.magnific-popup.js"></script>
+<script src="/warm/resources/VertexEx/vendor/modernizr/modernizr.min.js"></script>
+<script src="/warm/resources/VertexEx/vendor/tether/tether.min.js"></script>
+<script src="/warm/resources/VertexEx/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/warm/resources/VertexEx/vendor/menuzord/menuzord.js"></script>
+<script src="/warm/resources/VertexEx/vendor/sticky/jquery.sticky.min.js"></script>
+<script src="/warm/resources/VertexEx/vendor/isotope/jquery.isotope.min.js"></script>
+<script src="/warm/resources/VertexEx/vendor/respond/respond.js"></script>
+<script src="/warm/resources/VertexEx/vendor/images-loaded/imagesloaded.js"></script>
+<script src="/warm/resources/VertexEx/vendor/owl-carousel/owl.carousel.js"></script>
+<script src="/warm/resources/VertexEx/vendor/wow/wow.min.js"></script>
+<script src="/warm/resources/VertexEx/vendor/lite-tooltip/js/litetooltip.js"></script>
+<script src="/warm/resources/VertexEx/js/theme-plugins.js"></script>
+<script src="/warm/resources/VertexEx/vendor/smoothscroll/smooth.scroll.min.js"></script>
 
 <!-- Vendor CSS -->
-<link rel="stylesheet" href="<%=context%>/resources/VertexEx/vendor/tether/tether.min.css" />
-<link rel="stylesheet" href="<%=context%>/resources/VertexEx/vendor/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=context%>/resources/VertexEx/vendor/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="<%=context%>/resources/VertexEx/vendor/bootstrap/css/glyphicon.css" />
-<link rel="stylesheet" href="<%=context%>/resources/VertexEx/vendor/ion-icons/css/ionicons.min.css" />
-<link rel="stylesheet" href="<%=context%>/resources/VertexEx/vendor/owl-carousel/owl.theme.css" />
-<link rel="stylesheet" href="<%=context%>/resources/VertexEx/vendor/owl-carousel/owl.carousel.css" />
-<link rel="stylesheet" href="<%=context%>/resources/VertexEx/vendor/magnific-popup/magnific-popup.css" />
-<link rel="stylesheet" href="<%=context%>/resources/VertexEx/vendor/lite-tooltip/css/litetooltip.css" />
+<link rel="stylesheet" href="/warm/resources/VertexEx/vendor/tether/tether.min.css" />
+<link rel="stylesheet" href="/warm/resources/VertexEx/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/warm/resources/VertexEx/vendor/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/warm/resources/VertexEx/vendor/bootstrap/css/glyphicon.css" />
+<link rel="stylesheet" href="/warm/resources/VertexEx/vendor/ion-icons/css/ionicons.min.css" />
+<link rel="stylesheet" href="/warm/resources/VertexEx/vendor/owl-carousel/owl.theme.css" />
+<link rel="stylesheet" href="/warm/resources/VertexEx/vendor/owl-carousel/owl.carousel.css" />
+<link rel="stylesheet" href="/warm/resources/VertexEx/vendor/magnific-popup/magnific-popup.css" />
+<link rel="stylesheet" href="/warm/resources/VertexEx/vendor/lite-tooltip/css/litetooltip.css" />
 
 <!-- Current Page CSS -->
-<link href="<%=context%>/resources/VertexEx/smartforms/Templates/css/smart-forms.css" rel="stylesheet" />
+<link href="/warm/resources/VertexEx/smartforms/Templates/css/smart-forms.css" rel="stylesheet" />
 
 <!-- Theme Custom CSS -->
-<link rel="stylesheet" href="<%=context%>/resources/VertexEx/css/custom.css">
+<link rel="stylesheet" href="/warm/resources/VertexEx/css/custom.css">
 
 <!-- Style Swicher -->
-<link href="<%=context%>/resources/VertexEx/vendor/style-switcher/style-switcher.css" rel="stylesheet" />
-<link href="<%=context%>/resources/VertexEx/vendor/style-switcher/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
+<link href="/warm/resources/VertexEx/vendor/style-switcher/style-switcher.css" rel="stylesheet" />
+<link href="/warm/resources/VertexEx/vendor/style-switcher/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
 
 <!-- Theme CSS -->
-<link href="<%=context%>/resources/VertexEx/css/main.css" rel="stylesheet" />
-<link href="<%=context%>/resources/VertexEx/css/main-shortcodes.css" rel="stylesheet" />
-<link href="<%=context%>/resources/VertexEx/css/header.css" rel="stylesheet" />
-<link href="<%=context%>/resources/VertexEx/css/shop.css" rel="stylesheet" />
-<link href="<%=context%>/resources/VertexEx/css/bg-stylish.css" rel="stylesheet" />
-<link href="<%=context%>/resources/VertexEx/css/form-element.css" rel="stylesheet" />
-<link href="<%=context%>/resources/VertexEx/css/animation.css" rel="stylesheet" />
-<link href="<%=context%>/resources/VertexEx/css/font-icons.css" rel="stylesheet" />
-<link href="<%=context%>/resources/VertexEx/css/responsive.css" rel="stylesheet" />
-<link href="<%=context%>/resources/VertexEx/css/utilities.css" rel="stylesheet" />
-<link href="<%=context%>/resources/VertexEx/css/skins/default.css" rel="stylesheet" />
+<link href="/warm/resources/VertexEx/css/main.css" rel="stylesheet" />
+<link href="/warm/resources/VertexEx/css/main-shortcodes.css" rel="stylesheet" />
+<link href="/warm/resources/VertexEx/css/header.css" rel="stylesheet" />
+<link href="/warm/resources/VertexEx/css/shop.css" rel="stylesheet" />
+<link href="/warm/resources/VertexEx/css/bg-stylish.css" rel="stylesheet" />
+<link href="/warm/resources/VertexEx/css/form-element.css" rel="stylesheet" />
+<link href="/warm/resources/VertexEx/css/animation.css" rel="stylesheet" />
+<link href="/warm/resources/VertexEx/css/font-icons.css" rel="stylesheet" />
+<link href="/warm/resources/VertexEx/css/responsive.css" rel="stylesheet" />
+<link href="/warm/resources/VertexEx/css/utilities.css" rel="stylesheet" />
+<link href="/warm/resources/VertexEx/css/skins/default.css" rel="stylesheet" />
 
 
-<link href="<%=context%>/resources/Vertex/css/bootstrap.min.css" rel="stylesheet" />
-<link href="<%=context%>/resources/Vertex/css/style.css" rel="stylesheet" />
-<link href="<%=context%>/resources/Vertex/css/font-awesome.min.css" rel="stylesheet" />
-<link href="<%=context%>/resources/Vertex/css/streamline-icon.css" rel="stylesheet" />
-<link href="<%=context%>/resources/Vertex/css/header.css" rel="stylesheet" />
-<link href="<%=context%>/resources/Vertex/css/portfolio.css" rel="stylesheet" />
-<link href="<%=context%>/resources/Vertex/css/blog.css" rel="stylesheet" />
-<link href="<%=context%>/resources/Vertex/css/v-animation.css" rel="stylesheet" />
-<link href="<%=context%>/resources/Vertex/css/v-bg-stylish.css" rel="stylesheet" />
-<link href="<%=context%>/resources/Vertex/css/font-icons.css" rel="stylesheet" />
-<link href="<%=context%>/resources/Vertex/css/shortcodes.css" rel="stylesheet" />
-<link href="<%=context%>/resources/Vertex/css/utilities.css" rel="stylesheet" />
-<link href="<%=context%>/resources/VertexEx/css/main-shortcodes.css" rel="stylesheet" /><!-- modal -->
-<link href="<%=context%>/resources/Vertex/css/theme-responsive.css" rel="stylesheet" />
-<link href="<%=context%>/resources/Vertex/plugins/aos/aos.css" rel="stylesheet" />
-<link href="<%=context%>/resources/Vertex/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
-<link href="<%=context%>/resources/Vertex/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
+<link href="/warm/resources/Vertex/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/warm/resources/Vertex/css/style.css" rel="stylesheet" />
+<link href="/warm/resources/Vertex/css/font-awesome.min.css" rel="stylesheet" />
+<link href="/warm/resources/Vertex/css/streamline-icon.css" rel="stylesheet" />
+<link href="/warm/resources/Vertex/css/header.css" rel="stylesheet" />
+<link href="/warm/resources/Vertex/css/portfolio.css" rel="stylesheet" />
+<link href="/warm/resources/Vertex/css/blog.css" rel="stylesheet" />
+<link href="/warm/resources/Vertex/css/v-animation.css" rel="stylesheet" />
+<link href="/warm/resources/Vertex/css/v-bg-stylish.css" rel="stylesheet" />
+<link href="/warm/resources/Vertex/css/font-icons.css" rel="stylesheet" />
+<link href="/warm/resources/Vertex/css/shortcodes.css" rel="stylesheet" />
+<link href="/warm/resources/Vertex/css/utilities.css" rel="stylesheet" />
+<link href="/warm/resources/VertexEx/css/main-shortcodes.css" rel="stylesheet" /><!-- modal -->
+<link href="/warm/resources/Vertex/css/theme-responsive.css" rel="stylesheet" />
+<link href="/warm/resources/Vertex/plugins/aos/aos.css" rel="stylesheet" />
+<link href="/warm/resources/Vertex/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
+<link href="/warm/resources/Vertex/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
 
-<link href="<%=context%>/resources/VertexEx/smartforms/JavascriptTemplates/css/smart-addons.css" rel="stylesheet" />
-<link href="<%=context%>/resources/VertexEx/smartforms/Templates/css/smart-forms.css" rel="stylesheet" />
+<link href="/warm/resources/VertexEx/smartforms/JavascriptTemplates/css/smart-addons.css" rel="stylesheet" />
+<link href="/warm/resources/VertexEx/smartforms/Templates/css/smart-forms.css" rel="stylesheet" />
 
 <!-- Smart Form Elements -->
-<script src="<%=context%>/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-custom.min.js"></script>
-<script src="<%=context%>/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery.placeholder.min.js"></script>
-<script src="<%=context%>/resources/VertexEx/smartforms/JavascriptTemplates/js/select2.full.min.js"></script>
-<script src="<%=context%>/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-combo.min.js"></script>
+<script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-custom.min.js"></script>
+<script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery.placeholder.min.js"></script>
+<script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/select2.full.min.js"></script>
+<script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-combo.min.js"></script>
 
 <!-- Custom JS -->
-<script src="<%=context%>/resources/VertexEx/js/custom.js"></script>
+<script src="/warm/resources/VertexEx/js/custom.js"></script>
 <!-- Theme Initialization -->
-<script src="<%=context%>/resources/VertexEx/js/theme.js"></script>
+<script src="/warm/resources/VertexEx/js/theme.js"></script>
 <!-- Style Swicher -->
-<link href="<%=context%>/resources/VertexEx/vendor/style-switcher/style-switcher.css" rel="stylesheet" />
-<link href="<%=context%>/resources/VertexEx/vendor/style-switcher/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
+<link href="/warm/resources/VertexEx/vendor/style-switcher/style-switcher.css" rel="stylesheet" />
+<link href="/warm/resources/VertexEx/vendor/style-switcher/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
 	<!-- Smart Form Elements -->
-<script src="<%=context%>/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-custom.min.js"></script>
-<script src="<%=context%>/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery.placeholder.min.js"></script>
-<script src="<%=context%>/resources/VertexEx/smartforms/JavascriptTemplates/js/select2.full.min.js"></script>
-<script src="<%=context%>/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-combo.min.js"></script>
+<script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-custom.min.js"></script>
+<script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery.placeholder.min.js"></script>
+<script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/select2.full.min.js"></script>
+<script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-combo.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-1.11.3.js"></script> -->
 <script type="text/javascript">
 	jQuery(document).ready(
 			function($) {
@@ -384,239 +378,4 @@
 			});
 </script>
 
-<!-- shopContent.jsp에서 사용 -->
-<style>
-	/* 테이블 헤드 가운데정렬 */
-	th {
-		text-align: center;
-	}
-</style>
 
-<script>
-
-	$(document).ready(function() {
-
-		// 처음에 최종금액란, subTotal에 뿌려줄 금액
-		var initTotal = 0;
-		var totEach = 0;
-		var cntItems = 0;
-		$('.tot').each(function(index, item) {
-			// 각 항목의 총액
-			totEach = parseInt($(item).html());
-			
-			// 최종 금액
-			// 1. 각각의 총액을 더해준다
-			initTotal = initTotal + totEach;
-			cntItems = index+1;
-			$('.o-6').html("("+ cntItems +" items)");
-		})
-		// 2. UI의 total, subTotal로 보여지는 부분에 뿌려준다.
-		$('.totAllItems').html("<strong>" + initTotal + "원</strong>");
-		$('.subTotal').html(initTotal + "원");
-		$('#subTotal').attr("value", initTotal + "원");
-		
-		delivery();
-		
-		
-		
-		// 체크박스 클릭할 때마다 검사
-		var chkbox = $('.chkbox');
-		chkbox.on('click', function() {
-			// 1. 체크박스들을 가져온다(배열)
-			var subTotal = 0;
-			chkbox.each(function(index, item) {
-				// 체크가 되어있는 것이 있다면
-				if ($(item).prop('checked') == true) {
-					// 2. 같은 줄에 있는 총액을 int형으로 바꾸어 checkedTotal에 더해준다.
-					subTotal = subTotal + parseInt($('.tot').eq(index).html());
-				}
-
-				// 3. 더한 subTotal을 UI의 subTotal부분에 뿌려준다.
-				$('.subTotal').html(subTotal + '원');
-				$('#subTotal').attr("value", subTotal);
-			})
-			delivery();
-		})
-
-		
-		// 상단에 있는 체크박스 클릭시 >> 모두 선택 or 모두 선택 해제
-		$('#selectAll').on('click', function() {
-			if($(this).prop('checked')==true) {
-				// 선택한 경우 >> 모두 선택
-				$('.chkbox').prop('checked', true);
-				// subtotal에 전체 금액 찍어주기
-				$('.subTotal').html($('.totAllItems').html());
-			}else {
-				// 선택해제한 경우 >> 모두 선택 해제
-				$('.chkbox').prop('checked', false);
-				// subTotal에 0원 찍어주기
-				$('.subTotal').html("0원");
-			}
-			delivery();
-		})
-		
-		$('#charge').on('click', function() {
-			$('#sendForm').submit();
-		})
-		
-	})
-	
-	function delivery() {
-		var subTotal = $('.subTotal').html();
-		var fee;
-		
-		// 배송비 -> 5만원 이상 무료
-		if(subTotal!=null && parseInt(subTotal.split("원", 1)) >= 50000) {
-			fee = "무료";
-		}else {
-			fee = "2500원";
-		}
-		$('.delivery').html(fee);
-		$('#delivery').attr('value', fee);
-	}
-	
-</script>
-<!-- /shopContent.jsp에서 사용 -->
-
-<!-- shopChargePage.jsp에서 사용(daum 주소 api) -->
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script>
-    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-    function sample4_execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // data는 사용자가 선택한 주소 정보를 담고 있는 객체.
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var roadAddr = data.roadAddress; // 도로명 주소 변수
-                var extraRoadAddr = ''; // 참고 항목 변수
-
-                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraRoadAddr += data.bname;
-                }
-                // 건물명이 있고, 공동주택일 경우 추가한다.
-                if(data.buildingName !== '' && data.apartment === 'Y'){
-                extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                if(extraRoadAddr !== ''){
-                    extraRoadAddr = ' (' + extraRoadAddr  + ')';
-                }
-
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample4_postcode').value = data.zonecode;
-                document.getElementById("sample4_roadAddress").value = roadAddr;
-                document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
-                
-                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-                if(roadAddr !== ''){
-                    document.getElementById("sample4_extraAddress").value = extraRoadAddr;
-                } else {
-                    document.getElementById("sample4_extraAddress").value = '';
-                }
-
-                var guideTextBox = document.getElementById("guide");
-                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-                if(data.autoRoadAddress) {
-                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                    guideTextBox.style.display = 'block';
-
-                } else if(data.autoJibunAddress) {
-                    var expJibunAddr = data.autoJibunAddress;
-                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-                    guideTextBox.style.display = 'block';
-                } else {
-                    guideTextBox.innerHTML = '';
-                    guideTextBox.style.display = 'none';
-                }
-            }
-        }).open();
-    }
-</script>
-
-<script>
-  	$(document).ready(function() {
-  		
-  		var total = parseInt($('#total').val()); // 총 도서 금액
-  		var delivery = $('#delivery').html(); // 배송비(2500원 or 무료)
-		var finalPay; // 최종 금액 >> 계속 사용할 변수임
-		
-  		// 결제 금액에 총 도서 금액 + 배송비 넣기
-		if(delivery == "2500원") {
-			finalPay = total+2500;
-		}else {
-			finalPay = total;
-		}
-		$('#finalPay').html(finalPay);
-		
-		
-		
-		// 쿠폰 사용
-		$('#modal').on('click', 'button', function() {
-			$('#coupon').attr('value', $(this).val());
-	
-			var bookPrice = $('#total').val();
-			bookPrice = bookPrice.substring(0,bookPrice.lastIndexOf('원')); // 책 판매 총액
-			var discounted = $(this).attr('data-abc')/100*bookPrice; // 쿠폰 할인 금액
-	
-			// -0(쿠폰할인) << 이 부분에 빠지는 금액만큼 넣어주기
-			$('#discountCoupon').html($(this).attr('data-abc')/100*bookPrice);
-	
-			// 전체 금액에서 빼주기(결제금액 = 결제금액-포인트 할인금액-쿠폰할인금액(discounted))
-			$('#finalPay').html(finalPay-$('#point').val()-discounted);
-			
-			// 모달 종료
-			$('#modal').fadeOut(500);
-		});
-  		
-		
-		
-  		// 적립금(포인트) 사용
-  		$('#applyPoint').on('click', function() {
-  			var point = $('#point').val(); // 사용하려고 입력한 포인트
-  			var availablePoint = parseInt($('#availablePoint').text()); // 가용포인트
-  			var numExp = /[0-9]/; // 숫자만 입력하는 정규식
-  			
-  			if(numExp.test(point)) {
-  				// 받아온 값이 숫자면 parseInt 해준다.
-  				point  = parseInt(point);
-   			
-  				if(availablePoint<point) {
-	     			// 가용포인트<사용하려는 포인트 -> 경고창
-	   				alert("가용 포인트는 "+availablePoint+"p 입니다.");
-	   				$('#point').val('');
-	   			}else {
-	   				// 가용포인트>=사용포인트 -> 사용 포인트에 입력
-	   				$('#usePoint').text(point);
-	   				// 최종금액(포인트 할인)에 반영
-	   				$('#discountPoint').html(point);
-	   				// 결제 금액에 반영
-	   				$('#finalPay').html(finalPay-point-$('#discountCoupon').html());
-	   			}
-  				
-  				
-  			}else {
-  				// 숫자가 아닌 값 입력 시 -> 경고창, 입력부분 비워버리기
-  				alert('숫자만 입력 가능합니다.');
-  				$('#point').val('');
-  			}
-  			
-  		})
-  		
-  		// 카드 결제 >> expired year (현재년도~10년뒤)
-  		for(var i = <%=year%>; i < <%=year+10%>; i++) {
-  			$('#cardyear').append('<option value='+i+'>'+i+'</option>')
-  		}
-  		
-  		
-  		
-  		
-  		
-  		
-  	})
-</script>

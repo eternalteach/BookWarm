@@ -1,4 +1,4 @@
-﻿<% String path = request.getContextPath(); %>
+﻿
    <div class="wrapper">
       <div class="page has-sidebar has-right-sidebar bordered">
 

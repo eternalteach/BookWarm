@@ -1,5 +1,6 @@
 package com.book.warm.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.book.warm.service.ShopBoardService;
@@ -45,7 +47,7 @@ public class ShopController {
 		//장바구니에 기존상품이 있는지 검사!!	
 		int countCart = service.countcart(isbn, user_id);
 		log.info("장바구니에 기존상품이 있는지 검사" + countCart);
-		log.info("select  책 권수:" + cart_cnt);
+		log.info("select 책 권수:" + cart_cnt);
 		
 		//insert
 		if(countCart == 0) {
@@ -59,11 +61,10 @@ public class ShopController {
 	}
 	
 	@RequestMapping(path = "/cart")
-	public String cart(HttpSession session, HttpServletRequest req, Model model, CartJoinBookVO cartvo) {
+	public String cart(Principal principal, Model model, CartJoinBookVO cartvo) {
 		log.info("=================cart()==========================");
-		session = req.getSession();	
 
-		String user_id =(String)session.getAttribute("user_id");
+		String user_id =principal.getName();
 		cartvo.setUser_id(user_id);
 		
 		List<CartJoinBookVO> list = service.cartList(user_id);
@@ -116,14 +117,14 @@ public class ShopController {
 	}
 
 	@RequestMapping("/charge")
-	public String charge(HttpServletRequest req, Model model, HttpSession session) {
+	public String charge(Principal principal, HttpServletRequest req, Model model, HttpSession session) {
 		log.info("=================removeCartItem()==========================");
 		
 		String subTotal = req.getParameter("subTotal"); // 체크한 물품 총액
 		String delivery = req.getParameter("delivery"); // 배송비(2500원 or 무료)
 		String cart_no[] = req.getParameterValues("cart_no"); // 장바구니에 담아둔 책 cart_no
-		String user_id = (String) session.getAttribute("user_id"); // 로그인한 유저의 아이디 받아온다.
-
+		String user_id = principal.getName(); // 로그인한 유저의 아이디 받아온다.
+		
 		List<CartJoinBookVO> list = new ArrayList<CartJoinBookVO>();
 		CartJoinBookVO cartJoinBookVO;
 		

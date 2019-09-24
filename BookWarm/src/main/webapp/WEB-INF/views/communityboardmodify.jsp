@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="resources/css/main.css" />
 </head>
 <body>
+<%@ include file="includes/header/header-topnav.jsp"%>
 					<div>
 							<form id="pagingActionForm" method="post">
 						<table width="500" cellpadding="0" cellspacing="0" border="1">

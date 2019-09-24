@@ -5,9 +5,11 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-   <%@ include file="./includes/header/header/vertexExHeader.jsp"%>
+    <%@ include file="./includes/header/header/vertexExHeader.jsp"%>
 </head>
 <body>
+	<%@ include file="./includes/addressAPI/getAddress.jsp" %>
+	<%@ include file="./includes/shop/shopChargePage-script.jsp" %>
 	<%@ include file="./includes/header/shopHeader/shopHeaderNav.jsp"%>
 	<%@ include file="./includes/content/shopContent/shopChargePage.jsp"%>
 	<%@ include file="./includes/footer/shopFooter/shopFooterNav.jsp"%>	
