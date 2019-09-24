@@ -24,16 +24,15 @@ public class ReviewBoardService {
 	ReviewBoardMapper mapper;
 	
 
-	public List<ReviewMainVO> selectBoardList(String user_id) {
-		
-		return mapper.selectBoardList(user_id);
-	}
+//	public List<ReviewMainVO> selectBoardList(String user_id) {
+//		
+//		return mapper.selectBoardList(user_id);
+//	}
 	
-	/*
-	 * public List<ReviewBoardVO> getListPerBook(String isbn, String user_id) {
-	 * 
-	 * return mapper.getListPerBook(isbn, user_id); }
-	 */
+	public List<ReviewMainVO> selectBoardList(String user_id, Criteria cri) {
+		
+		return mapper.selectBoardListWithPaging(user_id, cri);
+	}
 	
 	public List<ReviewBoardVO> getListPerBook(String isbn, String user_id, Criteria cri) {
 		
@@ -92,7 +91,11 @@ public class ReviewBoardService {
 		}
 		return modifyResult;
 	}
-	
+	// reviewMain에서 리뷰가 작성된 책의 수를 셀 때는 매개변수로 user_id만 넘겨준다.
+	public int getTotal(String user_id) {
+		return mapper.getBoardListCount(user_id);
+	}
+	// reviewPerBook에서 하나의 책에 작성된 리뷰의 수를 셀 때. 메서드 오버로딩.
 	public int getTotal(Criteria cri, String isbn, String user_id) {
 		
 		return mapper.getTotalCount(cri, isbn, user_id);

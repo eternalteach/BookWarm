@@ -33,6 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.book.warm.function.RecordFunction;
+import com.book.warm.mapper.LibraryMapper;
 import com.book.warm.page.Criteria;
 import com.book.warm.page.PageDTO;
 import com.book.warm.service.RecordService;
@@ -59,11 +60,19 @@ public class ReviewBoardController {
 	@Inject
 	RecordFunction recordFunction;
 	
+	@Inject
+	LibraryMapper mapper;
+	
+	@RequestMapping("/calendar")
+	public void calendar() {
+		
+	}
+	
 	@GetMapping("/reviewMain")
-	public void recordMain(Principal principal, Model model) {
+	public void recordMain(Principal principal, Criteria cri, Model model) {
 		
-		model.addAttribute("list", service.selectBoardList(principal.getName()));
-		
+		model.addAttribute("list", service.selectBoardList(principal.getName(), cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, service.getTotal(principal.getName())));
 	}
 	
 	// 책별 감상 목록
@@ -113,11 +122,12 @@ public class ReviewBoardController {
 	
 	// review 작성 페이지
 	@RequestMapping("/reviewWrite")
-	public String reviewWrite(ReviewBoardVO rbVO, Model model) {
-		
-		model.addAttribute("review", rbVO);
+	public String reviewWrite(Principal principal, ReviewBoardVO rbVO, Model model) {
 		
 		// 작성 페이지로 넘어갈 때 내 서재에 있는 책 목록도 함께 넘어가도록.
+		
+		model.addAttribute("myList", mapper.getMyList(principal.getName()));
+		model.addAttribute("review", rbVO);
 		
 		return "reviewWrite";
 	}
@@ -136,7 +146,6 @@ public class ReviewBoardController {
 		
 		service.registerReview(rbVO);
 		rttr.addAttribute("isbn", rbVO.getIsbn());
-		rttr.addAttribute("user_id", rbVO.getUser_id());
 		
 		return "redirect:/reviewPerBook";
 	}

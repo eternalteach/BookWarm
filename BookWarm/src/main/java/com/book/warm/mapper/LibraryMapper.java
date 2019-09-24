@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.book.warm.vo.BookVO;
 import com.book.warm.vo.LibraryVO;
 
 public interface LibraryMapper {
@@ -18,4 +19,5 @@ public interface LibraryMapper {
 	
 	public int deleteMyBook(@Param("user_id")String user_id, @Param("isbn")String isbn);
 	
+	public List<BookVO> getMyList(String user_id);
 }

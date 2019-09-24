@@ -18,10 +18,15 @@
 	]]>
 	</select>
 	
-	<select id='getMyList'  resultType='com.book.warm.vo.LibraryVO'>
-	<![CDATA[
-	select * from library where user_id=#{user_id} order by list_added_date desc
-	]]>
+	<select id='getMyList'  resultType='com.book.warm.vo.BookVO'>
+
+	select *
+	from book b
+	where exists(select b.isbn
+                  from library l
+                  where b.isbn = l.isbn
+                  and user_id=#{user_id})
+
 	</select>
 
 	<update id='deleteLibraryList'>

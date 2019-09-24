@@ -4,9 +4,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 읽어온 날짜를 형식에 맞게 자르기 위해 taglib 추가 -->
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
  <%@ include file="includes/header/header/header-from-vertex.jsp" %>
+ 
+ <<sec:authentication property="principal.username" var="user_id"/>
  
     <div role="main" class="main">
 
@@ -41,25 +43,37 @@
                             	
                             	
                             	<li>
-                            	
                             		<!-- 작성 페이지. -->
                             		<form action="register" method="POST">
-										<input type="hidden" name="user_id" value="${review.user_id}">
-										
-										
-										
-										<!-- isbn은 책별 리뷰 페이지에서 작성을 눌렀을 때는 값이 넘어오니까 그 값을 hidden처리해줄까? 아니면 -->
-										<!-- 선택만 그걸로 되게 하고.. 그 목록을 선택지로 띄울까. -->
-										
-										<select name="isbn">
-											<option value="">책 선택</option>
-											<%-- <c:forEach item=""></c:forEach> --%>
-										</select>
-										
-										<input type="hidden" name="isbn" value="${review.isbn}">
+										<input type="hidden" name="user_id" value="${user_id}">
 										<!-- 작성 시간과 수정 시간은 알아서 데이터 입력시에 들어가니 여기엔 필요 없음 -->
                             		
                             			<table style="table-layout:fixed">
+                            				<tr>
+                            					<td>책</td>
+                            					<td>
+                            					
+										<!-- isbn은 책별 리뷰 페이지에서 작성을 눌렀을 때는 넘어온 값이 선택,
+											 리뷰 메인에서 넘어온 경우 책 선택이 default값으로 선택돼있도록. -->
+										
+	                            					<select name="isbn">
+														<option value="">책 선택</option>
+														
+														<c:forEach items="${myList}" var="book">
+														
+															<c:choose>
+																<c:when test="${not empty review.isbn && review.isbn == book.isbn}">
+																	<option value="${book.isbn}" selected="selected">${book.book_title}</option>
+																</c:when>
+																<c:when test="${empty review.isbn || review.isbn != book.isbn}">
+																	<option value="${book.isbn}">${book.book_title}</option>
+																</c:when>
+															</c:choose>
+														
+														</c:forEach>
+													</select>
+                            					</td>
+                            				</tr>
                             				<tr>
                             					<td>제목</td>
                             					<td><input type="text" name="review_title"></td>
@@ -316,6 +330,12 @@
     
     	$(document).ready(function(){
     		
+    		if($("select option").length == 1) {
+				// 감상 작성 시도시 서재에 등록된 책이 없는 경우 라이브러리로 가서 책을 등록하게 함
+				alert("내 서재에 책을 추가한 후 감상을 작성할 수 있습니다.");
+				location.href="/warm/library";
+			}
+    		
     		var formObj = $("form");
     		// 파일 업로드를 위해 폼 제출 기본 동작 막음
     		$("button[type='submit']").on("click", function(e){
@@ -333,8 +353,12 @@
     				str += "<input type='hidden' name='attachList[" + i + "].uuid' value ='" + jobj.data("uuid") + "'>";
     				str += "<input type='hidden' name='attachList[" + i + "].uploadPath' value ='" + jobj.data("path") + "'>";
     			});
-
-    			if($.trim($("input[name='review_title']").val()) == '') {
+				
+    			
+    			if ($("select").val() == '') {
+    				alert("책을 선택해주세요.");
+    				
+    			} else if ($.trim($("input[name='review_title']").val()) == '') {
     				alert("제목을 입력해주세요.");
     			} else if ($.trim($("textarea").val()) == '') {
     				alert("내용을 입력해주세요.");
@@ -346,6 +370,7 @@
     			}
     			
     		});
+    		
     		// 이미지 파일만을 등록할 수 있도록.
     		var regex = new RegExp("(.*?)\.(jpeg|jpg|png|gif|bmp)$")
     		

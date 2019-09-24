@@ -30,9 +30,6 @@ public class RecordService {
 
 	public Integer getCount(BookVO bookVO, String user_id) {
 		log.info("========== getCount() ==========");
-		log.info("getCount : bookVO.getIsbn()"+bookVO.getIsbn());
-		log.info("getCount : user_id"+user_id);
-		log.info(mapper);
 		return mapper.CountWriteNo(bookVO, user_id);
 	}
 

@@ -13,6 +13,8 @@ public interface ReviewBoardMapper {
 
 	public List<ReviewMainVO> selectBoardList(String user_id);
 	
+	public List<ReviewMainVO> selectBoardListWithPaging(String user_id, Criteria cri);
+	
 	public List<ReviewBoardVO> getListPerBook(String isbn, String user_id);
 	
 	public List<ReviewBoardVO> getListPerBookWithPaging(String isbn, String user_id, Criteria cri);
@@ -30,6 +32,8 @@ public interface ReviewBoardMapper {
 	public int deleteReview(ReviewBoardVO rbVO);
 
 	public int modifyReview(ReviewBoardVO rbVO);
+	
+	public int getBoardListCount(String user_id);
 	
 	public int getTotalCount(Criteria cri, String isbn, String user_id);
 	
