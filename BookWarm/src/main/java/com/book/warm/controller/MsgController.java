@@ -30,6 +30,8 @@ public class MsgController {
 		log.info("=================send=============================");
 		String msg_get_id = request.getParameter("msg_get_id");
 		String msg_send_id = request.getParameter("msg_send_id");
+
+		
 		
 		//sendid는 다른 사용자
 		msgvo.setMsg_get_id(msg_get_id);

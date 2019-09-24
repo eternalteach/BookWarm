@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <sec:authentication property="principal.username" var="user_id"/>
 
@@ -37,7 +39,7 @@
 					<div class="col-sm-3 v-right-sidebar-wrap pt-8">
 						<!--Tab-->
 						<ul id="myTab" class="nav v-right-sidebar-inner">
-							<li><a class="aa" href="#modal-msg" data-toggle="modal" data-target="#modal"
+							<li><a class="aa" href="#modal-msg" data-toggle="modal" data-target="#modala"
 							class="nav v-right-sidebar-inner" >
 							<i class="fa fa-star-o"></i>쪽지 보내기</a></li>
 							
@@ -61,10 +63,11 @@
 								<div class="row">
 									<div class="col-md-9 left-side-sidebar">
 										<c:forEach items="${msglist}" var="msglist">
-										<fmt:formatDate var="fmt_date" value="${vo.review_written_date}" pattern="ddMMM"/>
-											<div class="v-blog-recent-post">
+										<fmt:setLocale value="en_US" scope="session"/>
+										<fmt:formatDate var="fmt_date" value="${msglist.msg_read_time }" pattern="ddMMM"/>
+											<div class="v-blog-recent-post" style="border: 2px solid;  margin-bottom: 10px; float:left;width:350px; ">
 												<div class="blog-list-item-date">
-													03<span>Mar</span>
+													${fn:substring(fmt_date,0,2)}<span>${fn:substring(fmt_date,2,5)}</span>
 												</div>
 												<div class="blog-list-content">
 													<h6 class="special">
@@ -74,7 +77,7 @@
 													<small>받는 사람 ${msglist.msg_get_id}</small>
 													<div class="blog-list-item-excerpt">
 														<p>내용 : ${msglist.msg_content}</p>
-														<a class="aa" href="#modal-msg" data-toggle="modal" data-target="#modal">
+														<a class="bb" href="#modal-msgg" data-toggle="modal" data-target="#modal">
 													답장하기</a>
 													</div>
 												</div>
@@ -90,9 +93,11 @@
 								<div class="row">
 									<div class="col-md-6">
 										<c:forEach items="${msglist2}" var="msglist2">
-										<div class="v-blog-recent-post">
+										<fmt:setLocale value="en_US" scope="session"/>
+										<fmt:formatDate var="fmt_date2" value="${msglist2.msg_send_time }" pattern="ddMMM"/>
+										<div class="v-blog-recent-post" style="border: 2px solid;  margin-bottom: 10px; float:left;width:350px; ">
 											<div class="blog-list-item-date">
-												03<span>Mar</span>
+												${fn:substring(fmt_date2,0,2)}<span>${fn:substring(fmt_date2,2,5)}</span>
 											</div>
 											<!-- <div class="blog-list-content">
 												<h6 class="special">
@@ -118,7 +123,7 @@
 													<div class="blog-list-item-excerpt">
 														<p>내용 : ${msglist2.msg_content}</p>
 												</div>
-										</div>
+											</div>
 									</div>
 									</c:forEach>
 								</div>
@@ -135,26 +140,61 @@
 	</div>
 	
 <!-- 모달창 -->
-<div class="modal fade" id="modal${UserBooks.isbn}" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+<!-- 답장하기 모달창  -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
     <div class="modal-dialog undefined">
         <div class="modal-content">
             <div class="modal-body post-content">
+            
 				<div class="form-inline" style="width:100px" >
 					<div class="aa">
 						<form action="/warm/send">
-						보낸사람<input name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
-						  받는 사람<input name="msg_get_id" type="text"><br><br>
-						 제목 <input name="msg_title" type="text"><br><br>
-						  <textarea name="msg_content" style="width:400px; height:300px;"></textarea><br>
-						  <input type="submit" value="보내기">
+								보낸사람<input name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
+						<c:forEach items="${msglist}" var="msglist">
+								받는 사람<input name="msg_get_id" type="text" value="${msglist.msg_send_id}" readonly><br><br>
+						</c:forEach>
+								 제목 <input name="msg_title" type="text"><br><br>
+						  		<textarea name="msg_content" style="width:400px; height:300px;"></textarea><br>
+						  
+						  <input id="sendd" type="submit" value="보내기">
 						 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						 
 						</form>
 					</div>
 				</div>
+				
             </div>
         </div>
     </div>
 </div>
+
+<!-- 쪽지보내기모달창 -->
+<div class="modal fade" id="modala" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+    <div class="modal-dialog undefined">
+        <div class="modal-content">
+            <div class="modal-body post-content">
+            
+				<div class="form-inline" style="width:100px" >
+					<div class="aa">
+						<form action="/warm/send">
+								보낸사람<input name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
+								받는 사람<input name="msg_get_id" type="text"><br><br>
+								 제목 <input name="msg_title" type="text"><br><br>
+						  		<textarea name="msg_content" style="width:400px; height:300px;"></textarea><br>
+						  
+						  <input id="sendd" type="submit" value="보내기">
+						 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						 
+						</form>
+					</div>
+				</div>
+				
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 	<!-- Libs -->
 	<script src="js/jquery.min.js"></script>
@@ -179,6 +219,16 @@
 		// Select the active tab
 		$(document).ready(function() {
 			$('a[href=' + window.location.hash + ']').tab('show');
+		
+			
+		});
+		
+		$(document).ready(function(){
+			$("#sendd").on("click", function(e){
+				console.log("ddd");
+				alert("보내시겠습니까?");
+			});
+			
 		});
 		
 		

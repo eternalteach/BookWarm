@@ -20,8 +20,17 @@
 		values(
 		MSG_SEQ.nextval, #{msg_send_id},  #{msg_get_id}, #{msg_title}, #{msg_content})
  	</insert> 
-	
-	
+ 	<!-- 쪽지보낸 사람의 아이디만 	불러오기  -->
+ 	<!-- msglist.msg_send_id -->
+ 	<select id="sendlist" resultType="com.book.warm.vo.MsgTableVO">
+ 	select msg_send_id from msg_table
+	where msg_get_id = #{msg_get_id}
+	and msg_no = #{msg_no}
+	order by msg_no
+ 	</select>
+ 	
+ 	
+ 	
 	<!-- 쪽지삭제  -->
 	<delete id="msgdelete">
 	delete from msg_table where msg_no = #{msg_no}
