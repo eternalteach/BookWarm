@@ -45,6 +45,7 @@
     		  title: 'test',
     		  start: '2019-09-24',
     		  end: '2019-09-30',
+              /* url : "http://google.com/" */
     	  }
       ],
 
@@ -67,7 +68,8 @@
     (function() {
     	alert('작동?');
 	    var testImg = $(".fc-day[data-date='2019-09-12']");
-	    testImg.html('<h1>안녕</h1>');
+	    testImg.html("<img style='height:50%; padding:auto' src='https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F3750894'>" 
+	    		+ "<img style='height:50%; padding:auto' src='https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F5005951%3Ftimestamp%3D20190802101327'>");
      })();
     
   });
