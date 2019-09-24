@@ -104,11 +104,21 @@ public class RecordFunction {
 		log.info("====================RecordFunction INIT");
 
 		this.startPage = statisticsFunctionService.firstPage(logingList);
+		System.out.println("startPage: " + startPage);
 		this.endPage = statisticsFunctionService.endPage(logingList);
+		System.out.println("endPage: " + endPage);
 		this.readPageNum = statisticsFunctionService.logingPage(logingList, bookVO);
+		System.out.println("readPageNum: " + readPageNum);
+
 		int bookTotalPage = bookVO.getBook_tot_page();
+		System.out.println("bookTotalPage: " + bookTotalPage);
+
 		this.reading = ((double) readPageNum / (double) bookTotalPage) * 100;
+		System.out.println("reading: " + reading);
+
 		this.logingCount = recordService.getCount(bookVO, user_id);
+		System.out.println("logingCount: " + logingCount);
+
 	}
 
 }

@@ -93,12 +93,12 @@
  	
  	</select>
  	
- 	<select id="showBookThumbnail" resultType="com.book.warm.vo.BookVO">
- 		select book_img, book_title, writer_name
+ 	<!-- <select id="showBookThumbnail" resultType="com.book.warm.vo.BookVO">
+ 		select book_img, book_title, writer_name, isbn
 		from book
 		where isbn = #{isbn} 
 		
- 	</select>
+ 	</select> -->
  	
  	<select id="selectedReview" resultType="com.book.warm.vo.ReviewBoardVO">
  		select * from review_board where review_no = #{review_no}

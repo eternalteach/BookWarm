@@ -11,20 +11,28 @@ import com.book.warm.vo.LogingBoardVO;
 public class StatisticsFunctionService {
 
 	public int logingPage(List<LogingBoardVO> list, BookVO bookVO) {
+		System.out.println("list : "  +list);
+		System.out.println("list.size() : " + list.size());
+		System.out.println("list.get(0): " + list.get(0));
 		if(list.size()==-1||list.size()==0) {
 			System.out.println("list.size() : "+list.size());
 			return 0;
 		}
+		System.out.println("bookVO: "  + bookVO);
+		System.out.println("bookVO: " + bookVO.toString());
 		int total = bookVO.getBook_tot_page();
-
+		System.out.println("total은요:  " + total);
 		int[] realReadPage = new int[total]; // 책의 ?��???��?���? 0?���? 초기?��
 		for (int i = 0; i < total; i++) {
 			realReadPage[i] = 0;
+			System.out.println(realReadPage[i]);
 		}
 
 		for (int j = 0; j < list.size(); j++) { // ?��?? ?��?���? 체크?���?
 			int readStartPage = list.get(j).getStart_page();
+			System.out.println(readStartPage);
 			int readEndPage = list.get(j).getEnd_page();
+			System.out.println(readEndPage);
 			for (int i = readStartPage - 1; i < readEndPage; i++) {
 				realReadPage[i]++;
 			}

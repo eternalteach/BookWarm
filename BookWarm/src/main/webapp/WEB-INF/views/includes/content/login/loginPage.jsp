@@ -30,14 +30,14 @@
 
                                     <div class="section">
                                        <label class="field prepend-icon"> <!-- 아이디 입력하는 부분 -->
-                                          <input type="text" name="username" id="username" class="gui-input" placeholder="Enter username">
+                                          <input type="text" name="username" id="username" class="gui-input" placeholder="Enter username" value="admin9">
                                           <span class="field-icon"><i class="fa fa-user"></i></span>
                                        </label>
                                     </div><!-- end section -->
 
                                     <div class="section">
                                        <label class="field prepend-icon"> <!-- 비밀번호 입력하는 부분 -->
-                                          <input type="password" name="password" id="user_pw" class="gui-input" placeholder="Enter password">
+                                          <input type="password" name="password" id="user_pw" class="gui-input" placeholder="Enter password" value="123123123">
                                           <span class="field-icon"><i class="fa fa-lock"></i></span>
                                        </label>
                                     </div><!-- end section -->

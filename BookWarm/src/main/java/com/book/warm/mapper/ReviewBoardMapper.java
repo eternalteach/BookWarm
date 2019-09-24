@@ -19,9 +19,7 @@ public interface ReviewBoardMapper {
 
 	public BookVO showBookThumbnail(String isbn);
 
-//	public ReviewBoardVO selectedReview(int review_no, String user_id); // 리뷰 조회에 아이디는 필요 없음.
 	public ReviewBoardVO selectedReview(int review_no);
-
 	
 	public BookVO bookInfo(String isbn);
 

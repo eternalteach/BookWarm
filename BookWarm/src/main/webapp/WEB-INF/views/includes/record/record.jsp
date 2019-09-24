@@ -14,8 +14,15 @@
 				<article class="v_blog-item">
 					<div class="v_blog-item-inner row">
 						<div class="v_blog-item-media col-md-12">
-							<a href="#"> <img src="${bookVO.book_img}" />
-							</a>
+							<ul>
+                                <li>
+                                    <a href="#">
+                                		<img src="${bookVO.book_img}" style="display:block; margin:auto">
+                            		</a>
+                            	</li>
+                                <li style="text-align:center; margin:5px">${bookVO.book_title}</li>
+                                <li style="text-align:center">${bookVO.writer_name}</li>
+                            </ul>
 						</div>
 					</div>
 				</article>

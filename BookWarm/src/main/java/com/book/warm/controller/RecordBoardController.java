@@ -40,22 +40,20 @@ public class RecordBoardController {
 	@Inject
 	StatisticsFunctionService statisticsFunctionService;
 
-	@RequestMapping(value = "/record", method = RequestMethod.GET)
-	public String record(Model model, @Param("bookVO") BookVO bookVO, Principal principal)
-			throws Exception {
-		log.info("===== record() =====");
-		String user_id = principal.getName();
-		bookVO = recordService.getBook(bookVO.getIsbn());// get isbn and set all bookVO attr
-		List<LogingBoardVO> logingList = recordService.getList(user_id, bookVO.getIsbn());
-		int recordNum= recordService.getCount(bookVO, user_id);
-		
-		recordFunction.setRecordFunction(logingList, bookVO, user_id);
-		model.addAttribute("bookVO", bookVO);
-		model.addAttribute("user_id",user_id);
-		model.addAttribute("recordNum", recordNum);
-		model.addAttribute("recordInfo",recordFunction);
-		return "/record";
-	}
+	/*
+	 * @RequestMapping(value = "/record", method = RequestMethod.GET) // add task -
+	 * get book command(need total page) public String record(Model
+	 * model, @Param("bookVO") BookVO bookVO, Principal principal) throws Exception
+	 * { log.info("===== record() ====="); String user_id = principal.getName();
+	 * bookVO = recordService.getBook(bookVO.getIsbn());// get isbn and set all
+	 * bookVO attr List<LogingBoardVO> logingList = recordService.getList(user_id,
+	 * bookVO.getIsbn()); int recordNum= recordService.getCount(bookVO, user_id);
+	 * 
+	 * recordFunction.setRecordFunction(logingList, bookVO, user_id);
+	 * model.addAttribute("bookVO", bookVO); model.addAttribute("user_id",user_id);
+	 * model.addAttribute("recordNum", recordNum);
+	 * model.addAttribute("recordInfo",recordFunction); return "/record"; }
+	 */
 
 		@GetMapping(value = "/reload/{user_id}/{isbn}", produces = { MediaType.APPLICATION_XML_VALUE,
 				MediaType.APPLICATION_JSON_UTF8_VALUE })

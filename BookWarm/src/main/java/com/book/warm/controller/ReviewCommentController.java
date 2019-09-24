@@ -30,7 +30,6 @@ public class ReviewCommentController {
 	private ReviewCommentService service;
 	
 	// 댓글 입력
-	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value="/new",
 					 consumes = "application/json",
 					 produces = { MediaType.TEXT_PLAIN_VALUE })
