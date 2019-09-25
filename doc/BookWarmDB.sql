@@ -288,8 +288,11 @@ pay_no varchar2(20),
 pay_way varchar2(20) not null,
 pay_total number(10,0) not null,
 pay_refund_account varchar2(50) not null,
+pay_refund_bank varchar2(10) not null,
 constraint pk_pay primary key(pay_no)
 );
+
+create sequence pay_seq;
 
 --주문
 create sequence orders_seq;
