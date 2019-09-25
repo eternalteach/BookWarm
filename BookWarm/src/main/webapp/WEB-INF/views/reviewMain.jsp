@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
-<%@ include file="./includes/header/header-dark-dropdown.jsp"%>
 
 
       <div class="page has-sidebar has-right-sidebar bordered">

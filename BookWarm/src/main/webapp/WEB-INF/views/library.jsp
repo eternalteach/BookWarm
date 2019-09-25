@@ -18,6 +18,8 @@
 	<button type="button" class="btn" data-toggle="modal" data-target="#modal-library">modal-library</button>
 	<a href="reviewMain?user_id=aaa"><button>감상 메인페이지</button></a>
 	<a href="shop/shoplist"><button>책 리스트</button></a>
+	<a href="message" class="fa fa-commenting-o" style="color:white">쪽지</a>
+	<a href="customLogout" style="color:white" >로그아웃</a>
 	<div class="library-body">
 		<table class="margin-zero" style="width: 795px; height: 1001px;">
 			<tr style="height: 43px;">
