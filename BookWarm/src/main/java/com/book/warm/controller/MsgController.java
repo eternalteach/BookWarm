@@ -29,18 +29,10 @@ public class MsgController {
 	public String send(Principal principal, HttpServletRequest request, Model model, MsgTableVO msgvo) {
 		log.info("=================send=============================");
 		String msg_get_id = request.getParameter("msg_get_id");
-		String msg_send_id = request.getParameter("msg_send_id");
-
-		
-		
-		//sendid는 다른 사용자
-		msgvo.setMsg_get_id(msg_get_id);
-		
+		int msg_no = Integer.parseInt(request.getParameter("msg_no"));
 		msgservice.msginsert(msgvo);
 		
-		log.info("보낸사람아이디:"+msg_get_id);
-		log.info("받는사람아이디:"+msg_send_id);
-		
+		model.addAttribute("sendlist", msgservice.sendlist(msg_get_id, msg_no));
 		return "redirect:/message";
 	}
 	
@@ -48,17 +40,14 @@ public class MsgController {
 	@RequestMapping(value = "/message", method = RequestMethod.GET)
 	public String message(Principal principal, HttpServletRequest request, Model model, MsgTableVO msgvo) {
 		log.info("=================messgae=============================");
-		
 		String user_id =principal.getName();
 		String msg_get_id = request.getParameter("msg_get_id");
 		
 		//getid와 로그인 한 사람은 같다
 		msg_get_id =user_id;
 		
-		
 		log.info("유저아이디:" + user_id);
 		log.info("받는사람아이디:"+msg_get_id);
-		
 		
 		model.addAttribute("msglist", msgservice.msglist(msg_get_id));
 		model.addAttribute("msglist2", msgservice.msglist2(msg_get_id));
