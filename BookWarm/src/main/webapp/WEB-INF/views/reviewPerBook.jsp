@@ -156,7 +156,7 @@
                             <li class="col-sm-12" style="margin-top:10px">
                             	<div class="pull-right">
                             	
-                            	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${bookVO.isbn}&user_id=${user_id}">
+                            	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${bookVO.isbn}">
 		                            	<span class="text ls-1">
 		                            		감상 더하기
 			                                <i class="icon icon-pen-3"></i>
@@ -281,8 +281,8 @@
                                 	
                                 	<form id="actionForm" action="/warm/reviewPerBook" method="get">
 
-                                		<input type="hidden" name="isbn" value="${list[0].isbn}">
-                                		<input type="hidden" name="user_id" value="${list[0].user_id}">
+                                		<input type="hidden" name="isbn" value="${bookVO.isbn}">
+                                		<%-- <input type="hidden" name="user_id" value="${list[0].user_id}"> --%>
                                 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
                                 		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
                                 		

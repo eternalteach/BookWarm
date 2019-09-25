@@ -183,7 +183,10 @@
                             	</div>
                             <!-- </li> -->
 
-
+				<c:if test="${empty list}">
+					등록한 감상이 없습니다.
+				</c:if>
+				
 				<!-- 블로그에 글 넣기 시도 -->
 				<!-- 책별 데이터 불러오고 그 중 가장 최근 데이터 하나만 불러오기. -->
 				
@@ -195,7 +198,7 @@
                         
                            <!-- 여기가 이미지 들어가는 부분 -->
                            <div class="v_blog-item-media col-md-2">
-                              <a href="/warm/reviewPerBook?user_id=${vo.user_id}&isbn=${vo.isbn}">
+                              <a href="/warm/reviewPerBook?isbn=${vo.isbn}">
                                  <img class="w-100" src="${vo.book_img}"/>
                               </a>
                            </div>
@@ -280,8 +283,52 @@
 
                      <div class="row">
                         <div class="col-md-12">
+                        
+                         <nav aria-label="...">
+                                <ul class="pagination">
+                                	
+                        
+                                	<c:if test="${pageMaker.prev}">
+	                                    <li class="page-item">
+	                                        <a class="page-link" href="${pageMaker.startPage-1}">
+		                                        Previous
+		                                    </a>
+	                                    </li>
+                                	</c:if>
+                                	<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+                                	
+	                                    <li class="page-item ${pageMaker.cri.pageNum == num ? "active":"" }"><a class="page-link" href="${num}">${num}</a></li>
+	                                    
+	                                    <!-- <li class="page-item active">
+	                                        <span class="page-link">
+	                                            2
+	                                            <span class="sr-only">(current)</span>
+	                                        </span>
+	                                    </li> -->
+	                                    
+                                	</c:forEach>
+                                    
+                                    <c:if test="${pageMaker.next}">
+	                                    <li class="page-item">
+		                                    <a class="page-link" href="${pageMaker.endPage+1}">
+		                                        Next
+		                                    </a>
+	                                    </li>
+                                	</c:if> 
+                                	
+                                	<form id="actionForm" action="/warm/reviewMain" method="get">
 
-                           <nav aria-label="Page navigation example">
+                                		<input type="hidden" name="isbn" value="${list[0].isbn}">
+                                		<input type="hidden" name="user_id" value="${list[0].user_id}">
+                                		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+                                		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+                                		
+                                	</form>
+                                	
+                                </ul>
+                            </nav>
+                            
+                           <!-- <nav aria-label="Page navigation example">
                               <ul class="pagination">
                                  <li class="page-item disabled">
                                     <a class="page-link" href="#" tabindex="-1">Previous</a>
@@ -293,7 +340,7 @@
                                     <a class="page-link" href="#">Next</a>
                                  </li>
                               </ul>
-                           </nav>
+                           </nav> -->
                         </div>
                      </div>
                   </div>
@@ -422,6 +469,22 @@
       </div>
    </div>
 
+
+<script>
+
+	var actionForm = $("#actionForm");
+	
+	$(".page-link").on("click", function(e) {
+		
+		e.preventDefault();
+		
+		console.log('click');
+		
+		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+		actionForm.submit();
+	 });
+
+</script>
 
 <%-- <%@ include file="./includes/footer/footer-2.jsp"%> --%>
 
