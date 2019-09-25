@@ -1,4 +1,4 @@
-﻿
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
    <div class="wrapper">
       <div class="page has-sidebar has-right-sidebar bordered">
 
@@ -32,7 +32,7 @@
                            <div class="form-header pt-0 pl-0">
                               <h4 class="fs-24">결제 상세 정보</h4>
                            </div>
-                           <form method="post" action="/" id="accountx" name="chargeForm">
+                           <!-- <form method="post" action="/" id="accountx" name="chargeForm"> -->
                               <div class="form-body pl-0">
 
                                  <div class="spacer-b30">
@@ -108,14 +108,15 @@
                                  	<div class="section colm colm2">
                                  		쿠폰
                                  	</div>
-                                   	<div class="section colm colm6">
+                                   	<div class="section colm">
                                    		<label class="field">
-                                    	   <input type="text" id="coupon" name="coupon" class="gui-input" placeholder="쿠폰" readonly>
+                                    	   <input type="text" id="coupon" class="gui-input" placeholder="쿠폰" readonly>
 	                                    </label>
                                     </div>
-                                    <div class="section colm colm3">
+                                    <div class="section colm">
 	                                    <label class="field">
 	                                    	<a href="javascript:pickCoupon()"><button type="button" class="btn btn-primary" id="pickCoupon">쿠폰적용</button></a>
+	                                    	<button type="button" class="btn btn-primary" id="cancleCoupon">쿠폰적용 취소</button>
 	                                    </label>
                                    	</div>
 	                             </div>
@@ -142,7 +143,7 @@
 	                             </div>
 	                             
                               </div><!-- end .form-body section -->
-                           </form>
+                           <!-- </form> -->
                         </div>
                         <!-- 폼 작성부분(왼쪽) -->
                        
@@ -155,7 +156,7 @@
                            <div class="form-header">
                               <h4 class="fs-24">Your Order</h4>
                            </div><!-- end .form-header section -->
-                           <form method="post" action="/" id="account2">
+                           <form method="post" action="/warm/shop/successOrder" id="account2">
                               <div class="form-body pt-15">
                                  <div class="table-responsive">
                                     <table class="table cart-totals">
@@ -174,23 +175,18 @@
 				                           		<td class="cart-product-name amount">${list.book_price_for_sale}원</td>
 				                           		<td class="cart-product-name amount">${list.cart_cnt}</td>
 				                           		<td class="cart-product-name amount">${list.total}원</td>
+				                             	<input type="hidden" name="isbn" value="${list.isbn}">
+				                             	<input type="hidden" name="cart_cnt" value="${list.cart_cnt}">
 				                             </tr>
 							   			  </c:forEach>
-							   			  <%-- <input type="hidden" id="total" value="${subTotal}"> --%>
 							   			  
                                           <tr class="cart_item">
                                              <td class="cart-product-name">
                                                 <strong>배송비</strong>
                                              </td>
 
-                                             <td class="cart-product-name">
+                                             <td class="cart-product-name" colspan="4">
                                                 <span class="amount" id="delivery">${delivery}</span>
-                                             </td>
-                                             <td class="cart-product-name">
-                                             </td>
-                                             <td class="cart-product-name">
-                                             </td>
-                                             <td class="cart-product-name">
                                              </td>
                                           </tr>
                                           <tr class="cart_item">
@@ -206,6 +202,7 @@
                                              </td>
                                           	 <td class="cart-product-name" colspan="4">
                                              	-<span class="amount" id="discountCoupon">0</span>(쿠폰 할인)
+                                             	<input type="hidden" name="coupon_no" id="submitCoupon">
                                              </td>
                                           </tr>
                                           <tr class="cart_item">
@@ -215,6 +212,7 @@
 
                                              <td class="cart-product-name" colspan="4">
                                                 <span class="amount color"><strong id="finalPay">${subTotal}</strong></span>
+                                                <input type="hidden" name="pay_total" id="submitTotal" value="${subTotal}">원
                                              </td>
                                           </tr>
                                        </tbody>
@@ -234,77 +232,42 @@
 
                                  <div class="section pb-15">
                                     <label class="field option option-yellow">
-                                       <input type="radio" name="payment" checked>
+                                       <input type="radio" id="cash" name="pay_way" class="payment" value="cash" checked>
                                        <span class="radio"></span> 무통장입금
                                     </label>
 
                                     <label class="field option option-yellow">
-                                       <input type="radio" name="payment">
-                                       <span class="radio"></span> 신용카드
+                                       <input type="radio" id="kakao" name="pay_way" class="payment" value="kakao">
+                                       <span class="radio"></span> 카카오페이
                                     </label>
                                  </div><!-- end section -->
-
-                                 <div class="fmx">
-
-                                    <div class="section">
-                                       <label class="field prepend-icon">
-                                          <input type="text" name="cardname" id="cardname" class="gui-input" placeholder="Name on card...">
-                                          <span class="field-icon"><i class="fa fa-user"></i></span>
+							 <!-- ///////////////////////////////// -->
+							 <div class="spacer-t40 spacer-b30">
+                                    <div class="tagline"><span> 환불 정보 </span></div><!-- .tagline -->
+                              </div>
+ 							  <div class="fmx">
+ 							  		<div class="section colm colm6">
+                                       <label class="field select">
+                                          <select id="refundBank" name="pay_refund_bank">
+                                             <option value="A">A은행</option>
+                                             <option value="B">B은행</option>
+                                             <option value="C">C은행</option>
+                                             <option value="D">D은행</option>
+                                          </select>
                                        </label>
-                                    </div><!-- end section -->
+                                    </div>
 
                                     <div class="section">
                                        <label class="field prepend-icon">
-                                          <input type="text" name="cardno" class="gui-input" placeholder="Card number...">
+                                          <input type="text" id="refundAccount" name="pay_refund_account" class="gui-input" placeholder="환불 계좌번호">
                                           <span class="field-icon"><i class="fa fa-credit-card"></i></span>
                                        </label>
-                                    </div><!-- end section -->
-                                 </div><!-- end frm-row section -->
-
-                                 <div class="frm-row">
-
-                                    <div class="section colm colm6">
-                                       <label for="cardmonth" class="field select">
-                                          <select id="cardmonth" name="cardmonth">
-                                             <option value="01">01 - Jan</option>
-                                             <option value="02">02 - Feb</option>
-                                             <option value="03">03 - Mar</option>
-                                             <option value="04">04 - Apr</option>
-                                             <option value="05">05 - May</option>
-                                             <option value="06">06 - Jun</option>
-                                             <option value="07">07 - Jul</option>
-                                             <option value="08">08 - Aug</option>
-                                             <option value="09">09 - Sep</option>
-                                             <option value="10">10 - Oct</option>
-                                             <option value="11">11 - Nov</option>
-                                             <option value="12">12 - Dec</option>
-                                          </select>
-                                          <i class="arrow double"></i>
-                                       </label>
-                                    </div><!-- end section -->
-
-                                    <div class="section colm colm6">
-                                       <label class="field select">
-                                          <select id="cardyear" name="cardyear" id="cardyear"></select>
-                                          <i class="arrow double"></i>
-                                       </label>
-                                    </div><!-- end section -->
-                                 </div><!-- end frm-row section -->
-
-                                 <div class="frm-row">
-
-                                    <div class="section colm colm6">
-                                       <label class="field prepend-icon">
-                                          <input type="text" name="secno" id="secno" class="gui-input" placeholder="Security number...">
-                                          <b class="tooltip tip-left-top"><em> This is a four diigit number at the back of your card </em></b>
-                                          <span class="field-icon"><i class="fa fa-barcode"></i></span>
-                                       </label>
-                                    </div><!-- end section -->
-                                 </div><!-- end frm-row section -->
+                                    </div>
+                              </div>
+    						<!-- ///////////////////////////////// -->                                                         
                               </div><!-- end .form-body section -->
-                              
                               <div class="form-footer">
-                                 <button type="submit" class="btn btn-primary w-100">Proceed to confirm </button>
+                                 <button type="submit" id="submit" class="btn btn-primary w-100">주문</button>
                               </div><!-- end .form-footer section -->
                            </form><!-- end form -->
                         </div>

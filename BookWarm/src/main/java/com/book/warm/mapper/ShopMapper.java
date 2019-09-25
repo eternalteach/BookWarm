@@ -36,5 +36,14 @@ public interface ShopMapper {
 	public void updatecart(CartJoinBookVO cartvo);
 	public void delete(int cart_no);
 	//===============================================================
+
+	public void makePayment(@Param("pay_way") String pay_way, @Param("pay_total") int pay_total, @Param("pay_refund_account") String pay_refund_account, @Param("pay_refund_bank") String pay_refund_bank,
+			@Param("orders_pay_date") String orders_pay_date, @Param("coupon_no") String coupon_no);
+
+	public int getPay_no();
+
+	public void makeOrder(@Param("user_id") String user_id, @Param("isbn") String isbn, @Param("cart_cnt") String cart_cnt, @Param("pay_no") int pay_no);
+
+
 	
 }

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.book.warm.service.ShopBoardService;
 import com.book.warm.vo.CartJoinBookVO;
 import com.book.warm.vo.CouponVO;
+import com.book.warm.vo.PayVO;
 import com.book.warm.vo.UserVO;
 
 import lombok.extern.log4j.Log4j;
@@ -149,8 +150,8 @@ public class ShopController {
 	// 쿠폰 고르기창
 	@RequestMapping(value="/pickCoupon")
 	@ResponseBody
-	public List<CouponVO> pickCoupon(HttpSession session, Model model) {
-		String user_id = (String) session.getAttribute("user_id");
+	public List<CouponVO> pickCoupon(Principal principal, Model model) {
+		String user_id = principal.getName();
 		
 		// 현재 로그인한 user가 가지고 있는 쿠폰을 list로 받아온다.
 		List<CouponVO> couponList = service.getCouponList(user_id);
@@ -162,8 +163,8 @@ public class ShopController {
 	
 	// 쿠폰 선택
 	@RequestMapping("/useCoupon")
-	public String useCoupon(HttpSession session, HttpServletRequest req, Model model) {
-		String user_id = (String) session.getAttribute("user_id");
+	public String useCoupon(Principal principal, HttpServletRequest req, Model model) {
+		String user_id = principal.getName();
 		
 		// 현재 로그인한 user가 가지고 있는 쿠폰을 list로 받아온다.
 		List<CouponVO> couponList = service.getCouponList(user_id);
@@ -171,5 +172,54 @@ public class ShopController {
 		
 		return "/couponList";
 	}
+	
+	
+	// 주문 성공 >> 트랜잭션으로 묶어야함
+	@RequestMapping("successOrder")
+	public String successOrder(Principal principal, PayVO payVO, HttpServletRequest req, Model model) {
+		
+		
+		String pay_way = payVO.getPay_way(); // 결제 방법(kakao or cash)
+		int pay_total = payVO.getPay_total(); // 주문 총 금액
+		String pay_refund_account = payVO.getPay_refund_account(); // 환불 받을 계좌번호
+		String pay_refund_bank = payVO.getPay_refund_bank(); // 환불 받을 은행
+		String coupon_no = payVO.getCoupon_no(); // 쿠폰
+		
+		String user_id = principal.getName(); // 로그인한 유저 id
+		String name = req.getParameter(""); // 받는 사람 이름
+		String isbn[] = req.getParameterValues("isbn"); // 구매한 모든 책들의 isbn
+		String cart_cnt[] = req.getParameterValues("cart_cnt"); // 구매한 모든 책들의 isbn
+		String orders_pay_date = "";
+		
+		System.out.println("payment(kakao) : "+payVO.getPay_way());
+		
+		if(pay_way.equals("cash")) {
+			// payment == cash  >>  orders_pay_date = ""
+			orders_pay_date = "''";
+		}else if(pay_way.equals("kakao")) {
+			// payment == kakao  >>  orders_pay_date = sysdate
+			orders_pay_date = "sysdate";
+		}
+		
+		// pay테이블에 주문건 넣기
+		service.makePayment(pay_way, pay_total, pay_refund_account, pay_refund_bank, orders_pay_date, coupon_no);
+		int pay_no = service.getPay_no();
+		
+		// orders테이블에 주문건 넣기
+		for(int i=0; i<isbn.length; i++) {
+			service.makeOrder(user_id, isbn[i], cart_cnt[i], pay_no);
+		}
+		
+		// successOrder.jsp에 보내야 하는 데이터
+		// 받는 사람, 휴대폰번호, 주소
+		
+		// 주문 도서명, 수량
+		// 총 결제 금액
+		// 결제 방법
+		
+		
+		return "/successOrder";
+	}
+	
 
 }

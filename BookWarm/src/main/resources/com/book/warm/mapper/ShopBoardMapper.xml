@@ -81,8 +81,41 @@
 		]]>
 	</select>
 	
+	<insert id="makePayment">
+		insert into pay(pay_no, pay_way, pay_total, pay_refund_account, pay_refund_bank, orders_date, orders_pay_date, coupon_no, post_no)
+		values(PAY_SEQ.nextval, #{pay_way}, #{pay_total}, #{pay_refund_account}, #{pay_refund_bank}, SYSDATE, ${orders_pay_date}, #{coupon_no}, '')
+	</insert>
+	
+	<select id="getPay_no" resultType="java.lang.Integer">
+		select PAY_SEQ.currval from dual
+	</select>
+	
+	<insert id="makeOrder">
+		insert into orders values(ORDERS_SEQ.nextval, #{user_id}, #{isbn}, #{cart_cnt}, #{pay_no}, '주문완료')
+	</insert>
 	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

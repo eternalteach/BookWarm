@@ -32,7 +32,6 @@
 				str += "보유 쿠폰<br><br><br>";
 				
 				for(var i=0; i<couponList.length; i++) {
-					// str += "<div id='"+couponList[i].coupon_no+"'>";
 					str += "쿠폰 번호 : "+couponList[i].coupon_no+"<br>";
 					str += "쿠폰 이름 : "+couponList[i].coupon_name+"<br>";
 					str += "이 쿠폰을 사용 할 수 있는 회원 level : ";
@@ -42,33 +41,8 @@
 					str += "<br>"+couponList[i].coupon_use_req+"이상 구매시 사용 가능<br>";
 					str += "할인율 : "+couponList[i].coupon_discount_percent+"<br>";
 					str += "유효기간 : "+couponList[i].coupon_validate+"<br>";
-					str += "<button type='button' class='select' data-abc="+couponList[i].coupon_discount_percent+" id='"+couponList[i].coupon_no+"' value='"+couponList[i].coupon_name+"'>선택</button><br>";
-					//str += "</div><br>";
+					str += "<button type='button' class='select' data-abc="+couponList[i].coupon_discount_percent+" id='"+couponList[i].coupon_no+"' value='"+couponList[i].coupon_no+"'>선택</button><br>";
 				}
-				
-//				str += "<script>";
-//				str += "$(document).ready(function() {";
-//				str += "$('.select').on('click', function() {";
-//				str += "$('#coupon').attr('value', $(this).val());";
-//				
-//				str += "var bookPrice = $('#total').val();";
-//				str += "bookPrice = bookPrice.substring(0,bookPrice.lastIndexOf('원')); /*책 판매 총액*/";
-///				str += "var discounted = $(this).attr('data-abc')/100*bookPrice; /*쿠폰 할인 금액*/";
-//				
-//				str += "/* -0(쿠폰할인) << 이 부분에 빠지는 금액만큼 넣어주기 */";
-//				str += "$('#discountCoupon').html($(this).attr('data-abc')/100*bookPrice);";
-//				
-//				str += "/* 전체 금액에서 빼주기(결제금액 = 결제금액-쿠폰할인금액(discounted)) */";
-	///			str += "var finalPay = $('#finalPay').html();";
-	//			str += "finalPay = finalPay.substring(0, finalPay.lastIndexOf('원'));";
-	//			str += "$('#finalPay').html(finalPay-discounted);";
-	//			
-	//			str += "/* 모달 종료 */";
-	//			str += "$('#modal').fadeOut(500);";
-	//			str += "});";
-	//			str += "});";
-	//			str += "<";
-	//			str += "/script>";
 				
 				// 할인 및 적립>쿠폰 창에 쿠폰 이름 입력
 				$('#modal').html(str);

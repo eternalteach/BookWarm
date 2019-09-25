@@ -36,6 +36,11 @@
 <script src="/warm/resources/VertexEx/js/theme-plugins.js"></script>
 <script src="/warm/resources/VertexEx/vendor/smoothscroll/smooth.scroll.min.js"></script>
 
+<!-- Current CSS -->
+<script src="/warm/resources/VertexEx/vendor/dzsparallaxer/dzsparallaxer.js"></script>
+<script src="/warm/resources/VertexEx/vendor/dzsparallaxer/dzsscroller/scroller.js"></script>
+<script src="/warm/resources/VertexEx/vendor/dzsparallaxer/advancedscroller/plugin.js"></script>
+
 <!-- Vendor CSS -->
 <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/tether/tether.min.css" />
 <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/bootstrap/css/bootstrap.min.css">
@@ -100,12 +105,15 @@
 
 <!-- Custom JS -->
 <script src="/warm/resources/VertexEx/js/custom.js"></script>
+
 <!-- Theme Initialization -->
 <script src="/warm/resources/VertexEx/js/theme.js"></script>
+
 <!-- Style Swicher -->
 <link href="/warm/resources/VertexEx/vendor/style-switcher/style-switcher.css" rel="stylesheet" />
 <link href="/warm/resources/VertexEx/vendor/style-switcher/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
-	<!-- Smart Form Elements -->
+
+<!-- Smart Form Elements -->
 <script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-custom.min.js"></script>
 <script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery.placeholder.min.js"></script>
 <script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/select2.full.min.js"></script>

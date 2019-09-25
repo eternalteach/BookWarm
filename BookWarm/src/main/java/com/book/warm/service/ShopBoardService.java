@@ -55,6 +55,21 @@ public class ShopBoardService {
 		shopMapper.delete(cart_no);
 	}
 	//==================================================
+
+	public void makePayment(String pay_way, int pay_total, String pay_refund_account, String pay_refund_bank,
+			String orders_pay_date, String coupon_no) {
+		shopMapper.makePayment(pay_way, pay_total, pay_refund_account, pay_refund_bank, orders_pay_date, coupon_no);
+	}
+
+	public int getPay_no() {
+		return shopMapper.getPay_no();
+	}
+
+	public void makeOrder(String user_id, String isbn, String cart_cnt, int pay_no) {
+		shopMapper.makeOrder(user_id, isbn, cart_cnt, pay_no);
+		
+	}
+
 	
 	
 }
