@@ -65,20 +65,22 @@
 										<c:forEach items="${msglist}" var="msglist">
 										<fmt:setLocale value="en_US" scope="session"/>
 										<fmt:formatDate var="fmt_date" value="${msglist.msg_read_time }" pattern="ddMMM"/>
-											<div class="v-blog-recent-post" style="border: 2px solid;  margin-bottom: 10px; float:left;width:350px; ">
+											<div class="v-blog-recent-post" style="border: 2px solid;  margin-right:10px; margin-bottom: 10px; float:left;width:250px; ">
 												<div class="blog-list-item-date">
 													${fn:substring(fmt_date,0,2)}<span>${fn:substring(fmt_date,2,5)}</span>
 												</div>
 												<div class="blog-list-content">
 													<h6 class="special">
-														<a href="#">제목 : ${msglist.msg_title}</a>
+														<a href="#" class="title" data-toggle="modal" data-target="#modalview" data-send_id='${msglist.msg_title}'>제목 : ${msglist.msg_title}</a>
 													</h6>
 													<small>보낸 사람${msglist.msg_send_id}</small>
 													<small>받는 사람 ${msglist.msg_get_id}</small>
 													<div class="blog-list-item-excerpt">
 														<p>내용 : ${msglist.msg_content}</p>
-														<a class="bb" href="#modal-msgg" data-toggle="modal" data-target="#modal">
+														<a class="bb" href="#modal-msgg" data-toggle="modal" data-target="#modal" data-send_id='${msglist.msg_send_id}'>
 													답장하기</a>
+													
+													
 													</div>
 												</div>
 											</div>
@@ -99,21 +101,8 @@
 											<div class="blog-list-item-date">
 												${fn:substring(fmt_date2,0,2)}<span>${fn:substring(fmt_date2,2,5)}</span>
 											</div>
-											<!-- <div class="blog-list-content">
-												<h6 class="special">
-													<a href="#" title="Youtube Post">Full Width Media Post</a>
-												</h6>
-												<small>2 Comments</small>
-												<div class="blog-list-item-excerpt">
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-														elit. Aliquam bibendum, libero eu rutrum feugiat, urna
-														orci porta, Lorem ipsum dolor sit amet, consectetur
-														adipiscing elit</p>
-													<a class="aa" href="#modal-msg" data-toggle="modal" data-target="#modal">
-													<img class="read-more">답장하기
-													</a>
-												</div>
-											</div> -->
+											
+											<!--  -->
 											<div class="blog-list-content">
 													<h6 class="special">
 														<a href="#">제목 : ${msglist2.msg_title}</a>
@@ -148,11 +137,11 @@
             
 				<div class="form-inline" style="width:100px" >
 					<div class="aa">
-						<form action="/warm/send">
+						<form id="replyModal" action="/warm/send">
 								보낸사람<input name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
-						<c:forEach items="${msglist}" var="msglist">
-								받는 사람<input name="msg_get_id" type="text" value="${msglist.msg_send_id}" readonly><br><br>
-						</c:forEach>
+								<div id="temp">
+								받는 사람<input name="msg_get_id" value="" readonly><br><br>
+								</div>
 								 제목 <input name="msg_title" type="text"><br><br>
 						  		<textarea name="msg_content" style="width:400px; height:300px;"></textarea><br>
 						  
@@ -193,11 +182,29 @@
         </div>
     </div>
 </div>
-
+<!-- 제목눌렀을때 내용 불러오는 모달창  -->
+<div class="modal fade" id="modalview" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+    <div class="modal-dialog undefined">
+        <div class="modal-content">
+            <div class="modal-body post-content">
+            
+				<div class="form-inline" style="width:100px" >
+					<div class="aa">
+								제목<input name="msg_title" type="text" readonly><br><br>
+								보낸사람<input name="msg_send_id" type="text" readonly><br><br>
+								날짜<input name="msg_read_time" type="text" readonly><br><br>
+								내용<textarea name="msg_content" style="width:400px; height:300px;"></textarea><br>
+						 		<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+ </div>
 
 
 	<!-- Libs -->
-	<script src="js/jquery.min.js"></script>
+<!-- 	<script src="js/jquery.min.js"></script>
 	<script src="js/popper.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.flexslider-min.js"></script>
@@ -213,23 +220,34 @@
 	<script src="plugins/aos/aos.js"></script>
 	<script src="js/theme-core.js"></script>
 	<script src="js/theme.js"></script>
-	<script src="js/theme.init.js"></script>
+	<script src="js/theme.init.js"></script> -->
 
 	<script>
 		// Select the active tab
 		$(document).ready(function() {
-			$('a[href=' + window.location.hash + ']').tab('show');
+			/* $('a[href=' + window.location.hash + ']').tab('show'); */
 		
-			
-		});
-		
-		$(document).ready(function(){
-			$("#sendd").on("click", function(e){
-				console.log("ddd");
-				alert("보내시겠습니까?");
+			/* 답장하기 눌렀을때 send_id 가져오기 */
+			$(".bb").on("click", function() {
+				
+				//alert($(this).data("send_id"));
+				
+				var sendId = $(this).data("send_id");
+				
+				var temp = $("#temp");
+				var str = '';
+				str += "받는 사람<input name='msg_get_id' type='text' value='" + sendId + "' readonly><br><br>"
+				/* alert(str);
+				alert(temp.html); */
+				temp.html(str);
+				
 			});
 			
+			
+			/* 제목 눌렀을때 불러오기 */
+			
 		});
+		
 		
 		
 		

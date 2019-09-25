@@ -28,9 +28,6 @@ public class MsgService {
 	public void msginsert(MsgTableVO msgvo) {
 		msgmapper.msginsert(msgvo);
 	}
-	public MsgTableVO sendlist(String msg_get_id, int msg_no) {
-		return msgmapper.sendlist(msg_get_id, msg_no);
-	}
 	//쪽지삭제
 	public int msgdelete(int msg_no) {
 		return msgmapper.msgdelete(msg_no);

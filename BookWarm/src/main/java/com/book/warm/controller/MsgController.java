@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,13 +27,9 @@ public class MsgController {
 	MsgService msgservice;
 
 	@RequestMapping(value = "/send", method = RequestMethod.GET)
-	public String send(Principal principal, HttpServletRequest request, Model model, MsgTableVO msgvo) {
+	public String send(Principal principal, HttpServletRequest request, Model model, MsgTableVO msgvo ) {
 		log.info("=================send=============================");
-		String msg_get_id = request.getParameter("msg_get_id");
-		int msg_no = Integer.parseInt(request.getParameter("msg_no"));
 		msgservice.msginsert(msgvo);
-		
-		model.addAttribute("sendlist", msgservice.sendlist(msg_get_id, msg_no));
 		return "redirect:/message";
 	}
 	
@@ -42,7 +39,6 @@ public class MsgController {
 		log.info("=================messgae=============================");
 		String user_id =principal.getName();
 		String msg_get_id = request.getParameter("msg_get_id");
-		
 		//getid와 로그인 한 사람은 같다
 		msg_get_id =user_id;
 		
@@ -51,7 +47,7 @@ public class MsgController {
 		
 		model.addAttribute("msglist", msgservice.msglist(msg_get_id));
 		model.addAttribute("msglist2", msgservice.msglist2(msg_get_id));
-		
+
 		return "/message";
 	}
 	
