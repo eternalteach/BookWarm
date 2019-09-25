@@ -2,7 +2,54 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
-<%@ include file="includes/header/header/header-dark-dropdown.jsp"%>
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="/warm/resources/js/logintest.js"></script>
+<%@ include file="includes/header/script-vertexEx.jsp"%>
+<link rel="stylesheet" href="resources/css/main.css" />
+
+
+<link href='http://unpkg.com/@fullcalendar/core/main.css' rel='stylesheet' />
+<link href='http://unpkg.com/@fullcalendar/daygrid/main.css' rel='stylesheet' />
+<link href='http://unpkg.com/@fullcalendar/list/main.css' rel='stylesheet' />
+<script src='http://unpkg.com/@fullcalendar/core/main.js'></script>
+<script src='http://unpkg.com/@fullcalendar/interaction/main.js'></script>
+<script src='http://unpkg.com/@fullcalendar/daygrid/main.js'></script>
+<script src='http://unpkg.com/@fullcalendar/list/main.js'></script>
+<!-- <script src='http://unpkg.com/@fullcalendar/google-calendar/main.js'></script> -->
+
+<style>
+
+  body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+
+  #loading {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  #calendar {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+</style>
+
+</head>
+<body>
+<%@ include file="includes/header/header-topnav.jsp"%>
+
+<sec:authentication property="principal.username" var="user_id"/>
 
 <div role="main" class="main">
         <section class="page-header">
@@ -65,13 +112,14 @@
 							<div>
 								<ul>
 									<h4>
-										<strong><sec:authentication property="principal.user.user_name"/></strong>
+										<strong>${user_id}</strong>
 										님의 독서기록
 									</h4>
 								</ul>
 								<ul>
 									<li>가장 최근에 서재에 담은 책: </li>
 									<li>이 달 읽은 책 수: </li>
+									<li><button id="modalBtn" type="button" data-toggle="modal" data-target="#calModal">달력보기</button></li>
 								</ul>
 							</div>
 						</section> 
@@ -347,6 +395,24 @@
                </div>
             </div>
          </div>
+         
+         
+         
+         <!-- Modal -->
+         <div class="modal fade" id="calModal" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+		    <div class="modal-dialog undefined" style="max-width:1000px !important;">
+		        <div class="modal-content">
+		            <div class="modal-body post-content">
+		            	 <div class="post-header form-header">
+		                  	<div id='loading'>loading...</div>
+  							<div id='calendar'></div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+         
+         
 
          <footer class="footer footer-2 footer-dark" id="footer-2">
            <!--  <div class="main">
@@ -468,7 +534,87 @@
          </footer>
       </div>
    </div>
+<script>
 
+	
+
+  document.addEventListener('DOMContentLoaded', function() {
+	  
+/* 	$("#modalBtn").on("click", function() { */
+		
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'interaction', 'dayGrid', 'list' ],
+
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,listYear'
+      },
+
+      displayEventTime: false, // don't show the time column in list view
+
+      /* googleCalendarApiKey: 'AIzaSyCx7UQUabeUdpp9OxlAMUteifLyi5f-ZZ8', */
+
+      // US Holidays
+      // events: 'en.usa#holiday@group.v.calendar.google.com',
+      
+      /* eventSources: [ 
+    	  {
+    		  title: 'test',
+    		  start: '2019-09-24',
+    		  end: '2019-09-30',
+              url : "/warm/reviewMain"
+    	  }  */
+    	  events: function(info, successCallback, failureCallback) {
+    			$.getJSON("/warm/calendar/${user_id}.json",
+    					function(data) {
+    						// json데이터를 받아서 해야 하는 일.
+    						// data의 완독일 값이 true면 events에 추가하기.
+    						var events = [];
+    						$.each(data, function(i, obj){
+    							console.log("i: " +i);
+    							console.log("obj.isbn: " + obj.isbn);
+    							console.log("obj.start_date: " + obj.start_date);
+    							events.push({title:obj.isbn, start:obj.start_date});
+    						});
+    						successCallback(events);
+    				}).fail(function(xhr, status, err) {
+    				if(failureCallback) {
+    					error();
+    				}
+    			});
+    	  },
+     /*  ],  */
+
+      eventClick: function(arg) {
+        // opens events in a popup window
+        window.open(arg.event.url, 'google-calendar-event', 'width=700,height=600');
+
+        arg.jsEvent.preventDefault() // don't navigate in main tab
+      },
+
+      loading: function(bool) {
+        document.getElementById('loading').style.display =
+          bool ? 'block' : 'none';
+      }
+
+    });
+
+    calendar.render();
+    
+    /* (function() {
+	    var testImg = $(".fc-day[data-date='2019-09-12']");
+	    testImg.html("<img style='height:50%; position:absolute; left:0px; bottom:0px; padding:auto' src='https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F3750894'>" 
+	    		+ "<img style='height:50%; padding:auto' src='https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F5005951%3Ftimestamp%3D20190802101327'>");
+     })(); */
+    
+    
+    
+/* 	  }); */
+  });
+
+</script>
 
 <script>
 

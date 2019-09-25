@@ -50,4 +50,9 @@ public class RecordService {
 		log.info("========== modifyRecord() ==========");
 		return mapper.modifyLoging(logingBoardVO);
 	}
+	
+	public List<LogingBoardVO> getMyLogs(String user_id) {
+		log.info("========== getList() ==========");
+		return mapper.getMyLogs(user_id);
+	}
 }

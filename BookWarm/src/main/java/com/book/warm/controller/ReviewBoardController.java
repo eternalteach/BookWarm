@@ -25,6 +25,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -63,10 +64,11 @@ public class ReviewBoardController {
 	@Inject
 	LibraryMapper mapper;
 	
-	@RequestMapping("/calendar")
-	public void calendar() {
-		
-	}
+	/*
+	 * @RequestMapping("/calendar") public void calendar() {
+	 * 
+	 * }
+	 */
 	
 	@GetMapping("/reviewMain")
 	public void recordMain(Principal principal, Criteria cri, Model model) {
@@ -354,5 +356,21 @@ public class ReviewBoardController {
 				log.error("delete file error" + e.getMessage());
 			} // end catch
 		}); // end forEach
+	}
+	
+	@GetMapping(value="/calendar/{user_id}",
+					produces= {
+								MediaType.APPLICATION_XML_VALUE,
+								MediaType.APPLICATION_JSON_UTF8_VALUE })
+	@ResponseBody
+	public ResponseEntity<List<LogingBoardVO>> getMyLogs(@PathVariable("user_id") String user_id) {
+	
+    // LogingBoard에서 로그를 읽어올 때 필요한 것은? 아이디만 있으면 전체 다 불러올 수 있음.
+	// 일단 완독한 책만 불러오자.
+	// end_date(완독여부) 값이 true면 start_date가 가장 최신인 날짜에 책 이미지를 뿌린다.
+    
+	log.info("get LogingBoadVO list : " + recordService.getMyLogs(user_id));
+	
+		return new ResponseEntity<List<LogingBoardVO>>(recordService.getMyLogs(user_id), HttpStatus.OK);
 	}
 }

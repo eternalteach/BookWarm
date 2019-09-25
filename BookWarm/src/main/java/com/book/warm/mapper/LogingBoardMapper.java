@@ -23,4 +23,6 @@ public interface LogingBoardMapper {
 	public int deleteLoging(String write_no);
 
 	public BookVO getBookVO(String isbn);
+	
+	public List<LogingBoardVO> getMyLogs(String user_id);
 }
