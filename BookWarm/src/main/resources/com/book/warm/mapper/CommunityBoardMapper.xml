@@ -38,6 +38,13 @@ select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,co
 		comm_content=#{comm_content},comm_subject=#{comm_subject} where
 		comm_no=#{comm_no}
 	</update>
+	
+	<update id='modifyPostByAdmin'>
+		update community_board SET comm_title =
+		'삭제된 게시글 입니다.',
+		comm_content='운영 원칙에 위반된 게시글입니다.', comm_subject=' ' where
+		comm_no=#{comm_no}
+	</update>
 
 	<insert id='insertCommunityBoardWrite'>
 		insert into community_board (comm_no, user_id,

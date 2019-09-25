@@ -54,6 +54,10 @@
 									<a class="submit" href="communityboard"><button type="button" class="btn btn-sm btn-outline-secondary">List</button></a>
 									<c:if test="${user_id==sellectedCommunityBoardPost.user_id}"><a class="submit" href="communityboardmodify"><button  type="button" class="btn btn-sm">Modify</button></a></c:if>
 									<a class="submit" href="communityboardreplywrite"><button  type="button" class="btn btn-sm btn-secondary">Reply</button></a>
+									<sec:authentication property='principal' var='pinfo'/>
+									<sec:authorize access="hasRole('ROLE_ADMIN')">
+										<button  type="button" class="btn btn-sm" id="adminMove">관리자 이동</button>
+									</sec:authorize>
            						</div>   
          					</div>
 						</div>
@@ -102,6 +106,7 @@
 </div>
 
 <script type="text/javascript" src="resources/js/comment.js"></script>
+<script type="text/javascript" src="resources/js/Admin.js"></script>
 
 <script>
 // comment view code
@@ -111,6 +116,21 @@ $(document).ready(function(){
 	console.log("comm_noValue : "+comm_noValue);
 	var commentUL=$(".chat");
 	showList(1);
+	
+	// 관리자버튼 클릭시 게시글 이동
+	$("#adminMove").on("click",function(){
+		let comm_no=$("#comm_no").val();
+		alert(comm_no);
+		adminService.get(comm_no,function(){
+		location.reload();
+		})
+		// 1. 이 게시글 정보 관리자 게시글에 옮기기
+		// ajax로 클릭시 바로 블라인드 처리 하자.
+		// comm_no로 컨트롤러에서 작업하게 하자
+		// 1) 컨트롤러에서 보드 가져와서 관리자게시판에 넣고
+		// 2) 삭제할 게시글을 블라인드 처리
+		
+	});
 	
 	function showList(page){
 		

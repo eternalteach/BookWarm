@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.book.warm.mapper.AdminMapper">
+
+	<insert id='addAdminBoardFromCommunityBoard'>
+		insert into admin_board (admin_bno, user_id,
+		board_no, board_name, board_subject, board_title, board_content,
+		board_written_time, board_modify_time, board_clicked, board_like,
+		board_group, board_step, board_indent) values
+		(admin_seq.nextval,#{user_id}, #{comm_no }, 'community',
+		#{comm_subject }, #{comm_title }, #{comm_content },
+		#{comm_written_time }, #{comm_modify_time }, #{comm_clicked },
+		#{comm_like }, #{comm_group }, #{comm_step },#{comm_indent })
+	</insert>
+
+	<insert id='addAdminBoardFromReviewBoard'>
+		insert into admin_board (admin_bno, user_id, board_no, board_name,  board_title, board_content,
+		board_written_time, board_modify_time,  isbn, board_ref, board_open) 
+		values
+		(admin_seq.nextval,#{user_id}, #{review_no}, 'review', #{review_title}, #{review_content},
+		#{review_written_date}, #{review_modify_date}, , #{isbn}, #{review_ref}, #{review_open})
+	</insert>
+
+	<select id='getAdminBoard' resultType='com.book.warm.vo.AdminBoardVO'>
+	select * from admin_board
+	</select>
+</mapper>
