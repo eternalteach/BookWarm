@@ -6,13 +6,13 @@
 	<select id="msglist" resultType="com.book.warm.vo.MsgTableVO">
 	select * from msg_table
 	where msg_get_id = #{msg_get_id}
-	order by msg_no
+	order by msg_no desc
 	</select>
 	<!-- 보낸 쪽지 -->
 	<select id="msglist2" resultType="com.book.warm.vo.MsgTableVO">
 	select * from msg_table
 	where msg_send_id = #{msg_send_id}
-	order by msg_no
+	order by msg_no desc
 	</select>
 	<!-- 쪽지보내기  -->
   	<insert id = "msginsert">

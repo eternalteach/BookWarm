@@ -77,12 +77,8 @@
 														 style="padding-top: 10px;" >
 														제목 : ${msglist.msg_title}</a>
 													</h6>
-													
-													<div class="person">
 													<small>보낸 사람${msglist.msg_send_id}</small>
-													</div>
-													
-													<small>받는 사람 ${msglist.msg_get_id}</small>
+													<%-- <small>받는 사람 ${msglist.msg_get_id}</small> --%>
 													<div class="blog-list-item-excerpt"><p>${msglist.msg_content}</p>
 													<a class="bb" href="#modal-msgg" data-toggle="modal" data-target="#modal" data-send_id='${msglist.msg_send_id}'>
 													<i class="fa fa-send-o"></i>답장</a>
@@ -116,7 +112,7 @@
 														 style="padding-top: 10px;" >
 														제목 : ${msglist2.msg_title}</a>
 													</h6>
-													<small>보낸 사람 ${msglist2.msg_send_id}</small>
+													<%-- <small>보낸 사람 ${msglist2.msg_send_id}</small> --%>
 													<small>받는 사람${msglist2.msg_get_id}</small>
 													<div class="blog-list-item-excerpt">
 													<p>${msglist2.msg_content}</p>
@@ -192,7 +188,7 @@
 								제목<input name="msg_title" type="text" value="${msglist.msg_title}" readonly><br><br>
 								보낸사람<input name="msg_send_id" type="text" value="${msglist.msg_send_id}" readonly><br><br>
 								날짜<input name="msg_read_time" type="text" value="${fmt_date3}" readonly><br><br>
-								내용 <input name="msg_content" type="text" value="${msglist.msg_content}" readonly><br><br>
+								내용<textarea name="msg_content" style="width:400px; height:200px;" readonly>${msglist.msg_content}</textarea><br> 
 						 		<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 						</div>
 				</div>
@@ -215,7 +211,7 @@
 								제목<input name="msg_title" type="text" value="${msglist2.msg_title}" readonly><br><br>
 								보낸사람<input name="msg_send_id" type="text" value="${msglist2.msg_send_id}" readonly><br><br>
 								날짜<input name="msg_read_time" type="text" value="${fmt_date4}" readonly><br><br>
-								내용 <input name="msg_content" type="text" value="${msglist2.msg_content}" readonly><br><br>
+								내용<textarea name="msg_content" style="width:400px; height:200px;" readonly>${msglist2.msg_content}</textarea><br> 
 						 		<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 						</div>
 				</div>
