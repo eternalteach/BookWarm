@@ -283,35 +283,39 @@ constraint fk_coupon_no_user_id FOREIGN KEY(user_id)
 
 
 --결제
+create sequence pay_seq;
 create table pay(
 pay_no varchar2(20),
 pay_way varchar2(20) not null,
 pay_total number(10,0) not null,
 pay_refund_account varchar2(50) not null,
 pay_refund_bank varchar2(10) not null,
-constraint pk_pay primary key(pay_no)
+orders_pay_date date not null,
+coupon_no varchar2(20),
+post_no varchar2(20),
+constraint pk_pay primary key(pay_no),
+constraint fk_orders_coupon_no FOREIGN KEY(coupon_no)
+           REFERENCES coupon(coupon_no)
 );
 
-create sequence pay_seq;
 
 --주문
 create sequence orders_seq;
 create table orders(
-orders_no varchar2(20),
-user_id varchar2(20) not null,
-orders_date date not null,
-isbn varchar2(20) not null,
-orders_cnt number(10,0) not null,
-orders_tot number(10,0) not null,
-orders_start_date date not null,
-orders_pay_date date not null,
-coupon_no varchar2(20),
-post_no varchar2(20),
-pay_no varchar2(20) not null,
-orders_status varchar2(10),
-constraint pk_orders primary key(orders_no),
-constraint fk_orders_pay_no FOREIGN KEY(pay_no)
-           REFERENCES pay(pay_no)
+    orders_no varchar2(20),
+    user_id varchar2(20) not null,
+    orders_date date not null,
+    isbn varchar2(20) not null,
+    orders_cnt number(10,0) not null,
+    pay_no varchar2(20) not null,
+    orders_status varchar2(10) not null,
+    constraint pk_orders primary key(orders_no),
+    constraint fk_orders_pay_no FOREIGN KEY(pay_no)
+               REFERENCES pay(pay_no),
+    constraint fk_orders_user_info FOREIGN KEY(user_id)
+               REFERENCES user_info(user_id),
+    constraint fk_orders_isbn FOREIGN KEY(isbn)
+               REFERENCES book(isbn)
 );
 -- cf. 주문 테이블에 fk가 더 있을 수 있어 fk_테이블명_컬럼명 으로 fk 명명.
 
