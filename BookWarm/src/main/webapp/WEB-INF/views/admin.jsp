@@ -26,7 +26,7 @@
 						<aside class="sidebar">
 							<section class="sidebar-widget">
 								<div class="heading">
-									<h4 class="title">RECENT POST</h4>
+									<h4 class="title"></h4> 
 								</div>
 								<div class="sidebar-widget-inner">
 									<div class="clearfix">
@@ -36,7 +36,7 @@
 											</div>
 											<div class="entry-c">
 												<div class="entry-title">
-													<h4><a href="#">Lorem ipsum dolor sit amet, consectetur</a></h4>
+													<h4>사용자 관리</h4>
 												</div>
 												<ul class="entry-meta">
 													<li>10th July 2014</li>
@@ -56,41 +56,36 @@
 						</ul>
 						<div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
 							<div class="row portfolio-list sort-destination" data-sort-id="portfolio">
-								<div class="col-lg-4 isotope-item logos">
-									<article class="v_blog-item v_blog-item-related v_blog-grid">
-										<div class="v_blog-item-inner">
-											<div class="v_blog-item-media">
-												<a href="#"><img src="img/blog/x3.jpg" /></a>
-											</div>
-											<div class="v_blog-item-content">
-												<div class="v_blog-item-header">
-													<ul class="v_blog-item-meta">
-														<li class="v_blog-item-date">
-															<time class="" datetime="2018-06-30T10:47:48+00:00">
-                                                   June 30, 2018
-															</time>
-														</li>
-													</ul>
-													<a href="blog-post-standard-2.html" rel="bookmark">
-														<h2 class="v_blog-item-title" itemprop="name headline">How to love what you do</h2>
-													</a>
-												</div>
-												<div itemprop="articleBody">
-                                          <p>
-                                             Many years ago, I worked for my parents who own a video production company.
-                                          </p>
-                                          <hr />
-                                          <p class="v_blog-item-author">
-                                             <a href="#">
-                                                <img alt="" src="img/avatars/a1.jpeg">
-                                                <span>by Jhon Dode</span>
-                                             </a>
-                                          </p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </article>
-                           </div>
+								<c:forEach items="${adminBoard}" var="postList">
+									<div class="col-lg-4 isotope-item ${postList.board_name}">
+										<article class="v_blog-item v_blog-item-related v_blog-grid">
+											<div class="v_blog-item-inner">
+												<div class="v_blog-item-content">
+													<div class="v_blog-item-header">
+														<ul class="v_blog-item-meta">
+															<li class="v_blog-item-date">
+																<time class="entry-meta" datetime="${postList.board_written_time}">
+	                                                			   ${postList.board_written_time}
+																</time>
+															</li>
+														</ul>
+															<a><h2 class="v_blog-item-title" itemprop="name headline">${postList.board_title}</h2></a>
+													</div>
+													<div itemprop="articleBody">
+	                                          <p>
+	                                            ${postList.board_content}
+	                                          </p>
+	                                          <hr />
+	                                          <p class="v_blog-item-author">
+	                                          <!-- 유저정보 볼 수 있게하는 a태그 추가하기 -->
+	                                                <span>${postList.user_id}</span>
+	                                          </p>
+	                                       </div>
+	                                    </div>
+	                                 </div>
+	                              </article>
+	                           </div>
+                           	</c:forEach>
                           </div>
                         <div class="row">
                            <div class="col-md-12">

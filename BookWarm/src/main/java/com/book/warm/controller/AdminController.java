@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +32,8 @@ public class AdminController {
 	AdminMapper adminMapper;
 	
 	@GetMapping("")
-	public void admin(Principal principal) {
-		
+	public void admin(Principal principal,Model model) {
+		model.addAttribute("adminBoard",adminMapper.getAdminBoard());
 	}
 	// community 게시글 이동처리
 	@GetMapping(value="/community/{comm_no}", produces= {MediaType.APPLICATION_ATOM_XML_VALUE,MediaType.APPLICATION_JSON_UTF8_VALUE})
