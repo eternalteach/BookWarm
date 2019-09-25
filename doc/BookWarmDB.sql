@@ -285,17 +285,18 @@ constraint fk_coupon_no_user_id FOREIGN KEY(user_id)
 --결제
 create sequence pay_seq;
 create table pay(
-pay_no varchar2(20),
-pay_way varchar2(20) not null,
-pay_total number(10,0) not null,
-pay_refund_account varchar2(50) not null,
-pay_refund_bank varchar2(10) not null,
-orders_pay_date date not null,
-coupon_no varchar2(20),
-post_no varchar2(20),
-constraint pk_pay primary key(pay_no),
-constraint fk_orders_coupon_no FOREIGN KEY(coupon_no)
-           REFERENCES coupon(coupon_no)
+    pay_no varchar2(20),
+    pay_way varchar2(20) not null,
+    pay_total number(10,0) not null,
+    pay_refund_account varchar2(50) not null,
+    pay_refund_bank varchar2(10) not null,
+    orders_date date not null,
+    orders_pay_date date not null,
+    coupon_no varchar2(20),
+    post_no varchar2(20),
+    constraint pk_pay primary key(pay_no),
+    constraint fk_orders_coupon_no FOREIGN KEY(coupon_no)
+               REFERENCES coupon(coupon_no)
 );
 
 
@@ -304,7 +305,6 @@ create sequence orders_seq;
 create table orders(
     orders_no varchar2(20),
     user_id varchar2(20) not null,
-    orders_date date not null,
     isbn varchar2(20) not null,
     orders_cnt number(10,0) not null,
     pay_no varchar2(15) not null,
