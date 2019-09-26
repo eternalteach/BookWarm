@@ -358,17 +358,17 @@ public class ReviewBoardController {
 		}); // end forEach
 	}
 	
-	@GetMapping(value="/calendar/{user_id}",
+	@GetMapping(value="/calendar",
 					produces= {
 								MediaType.APPLICATION_XML_VALUE,
 								MediaType.APPLICATION_JSON_UTF8_VALUE })
 	@ResponseBody
-	public ResponseEntity<List<LogingBoardVO>> getMyLogs(@PathVariable("user_id") String user_id) {
+	public ResponseEntity<List<LogingBoardVO>> getMyLogs(Principal principal) {
 	
     // LogingBoard에서 로그를 읽어올 때 필요한 것은? 아이디만 있으면 전체 다 불러올 수 있음.
 	// 일단 완독한 책만 불러오자.
 	// end_date(완독여부) 값이 true면 start_date가 가장 최신인 날짜에 책 이미지를 뿌린다.
-    
+    String user_id = principal.getName();
 	log.info("get LogingBoadVO list : " + recordService.getMyLogs(user_id));
 	
 		return new ResponseEntity<List<LogingBoardVO>>(recordService.getMyLogs(user_id), HttpStatus.OK);

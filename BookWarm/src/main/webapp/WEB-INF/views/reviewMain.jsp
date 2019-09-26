@@ -559,15 +559,20 @@
       // US Holidays
       // events: 'en.usa#holiday@group.v.calendar.google.com',
       
-      /* eventSources: [ 
+      
+      eventSources: [ 
     	  {
     		  title: 'test',
     		  start: '2019-09-24',
     		  end: '2019-09-30',
               url : "/warm/reviewMain"
-    	  }  */
-    	  events: function(info, successCallback, failureCallback) {
-    			$.getJSON("/warm/calendar/${user_id}.json",
+    	  } 
+      ], 
+      
+      
+      
+    	  /* events: function(info, successCallback, failureCallback) {
+    			$.getJSON("/warm/calendar.json",
     					function(data) {
     						// json데이터를 받아서 해야 하는 일.
     						// data의 완독일 값이 true면 events에 추가하기.
@@ -584,8 +589,7 @@
     					error();
     				}
     			});
-    	  },
-     /*  ],  */
+    	  }, */
 
       eventClick: function(arg) {
         // opens events in a popup window
@@ -602,6 +606,13 @@
     });
 
     calendar.render();
+    
+    // 기존: 현재 로그인한 아이디를 받아서 해당 아이디로 적은 독서기록 중 완독한 책의 해당 기록을 리스트로 가져온다.
+    // start에 읽은 날짜를 적고 title에는 isbn을 적어둠.
+    // 책 표지를 넣으려면, 해당 날짜칸의 html에 img주소를 가져와서 img태그를 걸어줘야 함.
+    
+    
+     
     
     /* (function() {
 	    var testImg = $(".fc-day[data-date='2019-09-12']");
