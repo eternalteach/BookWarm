@@ -324,7 +324,7 @@ create table orders_item(
     isbn varchar2(20) not null,
     item_cnt number(10,0) not null,
     orders_no varchar2(15) not null,
-    orders_status varchar2(10) not null,
+    orders_status varchar2(30) not null,
     constraint pk_orders primary key(item_no),
     constraint fk_orders_pay_no FOREIGN KEY(orders_no)
                REFERENCES orders(orders_no),
