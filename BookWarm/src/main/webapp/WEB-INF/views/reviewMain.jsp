@@ -20,7 +20,6 @@
 <script src='http://unpkg.com/@fullcalendar/interaction/main.js'></script>
 <script src='http://unpkg.com/@fullcalendar/daygrid/main.js'></script>
 <script src='http://unpkg.com/@fullcalendar/list/main.js'></script>
-<!-- <script src='http://unpkg.com/@fullcalendar/google-calendar/main.js'></script> -->
 
 <style>
 
@@ -553,23 +552,6 @@
       },
       
       displayEventTime: false, // don't show the time column in list view
-
-      /* googleCalendarApiKey: 'AIzaSyCx7UQUabeUdpp9OxlAMUteifLyi5f-ZZ8', */
-
-      // US Holidays
-      // events: 'en.usa#holiday@group.v.calendar.google.com',
-      
-      
-      /* eventSources: [ 
-    	  {
-    		  title: 'test',
-    		  start: '2019-09-24',
-    		  end: '2019-09-30',
-              url : "/warm/reviewMain"
-    	  } 
-      ], 
-       */
-      
       
    	  events: function(info, successCallback, failureCallback) {
    			$.getJSON("/warm/calendar.json",
@@ -583,11 +565,11 @@
   						$.each(data, function(i, obj){
   							console.log("i: " +i);
   							console.log("obj.isbn: " + obj.isbn);
-  							// 완독일을 timestamp에서 Date타입으로 변환
   							console.log("obj.start_date: " + obj.start_date);
-  							console.log("date: " + new Date(obj.start_date));
-  							// 필요한 날짜 형식으로 변환
+  							// 완독일을 timestamp에서 Date타입으로 변환
   							var logDate = new Date(obj.start_date);
+  							console.log("date: " + logDate);
+  							// 필요한 날짜 형식으로 변환
   							var year = logDate.getFullYear();
   							var month = logDate.getMonth() + 1;
   							var date = logDate.getDate();
@@ -602,9 +584,8 @@
   							var dateFormat = year + "-" + month + "-" + date;
   							console.log("dateFormated: " + dateFormat);
   							
-  							// preDate != dateFormat이면 limitCheck = 1, preDate = dateFormat;
-  							// else limitCheck++;
-  							
+  							// 같은 날짜에 완독한 책이 존재한다면 limitCheck값만 증가시켜주고, 
+  							// 이외의 경우 preDate에 날짜 저장 후 limitCheck 1로 초기화.
   							if(preDate != dateFormat) {
   								limitCheck = 1;
   								preDate = dateFormat;
@@ -613,12 +594,8 @@
   							}
   							
   							if(limitCheck>2) {
+	  							// 완독한 책 표지는 하루 최대 2권까지만 나타내도록 한다. 
   								obj.book_img = '';
-	  							// 이미지가 추가되는 경우는 limitCheck<=2인 경우.
-	  							/* var dayBox = $(".fc-day[data-date='" + dateFormat + "']");
-	  							console.log(dayBox);
-	  							dayBox.append("<img style='height:50%; ' id='" + obj.isbn + "' src='" + obj.book_img + "'>"); */
-	  							/* dayBox.html("<img style='height:50%; ' src='" + obj.book_img + "'>"); */ 
   							}
   							// 이벤트는 전부 추가해준다.
 							events.push(
@@ -649,8 +626,7 @@
    			  console.log("info.event.extendedProps.dateFormat: " +  info.event.extendedProps.dateFormat);
    			  console.log("info.event.id: " + info.event.id);
    					  
-   			  console.log("=========================");
-   			  
+   			  console.log("============ 완독한 책 이미지 뿌려주기 =============");
    			  
    			  var tdObj = $(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "']");
    			  var str = "<img style='height:50%; ' id='" + info.event.id + "' src='" + info.event.extendedProps.imageurl + "'>";
@@ -688,12 +664,19 @@
     });
 
     calendar.render();
+    clickMonth();
     
     // 기존: 현재 로그인한 아이디를 받아서 해당 아이디로 적은 독서기록 중 완독한 책의 해당 기록을 리스트로 가져온다.
     // start에 읽은 날짜를 적고 title에는 isbn을 적어둠.
     // 책 표지를 넣으려면, 해당 날짜칸의 html에 img주소를 가져와서 img태그를 걸어줘야 함.
     
-    
+    function clickMonth() {
+    	
+    	if(!$(".fc-day-grid").is(':visible')) {
+    		alert("안보임");
+    		$(".fc-today-button").click();
+    	}
+    }
     
 /* 	  }); */
   });
