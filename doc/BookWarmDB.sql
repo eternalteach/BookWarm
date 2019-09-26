@@ -305,7 +305,7 @@ create table orders(
     refund_account varchar2(50) not null,
     refund_bank varchar2(10) not null,
     orders_date date not null,
-    orders_pay_date date not null,
+    orders_pay_date date,
     coupon_no varchar2(20),
     post_no varchar2(20),
     constraint pk_pay primary key(orders_no),
