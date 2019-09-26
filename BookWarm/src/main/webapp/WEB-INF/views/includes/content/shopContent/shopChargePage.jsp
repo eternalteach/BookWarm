@@ -22,7 +22,8 @@
             <section class="section-primary main-color">
 
                <div class="container">
-
+			<!-- --------------------------------------------------------------------------------------- -->
+			<form method="post" action="/warm/shop/successOrder" id="account2">
                   <div class="row">
 
                      <div class="col-md-7">
@@ -32,7 +33,6 @@
                            <div class="form-header pt-0 pl-0">
                               <h4 class="fs-24">결제 상세 정보</h4>
                            </div>
-                           <!-- <form method="post" action="/" id="accountx" name="chargeForm"> -->
                               <div class="form-body pl-0">
 
                                  <div class="spacer-b30">
@@ -41,14 +41,16 @@
                                  
                                  <div class="section">
                                     <label class="field prepend-icon">
-                                       <input type="text" name="name" id="name" class="gui-input" placeholder="이름">
+                                       <input type="text" id="post_name" name="post_name" class="gui-input" placeholder="이름">
+<!--                                        <input type="text" name="name" id="name" class="gui-input" placeholder="이름"> -->
                                        <span class="field-icon"><i class="fa fa-user"></i></span>
                                     </label>
                                  </div><!-- end section -->
 
                                  <div class="section">
                                     <label for="mobile" class="field prepend-icon">
-                                       <input type="tel" name="mobile" id="mobile" class="gui-input" placeholder="휴대폰 번호">
+                                       <input type="tel" id="post_phone" name="post_phone" class="gui-input" placeholder="휴대폰 번호">
+<!--                                        <input type="tel" name="mobile" id="mobile" class="gui-input" placeholder="휴대폰 번호"> -->
                                        <span class="field-icon"><i class="fa fa-phone-square"></i></span>
                                     </label>
                                  </div><!-- end section --><br>
@@ -57,7 +59,7 @@
                                    	<!-- 삽입 시작////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
                                    	<div class="section colm colm8">
                                    		<label class="field prepend-icon">
-                                    	   <input type="text" id="sample4_postcode" class="gui-input" placeholder="우편번호">
+                                    	   <input type="text" id="sample4_postcode" name="post_zipcode" class="gui-input" placeholder="우편번호">
 	                                       <span class="field-icon"><i class="fa fa-building-o"></i></span>
 	                                    </label>
                                     </div>
@@ -70,7 +72,7 @@
 	                             </div>
 	                             <div class="frm-row">
                                     <div class="section colm colm6">
-                                       		<input type="text" id="sample4_roadAddress" class="gui-input" placeholder="도로명주소">
+                                       		<input type="text" id="sample4_roadAddress" name="post_addr" class="gui-input" placeholder="도로명주소">
                                     </div><!-- end section -->
 
                                     <div class="section colm colm6">
@@ -82,18 +84,19 @@
 	                             
 	                             <div class="frm-row">
                                     <div class="section colm colm6">
-                                       <input type="text" id="sample4_detailAddress" class="gui-input" placeholder="상세주소">
+                                       <input type="text" id="sample4_detailAddress" name="post_addr_detail1" class="gui-input" placeholder="상세주소">
                                     </div><!-- end section -->
 
                                     <div class="section colm colm6">
-                                       <input type="text" id="sample4_extraAddress" class="gui-input" placeholder="참고항목">
+                                       <input type="text" id="sample4_extraAddress" name="post_addr_detail2" class="gui-input" placeholder="참고항목">
                                     </div><!-- end section -->
                                  </div><!-- end frm-row section -->
                                  <!-- 삽입 끝////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
                                  <div class="section">
                                     <label class="field option option-yellow">
-                                       <input type="checkbox" name="info" checked>
+                                       <input type="checkbox" checked>
+<!--                                        <input type="checkbox" name="info" checked> -->
                                        <span class="checkbox"></span>
                                        Save my information <em class="small-text fine-grey"> (No worries, its secure) </em>
                                     </label>
@@ -137,7 +140,8 @@
                                    	</div>
                                     <div class="section colm">
 	                                    <label class="field">
-	                                    	가용 포인트 <span id="availablePoint">${userVO.user_point}</span>p / 사용 <span name="usePoint" id="usePoint">0</span>p
+	                                    	가용 포인트 <span id="availablePoint">${userVO.user_point}</span>p / 사용 <span id="usePoint">0</span>p
+<%-- 	                                    	가용 포인트 <span id="availablePoint">${userVO.user_point}</span>p / 사용 <span name="usePoint" id="usePoint">0</span>p --%>
 	                                    </label>
                                    	</div>
 	                             </div>
@@ -156,7 +160,7 @@
                            <div class="form-header">
                               <h4 class="fs-24">Your Order</h4>
                            </div><!-- end .form-header section -->
-                           <form method="post" action="/warm/shop/successOrder" id="account2">
+                           <!-- <form method="post" action="/warm/shop/successOrder" id="account2"> -->
                               <div class="form-body pt-15">
                                  <div class="table-responsive">
                                     <table class="table cart-totals">
@@ -212,7 +216,7 @@
 
                                              <td class="cart-product-name" colspan="4">
                                                 <span class="amount color"><strong id="finalPay">${subTotal}</strong></span>
-                                                <input type="hidden" name="pay_total" id="submitTotal" value="${subTotal}">원
+                                                <input type="hidden" name="orders_total" id="submitTotal" value="${subTotal}">원
                                              </td>
                                           </tr>
                                        </tbody>
@@ -223,7 +227,7 @@
 
                                  <div class="spacer-t40 spacer-b30">
                                     <div class="tagline"><span> 결제 정보 </span></div><!-- .tagline -->
-                                    <input type="hidden" id="total" value="${subTotal}">
+                                   <input type="hidden" id="total" value="${subTotal}">
                                  </div>
 
                                  <div class="section">
@@ -232,12 +236,12 @@
 
                                  <div class="section pb-15">
                                     <label class="field option option-yellow">
-                                       <input type="radio" id="cash" name="pay_way" class="payment" value="cash" checked>
+                                       <input type="radio" id="cash" name="orders_payment" class="payment" value="cash" checked>
                                        <span class="radio"></span> 무통장입금
                                     </label>
 
                                     <label class="field option option-yellow">
-                                       <input type="radio" id="kakao" name="pay_way" class="payment" value="kakao">
+                                       <input type="radio" id="kakao" name="orders_payment" class="payment" value="kakao">
                                        <span class="radio"></span> 카카오페이
                                     </label>
                                  </div><!-- end section -->
@@ -248,7 +252,7 @@
  							  <div class="fmx">
  							  		<div class="section colm colm6">
                                        <label class="field select">
-                                          <select id="refundBank" name="pay_refund_bank">
+                                          <select id="refundBank" name="refund_bank">
                                              <option value="A">A은행</option>
                                              <option value="B">B은행</option>
                                              <option value="C">C은행</option>
@@ -259,7 +263,7 @@
 
                                     <div class="section">
                                        <label class="field prepend-icon">
-                                          <input type="text" id="refundAccount" name="pay_refund_account" class="gui-input" placeholder="환불 계좌번호">
+                                          <input type="text" id="refundAccount" name="refund_account" class="gui-input" placeholder="환불 계좌번호">
                                           <span class="field-icon"><i class="fa fa-credit-card"></i></span>
                                        </label>
                                     </div>
@@ -267,12 +271,14 @@
     						<!-- ///////////////////////////////// -->                                                         
                               </div><!-- end .form-body section -->
                               <div class="form-footer">
-                                 <button type="submit" id="submit" class="btn btn-primary w-100">주문</button>
+                                 <button type="button" id="submit" class="btn btn-primary w-100">주문</button>
                               </div><!-- end .form-footer section -->
-                           </form><!-- end form -->
+                           <!-- </form> --><!-- end form -->
                         </div>
                      </div>
                   </div>
+                  </form>
+                  <!-- ---------------------------------------------------------------------- -->
                </div>
             </section>
          </div>

@@ -17,7 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.book.warm.service.ShopBoardService;
 import com.book.warm.vo.CartJoinBookVO;
 import com.book.warm.vo.CouponVO;
-import com.book.warm.vo.PayVO;
+import com.book.warm.vo.OrdersItemVO;
+import com.book.warm.vo.OrdersVO;
+import com.book.warm.vo.PostVO;
 import com.book.warm.vo.UserVO;
 
 import lombok.extern.log4j.Log4j;
@@ -176,46 +178,86 @@ public class ShopController {
 	
 	// 주문 성공 >> 트랜잭션으로 묶어야함
 	@RequestMapping("successOrder")
-	public String successOrder(Principal principal, PayVO payVO, HttpServletRequest req, Model model) {
-		
-		
-		String pay_way = payVO.getPay_way(); // 결제 방법(kakao or cash)
-		int pay_total = payVO.getPay_total(); // 주문 총 금액
-		String pay_refund_account = payVO.getPay_refund_account(); // 환불 받을 계좌번호
-		String pay_refund_bank = payVO.getPay_refund_bank(); // 환불 받을 은행
-		String coupon_no = payVO.getCoupon_no(); // 쿠폰
+	public String successOrder(Principal principal, PostVO postVO, OrdersVO ordersVO, OrdersItemVO ordersItemVO, HttpServletRequest req, Model model) {
 		
 		String user_id = principal.getName(); // 로그인한 유저 id
-		String name = req.getParameter(""); // 받는 사람 이름
-		String isbn[] = req.getParameterValues("isbn"); // 구매한 모든 책들의 isbn
-		String cart_cnt[] = req.getParameterValues("cart_cnt"); // 구매한 모든 책들의 isbn
+		
+		// ordersVO 커맨드 객체로 받아온 데이터
+		String orders_payment = ordersVO.getOrders_payment(); // 결제 방법(kakao or cash)
+		int orders_total = ordersVO.getOrders_total(); // 주문 총 금액
+		String refund_account = ordersVO.getRefund_account(); // 환불 받을 계좌번호
+		String refund_bank = ordersVO.getRefund_bank(); // 환불 받을 은행
+		String coupon_no = ordersVO.getCoupon_no(); // 쿠폰
 		String orders_pay_date = "";
 		
-		System.out.println("payment(kakao) : "+payVO.getPay_way());
 		
-		if(pay_way.equals("cash")) {
+		// postVO 커맨드 객체로 받아온 데이터
+		String post_name = postVO.getPost_name(); // 받는 사람
+		String post_phone = postVO.getPost_phone(); // 받는 사람 전화번호
+		int post_zipcode = postVO.getPost_zipcode(); // 받는 사람 우편번호
+		String post_addr = postVO.getPost_addr(); // 받는 사람 집주소
+		String post_addr_detail = postVO.getPost_addr_detail(); // 받는 사람 집주소 디테일
+		
+		if(post_addr_detail == null) {
+			post_addr_detail = "''";
+		}
+		
+		
+		// req로 받아온 데이터
+//		List<String> isbn[] = req.getParameterValues("isbn"); // 구매한 모든 책들의 isbn
+//		List<String> cart_cnt[] = req.getParameterValues("cart_cnt"); // 구매한 책 각각의 수량
+		String isbn[] = req.getParameterValues("isbn"); // 구매한 모든 책들의 isbn
+		String cart_cnt[] = req.getParameterValues("cart_cnt"); // 구매한 책 각각의 수량
+		
+		// 배열 -> 리스트
+		List<String> isbnList = new ArrayList<String>();
+		List<String> cart_cntList = new ArrayList<String>();
+		
+		// 주문도서 종류의 수 == 각 도서의 주문 수량
+		if(isbn.length == cart_cnt.length) {
+			for(int i=0; i<isbn.length; i++) {
+				isbnList.add(isbn[i]);
+				cart_cntList.add(cart_cnt[i]);
+			}
+		}
+		
+		
+		if(orders_payment.equals("cash")) {
 			// payment == cash  >>  orders_pay_date = ""
 			orders_pay_date = "''";
-		}else if(pay_way.equals("kakao")) {
+		}else if(orders_payment.equals("kakao")) {
 			// payment == kakao  >>  orders_pay_date = sysdate
 			orders_pay_date = "sysdate";
 		}
 		
-		// pay테이블에 주문건 넣기
-		service.makePayment(pay_way, pay_total, pay_refund_account, pay_refund_bank, orders_pay_date, coupon_no);
-		int pay_no = service.getPay_no();
-		
-		// orders테이블에 주문건 넣기
+		// 1. post테이블에 배송지 추가
+		service.addPost(user_id, post_name, post_phone, post_zipcode, post_addr, post_addr_detail);
+		// 2. 배송지 번호 받아오기
+		String post_no = service.getPost_no();
+		// 3. orders테이블에 주문건 넣기
+		service.addOrder(orders_payment, orders_total, refund_account, refund_bank, orders_pay_date, coupon_no, post_no);
+		// 4. 주문건 번호 받아오기
+		String orders_no = service.getOrders_no();
+		// 5. orders_item테이블에 주문건 넣기
 		for(int i=0; i<isbn.length; i++) {
-			service.makeOrder(user_id, isbn[i], cart_cnt[i], pay_no);
+			service.addOrderItems(user_id, isbn[i], cart_cnt[i], orders_no);
 		}
 		
-		// successOrder.jsp에 보내야 하는 데이터
-		// 받는 사람, 휴대폰번호, 주소
+		model.addAttribute("isbn", isbn);
+		model.addAttribute("cart_cnt", cart_cnt);
 		
-		// 주문 도서명, 수량
-		// 총 결제 금액
-		// 결제 방법
+		
+		// 주문한 시간으로부터 24시간 입금하지 않으면 주문 자동 취소
+		// 주문한 시간+1일(입금기한) 가져오기
+		String limit = service.limitDepositTime(orders_no);
+		model.addAttribute("limit", limit);
+		
+		
+		// successOrder.jsp에 보내야 하는 데이터 (view에서 받을 때)
+		// 받는 사람, 휴대폰번호, 주소 >> postVO.post_name, postVO.post_phone, postVO.post_zipcode+postVO.post_addr+postVO.post_addr_detail
+		// 주문 도서명, 수량 >> isbn, cart_cnt(model객체로 넘겨준다.)
+		// 총 결제 금액 >> ordersVO.orders_total
+		// 결제 방법 >> ordersVO.orders_payment
 		
 		
 		return "/successOrder";

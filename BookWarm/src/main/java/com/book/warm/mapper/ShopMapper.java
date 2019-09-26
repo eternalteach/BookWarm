@@ -37,12 +37,21 @@ public interface ShopMapper {
 	public void delete(int cart_no);
 	//===============================================================
 
-	public void makePayment(@Param("pay_way") String pay_way, @Param("pay_total") int pay_total, @Param("pay_refund_account") String pay_refund_account, @Param("pay_refund_bank") String pay_refund_bank,
-			@Param("orders_pay_date") String orders_pay_date, @Param("coupon_no") String coupon_no);
+	public void addOrder(@Param("orders_payment") String orders_payment, @Param("orders_total") int orders_total,
+			@Param("refund_account") String refund_account, @Param("refund_bank") String refund_bank,
+			@Param("orders_pay_date") String orders_pay_date, @Param("coupon_no") String coupon_no, @Param("post_no") String post_no);
 
-	public int getPay_no();
+	public String getOrders_no();
 
-	public void makeOrder(@Param("user_id") String user_id, @Param("isbn") String isbn, @Param("cart_cnt") String cart_cnt, @Param("pay_no") int pay_no);
+	public void addOrderItems(@Param("user_id") String user_id, @Param("isbn") String isbn,
+			@Param("cart_cnt") String cart_cnt, @Param("orders_no") String orders_no);
+
+	public void addPost(@Param("user_id") String user_id, @Param("post_name") String post_name, @Param("post_phone") String post_phone,
+			@Param("post_zipcode") int post_zipcode, @Param("post_addr") String post_addr, @Param("post_addr_detail") String post_addr_detail);
+
+	public String getPost_no();
+
+	public String limitDepositTime(@Param("orders_no") String orders_no);
 
 
 	

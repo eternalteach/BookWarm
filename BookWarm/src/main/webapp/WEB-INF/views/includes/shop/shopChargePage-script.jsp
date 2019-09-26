@@ -115,23 +115,30 @@ $(document).ready(function() {
 	// 주문 버튼 눌렀을 때
 	$('#submit').on('click', function() {
 		
-		var exp = /[^0-9]/g; // 숫자 정규식
+		var post_name = $('#post_name').val(); // 이름
+		var post_phone = $('#post_phone').val(); // 휴대폰번호
+		var post_zipcode = $('#sample4_postcode').val(); // 우편번호
+		var post_addr = $('#sample4_roadAddress').val(); // 주소
+		var refundAccount = $('#refundAccount').val(); // 환불 계좌
 		
-		if($('#refundAccount').val() == "") {
-			// 환불 계좌번호 입력 안했으면 경고창, submit 비활성화
-			alert("환불 계좌를 입력해주세요.");
-			$(this).attr('type', 'button');
-		}else if(exp.test($('#refundAccount').val())==true) {
-			// 숫자만 입력한게 아닌 경우
+		var numExp = /^[0-9]+$/; // 숫자 정규식
+		var phoneExp = /^\d{3}-\d{3,4}-\d{4}$/; // 폰번호 정규식
+		
+		if(post_name=="" || post_phone=="" || post_zipcode=="" ||
+				post_addr=="" || refundAccount=="") {
+			// 폼 입력 안된거 있으면 안넘어가도록(이름, 휴대폰번호, 주소, 환불계좌)
+			alert("모든 폼을 입력해주세요.");
+		}else if(!numExp.test(refundAccount)){
+			// 환불계좌에 숫자가 아닌게 들어간 경우
 			alert("환불 계좌번호에 숫자만 입력해주세요.");
-			$(this).attr('type', 'button');
+		}else if(!phoneExp.test(post_phone)) {
+			// 핸드폰번호 형식이 아닌 다른게 들어간 경우
+			alert("휴대폰 번호는 '000-0000-0000' 또는 '000-000-0000' 형식으로 입력해주세요.");
 		}else {
+			// 폼 입력 다 했고, 환불계좌랑 휴대폰번호에도 알맞게 입력했다면 submit버튼
 			$(this).attr('type', 'submit');
 		}
-	})
-	
-	$('#refundAccount').on('blur', function(){
-		$('#submit').attr('type', 'submit');
+		
 	})
 	
 })
