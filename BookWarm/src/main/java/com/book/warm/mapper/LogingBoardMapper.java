@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.book.warm.page.Criteria;
 import com.book.warm.vo.BookVO;
+import com.book.warm.vo.FinishedBookVO;
 import com.book.warm.vo.LogingBoardVO;
 
 public interface LogingBoardMapper {
@@ -24,5 +24,5 @@ public interface LogingBoardMapper {
 
 	public BookVO getBookVO(String isbn);
 	
-	public List<LogingBoardVO> getMyLogs(String user_id);
+	public List<FinishedBookVO> getMyLogs(String user_id);
 }

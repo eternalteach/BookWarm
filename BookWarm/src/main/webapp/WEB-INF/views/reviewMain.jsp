@@ -551,7 +551,7 @@
         center: 'title',
         right: 'dayGridMonth,listYear'
       },
-
+      
       displayEventTime: false, // don't show the time column in list view
 
       /* googleCalendarApiKey: 'AIzaSyCx7UQUabeUdpp9OxlAMUteifLyi5f-ZZ8', */
@@ -560,7 +560,7 @@
       // events: 'en.usa#holiday@group.v.calendar.google.com',
       
       
-      eventSources: [ 
+      /* eventSources: [ 
     	  {
     		  title: 'test',
     		  start: '2019-09-24',
@@ -568,40 +568,122 @@
               url : "/warm/reviewMain"
     	  } 
       ], 
+       */
       
       
-      
-    	  /* events: function(info, successCallback, failureCallback) {
-    			$.getJSON("/warm/calendar.json",
-    					function(data) {
-    						// json데이터를 받아서 해야 하는 일.
-    						// data의 완독일 값이 true면 events에 추가하기.
-    						var events = [];
-    						$.each(data, function(i, obj){
-    							console.log("i: " +i);
-    							console.log("obj.isbn: " + obj.isbn);
-    							console.log("obj.start_date: " + obj.start_date);
-    							events.push({title:obj.isbn, start:obj.start_date});
-    						});
-    						successCallback(events);
-    				}).fail(function(xhr, status, err) {
-    				if(failureCallback) {
-    					error();
-    				}
-    			});
-    	  }, */
+   	  events: function(info, successCallback, failureCallback) {
+   			$.getJSON("/warm/calendar.json",
+  					function(data) {
+  						// json데이터를 받아서 해야 하는 일.
+  						// data의 완독일 값이 true면 events에 추가하기.
+  						var events = [];
+  						let preDate = '';
+  						let limitCheck = 0;
+  						
+  						$.each(data, function(i, obj){
+  							console.log("i: " +i);
+  							console.log("obj.isbn: " + obj.isbn);
+  							// 완독일을 timestamp에서 Date타입으로 변환
+  							console.log("obj.start_date: " + obj.start_date);
+  							console.log("date: " + new Date(obj.start_date));
+  							// 필요한 날짜 형식으로 변환
+  							var logDate = new Date(obj.start_date);
+  							var year = logDate.getFullYear();
+  							var month = logDate.getMonth() + 1;
+  							var date = logDate.getDate();
+  							
+  							if(month<10) {
+  								month = '0' + month;
+  							}
+  							if(date<10) {
+  								date = '0' + date;
+  							}
+  							
+  							var dateFormat = year + "-" + month + "-" + date;
+  							console.log("dateFormated: " + dateFormat);
+  							
+  							// preDate != dateFormat이면 limitCheck = 1, preDate = dateFormat;
+  							// else limitCheck++;
+  							
+  							if(preDate != dateFormat) {
+  								limitCheck = 1;
+  								preDate = dateFormat;
+  							} else {
+  								limitCheck++;
+  							}
+  							
+  							if(limitCheck>2) {
+  								obj.book_img = '';
+	  							// 이미지가 추가되는 경우는 limitCheck<=2인 경우.
+	  							/* var dayBox = $(".fc-day[data-date='" + dateFormat + "']");
+	  							console.log(dayBox);
+	  							dayBox.append("<img style='height:50%; ' id='" + obj.isbn + "' src='" + obj.book_img + "'>"); */
+	  							/* dayBox.html("<img style='height:50%; ' src='" + obj.book_img + "'>"); */ 
+  							}
+  							// 이벤트는 전부 추가해준다.
+							events.push(
+									{
+										id:obj.isbn,
+										title:obj.book_title, 
+										start:obj.start_date, 
+										backgroundColor:'transparent', 
+										borderColor:'transparent',
+										imageurl:obj.book_img,
+										dateFormat:dateFormat
+									}
+							);
+  						});
+   						successCallback(events);
+	   				}).fail(function(xhr, status, err) {
+		   				if(err) {
+		   					failureCallback(err);
+		   				}
+	   		});
+   	  }, 
+   	  
+   	  eventRender: function(info) {
+   		  console.log("info.event.id:" + info.event.id);
+   		  console.log("info.event.title : " + info.event.title);
+   		  if(info.event.extendedProps.imageurl != '') {
+   			  console.log("event의 이미지주소 : " + info.event.extendedProps.imageurl);
+   			  console.log("info.event.extendedProps.dateFormat: " +  info.event.extendedProps.dateFormat);
+   			  console.log("info.event.id: " + info.event.id);
+   					  
+   			  console.log("=========================");
+   			  
+   			  
+   			  var tdObj = $(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "']");
+   			  var str = "<img style='height:50%; ' id='" + info.event.id + "' src='" + info.event.extendedProps.imageurl + "'>";
+   			  tdObj.append(str);
+   			  
+   			  /* $(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "']")
+   			  		.append("<img style='height:50%; ' id='" + info.event.id + "' src='" + info.event.extendedProps.imageurl + "'>"); */
+   			  
+   			  
+   		  }
+   	  },
+   	  
+   	  eventLimit: 2, 
+   	  eventLimitText: '',
+   	  /* views: {
+   		  dayGrid: {
+   			  eventLimit: 2
+   		  }
+   	  }, */
 
       eventClick: function(arg) {
+    	  
+    	location.href = "/warm/reviewMain";  
         // opens events in a popup window
-        window.open(arg.event.url, 'google-calendar-event', 'width=700,height=600');
+        /* window.open(arg.event.url, 'google-calendar-event', 'width=700,height=600');
 
-        arg.jsEvent.preventDefault() // don't navigate in main tab
-      },
+        arg.jsEvent.preventDefault() // don't navigate in main tab */
+      }/* ,
 
       loading: function(bool) {
         document.getElementById('loading').style.display =
           bool ? 'block' : 'none';
-      }
+      } */
 
     });
 
@@ -610,15 +692,6 @@
     // 기존: 현재 로그인한 아이디를 받아서 해당 아이디로 적은 독서기록 중 완독한 책의 해당 기록을 리스트로 가져온다.
     // start에 읽은 날짜를 적고 title에는 isbn을 적어둠.
     // 책 표지를 넣으려면, 해당 날짜칸의 html에 img주소를 가져와서 img태그를 걸어줘야 함.
-    
-    
-     
-    
-    /* (function() {
-	    var testImg = $(".fc-day[data-date='2019-09-12']");
-	    testImg.html("<img style='height:50%; position:absolute; left:0px; bottom:0px; padding:auto' src='https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F3750894'>" 
-	    		+ "<img style='height:50%; padding:auto' src='https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F5005951%3Ftimestamp%3D20190802101327'>");
-     })(); */
     
     
     

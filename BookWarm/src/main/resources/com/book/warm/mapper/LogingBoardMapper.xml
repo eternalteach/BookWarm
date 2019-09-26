@@ -39,8 +39,11 @@ select /*INDEX_DESC(loging_board pk_board)*/ rownum rn, write_no, start_page, en
 	select * from Book where isbn=#{isbn}
 	</select>
 	
-	<select id="getMyLogs" resultType="com.book.warm.vo.LogingBoardVO">
-		select * from loging_board where end_date = 'true' and user_id=#{user_id} order by start_date desc
+	<select id="getMyLogs" resultType="com.book.warm.vo.FinishedBookVO">
+		select lb.isbn, lb.start_date, b.book_title, b.book_img 
+		from loging_board lb, book b 
+		where b.isbn = lb.isbn and end_date = 'true' and user_id=#{user_id} 
+		order by start_date desc
 	</select>
 	
 </mapper>

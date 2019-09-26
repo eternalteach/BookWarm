@@ -25,7 +25,6 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,6 +39,7 @@ import com.book.warm.page.PageDTO;
 import com.book.warm.service.RecordService;
 import com.book.warm.service.ReviewBoardService;
 import com.book.warm.vo.BookVO;
+import com.book.warm.vo.FinishedBookVO;
 import com.book.warm.vo.LogingBoardVO;
 import com.book.warm.vo.ReviewAttachFileDTO;
 import com.book.warm.vo.ReviewAttachVO;
@@ -363,7 +363,7 @@ public class ReviewBoardController {
 								MediaType.APPLICATION_XML_VALUE,
 								MediaType.APPLICATION_JSON_UTF8_VALUE })
 	@ResponseBody
-	public ResponseEntity<List<LogingBoardVO>> getMyLogs(Principal principal) {
+	public ResponseEntity<List<FinishedBookVO>> getMyLogs(Principal principal) {
 	
     // LogingBoard에서 로그를 읽어올 때 필요한 것은? 아이디만 있으면 전체 다 불러올 수 있음.
 	// 일단 완독한 책만 불러오자.
@@ -371,6 +371,6 @@ public class ReviewBoardController {
     String user_id = principal.getName();
 	log.info("get LogingBoadVO list : " + recordService.getMyLogs(user_id));
 	
-		return new ResponseEntity<List<LogingBoardVO>>(recordService.getMyLogs(user_id), HttpStatus.OK);
+		return new ResponseEntity<List<FinishedBookVO>>(recordService.getMyLogs(user_id), HttpStatus.OK);
 	}
 }
