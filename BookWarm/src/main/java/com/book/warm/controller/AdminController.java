@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.book.warm.mapper.AdminMapper;
 import com.book.warm.mapper.CommunityBoardMapper;
+import com.book.warm.service.ReviewBoardService;
 import com.book.warm.vo.CommunityBoardVO;
+import com.book.warm.vo.ReviewBoardVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -29,12 +31,16 @@ public class AdminController {
 	CommunityBoardMapper communityMapper;
 	
 	@Autowired
+	ReviewBoardService reviewBoardService;
+	
+	@Autowired
 	AdminMapper adminMapper;
 	
 	@GetMapping("")
 	public void admin(Principal principal,Model model) {
 		model.addAttribute("adminBoard",adminMapper.getAdminBoard());
 	}
+	
 	// community 게시글 이동처리
 	@GetMapping(value="/community/{comm_no}", produces= {MediaType.APPLICATION_ATOM_XML_VALUE,MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<CommunityBoardVO> administrateCommunity(@PathVariable("comm_no")int comm_no, Principal principal){
@@ -46,16 +52,19 @@ public class AdminController {
 		communityMapper.modifyPostByAdmin(movePost);
 	return new ResponseEntity<>(communityMapper.getCommunityBoardOne(comm_no),HttpStatus.OK);
 	}
-	// 이동된 게시글 다시 원상복구 시키기 아직 코딩 안함
-	@GetMapping(value="/community/", produces= {MediaType.APPLICATION_ATOM_XML_VALUE,MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<CommunityBoardVO> revertAdministrateCommunity(@PathVariable("comm_no")int comm_no, Principal principal){
-		log.info("==================== administrateCommunity() ====================");
-		log.info("Community No : " + comm_no);
+	
+	@GetMapping(value="/review/{comm_no}", produces= {MediaType.APPLICATION_ATOM_XML_VALUE,MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<ReviewBoardVO> administrateReview(@PathVariable("comm_no")int comm_no, Principal principal){
+		log.info("==================== administrateReview() ====================");
+		log.info("Review No : " + comm_no);
 		//트랜잭션 적용되어야 한다.
-		CommunityBoardVO movePost=communityMapper.getCommunityBoardOne(comm_no);
-		adminMapper.addAdminBoardFromCommunityBoard(movePost);
-		communityMapper.modifyPostByAdmin(movePost);
-		return new ResponseEntity<>(communityMapper.getCommunityBoardOne(comm_no),HttpStatus.OK);
+		// 1. 이동할 게시글 정보 가져오기
+		ReviewBoardVO movePost=reviewBoardService.selectedReview(comm_no);
+		// 2. 관리자 게시판으로 복사
+		adminMapper.addAdminBoardFromReviewBoard(movePost);
+		// 3. 이동할 보드 내용 수정
+		reviewBoardService.modifyAdmin(movePost);
+		return new ResponseEntity<>(reviewBoardService.selectedReview(comm_no),HttpStatus.OK);
 	}
 	
 }

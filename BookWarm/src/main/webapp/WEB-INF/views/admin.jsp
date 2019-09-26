@@ -69,54 +69,46 @@
 																</time>
 															</li>
 														</ul>
-															<a><h2 class="v_blog-item-title" itemprop="name headline">${postList.board_title}</h2></a>
+														<a><h2 class="v_blog-item-title" itemprop="name headline">${postList.board_title}</h2></a>
 													</div>
 													<div itemprop="articleBody">
-	                                          <p>
-	                                            ${postList.board_content}
-	                                          </p>
-	                                          <hr />
-	                                          <p class="v_blog-item-author">
-	                                          <!-- 유저정보 볼 수 있게하는 a태그 추가하기 -->
-	                                                <span>${postList.user_id}</span>
-	                                          </p>
-	                                       </div>
-	                                    </div>
-	                                 </div>
-	                              </article>
-	                           </div>
-                           	</c:forEach>
-                          </div>
-                        <div class="row">
-                           <div class="col-md-12">
-
-                              <hr class="invisible" />
-
-                              <nav aria-label="Page navigation example">
-                                 <ul class="pagination justify-content-center">
-                                    <li class="page-item disabled">
-                                       <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                       <a class="page-link" href="#">Next</a>
-                                    </li>
-                                 </ul>
-                              </nav>
-                           </div>
-                        </div>
-                        
-                     </div>
-                     
-                  </div>
-
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+														<p>${postList.board_content}</p><hr/>
+														<p class="v_blog-item-author">
+															<!-- 유저정보 볼 수 있게하는 a태그 추가하기 -->
+															<span>${postList.user_id}</span>
+														</p>
+													</div>
+												</div>
+											</div>
+										</article>
+									</div>
+								</c:forEach>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+								<hr class="invisible" />
+									<nav aria-label="Page navigation example">
+										<ul class="pagination justify-content-center">
+											<li class="page-item disabled">
+												<a class="page-link" href="#" tabindex="-1">Previous</a>
+											</li>
+											<li class="page-item"><a class="page-link" href="#">1</a></li>
+											<li class="page-item"><a class="page-link" href="#">2</a></li>
+											<li class="page-item"><a class="page-link" href="#">3</a></li>
+											<li class="page-item">
+												<a class="page-link" href="#">Next</a>
+											</li>
+										</ul>
+									</nav>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 </body>
 </html>

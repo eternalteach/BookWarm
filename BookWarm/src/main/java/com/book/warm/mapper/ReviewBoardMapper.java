@@ -33,6 +33,8 @@ public interface ReviewBoardMapper {
 
 	public int modifyReview(ReviewBoardVO rbVO);
 	
+	public int modifyReviewAdmin(ReviewBoardVO rbVO);
+	
 	public int getBoardListCount(String user_id);
 	
 	public int getTotalCount(Criteria cri, String isbn, String user_id);
@@ -49,5 +51,7 @@ public interface ReviewBoardMapper {
 	public void deleteAll(int review_no);
 	
 	public List<ReviewAttachVO> getOldFiles();
+
+	
 
 }

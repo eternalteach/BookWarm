@@ -20,10 +20,14 @@
 		board_written_time, board_modify_time,  isbn, board_ref, board_open) 
 		values
 		(admin_seq.nextval,#{user_id}, #{review_no}, 'review', #{review_title}, #{review_content},
-		#{review_written_date}, #{review_modify_date}, , #{isbn}, #{review_ref}, #{review_open})
+		#{review_written_date}, #{review_modify_date} , #{isbn}, #{review_ref}, #{review_open})
 	</insert>
 
 	<select id='getAdminBoard' resultType='com.book.warm.vo.AdminBoardVO'>
 	select * from admin_board
 	</select>
+	
+	<insert id='cloneAttach'>
+	insert into admin_attach (uuid, uploadpath, filename, review_no) (select uuid, uploadpath, filename, review_no from review_attach where review_no=#{review_no})
+	</insert>
 </mapper>

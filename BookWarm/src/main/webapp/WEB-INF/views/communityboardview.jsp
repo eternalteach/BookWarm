@@ -121,15 +121,9 @@ $(document).ready(function(){
 	$("#adminMove").on("click",function(){
 		let comm_no=$("#comm_no").val();
 		alert(comm_no);
-		adminService.get(comm_no,function(){
+		adminService.getReview(comm_no,function(){
 		location.reload();
 		})
-		// 1. 이 게시글 정보 관리자 게시글에 옮기기
-		// ajax로 클릭시 바로 블라인드 처리 하자.
-		// comm_no로 컨트롤러에서 작업하게 하자
-		// 1) 컨트롤러에서 보드 가져와서 관리자게시판에 넣고
-		// 2) 삭제할 게시글을 블라인드 처리
-		
 	});
 	
 	function showList(page){

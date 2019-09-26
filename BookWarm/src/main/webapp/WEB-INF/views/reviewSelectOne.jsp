@@ -634,6 +634,9 @@
 													삭제하기
 												</a>
 											</div>
+											<div style="padding:5px">
+												<button  type="button" class="btn btn-sm close" id="adminMove"><i class="fa fa-star"></i>관리자 이동</button>
+											</div>
 										</div>
 									</div>
                                 	
@@ -948,8 +951,17 @@
     <!-- 댓글 처리를 위한 comment.js 추가 -->
     <script type="text/javascript" src = "/warm/resources/Vertex/js/comment.js"></script>
     
+    <script type="text/javascript" src = "/warm/resources/js/Admin.js"></script>
     <script type="text/javascript" >
 
+	$("#adminMove").on("click",function(){
+		let comm_no=${review.review_no};
+		alert(comm_no);
+		adminService.getReview(comm_no,function(){
+		location.reload();
+		})
+	});
+	
 	// 첨부파일 가져오기 위한 즉시 실행 함수
 	(function() {
 		var review_no = '<c:out value="${review.review_no}"/>';
@@ -975,6 +987,7 @@
 	})(); // end function
 	
         $(document).ready(function() {
+        	
 	        // showList에서 -1일 경우 원래의 태그를 실행하고,
 	        // 수정 버튼을 클릭했을 때 번호를 받아와서 
 	        // var no = -1;

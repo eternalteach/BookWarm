@@ -14,4 +14,5 @@ public interface AdminMapper {
 	
 	public int addAdminBoardFromReviewBoard(ReviewBoardVO reviewBoardVO);
 	
+	public int cloneAttach(int review_no);
 }
