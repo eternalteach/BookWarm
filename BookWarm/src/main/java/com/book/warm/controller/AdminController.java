@@ -1,6 +1,7 @@
 package com.book.warm.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.book.warm.mapper.AdminMapper;
 import com.book.warm.mapper.CommunityBoardMapper;
+import com.book.warm.mapper.MemberMapper;
 import com.book.warm.service.ReviewBoardService;
 import com.book.warm.vo.CommunityBoardVO;
 import com.book.warm.vo.ReviewBoardVO;
+import com.book.warm.vo.UserVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -34,11 +37,18 @@ public class AdminController {
 	ReviewBoardService reviewBoardService;
 	
 	@Autowired
+	MemberMapper memberMapper;
+	
+	@Autowired
 	AdminMapper adminMapper;
 	
 	@GetMapping("")
 	public void admin(Principal principal,Model model) {
 		model.addAttribute("adminBoard",adminMapper.getAdminBoard());
+		List<UserVO> adminUserList = memberMapper.readAllUser();
+		model.addAttribute("userList",adminUserList);
+		
+		// 사용자 정보도 띄워야 한다.
 	}
 	
 	// community 게시글 이동처리
@@ -65,6 +75,14 @@ public class AdminController {
 		// 3. 이동할 보드 내용 수정
 		reviewBoardService.modifyAdmin(movePost);
 		return new ResponseEntity<>(reviewBoardService.selectedReview(comm_no),HttpStatus.OK);
+	}
+	
+	// USER 정보 받아오기
+	@GetMapping(value="/admin/{user_id}", produces= {MediaType.APPLICATION_ATOM_XML_VALUE,MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<UserVO> getUserID(@PathVariable("user_id")String user_id){
+		log.info("==================== getUserID() ====================");
+		log.info("getUserID : " + user_id);
+		return new ResponseEntity<>(memberMapper.read(user_id),HttpStatus.OK);
 	}
 	
 }

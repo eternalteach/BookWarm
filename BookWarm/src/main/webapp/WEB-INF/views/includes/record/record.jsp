@@ -31,7 +31,7 @@
 						<span>Reading</span>
 					</div>
 					<div class="progress">
-						<div id="reading" class="progress-bar progress-bar-primary" data-appear-progress-animation="${recordInfo.reading}%"></div>
+						<div id="reading" class="progress-bar bg-info progress-bar-striped progress-bar-animated" data-appear-progress-animation="${recordInfo.reading}%"></div>
 						<span class="progress-bar-tooltip">${recordInfo.reading}%</span>
 					</div>
 					<div class="content-grid-item col-md-12">

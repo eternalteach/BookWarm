@@ -19,7 +19,6 @@ public class UserVO {
 	int user_level;
 	int user_tot_price;
 	int user_point;
-	
 	String enabled;
 	private List<AuthVO> authList;
 	

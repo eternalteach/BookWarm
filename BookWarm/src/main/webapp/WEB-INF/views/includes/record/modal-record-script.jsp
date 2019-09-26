@@ -163,7 +163,7 @@
 				str+="<span>Reading</span>";
 				str+="</div>";
 				str+="<div class='progress'>";
-				str+="<div id='reading' class='progress-bar progress-bar-primary' data-appear-progress-animation='"+recordInfo.reading+"%'></div>";
+				str+="<div id=\"reading\" class=\"progress-bar bg-info progress-bar-striped progress-bar-animated\" data-appear-progress-animation=\""+recordInfo.reading+"%\" style=\"width:"+recordInfo.reading+"%;\"></div>";
 				str+="<span class='progress-bar-tooltip'>"+recordInfo.reading+"%</span>";
 				str+="</div>";
 				str+="<div class='content-grid-item col-md-12'>";
