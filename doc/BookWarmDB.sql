@@ -281,37 +281,52 @@ constraint fk_coupon_no_user_id FOREIGN KEY(user_id)
            REFERENCES user_info(user_id)
 );
 
+--배송지
+create table post(
+    post_no varchar2(20),
+    user_id varchar2(20) not null,
+    post_name varchar2(20) not null,
+    post_phone varchar2(20) not null,
+    post_zipcode number(10,0) not null,
+    post_addr varchar2(100) not null,
+    post_addr_detail varchar2(100),
+    constraint pk_post primary key(post_no),
+    constraint fk_post_user_info FOREIGN KEY(user_id)
+               REFERENCES user_info(user_id)
+);
 
 --결제
-create sequence pay_seq;
-create table pay(
-    pay_no varchar2(20),
-    pay_way varchar2(20) not null,
-    pay_total number(10,0) not null,
-    pay_refund_account varchar2(50) not null,
-    pay_refund_bank varchar2(10) not null,
+create sequence orders_seq;
+create table orders(
+    orders_no varchar2(20),
+    orders_payment varchar2(20) not null,
+    orders_total number(10,0) not null,
+    refund_account varchar2(50) not null,
+    refund_bank varchar2(10) not null,
     orders_date date not null,
-    orders_pay_date date,
+    orders_pay_date date not null,
     coupon_no varchar2(20),
     post_no varchar2(20),
-    constraint pk_pay primary key(pay_no),
+    constraint pk_pay primary key(orders_no),
     constraint fk_orders_coupon_no FOREIGN KEY(coupon_no)
-               REFERENCES coupon(coupon_no)
+               REFERENCES coupon(coupon_no),
+    constraint fk_orders_post_no FOREIGN KEY(post_no)
+               REFERENCES post(post_no)
 );
 
 
 --주문
-create sequence orders_seq;
-create table orders(
-    orders_no varchar2(20),
+create sequence orders_item_seq;
+create table orders_item(
+    item_no varchar2(20),
     user_id varchar2(20) not null,
     isbn varchar2(20) not null,
-    orders_cnt number(10,0) not null,
-    pay_no varchar2(15) not null,
+    item_cnt number(10,0) not null,
+    orders_no varchar2(15) not null,
     orders_status varchar2(10) not null,
-    constraint pk_orders primary key(orders_no),
-    constraint fk_orders_pay_no FOREIGN KEY(pay_no)
-               REFERENCES pay(pay_no),
+    constraint pk_orders primary key(item_no),
+    constraint fk_orders_pay_no FOREIGN KEY(orders_no)
+               REFERENCES orders(orders_no),
     constraint fk_orders_user_info FOREIGN KEY(user_id)
                REFERENCES user_info(user_id),
     constraint fk_orders_isbn FOREIGN KEY(isbn)
