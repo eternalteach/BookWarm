@@ -47,7 +47,7 @@
 							
 							
 							<li><a href="#counters" id="#counters" data-toggle="tab"
-								class="active show"> <i class="fa fa-envelope-o"></i>받은쪽지함()</a></li>
+								class="active show"> <i class="fa fa-envelope-o"></i>받은쪽지함(${msgcount})</a></li>
 							<li><a href="#recent-posts" id="#recent-posts" data-toggle="tab"> <i class="fa fa-envelope-open-o"></i>보낸쪽지함</a></li>
 						</ul>
 						<!--End Tab-->
@@ -62,7 +62,7 @@
 							<div class="tab-pane active" id="counters">
 								<div class="row">
 									<div class="col-md-9 left-side-sidebar">
-										<h1>받은 쪽지함()</h1>
+										<h1>받은 쪽지함(${msgcount})</h1>
 										<c:forEach items="${msglist}" var="msglist">
 										<fmt:setLocale value="en_US" scope="session"/>
 										<fmt:formatDate var="fmt_date" value="${msglist.msg_read_time }" pattern="ddMMM"/>
@@ -86,7 +86,7 @@
 													<a class="bb" href="#modal-msgg" data-toggle="modal" data-target="#modal" data-send_id='${msglist.msg_send_id}'>
 													<i class="icon-baloon"></i>답장</a>
 													
-													<a href="/warm/msgdelete?msg_no=${msglist.msg_no}&tab_name=recent-posts"><i id="msgd" class="icon-bin-2">삭제</i></a>
+													<a href="/warm/msgdelete?msg_no=${msglist.msg_no}"><i id="msgd" class="icon-bin-2">삭제</i></a>
 													<i class="icon-skull-1"><a>신고</a></i>
 													</div>
 												
@@ -121,7 +121,7 @@
 													<small>받는 사람${msglist2.msg_get_id}</small>
 													<div class="blog-list-item-excerpt">
 													<p style="text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:70px" >${msglist2.msg_content}</p>
-													<a href="/warm/msgdelete?msg_no=${msglist2.msg_no}"><i id="msgd" class="fa fa-close">삭제</i></a>
+													<a href="/warm/msgdelete?msg_no=${msglist2.msg_no}&tab_name=recent-posts"><i id="msgd" class="fa fa-close">삭제</i></a>
 												</div>
 											</div>
 									</div>
@@ -168,13 +168,13 @@
         <div class="modal-content">
             <div class="modal-body post-content">
 				<div class="form-inline" style="width:100px" >
-						<form action="/warm/send">
+						<form action="/warm/send" name="my_form" onsubmit="return validateForm()">
 								<h1>쪽지보내기</h1>
 								보낸사람<input id=send name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
 								받는 사람<input id=get name="msg_get_id" type="text"><br><br>
 								 제목 <input id=title name="msg_title" type="text" ><br><br>
 						  		<textarea id=content name="msg_content" style="width:400px; height:300px;"></textarea><br>
-						  <input id="sendd" type="submit" value="보내기">
+						  <input id="ss" type="submit" value="보내기" onsubmit="return checkForm();">
 						 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 						</form>
 				</div>
@@ -249,16 +249,24 @@
 			});
 			/* 답장하기 아이디 가져오기 */
 				
-			$("#myTab").tabs({
-				select: function(evnet, ui){
-					window.location.replace(ui.tab.hash);
-				}
-			});
+			/* 새로고침시 유지 */
+			if('${tab_name}' != '') {
+				$("a[href=#${tab_name}]").get(0).click();
+			};
+			/* 끝 */
 			
-			
-		
-			
+			/* 유효성검사 */
+				$(".ss").on("click", function(e){
+					e.preventDefault();
+					alert("dd");
+				var msg_get_id = document.forms['my_form']["msg_get_id"].value;
+				if(msg_get_id == null || msg_get_id == ""){
+					alert("보낼사람을 입력해주세요.")
+					return false;
+				};
+				});		
 		});
+		
 		
 	</script>
 </body>

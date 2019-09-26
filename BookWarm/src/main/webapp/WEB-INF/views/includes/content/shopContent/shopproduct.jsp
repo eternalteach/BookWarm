@@ -1,4 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<sec:authentication property="principal.username" var="user_id"/>
 <body class="bg-white">
    <div class="wrapper">
       <div class="page has-sidebar has-left-sidebar bordered single-product-wrap">
@@ -6,7 +11,9 @@
             <div class="container single-product-inner">
                <div class="row">
                   <div class="col-md-4">
+                  	<div class="img">
                     <img src="${bookdetail.book_img}">
+                    </div>
                   </div>
 
                   <div class="col-md-6">
@@ -69,6 +76,8 @@
 						    <a href="/warm/shop/shoplist"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="목록으로 이동" data-location="top">
                           	<span>목록</span>
                            </button></a>
+                           
+                           <a class="bb" href="/warm/shop/booklover"><i class="fa fa-heart">즐겨찾기</i></a>
                            
                      <div class="product_meta mb-40">
                            <span class="tagged_as">
@@ -157,7 +166,6 @@
  		$("#cart").on("click", function(e){
 			alert("장바구니에 등록하시겠습니까?");
 			});
- 		
  		$("#pay").on("click", function(e){
 			alert("구매로 이동하시겠습니까?");
 			
@@ -174,8 +182,17 @@
  		     	console.log(pre.toString()  + val.toString());     	 
  		     	$("#cart_get").attr("href",pre.toString()  + val.toString());     	
  		        console.log($(this).val());
- 		       
  		    });
+ 		    
+ 		  $(".bb").on("click", function(e){
+ 			 e.preventDefault();
+ 			 alert("하트눌름");
+ 			 
+ 			 var book_img = $(".img").val();
+ 			 alert(book_img);
+ 			 //책이미지/책정보/만 일단 넘기기
+ 		  });
+ 		    
  		});
       </script>
 </body>

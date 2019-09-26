@@ -60,6 +60,9 @@ public class ShopListController {
 		return "shopproduct";
 	}
 	
-	
-	
+	@RequestMapping(value = "/booklover", method = RequestMethod.GET)
+	public String booklover(Model model) {
+		
+		return "booklover";
+	}
 }
