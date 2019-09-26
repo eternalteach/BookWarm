@@ -282,6 +282,7 @@ constraint fk_coupon_no_user_id FOREIGN KEY(user_id)
 );
 
 --배송지
+create sequence post_seq;
 create table post(
     post_no varchar2(20),
     user_id varchar2(20) not null,
