@@ -45,10 +45,10 @@
 							class="nav v-right-sidebar-inner" >
 							<i class="fa fa-edit"></i>쪽지 보내기</a></li>
 							
-							<li><a href="#counters" data-toggle="tab"
+							<li><a href="#counters" id="#counters" data-toggle="tab"
 								class="active show"> <i class="fa fa-envelope-o"></i>받은쪽지함
 							</a></li>
-							<li><a href="#recent-posts" data-toggle="tab"> <i
+							<li><a href="#recent-posts" id="#recent-posts" data-toggle="tab"> <i
 									class="fa fa-envelope-open-o"></i>보낸쪽지함
 							</a></li>
 						</ul>
@@ -64,6 +64,7 @@
 							<div class="tab-pane fade active show" id="counters">
 								<div class="row">
 									<div class="col-md-9 left-side-sidebar">
+										<h1 style="align-content: center;">받은쪽지함</h1>
 										<c:forEach items="${msglist}" var="msglist">
 										<fmt:setLocale value="en_US" scope="session"/>
 										<fmt:formatDate var="fmt_date" value="${msglist.msg_read_time }" pattern="ddMMM"/>
@@ -98,6 +99,7 @@
 							<div class="tab-pane fade" id="recent-posts">
 								<div class="row">
 									<div class="col-md-9">
+										<h1>보낸쪽지함</h1>
 										<c:forEach items="${msglist2}" var="msglist2">
 										<fmt:setLocale value="en_US" scope="session"/>
 										<fmt:formatDate var="fmt_date2" value="${msglist2.msg_send_time }" pattern="ddMMM"/>
@@ -260,6 +262,7 @@
 				alert(temp.html); */
 				temp.html(str);
 			});
+			
 		});
 	</script>
 </body>
