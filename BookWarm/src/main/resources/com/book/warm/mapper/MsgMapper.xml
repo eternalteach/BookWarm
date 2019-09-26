@@ -24,6 +24,11 @@
 	<delete id="msgdelete">
 	delete from msg_table where msg_no = #{msg_no}
 	</delete>
-
+	<!-- 쪽지세기 -->
+	<select id="msgcount" resultType="int">
+	select count(msg_no) 
+	from msg_table
+    where msg_get_id = #{msg_get_id}
+	</select>
 </mapper>
 

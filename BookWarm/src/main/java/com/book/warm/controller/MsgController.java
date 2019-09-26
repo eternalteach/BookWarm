@@ -39,6 +39,7 @@ public class MsgController {
 		
 		model.addAttribute("msglist", msgservice.msglist(msg_get_id));
 		model.addAttribute("msglist2", msgservice.msglist2(msg_get_id));
+		//model.addAttribute("count", msgservice.(Integer.parseInt(count(msg_get_id)));
 		
 		return "/message";
 	}
@@ -57,6 +58,7 @@ public class MsgController {
 		int msg_no = Integer.parseInt(num);
 		log.info("쪽지번호 : " + msg_no);
 		msgservice.msgdelete(msg_no);
+		rttr.addFlashAttribute("tab_name", request.getParameter("tab_name"));
 		//model.addAttribute("msgdelete", msgservice.msgdelete(msg_no));
 		
 		return "redirect:/message";

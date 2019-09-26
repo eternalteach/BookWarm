@@ -32,5 +32,9 @@ public class MsgService {
 	public int msgdelete(int msg_no) {
 		return msgmapper.msgdelete(msg_no);
 	}
+	//쪽지개수
+	public int msgcount(String msg_get_id) {
+		return msgmapper.msgcount(msg_get_id);
+	}
 	
 }

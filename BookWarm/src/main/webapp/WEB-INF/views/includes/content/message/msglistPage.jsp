@@ -5,13 +5,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <sec:authentication property="principal.username" var="user_id"/>
-
+<!-- 
 <style>
 #t{
  color: pink;
 }
 
-</style>
+</style> -->
 <body>
 
 
@@ -45,12 +45,10 @@
 							class="nav v-right-sidebar-inner" >
 							<i class="fa fa-edit"></i>쪽지 보내기</a></li>
 							
+							
 							<li><a href="#counters" id="#counters" data-toggle="tab"
-								class="active show"> <i class="fa fa-envelope-o"></i>받은쪽지함
-							</a></li>
-							<li><a href="#recent-posts" id="#recent-posts" data-toggle="tab"> <i
-									class="fa fa-envelope-open-o"></i>보낸쪽지함
-							</a></li>
+								class="active show"> <i class="fa fa-envelope-o"></i>받은쪽지함()</a></li>
+							<li><a href="#recent-posts" id="#recent-posts" data-toggle="tab"> <i class="fa fa-envelope-open-o"></i>보낸쪽지함</a></li>
 						</ul>
 						<!--End Tab-->
 					</div>
@@ -61,55 +59,60 @@
 						<div class="tab-content">
 
 							<!--받은쪽지함-->
-							<div class="tab-pane fade active show" id="counters">
+							<div class="tab-pane active" id="counters">
 								<div class="row">
 									<div class="col-md-9 left-side-sidebar">
-										<h1 style="align-content: center;">받은쪽지함</h1>
+										<h1>받은 쪽지함()</h1>
 										<c:forEach items="${msglist}" var="msglist">
 										<fmt:setLocale value="en_US" scope="session"/>
 										<fmt:formatDate var="fmt_date" value="${msglist.msg_read_time }" pattern="ddMMM"/>
-											<div class="v-blog-recent-post" style="border: 1px solid;  margin: 20px; float:left;width:250px;height:150px ">
-												<div class="blog-list-item-date">
+											<div class="v-blog-recent-post" style="border: 1px dashed #bcbcbc; margin: 20px; float:left;width:250px;height:150px ">
+												<div class="blog-list-item-date" style="margin-left: 10px;margin-top: 10px;">
 													${fn:substring(fmt_date,0,2)}<span>${fn:substring(fmt_date,2,5)}</span>
 												</div>
-												<div class="blog-list-content">
-													<h6 class="special">
+												<div class="blog-list-content" style="margin-top: 10px;">
+													<h6 class="special" style="text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:80px;">
 														<a id="t" href="#" class="title" data-toggle="modal" data-target="#modalview${msglist.msg_no}" 
 														 style="padding-top: 10px;" >
-														제목 : ${msglist.msg_title}</a>
+														 
+														${msglist.msg_title}</a>
 													</h6>
 													<small>보낸 사람${msglist.msg_send_id}</small>
 													<%-- <small>받는 사람 ${msglist.msg_get_id}</small> --%>
-													<div class="blog-list-item-excerpt"><p>${msglist.msg_content}</p>
+													<div class="blog-list-item-excerpt"><p style="text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:70px" >${msglist.msg_content}</p>
+													</div>
+													
+													<div class="box" style="padding-bottom: 20px;">
 													<a class="bb" href="#modal-msgg" data-toggle="modal" data-target="#modal" data-send_id='${msglist.msg_send_id}'>
-													<i class="fa fa-send-o"></i>답장</a>
-													<a href="/warm/msgdelete?msg_no=${msglist.msg_no}"><i id="msgd" class="fa fa-close">삭제</i></a>
+													<i class="icon-baloon"></i>답장</a>
 													
-													
+													<a href="/warm/msgdelete?msg_no=${msglist.msg_no}&tab_name=recent-posts"><i id="msgd" class="icon-bin-2">삭제</i></a>
+													<i class="icon-skull-1"><a>신고</a></i>
+													</div>
+												
 													</div>
 												</div>
+												</c:forEach>
 											</div>
-										</c:forEach>
 									</div>
 								</div>
-							</div>
 							<!--받은쪽지함 끝-->
 
 							<!--보낸 쪽지함-->
-							<div class="tab-pane fade" id="recent-posts">
+							<div class="tab-pane" id="recent-posts">
 								<div class="row">
 									<div class="col-md-9">
 										<h1>보낸쪽지함</h1>
 										<c:forEach items="${msglist2}" var="msglist2">
 										<fmt:setLocale value="en_US" scope="session"/>
 										<fmt:formatDate var="fmt_date2" value="${msglist2.msg_send_time }" pattern="ddMMM"/>
-										<div class="v-blog-recent-post" style="border: 1px solid;  margin: 20px; float:left;width:250px;height:150px ">
+										<div class="v-blog-recent-post" style="border: 1px dashed blue; margin: 20px; float:left;width:250px;height:150px ">
 											<div class="blog-list-item-date">
 												${fn:substring(fmt_date2,0,2)}<span>${fn:substring(fmt_date2,2,5)}</span>
 											</div>
 											
-											<div class="blog-list-content">
-													<h6 class="special">
+											<div class="blog-list-content" style="margin-top: 10px;">
+													<h6 class="special" style="color: pink; text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:80px;">
 														<a id="t" href="#" class="title" data-toggle="modal" data-target="#modalview2${msglist2.msg_no}" 
 														 style="padding-top: 10px;" >
 														제목 : ${msglist2.msg_title}</a>
@@ -117,7 +120,7 @@
 													<%-- <small>보낸 사람 ${msglist2.msg_send_id}</small> --%>
 													<small>받는 사람${msglist2.msg_get_id}</small>
 													<div class="blog-list-item-excerpt">
-													<p>${msglist2.msg_content}</p>
+													<p style="text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:70px" >${msglist2.msg_content}</p>
 													<a href="/warm/msgdelete?msg_no=${msglist2.msg_no}"><i id="msgd" class="fa fa-close">삭제</i></a>
 												</div>
 											</div>
@@ -142,6 +145,7 @@
             <div class="modal-body post-content">
 				<div class="form-inline" style="width:100px" >
 						<form id="replyModal" action="/warm/send">
+								<h1>답장하기</h1>
 								보낸사람<input name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
 								<div id="temp">
 								받는 사람<input name="msg_get_id" value="" readonly><br><br>
@@ -165,10 +169,11 @@
             <div class="modal-body post-content">
 				<div class="form-inline" style="width:100px" >
 						<form action="/warm/send">
-								보낸사람<input name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
-								받는 사람<input name="msg_get_id" type="text"><br><br>
-								 제목 <input name="msg_title" type="text" ><br><br>
-						  		<textarea name="msg_content" style="width:400px; height:300px;"></textarea><br>
+								<h1>쪽지보내기</h1>
+								보낸사람<input id=send name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
+								받는 사람<input id=get name="msg_get_id" type="text"><br><br>
+								 제목 <input id=title name="msg_title" type="text" ><br><br>
+						  		<textarea id=content name="msg_content" style="width:400px; height:300px;"></textarea><br>
 						  <input id="sendd" type="submit" value="보내기">
 						 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 						</form>
@@ -186,10 +191,11 @@
             <div class="modal-body post-content">
 				<div class="form-inline" style="width:100px" >
 						<div id="titletemp">
+								<h1>받은쪽지</h1>
 								<fmt:formatDate var="fmt_date3" value="${msglist.msg_read_time }" pattern="yyyy-MM-dd HH:mm:ss"/>
-								제목<input name="msg_title" type="text" value="${msglist.msg_title}" readonly><br><br>
 								보낸사람<input name="msg_send_id" type="text" value="${msglist.msg_send_id}" readonly><br><br>
 								날짜<input name="msg_read_time" type="text" value="${fmt_date3}" readonly><br><br>
+								제목<input name="msg_title" type="text" value="${msglist.msg_title}" readonly><br><br>
 								내용<textarea name="msg_content" style="width:400px; height:200px;" readonly>${msglist.msg_content}</textarea><br> 
 						 		<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 						</div>
@@ -210,9 +216,9 @@
 				<div class="form-inline" style="width:100px" >
 						<div id="titletemp">
 								<fmt:formatDate var="fmt_date4" value="${msglist2.msg_read_time }" pattern="yyyy-MM-dd HH:mm:ss"/>
-								제목<input name="msg_title" type="text" value="${msglist2.msg_title}" readonly><br><br>
 								보낸사람<input name="msg_send_id" type="text" value="${msglist2.msg_send_id}" readonly><br><br>
 								날짜<input name="msg_read_time" type="text" value="${fmt_date4}" readonly><br><br>
+								제목<input name="msg_title" type="text" value="${msglist2.msg_title}" readonly><br><br>
 								내용<textarea name="msg_content" style="width:400px; height:200px;" readonly>${msglist2.msg_content}</textarea><br> 
 						 		<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 						</div>
@@ -226,33 +232,12 @@
 </div>
 <!-- 메인끝  -->
 
-
-	<!-- Libs -->
-<!-- 	<script src="js/jquery.min.js"></script>
-	<script src="js/popper.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.flexslider-min.js"></script>
-	<script src="js/jquery.easing.js"></script>
-	<script src="js/jquery.fitvids.js"></script>
-	<script src="js/jquery.carouFredSel.min.js"></script>
-	<script src="js/jquery.validate.js"></script>
-	<script src="js/theme-plugins.js"></script>
-	<script src="js/jquery.isotope.min.js"></script>
-	<script src="js/imagesloaded.js"></script>
-
-	<script src="js/view.min.js?auto"></script>
-	<script src="plugins/aos/aos.js"></script>
-	<script src="js/theme-core.js"></script>
-	<script src="js/theme.js"></script>
-	<script src="js/theme.init.js"></script> -->
-
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
-			/* $('a[href=' + window.location.hash + ']').tab('show'); */
 		
 			/* 답장하기 눌렀을때 send_id 가져오기 */
 			$(".bb").on("click", function() {
-				
 				//alert($(this).data("send_id"));
 				var sendId = $(this).data("send_id");
 				var temp = $("#temp");
@@ -262,8 +247,19 @@
 				alert(temp.html); */
 				temp.html(str);
 			});
+			/* 답장하기 아이디 가져오기 */
+				
+			$("#myTab").tabs({
+				select: function(evnet, ui){
+					window.location.replace(ui.tab.hash);
+				}
+			});
+			
+			
+		
 			
 		});
+		
 	</script>
 </body>
 </html>
