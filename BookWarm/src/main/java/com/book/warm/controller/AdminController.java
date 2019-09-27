@@ -78,7 +78,7 @@ public class AdminController {
 	}
 	
 	// USER 정보 받아오기
-	@GetMapping(value="/admin/{user_id}", produces= {MediaType.APPLICATION_ATOM_XML_VALUE,MediaType.APPLICATION_JSON_UTF8_VALUE})
+	@GetMapping(value="/user/{user_id}", produces= {MediaType.APPLICATION_ATOM_XML_VALUE,MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<UserVO> getUserID(@PathVariable("user_id")String user_id){
 		log.info("==================== getUserID() ====================");
 		log.info("getUserID : " + user_id);

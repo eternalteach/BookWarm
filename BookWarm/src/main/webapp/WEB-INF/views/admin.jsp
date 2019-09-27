@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<sec:authentication property="principal.username" var="user_id"/>
 <!-- 
 	구현해야 할 것
 	1. 사용자 클릭시 사용자 세부 정보 띄우기(회원정보 불러오기)
@@ -16,6 +17,8 @@
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="/warm/resources/js/logintest.js"></script>
+<script type="text/javascript" src="/warm/resources/js/admin.js"></script>
+<script type="text/javascript" src="/warm/resources/js/DateJsonToJsp.js"></script>
 <%@ include file="includes/header/script-vertexEx.jsp"%>
 <link rel="stylesheet" href="resources/css/main.css" />
 </head>
@@ -137,25 +140,10 @@
 									</c:forEach>
 								</div>
 								
-								<div class="row">
-									<div class="col-md-12">
-									<hr class="invisible" />
-										<nav aria-label="Page navigation example">
-											<ul class="pagination justify-content-center">
-												<li class="page-item disabled">
-													<a class="page-link" href="#" tabindex="-1">Previous</a>
-												</li>
-												<li class="page-item"><a class="page-link" href="#">1</a></li>
-												<li class="page-item"><a class="page-link" href="#">2</a></li>
-												<li class="page-item"><a class="page-link" href="#">3</a></li>
-												<li class="page-item">
-													<a class="page-link" href="#">Next</a>
-												</li>
-											</ul>
-										</nav>
-									</div>
-								</div>
-							</div>
+										<div class="row col-lg-12">
+	     											<div class="panel-footer center"></div>
+	          									</div>
+										</div>
 						</div>
 					</div>
 					<!-- End administrator-user -->
@@ -194,10 +182,38 @@
 						
 						// ajax로 회원 아이디 검사해서 있으면 모달로 띄워주고, 없으면 없다고 띄워주기
 						adminService.getUser(searchID,function(result){
-							
-							
+							alert(result.user_id);
+							$("#user_name").val(result.user_name);
+							let user_mail1=result.user_mail.split('@')[0];
+							$("#user_mail1").val(user_mail1);
+							let user_mail2=result.user_mail.split('@')[1];
+							$("#user_mail2").val(user_mail2);
+							$("#user_id").val(result.user_id);
+							//비밀번호는 어떻게할래? user_pw  user_pw
+							$("#user_nickname").val(result.user_nickname);
+							let userbday=displayTimeService.displayTime(result.user_bday);
+							userbday=userbday.split('-');
+							alert(userbday[0]+"userbday[0]");
+							$("#year").val(userbday[0]);
+							$("#month").val(userbday[1]);
+							$("#day").val((userbday[2].substring(0,2)));
+							let phoneNum=result.user_phone.split('-');
+							$("#user_phone1").val(phoneNum[0]);
+							$("#user_phone2").val(phoneNum[1]);
+							$("#user_phone3").val(phoneNum[2]);
+							let user_sex='';
+							if(result.user_sex=='m'){
+								user_sex='여자';
+							}else{user_sex='남자';}
+							$("#user_sex").val(user_sex);
+							$("#sample4_postcode").val(result.user_zipcode);
+							$("#sample4_roadAddress").val(result.user_addr);
+							$("#sample4_detailAddress").val(result.user_addr_detail);
 						});
 					});
+					
+					
+					
 					</script>
 </body>
 </html>
