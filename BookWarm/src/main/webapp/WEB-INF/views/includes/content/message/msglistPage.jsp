@@ -299,7 +299,7 @@
 					formsubmit.submit();
 			});
 			/* 답장하기 유효성 검사 끝  */			
-			
+		
 		});
 	</script>
 </body>

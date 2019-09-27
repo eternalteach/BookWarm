@@ -5,5 +5,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="com.book.warm.mapper.BookLoveMapper">
 
+<insert id="insertlove" parameterType="com.book.warm.vo.BookLoveVO">
+insert into book_love(book_love, isbn, user_id)
+values(book_love_seq.nextval, #{isbn}, #{user_id})
+</insert>
 
 </mapper>

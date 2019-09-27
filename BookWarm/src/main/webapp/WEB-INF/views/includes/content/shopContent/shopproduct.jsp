@@ -77,7 +77,9 @@
                           	<span>목록</span>
                            </button></a>
                            
-                           <a id="booklover" href="#"><i class="fa fa-heart">즐겨찾기</i></a>
+                           <a class="booklover" href="#">
+                           		<i id="loveicon" class="fa fa-star-o" data-i="white"></i>
+                           </a>
                            
                      <div class="product_meta mb-40">
                            <span class="tagged_as">
@@ -157,9 +159,9 @@
 				</div>
               </div>
          </div>
-         
-     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-     <script type="text/javascript">
+   <!--       
+     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+     <script>
  		//버튼 클릭시 이벤트
  		$(document).ready(function(){
  			
@@ -189,25 +191,38 @@
  		
  		//즐겨찾기 기능하기
  		$(document).ready(function(){
- 	 		  //즐겨찾기 목록에 추가
- 	 		  $("#booklover").on("click", function(e){
- 	 			 e.preventDefault();
- 	 			 alert("하트눌름");
- 	 			 
- 	 			 var booktitle = $()
- 	 			 
- 	 			 
+ 	 		  //흰색이 검정색으로 바뀌기
+ 	 		  
+     		  		
+ 	 		  var booklover = $(".booklover");
+ 	 		  
+ 	 		booklover.on("click", "i", function(e){
  	 			  
+ 	 			 alert("하트눌름");
+ 	 			 var icon =  $("i[class='fa fa-star-o']");
+ 	 			 var item = $(this).attr("data-i");
  	 			 
-
- 	 			 $.ajax({
- 	 				url : "/warm/shop/booklover/",
- 	 				type : "get", 
-
- 	 			 });
+ 	 			 if(item ==  "white"){
+ 	 				 
+ 	 			 var str = "";
+ 	 			 str += "<i id='loveicon' class='fa fa-star' data-i='black'></i>";
+ 	 		  	/*  booklover.html(str); */
+ 	 		  	 
+ 	 			 };
+ 	 			 
+ 	 			 if(item == "black"){
+ 	 				 
+ 	 				var str = "";
+ 	 	 			 str += "<i id='loveicon' class='fa fa-star-o' data-i='white'></i>";
+ 	 			 };
+ 	 	 		  	 booklover.html(str);
+ 	 		  	 
+ 	 			   	
+ 	 		  	 
+ 	 			 
+ 	 			 
  	 			 
  	 		  });
- 	 		    
  		});
       </script>
 </body>
