@@ -28,17 +28,13 @@ public class MsgController {
 	public String message(Principal principal, HttpServletRequest request, Model model, MsgTableVO msgvo) {
 		log.info("=================messgae=============================");
 		String user_id = principal.getName();
-		String msg_get_id = request.getParameter("msg_get_id");
-		// getid와 로그인 한 사람은 같다
-		msg_get_id = user_id;
 		
 		log.info("유저아이디:" + user_id);
-		log.info("받는사람아이디:" + msg_get_id);
+		model.addAttribute("msglist", msgservice.msglist(user_id));
+		model.addAttribute("msglist2", msgservice.msglist2(user_id));
+		model.addAttribute("msgcount", msgservice.msgcount(user_id));
+		model.addAttribute("msgcount2", msgservice.msgcount2(user_id));
 		
-		model.addAttribute("msglist", msgservice.msglist(msg_get_id));
-		model.addAttribute("msglist2", msgservice.msglist2(msg_get_id));
-		model.addAttribute("msgcount", msgservice.msgcount(msg_get_id));
-		log.info("개수  :" + msgservice.msgcount(msg_get_id) );
 		return "/message";
 	}
 	//모달창에서 쪽지보내기

@@ -47,7 +47,7 @@
 							
 							
 							<li><a href="#counters" id="#counters" data-toggle="tab"
-								class="active show"> <i class="fa fa-envelope-o"></i>받은쪽지함(${msgcount})</a></li>
+								class="active show"> <i class="fa fa-envelope-o"></i>받은쪽지함</a></li>
 							<li><a href="#recent-posts" id="#recent-posts" data-toggle="tab"> <i class="fa fa-envelope-open-o"></i>보낸쪽지함</a></li>
 						</ul>
 						<!--End Tab-->
@@ -62,7 +62,7 @@
 							<div class="tab-pane active" id="counters">
 								<div class="row">
 									<div class="col-md-9 left-side-sidebar">
-										<h1>받은 쪽지함(${msgcount})</h1>
+										<h1>받은쪽지함&ensp;${msgcount}개</h1>
 										<c:forEach items="${msglist}" var="msglist">
 										<fmt:setLocale value="en_US" scope="session"/>
 										<fmt:formatDate var="fmt_date" value="${msglist.msg_read_time }" pattern="ddMMM"/>
@@ -102,7 +102,7 @@
 							<div class="tab-pane" id="recent-posts">
 								<div class="row">
 									<div class="col-md-9">
-										<h1>보낸쪽지함</h1>
+										<h1>보낸쪽지함&ensp;${msgcount2}개</h1>
 										<c:forEach items="${msglist2}" var="msglist2">
 										<fmt:setLocale value="en_US" scope="session"/>
 										<fmt:formatDate var="fmt_date2" value="${msglist2.msg_send_time }" pattern="ddMMM"/>
@@ -150,13 +150,13 @@
 								<div id="temp">
 								받는 사람<input name="msg_get_id" value="" readonly><br><br>
 								</div>
-								 제목 <input name="msg_title" type="text" value="" style="padding-top: 10px"><br><br>
-						  		<textarea name="msg_content" style="width:400px; height:300px;"></textarea><br>
+								 제목 <input id="titlesubmit" name="msg_title" type="text" value="" style="padding-top: 10px"><br><br>
+						  		<textarea id="contentsubmit" name="msg_content" style="width:400px; height:300px;"></textarea><br>
 						  
-						  <input id="sendd" type="submit" value="보내기">
+						  <input id="sendsubmit" type="submit" value="보내기">
 						 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 						</form>
-				</div>zzz
+				</div>
             </div>
         </div>
     </div>
@@ -255,11 +255,10 @@
 			};
 			/* 끝 */
 			
-			/* 유효성검사 */
+			/* 쪽지보내기 유효성검사 */
 				$("#sendsend").on("click", function(e){
 					
 					e.preventDefault();
-					
 					var get = $("input[id='gett']").val();
 					var title = $("input[id='titlee']").val();
 					var content =$("textarea[id='contentt']").val();
@@ -269,7 +268,6 @@
 					if(get == "" || get == null){			       
 						alert("받는 사람을 입력하세요");
 						return false;		
-						//진행하지 말고 대기(submit이벤트 중지)
 					}else if(title == ""){
 						alert("제목을 입력하세요");
 						return false
@@ -279,6 +277,29 @@
 					};
 					formm.submit();
 				});		
+			/* 쪽지보내기 유효성검사 끝 */
+			
+			/* 답장하기 유효성 검사  */
+			$("#sendsubmit").on("click", function(e){
+				
+				e.preventDefault();
+				
+				var formsubmit = $("form[id='replyModal']");
+				var titlesubmit = $("input[id='titlesubmit']").val();
+				var contentsubmit = $("textarea[id='contentsubmit']").val();
+				console.log("sendsubmit");
+				
+				if(titlesubmit == "") {
+					alert("제목을 입력하세요");
+					return false;
+				}else if(contentsubmit == ""){
+					alert("내용을 입력하세요");
+					return false
+				};
+					formsubmit.submit();
+			});
+			/* 답장하기 유효성 검사 끝  */			
+			
 		});
 	</script>
 </body>

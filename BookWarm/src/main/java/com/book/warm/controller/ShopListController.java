@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.book.warm.page.Criteria;
+import com.book.warm.service.BookLoveService;
 import com.book.warm.service.ShopBoardService;
 import com.book.warm.service.ShopListService;
 import com.book.warm.vo.BookListVO;
@@ -27,6 +28,8 @@ public class ShopListController {
 	ShopListService shoplistservice;
 	@Inject
 	ShopBoardService service;
+	@Inject
+	BookLoveService bookloveservice;	
 	
 	@RequestMapping(value = "/shoplist", method = RequestMethod.GET)
 	public String shoplist(Principal principal, Model model, Criteria criteria) throws Exception {
