@@ -300,6 +300,7 @@ create table post(
 create sequence orders_seq;
 create table orders(
     orders_no varchar2(20),
+    user_id varchar2(20) not null,
     orders_payment varchar2(20) not null,
     orders_total number(10,0) not null,
     refund_account varchar2(50) not null,
@@ -311,6 +312,8 @@ create table orders(
     constraint pk_pay primary key(orders_no),
     constraint fk_orders_coupon_no FOREIGN KEY(coupon_no)
                REFERENCES coupon(coupon_no),
+    constraint fk_orders_user_info FOREIGN KEY(user_id)
+               REFERENCES user_info(user_id),
     constraint fk_orders_post_no FOREIGN KEY(post_no)
                REFERENCES post(post_no)
 );
@@ -320,7 +323,6 @@ create table orders(
 create sequence orders_item_seq;
 create table orders_item(
     item_no varchar2(20),
-    user_id varchar2(20) not null,
     isbn varchar2(20) not null,
     item_cnt number(10,0) not null,
     orders_no varchar2(15) not null,
@@ -328,8 +330,6 @@ create table orders_item(
     constraint pk_orders primary key(item_no),
     constraint fk_orders_pay_no FOREIGN KEY(orders_no)
                REFERENCES orders(orders_no),
-    constraint fk_orders_user_info FOREIGN KEY(user_id)
-               REFERENCES user_info(user_id),
     constraint fk_orders_isbn FOREIGN KEY(isbn)
                REFERENCES book(isbn)
 );
