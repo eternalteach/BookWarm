@@ -36,5 +36,8 @@ public class MsgService {
 	public int msgcount(String msg_get_id) {
 		return msgmapper.msgcount(msg_get_id);
 	}
+	public int msgcount2(String msg_send_id) {
+		return msgmapper.msgcount2(msg_send_id);
+	}
 	
 }

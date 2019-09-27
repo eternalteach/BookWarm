@@ -156,7 +156,7 @@
 						  <input id="sendd" type="submit" value="보내기">
 						 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 						</form>
-				</div>
+				</div>zzz
             </div>
         </div>
     </div>
@@ -168,13 +168,13 @@
         <div class="modal-content">
             <div class="modal-body post-content">
 				<div class="form-inline" style="width:100px" >
-						<form action="/warm/send" name="my_form" onsubmit="return validateForm()">
+						<form action="/warm/send" name="my_form">
 								<h1>쪽지보내기</h1>
-								보낸사람<input id=send name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
-								받는 사람<input id=get name="msg_get_id" type="text"><br><br>
-								 제목 <input id=title name="msg_title" type="text" ><br><br>
-						  		<textarea id=content name="msg_content" style="width:400px; height:300px;"></textarea><br>
-						  <input id="ss" type="submit" value="보내기" onsubmit="return checkForm();">
+								보낸사람<input id=sendd name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
+								받는 사람<input id=gett name="msg_get_id" type="text"><br><br>
+								 제목 <input id=titlee name="msg_title" type="text" ><br><br>
+						  		<textarea id=contentt name="msg_content" style="width:400px; height:300px;"></textarea><br>
+						  <input id="sendsend" type="submit" value="보내기" onsubmit="return checkForm();">
 						 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 						</form>
 				</div>
@@ -256,18 +256,30 @@
 			/* 끝 */
 			
 			/* 유효성검사 */
-				$(".ss").on("click", function(e){
+				$("#sendsend").on("click", function(e){
+					
 					e.preventDefault();
-					alert("dd");
-				var msg_get_id = document.forms['my_form']["msg_get_id"].value;
-				if(msg_get_id == null || msg_get_id == ""){
-					alert("보낼사람을 입력해주세요.")
-					return false;
-				};
+					
+					var get = $("input[id='gett']").val();
+					var title = $("input[id='titlee']").val();
+					var content =$("textarea[id='contentt']").val();
+					var formm = $("form[name='my_form']");
+					console.log("sendsend");
+					
+					if(get == "" || get == null){			       
+						alert("받는 사람을 입력하세요");
+						return false;		
+						//진행하지 말고 대기(submit이벤트 중지)
+					}else if(title == ""){
+						alert("제목을 입력하세요");
+						return false
+					}else if(content == ""){
+						alert("내용을 입력하세요");
+						return false
+					};
+					formm.submit();
 				});		
 		});
-		
-		
 	</script>
 </body>
 </html>

@@ -30,5 +30,10 @@
 	from msg_table
     where msg_get_id = #{msg_get_id}
 	</select>
+	<select id="msgcount2" resultType="int">
+	select count(msg_no) 
+	from msg_table
+    where msg_send_id = #{msg_send_id}
+	</select>
 </mapper>
 

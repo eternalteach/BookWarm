@@ -17,9 +17,10 @@
 <body style="background-image: url('/warm/resources/img/background/star01.gif');">
 	<button type="button" class="btn" data-toggle="modal" data-target="#modal-library">modal-library</button>
 	<a href="reviewMain?user_id=aaa"><button>감상 메인페이지</button></a>
-	<a href="shop/shoplist"><button>책 리스트</button></a>
-	<a href="message" class="fa fa-commenting-o" style="color:white">쪽지</a>
-	<a href="customLogout" style="color:white" >로그아웃</a>
+	<a href="shop/shoplist" class="fa fa-book" style="color:white;font-style: italic;margin-right: 10px;
+											margin-left: 10px">책리스트</a>
+	<a href="message" class="icon-mail-2" style="color:white;font-style: italic;margin-right: 10px;">쪽지</a>
+	<a href="customLogout" style="color:white;font-style: italic;" >로그아웃</a>
 	<div class="library-body">
 		<table class="margin-zero" style="width: 795px; height: 1001px;">
 			<tr style="height: 43px;">

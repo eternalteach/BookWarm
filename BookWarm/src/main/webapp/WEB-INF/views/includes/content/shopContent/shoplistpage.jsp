@@ -99,6 +99,7 @@
 					<div class="col-sm-12">
 						<div class="v-heading-v2">
 							<h3>bookwarm</h3>
+							<br><a href="/warm/shop/booklover">즐겨찾기로 이동</a>
 						</div>
 					</div>
 

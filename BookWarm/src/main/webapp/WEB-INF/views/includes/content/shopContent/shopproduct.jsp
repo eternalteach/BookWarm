@@ -21,7 +21,7 @@
                         <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i>${bookdetail.book_title}</a></li>
                      </ol>
                      <div class="product-details">
-                        <h2 class="product-name"><a href="#">${bookdetail.book_title}</a></h2>
+                        <h2 class="product-name"><a href="#" id="booktitle">${bookdetail.book_title}</a></h2>
                         <div class="product-price-wrap">
                            <span class="product-price">
                               <del class="product-amount"><span class="product-price-currency">정가&nbsp<fmt:formatNumber value="${bookdetail.book_price}" pattern="###,###,###" /></span>원</del><br>
@@ -77,7 +77,7 @@
                           	<span>목록</span>
                            </button></a>
                            
-                           <a class="bb" href="/warm/shop/booklover"><i class="fa fa-heart">즐겨찾기</i></a>
+                           <a id="booklover" href="#"><i class="fa fa-heart">즐겨찾기</i></a>
                            
                      <div class="product_meta mb-40">
                            <span class="tagged_as">
@@ -183,16 +183,31 @@
  		     	$("#cart_get").attr("href",pre.toString()  + val.toString());     	
  		        console.log($(this).val());
  		    });
- 		    
- 		  $(".bb").on("click", function(e){
- 			 e.preventDefault();
- 			 alert("하트눌름");
- 			 
- 			 var book_img = $(".img").val();
- 			 alert(book_img);
- 			 //책이미지/책정보/만 일단 넘기기
- 		  });
- 		    
+ 		});
+ 		
+ 		
+ 		
+ 		//즐겨찾기 기능하기
+ 		$(document).ready(function(){
+ 	 		  //즐겨찾기 목록에 추가
+ 	 		  $("#booklover").on("click", function(e){
+ 	 			 e.preventDefault();
+ 	 			 alert("하트눌름");
+ 	 			 
+ 	 			 var booktitle = $()
+ 	 			 
+ 	 			 
+ 	 			  
+ 	 			 
+
+ 	 			 $.ajax({
+ 	 				url : "/warm/shop/booklover/",
+ 	 				type : "get", 
+
+ 	 			 });
+ 	 			 
+ 	 		  });
+ 	 		    
  		});
       </script>
 </body>

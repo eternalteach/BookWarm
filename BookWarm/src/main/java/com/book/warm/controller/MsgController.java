@@ -29,7 +29,6 @@ public class MsgController {
 		log.info("=================messgae=============================");
 		String user_id = principal.getName();
 		String msg_get_id = request.getParameter("msg_get_id");
-		
 		// getid와 로그인 한 사람은 같다
 		msg_get_id = user_id;
 		
