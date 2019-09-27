@@ -15,5 +15,9 @@ public interface UserInfoMapper {
 
 	int getOrderCnt(@Param("user_id") String user_id);
 
+	int getPoint(@Param("user_id") String user_id);
+
+	int getCouponCnt(@Param("user_id") String user_id);
+
 
 }

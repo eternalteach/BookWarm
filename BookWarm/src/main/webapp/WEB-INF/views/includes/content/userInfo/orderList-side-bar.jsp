@@ -11,10 +11,11 @@
 			</h4>
 		</div>
 		<ul>
-			<li><a href="#" title="View all posts">내 정보 수정</a></li>
-			<li><a href="/warm/orderList" title="View all posts">나의 주문 내역</a></li>
-			<li><a href="#" title="View all posts">내가 좋아한 도서</a></li>
-			<li><a href="#" title="View all posts">탈퇴하기</a></li>
+			<li><a href="/warm/myInfo">내 정보</a></li>
+			<li><a href="#">내 정보 수정</a></li>
+			<li><a href="/warm/orderList">나의 주문 내역</a></li>
+			<li><a href="#">내가 좋아한 도서</a></li>s
+			<li><a href="#">탈퇴하기</a></li>
 		</ul>
 	</section>
 </aside>

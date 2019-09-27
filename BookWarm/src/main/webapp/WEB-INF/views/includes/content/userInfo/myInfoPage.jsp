@@ -8,13 +8,11 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-8 text-left">
-                    <span class="tob-sub-title text-color-primary d-block">LITLE BIT ABOUT US</span>
-                    <h1>Author Page</h1>
+                    <h1>내 정보</h1>
                 </div>
                 <div class="col-md-4">
                     <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
-                        <li><a href="index.html">Pages</a></li>
-                        <li class="active">Author Page</li>
+                        <li><a href="index.html">내 정보</a></li>
                     </ul>
                 </div>
             </div>
@@ -23,54 +21,45 @@
 
 
     <div class="v-page-wrap has-right-sidebar has-one-sidebar">
-
         <div class="container">
-
             <div class="row">
-
                     <div class="row col-sm-9">
-
-                        <div class="col-sm-12">
-
-                            <div class="author-info-wrap clearfix" style="margin-top: 0px;">
-                                <div class="author-avatar">
-                                    <img src="img/avatar.png" class="avatar photo" />
+                        <div class="author-info-wrap clearfix col-sm-12" style="margin-top: 0px;">
+                            <div class="author-avatar">
+                                <!-- <img src="img/avatar.png" class="avatar photo" /> -->
+                                <i class="fa fa-user-circle fa-5x" aria-hidde="true"></i>
+                            </div>
+                            <div class="author-bio">
+                                <div class="author-name">
+                                    <h3>${user_id}님</h3>
                                 </div>
-                                <div class="author-bio">
-                                    <div class="author-name">
-                                        <h3>About <span>Vertex Templates</span></h3>
-                                    </div>
-                                    <div class="author-bio-text">
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquam massa quis mauris
-                                            sollicitudin commodo venenatis ligula commodo. Sed blandit
-                                            convallis dignissim. Pellentesque pharetra velit.
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquam massa quis mauris
-                                            sollicitudin commodo venenatis ligula commodo. Sed blandit
-                                            convallis dignissim.
-                                        </p>
-                                    </div>
-
-                                    <div class="clearfix pt-2">
-                                        <a href="#" class="social-icon si-dark si-facebook" title="Facebook">
-                                            <i class="si-icon-facebook"></i>
-                                            <i class="si-icon-facebook"></i>
-                                        </a>
-                                        <a href="#" class="social-icon si-dark si-twitter" title="Twitter">
-                                            <i class="si-icon-twitter"></i>
-                                            <i class="si-icon-twitter"></i>
-                                        </a>
-                                        <a href="#" class="social-icon si-dark si-instagram" title="Instagram">
-                                            <i class="si-icon-instagram"></i>
-                                            <i class="si-icon-instagram"></i>
-                                        </a>
-                                    </div>
+                                <div class="author-bio-text">
+                                    <p><a href="/warm/customLogout"><button type="button">로그아웃</button></a></p>
+                                </div>
+                            </div>
+                            <div class="author-bio">
+                                <div class="author-name">
+                                    <h3>포인트 : ${point}원</h3>
+                                </div>
+                            </div>
+                            <div class="author-bio">
+                                <div class="author-name">
+                                    <h3>쿠폰 : <a href="#">${couponCnt}개</a></h3><!-- 모달 써서 쿠폰 list 뿌려주기 -->
+                                </div>
+                                <div class="author-bio-text">
+                                    <p><a href="#">쿠폰 등록</a></p><!-- 모달 사용하기 -->
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="v-spacer col-sm-12 v-height-standard"></div>
-                        <div class="v-divider dotted v-bg-stylish col-sm-12"></div>
+                        
+                        <div class="col-sm">
+							<div class="v-heading-v2 col-sm-8 offset-sm-2 row center-text">
+								<h4 class="v-search-result-count">최근 내 리뷰</h4>
+							</div>
+							<!-- 이 부분에 해랑언니 코드 넣기 -->
+                        </div>
                 </div>
 
                <%@ include file="./orderList-side-bar.jsp" %>

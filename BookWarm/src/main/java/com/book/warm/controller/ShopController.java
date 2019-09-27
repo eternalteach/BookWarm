@@ -157,9 +157,7 @@ public class ShopController {
 		
 		// 현재 로그인한 user가 가지고 있는 쿠폰을 list로 받아온다.
 		List<CouponVO> couponList = service.getCouponList(user_id);
-		// model.addAttribute("couponList", couponList);
 		
-		// return "/couponList";
 		return couponList;
 	}
 	

@@ -15,7 +15,7 @@
 				<div class="col-md-4">
 					<ul
 						class="breadcrumb justify-content-start justify-content-md-end mb-0">
-						<li><a href="/warm/myInfo">마이 페이지</a></li>
+						<li><a href="/warm/myInfo">내 정보</a></li>
 						<li class="active">나의 주문 내역</li>
 					</ul>
 				</div>

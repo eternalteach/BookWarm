@@ -42,12 +42,17 @@ public class UserInfoController {
 	
 	// 마이 페이지(메인)
 	@RequestMapping("/myInfo")
-	public void myInfo(Principal principal) {
+	public void myInfo(Principal principal, Model model) {
 		String user_id = principal.getName();
 		
-		
-		
-		
-		
+		// view로 보내야하는 데이터
+		// 1. user_id
+		model.addAttribute("user_id", user_id);
+		// 2. point
+		int point = userInfoService.getPoint(user_id);
+		model.addAttribute("point", point);
+		// 3. couponCnt
+		int couponCnt = userInfoService.getCouponCnt(user_id);
+		model.addAttribute("couponCnt", couponCnt);
 	}
 }

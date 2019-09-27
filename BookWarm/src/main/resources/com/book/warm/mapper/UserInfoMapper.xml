@@ -19,9 +19,24 @@
 		where user_id=#{user_id}
 		order by orders_date desc
 	</select>
+	
 	<select id="getOrderCnt" resultType="java.lang.Integer">
 		select count(*)
 		from orders
 		where user_id=#{user_id}
 	</select>
+	
+	<select id="getPoint" resultType="java.lang.Integer">
+		select user_point
+		from user_info
+		where user_id=#{user_id}
+	</select>
+	
+	<select id="getCouponCnt" resultType="java.lang.Integer">
+		select count(*)
+		from coupon_no
+		where user_id=#{user_id}
+		and coupon_available='t'
+	</select>
+	
 </mapper>

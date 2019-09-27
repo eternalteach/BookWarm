@@ -67,4 +67,9 @@ public class FileCheckTask {
 			file.delete();
 		}
 	}
+	
+	@Scheduled(cron="0 0 0 * * *")
+	public void updateCouponAvailable() throws Exception {
+		
+	}
 }

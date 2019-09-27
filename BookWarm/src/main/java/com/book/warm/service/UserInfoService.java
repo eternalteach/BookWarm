@@ -28,6 +28,16 @@ public class UserInfoService {
 		return userInfoMapper.getOrderCnt(user_id);
 	}
 
+	public int getPoint(String user_id) {
+		return userInfoMapper.getPoint(user_id);
+	}
+
+	public int getCouponCnt(String user_id) {
+		return userInfoMapper.getCouponCnt(user_id);
+	}
+
+	
+
 	
 	
 }
