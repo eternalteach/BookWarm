@@ -83,7 +83,7 @@
 	
 	<insert id="addOrder">
 		insert into orders
-		values(ORDERS_SEQ.nextval, #{orders_payment}, #{orders_total}, #{refund_account}, #{refund_bank}, SYSDATE, ${orders_pay_date}, #{coupon_no}, #{post_no})
+		values(ORDERS_SEQ.nextval, #{user_id}, #{orders_payment}, #{orders_total}, #{refund_account}, #{refund_bank}, SYSDATE, ${orders_pay_date}, #{coupon_no}, #{post_no})
 	</insert>
 	
 	<select id="getOrders_no" resultType="java.lang.String">
@@ -91,7 +91,7 @@
 	</select>
 	
 	<insert id="addOrderItems">
-		insert into orders_item values(ORDERS_ITEM_SEQ.nextval, #{user_id}, #{isbn}, #{cart_cnt}, #{orders_no}, '주문완료')
+		insert into orders_item values(ORDERS_ITEM_SEQ.nextval, #{isbn}, #{cart_cnt}, #{orders_no}, '주문완료')
 	</insert>
 	
 	<insert id="addPost">

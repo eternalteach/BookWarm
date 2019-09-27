@@ -22,7 +22,27 @@
 		</repository>
 	</repositories>
 	<dependencies>
-
+		
+		<!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
+		<!-- <dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>javax.mail-api</artifactId>
+		    <version>1.6.1</version>
+		</dependency>
+		https://mvnrepository.com/artifact/org.springframework/spring-context-support
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>5.0.7.RELEASE</version>
+		</dependency>
+		https://mvnrepository.com/artifact/org.springframework.integration/spring-integration-mail
+		<dependency>
+		    <groupId>org.springframework.integration</groupId>
+		    <artifactId>spring-integration-mail</artifactId>
+		    <version>5.0.7.RELEASE</version>
+		</dependency> -->
+		
+		
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>

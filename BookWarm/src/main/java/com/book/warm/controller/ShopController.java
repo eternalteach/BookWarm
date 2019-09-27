@@ -235,12 +235,12 @@ public class ShopController {
 		// 2. 배송지 번호 받아오기
 		String post_no = service.getPost_no();
 		// 3. orders테이블에 주문건 넣기
-		service.addOrder(orders_payment, orders_total, refund_account, refund_bank, orders_pay_date, coupon_no, post_no);
+		service.addOrder(orders_payment, user_id, orders_total, refund_account, refund_bank, orders_pay_date, coupon_no, post_no);
 		// 4. 주문건 번호 받아오기
 		String orders_no = service.getOrders_no();
 		// 5. orders_item테이블에 주문건 넣기
 		for(int i=0; i<isbn.length; i++) {
-			service.addOrderItems(user_id, isbn[i], cart_cnt[i], orders_no);
+			service.addOrderItems(isbn[i], cart_cnt[i], orders_no);
 		}
 		
 		model.addAttribute("isbn", isbn);

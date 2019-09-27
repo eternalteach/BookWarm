@@ -56,17 +56,17 @@ public class ShopBoardService {
 	}
 	//==================================================
 
-	public void addOrder(String orders_payment, int orders_total, String refund_account, String refund_bank,
+	public void addOrder(String orders_payment, String user_id, int orders_total, String refund_account, String refund_bank,
 			String orders_pay_date, String coupon_no, String post_no) {
-		shopMapper.addOrder(orders_payment, orders_total, refund_account, refund_bank, orders_pay_date, coupon_no, post_no);
+		shopMapper.addOrder(orders_payment, user_id, orders_total, refund_account, refund_bank, orders_pay_date, coupon_no, post_no);
 	}
 
 	public String getOrders_no() {
 		return shopMapper.getOrders_no();
 	}
 
-	public void addOrderItems(String user_id, String isbn, String cart_cnt, String orders_no) {
-		shopMapper.addOrderItems(user_id, isbn, cart_cnt, orders_no);
+	public void addOrderItems(String isbn, String cart_cnt, String orders_no) {
+		shopMapper.addOrderItems(isbn, cart_cnt, orders_no);
 	}
 
 	public void addPost(String user_id, String post_name, String post_phone, int post_zipcode, String post_addr,

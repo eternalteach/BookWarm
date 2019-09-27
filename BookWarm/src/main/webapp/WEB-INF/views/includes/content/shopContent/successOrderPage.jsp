@@ -27,17 +27,11 @@
 						<div class="col-md-4">
 							<div class="special-heading underline">
 								<h2 class="fs-36 special-heading-inner fw-6">
-									<!-- <span>Thank You!</span></br> -->
 									<img src="/warm/resources/img/first_page/firstPage.jpg">
 								</h2>
 							</div>
 						</div>
 						<div class="col-md-4">
-							<!-- 이전 페이지(결제 폼)에서 받을 때
-								 받는 사람, 휴대폰번호, 주소 >> postVO.post_name, postVO.post_phone, postVO.post_zipcode + postVO.post_addr + postVO.post_addr_detail
-								 주문 도서명, 수량 >> isbn, cart_cnt(model객체로 넘겨준다.)
-								 총 결제 금액 >> ordersVO.orders_total
-								 결제 방법 >> ordersVO.orders_payment -->
 							<p><strong>** 배송지 정보 **</strong></p>
 							<p>받으시는 분 : ${postVO.post_name}</p>
 							<p>휴대폰 번호 : ${postVO.post_phone}</p>
@@ -58,7 +52,8 @@
 							</div>
 							
 							<div>
-								
+								<a href="/warm/shop/shoplist"><button>쇼핑 메인페이지</button></a>&nbsp;&nbsp;&nbsp;
+								<a href="/warm/orderList"><button>내 주문내역</button></a>
 							</div>
 							
 						</div>

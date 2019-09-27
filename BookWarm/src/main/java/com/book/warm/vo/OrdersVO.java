@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 public class OrdersVO {
 	private String orders_no;
+	private String user_id;
 	private String orders_payment;
 	private int orders_total;
 	private String refund_account;
@@ -16,10 +17,11 @@ public class OrdersVO {
 	
 	
 	// constructor
-	public OrdersVO(String orders_no, String orders_payment, int orders_total, String refund_account,
+	public OrdersVO(String orders_no, String user_id, String orders_payment, int orders_total, String refund_account,
 			String refund_bank, Timestamp orders_date, Timestamp orders_pay_date, String coupon_no, String post_no) {
 		super();
 		this.orders_no = orders_no;
+		this.user_id = user_id;
 		this.orders_payment = orders_payment;
 		this.orders_total = orders_total;
 		this.refund_account = refund_account;
@@ -43,7 +45,15 @@ public class OrdersVO {
 	public void setOrders_no(String orders_no) {
 		this.orders_no = orders_no;
 	}
-
+	
+	public String getUser_id() {
+		return user_id;
+	}
+	
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	
 	public String getOrders_payment() {
 		return orders_payment;
 	}

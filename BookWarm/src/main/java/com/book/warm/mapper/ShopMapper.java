@@ -37,14 +37,14 @@ public interface ShopMapper {
 	public void delete(int cart_no);
 	//===============================================================
 
-	public void addOrder(@Param("orders_payment") String orders_payment, @Param("orders_total") int orders_total,
+	public void addOrder(@Param("orders_payment") String orders_payment, @Param("user_id") String user_id, @Param("orders_total") int orders_total,
 			@Param("refund_account") String refund_account, @Param("refund_bank") String refund_bank,
 			@Param("orders_pay_date") String orders_pay_date, @Param("coupon_no") String coupon_no, @Param("post_no") String post_no);
 
 	public String getOrders_no();
 
-	public void addOrderItems(@Param("user_id") String user_id, @Param("isbn") String isbn,
-			@Param("cart_cnt") String cart_cnt, @Param("orders_no") String orders_no);
+	public void addOrderItems(@Param("isbn") String isbn, @Param("cart_cnt") String cart_cnt, 
+			@Param("orders_no") String orders_no);
 
 	public void addPost(@Param("user_id") String user_id, @Param("post_name") String post_name, @Param("post_phone") String post_phone,
 			@Param("post_zipcode") int post_zipcode, @Param("post_addr") String post_addr, @Param("post_addr_detail") String post_addr_detail);

@@ -1,7 +1,6 @@
 package com.book.warm.vo;
 public class OrdersItemVO {
 	private String item_no;
-	private String user_id;
 	private String isbn;
 	private int item_cnt;
 	private String orders_no;
@@ -9,11 +8,10 @@ public class OrdersItemVO {
 	
 	
 	// constructor
-	public OrdersItemVO(String item_no, String user_id, String isbn, int item_cnt, String orders_no,
+	public OrdersItemVO(String item_no, String isbn, int item_cnt, String orders_no,
 			String orders_status) {
 		super();
 		this.item_no = item_no;
-		this.user_id = user_id;
 		this.isbn = isbn;
 		this.item_cnt = item_cnt;
 		this.orders_no = orders_no;
@@ -31,12 +29,6 @@ public class OrdersItemVO {
 	}
 	public void setItem_no(String item_no) {
 		this.item_no = item_no;
-	}
-	public String getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
 	}
 	public String getIsbn() {
 		return isbn;

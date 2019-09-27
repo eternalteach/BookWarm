@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.book.warm.mapper.UserInfoMapper">
+	<select id="getMyOrders" resultType="com.book.warm.vo.OrderListVO">
+		select t.book_price_for_sale * t.item_cnt as orders_total, o.orders_date, t.*
+		from orders o inner join (select b.book_title, b.BOOK_IMG,  oi.item_cnt, b.book_price_for_sale, oi.orders_status, oi.orders_no
+		                        from orders_item oi inner join book b
+		                        on oi.isbn = b.isbn) t
+		on o.orders_no = t.orders_no
+		where o.user_id=#{user_id}
+		order by orders_date desc
+	</select>
+	
+	<select id="getOrderList" resultType="com.book.warm.vo.OrdersVO">
+		select *
+		from orders
+		where user_id=#{user_id}
+		order by orders_date desc
+	</select>
+	<select id="getOrderCnt" resultType="java.lang.Integer">
+		select count(*)
+		from orders
+		where user_id=#{user_id}
+	</select>
+</mapper>
