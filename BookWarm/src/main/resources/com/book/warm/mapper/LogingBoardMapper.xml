@@ -43,7 +43,7 @@ select /*INDEX_DESC(loging_board pk_board)*/ rownum rn, write_no, start_page, en
 		select lb.isbn, lb.start_date, b.book_title, b.book_img 
 		from loging_board lb, book b 
 		where b.isbn = lb.isbn and end_date = 'true' and user_id=#{user_id} 
-		order by start_date desc
+		order by start_date desc, write_no desc
 	</select>
 	
 </mapper>

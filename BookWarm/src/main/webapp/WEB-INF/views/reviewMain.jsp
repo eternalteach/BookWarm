@@ -41,7 +41,7 @@
     max-width: 900px;
     margin: 0 auto;
   }
-
+  
 </style>
 
 </head>
@@ -533,153 +533,159 @@
          </footer>
       </div>
    </div>
+   
+   
 <script>
 
 	
-
   document.addEventListener('DOMContentLoaded', function() {
 	  
-/* 	$("#modalBtn").on("click", function() { */
+ 	    var calendarEl = document.getElementById('calendar');
+	    var calendar = new FullCalendar.Calendar(calendarEl, {
+	      plugins: [ 'interaction', 'dayGrid', 'list' ],
+	
+	      header: {
+	        left: 'prev,next today',
+	        center: 'title',
+	        right: 'dayGridMonth,listYear'
+	      },
+	      
+	      displayEventTime: false, // don't show the time column in list view
+	      
+	   	  events: function(info, successCallback, failureCallback) {
+	   			$.getJSON("/warm/calendar.json",
+	  					function(data) {
+	  						// json데이터를 받아서 해야 하는 일.
+	  						// data의 완독일 값이 true면 events에 추가하기.
+	  						var events = [];
+	  						let preDate = '';
+	  						let limitCheck = 0;
+	  						
+	  						$.each(data, function(i, obj){
+		  						let firstImg = false;
+	  							console.log("i: " +i);
+	  							console.log("obj.isbn: " + obj.isbn);
+	  							// 완독일을 timestamp에서 Date타입으로 변환
+	  							var logDate = new Date(obj.start_date);
+	  							// 필요한 날짜 형식으로 변환
+	  							var year = logDate.getFullYear();
+	  							var month = logDate.getMonth() + 1;
+	  							var date = logDate.getDate();
+	  							
+	  							if(month<10) {
+	  								month = '0' + month;
+	  							}
+	  							if(date<10) {
+	  								date = '0' + date;
+	  							}
+	  							
+	  							var dateFormat = year + "-" + month + "-" + date;
+	  							console.log("dateFormated: " + dateFormat);
+	  							
+	  							// 같은 날짜에 완독한 책이 존재한다면 limitCheck값만 증가시켜주고, 
+	  							// 이외의 경우 preDate에 날짜 저장 후 limitCheck 1로 초기화.
+	  							if(preDate != dateFormat) {
+	  								limitCheck = 1;
+	  								preDate = dateFormat;
+	  								firstImg = true;
+	  							} else {
+	  								limitCheck++;
+	  							}
+	  							
+	  							if(limitCheck>2) {
+		  							// 완독한 책 표지는 하루 최대 2권까지만 나타내도록 한다. 
+	  								obj.book_img = '';
+	  							}
+	  							// 이벤트는 전부 추가해준다.
+								events.push(
+										{
+											id:obj.isbn,
+											title:obj.book_title, 
+											start:obj.start_date, 
+											backgroundColor:'lightgray', 
+											borderColor:'transparent',
+											textColor:'black',
+											firstImg:firstImg,
+											imageurl:obj.book_img,
+											dateFormat:dateFormat
+										}
+								);
+	  						});
+	   						successCallback(events);
+		   				}).fail(function(xhr, status, err) {
+			   				if(err) {
+			   					failureCallback(err);
+			   				}
+		   		});
+	   	  }, 
+	   	  
+	   	  eventClick: false,
+	   	  
+	   	  eventRender: function(info) {
+	   		  
+	   		  console.log("info.event.id:" + info.event.id);
+	   		  console.log("info.event.title : " + info.event.title);
+	   		  console.log("표지 : " + info.event.extendedProps.imageurl);
+	   		  console.log("info.event.extendedProps.dateFormat: " +  info.event.extendedProps.dateFormat);
+	   		  
+	   		  if(info.event.extendedProps.imageurl != '') {
+	   			  
+	   			  console.log("============ 완독한 책 이미지 뿌려주기 =============");
+	   			  
+	   			  var tdObj = $(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "']");
+	   			  var str = "<img style='cursor: pointer; height:50%; id='" + info.event.id + "' src='" + info.event.extendedProps.imageurl + "'>";
+	   			  
+	   			  if(info.event.extendedProps.firstImg) {
+	   				  // rerender시 표지가 반복적으로 추가되지 않도록 html에 새로 뿌려준다.
+		   			  tdObj.html(str);
+	   			  } else {
+		   			  tdObj.append(str);
+	   			  }
+	   		  }
+	   		  
+	   		  // gridMonth형에서 title은 나타나지 않도록 한다.
+	   		  // .fc-content-skeleton을 display를 none으로 하면 날짜까지 지워지고,
+	   		  // tbody까지를 택하면 css가 적용되지 않는 문제.
+	   		  /* console.log($(".fc-content-skeleton")); */
+	   		var tt = $(".fc-content-skeleton");
+	   		console.log(tt.find("tbody"));
+	   		  /* console.log($(".fc-content-skeleton table tbody")); */
+	   		  /* $(".fc-content-skeleton table tbody").css("display", "none"); */
+	   		  /* $(".fc-content-skeleton table tbody").css("display", "");  */
+	   		  /* $(".fc-event-container").css("display", "none");  */
+	   	  },
+	   	  
+	   	  eventLimit: 0, 
+	   	  eventLimitText: '',
+	
+	   	  eventClick: function(info) {
+	   		  info.jsEvent.preventDefault();
+	   	  },
+	   	  
+	      loading: function(bool) {
+	        document.getElementById('loading').style.display =
+	          bool ? 'block' : 'none';
+	      } 
+	
+	  });
 		
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      plugins: [ 'interaction', 'dayGrid', 'list' ],
-
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,listYear'
-      },
-      
-      displayEventTime: false, // don't show the time column in list view
-      
-   	  events: function(info, successCallback, failureCallback) {
-   			$.getJSON("/warm/calendar.json",
-  					function(data) {
-  						// json데이터를 받아서 해야 하는 일.
-  						// data의 완독일 값이 true면 events에 추가하기.
-  						var events = [];
-  						let preDate = '';
-  						let limitCheck = 0;
-  						
-  						$.each(data, function(i, obj){
-  							console.log("i: " +i);
-  							console.log("obj.isbn: " + obj.isbn);
-  							console.log("obj.start_date: " + obj.start_date);
-  							// 완독일을 timestamp에서 Date타입으로 변환
-  							var logDate = new Date(obj.start_date);
-  							console.log("date: " + logDate);
-  							// 필요한 날짜 형식으로 변환
-  							var year = logDate.getFullYear();
-  							var month = logDate.getMonth() + 1;
-  							var date = logDate.getDate();
-  							
-  							if(month<10) {
-  								month = '0' + month;
-  							}
-  							if(date<10) {
-  								date = '0' + date;
-  							}
-  							
-  							var dateFormat = year + "-" + month + "-" + date;
-  							console.log("dateFormated: " + dateFormat);
-  							
-  							// 같은 날짜에 완독한 책이 존재한다면 limitCheck값만 증가시켜주고, 
-  							// 이외의 경우 preDate에 날짜 저장 후 limitCheck 1로 초기화.
-  							if(preDate != dateFormat) {
-  								limitCheck = 1;
-  								preDate = dateFormat;
-  							} else {
-  								limitCheck++;
-  							}
-  							
-  							if(limitCheck>2) {
-	  							// 완독한 책 표지는 하루 최대 2권까지만 나타내도록 한다. 
-  								obj.book_img = '';
-  							}
-  							// 이벤트는 전부 추가해준다.
-							events.push(
-									{
-										id:obj.isbn,
-										title:obj.book_title, 
-										start:obj.start_date, 
-										backgroundColor:'transparent', 
-										borderColor:'transparent',
-										imageurl:obj.book_img,
-										dateFormat:dateFormat
-									}
-							);
-  						});
-   						successCallback(events);
-	   				}).fail(function(xhr, status, err) {
-		   				if(err) {
-		   					failureCallback(err);
-		   				}
-	   		});
-   	  }, 
-   	  
-   	  eventRender: function(info) {
-   		  console.log("info.event.id:" + info.event.id);
-   		  console.log("info.event.title : " + info.event.title);
-   		  if(info.event.extendedProps.imageurl != '') {
-   			  console.log("event의 이미지주소 : " + info.event.extendedProps.imageurl);
-   			  console.log("info.event.extendedProps.dateFormat: " +  info.event.extendedProps.dateFormat);
-   			  console.log("info.event.id: " + info.event.id);
-   					  
-   			  console.log("============ 완독한 책 이미지 뿌려주기 =============");
-   			  
-   			  var tdObj = $(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "']");
-   			  var str = "<img style='height:50%; ' id='" + info.event.id + "' src='" + info.event.extendedProps.imageurl + "'>";
-   			  tdObj.append(str);
-   			  
-   			  /* $(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "']")
-   			  		.append("<img style='height:50%; ' id='" + info.event.id + "' src='" + info.event.extendedProps.imageurl + "'>"); */
-   			  
-   			  
-   		  }
-   	  },
-   	  
-   	  eventLimit: 2, 
-   	  eventLimitText: '',
-   	  /* views: {
-   		  dayGrid: {
-   			  eventLimit: 2
-   		  }
-   	  }, */
-
-      eventClick: function(arg) {
-    	  
-    	location.href = "/warm/reviewMain";  
-        // opens events in a popup window
-        /* window.open(arg.event.url, 'google-calendar-event', 'width=700,height=600');
-
-        arg.jsEvent.preventDefault() // don't navigate in main tab */
-      }/* ,
-
-      loading: function(bool) {
-        document.getElementById('loading').style.display =
-          bool ? 'block' : 'none';
-      } */
-
-    });
-
-    calendar.render();
-    clickMonth();
-    
-    // 기존: 현재 로그인한 아이디를 받아서 해당 아이디로 적은 독서기록 중 완독한 책의 해당 기록을 리스트로 가져온다.
-    // start에 읽은 날짜를 적고 title에는 isbn을 적어둠.
-    // 책 표지를 넣으려면, 해당 날짜칸의 html에 img주소를 가져와서 img태그를 걸어줘야 함.
-    
-    function clickMonth() {
-    	
-    	if(!$(".fc-day-grid").is(':visible')) {
-    		alert("안보임");
-    		$(".fc-today-button").click();
-    	}
-    }
-    
-/* 	  }); */
+	  calendar.render();
+ 	  
+ 	  $("#modalBtn").on("click", function() { 
+	 		  
+		    setTimeout(function() {
+		    	// 처음 버튼을 눌렀을 때도 달력이 온전히 뜨도록 함
+		    	$(".fc-dayGridMonth-button").click();
+		    }, 200);
+ 	  });
+	    
+ 	 $("#calendar").on("click", "img", function() {
+		  
+ 		 location.href = "/warm/reviewPerBook?isbn=" + $(this).attr('id');
+ 	  });
+ 	  
   });
+   
 
 </script>
 
