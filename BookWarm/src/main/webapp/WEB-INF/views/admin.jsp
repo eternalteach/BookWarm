@@ -19,6 +19,7 @@
 <script type="text/javascript" src="/warm/resources/js/logintest.js"></script>
 <script type="text/javascript" src="/warm/resources/js/admin.js"></script>
 <script type="text/javascript" src="/warm/resources/js/DateJsonToJsp.js"></script>
+<script type="text/javascript" src="/warm/resources/js/Criteria.js"></script>
 <%@ include file="includes/header/script-vertexEx.jsp"%>
 <link rel="stylesheet" href="resources/css/main.css" />
 </head>
@@ -41,64 +42,91 @@
 				
 					<!-- administrator-statistics -->
 					<div class="col-md-9 right-side-sidebar pt-70 ">
+					
 						<!-- administrator-board -->
 						<div id="administrator-board" class="administrator">
 							<ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
-								<li class="nav-item active" data-option-value="*"><a class="nav-link" href="#">Show All</a></li>
 								<li class="nav-item" data-option-value=".community"><a class="nav-link" href="#">Community Board</a></li>
 								<li class="nav-item" data-option-value=".review"><a class="nav-link" href="#">Review</a></li>
 							</ul>
 							<div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
 								<div class="row portfolio-list sort-destination" data-sort-id="portfolio">
-									<c:forEach items="${adminBoard}" var="postList">
-										<div class="col-lg-4 isotope-item ${postList.board_name}">
-											<article class="v_blog-item v_blog-item-related v_blog-grid">
-												<div class="v_blog-item-inner">
-													<div class="v_blog-item-content">
-														<div class="v_blog-item-header">
-															<ul class="v_blog-item-meta">
-																<li class="v_blog-item-date">
-																	<time class="entry-meta" datetime="${postList.board_written_time}">
-		                                                			   ${postList.board_written_time}
-																	</time>
-																</li>
-															</ul>
-															<a><h2 class="v_blog-item-title" itemprop="name headline">${postList.board_title}</h2></a>
+									<!-- Community Board -->
+									<div class="isotope-item page-inner community">
+										<section class="b-bordered">
+											<div class="container">
+												<div class="row justify-content-center">
+													<div class="col-lg-12">
+														<div class="pull-right" colspan="5">
+															<h3 class="btn btn-sm">커뮤니티 삭제된 게시물 </h3>
 														</div>
-														<div itemprop="articleBody">
-															<p>${postList.board_content}</p><hr/>
-															<p class="v_blog-item-author">
-																<!-- 유저정보 볼 수 있게하는 a태그 추가하기 -->
-																<span>${postList.user_id}</span>
-															</p>
+													<!-- 커뮤니티 테이블 -->
+														<table id="delCommTable"class="table table-hover">
+														</table>
+									
+														<div class="post-meta-section clearfix">
+															<div class="tag-cloud clearfix">
+													<!-- 페이징 처리 -->
+																<div class="row col-lg-12">
+					     											<div class="panel-footer center communityPaging"></div>
+					          									</div>
+															</div>
 														</div>
 													</div>
 												</div>
-											</article>
-										</div>
-									</c:forEach>
-								</div>
-								<div class="row">
-									<div class="col-md-12">
-									<hr class="invisible" />
-										<nav aria-label="Page navigation example">
-											<ul class="pagination justify-content-center">
-												<li class="page-item disabled">
-													<a class="page-link" href="#" tabindex="-1">Previous</a>
-												</li>
-												<li class="page-item"><a class="page-link" href="#">1</a></li>
-												<li class="page-item"><a class="page-link" href="#">2</a></li>
-												<li class="page-item"><a class="page-link" href="#">3</a></li>
-												<li class="page-item">
-													<a class="page-link" href="#">Next</a>
-												</li>
-											</ul>
-										</nav>
+											</div>
+										</section>
 									</div>
+									<!-- End Community Board -->
+									
+									<!-- Review Board -->
+									<div class="isotope-item page-inner review">
+										<section class="b-bordered">
+											<div class="container">
+												<div class="row justify-content-center">
+													<div class="col-lg-12">
+														<div class="pull-right" colspan="5">
+															<h3 class="btn btn-sm">리뷰 보드 삭제된 게시물 </h3>
+														</div>
+														<table class="table table-hover">
+															<tr>
+																<th>번호</th>
+																<th>제목</th>
+																<th>작성자</th>
+																<th>날짜</th>
+																<!-- <th>조회수</th> -->
+																<th>공개여부</th>
+															</tr>
+															<c:forEach items="${reviewBoardList}" var="reviewBoard">
+																<tr>
+																	<td>${reviewBoard.board_no}</td>
+																	<td><a class='move' href="${reviewBoard.board_no}">${reviewBoard.board_title}</a></td>
+																	<td>${reviewBoard.user_id}</td>
+																	<td>${reviewBoard.board_written_time}</td>
+																	<td>${reviewBoard.board_open}</td>
+																</tr>
+															</c:forEach>
+														</table>
+									
+														<div class="post-meta-section clearfix">
+															<div class="tag-cloud clearfix">
+													<!-- 페이징 처리 -->
+																<div class="row col-lg-12">
+					     											<div class="panel-footer center reviewPaging"></div>
+					          									</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</section>
+									</div><!-- End Review Board -->
 								</div>
 							</div>
 						</div>
 					<!-- End administrator-board -->
+					
+					
 					<!-- administrator-user -->
 						<div id="administrator-user" class="administrator">
 							<ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
@@ -112,42 +140,39 @@
 							</ul>
 							<div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
 								<div class="row portfolio-list sort-destination" data-sort-id="portfolio">
-								
 									<c:forEach items="${userList}" var="user">
 									<div class="col-lg-4 isotope-item authNum${user.authList.size()}">
 										<article class="v_blog-item v_blog-item-related v_blog-grid">
-												<div class="v_blog-item-inner">
-													<div class="v_blog-item-content">
-														<div class="v_blog-item-header">
-															<ul class="v_blog-item-meta">
-																<li class="v_blog-item-date">
-																	<h2 class="v_blog-item-title" itemprop="name headline">${user.user_id}</h2>
-																</li>
-															</ul>
-														</div>
-														<div itemprop="articleBody">
+											<div class="v_blog-item-inner">
+												<div class="v_blog-item-content">
+													<div class="v_blog-item-header">
+														<ul class="v_blog-item-meta">
+															<li class="v_blog-item-date">
+																<h2 class="v_blog-item-title" itemprop="name headline">${user.user_id}</h2>
+															</li>
+														</ul>
+													</div>
+													<div itemprop="articleBody">
 															
-															<p class="v_blog-item-author"><span>user_name : ${user.user_name}</span></p>
-															<p class="v_blog-item-author"><span>권한 : ${user.authList.size()}</span></p>
-															<p class="v_blog-item-author"><span>record 게시글 수  : 0</span></p>
-															<p class="v_blog-item-author"><span>Review 게시글 수  : 0</span></p>
-															<p class="v_blog-item-author"><span>구매 수  : 0</span></p>
-														</div>
+														<p class="v_blog-item-author"><span>user_name : ${user.user_name}</span></p>
+														<p class="v_blog-item-author"><span>권한 : ${user.authList.size()}</span></p>
+														<p class="v_blog-item-author"><span>record 게시글 수  : 0</span></p>
+														<p class="v_blog-item-author"><span>Review 게시글 수  : 0</span></p>
+														<p class="v_blog-item-author"><span>구매 수  : 0</span></p>
 													</div>
 												</div>
-											</article>
+											</div>
+										</article>
 									</div>
 									</c:forEach>
 								</div>
-								
-										<div class="row col-lg-12">
-	     											<div class="panel-footer center"></div>
-	          									</div>
-										</div>
+								<div class="row col-lg-12">
+	     							<div class="panel-footer center"></div>
+	          					</div>
+							</div>
 						</div>
 					</div>
 					<!-- End administrator-user -->
-					
 				</div>
 			</div>
 		</div>
@@ -164,7 +189,67 @@
         </div>
     </div>
 </div>
-	<script type="text/javascript">
+
+<script>
+$(document).ready(function() {
+	// 리뷰 페이징 처리
+	var reviewPageNum=1;
+	var reviewPageFooter = $(".reviewPaging");
+	let delReviewPostsCnt=${numberOfPostsOnReviewBoard};
+	pagingService.paging(reviewPageNum,delReviewPostsCnt,reviewPageFooter);
+
+	// 커뮤니티 페이징 처리
+	var commPageNum=1;
+	var communityPagingFooter=$(".communityPaging");
+	let delCommunityPostsCnt=${numberOfPostsOnCommunityBoard};
+	pagingService.paging(commPageNum,delCommunityPostsCnt,communityPagingFooter);
+	
+	// 첫 로딩시 1페이지 띄우게 하기
+	var communityBoardTable=$("#delCommTable");
+	showCommBoard(1);
+	
+	// community 테이블 띄우기
+function showCommBoard(page){
+	adminService.getCommListWithPaging(page,function(list){
+			if(page==-1){
+				commPageNum==Math.ceil(delCommunityPostsCnt/10.0);
+				showCommBoard(commPageNum);
+				return;
+			}
+			let BoardViewHTML="";
+			if(list ==null||list.length==0){
+				return;
+			}
+			
+			BoardViewHTML+="<tr><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th><i class=\"fa fa-heart\"></i></th></tr>";
+			for(var i=0, len=list.length||0;i<len;i++){
+				BoardViewHTML+="<tr><td>"+list[i].board_no+"</td><td>";
+				for(let i=0; i<list[i].board_indent;i++){ // 보드 인덴트 수정하기
+					BoardViewHTML+="[re]";
+				}
+				BoardViewHTML+="<a class='move' href="+list[i].admin_bno+">"+list[i].board_subject+"&nbsp;"+list[i].board_title+"</a></td>";
+				BoardViewHTML+="<td>"+list[i].user_id+"</td>";
+				BoardViewHTML+="<td>"+list[i].board_written_time+"</td>";
+				BoardViewHTML+="<td>"+list[i].board_clicked+"</td></tr>";
+			}
+			communityBoardTable.html(BoardViewHTML);
+			pagingService.paging(page,delCommunityPostsCnt,communityPagingFooter);			
+		});
+	} // end showList
+	
+	// click new comment page, get new comment
+	reviewPageFooter.on("click","li a",function(e){
+		e.preventDefault();
+		console.log("page click");
+		let targetPageNum=$(this).attr("href");
+		console.log("targetPageNum: "+targetPageNum);
+		pageNum=targetPageNum;
+		showList(pageNum);
+	});
+	
+});
+</script>
+<script type="text/javascript">
 					$(document).ready(function(){
 							$(".administrator").hide();
 							$("#administrator-user").show();
@@ -211,9 +296,6 @@
 							$("#sample4_detailAddress").val(result.user_addr_detail);
 						});
 					});
-					
-					
-					
-					</script>
+</script>
 </body>
 </html>

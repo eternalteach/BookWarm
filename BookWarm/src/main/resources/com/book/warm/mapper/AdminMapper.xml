@@ -30,4 +30,37 @@
 	<insert id='cloneAttach'>
 	insert into admin_attach (uuid, uploadpath, filename, review_no) (select uuid, uploadpath, filename, review_no from review_attach where review_no=#{review_no})
 	</insert>
+	
+	<!--  커뮤니티 보드 페이징처리된 리스트 가져오기 -->
+	<select id='getCommunityBoardListWithPaging' resultType="com.book.warm.vo.AdminBoardVO">
+		<![CDATA[
+		select admin_bno, board_no, user_id, board_subject, board_title, board_content, board_written_time, board_clicked, board_like, board_group, board_step, board_indent from(
+		select rownum rn, admin_bno, board_no, user_id, board_subject, board_title, board_content, board_written_time, board_clicked, board_like, board_group, board_step, board_indent from(
+		select * from admin_board where board_name='community'
+		  order by board_no)) where rn> (#{pageNum}-1)*#{amount} AND rn<=#{pageNum}*#{amount}
+				]]>
+	</select>
+	<!-- 페이징 처리 위해 게시물 총 개수 가져오기 -->
+	<select id='getNumberOfPostsOnDeletedCommunityBoard' resultType="Integer">
+		select count(*) from admin_board where board_name='community'
+	</select>
+	
+	<!--  리뷰 보드 페이징처리된 리스트 가져오기 -->
+	<select id="getReviewBoardListWithPaging" resultType="com.book.warm.vo.AdminBoardVO">
+ 	
+ 		<![CDATA[
+		select admin_bno, board_no, user_id, board_written_time, board_modify_time, isbn, board_ref, board_title, board_content, board_open from(
+		select rownum rn, admin_bno, board_no, user_id, board_written_time, board_modify_time, isbn, board_ref, board_title, board_content, board_open from(
+		select * from admin_board where board_name='review'
+		  order by board_no)) where rn> (#{pageNum}-1)*#{amount} AND rn<=#{pageNum}*#{amount}
+				]]>
+ 	</select>
+ 	
+ 	<!-- 페이징 처리 위해 게시물 총 개수 가져오기 -->
+ 	<select id="getNumberOfPostsOnDeletedReviewBoard" resultType="Integer">
+ 		
+ 		select count(*) from admin_board where board_name='review'
+		
+ 	</select>
+	
 </mapper>
