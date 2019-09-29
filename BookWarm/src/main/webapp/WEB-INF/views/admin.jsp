@@ -88,24 +88,8 @@
 														<div class="pull-right" colspan="5">
 															<h3 class="btn btn-sm">리뷰 보드 삭제된 게시물 </h3>
 														</div>
-														<table class="table table-hover">
-															<tr>
-																<th>번호</th>
-																<th>제목</th>
-																<th>작성자</th>
-																<th>날짜</th>
-																<!-- <th>조회수</th> -->
-																<th>공개여부</th>
-															</tr>
-															<c:forEach items="${reviewBoardList}" var="reviewBoard">
-																<tr>
-																	<td>${reviewBoard.board_no}</td>
-																	<td><a class='move' href="${reviewBoard.board_no}">${reviewBoard.board_title}</a></td>
-																	<td>${reviewBoard.user_id}</td>
-																	<td>${reviewBoard.board_written_time}</td>
-																	<td>${reviewBoard.board_open}</td>
-																</tr>
-															</c:forEach>
+													<!-- 리뷰 테이블 -->
+														<table id="delReviewTable" class="table table-hover">
 														</table>
 									
 														<div class="post-meta-section clearfix">
@@ -192,25 +176,61 @@
 
 <script>
 $(document).ready(function() {
-	// 리뷰 페이징 처리
+	// 페이징 처리
 	var reviewPageNum=1;
-	var reviewPageFooter = $(".reviewPaging");
-	let delReviewPostsCnt=${numberOfPostsOnReviewBoard};
-	pagingService.paging(reviewPageNum,delReviewPostsCnt,reviewPageFooter);
+	var reviewPagingFooter = $(".reviewPaging");
+	var delReviewPostsCnt=${numberOfPostsOnReviewBoard};
+	pagingService.paging(reviewPageNum,delReviewPostsCnt,reviewPagingFooter);
+	var reviewBoardTable = $("#delReviewTable");
+	showReviewBoard(-1);
+	
+	function showReviewBoard(page){
+		adminService.getReviewListWithPaging(page,function(list){
+			if(page==-1){
+				reviewPageNum==Math.ceil(delReviewPostsCnt/10.0);
+				showReviewBoard(reviewPageNum);
+				return;
+			}
+			let BoardViewHTML="";
+			if(list ==null||list.length==0){
+				return;
+			}
+			
+			BoardViewHTML+="<tr><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>공개여부</th></tr>";
+			for(var i=0, len=list.length||0;i<len;i++){
+				BoardViewHTML+="<tr><td>"+list[i].board_no+"</td><td>";
+				for(let i=0; i<list[i].board_indent;i++){ // 보드 인덴트 수정하기
+					BoardViewHTML+="[re]";
+				}
+				BoardViewHTML+="<a class='move' href="+list[i].admin_bno+">"+list[i].board_title+"</a></td>";
+				BoardViewHTML+="<td>"+list[i].user_id+"</td>";
+				BoardViewHTML+="<td>"+list[i].board_written_time+"</td>";
+				BoardViewHTML+="<td>"+list[i].board_open+"</td></tr>";
+			}
+			reviewBoardTable.html(BoardViewHTML);
+			pagingService.paging(page,delReviewPostsCnt,reviewPagingFooter);			
+		});
+	} // end showReviewBoard
+	
+	// click new comment page, get new comment
+	reviewPagingFooter.on("click","li a",function(e){
+		e.preventDefault();
+		console.log("page click");
+		let targetPageNum=$(this).attr("href");
+		console.log("targetPageNum: "+targetPageNum);
+		reviewPageNum=targetPageNum;
+		showReviewBoard(reviewPageNum);
+	});
 
-	// 커뮤니티 페이징 처리
 	var commPageNum=1;
 	var communityPagingFooter=$(".communityPaging");
-	let delCommunityPostsCnt=${numberOfPostsOnCommunityBoard};
+	var delCommunityPostsCnt=${numberOfPostsOnCommunityBoard};
 	pagingService.paging(commPageNum,delCommunityPostsCnt,communityPagingFooter);
-	
-	// 첫 로딩시 1페이지 띄우게 하기
 	var communityBoardTable=$("#delCommTable");
-	showCommBoard(1);
+	showCommBoard(-1);
 	
-	// community 테이블 띄우기
-function showCommBoard(page){
-	adminService.getCommListWithPaging(page,function(list){
+	function showCommBoard(page){
+		adminService.getCommListWithPaging(page,function(list){
 			if(page==-1){
 				commPageNum==Math.ceil(delCommunityPostsCnt/10.0);
 				showCommBoard(commPageNum);
@@ -235,20 +255,22 @@ function showCommBoard(page){
 			communityBoardTable.html(BoardViewHTML);
 			pagingService.paging(page,delCommunityPostsCnt,communityPagingFooter);			
 		});
-	} // end showList
+	} // end showCommBoard
 	
+
 	// click new comment page, get new comment
-	reviewPageFooter.on("click","li a",function(e){
+	communityPagingFooter.on("click","li a",function(e){
 		e.preventDefault();
 		console.log("page click");
 		let targetPageNum=$(this).attr("href");
 		console.log("targetPageNum: "+targetPageNum);
-		pageNum=targetPageNum;
-		showList(pageNum);
+		commPageNum=targetPageNum;
+		showReviewBoard(commPageNum);
 	});
 	
 });
 </script>
+
 <script type="text/javascript">
 					$(document).ready(function(){
 							$(".administrator").hide();

@@ -51,6 +51,7 @@ public class AdminController {
 	
 	@GetMapping("")
 	public void admin(Principal principal,Model model,Criteria criteria) {
+		log.info("================ admin() ===============");
 		// 한 페이지에 10개씩
 		criteria.setAmount(10);
 		
@@ -81,7 +82,6 @@ public class AdminController {
 	return new ResponseEntity<>(communityMapper.getCommunityBoardOne(comm_no),HttpStatus.OK);
 	}
 	
-	// USER 정보 받아오기
 	@GetMapping(value="/community/pages/{page}", produces= {MediaType.APPLICATION_ATOM_XML_VALUE,MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<AdminBoardVO>> getDelCommBoardListWithPaging(@PathVariable("page")int page){
 		log.info("==================== getDelCommBoardListWithPaging() ====================");
@@ -101,6 +101,13 @@ public class AdminController {
 		// 3. 이동할 보드 내용 수정
 		reviewBoardService.modifyAdmin(movePost);
 		return new ResponseEntity<>(reviewBoardService.selectedReview(comm_no),HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/review/pages/{page}", produces= {MediaType.APPLICATION_ATOM_XML_VALUE,MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<List<AdminBoardVO>> getDelReviewBoardListWithPaging(@PathVariable("page")int page){
+		log.info("==================== getDelReviewBoardListWithPaging() ====================");
+		Criteria criteria = new Criteria(page, 10);
+		return new ResponseEntity<>(adminMapper.getReviewBoardListWithPaging(criteria),HttpStatus.OK);
 	}
 	
 	// USER 정보 받아오기

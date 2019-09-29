@@ -35,8 +35,8 @@ var pagingService = (function() {
 		str+="</ul></div>";
 		
 		pagingDiv.html(str);
+		console.log(str);
 	}
-
 	return {
 		paging:paging
 	};

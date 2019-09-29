@@ -31,6 +31,22 @@ var adminService = (function() {
 		});
 	}
 	
+	//get review list
+	function getReviewListWithPaging(pages, callback, error){
+		var reviewPageNum = pages;
+		
+		$.getJSON("admin/review/pages/"+reviewPageNum+".json",
+				function(list){
+			if(callback){
+				callback(list);
+			}
+		}).fail(function(xhr,status,err){
+			if(error){
+				error();
+			}
+		});
+	}
+	
 	// review get
 	function getReview(comm_no,callback,error){
 		$.get("admin/review/"+comm_no+".json",function(result){
@@ -61,6 +77,7 @@ var adminService = (function() {
 		get:get,
 		getReview:getReview,
 		getUser:getUser,
-		getCommListWithPaging:getCommListWithPaging
+		getCommListWithPaging:getCommListWithPaging,
+		getReviewListWithPaging:getReviewListWithPaging
 	};
 })();
