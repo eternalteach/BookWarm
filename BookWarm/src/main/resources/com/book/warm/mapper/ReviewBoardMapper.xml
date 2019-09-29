@@ -133,6 +133,11 @@
 		where user_id=#{user_id} and review_no=#{review_no}
  	</update>
  	
+ 	<!-- 공개 설정된 리뷰 불러오기 -->
+ 	<select id="getOpenReview" resultType="com.book.warm.vo.ReviewBoardVO">
+ 		select * from review_board where review_open='checked' order by review_modify_date desc
+ 	</select>
+ 	
  	
  	<!-- 첨부파일 처리. 따로 mapper를 만들지 않고 여기에 추가. -->
  	<insert id="insert">

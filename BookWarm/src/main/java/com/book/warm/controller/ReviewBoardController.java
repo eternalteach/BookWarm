@@ -64,27 +64,12 @@ public class ReviewBoardController {
 	@Inject
 	LibraryMapper mapper;
 	
-	/*
-	 * @RequestMapping("/calendar") public void calendar() {
-	 * 
-	 * }
-	 */
-	
 	@GetMapping("/reviewMain")
 	public void recordMain(Principal principal, Criteria cri, Model model) {
 		
 		model.addAttribute("list", service.selectBoardList(principal.getName(), cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, service.getTotal(principal.getName())));
 	}
-	
-	// 책별 감상 목록
-//	@RequestMapping("/reviewPerBook2")
-//	public String reviewPerBook2(ReviewBoardVO rbVO, Criteria cri, Model model) {
-//		
-//		model.addAttribute("list", service.getListPerBook(rbVO.getIsbn(), rbVO.getUser_id(), cri));
-//		model.addAttribute("thumbnail", service.showBookThumbnail(rbVO.getIsbn()));
-//		return "reviewPerBook2";
-//	}
 	
 	// 책별 감상 목록
 	@RequestMapping("/reviewPerBook")
@@ -372,5 +357,21 @@ public class ReviewBoardController {
 	log.info("get LogingBoadVO list : " + recordService.getMyLogs(user_id));
 	
 		return new ResponseEntity<List<FinishedBookVO>>(recordService.getMyLogs(user_id), HttpStatus.OK);
+	}
+	
+	@RequestMapping("/openreview")
+	public void openReview(Model model) {
+		List<ReviewBoardVO> reviews = service.getOpenReview();
+		
+		// 리뷰 목록을 가져와서 각각의 리뷰 번호로 첨부파일 목록을 조회해 reviewVO에 세팅해준다.
+		for(ReviewBoardVO review : reviews) {
+			System.out.println("왜여 : " + review.getReview_no());
+			if(service.getAttachList(review.getReview_no())!=null) {
+				
+				review.setAttachList(service.getAttachList(review.getReview_no()));
+			}
+		}
+		
+		model.addAttribute("openreview", reviews);
 	}
 }

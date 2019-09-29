@@ -107,5 +107,10 @@ public class ReviewBoardService {
 		return mapper.findByReviewNo(review_no);
 	}
 
+	public List<ReviewBoardVO> getOpenReview() {
+		
+		return mapper.getOpenReview();
+	}
+
 
 }

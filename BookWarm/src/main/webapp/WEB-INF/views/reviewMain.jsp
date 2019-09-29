@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="kr">
@@ -125,81 +126,10 @@
 						
 						<section class="widget widget_sf_recent_custom_comments clearfix">
                             <div class="widget-heading clearfix">
-                                <h4 class="v-heading"><span>Recent Comments</span></h4>
+                                <h4 class="v-heading"><span>내 글에 달린 댓글</span></h4>
                             </div>
                             <ul class="recent-comments-list">
-                            	
-                            	<li class="comment">
-                                    <div class="comment-wrap clearfix">
-                                        <div class="comment-avatar">
-                                            <img src="./resources/Vertex/img/team/t3.png" class="avatar" height="30" width="30" />
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="comment-body">
-                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
-                                                    <p>Praesent eros mauris dolor</p>
-                                                </a>
-                                            </div>
-                                            <div class="comment-meta">
-                                                <span class="comment-author">Vertex</span> <span class="comment-date">20 hours ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
 
-                                <li class="comment">
-                                    <div class="comment-wrap clearfix">
-                                        <div class="comment-avatar">
-                                            <img src="./resources/Vertex/img/team/t3.png" class="avatar" height="30" width="30" />
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="comment-body">
-                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
-                                                    <p>Praesent eros mauris dolor</p>
-                                                </a>
-                                            </div>
-                                            <div class="comment-meta">
-                                                <span class="comment-author">Vertex</span> <span class="comment-date">20 hours ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="comment">
-                                    <div class="comment-wrap clearfix">
-                                        <div class="comment-avatar">
-                                            <img src="./resources/Vertex/img/team/t1.png" class="avatar" height="30" width="30" />
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="comment-body">
-                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
-                                                    <p>Omnis iste natus error sit dolor </p>
-                                                </a>
-                                            </div>
-                                            <div class="comment-meta">
-                                                <span class="comment-author">Guest</span> <span class="comment-date">5 hours ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="comment">
-                                    <div class="comment-wrap clearfix">
-                                        <div class="comment-avatar">
-                                            <img src="./resources/Vertex/img/team/t4.png" class="avatar" height="30" width="30" />
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="comment-body">
-                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
-                                                    <p>Sed tellus ante aliquam eget</p>
-                                                </a>
-                                            </div>
-                                            <div class="comment-meta">
-                                                <span class="comment-author">Admin</span> <span class="comment-date">2 days ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
                             </ul>
                         </section>
 						
@@ -228,6 +158,7 @@
 		                            	</span>
                             	</a><br>
                             	</div>
+                            </div>
                             <!-- </li> -->
 
 				<c:if test="${empty list}">
@@ -391,10 +322,11 @@
                         </div>
                      </div>
                   </div>
+                  <!-- end of v_blog-medium -->
                </div>
+               <!-- end of class row -->
             </div>
          </div>
-         
          
          
          <!-- Modal -->
@@ -413,102 +345,7 @@
          
          
 
-         <footer class="footer footer-2 footer-dark" id="footer-2">
-           <!--  <div class="main">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-md-4 col-sm-6">
-                        <section>
-                           <img alt="Vertex" src="./resources/VertexEx/img/logo-white.png" height="150" class="mb-20">
 
-                           <p class="mb-25">
-                              Class aptent taciti sociosqu ad litora torquent <br /> per conubia nostra,
-                              per inceptos himenaeos. Nulla <br /> nunc dui, tristique in semper vel,
-                              congue sed ligula auctor torquent per conubia nostra.
-                           </p>
-                           <p class="fs-11 fw-6 text-uppercase">
-                              <a href="./resources/VertexEx/blog-standard-post.html">Read More →</a>
-                           </p>
-                        </section>
-                     </div>
-                     <div class="col-md-2 col-sm-6">
-                     </div>
-                     <div class="col-md-3 col-sm-6">
-                        <section>
-                           <div class="heading">
-                              <h4 class="title">Locate Us</h4>
-                           </div>
-                           <div class="footer-contact-info">
-                              <ul class="pl-none">
-                                 <li>
-                                    <p><i class="fa fa-building"></i>Your Company </p>
-                                 </li>
-                                 <li class="mb-20">
-                                    <p><i class="fa fa-map-marker"></i>795 Folsom Ave, </p>
-                                 </li>
-                                 <li>
-                                    <p><i class="fa fa-envelope"></i> <a href="mailto:mail@example.com">mail@example.com</a></p>
-                                 </li>
-                                 <li>
-                                    <p><i class="fa fa-phone"></i>(123) 456-7890</p>
-                                 </li>
-                              </ul>
-                           </div>
-                        </section>
-                     </div>
-                     <div class="col-md-3 col-sm-6">
-                        <section>
-                           <div class="heading">
-                              <h4 class="title">PROJECTS</h4>
-                           </div>
-
-                           <ul class="portfolio-grid four-columns">
-                              <li>
-                                 <a href="#" class="grid-image">
-                                    <img src="./resources/VertexEx/img/thumbs/project-6.jpg" alt="Desert Mini Planet">
-                                 </a>
-                              </li>
-                              <li>
-                                 <a href="#" class="grid-image">
-                                    <img src="./resources/VertexEx/img/thumbs/project-5.jpg" alt="SAAP">
-                                 </a>
-                              </li>
-                              <li>
-                                 <a href="#" class="grid-image">
-                                    <img src="./resources/VertexEx/img/thumbs/project-4.png" alt="Robot Chicken">
-                                 </a>
-                              </li>
-                              <li>
-                                 <a href="#" class="grid-image">
-                                    <img src="./resources/VertexEx/img/thumbs/project-3.jpg" alt="Tree">
-                                 </a>
-                              </li>
-                              <li>
-                                 <a href="#" class="grid-image">
-                                    <img src="./resources/VertexEx/img/thumbs/project-2.jpg" alt="Space Invaders">
-                                 </a>
-                              </li>
-                              <li>
-                                 <a href="#" class="grid-image">
-                                    <img src="./resources/VertexEx/img/thumbs/project-7.jpg" alt="Polar Ice">
-                                 </a>
-                              </li>
-                              <li>
-                                 <a href="#" class="grid-image">
-                                    <img src="./resources/VertexEx/img/thumbs/project-8.png" alt="Robot Chicken">
-                                 </a>
-                              </li>
-                              <li>
-                                 <a href="#" class="grid-image">
-                                    <img src="./resources/VertexEx/img/thumbs/project-9.png" alt="Tree">
-                                 </a>
-                              </li>
-                           </ul>
-                        </section>
-                     </div>
-                  </div>
-               </div>
-            </div> -->
 
             <div class="copyright">
                <div class="container">
@@ -530,8 +367,8 @@
                   </div>
                </div>
             </div>
-         </footer>
-      </div>
+         
+      
    </div>
    
    
@@ -618,8 +455,8 @@
 			   				}
 		   		});
 	   	  }, 
-	   	  
-	   	  eventClick: false,
+	   	  /* 
+	   	  eventClick: false, */
 	   	  
 	   	  eventRender: function(info) {
 	   		  
@@ -633,7 +470,7 @@
 	   			  console.log("============ 완독한 책 이미지 뿌려주기 =============");
 	   			  
 	   			  var tdObj = $(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "']");
-	   			  var str = "<img style='cursor: pointer; height:50%; id='" + info.event.id + "' src='" + info.event.extendedProps.imageurl + "'>";
+	   			  var str = "<div style='width:40%; display:inline-block; position:relative;'><img style='position:absolute; vertical-align:bottom; cursor: pointer;' id='" + info.event.id + "' src='" + info.event.extendedProps.imageurl + "'>"; 
 	   			  
 	   			  if(info.event.extendedProps.firstImg) {
 	   				  // rerender시 표지가 반복적으로 추가되지 않도록 html에 새로 뿌려준다.
@@ -644,12 +481,7 @@
 	   		  }
 	   		  
 	   		  // gridMonth형에서 title은 나타나지 않도록 한다.
-	   		  // .fc-content-skeleton을 display를 none으로 하면 날짜까지 지워지고,
-	   		  // tbody까지를 택하면 css가 적용되지 않는 문제.
-	   		  /* console.log($(".fc-content-skeleton")); */
-	   		var tt = $(".fc-content-skeleton");
-	   		console.log(tt.find("tbody"));
-	   		  /* console.log($(".fc-content-skeleton table tbody")); */
+	   		  // .fc-content-skeleton을 display를 none으로 하면 날짜까지 지워지고, tbody까지를 택하면 css가 적용되지 않는 문제.
 	   		  /* $(".fc-content-skeleton table tbody").css("display", "none"); */
 	   		  /* $(".fc-content-skeleton table tbody").css("display", "");  */
 	   		  /* $(".fc-event-container").css("display", "none");  */
@@ -663,8 +495,16 @@
 	   	  },
 	   	  
 	      loading: function(bool) {
-	        document.getElementById('loading').style.display =
-	          bool ? 'block' : 'none';
+	        /* document.getElementById('loading').style.display =
+	          bool ? 'block' : 'none'; */
+	         if(bool) {
+	         } else {
+	        	 setTimeout(function() {
+	        		 
+	        	  $(".fc-event-container").css("display", "none");
+		        	 /* $(".fc-content-skeleton table tbody").css("display", "none"); */
+	        	 }, 100);
+	         }
 	      } 
 	
 	  });
@@ -678,14 +518,71 @@
 		    	$(".fc-dayGridMonth-button").click();
 		    }, 200);
  	  });
-	    
+ 	 
+ 	  
  	 $("#calendar").on("click", "img", function() {
-		  
  		 location.href = "/warm/reviewPerBook?isbn=" + $(this).attr('id');
  	  });
  	  
+ 	 
+ 	(function() {
+		 
+		$.getJSON("/warm/comments/recent", function(arr) {
+			
+					// 최근 댓글 5개를 가져온다.
+					// arr에 담긴 댓글을 댓글 영역에 집어넣는다.
+					var recentCmt = $(".recent-comments-list");
+					var str = "";
+					
+					$(arr).each(function(i, cmt) {
+						str += "<li class='comment'><div class='comment-wrap clearfix'><div class='comment-wrap clearfix'>";
+						str += "<div class='comment-avatar'>";
+						str += "<img src='/warm/resources/Vertex/img/team/t" + (i+1) + ".png' class='avatar' height='30' width='30' />";
+						str += "</div>";
+						str += "<div class='comment-content'><div class='comment-body'>";
+						str += "<a href='warm/reviewSelectOne?review_no='" + cmt.review_no + "'>";
+						str += " <p>" + cmt.review_cmt_content + "</p></a></div>";
+						str += "<div class='comment-meta'>";
+						str += "<span class='comment-author'>" + cmt.user_id + "</span>";
+						str += "<span class='comment-date'>" + displayTime(cmt.review_cmt_modified_date) + "</span>";
+						str += "</div></div></div></li>";
+						str += "";
+					});
+					recentCmt.html(str);
+					
+		}); // end getJSON
+	})(); // end function
+ 	 
   });
-   
+  
+//	작성한 지 24시간이 지난 댓글은 날짜로, 이내의 글은 몇 초/분/시간 전에 달았는지 알려주기
+	function displayTime(timeValue) {
+		var today = new Date();
+		var dateObj = new Date(timeValue);
+		
+		var gap = today.getTime() - timeValue;
+		var str = "";
+		
+		if(gap < (1000 * 60 * 60 * 24)) { // 24시간 이하면
+			
+			if(gap > 1000 * 60 * 60) { // 1시간 이상이면
+				return Math.round(gap/(1000*60*60)) + '시간 전';
+			} else if(gap > 1000 * 60) { // 1분 이상이면
+				return Math.round(gap/(1000*60)) + '분 전';
+			} else { // 초단위
+				return Math.round(gap/1000) + '초 전';
+			}			
+		} else {
+			
+			var yy = dateObj.getFullYear();
+			var mm = dateObj.getMonth() + 1; // getMonth() is zero-based
+			var dd = dateObj.getDate();
+			
+			return [ yy, '/', (mm > 9 ? '' : '0') + mm, '/', (dd > 9 ? '' : '0') + dd ].join('');
+			
+		}
+	};
+
 
 </script>
 

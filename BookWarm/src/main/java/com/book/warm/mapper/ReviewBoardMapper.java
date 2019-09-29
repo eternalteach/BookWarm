@@ -50,4 +50,6 @@ public interface ReviewBoardMapper {
 	
 	public List<ReviewAttachVO> getOldFiles();
 
+	public List<ReviewBoardVO> getOpenReview();
+
 }

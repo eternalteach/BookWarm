@@ -13,7 +13,7 @@
 		<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="communityboard">Community</a>
 			<ul class="dropdown-menu">
 				<li><a class="dropdown-item" href="communityboard">Community Board</a></li>
-				<li><a class="dropdown-item" href="openreivew">Open Review</a></li>
+				<li><a class="dropdown-item" href="openreview">Open Review</a></li>
 				<li><a class="dropdown-item" href="chat">Chatting</a></li>
 			</ul>
 		</li>

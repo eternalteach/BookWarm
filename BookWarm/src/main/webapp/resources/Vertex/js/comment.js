@@ -45,22 +45,6 @@ var commentService = (function(){
 		});
 	}
 	
-// 내가 쓴 글에 달린 최근 댓글 5개 불러오기	
-	function getAll(param, callback, error) {
-		
-		$.getJSON("/warm/comments/users/" + user_id,
-				function(data) {
-					if(callback) {
-						callback(data);
-					}
-		}).fail(function(xhr, status, err) {
-			if(error) {
-				error();
-			}
-		})
-	}
-	
-	
 //	댓글 삭제
 	function remove(review_cmt_no, user_id, callback, error) {
 		
