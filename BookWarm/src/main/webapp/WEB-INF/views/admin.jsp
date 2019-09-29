@@ -163,7 +163,6 @@
 	</div>
 </div>
 
-
 <div class="modal fade" id="openUserInfo" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
     <div class="modal-dialog undefined">
         <div class="modal-content">
@@ -199,10 +198,15 @@ $(document).ready(function() {
 			BoardViewHTML+="<tr><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>공개여부</th></tr>";
 			for(var i=0, len=list.length||0;i<len;i++){
 				BoardViewHTML+="<tr><td>"+list[i].board_no+"</td><td>";
+				BoardViewHTML+="<div class=\"col-md-12\"><div class=\"accordion v4\" id=\"accordion"+list[i].admin_bno+"\" role=\"tablist\" aria-multiselectable=\"true\">";
+				BoardViewHTML+="<div class=\"card\"><div class=\"card-header\" role=\"tab\" id=\"headingOne"+list[i].admin_bno+"\"><h5 class=\"mb-0\">";
+				BoardViewHTML+="<a data-toggle=\"collapse\" data-parent=\"#accordion"+list[i].admin_bno+"\" href=\"#collapseOne"+list[i].admin_bno+"\" aria-expanded=\"false\" aria-controls=\"collapseOne"+list[i].admin_bno+"\" class=\"collapsed\">";
 				for(let i=0; i<list[i].board_indent;i++){ // 보드 인덴트 수정하기
 					BoardViewHTML+="[re]";
 				}
-				BoardViewHTML+="<a class='move' href="+list[i].admin_bno+">"+list[i].board_title+"</a></td>";
+				BoardViewHTML+=""+list[i].board_title+"";
+				BoardViewHTML+="</h5></div><div id=\"collapseOne"+list[i].admin_bno+"\" class=\"collapse\" role=\"tabpanel\" aria-labelledby=\"headingOne"+list[i].admin_bno+"\" aria-expanded=\"false\" style=\"\">";
+				BoardViewHTML+="<div class=\"card-block\"><p>"+list[i].board_content+"</p></div></div></div></div></div></td>";
 				BoardViewHTML+="<td>"+list[i].user_id+"</td>";
 				BoardViewHTML+="<td>"+list[i].board_written_time+"</td>";
 				BoardViewHTML+="<td>"+list[i].board_open+"</td></tr>";
@@ -244,10 +248,16 @@ $(document).ready(function() {
 			BoardViewHTML+="<tr><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th><i class=\"fa fa-heart\"></i></th></tr>";
 			for(var i=0, len=list.length||0;i<len;i++){
 				BoardViewHTML+="<tr><td>"+list[i].board_no+"</td><td>";
+				BoardViewHTML+="";
+				BoardViewHTML+="<div class=\"col-md-12\"><div class=\"accordion v4\" id=\"accordion"+list[i].admin_bno+"\" role=\"tablist\" aria-multiselectable=\"true\">";
+				BoardViewHTML+="<div class=\"card\"><div class=\"card-header\" role=\"tab\" id=\"headingOne"+list[i].admin_bno+"\"><h5 class=\"mb-0\">";
+				BoardViewHTML+="<a data-toggle=\"collapse\" data-parent=\"#accordion"+list[i].admin_bno+"\" href=\"#collapseOne"+list[i].admin_bno+"\" aria-expanded=\"false\" aria-controls=\"collapseOne"+list[i].admin_bno+"\" class=\"collapsed\">";
 				for(let i=0; i<list[i].board_indent;i++){ // 보드 인덴트 수정하기
 					BoardViewHTML+="[re]";
 				}
-				BoardViewHTML+="<a class='move' href="+list[i].admin_bno+">"+list[i].board_subject+"&nbsp;"+list[i].board_title+"</a></td>";
+				BoardViewHTML+=""+list[i].board_subject+"&nbsp;"+list[i].board_title+"";
+				BoardViewHTML+="</h5></div><div id=\"collapseOne"+list[i].admin_bno+"\" class=\"collapse\" role=\"tabpanel\" aria-labelledby=\"headingOne"+list[i].admin_bno+"\" aria-expanded=\"false\" style=\"\">";
+				BoardViewHTML+="<div class=\"card-block\"><p>"+list[i].board_content+"</p></div></div></div></div></div></td>";
 				BoardViewHTML+="<td>"+list[i].user_id+"</td>";
 				BoardViewHTML+="<td>"+list[i].board_written_time+"</td>";
 				BoardViewHTML+="<td>"+list[i].board_clicked+"</td></tr>";
