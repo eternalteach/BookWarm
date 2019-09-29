@@ -34,8 +34,8 @@
 					<div class="col-md-3 left-side-sidebar pt-70">
 						<aside class="sidebar">
 							<section class="sidebar-widget">
-								<button class="administrator-BoardBtn"data-Action="administrator-board"> 게시판 관리 </button>
-								<button class="administrator-UserBtn" data-Action="administrator-user"> 사용자 관리 </button>
+								<button class="administrator-BoardBtn btn sf-icon-stroke"data-Action="administrator-board"> 게시판 관리 </button>
+								<button class="administrator-UserBtn btn sf-icon-stroke" data-Action="administrator-user"> 사용자 관리 </button>
 							</section>
 						</aside>
 					</div>
@@ -61,7 +61,7 @@
 															<h3 class="btn btn-sm">커뮤니티 삭제된 게시물 </h3>
 														</div>
 													<!-- 커뮤니티 테이블 -->
-														<table id="delCommTable"class="table table-hover">
+														<table id="delCommTable"class="table table-hover" style="table-layout:fixed;" >
 														</table>
 									
 														<div class="post-meta-section clearfix">
@@ -89,7 +89,7 @@
 															<h3 class="btn btn-sm">리뷰 보드 삭제된 게시물 </h3>
 														</div>
 													<!-- 리뷰 테이블 -->
-														<table id="delReviewTable" class="table table-hover">
+														<table id="delReviewTable" class="table table-hover" style="table-layout:fixed;">
 														</table>
 									
 														<div class="post-meta-section clearfix">
@@ -195,11 +195,11 @@ $(document).ready(function() {
 				return;
 			}
 			
-			BoardViewHTML+="<tr><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>공개여부</th></tr>";
+			BoardViewHTML+="<tr><th style=\"width:80px;\">번호</th><th style=\"width:420px;\">제목</th><th style=\"width:120px;\">작성자</th><th style=\"width:120px;\">날짜</th><th style=\"width:80px;\">공개여부</th></tr>";
 			for(var i=0, len=list.length||0;i<len;i++){
 				BoardViewHTML+="<tr><td>"+list[i].board_no+"</td><td>";
-				BoardViewHTML+="<div class=\"col-md-12\"><div class=\"accordion v4\" id=\"accordion"+list[i].admin_bno+"\" role=\"tablist\" aria-multiselectable=\"true\">";
-				BoardViewHTML+="<div class=\"card\"><div class=\"card-header\" role=\"tab\" id=\"headingOne"+list[i].admin_bno+"\"><h5 class=\"mb-0\">";
+				BoardViewHTML+="<div><div class=\"accordion v4\" id=\"accordion"+list[i].admin_bno+"\" role=\"tablist\" aria-multiselectable=\"true\">";
+				BoardViewHTML+="<div class=\"card transparent\"><div role=\"tab\" id=\"headingOne"+list[i].admin_bno+"\"><h5 class=\"mb-0\">";
 				BoardViewHTML+="<a data-toggle=\"collapse\" data-parent=\"#accordion"+list[i].admin_bno+"\" href=\"#collapseOne"+list[i].admin_bno+"\" aria-expanded=\"false\" aria-controls=\"collapseOne"+list[i].admin_bno+"\" class=\"collapsed\">";
 				for(let i=0; i<list[i].board_indent;i++){ // 보드 인덴트 수정하기
 					BoardViewHTML+="[re]";
@@ -208,7 +208,7 @@ $(document).ready(function() {
 				BoardViewHTML+="</h5></div><div id=\"collapseOne"+list[i].admin_bno+"\" class=\"collapse\" role=\"tabpanel\" aria-labelledby=\"headingOne"+list[i].admin_bno+"\" aria-expanded=\"false\" style=\"\">";
 				BoardViewHTML+="<div class=\"card-block\"><p>"+list[i].board_content+"</p></div></div></div></div></div></td>";
 				BoardViewHTML+="<td>"+list[i].user_id+"</td>";
-				BoardViewHTML+="<td>"+list[i].board_written_time+"</td>";
+				BoardViewHTML+="<td>"+displayTimeService.displayTime(list[i].board_written_time)+"</td>";
 				BoardViewHTML+="<td>"+list[i].board_open+"</td></tr>";
 			}
 			reviewBoardTable.html(BoardViewHTML);
@@ -245,12 +245,12 @@ $(document).ready(function() {
 				return;
 			}
 			
-			BoardViewHTML+="<tr><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th><i class=\"fa fa-heart\"></i></th></tr>";
+			BoardViewHTML+="<tr><th style=\"width:80px;\">번호</th><th style=\"width:420px;\">제목</th><th style=\"width:120px;\">작성자</th><th style=\"width:120px;\">날짜</th><th style=\"width:80px;\"><i class=\"fa fa-heart\"></i></th></tr>";
 			for(var i=0, len=list.length||0;i<len;i++){
 				BoardViewHTML+="<tr><td>"+list[i].board_no+"</td><td>";
 				BoardViewHTML+="";
-				BoardViewHTML+="<div class=\"col-md-12\"><div class=\"accordion v4\" id=\"accordion"+list[i].admin_bno+"\" role=\"tablist\" aria-multiselectable=\"true\">";
-				BoardViewHTML+="<div class=\"card\"><div class=\"card-header\" role=\"tab\" id=\"headingOne"+list[i].admin_bno+"\"><h5 class=\"mb-0\">";
+				BoardViewHTML+="<div><div class=\"accordion v4\" id=\"accordion"+list[i].admin_bno+"\" role=\"tablist\" aria-multiselectable=\"true\">";
+				BoardViewHTML+="<div class=\"card transparent\"><div role=\"tab\" id=\"headingOne"+list[i].admin_bno+"\"><h5 class=\"mb-0\">";
 				BoardViewHTML+="<a data-toggle=\"collapse\" data-parent=\"#accordion"+list[i].admin_bno+"\" href=\"#collapseOne"+list[i].admin_bno+"\" aria-expanded=\"false\" aria-controls=\"collapseOne"+list[i].admin_bno+"\" class=\"collapsed\">";
 				for(let i=0; i<list[i].board_indent;i++){ // 보드 인덴트 수정하기
 					BoardViewHTML+="[re]";
@@ -259,7 +259,7 @@ $(document).ready(function() {
 				BoardViewHTML+="</h5></div><div id=\"collapseOne"+list[i].admin_bno+"\" class=\"collapse\" role=\"tabpanel\" aria-labelledby=\"headingOne"+list[i].admin_bno+"\" aria-expanded=\"false\" style=\"\">";
 				BoardViewHTML+="<div class=\"card-block\"><p>"+list[i].board_content+"</p></div></div></div></div></div></td>";
 				BoardViewHTML+="<td>"+list[i].user_id+"</td>";
-				BoardViewHTML+="<td>"+list[i].board_written_time+"</td>";
+				BoardViewHTML+="<td>"+displayTimeService.displayTime(list[i].board_written_time)+"</td>";
 				BoardViewHTML+="<td>"+list[i].board_clicked+"</td></tr>";
 			}
 			communityBoardTable.html(BoardViewHTML);
