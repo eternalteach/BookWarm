@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.book.warm.mapper.MsgMapper;
+import com.book.warm.page.Criteria;
 import com.book.warm.vo.BookVO;
 import com.book.warm.vo.MsgTableVO;
 import com.book.warm.vo.ReviewCommentVO;
@@ -20,6 +21,11 @@ public class MsgService {
 	public List<MsgTableVO> msglist(String msg_get_id) {
 		return msgmapper.msglist(msg_get_id);
 	}
+	public List<MsgTableVO> msgpaging(String msg_get_id, Criteria cri) {
+		return msgmapper.msgpaging(msg_get_id, cri);
+	}
+	
+	
 	//보낸쪽지
 	public List<MsgTableVO> msglist2(String msg_send_id) {
 		return msgmapper.msglist2(msg_send_id);

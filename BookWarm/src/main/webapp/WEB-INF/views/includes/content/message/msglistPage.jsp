@@ -93,7 +93,35 @@
 													</div>
 												</div>
 												</c:forEach>
+												
+												
+											<!-- 페이징 -->
+											<div class='pull-right'>
+												<ul class="pagination" style="width: 20px">
+													<c:if test="${pageMaker.prev }">
+														<li class="paginate_button previous"><a href="${pageMaker.prev -1}">Previous</a>
+														</li>
+													</c:if>	
+													
+													 <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage}">
+														<li class="paginate_button ${pageMaker.cri.pageNum == num ? "active":""}">
+														<a href="${num}">${num}</a></li>
+													</c:forEach>		 									
+													
+													<c:if test="${pageMaker.next }">
+														<li class="paginate_button next"><a href="${pageMaker.next } +1">Next</a></li>
+													</c:if>				
+													
+												</ul>
 											</div>
+											<!-- 끝  -->
+											<form id='actionForm' action="/warm/message" method='get'>
+												<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
+												<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
+											</form>
+											
+											</div>
+											
 									</div>
 								</div>
 							<!--받은쪽지함 끝-->
@@ -257,8 +285,8 @@
 			
 			/* 쪽지보내기 유효성검사 */
 				$("#sendsend").on("click", function(e){
-					
 					e.preventDefault();
+					alert("보내시겠습니까?")
 					var get = $("input[id='gett']").val();
 					var title = $("input[id='titlee']").val();
 					var content =$("textarea[id='contentt']").val();
@@ -281,7 +309,6 @@
 			
 			/* 답장하기 유효성 검사  */
 			$("#sendsubmit").on("click", function(e){
-				
 				e.preventDefault();
 				
 				var formsubmit = $("form[id='replyModal']");
@@ -300,6 +327,16 @@
 			});
 			/* 답장하기 유효성 검사 끝  */			
 		
+			/* 페이징  */
+			var actionForm = $("#actionForm");
+			
+			$(".paginate_button a").on("click", finction(e){
+				e.preventDefault();
+				
+				console.log('click');
+				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+				actionForm.submit();
+			});
 		});
 	</script>
 </body>

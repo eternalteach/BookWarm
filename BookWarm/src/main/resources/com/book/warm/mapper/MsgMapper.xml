@@ -35,5 +35,17 @@
 	from msg_table
     where msg_send_id = #{msg_send_id}
 	</select>
+	<!-- 페이징  -->
+	<select id="msgpaging" resultType="com.book.warm.vo.MsgTableVO">
+ 	<![CDATA[
+ 	select *
+ 	from (select rownum rn, msg_no, msg_title, msg_content, msg_get_id, msg_send_id 
+        	from msg_table
+        	where msg_get_id = #{msg_get_id}
+       		and rownum <= #{pageNum} * #{amount}
+            order by msg_no desc)
+	where rn > (#{pageNum} -1) * #{amount}
+    ]]>
+	</select>
 </mapper>
 
