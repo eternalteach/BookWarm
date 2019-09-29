@@ -38,8 +38,8 @@ public class MsgController {
 		log.info(msg_get_id);
 		log.info(cri);
 		
-		model.addAttribute("msglist", msgservice.msglist(user_id));
-		//model.addAttribute("msglist", msgservice.msgpaging(msg_get_id, cri));
+		//model.addAttribute("msglist", msgservice.msglist(user_id));
+		model.addAttribute("msglist", msgservice.msgpaging(msg_get_id, cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, 123));
 		
 		model.addAttribute("msglist2", msgservice.msglist2(user_id));

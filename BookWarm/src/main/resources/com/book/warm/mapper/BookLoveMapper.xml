@@ -5,9 +5,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="com.book.warm.mapper.BookLoveMapper">
 
-<insert id="insertlove" parameterType="com.book.warm.vo.BookLoveVO">
-insert into book_love(book_love, isbn, user_id)
-values(book_love_seq.nextval, #{isbn}, #{user_id})
+<insert id="insertlove">
+insert into book_love(isbn, user_id)
+values(#{isbn}, #{user_id})
 </insert>
+
+<select id="listlove" resultType="com.book.warm.vo.BookLoveVO">
+select *
+from BOOK_LOVE
+where isbn = #{isbn} and user_id = #{user_id}
+</select>
+
+<delete id="delete">
+delete from BOOK_LOVE
+where isbn = #{isbn} and user_id = #{user_id}
+</delete>
 
 </mapper>
