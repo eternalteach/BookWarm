@@ -365,7 +365,6 @@ public class ReviewBoardController {
 		
 		// 리뷰 목록을 가져와서 각각의 리뷰 번호로 첨부파일 목록을 조회해 reviewVO에 세팅해준다.
 		for(ReviewBoardVO review : reviews) {
-			System.out.println("왜여 : " + review.getReview_no());
 			if(service.getAttachList(review.getReview_no())!=null) {
 				
 				review.setAttachList(service.getAttachList(review.getReview_no()));

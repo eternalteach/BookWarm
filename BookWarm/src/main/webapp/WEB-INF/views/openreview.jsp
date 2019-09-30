@@ -1,7 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <!DOCTYPE html>
@@ -96,17 +96,17 @@
                                	 <c:if test="${!empty review.attachList}">
                                  <div class="v_blog-item-media">
                                     <a href="#">
-                                       <%-- <c:set var="attach" value="${review.attachList[0].fileCallPath}"/> --%>
-                                       <c:set var="uploadPath" value="${review.attachList[0].uploadPath}"/>
+                                    
+                                       <c:set var="uploadPath" value="${review.attachList[0].uploadPath.replace('\\', '/')}"/>
                                        <c:set var="uuid" value="${review.attachList[0].uuid}"/>
                                        <c:set var="fileName" value="${review.attachList[0].fileName}"/>
                                        <c:set var="attachM" value="${uploadPath}/${uuid}_${fileName}"/>
-                                       ${attachM}
+                                       attachM :  ${attachM}
                                        
                                        <!-- var fileCallPath = encodeURIComponent(attach.uploadPath + "/" + attach.uuid + "_" + attach.fileName) -->
-                                       <img class="w-100" src="/warm/display?fileName=<%=java.net.URLEncoder.encode("${attachM}", "utf-8")%>" />
+                                       <%-- <img class="w-100" src="javascript:encodeURL(${attachM});"/> --%>
                                        
-                                       <%--  "<img src='/warm/display?fileName=${attach}'>" --%>
+                                       <img src='/warm/display?fileName=${attachM}'>
                                     </a>
                                  </div>
                                  </c:if>
@@ -121,7 +121,7 @@
                                           </li>
                                        </ul>
 
-                                       <a href="blog-post-standard-2.html" rel="bookmark">
+                                       <a href="/warm/reviewSelectOne?review_no=${review.review_no}&isbn=${review.isbn}" rel="bookmark">
                                           <h2 class="v_blog-item-title" itemprop="name headline">${review.review_title}</h2>
                                        </a>
                                     </div>
@@ -144,45 +144,6 @@
                            </article>
                         </div>
 					</c:forEach>	
-                        <div class="col-lg-3 isotope-item websites">
-
-                           <article class="v_blog-item v_blog-item-related v_blog-grid">
-                              <div class="v_blog-item-inner">
-                                 <div class="v_blog-item-media">
-                                    <a href="#">
-                                       <img class="w-100" src="" />
-                                    </a>
-                                 </div>
-                                 <div class="v_blog-item-content">
-                                    <div class="v_blog-item-header">
-                                       <ul class="v_blog-item-meta">
-                                          <li class="v_blog-item-date">
-                                             <time class="" datetime="2018-06-30T10:47:48+00:00">
-                                                June 30, 2018
-                                             </time>
-                                          </li>
-                                       </ul>
-
-                                       <a href="blog-post-standard-2.html" rel="bookmark">
-                                          <h2 class="v_blog-item-title" itemprop="name headline">Real time design tools</h2>
-                                       </a>
-                                    </div>
-                                    <div itemprop="articleBody">
-                                       <p>
-                                          Many years ago, I worked for my parents who own a video production company.
-                                       </p>
-                                       <hr />
-                                       <p class="v_blog-item-author">
-                                          <a href="#">
-                                             <img alt="" src="/warm/resources/Vertex/img/team/t1.png">
-                                             <span>by Jhon Dode</span>
-                                          </a>
-                                       </p>
-                                    </div>
-                                 </div>
-                              </div>
-                           </article>
-                        </div>
 
                         <div class="col-lg-3 isotope-item brands">
                            <article class="v_blog-item v_blog-item-related v_blog-grid">
@@ -236,7 +197,7 @@
                         </div>
 
 
-                     <div class="row">
+                    <!--  <div class="row">
                         <div class="col-md-12">
 
                            <hr class="invisible" />
@@ -255,7 +216,8 @@
                               </ul>
                            </nav>
                         </div>
-                     </div>
+                     </div> -->
+                     
                   </div>
                </div>
             </section>
@@ -287,6 +249,17 @@
 				
 	}); // end getJSON
 })(); // end function */
+
+
+
+function encodeURL(url) {
+	url.replace("\\", "//");
+	console.log("안녕");
+	alert("encode: " + url);
+	alert("변환 후: " + encodeURIComponent(url));
+	
+	return "src=/warm/display?fileName=" + encodeURIComponent(url);
+}
 
 </script>
 
