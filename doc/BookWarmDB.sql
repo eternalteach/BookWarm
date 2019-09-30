@@ -1,4 +1,32 @@
+--관리자 페이지
+create sequence admin_seq;
 
+create table admin_board(
+admin_bno number(10,0) primary key,
+user_id varchar2(20) not null,
+board_no number(10,0) not null, -- 삭제된 글 번호
+board_name varchar2(40) not null, -- 삭제된 글 게시판 이름
+board_subject varchar2(40), -- 삭제된 글 말머리
+board_title varchar2(200) not null, --삭제된 글 제목
+board_content varchar2(2000) not null, --삭제된 글 내용
+board_written_time date not null, --삭제된 글 작성일
+board_modify_time date, --삭제된 글 수정일
+board_clicked number(10,0), -- 삭제된 글 조회수
+board_like number(10,0), --삭제된 글 좋아요
+board_group number(10,0),
+board_step number(10,0),
+board_indent number(10,0),
+isbn varchar2(20),
+board_ref number(10,0),
+board_open varchar2(7)
+);
+
+create table admin_attach(
+UUID varchar2(100),
+uploadpath varchar2(200),
+filename varchar2(100),
+review_no number(10,0)
+);
 
 -- 권한 테이블
 create table authorities (
