@@ -44,10 +44,10 @@
                             </div>
                             <div class="author-bio">
                                 <div class="author-name">
-                                    <h3>쿠폰 : <a href="#">${couponCnt}개</a></h3><!-- 모달 써서 쿠폰 list 뿌려주기 -->
+                                    <h3>쿠폰 : <a href="javascript:pickCoupon()" id="pickCoupon">${couponCnt}개</a></h3>
                                 </div>
                                 <div class="author-bio-text">
-                                    <p><a href="#">쿠폰 등록</a></p><!-- 모달 사용하기 -->
+                                    <p><a href="javascript:setCoupon()" id="setCoupon">쿠폰 등록</a></p>
                                 </div>
                             </div>
                         </div>
@@ -69,3 +69,6 @@
 
 </div>
 
+
+<%@ include file="./couponList.jsp" %>
+<%@ include file="./modal-myInfo-script.jsp" %>

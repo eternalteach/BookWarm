@@ -289,5 +289,3 @@
 	<%@ include file="./modal-shopCharge-script.jsp"%>
 	<!-- 쿠폰 선택하는 모달창 -->
 	<%@ include file="./couponList.jsp"%>
-</body>
-</html>
