@@ -22,9 +22,9 @@
 			<div class='panel panel-default'>
 				<div class="comment-write">
 					<div class="modal-content">
-						<div class="modal-body col-lg-12">
+						<div class="modal-body" >
 							<div class="form-inline">
-								<div>
+								<div class="card transparent col-lg-12" style="border:none;">
 									<h4 class="modal-title">${sellectedCommunityBoardPost.comm_subject}&nbsp;${sellectedCommunityBoardPost.comm_title}</h4>
 								</div>
 							</div>
@@ -32,7 +32,7 @@
 										<span>작성일&nbsp; ${sellectedCommunityBoardPost.comm_written_time}</span>
 							</div>
 						</div>
-       					<div class="col-lg-12">
+       					<div class="card transparent col-lg-12" style="border:none;">
 							<h3> <span class="blog-author minor-meta"> Posted by 
 								<span class="entry-author-link"> 
 									<span class="vcard author">
@@ -42,7 +42,7 @@
 								</span>
 							</h3>
          					<div class="form-group">
-         						<div class="form-control">
+         						<div class="form-control card transparent col-lg-12" style="border:none;">
          							${sellectedCommunityBoardPost.comm_content}
          						</div>
          					</div>
@@ -106,7 +106,7 @@
 </div>
 
 <script type="text/javascript" src="resources/js/comment.js"></script>
-<script type="text/javascript" src="resources/js/Admin.js"></script>
+<script type="text/javascript" src="resources/js/admin.js"></script>
 
 <script>
 // comment view code
@@ -121,7 +121,7 @@ $(document).ready(function(){
 	$("#adminMove").on("click",function(){
 		let comm_no=$("#comm_no").val();
 		alert(comm_no);
-		adminService.getReview(comm_no,function(){
+		adminService.get(comm_no,function(){
 		location.reload();
 		})
 	});
