@@ -560,20 +560,19 @@
 	<sec:authentication property="principal.username" var="user_id"/>
 	
     <div role="main" class="main">
-        <section class="page-header">
+        <section class="page-header" style="padding:0px">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-8 text-left">
-                        <h1>Standard Post</h1>
+                        <img width="100px" src="/warm/resources/img/header/red-soldier.jpg"/>
                     </div>
                     <div class="col-md-4">
                     <c:if test="${user_id == review.user_id}">
                         <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
                             <li><a href="/warm/library?user_id=${user_id}">내 서재</a></li>
+                            <li><a href="/warm/reviewMain">감상 메인</a></li>
                             <li><a href="#" class="oper" data-oper='list'>${book.book_title}</a></li>
-                            <li class="active">Standard Post</li>
-                            
-                            <li><a href="/warm/customLogout">로그아웃합시다ㅏㅏㅏ</a></li>
+                            <li class="active">${review.review_title}</li>
                             
                         </ul>
 					</c:if>
@@ -647,9 +646,9 @@
                                 	
                                 	<fmt:formatDate var="written_date" value="${review.review_written_date}" pattern="yyyy. MM. dd"/>
                                 
-                                    <a href="./resources/Vertex/page-about-me.html" class="fn">${review.user_id}</a>님이
+                                    <a href="#" class="fn">${review.user_id}</a>님이
                                     <span class="date updated">${written_date}<!-- November 9, 2018 --></span>에 작성한 글입니다.<br>
-                                    <a href="./resources/Vertex/blog-standard-post.html">${book.book_title}</a> 
+                                    <a href="/warm/shop/shopproduct?isbn=${review.isbn}">${book.book_title}</a> 
                                     <c:if test="${review.review_ref != 0}">(${review.review_ref}페이지)</c:if>
                                 </span>
                             </div>
@@ -745,9 +744,9 @@
                                         	<!-- 넘겨줄 값은 감상번호와 작성자...(user_id)? -->
                                         	<!-- 넘어온 값은 감상 작성자 id, 아래 댓글을 달 때 user_id는 로그인한 id! -->
                                         	
-                                            <input type="hidden" value="${review.review_no}" maxlength="100" class="form-control" name="review_no">
+                                            <input type="hidden" value="${review.review_no}" class="form-control" name="review_no">
                                             <div class="col-sm-4">
-                                                <input type="hidden" value="${user_id}" maxlength="100" class="form-control" name="user_id" id="name" readonly>
+                                                <input type="hidden" value="${user_id}" class="form-control" name="user_id" id="name" readonly>
                                             </div>
                                             
                                         </div>
@@ -764,7 +763,7 @@
                                             			<c:set var="phText" value="댓글을 입력하세요."/>
                                             		</c:when>
                                             	</c:choose>
-                                                	<textarea maxlength="5000" rows="10" ${read} placeholder="${phText}" class="form-control" name="content" id="content"></textarea>
+                                                	<textarea maxlength="166" rows="10" ${read} placeholder="${phText}" class="form-control" name="content" id="content"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -1003,7 +1002,7 @@
 						cmt_str += "<button data-oper='save'  data-review_cmt_no='" + data.review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>저장</button>";
 						cmt_str += "<button data-oper='cancel'  data-review_cmt_no='" + data.review_cmt_no+"' style='font-size:0.5em; background-color:transparent; border:none'>취소</button>";
 						cmt_str += "	</div>";
-						cmt_str += "<textarea maxlength='5000' class='form-control' name='content' id='content'>" + data.review_cmt_content + "</textarea>";
+						cmt_str += "<textarea maxlength='166' class='form-control' name='content' id='content'>" + data.review_cmt_content + "</textarea>";
 						target.html(cmt_str); 
 						//$(this).closest("li").html(cmt_str); 왜 이렇게 하면 안 되지? 
 					});
@@ -1072,7 +1071,7 @@
 					}
 					
 					str += "	</div>";
-					str += "		<p data-review_cmt_no='" + list[i].review_cmt_no + "'>" + list[i].review_cmt_content + "</p></div></li>";
+					str += "		<p style='word-break:break-all' data-review_cmt_no='" + list[i].review_cmt_no + "'>" + list[i].review_cmt_content + "</p></div></li>";
 					
 				}
 				// 댓글 수 표시

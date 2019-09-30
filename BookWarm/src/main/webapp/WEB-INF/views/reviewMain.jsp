@@ -46,33 +46,29 @@
 </style>
 
 </head>
-<body>
+<body style="margin:0">
 <%@ include file="includes/header/header-topnav.jsp"%>
 
 <sec:authentication property="principal.username" var="user_id"/>
 
 <div role="main" class="main">
-        <section class="page-header">
+
+	<section class="page-header" style="padding:0; margin-bottom:10px">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-8 text-left">
-                        <h1>Standard Post</h1>
+                        <img width="100px" src="/warm/resources/img/header/red-soldier.jpg"/>
                     </div>
                     <div class="col-md-4">
-                    <c:if test="${user_id == review.user_id}">
                         <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
                             <li><a href="/warm/library?user_id=${user_id}">내 서재</a></li>
-                            <li><a href="#" class="oper" data-oper='list'>${book.book_title}</a></li>
-                            <li class="active">Standard Post</li>
-                            
-                            <li><a href="/warm/customLogout">로그아웃합시다ㅏㅏㅏ</a></li>
-                            
+                            <li class="active">감상 메인</li>
                         </ul>
-					</c:if>
                     </div>
                 </div>
             </div>
-        </section>
+     </section>
+	
 </div>
 
 <%-- <%@ include file="./includes/header/header-dark-dropdown.jsp"%> --%>
@@ -103,11 +99,8 @@
                <div class="row">
 					
 				<!-- 감상 메인 페이지에서 사이드바 안 쓸 듯 -->
-                  <div class="col-md-4 left-side-sidebar pt-70">
-                  
-                  	 <!-- 임시 로그아웃 -->
-					 <a href="/warm/customLogout">로그아웃</a>
-                     <aside class="sidebar">
+                  <div class="col-md-4 left-side-sidebar pt-70" style="padding-top:50px !important;">
+                     <aside class="sidebar" style="width:100%">
 						<section>
 							<div>
 								<ul>
@@ -138,28 +131,26 @@
                      
                   </div>
 
-                  <div class="col-md-8 v_blog-medium pt-70 pull-right">
+                  <div class="col-md-8 v_blog-medium pt-70 pull-right" style="padding-top:30px !important;">
                   
-                  <!-- 감상 작성 버튼 추가 -->
-                            <!-- <li class="col-sm-12" style="margin-top:10px"> -->
-                            <div class="post-content no-thumb clearfix" style="margin:20px">
-                            	<div class="pull-right">
-                            	
-                            	<a class="btnPerBook" href="/warm/reviewWrite">
-		                            	<span class="text ls-1">
-		                            		감상 더하기
-			                                <i class="icon icon-pen-3"></i>
-		                            	</span>
-                            	</a><br>
-                            	<a class="btnPerBook" href="/warm/library">
-		                            	<span class="text ls-1">
-		                            		서재로 돌아가기
-		                            		<i class="fa fa-book"></i>
-		                            	</span>
-                            	</a><br>
-                            	</div>
-                            </div>
-                            <!-- </li> -->
+                    <!-- 감상 작성 버튼 추가 -->
+                    <div class="no-thumb clearfix" style="padding-right:20px">
+                    	<div class="pull-right">
+                    	
+                    	<a class="btnPerBook" href="/warm/reviewWrite">
+                      	<span class="text ls-1">
+                      		감상 더하기
+                           <i class="icon icon-pen-3"></i>
+                      	</span>
+                    	</a><br>
+                    	<a class="btnPerBook" href="/warm/library">
+                      	<span class="text ls-1">
+                      		서재로 돌아가기
+                      		<i class="fa fa-book"></i>
+                      	</span>
+                    	</a><br>
+                    	</div>
+                    </div>
 
 				<c:if test="${empty list}">
 					등록한 감상이 없습니다.
@@ -458,6 +449,11 @@
 	   	  /* 
 	   	  eventClick: false, */
 	   	  
+	   	  viewRender: function(info) {
+	   		  console.log("viewRender!");
+	   		$(".fc-event-container").css("display", "none");
+	   	  },
+	   	  
 	   	  eventRender: function(info) {
 	   		  
 	   		  console.log("info.event.id:" + info.event.id);
@@ -470,7 +466,7 @@
 	   			  console.log("============ 완독한 책 이미지 뿌려주기 =============");
 	   			  
 	   			  var tdObj = $(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "']");
-	   			  var str = "<div style='width:40%; display:inline-block; position:relative;'><img style='position:absolute; vertical-align:bottom; cursor: pointer;' id='" + info.event.id + "' src='" + info.event.extendedProps.imageurl + "'>"; 
+	   			  var str = "<div style='width:40%; display:inline-block; position:relative; vertical-align:bottom'><img style='position:absolute; cursor: pointer;' id='" + info.event.id + "' src='" + info.event.extendedProps.imageurl + "'>"; 
 	   			  
 	   			  if(info.event.extendedProps.firstImg) {
 	   				  // rerender시 표지가 반복적으로 추가되지 않도록 html에 새로 뿌려준다.
@@ -480,6 +476,8 @@
 	   			  }
 	   		  }
 	   		  
+	   		  
+	   		  $(".fc-content-skeleton table").css("table-layout", "fixed");
 	   		  // gridMonth형에서 title은 나타나지 않도록 한다.
 	   		  // .fc-content-skeleton을 display를 none으로 하면 날짜까지 지워지고, tbody까지를 택하면 css가 적용되지 않는 문제.
 	   		  /* $(".fc-content-skeleton table tbody").css("display", "none"); */
@@ -499,9 +497,10 @@
 	          bool ? 'block' : 'none'; */
 	         if(bool) {
 	         } else {
+	        	 
 	        	 setTimeout(function() {
 	        		 
-	        	  $(".fc-event-container").css("display", "none");
+	        	  	$(".fc-event-container").css("display", "none");
 		        	 /* $(".fc-content-skeleton table tbody").css("display", "none"); */
 	        	 }, 100);
 	         }
@@ -509,13 +508,20 @@
 	
 	  });
 		
-	  calendar.render();
+	    
+	  setTimeout(function() {
+			
+		  calendar.render();
+      }, 200);  
  	  
  	  $("#modalBtn").on("click", function() { 
 	 		  
 		    setTimeout(function() {
 		    	// 처음 버튼을 눌렀을 때도 달력이 온전히 뜨도록 함
 		    	$(".fc-dayGridMonth-button").click();
+
+				calendar.updateSize();
+				$(".fc-event-container").css("display", "none");
 		    }, 200);
  	  });
  	 
@@ -541,7 +547,7 @@
 						str += "</div>";
 						str += "<div class='comment-content'><div class='comment-body'>";
 						str += "<a href='warm/reviewSelectOne?review_no='" + cmt.review_no + "'>";
-						str += " <p>" + cmt.review_cmt_content + "</p></a></div>";
+						str += " <p style='overflow:hidden; text-overflow:ellipsis'>" + cmt.review_cmt_content + "</p></a></div>";
 						str += "<div class='comment-meta'>";
 						str += "<span class='comment-author'>" + cmt.user_id + "</span>";
 						str += "<span class='comment-date'>" + displayTime(cmt.review_cmt_modified_date) + "</span>";
@@ -582,7 +588,7 @@
 			
 		}
 	};
-
+	
 
 </script>
 

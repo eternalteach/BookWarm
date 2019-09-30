@@ -37,53 +37,9 @@
                   <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
                      <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
 
-                        <div class="col-lg-3 isotope-item websites">
 
-                           <article class="v_blog-item v_blog-item-related v_blog-grid v_blog_quate">
-                              <div class="v_blog-item-inner">
-                                 <div class="v_blog-item-media">
-                                    <a href="#">
-                                       <div class="v_blog-item-content">
-                                          <div class="v_blog-item-content-inner">
-
-                                             <div class="v_blog_quate-icon text-white mt-10">
-                                                <i class="fa fa-quote fa-4x"></i>
-                                             </div>
-
-                                             <div class="v_blog-item-header">
-                                                <ul class="v_blog-item-meta">
-                                                   <li class="v_blog-item-date">
-                                                      <time class="" datetime="2018-06-30T10:47:48+00:00">
-                                                         June 30, 2018
-                                                      </time>
-                                                   </li>
-                                                </ul>
-
-                                                <a href="blog-post-standard-2.html" rel="bookmark">
-                                                   <h2 class="v_blog-item-title text-white fs-30" itemprop="name headline">Quote Post Format</h2>
-                                                </a>
-                                             </div>
-
-                                             <div class="text-white o-7" itemprop="articleBody">
-                                                <p>
-                                                   Many years ago, I worked for my parents who own a video production company.
-                                                </p>
-                                                <p class="v_blog-item-author">
-                                                   <a href="#">
-                                                      <img alt="" src="/warm/resources/Vertex/img/team/t1.png">
-                                                      <span>by Jhon Dode</span>
-                                                   </a>
-                                                </p>
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <img src="" />
-                                    </a>
-                                 </div>
-                              </div>
-                           </article>
-                        </div>
-						
+                    <c:set value="\\" var="bslash"/>
+                    <c:set value="/" var="slash"/>
 						
 					<c:forEach items="${openreview}" var="review" varStatus="status">
 						<fmt:formatDate var="date" value="${review.review_modify_date}" pattern="yyyy. MM. dd"/>
@@ -97,16 +53,13 @@
                                  <div class="v_blog-item-media">
                                     <a href="#">
                                     
-                                       <c:set var="uploadPath" value="${review.attachList[0].uploadPath.replace('\\', '/')}"/>
+                                       <c:set var="uploadPath" value="${fn:replace(review.attachList[0].uploadPath,bslash,slash)}"/>
                                        <c:set var="uuid" value="${review.attachList[0].uuid}"/>
                                        <c:set var="fileName" value="${review.attachList[0].fileName}"/>
                                        <c:set var="attachM" value="${uploadPath}/${uuid}_${fileName}"/>
-                                       attachM :  ${attachM}
+                                        
+                                       <img class="w-100" src="/warm/display?fileName=${attachM}"/>
                                        
-                                       <!-- var fileCallPath = encodeURIComponent(attach.uploadPath + "/" + attach.uuid + "_" + attach.fileName) -->
-                                       <%-- <img class="w-100" src="javascript:encodeURL(${attachM});"/> --%>
-                                       
-                                       <img src='/warm/display?fileName=${attachM}'>
                                     </a>
                                  </div>
                                  </c:if>
@@ -122,11 +75,11 @@
                                        </ul>
 
                                        <a href="/warm/reviewSelectOne?review_no=${review.review_no}&isbn=${review.isbn}" rel="bookmark">
-                                          <h2 class="v_blog-item-title" itemprop="name headline">${review.review_title}</h2>
+                                          <h2 class="v_blog-item-title" itemprop="name headline" style="overflow:hidden; text-overflow:ellipsis">${review.review_title}</h2>
                                        </a>
                                     </div>
                                     <div itemprop="articleBody">
-                                       <p>
+                                       <p style="overflow:hidden; text-overflow:ellipsis">
                                           ${review.review_content}
                                        </p>
                                        <hr />
@@ -144,57 +97,6 @@
                            </article>
                         </div>
 					</c:forEach>	
-
-                        <div class="col-lg-3 isotope-item brands">
-                           <article class="v_blog-item v_blog-item-related v_blog-grid">
-                              <div class="v_blog-item-inner">
-                                 <div class="v_blog-item-media">
-                                    <div class="carousel-wrap">
-                                       <div class="owl-carousel owl-theme" data-plugin-options='{"items":1, "singleItem": true, "dots":false, "autoPlay": true}'>
-                                          <div>
-                                             <img alt="" class="img-responsive" src="">
-                                          </div>
-                                          <div>
-                                             <img alt="" class="img-responsive" src="">
-                                          </div>
-                                       </div>
-                                       <div class="customNavigation">
-                                          <a class="prev"><i class="fa fa-angle-left"></i></a>
-                                          <a class="next"><i class="fa fa-angle-right"></i></a>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="v_blog-item-content">
-                                    <div class="v_blog-item-header">
-                                       <ul class="v_blog-item-meta">
-                                          <li class="v_blog-item-date">
-                                             <time class="" datetime="2018-06-30T10:47:48+00:00">
-                                                June 30, 2018
-                                             </time>
-                                          </li>
-                                       </ul>
-
-                                       <a href="blog-post-standard-2.html" rel="bookmark">
-                                          <h2 class="v_blog-item-title" itemprop="name headline">This is a standard post with a images slider</h2>
-                                       </a>
-                                    </div>
-
-                                    <div itemprop="articleBody">
-                                       <p>
-                                          Many years ago, I worked for my parents who own a video production company.
-                                       </p>
-                                       <hr />
-                                       <p class="v_blog-item-author">
-                                          <a href="#">
-                                             <img alt="" src="/warm/resources/Vertex/img/team/t1.png">
-                                             <span>by Jhon Dode</span>
-                                          </a>
-                                       </p>
-                                    </div>
-                                 </div>
-                              </div>
-                           </article>
-                        </div>
 
 
                     <!--  <div class="row">
