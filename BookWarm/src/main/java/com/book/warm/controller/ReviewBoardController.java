@@ -39,6 +39,7 @@ import com.book.warm.page.PageDTO;
 import com.book.warm.service.RecordService;
 import com.book.warm.service.ReviewBoardService;
 import com.book.warm.vo.BookVO;
+import com.book.warm.vo.FinishedBookVO;
 import com.book.warm.vo.LogingBoardVO;
 import com.book.warm.vo.ReviewAttachFileDTO;
 import com.book.warm.vo.ReviewAttachVO;
@@ -63,26 +64,12 @@ public class ReviewBoardController {
 	@Inject
 	LibraryMapper mapper;
 	
-	@RequestMapping("/calendar")
-	public void calendar() {
-		
-	}
-	
 	@GetMapping("/reviewMain")
 	public void recordMain(Principal principal, Criteria cri, Model model) {
 		
 		model.addAttribute("list", service.selectBoardList(principal.getName(), cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, service.getTotal(principal.getName())));
 	}
-	
-	// 책별 감상 목록
-//	@RequestMapping("/reviewPerBook2")
-//	public String reviewPerBook2(ReviewBoardVO rbVO, Criteria cri, Model model) {
-//		
-//		model.addAttribute("list", service.getListPerBook(rbVO.getIsbn(), rbVO.getUser_id(), cri));
-//		model.addAttribute("thumbnail", service.showBookThumbnail(rbVO.getIsbn()));
-//		return "reviewPerBook2";
-//	}
 	
 	// 책별 감상 목록
 	@RequestMapping("/reviewPerBook")
@@ -354,5 +341,36 @@ public class ReviewBoardController {
 				log.error("delete file error" + e.getMessage());
 			} // end catch
 		}); // end forEach
+	}
+	
+	@GetMapping(value="/calendar",
+					produces= {
+								MediaType.APPLICATION_XML_VALUE,
+								MediaType.APPLICATION_JSON_UTF8_VALUE })
+	@ResponseBody
+	public ResponseEntity<List<FinishedBookVO>> getMyLogs(Principal principal) {
+	
+    // LogingBoard에서 로그를 읽어올 때 필요한 것은? 아이디만 있으면 전체 다 불러올 수 있음.
+	// 일단 완독한 책만 불러오자.
+	// end_date(완독여부) 값이 true면 start_date가 가장 최신인 날짜에 책 이미지를 뿌린다.
+    String user_id = principal.getName();
+	log.info("get LogingBoadVO list : " + recordService.getMyLogs(user_id));
+	
+		return new ResponseEntity<List<FinishedBookVO>>(recordService.getMyLogs(user_id), HttpStatus.OK);
+	}
+	
+	@RequestMapping("/openreview")
+	public void openReview(Model model) {
+		List<ReviewBoardVO> reviews = service.getOpenReview();
+		
+		// 리뷰 목록을 가져와서 각각의 리뷰 번호로 첨부파일 목록을 조회해 reviewVO에 세팅해준다.
+		for(ReviewBoardVO review : reviews) {
+			if(service.getAttachList(review.getReview_no())!=null) {
+				
+				review.setAttachList(service.getAttachList(review.getReview_no()));
+			}
+		}
+		
+		model.addAttribute("openreview", reviews);
 	}
 }

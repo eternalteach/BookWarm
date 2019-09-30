@@ -6,7 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
- <%@ include file="./includes/header/header-from-vertex.jsp" %>
+ <%@ include file="./includes/header/header/header-from-vertex.jsp" %>
  
  
  	<script>

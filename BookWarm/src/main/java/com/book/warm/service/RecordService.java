@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.book.warm.mapper.LogingBoardMapper;
 import com.book.warm.vo.BookVO;
+import com.book.warm.vo.FinishedBookVO;
 import com.book.warm.vo.LogingBoardVO;
 
 import lombok.extern.log4j.Log4j;
@@ -49,5 +50,10 @@ public class RecordService {
 	public int modifyRecord(LogingBoardVO logingBoardVO) {
 		log.info("========== modifyRecord() ==========");
 		return mapper.modifyLoging(logingBoardVO);
+	}
+	
+	public List<FinishedBookVO> getMyLogs(String user_id) {
+		log.info("========== getMyLogs) ==========");
+		return mapper.getMyLogs(user_id);
 	}
 }

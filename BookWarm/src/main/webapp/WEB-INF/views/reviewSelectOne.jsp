@@ -743,44 +743,28 @@
                                     <div class="form-group">
                                         <div class="row">
                                         	<!-- 넘겨줄 값은 감상번호와 작성자...(user_id)? -->
-                                        
                                         	<!-- 넘어온 값은 감상 작성자 id, 아래 댓글을 달 때 user_id는 로그인한 id! -->
                                         	
-                                                <!-- <input type="hidden" value="" maxlength="100" placeholder="user_id" class="form-control" name="user_id" id="name"> -->
-                                                <input type="hidden" value="${review.review_no}" maxlength="100" class="form-control" name="review_no">
-                                            
+                                            <input type="hidden" value="${review.review_no}" maxlength="100" class="form-control" name="review_no">
                                             <div class="col-sm-4">
                                                 <input type="hidden" value="${user_id}" maxlength="100" class="form-control" name="user_id" id="name" readonly>
                                             </div>
                                             
-                                        
-	                                        <!-- 이름/ 이메일/ 홈페이지 필요 없을 듯 -->
-                                            <!-- <div class="col-sm-4">
-                                                <label>Your name <span class="required">*</span></label>
-                                                <input type="text" value="" maxlength="100" placeholder="Your name" class="form-control" name="name" id="name">
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <label>Your email address <span class="required">*</span></label>
-                                                <input type="email" value="" placeholder="email address" maxlength="100" class="form-control" name="email" id="email">
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <label>Website</label>
-                                                <input type="text" value="" placeholder="Website" maxlength="100" class="form-control" name="website" id="website">
-                                            </div> -->
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                            	<!-- 지금대로면 딱히 레이블이 필요 없음 -->
-                                                <!-- <label>Comment <span class="required">*</span></label> --> 
-                                                <c:if test="${empty user_id}">
-                                                	<c:set var="read" value="readonly"/>
-                                            	</c:if>
-                                            	<%-- <c:choose>
-                                            		<c:when test="${ }"
-                                            	</c:choose> --%>
-                                                	<textarea maxlength="5000" rows="10" ${read} placeholder="댓글은 로그인한 사용자만 작성할 수 있습니다." class="form-control" name="content" id="content"></textarea>
+                                            	<c:choose>
+	                                                <c:when test="${empty user_id}">
+	                                                	<c:set var="read" value="readonly"/>
+	                                            		<c:set var="phText" value="댓글은 로그인한 사용자만 작성할 수 있습니다."/>
+	                                            	</c:when>
+                                            		<c:when test="${!empty user_id}">
+                                            			<c:set var="phText" value="댓글을 입력하세요."/>
+                                            		</c:when>
+                                            	</c:choose>
+                                                	<textarea maxlength="5000" rows="10" ${read} placeholder="${phText}" class="form-control" name="content" id="content"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -966,11 +950,8 @@
 	(function() {
 		var review_no = '<c:out value="${review.review_no}"/>';
 		$.getJSON("/warm/getAttachList", {review_no: review_no}, function(arr) {
-					console.log(arr);
-					// 여기서 해야할 것은, review_no을 받아서 그 글에 달려있는 첨부 파일들을 하나씩 li로 달아주는 건데..
-					// 여기가 이미지들을 담을 공간.
+			
 					var uploadImgs = $(".uploadResult");
-					/* var flex = $(".flexslider"); */
 					var str = uploadImgs.html() + "";
 					
 					$(arr).each(function(i, attach) {

@@ -138,6 +138,11 @@
 		set review_title='삭제된 게시글 입니다.', review_content='운영 원칙에 위반된 게시글입니다.', review_open='true'
 		where review_no=#{review_no}
  	</update>
+ 	<!-- 공개 설정된 리뷰 불러오기 -->
+ 	<select id="getOpenReview" resultType="com.book.warm.vo.ReviewBoardVO">
+ 		select * from review_board where review_open='checked' order by review_modify_date desc
+ 	</select>
+ 	
  	
  	<!-- 첨부파일 처리. 따로 mapper를 만들지 않고 여기에 추가. -->
  	<insert id="insert">

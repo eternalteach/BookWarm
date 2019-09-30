@@ -131,5 +131,11 @@ public class ReviewBoardService {
 		
 		return result;
 	}
+	
+	public List<ReviewBoardVO> getOpenReview() {
+		
+		return mapper.getOpenReview();
+	}
+
 
 }
