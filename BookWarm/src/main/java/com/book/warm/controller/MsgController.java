@@ -11,18 +11,16 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.book.warm.page.Criteria;
 import com.book.warm.page.PageDTO;
 import com.book.warm.service.MsgService;
-import com.book.warm.vo.AdminBoardVO;
 import com.book.warm.vo.MsgTableVO;
 
 import lombok.extern.log4j.Log4j;
@@ -55,6 +53,7 @@ public class MsgController {
 		return "/message";
 	}
 	
+	//보낸쪽지리스트
 	@GetMapping(value="/message/pages/{page}", produces= {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<MsgTableVO>> msgpaging(@PathVariable("page")int page, Principal principal){
 		log.info("=================페이징 + 보낸쪽지함 리스트 뿌리기=============================");
@@ -63,14 +62,26 @@ public class MsgController {
 		return new ResponseEntity<>(msgservice.msgpaging(user_id, criteria),HttpStatus.OK);
 	}
 	
+	//쪽지보내기
 	@GetMapping(value = "/send", consumes = "application/json",
 			produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<MsgTableVO> create(@RequestBody MsgTableVO msgvo, Principal principal){
 		log.info("=================send=======================");
+		log.info(msgvo);
 		msgservice.msginsert(msgvo);
 		return new ResponseEntity<MsgTableVO>(msgservice.msginsert(msgvo),HttpStatus.OK);
 	}
 	
+	//쪽지삭제
+	@DeleteMapping(value= "/{msg_no}",
+				produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> msgdelete(@PathVariable("msg_no") int msg_no){
+		log.info("삭제");
+		return msgservice.msgdelete(msg_no)==1 
+				? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+		
 	// 모달창에서 쪽지보내기
 //	@RequestMapping(value = "/send", method = RequestMethod.GET)
 //	public String send(Principal principal, HttpServletRequest request, Model model, MsgTableVO msgvo) {

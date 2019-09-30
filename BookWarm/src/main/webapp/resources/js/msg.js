@@ -42,10 +42,28 @@ var msgservice = (function(){
 		})
 	}
 	
+	function msgdelete(msg_no, callback, error){
+		$.ajax({
+			type : 'delete',
+			url : '/message/' + msg_no,
+			success : function(deleteResult, status, xhr){
+				if(callback){
+					callback(deleteResult);
+				}
+			},
+			error : function(xhr, status, er){
+				if(error){
+					error(er);
+				}
+			}
+		});
+	}
+	
 	
 	return{
 		msgpaging:msgpaging,
-		msginsert:msginsert
+		msginsert:msginsert,
+		msgdelete : msgdelete
 		
 	};
 })();
