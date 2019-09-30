@@ -2,34 +2,56 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.book.warm.mapper.MsgMapper">
 	
-	<!-- 아직은 웹소켓 안씀. 그저 불러오기와 글쓰기 저장만 할거임  -->
-	<!-- 쪽지 리스트 불러오기  -->
+	<!-- 받은쪽지  -->
 	<select id="msglist" resultType="com.book.warm.vo.MsgTableVO">
 	select * from msg_table
-	order by msg_no
+	where msg_get_id = #{msg_get_id}
+	order by msg_no desc
 	</select>
-	
-	<!-- 쪽지보내기(대폭수정해야할 항목들)  -->
+	<!-- 보낸 쪽지 -->
+	<select id="msglist2" resultType="com.book.warm.vo.MsgTableVO">
+	select * from msg_table
+	where msg_send_id = #{msg_send_id}
+	order by msg_no desc
+	</select>
+	<!-- 쪽지보내기  -->
   	<insert id = "msginsert">
   	 insert into msg_table(msg_no, msg_send_id, msg_get_id, msg_title, msg_content)
 		values(
-		msg_table_nextval, #{msg_no}, #{msg_send_id}, #{msg_get_id}, #{msg_title}, #{msg_content})
+		MSG_SEQ.nextval, #{msg_send_id},  #{msg_get_id}, #{msg_title}, #{msg_content})
  	</insert> 
-	
-	<!-- 쪽지조회  -->
-	<select id="msgread" resultType="com.book.warm.vo.MsgTableVO">
-	select * from msg_table where msg_no = #{msg_no}
-	</select>
-	
 	<!-- 쪽지삭제  -->
 	<delete id="msgdelete">
 	delete from msg_table where msg_no = #{msg_no}
 	</delete>
-
-	<!-- 페이징 처리  -->
-	<!-- <select id="msgpaging" resultType="com.book.warm.vo.MsgTableVO">
-	select msg_no, msg_send_id, msg_get_id, msg_title, msg_content
-	</select> -->
-	
+	<!-- 쪽지세기 -->
+	<select id="msgcount" resultType="int">
+	select count(msg_no) 
+	from msg_table
+    where msg_get_id = #{msg_get_id}
+	</select>
+	<select id="msgcount2" resultType="int">
+	select count(msg_no) 
+	from msg_table
+    where msg_send_id = #{msg_send_id}
+	</select>
+	<!-- 페이징  -->
+	<select id="msgpaging" resultType="com.book.warm.vo.MsgTableVO">
+ 	<![CDATA[
+ 	select *
+ 	from (select rownum rn, msg_no, msg_get_id, msg_send_id, msg_title, msg_content, msg_send_time, msg_read_time
+        	from msg_table
+        	where msg_get_id = #{msg_get_id}
+       		and rownum <= #{cri.pageNum} * #{cri.amount}
+            order by msg_no desc)
+	where rn > (#{cri.pageNum} -1) * #{cri.amount}
+    ]]>
+	</select>
+	<!-- 전체개수 -->
+	<select id="getTotalCount" resultType="int">
+	 select count(*) 
+	 from msg_table
+	 where msg_no > 0
+	</select>
 </mapper>
 

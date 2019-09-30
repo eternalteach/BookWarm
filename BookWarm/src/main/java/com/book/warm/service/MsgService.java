@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.book.warm.mapper.MsgMapper;
+import com.book.warm.page.Criteria;
 import com.book.warm.vo.BookVO;
 import com.book.warm.vo.MsgTableVO;
 import com.book.warm.vo.ReviewCommentVO;
@@ -16,21 +17,36 @@ public class MsgService {
 	
 	@Inject
 	MsgMapper msgmapper;
-	
-	public List<MsgTableVO> msglist() throws Exception{
-		return msgmapper.msglist();
+	//받은쪽지
+	public List<MsgTableVO> msglist(String msg_get_id) {
+		return msgmapper.msglist(msg_get_id);
+	}
+	public List<MsgTableVO> msgpaging(String msg_get_id, Criteria cri) {
+		return msgmapper.msgpaging(msg_get_id, cri);
 	}
 	
-	public int msginsert(MsgTableVO msgvo) throws Exception{
-		return msgmapper.msginsert(msgvo);
-	}
-
-	public MsgTableVO msgread(int msg_no) throws Exception{
-		return msgmapper.msgread(msg_no);
-	}
 	
-	public int msgdelete(int msg_no) throws Exception{
+	//보낸쪽지
+	public List<MsgTableVO> msglist2(String msg_send_id) {
+		return msgmapper.msglist2(msg_send_id);
+	}
+	//쪽지보내기
+	public void msginsert(MsgTableVO msgvo) {
+		msgmapper.msginsert(msgvo);
+	}
+	//쪽지삭제
+	public int msgdelete(int msg_no) {
 		return msgmapper.msgdelete(msg_no);
 	}
-	
+	//쪽지개수
+	public int msgcount(String msg_get_id) {
+		return msgmapper.msgcount(msg_get_id);
+	}
+	public int msgcount2(String msg_send_id) {
+		return msgmapper.msgcount2(msg_send_id);
+	}
+	//페이징 개수
+	public int getTotalCount(Criteria cri) {
+		return msgmapper.getTotalCount(cri);
+	}
 }

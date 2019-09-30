@@ -1404,7 +1404,8 @@ section {
 }
 
 .section-big {
-   padding: 100px 0px;
+   padding: 20px 0px;
+   padding-bottom: 60px;
 }
 
 div.main-color,

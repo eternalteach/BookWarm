@@ -4,6 +4,8 @@ import java.security.Principal;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -35,7 +37,6 @@ public class LibraryController {
 
 	@Inject
 	LibraryMapper mapper;
-	
 	@Inject
 	AddBookDetailInfoMapper bookMapper;
 	
