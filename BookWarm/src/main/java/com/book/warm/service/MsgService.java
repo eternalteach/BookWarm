@@ -31,8 +31,8 @@ public class MsgService {
 		return msgmapper.msglist2(msg_send_id);
 	}
 	//쪽지보내기
-	public void msginsert(MsgTableVO msgvo) {
-		msgmapper.msginsert(msgvo);
+	public MsgTableVO msginsert(MsgTableVO msgvo) {
+		return msgmapper.msginsert(msgvo);
 	}
 	//쪽지삭제
 	public int msgdelete(int msg_no) {

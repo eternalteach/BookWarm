@@ -5,13 +5,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <sec:authentication property="principal.username" var="user_id"/>
-<!-- 
-<style>
-#t{
- color: pink;
-}
 
-</style> -->
+
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+</head>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/warm/resources/js/Criteria.js"></script>
+<script type="text/javascript" src="/warm/resources/js/msg.js"></script>
 <body>
 
 
@@ -62,10 +64,10 @@
 							<div class="tab-pane active" id="counters">
 								<div class="row">
 									<div class="col-md-9 left-side-sidebar">
-									 	<div class="haha">
 										<h1>받은쪽지함&ensp;${msgcount}개</h1>
+									 	<div id="getMSG">
 										<c:forEach items="${msglist}" var="msglist">
-										<fmt:setLocale value="en_US" scope="session"/>
+										<%-- <fmt:setLocale value="en_US" scope="session"/>
 										<fmt:formatDate var="fmt_date" value="${msglist.msg_read_time }" pattern="ddMMM"/>
 											<div class="v-blog-recent-post" style="border: 1px dashed #bcbcbc; margin: 20px; float:left;width:250px;height:150px ">
 												<div class="blog-list-item-date" style="margin-left: 10px;margin-top: 10px;">
@@ -79,7 +81,7 @@
 														${msglist.msg_title}</a>
 													</h6>
 													<small>보낸 사람${msglist.msg_send_id}</small>
-													<%-- <small>받는 사람 ${msglist.msg_get_id}</small> --%>
+													<small>받는 사람 ${msglist.msg_get_id}</small>
 													<div class="blog-list-item-excerpt"><p style="text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:70px" >${msglist.msg_content}</p>
 													</div>
 													
@@ -92,13 +94,15 @@
 													</div>
 												
 													</div>
-												</div>
-												</c:forEach>
+												</div> --%>
+												</c:forEach> 
 												</div>
 												
 											<!-- 페이징 -->
-											
-											<div class='pull-right' style="border:1px dashed; vertical-align: bottom">
+											<div class="row col-lg-12">
+												<div class="panel-footer center msgPaging"></div>
+											</div>
+								<%-- 			<div class='pull-right' style="border:1px dashed; vertical-align: bottom">
 												<ul class="pagination">
 													<c:if test="${pageMaker.prev}">
 														<li class="paginate_button previous"><a href="${pageMaker.startPage -1}">Previous</a>
@@ -119,7 +123,7 @@
 											<form id='actionForm' action="/warm/message" method='get'>
 												<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
 												<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
-											</form>
+											</form> --%>
 											
 											<!-- 끝  -->
 											</div>
@@ -132,7 +136,7 @@
 							<!--보낸 쪽지함-->
 							<div class="tab-pane" id="recent-posts">
 								<div class="row">
-									<div class="col-md-9">
+									<div id="sendMSG"class="col-md-9">
 										<h1>보낸쪽지함&ensp;${msgcount2}개</h1>
 										<c:forEach items="${msglist2}" var="msglist2">
 										<fmt:setLocale value="en_US" scope="session"/>
@@ -263,10 +267,75 @@
 </div>
 <!-- 메인끝  -->
 
- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 	<script>
 		$(document).ready(function() {
-		
+			
+			var msgPageNum = 1;
+			var msgPaging = $(".msgPaging");
+			var total = $(total);
+			pagingService.paging(msgPageNum,total,msgPaging);
+			var msgtable = $("#getMSG");
+			showmsgboard(-1);
+			
+			function showmsgboard(page){
+				msgservice.msgpaging(page,function(msglist){
+					if(page==-1){
+						msgPageNum==Math.ceil(total/10.0);
+						showmsgboard(msgPageNum);
+						return;
+					}
+					let msghtml ="";
+					if(msglist==null || msglist.length==0){
+						return;
+					}
+					 for(var i=0, len=msglist.length||0;i<len;i++){
+						 msghtml+="<fmt:setLocale value='en_US' scope='session'/>";
+						 msghtml+="<div class='v-blog-recent-post' style='border: 1px dashed #bcbcbc; margin: 20px; float:left;width:250px;height:150px'>";
+						 var date = new Date(msglist[i].msg_read_time);
+						 console.log(date);
+						 
+						 var month = date.getMonth()+1;
+						 var date = date.getDate();
+						 console.log(month + ", " + date);
+						 msghtml+="<div class='blog-list-item-date' style='margin-left: 10px;margin-top: 10px;'>${fn:substring(fmt_date,0,2)}<span>${fn:substring(fmt_date,2,5)}</span></div>";
+						 msghtml+="<div class='blog-list-content' style='margin-top: 10px;'><h6 class='special' style='text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:80px;'>";
+						 msghtml+="<a id='t' href='#' class='title' data-toggle='modal' data-target=#modalview"+msglist[i].msg_no+"style='padding-top: 10px;'>"+msglist[i].msg_title+"</a></h6>";
+						 msghtml+="<small>보낸 사람"+msglist[i].msg_send_id+"</small>";
+						 msghtml+="<small>받는 사람 "+msglist[i].msg_get_id+"</small>";
+						 msghtml+="<div class='blog-list-item-excerpt'<p style='text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:70px' >"+msglist[i].msg_content+"</p></div>";
+						 msghtml+="<div class='box' style='padding-bottom: 20px;'>"
+						 msghtml+="<a class='bb' href='#modal-msgg' data-toggle='modal' data-target=''#modal' data-send_id="+msglist[i].msg_send_id+">"
+						 msghtml+="<i class='icon-baloon'></i>답장</a>"
+						 msghtml+="<a href='/warm/msgdelete?msg_no="+msglist[i].msg_no+"><i id='msgd' class='icon-bin-2'>삭제</i></a>"
+						 msghtml+="<i class='icon-skull-1'><a>신고</a></i></div></div></div>"
+				}
+					 msgtable.html(msghtml);
+					 pagingService.paging(msgPageNum,total,msgPaging);
+				});
+			}
+			
+			msgPaging.on("click","li a",function(e){
+				e.preventDefault();
+				console.log("page click");
+				let targetPageNum=$(this).attr("href");
+				console.log("targetPageNum: "+targetPageNum);
+				msgPageNum=targetPageNum;
+				showmsgboard(msgPageNum);
+			});
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			/* 답장하기 눌렀을때 send_id 가져오기 */
 			$(".bb").on("click", function() {
 				//alert($(this).data("send_id"));
@@ -288,8 +357,11 @@
 			
 			/* 쪽지보내기 유효성검사 */
 				$("#sendsend").on("click", function(e){
+
+
+					
 					e.preventDefault();
-					alert("보내시겠습니까?")
+					
 					var get = $("input[id='gett']").val();
 					var title = $("input[id='titlee']").val();
 					var content =$("textarea[id='contentt']").val();
@@ -306,7 +378,14 @@
 						alert("내용을 입력하세요");
 						return false
 					};
-					formm.submit();
+					
+					
+					if (confirm("보내시겠습니까?") == true){    //확인
+					    formm.submit();
+					}else{   //취소
+						
+					}
+					
 				});		
 			/* 쪽지보내기 유효성검사 끝 */
 			
@@ -326,12 +405,17 @@
 					alert("내용을 입력하세요");
 					return false
 				};
+				
+				if (confirm("보내시겠습니까?") == true){    //확인
 					formsubmit.submit();
+				}else{   //취소
+					
+				}
 			});
 			/* 답장하기 유효성 검사 끝  */			
 		
 			/* 페이징  */
-			var actionForm = $("#actionForm");
+/* 			var actionForm = $("#actionForm");
 			
  			$(".paginate_button a").on("click", function(e) {
 				e.preventDefault();
@@ -339,7 +423,7 @@
 				console.log('click');
 				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 				actionForm.submit();
-			}); 
+			});  */
 			
 			
 			
