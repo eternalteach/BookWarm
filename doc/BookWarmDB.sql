@@ -707,3 +707,5 @@ Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONT
 
 
                                                           
+-- user_info sample data(탈퇴한 사용자)
+insert into user_info(user_id, user_pw, user_nickname, user_name, user_bday, user_sex, user_phone, user_mail, user_zipcode, user_addr) values('none', 'none', 'none', 'none', TO_DATE('1111-11-11'), 'X', 'none', 'none', 0, 'none');
