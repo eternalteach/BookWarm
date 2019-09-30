@@ -45,5 +45,8 @@ public class MsgService {
 	public int msgcount2(String msg_send_id) {
 		return msgmapper.msgcount2(msg_send_id);
 	}
-	
+	//페이징 개수
+	public int getTotalCount(Criteria cri) {
+		return msgmapper.getTotalCount(cri);
+	}
 }

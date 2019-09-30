@@ -62,6 +62,7 @@
 							<div class="tab-pane active" id="counters">
 								<div class="row">
 									<div class="col-md-9 left-side-sidebar">
+									 	<div class="haha">
 										<h1>받은쪽지함&ensp;${msgcount}개</h1>
 										<c:forEach items="${msglist}" var="msglist">
 										<fmt:setLocale value="en_US" scope="session"/>
@@ -93,13 +94,14 @@
 													</div>
 												</div>
 												</c:forEach>
-												
+												</div>
 												
 											<!-- 페이징 -->
-											<div class='pull-right'>
-												<ul class="pagination" style="width: 20px">
-													<c:if test="${pageMaker.prev }">
-														<li class="paginate_button previous"><a href="${pageMaker.prev -1}">Previous</a>
+											
+											<div class='pull-right' style="border:1px dashed; vertical-align: bottom">
+												<ul class="pagination">
+													<c:if test="${pageMaker.prev}">
+														<li class="paginate_button previous"><a href="${pageMaker.startPage -1}">Previous</a>
 														</li>
 													</c:if>	
 													
@@ -109,18 +111,19 @@
 													</c:forEach>		 									
 													
 													<c:if test="${pageMaker.next }">
-														<li class="paginate_button next"><a href="${pageMaker.next } +1">Next</a></li>
+														<li class="paginate_button next"><a href="${pageMaker.endPage +1}">Next</a></li>
 													</c:if>				
 													
 												</ul>
 											</div>
-											<!-- 끝  -->
 											<form id='actionForm' action="/warm/message" method='get'>
 												<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
 												<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
 											</form>
 											
+											<!-- 끝  -->
 											</div>
+											
 											
 									</div>
 								</div>
@@ -330,13 +333,16 @@
 			/* 페이징  */
 			var actionForm = $("#actionForm");
 			
-			$(".paginate_button a").on("click", finction(e){
+ 			$(".paginate_button a").on("click", function(e) {
 				e.preventDefault();
 				
 				console.log('click');
 				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 				actionForm.submit();
-			});
+			}); 
+			
+			
+			
 		});
 	</script>
 </body>

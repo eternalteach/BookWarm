@@ -31,16 +31,17 @@ public class MsgController {
 	public String message(Principal principal, HttpServletRequest request, Model model, MsgTableVO msgvo, Criteria cri) {
 		log.info("=================messgae=============================");
 		String user_id = principal.getName();
-		String msg_get_id = request.getParameter("msg_get_id");
-		msg_get_id = user_id;
 		
 		log.info("유저아이디:" + user_id);
-		log.info(msg_get_id);
 		log.info(cri);
 		
 		//model.addAttribute("msglist", msgservice.msglist(user_id));
-		model.addAttribute("msglist", msgservice.msgpaging(msg_get_id, cri));
-		model.addAttribute("pageMaker", new PageDTO(cri, 123));
+		
+		model.addAttribute("msglist", msgservice.msgpaging(user_id, cri));
+		
+		int total = msgservice.getTotalCount(cri);
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		
 		
 		model.addAttribute("msglist2", msgservice.msglist2(user_id));
 		model.addAttribute("msgcount", msgservice.msgcount(user_id));

@@ -39,13 +39,19 @@
 	<select id="msgpaging" resultType="com.book.warm.vo.MsgTableVO">
  	<![CDATA[
  	select *
- 	from (select rownum rn, msg_no, msg_title, msg_content, msg_get_id, msg_send_id 
+ 	from (select rownum rn, msg_no, msg_get_id, msg_send_id, msg_title, msg_content, msg_send_time, msg_read_time
         	from msg_table
         	where msg_get_id = #{msg_get_id}
-       		and rownum <= #{pageNum} * #{amount}
+       		and rownum <= #{cri.pageNum} * #{cri.amount}
             order by msg_no desc)
-	where rn > (#{pageNum} -1) * #{amount}
+	where rn > (#{cri.pageNum} -1) * #{cri.amount}
     ]]>
+	</select>
+	<!-- 전체개수 -->
+	<select id="getTotalCount" resultType="int">
+	 select count(*) 
+	 from msg_table
+	 where msg_no > 0
 	</select>
 </mapper>
 
