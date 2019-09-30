@@ -1,6 +1,7 @@
 @charset "UTF-8";
 body{
-background-color: white;}
+width:100vh;
+height:100vh}
 
 .margin-zero td, tr{
 	margin: 0px;
@@ -19,18 +20,33 @@ background-color: white;}
 	margin-right: auto;
 }
 
+.header {
+	height:100px;
+	width:100vw;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .library-table {
-	width: 795px;
+	width: 796px;
 	height: auto;
 	dispay: block;
 	margin-left: auto;
-	margin-right: auto;
+	margin-right: 10%;
 	background-color: transparent;
 	background-image: url('/warm/resources/img/library/bookshelf/bookshelf-2.png');
+	background-size: 100% 500px;
 }
 
 .library_emptySpace {
-	width: 95px;
+	width: 37px;  
+}
+
+.full-img img{
+position: absolute; top:0; left: 0;
+width: 100%;
+height: 100%;
 }
 
 .book-img-location {

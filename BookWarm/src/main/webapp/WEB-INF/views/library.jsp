@@ -17,33 +17,43 @@
 <%@ include file="includes/header/script-vertexEx.jsp"%>
 <link rel="stylesheet" href="resources/css/main.css" />
 </head>
-<body style="background-image: url('/warm/resources/img/background/star01.gif');">
+<body style="background-image:url('/warm/resources/img/library/table/table-3.png'), url('/warm/resources/img/library/background/Draft-4.png'); background-size:100% 30%, 100% 109%; background-position:0px 115% ,0px 0px; background-repeat:no-repeat;">
+	<div class="header">
 	<button type="button" class="btn" data-toggle="modal" data-target="#modal-library">modal-library</button>
 	<a href="reviewMain?user_id=aaa"><button>감상 메인페이지</button></a>
 	<a href="shop/shoplist" class="fa fa-book fa" style="color:white;margin-right: 10px;
 											margin-left: 10px">책 리스트	</a>
 	<a href="message" class="icon-mail-2" style="color:white;font-style: italic;margin-right: 10px;">쪽지</a>
 	<a href="customLogout" style="color:white;font-style: italic;" >로그아웃</a>
-	<div class="library-body">
-		<table class="library-table margin-zero" style="width: 795px; height: 1001px;">
-			<tr style="height: 43px;">
-				<td colspan="9" style="width: 795px;"></td>
+	</div>
+	
+	<div class="decoration-books" style="position: absolute; left:10vw; bottom:5vh;">
+	<img src="/warm/resources/img/library/books/books-3.png" style="width:43%; height:43%;">
+	</div>
+	
+	<div style="position: absolute; left:40%; bottom:19.5%;">
+		<table class="library-table margin-zero" style="width: 796px; height: 500px;">
+			<tr style="height: 7px;">
+				<td rowspan="11" style="width: 19px;"></td><td colspan="15" style="width: 796px;"></td><td style="width: 15px;" rowspan="11"></td>
 			</tr>
-			<c:forEach var="row" begin="0" end="4">
-				<tr style="height: 71px;">
-					<td colspan="9" style="width: 795px;"></td>
+			<c:forEach var="row" begin="0" end="2">
+				<tr style="height: 33px;">
+					<td colspan="15" style="width: 796px;"></td>
 				</tr>
 				<tr style="height: 100px;">
-					<c:forEach var="colum" begin="0" end="3">
+					<c:forEach var="colum" begin="0" end="4">
 						<td class="library_emptySpace"></td>
 						<td class="tdnum${row*4+colum}"></td>
+						<td class="library_emptySpace"></td>
 					</c:forEach>
-					<td class="library_emptySpace"></td>
 				</tr>
-				<tr style="height: 20px;">
-					<td colspan="9" style="width: 795px;"></td>
+				<tr style="height: 8px;">
+					<td colspan="15" style="width: 796px;"></td>
 				</tr>
 			</c:forEach>
+				<tr style="height: 66px;">
+					<td colspan="15" style="width: 796px;"></td>
+				</tr>
 		</table>
 	</div>
 	
