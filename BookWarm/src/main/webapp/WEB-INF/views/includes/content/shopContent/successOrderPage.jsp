@@ -42,7 +42,8 @@
 								<!-- <p>도서명 수량 표기</p> -->
 								<p>${isbn}, ${cart_cnt[idx.index]}권</p>
 							</c:forEach>
-							<p>총 금액 : ${ordersVO.orders_total}</p>
+							<p>총 도서 금액 : ${ordersVO.orders_total}</p>
+							<p>총 지불 금액 : ${ordersVO.orders_pay_total}</p>
 							결제 방법 :<p id="orders_payment">${ordersVO.orders_payment}</p><br>
 							
 							<div id="depositInfo">

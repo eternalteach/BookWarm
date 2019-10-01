@@ -216,7 +216,7 @@
 
                                              <td class="cart-product-name" colspan="4">
                                                 <span class="amount color"><strong id="finalPay">${subTotal}</strong></span>
-                                                <input type="hidden" name="orders_total" id="submitTotal" value="${subTotal}">원
+                                                <input type="hidden" name="orders_pay_total" id="submitTotal" value="${subTotal}">원
                                                 <%-- <input type="hidden" name="orders_total" id="submitTotal" value="${subTotal}">원 --%>
                                              </td>
                                           </tr>
@@ -226,7 +226,7 @@
 
                                  <div class="spacer-t40 spacer-b30">
                                     <div class="tagline"><span> 결제 정보 </span></div><!-- .tagline -->
-                                   <input type="hidden" id="total" name="total" value="${subTotal}">
+                                   <input type="hidden" id="total" name="orders_total" value="${subTotal}">
                                  </div>
 
                                  <div class="section">

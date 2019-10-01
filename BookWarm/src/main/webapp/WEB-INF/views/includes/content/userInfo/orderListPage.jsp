@@ -57,7 +57,7 @@
 									</h3>
 									<div class="search-item-meta">
 										<ul class="list-inline">
-											<li class="list-inline-item time">${orderList[cnt].orders_total}원</li>
+											<li class="list-inline-item time">결제 금액 : ${orderList[cnt].orders_total}원</li>
 											<li class="list-inline-item time">${list1.orders_date}</li>
 										</ul>
 									</div>
@@ -68,11 +68,11 @@
 									<div class="search-item-content" id="${idx.index}">
 									
 									<h3 class="search-item-caption">
-										<a href="#">주문번호 : ${list1.orders_no}</a>
+										<a href="javascript:">주문번호 : ${list1.orders_no}</a>
 									</h3>
 									<div class="search-item-meta">
 										<ul class="list-inline">
-											<li class="list-inline-item time">${orderList[cnt].orders_total}원</li>
+											<li class="list-inline-item time">결제 금액 : ${orderList[cnt].orders_total}원</li>
 											<li class="list-inline-item time">${list1.orders_date}</li>
 										</ul>
 									</div>
