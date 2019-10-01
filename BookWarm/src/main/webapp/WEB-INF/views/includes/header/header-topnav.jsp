@@ -7,17 +7,16 @@
 <!-- body안에 넣기 -->
 <!--Header-->
 
-
     <header id="header" class="header-narrow header-full-width" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 70}">
         <div class="header-body">
             <div class="header-container container">
                 <div class="header-row">
-                    <div class="header-column justify-content-start">
+                    <div class="justify-content-start">
 						<a href="warm/library">
                            <img src="/warm/resources/img/header/Alice_rabbit03.png" style="height:120px; padding:0px; margin:5px;">
 						</a>
                     </div>
-                    <div class="header-column justify-content-end">
+                    <div class="justify-content-end">
                         <div class="header-nav header-nav-light-dropdown">
                             <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1">
                                 <nav class="collapse">
