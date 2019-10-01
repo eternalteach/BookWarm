@@ -43,18 +43,12 @@
 					<div class="col-sm-3 v-right-sidebar-wrap pt-8">
 						<!--Tab-->
 						<ul id="myTab" class="nav v-right-sidebar-inner">
-							<li><a class="aa" href="#modal-msg" data-toggle="modal" data-target="#modala"
-							class="nav v-right-sidebar-inner" >
-							<i class="fa fa-edit"></i>쪽지 보내기</a></li>
-							
-							
-							<li><a href="#counters" id="#counters" data-toggle="tab"
-								class="active show"> <i class="fa fa-envelope-o"></i>받은쪽지함</a></li>
-							<li><a href="#recent-posts" id="#recent-posts" data-toggle="tab"> <i class="fa fa-envelope-open-o"></i>보낸쪽지함</a></li>
+							<li><a class="aa" href="#modal-msg" data-toggle="modal" data-target="#modala" class="nav v-right-sidebar-inner"><i class="fa fa-edit"></i>쪽지 보내기</a></li>
+							<li><a href="#counters" id="#counters" data-toggle="tab" class="active show"> <i class="fa fa-envelope-o"></i>받은쪽지함</a></li>
+							<li><a href="#recent-posts" id="#recent-posts" data-toggle="tab"><i class="fa fa-envelope-open-o"></i>보낸쪽지함</a></li>
 						</ul>
 						<!--End Tab-->
 					</div>
-
 
 					<!--Tab Content-->
 					<div class="col-sm-9 v-sidebar-content-wrap mb-7 mt-3">
@@ -83,31 +77,16 @@
 							<!--보낸 쪽지함-->
 							<div class="tab-pane" id="recent-posts">
 								<div class="row">
-									<div id="sendMSG"class="col-md-9">
+									<div class="col-md-9">
 										<h1>보낸쪽지함&ensp;${msgcount2}개</h1>
-										<c:forEach items="${msglist2}" var="msglist2">
-										<fmt:setLocale value="en_US" scope="session"/>
-										<fmt:formatDate var="fmt_date2" value="${msglist2.msg_send_time }" pattern="ddMMM"/>
-										<div class="v-blog-recent-post" style="border: 1px dashed blue; margin: 20px; float:left;width:250px;height:150px ">
-											<div class="blog-list-item-date">
-												${fn:substring(fmt_date2,0,2)}<span>${fn:substring(fmt_date2,2,5)}</span>
+										<div id="sendMSG">
+										<!-- 보낸쪽지 리스트 불러오기  -->
+										</div>
+
+											<!-- 페이징 -->
+											<div class="row col-lg-12">
+												<div class="panel-footer center msgPaging2"></div>
 											</div>
-											
-											<div class="blog-list-content" style="margin-top: 10px;">
-													<h6 class="special" style="color: pink; text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:80px;">
-														<a id="t" href="#" class="title" data-toggle="modal" data-target="#modalview2${msglist2.msg_no}" 
-														 style="padding-top: 10px;" >
-														제목 : ${msglist2.msg_title}</a>
-													</h6>
-													<%-- <small>보낸 사람 ${msglist2.msg_send_id}</small> --%>
-													<small>받는 사람${msglist2.msg_get_id}</small>
-													<div class="blog-list-item-excerpt">
-													<p style="text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:70px" >${msglist2.msg_content}</p>
-													<a href="/warm/msgdelete?msg_no=${msglist2.msg_no}&tab_name=recent-posts"><i id="msgd" class="fa fa-close">삭제</i></a>
-												</div>
-											</div>
-									</div>
-									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -120,30 +99,6 @@
 	</div>
 	
 <!-- 모달창 -->
-<!-- 답장하기 모달창  -->
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
-    <div class="modal-dialog undefined">
-        <div class="modal-content">
-            <div class="modal-body post-content">
-				<div class="form-inline" style="width:100px" >
-						<form id="replyModal" action="/warm/send">
-								<h1>답장하기</h1>
-								보낸사람<input name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
-								<div id="temp">
-								받는 사람<input name="msg_get_id" value="" readonly><br><br>
-								</div>
-								 제목 <input id="titlesubmit" name="msg_title" type="text" value="" style="padding-top: 10px"><br><br>
-						  		<textarea id="contentsubmit" name="msg_content" style="width:400px; height:300px;"></textarea><br>
-						  
-						  <input id="sendsubmit" type="submit" value="보내기">
-						 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-						</form>
-				</div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- 쪽지보내기모달창 -->
 <div class="modal fade" id="modala" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
     <div class="modal-dialog undefined">
@@ -157,6 +112,32 @@
 								 제목 <input id=titlee name="msg_title" type="text" ><br><br>
 						  		<textarea id=contentt name="msg_content" style="width:400px; height:300px;"></textarea><br>
 						  <input id="sendsend" type="submit" value="보내기" onsubmit="return checkForm();">
+						 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						</form>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 답장하기 모달창  -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+    <div class="modal-dialog undefined">
+        <div class="modal-content">
+            <div class="modal-body post-content">
+				<div class="form-inline" style="width:100px" >
+						<form id="replyModal" action="/warm/send">
+								<h1>답장하기</h1>
+								보낸사람<input id="send_id" name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
+								<div id="temp">
+								받는 사람<input name="msg_get_id" value="" readonly><br><br>
+								</div>
+								 제목 <input id="titlesubmit" name="msg_title" type="text" value="" style="padding-top: 10px"><br><br>
+						  		<textarea id="contentsubmit" name="msg_content" style="width:400px; height:300px;"></textarea><br>
+						  
+						  <input id="sendsubmit" type="submit" value="보내기">
 						 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 						</form>
 				</div>
@@ -217,10 +198,10 @@
 	<script>
 		$(document).ready(function() {
 			
-			//페이징
+			//받은페이징
 			var msgPageNum = 1;
 			var msgPaging = $(".msgPaging");
-			var total = $(total);
+			var total = ${total};
 			pagingService.paging(msgPageNum,total,msgPaging);
 			var msgtable = $("#getMSG");
 			showmsgboard(-1);
@@ -243,24 +224,20 @@
 						 var date = date.getDate();
 						 msghtml+="<div class='blog-list-item-date' style='margin-left: 10px;margin-top: 10px;'>"+date+"<span>"+month+"</span></div>";
 						 msghtml+="<div class='blog-list-content' style='margin-top: 10px;'><h6 class='special' style='text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:80px;'>";
-						 msghtml+="<a id='t' href='#' class='title' data-toggle='modal' data-target=#modalview"+msglist[i].msg_no+"style='padding-top: 10px;'>"+msglist[i].msg_title+"</a></h6>";
+						 msghtml+="<a id='t' href='#' class='title' data-toggle='modal' data-target='#modalview"+msglist[i].msg_no+"' style='padding-top: 10px;'>"+msglist[i].msg_title+"</a></h6>";
 						 msghtml+="<small>보낸 사람"+msglist[i].msg_send_id+"</small>";
 						 msghtml+="<small>받는 사람 "+msglist[i].msg_get_id+"</small>";
 						 msghtml+="<div class='blog-list-item-excerpt'<p style='text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:70px' >"+msglist[i].msg_content+"</p></div>";
-						 msghtml+="<div class='box' style='padding-bottom: 20px;'>"
-						 msghtml+="<a class='bb' href='#modal-msgg' data-toggle='modal' data-target=''#modal' data-send_id="+msglist[i].msg_send_id+">"
+						 msghtml+="<div class='box' style='padding-bottom: 20px;'>";
+						 msghtml+="<a class='bb' href='#modal-msgg' data-toggle='modal' data-target='#modal' data-send_id="+msglist[i].msg_send_id+">"
 						 msghtml+="<i class='icon-baloon'></i>답장</a>"	
-						 
-						 msghtml+="<a href='#' data="+msglist[i].msg_no+"><i class='icon-bin-2' >삭제</i></a>"
-						 
-						 
+						 msghtml+="<a id='del' href='#' data="+msglist[i].msg_no+"><i class='icon-bin-2' >삭제</i></a>"
 						 msghtml+="<i class='icon-skull-1'><a>신고</a></i></div></div></div>"
 				}
 					 msgtable.html(msghtml);
 					 pagingService.paging(msgPageNum,total,msgPaging);
 				});
 			}
-			
 			msgPaging.on("click","li a",function(e){
 				e.preventDefault();
 				console.log("page click");
@@ -270,23 +247,67 @@
 				showmsgboard(msgPageNum);
 			});
 			
-			
-			//삭제
-			$("#getMSG").on("click", "a", function() {
-				alert("ddd");
+			$("#getMSG").on("click", "#del", function(e) {
 				var sendidid = $(this).attr("data");
 				alert(sendidid);
+				
 				msgservice.msgdelete(sendidid, function(count){
-					console.log("msg_no삭제");
-					if(count === "success"){
-						alert("제거");
-				}
-			}, function(err){
-				alert('에러');
+						if(count === "success"){
+							alert("받은쪽지삭제")
+							showmsgboard(msgPageNum);
+					}
+				});
 			});
-				showmsgboard(msgPageNum);
+		/* 받은쪽지 END  */
 			
-		});
+			//보낸쪽지함
+			var msgPageNum2 = 1;
+			var msgPaging2 = $(".msgPaging2");
+			var total2 = ${total2};
+			pagingService.paging(msgPageNum2,total2, msgPaging2);
+			var msgtable2 = $("#sendMSG");
+			showmsgboard2(-1);
+			
+			function showmsgboard2(page){
+				msgservice.msgpaging2(page,function(msglist2){
+					if(page==-1){
+						msgPageNum2==Math.ceil(total/10.0);
+						showmsgboard2(msgPageNum2);
+						return;
+					}
+					let msghtml2 ="";
+					if(msglist2==null || msglist2.length==0){
+						return;
+					}
+					 for(var i=0, len=msglist2.length||0;i<len;i++){
+						 msghtml2+="<div class='v-blog-recent-post'>";
+						 var date = new Date(msglist2[i].msg_read_time);
+						 var month = date.getMonth()+1;
+						 var date = date.getDate();
+						 msghtml2+="<div class='blog-list-item-date'>"+date+"<span>"+month+"</span></div>";
+						 msghtml2+="<div class='blog-list-content'><h6 class='special'>";
+						 msghtml2+="<a id='t' href='#' class='title' data-toggle='modal' data-target='#modalview2"+msglist2[i].msg_no+"'>"+msglist2[i].msg_title+"</a></h6>";
+						 msghtml2+="<small>보낸 사람"+msglist2[i].msg_send_id+"</small>";
+						 msghtml2+="<small>받는 사람 "+msglist2[i].msg_get_id+"</small>";
+						 msghtml2+="<div class='blog-list-item-excerpt'<p>"+msglist2[i].msg_content+"</p></div>";
+						 msghtml2+="<div class='box' style='padding-bottom: 20px;'>"
+						 msghtml2+="<a class='bb' href='#modal-msgg' data-toggle='modal' data-target='#modal' data-send_id="+msglist2[i].msg_send_id+">"
+						 msghtml2+="<a id='del2' href='#' data="+msglist2[i].msg_no+"><i class='icon-bin-2' >삭제</i></a>"
+						 msghtml2+="</div></div></div>"
+				}
+					 msgtable2.html(msghtml2);
+					 pagingService.paging(msgPageNum2,total2,msgPaging2);
+				});
+			}
+			
+			msgPaging2.on("click","li a",function(e){
+				e.preventDefault();
+				let targetPageNum=$(this).attr("href");
+				console.log("targetPageNum: "+targetPageNum);
+				msgPageNum2=targetPageNum;
+				showmsgboard2(msgPageNum2);
+			});
+			
 			
 			/* 답장하기 눌렀을때 send_id 가져오기 */
 			$(".bb").on("click", function() {
@@ -299,14 +320,7 @@
 				alert(temp.html); */
 				temp.html(str);
 			});
-			/* 답장하기 아이디 가져오기 */
 				
-			/* 새로고침시 유지 */
-/* 			if('${tab_name}' != '') {
-				$("a[href=#${tab_name}]").get(0).click();
-			}; */
-			/* 끝 */
-			
 			/* 쪽지보내기 유효성검사 */
 				$("#sendsend").on("click", function(e){
 					e.preventDefault();

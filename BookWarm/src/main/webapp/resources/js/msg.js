@@ -2,11 +2,12 @@ console.log("MSG..........................................");
 
 var msgservice = (function(){
 	
+	//받은쪽지
 	function msgpaging(pages, callback, error){
-		console.log("보낸쪽지함................")
+		console.log("받은쪽지함................")
 		var msgpageNum = pages;
 		
-		$.getJSON("message/pages/"+msgpageNum+".json",
+		$.getJSON("message/get/"+msgpageNum+".json",
 
 		function(msglist){
 			if(callback){
@@ -19,12 +20,34 @@ var msgservice = (function(){
 		});
 	}
 	
+	
+	//받은쪽지
+	function msgpaging2(pages, callback, error){
+		
+		console.log("보낸쪽지함................ 가져와라")
+		var msgpageNum2 = pages;
+		
+		$.getJSON("message/send/"+msgpageNum2+".json",
+
+		function(msglist2){
+			if(callback){
+				callback(msglist2);
+			}
+		}).fail(function(xhr,status,err){
+			if(error){
+				error();
+			}
+		});
+	}
+	
+	
+	
 	//제거
-	function msgdelete(msg_no, callback, error){
+	function msgdelete(msg_no,msg_get_id,callback, error){
 		
 		$.ajax({
 			type : 'delete',
-			url : 'msgdelete/' + msg_no,
+			url : 'msgdelete/' + msg_no,msg_get_id,
 			success : function(deleteResult, status, xhr){
 				if(callback){
 					callback(deleteResult);
@@ -42,6 +65,7 @@ var msgservice = (function(){
 	
 	return{
 		msgpaging:msgpaging,
+		msgpaging2:msgpaging2,
 		msgdelete:msgdelete
 	};
 })();

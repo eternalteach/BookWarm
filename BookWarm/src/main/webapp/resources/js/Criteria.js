@@ -7,6 +7,7 @@ var pagingService = (function() {
 		let endNum=Math.ceil(pageNum/10.0)*10;
 		let startNum = endNum -9;
 		
+		
 		let prev=startNum != 1;
 		let next = false;
 		

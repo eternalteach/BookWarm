@@ -20,9 +20,11 @@
 		values(
 		MSG_SEQ.nextval, #{msg_send_id},  #{msg_get_id}, #{msg_title}, #{msg_content})
  	</insert> 
-	<!-- 쪽지삭제  -->
+	<!-- 받은 쪽지삭제  -->
 	<delete id="msgdelete">
-	delete from msg_table where msg_no = #{msg_no}
+	delete from msg_table 
+	where msg_no = #{msg_no}
+	and msg_get_id = #{msg_get_id}
 	</delete>
 	<!-- 쪽지세기 -->
 	<select id="msgcount" resultType="int">
@@ -35,7 +37,7 @@
 	from msg_table
     where msg_send_id = #{msg_send_id}
 	</select>
-	<!-- 페이징  -->
+	<!-- 받은쪽지페이징  -->
 	<select id="msgpaging" resultType="com.book.warm.vo.MsgTableVO">
  	<![CDATA[
  	select *
@@ -47,11 +49,31 @@
 	where rn > (#{cri.pageNum} -1) * #{cri.amount}
     ]]>
 	</select>
-	<!-- 전체개수 -->
+	<!-- 보낸쪽지페이징  -->
+	<select id="msgpaging2" resultType="com.book.warm.vo.MsgTableVO">
+ 	<![CDATA[
+ 	select *
+ 	from (select rownum rn, msg_no, msg_get_id, msg_send_id, msg_title, msg_content, msg_send_time, msg_read_time
+        	from msg_table
+        	where msg_send_id = #{msg_send_id}
+       		and rownum <= #{cri.pageNum} * #{cri.amount}
+            order by msg_no desc)
+	where rn > (#{cri.pageNum} -1) * #{cri.amount}
+    ]]>
+	</select>
+	<!-- 받은쪽지 전체개수 -->
 	<select id="getTotalCount" resultType="int">
 	 select count(*) 
 	 from msg_table
-	 where msg_no > 0
-	</select>
+	 where msg_get_id = #{msg_get_id}
+	 and msg_no > 0 
+ 	</select>
+ 	<!-- 보낸쪽지 전체개수  -->
+ 	<select id="sendTotalCount" resultType="int">
+	 select count(*) 
+	 from msg_table
+	 where msg_send_id = #{msg_send_id}
+	 and msg_no > 0 
+ 	</select>
 </mapper>
 
