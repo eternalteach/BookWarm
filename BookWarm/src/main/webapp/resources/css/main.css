@@ -45,7 +45,7 @@ height:100vh}
 }
 
 .library_emptySpace {
-	width: 2.66vw;  
+	width: 3vw;  
 }
 .top-padding-3vh{
 	padding-top:3vh;
@@ -64,7 +64,7 @@ height: 100%;
 
 .book-thumbnail {
 	height: 12.5vh;
-	width: 11vh;
+	width: 10vh;
 }
 .book-position{
 }
@@ -139,27 +139,17 @@ bottom:5vh;
 	width: 55vw;
 	height: 67vh;
 }
-.bookshelf-table-bottom{
-	height: 1.2vh;
-}
 .bookshelf-table-bottomSpace{
-	height: 8.8vh;
+	height: 8.6vh;
 }
-.bookshelf-table-side{
-	width:1.4vw;
-}
-.bookshelf-table-centerbar{
-	width:11vw;
-}
-.bookshelf-table-bar{
-	width:55vw;
+.bookshelf-table-bottom{
+	height: 1vh;
 }
 .bookshelf-table-books{
-	height: 12vh;
-	width: 6vw;
+	height: 8vh;
 }
 .bookshelf-table-booktop{
-	height: 3.6vh;
+	height: 4vh;
 }
 .bookshelf-table-topspace{
 	height: 1vh;
