@@ -21,8 +21,8 @@
 	<div class="header top-padding-3vh" align="center">
 		<div>
 			<a data-toggle="modal" data-target="#modal-library" class="library-font">Search Books</a>
-			<a href="reviewMain?user_id=aaa" class="library-font">감상 메인페이지</a>
-			<a href="shop/shoplist" class="fa fa-book fa library-font">책 리스트</a>
+			<a href="reviewMain?user_id=aaa" class="library-font">감상 메인</a>
+			<a href="shop/shoplist" class="fa fa-book fa library-font">서점</a>
 			<a href="message" class="icon-mail-2 library-font">쪽지</a>
 			<a href="customLogout" class="library-font">로그아웃</a>
 		</div>
