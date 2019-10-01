@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.book.warm.page.Criteria;
 import com.book.warm.page.PageDTO;
@@ -62,33 +63,13 @@ public class MsgController {
 		return new ResponseEntity<>(msgservice.msgpaging(user_id, criteria),HttpStatus.OK);
 	}
 	
-	//쪽지보내기
-	@GetMapping(value = "/send", consumes = "application/json",
-			produces = { MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<MsgTableVO> create(@RequestBody MsgTableVO msgvo, Principal principal){
-		log.info("=================send=======================");
-		log.info(msgvo);
-		msgservice.msginsert(msgvo);
-		return new ResponseEntity<MsgTableVO>(msgservice.msginsert(msgvo),HttpStatus.OK);
-	}
-	
-	//쪽지삭제
-	@DeleteMapping(value= "/{msg_no}",
-				produces = {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> msgdelete(@PathVariable("msg_no") int msg_no){
-		log.info("삭제");
-		return msgservice.msgdelete(msg_no)==1 
-				? new ResponseEntity<>("success", HttpStatus.OK)
-				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-		
 	// 모달창에서 쪽지보내기
-//	@RequestMapping(value = "/send", method = RequestMethod.GET)
-//	public String send(Principal principal, HttpServletRequest request, Model model, MsgTableVO msgvo) {
-//		log.info("=================send=============================");
-//		msgservice.msginsert(msgvo);
-//		return "redirect:/message";
-//	}
+	@RequestMapping(value = "/send", method = RequestMethod.GET)
+	public String send(Principal principal, HttpServletRequest request, Model model, MsgTableVO msgvo) {
+		log.info("=================send=============================");
+		msgservice.msginsert(msgvo);
+		return "redirect:/message";
+	}
 	
 	// 쪽지 삭제
 //	@RequestMapping(value = "/msgdelete", method = RequestMethod.GET)
@@ -99,8 +80,19 @@ public class MsgController {
 //		log.info("쪽지번호 : " + msg_no);
 //		msgservice.msgdelete(msg_no);
 //		rttr.addFlashAttribute("tab_name", request.getParameter("tab_name"));
-//
 //		return "redirect:/message";
 //	}
+	
+//	//쪽지삭제
+	@DeleteMapping(value= "/msgdelete/{msg_no}",
+				produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> msgdelete(@PathVariable("msg_no") int msg_no){
+		log.info("====================삭제====================================");
+		return msgservice.msgdelete(msg_no)==1 
+				? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+		
+//	
 	
 }

@@ -14,7 +14,7 @@ public interface MsgMapper {
 	
 	
 	public List<MsgTableVO> msglist2(@Param("msg_send_id") String msg_send_id);
-	public MsgTableVO msginsert(MsgTableVO msgvo);
+	public void msginsert(MsgTableVO msgvo);
 	public int msgdelete(int msg_no);
 	public int msgcount(String msg_get_id);
 	public int msgcount2(String msg_send_id);
