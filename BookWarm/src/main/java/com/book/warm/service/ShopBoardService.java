@@ -71,14 +71,6 @@ public class ShopBoardService {
 
 	public void addPost(String user_id, String post_name, String post_phone, int post_zipcode, String post_addr,
 			String post_addr_detail) {
-		System.out.println("service-------------------------");
-		System.out.println("user_id : "+ user_id);
-		System.out.println("post_name : "+ post_name);
-		System.out.println("post_phone : "+ post_phone);
-		System.out.println("post_zipcode : "+ post_zipcode);
-		System.out.println("post_addr : "+ post_addr);
-		System.out.println("post_addr_detail : "+ post_addr_detail);
-		
 		shopMapper.addPost(user_id, post_name, post_phone, post_zipcode, post_addr, post_addr_detail);
 	}
 
@@ -96,6 +88,10 @@ public class ShopBoardService {
 
 	public void setUserPoint(String user_id, int point) {
 		shopMapper.setUserPoint(user_id, point);
+	}
+
+	public void addTotalPrice(String user_id, int orders_pay_total) {
+		shopMapper.addTotalPrice(user_id, orders_pay_total);
 	}
 
 	

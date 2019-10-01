@@ -119,6 +119,11 @@
 		where user_id=#{user_id}
 	</update>
 	
+	<update id="addTotalPrice">
+		update user_info set user_tot_price = user_tot_price + #{orders_pay_total}
+		where user_id=#{user_id}
+	</update>
+	
 </mapper>
 
 

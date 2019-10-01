@@ -108,6 +108,7 @@
 		var day = $('#day').val();
 		var bday = year+"-"+month+"-"+day;
 		$('#form').append("<input type='hidden' name='user_bday_string' value='"+bday+"'>");
+		 /* $('#form').append("<input type='hidden' name='user_bday' value='"+bday+"'>"); */
 		
 		
 		// 3. 폰번호
