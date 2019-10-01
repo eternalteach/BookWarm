@@ -934,7 +934,7 @@
     <!-- 댓글 처리를 위한 comment.js 추가 -->
     <script type="text/javascript" src = "/warm/resources/Vertex/js/comment.js"></script>
     
-    <script type="text/javascript" src = "/warm/resources/js/Admin.js"></script>
+    <script type="text/javascript" src = "/warm/resources/js/admin.js"></script>
     <script type="text/javascript" >
 
 	$("#adminMove").on("click",function(){

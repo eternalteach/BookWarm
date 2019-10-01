@@ -9,6 +9,7 @@
 	<%@ include file="./includes/header/header/vertexExHeader.jsp"%>
 </head>
 <body>
+	<%@ include file="./includes/shop/shopCartPage-script.jsp"%>
 	<%@ include file="./includes/header/shopHeader/shopHeaderNav.jsp"%>
 	<%@ include file="./includes/content/shopContent/shopCartPage.jsp"%>
 	<%@ include file="./includes/footer/shopFooter/shopFooterNav.jsp"%>	

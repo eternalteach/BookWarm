@@ -17,6 +17,10 @@
 	delete from community_board_comment where comm_cmt_no=#{comm_cmt_no}
 	</delete>
 	
+	<delete id='deleteAllPostComments'>
+	delete from community_board_comment a where a.comm_no=(select b.comm_no from community_board b where a.comm_no=b.comm_no and b.comm_no=#{comm_no})
+	</delete>
+	
 	<update id='updateComment'>
 	update community_board_comment set comm_cmt_content=#{comm_cmt_content}, comm_cmt_modify_time=sysdate where comm_cmt_no=#{comm_cmt_no}
 	</update>

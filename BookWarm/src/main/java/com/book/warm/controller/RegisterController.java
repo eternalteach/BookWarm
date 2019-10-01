@@ -92,6 +92,7 @@ public class RegisterController {
 		return "redirect:/register/checkDuplicateRegister";
 	}
 	
+	
 	// 회원가입 
 	@RequestMapping(value="/registerSuccess", method=RequestMethod.POST)
 	public String registerSuccess(UserVO userVO, HttpServletRequest req) {

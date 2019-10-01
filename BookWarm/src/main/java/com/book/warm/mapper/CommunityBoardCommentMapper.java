@@ -16,6 +16,8 @@ public interface CommunityBoardCommentMapper {
 	public CommunityBoardCommentVO readComment(@Param("comm_cmt_no")int comm_cmt_no,@Param("user_id")String user_id);
 	
 	public int deleteComment(int comm_cmt_no);
+
+	public int deleteAllPostComments(int comm_no);
 	
 	public int updateComment(CommunityBoardCommentVO communityBoardCommentVO);
 	

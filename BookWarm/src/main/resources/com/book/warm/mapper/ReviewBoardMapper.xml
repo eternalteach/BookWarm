@@ -166,4 +166,24 @@
 		select * from review_attach where uploadpath = to_char(sysdate -1, 'yyyy\mm\dd')
 	</select>
 	
+	<!-- 모든 쿠폰을 가져온다. -->	
+	<select id="compareCouponTime" resultType="com.book.warm.vo.CouponNoVO">
+	<![CDATA[
+		select cn.*
+		from coupon c inner join coupon_no cn
+		on cn.coupon_no = c.coupon_no
+		where cn.coupon_available='t'
+		and c.coupon_validate<sysdate
+	]]> 
+	</select>
+	
+	<update id="changeCouponAvailable" parameterType="com.book.warm.vo.CouponNoVO">
+		update coupon_no
+		set coupon_available='f'
+		where coupon_no=#{coupon_no}
+		and user_id=#{user_id}
+	</update>
+	
+	
+	
  </mapper>

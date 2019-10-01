@@ -18,6 +18,8 @@ public interface CommunityBoardCommentService {
 	public int modify(CommunityBoardCommentVO communityBoardCommentVO);
 
 	public int remove(int comm_cmt_no);
+	
+	public int deleteAllPostComments(int comm_no);
 
 	public List<CommunityBoardCommentVO> getList(Criteria criteria, int comm_no);
 	

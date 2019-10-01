@@ -1,4 +1,5 @@
-﻿   <div class="wrapper">
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+   <div class="wrapper">
       <div class="page has-sidebar has-right-sidebar bordered">
 
          <section class="page-header b-bordered t-bordered">
@@ -21,7 +22,8 @@
             <section class="section-primary main-color">
 
                <div class="container">
-
+			<!-- --------------------------------------------------------------------------------------- -->
+			<form method="post" action="/warm/shop/successOrder" id="account2">
                   <div class="row">
 
                      <div class="col-md-7">
@@ -31,7 +33,6 @@
                            <div class="form-header pt-0 pl-0">
                               <h4 class="fs-24">결제 상세 정보</h4>
                            </div>
-                           <form method="post" action="/" id="accountx" name="chargeForm">
                               <div class="form-body pl-0">
 
                                  <div class="spacer-b30">
@@ -40,14 +41,16 @@
                                  
                                  <div class="section">
                                     <label class="field prepend-icon">
-                                       <input type="text" name="name" id="name" class="gui-input" placeholder="이름">
+                                       <input type="text" id="post_name" name="post_name" class="gui-input" placeholder="이름">
+<!--                                        <input type="text" name="name" id="name" class="gui-input" placeholder="이름"> -->
                                        <span class="field-icon"><i class="fa fa-user"></i></span>
                                     </label>
                                  </div><!-- end section -->
 
                                  <div class="section">
                                     <label for="mobile" class="field prepend-icon">
-                                       <input type="tel" name="mobile" id="mobile" class="gui-input" placeholder="휴대폰 번호">
+                                       <input type="tel" id="post_phone" name="post_phone" class="gui-input" placeholder="휴대폰 번호">
+<!--                                        <input type="tel" name="mobile" id="mobile" class="gui-input" placeholder="휴대폰 번호"> -->
                                        <span class="field-icon"><i class="fa fa-phone-square"></i></span>
                                     </label>
                                  </div><!-- end section --><br>
@@ -56,7 +59,7 @@
                                    	<!-- 삽입 시작////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
                                    	<div class="section colm colm8">
                                    		<label class="field prepend-icon">
-                                    	   <input type="text" id="sample4_postcode" class="gui-input" placeholder="우편번호">
+                                    	   <input type="text" id="sample4_postcode" name="post_zipcode" class="gui-input" placeholder="우편번호">
 	                                       <span class="field-icon"><i class="fa fa-building-o"></i></span>
 	                                    </label>
                                     </div>
@@ -69,7 +72,7 @@
 	                             </div>
 	                             <div class="frm-row">
                                     <div class="section colm colm6">
-                                       		<input type="text" id="sample4_roadAddress" class="gui-input" placeholder="도로명주소">
+                                       		<input type="text" id="sample4_roadAddress" name="post_addr" class="gui-input" placeholder="도로명주소">
                                     </div><!-- end section -->
 
                                     <div class="section colm colm6">
@@ -81,18 +84,19 @@
 	                             
 	                             <div class="frm-row">
                                     <div class="section colm colm6">
-                                       <input type="text" id="sample4_detailAddress" class="gui-input" placeholder="상세주소">
+                                       <input type="text" id="sample4_detailAddress" name="post_addr_detail1" class="gui-input" placeholder="상세주소">
                                     </div><!-- end section -->
 
                                     <div class="section colm colm6">
-                                       <input type="text" id="sample4_extraAddress" class="gui-input" placeholder="참고항목">
+                                       <input type="text" id="sample4_extraAddress" name="post_addr_detail2" class="gui-input" placeholder="참고항목">
                                     </div><!-- end section -->
                                  </div><!-- end frm-row section -->
                                  <!-- 삽입 끝////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
                                  <div class="section">
                                     <label class="field option option-yellow">
-                                       <input type="checkbox" name="info" checked>
+                                       <input type="checkbox" checked>
+<!--                                        <input type="checkbox" name="info" checked> -->
                                        <span class="checkbox"></span>
                                        Save my information <em class="small-text fine-grey"> (No worries, its secure) </em>
                                     </label>
@@ -107,14 +111,15 @@
                                  	<div class="section colm colm2">
                                  		쿠폰
                                  	</div>
-                                   	<div class="section colm colm6">
+                                   	<div class="section colm">
                                    		<label class="field">
-                                    	   <input type="text" id="coupon" name="coupon" class="gui-input" placeholder="쿠폰" readonly>
+                                    	   <input type="text" id="coupon" name="useCoupon" class="gui-input" placeholder="쿠폰" readonly>
 	                                    </label>
                                     </div>
-                                    <div class="section colm colm3">
+                                    <div class="section colm">
 	                                    <label class="field">
-	                                    	<input type="button" class="btn btn-primary" id="pickCoupon" value="쿠폰 적용">
+	                                    	<a href="javascript:pickCoupon()"><button type="button" class="btn btn-primary" id="pickCoupon">쿠폰적용</button></a>
+	                                    	<button type="button" class="btn btn-primary" id="cancleCoupon">쿠폰적용 취소</button>
 	                                    </label>
                                    	</div>
 	                             </div>
@@ -125,7 +130,7 @@
                                  	</div>
                                    	<div class="section colm">
                                    		<label class="field">
-                                    	   <input type="text" id="point" class="gui-input" placeholder="적립금">
+                                    	   <input type="text" id="point" name="usePoint" class="gui-input" placeholder="적립금">
 	                                    </label>
                                     </div>
                                     <div class="section colm">
@@ -135,13 +140,14 @@
                                    	</div>
                                     <div class="section colm">
 	                                    <label class="field">
-	                                    	가용 포인트 <span id="availablePoint">${userVO.user_point}</span>p / 사용 <span name="usePoint" id="usePoint">0</span>p
+	                                    	가용 포인트 <span id="availablePoint">${userVO.user_point}</span>p / 사용 <span id="usePoint">0</span>p
+	                                    	<input type="hidden" name="originalPoint" value="${userVO.user_point}">
 	                                    </label>
                                    	</div>
 	                             </div>
 	                             
                               </div><!-- end .form-body section -->
-                           </form>
+                           <!-- </form> -->
                         </div>
                         <!-- 폼 작성부분(왼쪽) -->
                        
@@ -154,7 +160,7 @@
                            <div class="form-header">
                               <h4 class="fs-24">Your Order</h4>
                            </div><!-- end .form-header section -->
-                           <form method="post" action="/" id="account2">
+                           <!-- <form method="post" action="/warm/shop/successOrder" id="account2"> -->
                               <div class="form-body pt-15">
                                  <div class="table-responsive">
                                     <table class="table cart-totals">
@@ -173,6 +179,8 @@
 				                           		<td class="cart-product-name amount">${list.book_price_for_sale}원</td>
 				                           		<td class="cart-product-name amount">${list.cart_cnt}</td>
 				                           		<td class="cart-product-name amount">${list.total}원</td>
+				                             	<input type="hidden" name="isbn" value="${list.isbn}">
+				                             	<input type="hidden" name="cart_cnt" value="${list.cart_cnt}">
 				                             </tr>
 							   			  </c:forEach>
 							   			  
@@ -181,23 +189,24 @@
                                                 <strong>배송비</strong>
                                              </td>
 
-                                             <td class="cart-product-name">
-                                                <span class="amount">${delivery}</span>
+                                             <td class="cart-product-name" colspan="4">
+                                                <span class="amount" id="delivery">${delivery}</span>
                                              </td>
                                           </tr>
                                           <tr class="cart_item">
                                              <td class="cart-product-name">
                                                 <strong>할인</strong>
                                              </td>
-                                             <td class="cart-product-name">
+                                             <td class="cart-product-name" colspan="4">
                                                 -<span class="amount" id="discountPoint">0</span>(포인트 할인)
                                              </td>
                                           </tr>
                                           <tr class="cart_item">
                                           	 <td class="cart-product-name">
                                              </td>
-                                          	 <td class="cart-product-name">
+                                          	 <td class="cart-product-name" colspan="4">
                                              	-<span class="amount" id="discountCoupon">0</span>(쿠폰 할인)
+                                             	<input type="hidden" name="coupon_no" id="submitCoupon">
                                              </td>
                                           </tr>
                                           <tr class="cart_item">
@@ -205,18 +214,19 @@
                                                 <strong>결제 금액</strong>
                                              </td>
 
-                                             <td class="cart-product-name">
-                                                <span class="amount color"><strong>${subTotal}</strong></span>
+                                             <td class="cart-product-name" colspan="4">
+                                                <span class="amount color"><strong id="finalPay">${subTotal}</strong></span>
+                                                <input type="hidden" name="orders_total" id="submitTotal" value="${subTotal}">원
+                                                <%-- <input type="hidden" name="orders_total" id="submitTotal" value="${subTotal}">원 --%>
                                              </td>
                                           </tr>
                                        </tbody>
                                     </table>
-
-                                    <!--<a href="shop.html" class="btn btn-primary w-100">Proceed to Checkout</a>-->
                                  </div>
 
                                  <div class="spacer-t40 spacer-b30">
                                     <div class="tagline"><span> 결제 정보 </span></div><!-- .tagline -->
+                                   <input type="hidden" id="total" name="total" value="${subTotal}">
                                  </div>
 
                                  <div class="section">
@@ -225,135 +235,56 @@
 
                                  <div class="section pb-15">
                                     <label class="field option option-yellow">
-                                       <input type="radio" name="payment" checked>
+                                       <input type="radio" id="cash" name="orders_payment" class="payment" value="cash" checked>
                                        <span class="radio"></span> 무통장입금
                                     </label>
 
                                     <label class="field option option-yellow">
-                                       <input type="radio" name="payment">
-                                       <span class="radio"></span> 신용카드
+                                       <input type="radio" id="kakao" name="orders_payment" class="payment" value="kakao">
+                                       <span class="radio"></span> 카카오페이
                                     </label>
                                  </div><!-- end section -->
-
-                                 <div class="fmx">
-
-                                    <div class="section">
-                                       <label class="field prepend-icon">
-                                          <input type="text" name="cardname" id="cardname" class="gui-input" placeholder="Name on card...">
-                                          <span class="field-icon"><i class="fa fa-user"></i></span>
+							 <!-- ///////////////////////////////// -->
+							 <div class="spacer-t40 spacer-b30">
+                                    <div class="tagline"><span> 환불 정보 </span></div><!-- .tagline -->
+                              </div>
+ 							  <div class="fmx">
+ 							  		<div class="section colm colm6">
+                                       <label class="field select">
+                                          <select id="refundBank" name="refund_bank">
+                                             <option value="A">A은행</option>
+                                             <option value="B">B은행</option>
+                                             <option value="C">C은행</option>
+                                             <option value="D">D은행</option>
+                                          </select>
                                        </label>
-                                    </div><!-- end section -->
+                                    </div>
 
                                     <div class="section">
                                        <label class="field prepend-icon">
-                                          <input type="text" name="cardno" class="gui-input" placeholder="Card number...">
+                                          <input type="text" id="refundAccount" name="refund_account" class="gui-input" placeholder="환불 계좌번호">
                                           <span class="field-icon"><i class="fa fa-credit-card"></i></span>
                                        </label>
-                                    </div><!-- end section -->
-                                 </div><!-- end frm-row section -->
-
-                                 <div class="frm-row">
-
-                                    <div class="section colm colm6">
-                                       <label for="cardmonth" class="field select">
-                                          <select id="cardmonth" name="cardmonth">
-                                             <option value="01">01 - Jan</option>
-                                             <option value="02">02 - Feb</option>
-                                             <option value="03">03 - Mar</option>
-                                             <option value="04">04 - Apr</option>
-                                             <option value="05">05 - May</option>
-                                             <option value="06">06 - Jun</option>
-                                             <option value="07">07 - Jul</option>
-                                             <option value="08">08 - Aug</option>
-                                             <option value="09">09 - Sep</option>
-                                             <option value="10">10 - Oct</option>
-                                             <option value="11">11 - Nov</option>
-                                             <option value="12">12 - Dec</option>
-                                          </select>
-                                          <i class="arrow double"></i>
-                                       </label>
-                                    </div><!-- end section -->
-
-                                    <div class="section colm colm6">
-                                       <label class="field select">
-                                          <select id="cardyear" name="cardyear" id="cardyear"></select>
-                                          <i class="arrow double"></i>
-                                       </label>
-                                    </div><!-- end section -->
-                                 </div><!-- end frm-row section -->
-
-                                 <div class="frm-row">
-
-                                    <div class="section colm colm6">
-                                       <label class="field prepend-icon">
-                                          <input type="text" name="secno" id="secno" class="gui-input" placeholder="Security number...">
-                                          <b class="tooltip tip-left-top"><em> This is a four diigit number at the back of your card </em></b>
-                                          <span class="field-icon"><i class="fa fa-barcode"></i></span>
-                                       </label>
-                                    </div><!-- end section -->
-                                 </div><!-- end frm-row section -->
+                                    </div>
+                              </div>
+    						<!-- ///////////////////////////////// -->                                                         
                               </div><!-- end .form-body section -->
-                              
                               <div class="form-footer">
-                                 <button type="submit" class="btn btn-primary w-100">Proceed to confirm </button>
+                                 <button type="button" id="submit" class="btn btn-primary w-100">주문</button>
                               </div><!-- end .form-footer section -->
-                           </form><!-- end form -->
+                           <!-- </form> --><!-- end form -->
                         </div>
                      </div>
                   </div>
+                  </form>
+                  <!-- ---------------------------------------------------------------------- -->
                </div>
             </section>
          </div>
-
       </div>
 
-      <!-- <div class="modal fade" id="exampleModalLabel33" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel33" aria-hidden="true">
-         <div class="modal-dialog" style="max-width:345px" role="document">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel33">Login via</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                  </button>
-               </div>
-               <div class="modal-body">
-                  <div class="clearfix" id="login-dp">
-
-                     <div class="social-buttons text-center">
-                        <a href="#" class="btn btn-fb ls-0"><i class="fa fa-facebook"></i> Facebook</a>
-                        <a href="#" class="btn btn-tw ls-0"><i class="fa fa-twitter"></i> Twitter</a>
-                     </div>
-                     <div class="special-heading line center">
-                        <h5 class="special-heading-inner mb-10"><span class="o-7"> or </span></h5>
-                     </div>
-                     <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                        <div class="form-group">
-                           <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                           <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
-                        </div>
-                        <div class="form-group">
-                           <label class="sr-only" for="exampleInputPassword2">Password</label>
-                           <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-                           <div class="help-block text-right pt-10 fs-13"><a href="" class="read-more">Forget the password ?</a></div>
-                        </div>
-                        <div class="form-group">
-                           <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-                        </div>
-                        <div class="checkbox-custom checkbox-default">
-                           <input id="RememberMe" name="rememberme" type="checkbox">
-                           <label for="RememberMe"> keep me logged-in</label>
-                        </div>
-                     </form>
-
-                     <div class="bottom text-center">
-                        New here ? <a href="#"><b>Join Us</b></a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div> -->
    </div>
-
-</body>
-</html>
+   
+	<%@ include file="./modal-shopCharge-script.jsp"%>
+	<!-- 쿠폰 선택하는 모달창 -->
+	<%@ include file="./couponList.jsp"%>

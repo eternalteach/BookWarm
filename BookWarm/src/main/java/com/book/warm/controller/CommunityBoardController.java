@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.book.warm.mapper.CommunityBoardMapper;
 import com.book.warm.page.Criteria;
 import com.book.warm.page.PageDTO;
+import com.book.warm.service.CommunityBoardCommentServiceImpl;
 import com.book.warm.vo.CommunityBoardVO;
 
 import lombok.extern.log4j.Log4j;
@@ -27,6 +28,9 @@ public class CommunityBoardController {
 	
 	@Inject
 	CommunityBoardMapper communityBoardMapper;
+	
+	@Inject
+	CommunityBoardCommentServiceImpl cbcservice;
 
 	@RequestMapping(value = "/communityboard", method = RequestMethod.GET)
 	public String communityBoard(Model model,@ModelAttribute("criteria") Criteria criteria) throws Exception {
@@ -47,10 +51,11 @@ public class CommunityBoardController {
 		return "/communityboardview";
 	}
 
-	@RequestMapping(value = "/communityboarddelete", method = RequestMethod.GET)
+	@RequestMapping(value = "/communityboarddelete", method = RequestMethod.POST)
 	public String communityBoardDelete(CommunityBoardVO communityBoardVO,RedirectAttributes rttr, @ModelAttribute("criteria") Criteria criteria) throws Exception {
 		log.info("==================== communityBoardDelete() ====================");
 		int deletePostNumber = communityBoardVO.getComm_no();
+		cbcservice.deleteAllPostComments(deletePostNumber);
 		communityBoardMapper.getCommunityBoardOneDelete(deletePostNumber);
 		rttr.addAttribute("amount",criteria.getAmount());
 		rttr.addAttribute("pageNum",criteria.getPageNum());
@@ -79,7 +84,7 @@ public class CommunityBoardController {
 		return "redirect:communityboard";
 	}
 	@RequestMapping(value = "/communityBoardSaveReplyWrite", method = RequestMethod.POST)
-	public String communityBoardSaveReplyWrite(RedirectAttributes rttr, CommunityBoardVO communityBoardVO, Criteria criteria,Principal principal) throws Exception {
+	public String communityBoardSaveReplyWrite(RedirectAttributes rttr, CommunityBoardVO communityBoardVO, @ModelAttribute("criteria")Criteria criteria,Principal principal) throws Exception {
 		log.info("==================== communityBoardSaveReplyWrite() ====================");
 		communityBoardVO.setUser_id(principal.getName());
 		communityBoardMapper.insertCommunityBoardReplyWrite(communityBoardVO);
