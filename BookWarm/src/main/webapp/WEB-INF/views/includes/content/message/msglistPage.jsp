@@ -274,31 +274,19 @@
 			//삭제
 			$("#getMSG").on("click", "a", function() {
 				alert("ddd");
-				
 				var sendidid = $(this).attr("data");
 				alert(sendidid);
-				
 				msgservice.msgdelete(sendidid, function(count){
-				
 					console.log("msg_no삭제");
-				
 					if(count === "success"){
 						alert("제거");
-						
 				}
 			}, function(err){
 				alert('에러');
-				
-				
 			});
+				showmsgboard(msgPageNum);
 			
 		});
-			
-	/* 		//쪽지삭제
-			$("#msgd").on("click", function(){
-				alert("ddd");
-		}; */
-			
 			
 			/* 답장하기 눌렀을때 send_id 가져오기 */
 			$(".bb").on("click", function() {
