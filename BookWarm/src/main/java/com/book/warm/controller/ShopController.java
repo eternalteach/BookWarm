@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -175,6 +176,7 @@ public class ShopController {
 	
 	
 	// 주문 성공 >> 트랜잭션으로 묶어야함
+	@Transactional
 	@RequestMapping("successOrder")
 	public String successOrder(Principal principal, PostVO postVO, OrdersVO ordersVO, OrdersItemVO ordersItemVO, HttpServletRequest req, Model model) {
 		
@@ -187,7 +189,7 @@ public class ShopController {
 		String refund_bank = ordersVO.getRefund_bank(); // 환불 받을 은행
 		String coupon_no = ordersVO.getCoupon_no(); // 쿠폰
 		String orders_pay_date = "";
-		
+		System.out.println("orders_total : " + orders_total);
 		
 		// postVO 커맨드 객체로 받아온 데이터
 		String post_name = postVO.getPost_name(); // 받는 사람
@@ -200,10 +202,20 @@ public class ShopController {
 			post_addr_detail = "''";
 		}
 		
+		String useCoupon = req.getParameter("useCoupon"); // 사용한 쿠폰번호
+		int usePoint = Integer.parseInt(req.getParameter("usePoint")); // 사용한 포인트
+		int originalPoint = Integer.parseInt(req.getParameter("originalPoint")); // 원래 있던 포인트
+		int total = Integer.parseInt(req.getParameter("total")); // 책 총 판매액
+		int savePoint = (int)(total * 0.05); // 적립할 포인트
+		System.out.println("savePoint : " + savePoint);
+		
+		// 사용한 쿠폰, 포인트 제거
+		service.removeCoupon(user_id, useCoupon);
+		
+		// 잔여 포인트 = 원래 포인트 - 사용한 포인트 + 적립할 포인트
+		service.setUserPoint(user_id, originalPoint-usePoint+savePoint);
 		
 		// req로 받아온 데이터
-//		List<String> isbn[] = req.getParameterValues("isbn"); // 구매한 모든 책들의 isbn
-//		List<String> cart_cnt[] = req.getParameterValues("cart_cnt"); // 구매한 책 각각의 수량
 		String isbn[] = req.getParameterValues("isbn"); // 구매한 모든 책들의 isbn
 		String cart_cnt[] = req.getParameterValues("cart_cnt"); // 구매한 책 각각의 수량
 		

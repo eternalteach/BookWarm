@@ -1,4 +1,6 @@
 <!-- registerPage.jsp에서 사용하는 스크립트 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <script>
    $(document).ready(function() {
    	
@@ -31,7 +33,7 @@
    		
    	})
    	
-   	var idExp = /^[a-zA-Z0-9_]{3,10}$/; // id 정규식(숫자&알파벳 대소문자&"_" 사용 가능, 4자리 이상 20자리 이하 )
+   	var idExp = /^[a-z0-9_]{3,10}$/; // id 정규식(숫자&알파벳 대소문자&"_" 사용 가능, 4자리 이상 20자리 이하 )
    	var pwExp = /^[a-zA-Z0-9_]{8,16}$/; // pw 정규식(숫자&알파벳 대소문자&"_" 사용 가능, 4자리 이상 20자리 이하 )
    	
    	// 비밀번호 일치 여부 판단
@@ -75,7 +77,7 @@
     		// 아이디 중복검사
     		chkDuplicated(url, idConfirmMsg, "아이디");
    		}else {
-   			idConfirmMsg.text("숫자 또는 알파벳 대소문자 또는 '_'를 사용하여 3자리 이상 10자리 이하의 아이디를 입력해주세요.");
+   			idConfirmMsg.text("숫자 또는 알파벳 소문자 또는 '_'를 사용하여 3자리 이상 10자리 이하의 아이디를 입력해주세요.");
    			idConfirmMsg.css("color", "red");
    		}
    	})
@@ -152,7 +154,7 @@
 			alert("모든 폼을 작성해주세요.");
 		} else if(idConfirmMsg!="") {
 			// id 중복인 경우
-			alert("중복된 아이디가 존재합니다. 다른 아이디를 등록해주세요.");
+			alert("다른 아이디를 등록해주세요.");
 		} else if(user_pw!=pwConfirm) {
 			// 비번 불일치
 			alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.")

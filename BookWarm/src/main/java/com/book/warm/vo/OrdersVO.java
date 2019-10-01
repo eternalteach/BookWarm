@@ -13,12 +13,12 @@ public class OrdersVO {
 	private Timestamp orders_pay_date;
 	private String coupon_no;
 	private String post_no;
-
+	private int orders_pay_total;
 	
 	
 	// constructor
 	public OrdersVO(String orders_no, String user_id, String orders_payment, int orders_total, String refund_account,
-			String refund_bank, Timestamp orders_date, Timestamp orders_pay_date, String coupon_no, String post_no) {
+			String refund_bank, Timestamp orders_date, Timestamp orders_pay_date, String coupon_no, String post_no, int orders_pay_total) {
 		super();
 		this.orders_no = orders_no;
 		this.user_id = user_id;
@@ -30,6 +30,7 @@ public class OrdersVO {
 		this.orders_pay_date = orders_pay_date;
 		this.coupon_no = coupon_no;
 		this.post_no = post_no;
+		this.orders_pay_total = orders_pay_total;
 	}
 	
 	public OrdersVO() {
@@ -117,5 +118,12 @@ public class OrdersVO {
 	public void setPost_no(String post_no) {
 		this.post_no = post_no;
 	}
+	
+	public int getOrders_pay_total() {
+		return orders_pay_total;
+	}
 
+	public void setOrders_pay_total(int orders_pay_total) {
+		this.orders_pay_total = orders_pay_total;
+	}
 }

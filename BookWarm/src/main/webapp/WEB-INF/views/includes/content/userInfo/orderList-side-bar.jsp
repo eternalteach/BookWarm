@@ -15,7 +15,7 @@
 			<li><a href="#">내 정보 수정</a></li>
 			<li><a href="/warm/orderList">나의 주문 내역</a></li>
 			<li><a href="#">내가 좋아한 도서</a></li>
-			<li><a href="#">탈퇴하기</a></li>
+			<li><a href="/warm/dropOut">탈퇴하기</a></li>
 		</ul>
 	</section>
 </aside>

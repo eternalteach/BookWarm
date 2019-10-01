@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -54,5 +55,36 @@ public class UserInfoController {
 		// 3. couponCnt
 		int couponCnt = userInfoService.getCouponCnt(user_id);
 		model.addAttribute("couponCnt", couponCnt);
+	}
+	
+	// 마이 페이지(메인)
+	@Transactional
+	@RequestMapping("/dropOut")
+	public String dropOut(Principal principal, Model model) {
+		String user_id = principal.getName();
+		
+		// 1. 받아온 아이디를 받아 쓰는 모든 테이블(db)에서 삭제
+		
+		// 1-1. authorities(권한)테이블에서는 유저 삭제
+		userInfoService.removeUserFromAuthorities(user_id);
+		
+		// 1-2. <user_info>를 참조하는 모든 테이블에서 유저 none으로 변경
+		userInfoService.removeUserFromBook_star(user_id);
+		userInfoService.removeUserFromCart(user_id);
+		userInfoService.removeUserFromCoupon_no(user_id);
+		userInfoService.removeUserFromFriend(user_id);
+		userInfoService.removeUserFromLibrary(user_id);
+		userInfoService.removeUserFromLoging_board(user_id);
+		userInfoService.removeUserFromMsg_table1(user_id);
+		userInfoService.removeUserFromMsg_table2(user_id);
+		userInfoService.removeUserFromOrders(user_id);
+		userInfoService.removeUserFromPost(user_id);
+		userInfoService.removeUserFromReview_board(user_id);
+		
+		// 1-3. <user_info>에서 유저 삭제
+		userInfoService.removeUser(user_id);
+		
+		// 2. 로그아웃,  index로 보내준다.
+		return "redirect:customLogout";
 	}
 }

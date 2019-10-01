@@ -39,4 +39,46 @@
 		and coupon_available='t'
 	</select>
 	
+	<!-- 회원 탈퇴 -->
+	<delete id="removeUserFromAuthorities">
+		delete from authorities where user_id=#{user_id}
+	</delete>
+	<update id="removeUserFromBook_star">
+		update book_star set user_id='none' where user_id=#{user_id}
+	</update>
+	<update id="removeUserFromCart">
+		update cart set user_id='none' where user_id=#{user_id}
+	</update>
+	<update id="removeUserFromCoupon_no">
+		update coupon_no set user_id='none' where user_id=#{user_id}
+	</update>
+	<update id="removeUserFromFriend">
+		update friend set user_id='none' where user_id=#{user_id}
+	</update>
+	<update id="removeUserFromLibrary">
+		update library set user_id='none' where user_id=#{user_id}
+	</update>
+	<update id="removeUserFromLoging_board">
+		update loging_board set user_id='none' where user_id=#{user_id}
+	</update>
+	<update id="removeUserFromMsg_table1">
+		update msg_table set msg_send_id='none' where msg_send_id=#{user_id}
+	</update>
+	<update id="removeUserFromMsg_table2">
+		update msg_table set msg_get_id='none' where msg_get_id=#{user_id}
+	</update>
+	<update id="removeUserFromOrders">
+		update orders set user_id='none' where user_id=#{user_id}
+	</update>
+	<update id="removeUserFromPost">
+		update post set user_id='none' where user_id=#{user_id}
+	</update>
+	<update id="removeUserFromReview_board">
+		update review_board set user_id='none' where user_id=#{user_id}
+	</update>
+	
+	<delete id="removeUser">
+		delete from user_info where user_id=#{user_id}
+	</delete>
+	<!-- 회원탈퇴 끝 -->
 </mapper>

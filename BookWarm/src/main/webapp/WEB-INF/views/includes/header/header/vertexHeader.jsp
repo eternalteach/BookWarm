@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
 
     <!-- Libs CSS -->
-    <link href="resources/Vertex/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/warm/resources/Vertex/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/warm/resources/Vertex/css/style.css" rel="stylesheet" />
     <link href="/warm/resources/Vertex/css/font-awesome.min.css" rel="stylesheet" />
     <link href="/warm/resources/Vertex/css/streamline-icon.css" rel="stylesheet" />
@@ -63,4 +63,4 @@
     
 	
 <!-- login 확인하기 -->
-<script type="text/javascript" src="resources/js/logintest.js"></script> 
+<script type="text/javascript" src="/warm/resources/js/logintest.js"></script> 

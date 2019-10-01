@@ -90,6 +90,14 @@ public class ShopBoardService {
 		return shopMapper.limitDepositTime(orders_no);
 	}
 
+	public void removeCoupon(String user_id, String useCoupon) {
+		shopMapper.removeCoupon(user_id, useCoupon);
+	}
+
+	public void setUserPoint(String user_id, int point) {
+		shopMapper.setUserPoint(user_id, point);
+	}
+
 	
 	
 }

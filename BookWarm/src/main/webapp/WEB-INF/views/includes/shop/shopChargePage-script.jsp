@@ -27,8 +27,9 @@ $(document).ready(function() {
 	// 쿠폰 사용
 	$('#modal').on('click', 'button', function() {
 		var bookPrice = $('#total').val(); // 책 판매 총액
-		bookPrice = bookPrice.substring(0, bookPrice.lastIndexOf("원"));
-		var discounted = $(this).attr('data-abc')/100*bookPrice; // 쿠폰할인액
+		//bookPrice = bookPrice.substring(0, bookPrice.lastIndexOf("원"));
+		var discounted = $(this).attr('data-abc'); // 쿠폰할인액
+		discounted = discounted/100*bookPrice; // 쿠폰할인액
 		
 		if(finalPay-$('#point').val() >= discounted) {
 			// 도서총합계+배송비-포인트할인 >= 쿠폰할인

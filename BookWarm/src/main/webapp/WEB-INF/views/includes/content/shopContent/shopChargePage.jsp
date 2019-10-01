@@ -113,7 +113,7 @@
                                  	</div>
                                    	<div class="section colm">
                                    		<label class="field">
-                                    	   <input type="text" id="coupon" class="gui-input" placeholder="쿠폰" readonly>
+                                    	   <input type="text" id="coupon" name="useCoupon" class="gui-input" placeholder="쿠폰" readonly>
 	                                    </label>
                                     </div>
                                     <div class="section colm">
@@ -130,7 +130,7 @@
                                  	</div>
                                    	<div class="section colm">
                                    		<label class="field">
-                                    	   <input type="text" id="point" class="gui-input" placeholder="적립금">
+                                    	   <input type="text" id="point" name="usePoint" class="gui-input" placeholder="적립금">
 	                                    </label>
                                     </div>
                                     <div class="section colm">
@@ -141,7 +141,7 @@
                                     <div class="section colm">
 	                                    <label class="field">
 	                                    	가용 포인트 <span id="availablePoint">${userVO.user_point}</span>p / 사용 <span id="usePoint">0</span>p
-<%-- 	                                    	가용 포인트 <span id="availablePoint">${userVO.user_point}</span>p / 사용 <span name="usePoint" id="usePoint">0</span>p --%>
+	                                    	<input type="hidden" name="originalPoint" value="${userVO.user_point}">
 	                                    </label>
                                    	</div>
 	                             </div>
@@ -217,17 +217,16 @@
                                              <td class="cart-product-name" colspan="4">
                                                 <span class="amount color"><strong id="finalPay">${subTotal}</strong></span>
                                                 <input type="hidden" name="orders_total" id="submitTotal" value="${subTotal}">원
+                                                <%-- <input type="hidden" name="orders_total" id="submitTotal" value="${subTotal}">원 --%>
                                              </td>
                                           </tr>
                                        </tbody>
                                     </table>
-
-                                    <!--<a href="shop.html" class="btn btn-primary w-100">Proceed to Checkout</a>-->
                                  </div>
 
                                  <div class="spacer-t40 spacer-b30">
                                     <div class="tagline"><span> 결제 정보 </span></div><!-- .tagline -->
-                                   <input type="hidden" id="total" value="${subTotal}">
+                                   <input type="hidden" id="total" name="total" value="${subTotal}">
                                  </div>
 
                                  <div class="section">

@@ -82,7 +82,7 @@
 	</select>
 	
 	<insert id="addOrder">
-		insert into orders
+		insert into orders(orders_no, user_id, orders_payment, orders_total, refund_account, refund_bank, orders_date, orders_pay_date, coupon_no, post_no, post_no)
 		values(ORDERS_SEQ.nextval, #{user_id}, #{orders_payment}, #{orders_total}, #{refund_account}, #{refund_bank}, SYSDATE, ${orders_pay_date}, #{coupon_no}, #{post_no})
 	</insert>
 	
@@ -108,6 +108,16 @@
 		FROM orders
 		where orders_no=#{orders_no}
 	</select>
+	
+	<update id="removeCoupon">
+		update coupon_no set coupon_available='f'
+		where coupon_no=#{useCoupon} and user_id=#{user_id}
+	</update>
+	
+	<update id="setUserPoint">
+		update user_info set user_point=#{point}
+		where user_id=#{user_id}
+	</update>
 	
 </mapper>
 

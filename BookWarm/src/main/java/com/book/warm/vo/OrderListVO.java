@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 // orderList.jsp를 위한 페이지(book, orders_item, orders를 inner join)
 public class OrderListVO {
 	private int orders_total;
+	private int orders_pay_total;
 	private Timestamp orders_date;
 	private String book_title;
 	private int item_cnt;
@@ -15,7 +16,7 @@ public class OrderListVO {
 	
 	// constructor
 	public OrderListVO(int orders_total, Timestamp orders_date, String book_title, int item_cnt,
-			int book_price_for_sale, String orders_status, String orders_no) {
+			int book_price_for_sale, String orders_status, String orders_no, int orders_pay_total) {
 		super();
 		this.orders_total = orders_total;
 		this.orders_date = orders_date;
@@ -24,6 +25,7 @@ public class OrderListVO {
 		this.book_price_for_sale = book_price_for_sale;
 		this.orders_status = orders_status;
 		this.orders_no = orders_no;
+		this.orders_pay_total = orders_pay_total;
 	}
 	
 	public OrderListVO() {
@@ -94,5 +96,11 @@ public class OrderListVO {
 	public void setBook_img(String book_img) {
 		this.book_img = book_img;
 	}
-	
+	public int getOrders_pay_total() {
+		return orders_pay_total;
+	}
+
+	public void setOrders_pay_total(int orders_pay_total) {
+		this.orders_pay_total = orders_pay_total;
+	}
 }

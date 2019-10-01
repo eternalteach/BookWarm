@@ -53,6 +53,10 @@ public interface ShopMapper {
 
 	public String limitDepositTime(@Param("orders_no") String orders_no);
 
+	public void removeCoupon(@Param("user_id") String user_id, @Param("useCoupon") String useCoupon);
+
+	public void setUserPoint(@Param("user_id") String user_id, @Param("point") int point);
+
 
 	
 }

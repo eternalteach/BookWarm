@@ -15,6 +15,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.book.warm.mapper.ReviewBoardMapper;
+import com.book.warm.vo.CouponNoVO;
 import com.book.warm.vo.ReviewAttachVO;
 
 import lombok.extern.log4j.Log4j;
@@ -70,6 +71,20 @@ public class FileCheckTask {
 	
 	@Scheduled(cron="0 0 0 * * *")
 	public void updateCouponAvailable() throws Exception {
+		System.out.println("---------coupon_no테이블 갱신----------");
+		// 매일 00시에 coupon_no테이블(coupon_available 컬럼) 갱신
 		
+		// 1. 현재 시간(sysdate)보다 기간이 이전인 쿠폰 객체를 불러온다.
+		List<CouponNoVO> couponList = mapper.compareCouponTime();
+		System.out.println("couponList.size() : " + couponList.size());
+		
+		System.out.println("couponList.size() : " + couponList.size());
+		// 2. 가져온 쿠폰객체들의 COUPON_AVAILABLE 컬럼을 'f'로 바꿔준다.
+		for(int i=0; i<couponList.size(); i++) {
+			mapper.changeCouponAvailable(couponList.get(i));
+			System.out.println("------"+couponList.get(i).getCoupon_no()+", "+couponList.get(i).getUser_id()+"--------");
+		}
+		
+		System.out.println("----------coupon_no테이블 갱신 완료----------");
 	}
 }
