@@ -333,8 +333,9 @@
 		    </div>
 		</div>
          
-         
-
+         <div class="eventSpace">
+         	<!-- 여기에 이벤트 모달을 집어넣는다. -->
+         </div>
 
 
             <div class="copyright">
@@ -460,11 +461,10 @@
 	   		  console.log("표지 : " + info.event.extendedProps.imageurl);
 	   		  console.log("info.event.extendedProps.dateFormat: " +  info.event.extendedProps.dateFormat);
 	   		  
+	   		  var tdObj = $(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "']");
 	   		  if(info.event.extendedProps.imageurl != '') {
 	   			  
 	   			  console.log("============ 완독한 책 이미지 뿌려주기 =============");
-	   			  
-	   			  var tdObj = $(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "']");
 	   			  var str = "<div style='width:40%; display:inline-block; position:relative; vertical-align:bottom'><img style='position:absolute; cursor: pointer;' id='" + info.event.id + "' src='" + info.event.extendedProps.imageurl + "'></div>"; 
 	   			  
 	   			  if(info.event.extendedProps.firstImg) {
@@ -477,10 +477,14 @@
 		   			  tdObj.append(str);
 	   			  }
 	   		  } else {
-	   			  // 이렇게 나오면 다른 이벤트가 있다는 얘기잖아! 이 경우에 str에 버튼을 더해주면 될 것 같은데, 문제는 여러 번 반복될 경우?
-	   			  if($(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "']").find("button")==null) {
-		   			  var str = "<div style='width:40%; display:inline-block; position:relative; vertical-align:bottom'>"; 
-	   				  
+	   			  console.log("세 번 이상의 이벤트가 존재");
+
+	   			  if(!$(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "'] button").length) {
+	   				  console.log("button이 없는 상태");
+		   			  str += "<div style='display:inline-block; position:relative; float:right; width:20%;'>";
+		   			  str += "   <button class='plus' style='width:100%; height:20%; border:transparent; background-color:lightgray; color:white;'>+</button>";
+		   			  str += "</div>"; 
+		   			  tdObj.append(str); 
 	   			  }
 	   		  }
 	   		  
@@ -491,6 +495,31 @@
 	   		  /* $(".fc-content-skeleton table tbody").css("display", "none"); */
 	   		  /* $(".fc-content-skeleton table tbody").css("display", "");  */
 	   		  /* $(".fc-event-container").css("display", "none");  */
+	   		  
+	   		  /* var modals = '';
+	   		  
+	   		  modals += "<div class='modal fade' id='calModal' tabindex='-1' role='dialog' aria-labelledby='smallModalLabel' aria-hidden='true'>";
+	   		  modals += "    <div class='modal-content'>";
+	   		  modals += "        <div class='modal-body post-content'>";
+	   		  modals += "        	 	<div class='post-header form-header'>";
+	   		  modals += "					<div id='calendar'>";
+	   		  
+	   		  // 이 모달에 들어갈 내용: 이벤트 전부를 긁어와서 일당 읽은 책 목록을 띄운다.
+	   		  // 1. 이벤트를 외부에서도 불러올 수 있는가
+	   		  // 2. 모달을 만드는 시점은 언제. 페이지가 로딩될 때 한 번만 만들어지면 되는데, 외부에서 그렇게 불러올 수 있을지 모르겠으니까
+	   		  //    영역을 만들어서 거기에 html로 넣는 걸로 하자.(div class="eventSpace" 만듦)
+	   		  // 3. 이렇게 넣는 거면 매번 만들어도 상관이 없지. 로딩될 때마다 
+	   		  
+	   		  // 아니면 얘는 따로 처음에 완독 기록을 읽어와서 modal 만들어주면 ! ajax로.
+	   		  
+	   		  
+	   		  
+	   		  mocals += "					</div>";
+	   		  modals += "            </div>";
+	   		  modals += "        </div>";
+	   		  modals += "    </div>";
+	   		  modals += "</div>";
+	   		  $("body").append(modals); */
 	   	  },
 	   	  
 	   	  eventLimit: 0, 
@@ -520,7 +549,7 @@
 	  setTimeout(function() {
 			
 		  calendar.render();
-      }, 200);  
+      }, 200);
  	  
  	  $("#modalBtn").on("click", function() { 
 	 		  
@@ -533,10 +562,12 @@
 		    }, 200);
  	  });
  	 
+ 	// 아니면 #calendar 안에 있는 버튼이 눌리면 $(".fc-event-container").css("display", "none"); 하면 ???
+ 	  
  	  
  	 $("#calendar").on("click", "img", function() {
  		 location.href = "/warm/reviewPerBook?isbn=" + $(this).attr('id');
- 	  });
+ 	 });
  	  
  	 
  	(function() {
@@ -608,6 +639,66 @@
 		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 		actionForm.submit();
 	 });
+	
+	$("#calendar").on("click", ".plus", function() {
+		// plus 버튼이 눌리면 해당일의 이벤트를 보여주기. 모달!
+	});
+	
+	
+	
+	$(document).ready(function() {
+		
+		// document가 로드되면 즉시 실행 함수로 가져온 목록으로 모달을 만든다.
+	   
+	    let preDate = '';
+	   				  
+		(function() {
+			
+			$.getJSON("/warm/calendar.json",
+					function(data) {
+						// json데이터를 받아서 해야 하는 일.
+						// data의 완독일 값이 true면 events에 추가하기.
+						
+						// 모달에 뿌려야 하는 것은 책 제목과 지은이, 완독일.
+						// 날짜가 같은 데이터는 하나의 모달에 넣어야 함.
+						// 어차피 날짜 역순, 로그 역순으로 불러오고 있기 때문에
+						// preDate와 날짜가 같으면 불러온 내용만 추가하고,
+						// preDate와 날짜가 다르면 <div>로 모달 생성 후 안에 넣는 것으로.
+						
+						$.each(data, function(i, obj){
+							
+							if(preDate != obj.start_date) {
+								console.log("완독기록 없음 새로 만듭니다");
+								  var modals = '';
+						   		  
+						   		  modals += "<div class='modal fade' id='" + obj.isbn + "' tabindex='-1' role='dialog' aria-labelledby='smallModalLabel' aria-hidden='true'>";
+						   		  modals += "    <div class='modal-content'>";
+						   		  modals += "        <div class='modal-body post-content'>";
+						   		  modals += "        	 	<div class='post-header form-header'>";
+						   		  modals += "					<div id='logsHere'>";
+						   		  
+						   		  modals += "					    <div>" + obj.start_date + "</div>";
+						   		  modals += "						<div>" + obj.book_title + "</div>";
+						   		  
+						   		  mocals += "					</div>";
+						   		  modals += "            </div>";
+						   		  modals += "        </div>";
+						   		  modals += "    </div>";
+						   		  modals += "</div>";
+						   		  
+								  $("#eventSpace").html(modals);
+								  
+							} else {
+								console.log("완독기록 있음 데이터만 추가합니다");
+								// 같은 날 완독 기록이 있을 경우
+								$("#" + obj.isbn).find("#logsHere").append("<div>" + obj.book_title + "</div>");
+							}
+						}
+				});
+		  })();
+	});
+	
+	
 
 </script>
 
