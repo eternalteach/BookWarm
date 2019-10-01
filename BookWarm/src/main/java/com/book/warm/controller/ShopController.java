@@ -38,11 +38,10 @@ public class ShopController {
 	
 	//장바구니 추가
 	@RequestMapping("/insertcart")
-	public String insert(HttpSession session, HttpServletRequest req, Model model, CartJoinBookVO cartvo) {
+	public String insert(Principal principal, HttpServletRequest req, Model model, CartJoinBookVO cartvo) {
 		log.info("====================insertcart()==========================");
-		session = req.getSession();
 		
-		String user_id =(String)session.getAttribute("user_id");
+		String user_id =principal.getName();
 		String isbn = req.getParameter("isbn");
 		String cart_cnt = req.getParameter("cart_cnt");//책 권수
 		
@@ -80,14 +79,9 @@ public class ShopController {
 	@RequestMapping("/removeCartItem")
 	public String removeCartItem(HttpServletRequest req, RedirectAttributes rttr) {
 		log.info("=================removeCartItem()==========================");
-		// url에서 user_id를 받아온다.
-		String user_id = req.getParameter("user_id");
-		String isbn = req.getParameter("isbn");
+
 		int cart_no = Integer.parseInt(req.getParameter("cart_no"));
 
-//		// 삭제하려는 cart_no가 넘어온 경우 : 삭제 -> 새로 뿌려주기
-//		if (isbn != null)
-//			service.removeCart(user_id, isbn);
 		service.delete(cart_no);
 		
 		return "redirect:/shop/cart";
@@ -95,20 +89,20 @@ public class ShopController {
 	
 
 	@RequestMapping("/cntUp")
-	public String cntUp(HttpServletRequest req, Model model) {
+	public String cntUp(Principal principal, HttpServletRequest req, Model model) {
 		int cart_cnt = Integer.parseInt(req.getParameter("cart_cnt")) + 1;
 		String cart_no = req.getParameter("cart_no");
-		String user_id = req.getParameter("user_id");
-
+		String user_id =principal.getName();
+		
 		service.updateCnt(cart_cnt, cart_no);
 
 		return "redirect:cart?user_id=" + user_id;
 	}
 
 	@RequestMapping("/cntDown")
-	public String cntDown(HttpServletRequest req, Model model) {
+	public String cntDown(Principal principal, HttpServletRequest req, Model model) {
 		int cart_cnt = Integer.parseInt(req.getParameter("cart_cnt"));
-		String user_id = req.getParameter("user_id");
+		String user_id =principal.getName();
 
 		// 수량이 0 이상(1,2,3,...)일 경우에만 줄일 수 있다.
 		if (cart_cnt > 0) {

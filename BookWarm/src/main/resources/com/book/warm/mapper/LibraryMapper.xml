@@ -17,9 +17,24 @@
 	select * from library where user_id=#{user_id} AND list_no<20 AND list_no >=0 order by list_no
 	]]>
 	</select>
+	
+	<select id='getMyList'  resultType='com.book.warm.vo.BookVO'>
+
+	select *
+	from book b
+	where exists(select b.isbn
+                  from library l
+                  where b.isbn = l.isbn
+                  and user_id=#{user_id})
+
+	</select>
 
 	<update id='deleteLibraryList'>
 	update library set list_no=-1 where user_id=#{user_id} and isbn=#{isbn}
 	</update>
+	
+	<delete id='deleteMyBook'>
+	delete library where user_id=#{user_id} and isbn=#{isbn}
+	</delete>
 	
 </mapper>

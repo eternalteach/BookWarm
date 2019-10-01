@@ -14,8 +14,15 @@
 				<article class="v_blog-item">
 					<div class="v_blog-item-inner row">
 						<div class="v_blog-item-media col-md-12">
-							<a href="#"> <img src="${bookVO.book_img}" />
-							</a>
+							<ul>
+                                <li>
+                                    <a href="#">
+                                		<img src="${bookVO.book_img}" style="display:block; margin:auto">
+                            		</a>
+                            	</li>
+                                <li style="text-align:center; margin:5px">${bookVO.book_title}</li>
+                                <li style="text-align:center">${bookVO.writer_name}</li>
+                            </ul>
 						</div>
 					</div>
 				</article>
@@ -24,7 +31,7 @@
 						<span>Reading</span>
 					</div>
 					<div class="progress">
-						<div id="reading" class="progress-bar progress-bar-primary" data-appear-progress-animation="${recordInfo.reading}%"></div>
+						<div id="reading" class="progress-bar bg-info progress-bar-striped progress-bar-animated" data-appear-progress-animation="${recordInfo.reading}%"></div>
 						<span class="progress-bar-tooltip">${recordInfo.reading}%</span>
 					</div>
 					<div class="content-grid-item col-md-12">

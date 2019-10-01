@@ -10,11 +10,15 @@
 	</insert>
 	
 	<select id='readComment' resultType="com.book.warm.vo.CommunityBoardCommentVO">
-	select * from community_board_comment where comm_cmt_no=#{comm_cmt_no}
+	select * from community_board_comment where comm_cmt_no=#{comm_cmt_no} AND user_id=#{user_id}
 	</select>
 	
 	<delete id='deleteComment'>
 	delete from community_board_comment where comm_cmt_no=#{comm_cmt_no}
+	</delete>
+	
+	<delete id='deleteAllPostComments'>
+	delete from community_board_comment a where a.comm_no=(select b.comm_no from community_board b where a.comm_no=b.comm_no and b.comm_no=#{comm_no})
 	</delete>
 	
 	<update id='updateComment'>
@@ -25,7 +29,7 @@
 	<select id='getCommentListWithPaging' resultType="com.book.warm.vo.CommunityBoardCommentVO">
 	<![CDATA[
 select * from(
-select /*+INDEX(community_board_comment idx_comm_cmt) */ rownum rn, comm_no, comm_cmt_no, user_id,comm_cmt_content,comm_cmt_written_time,comm_cmt_modify_time, comm_cmt_deleted,comm_cmt_group,comm_cmt_step,comm_cmt_indent from community_board_comment where comm_no=#{comm_no}
+select /*+INDEX(community_board_comment idx_comm_cmt) */ rownum rn, comm_no, comm_cmt_no, user_id,comm_cmt_content,comm_cmt_written_time,comm_cmt_modify_time, comm_cmt_deleted,comm_cmt_group,comm_cmt_like,comm_cmt_step,comm_cmt_indent from community_board_comment where comm_no=#{comm_no}
   order by comm_cmt_group desc, comm_cmt_step asc) where rn> (#{criteria.pageNum}-1)*#{criteria.amount} AND rn<=#{criteria.pageNum}*#{criteria.amount}
 		]]>
 	</select>

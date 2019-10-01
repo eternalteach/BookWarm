@@ -19,48 +19,34 @@
 		
  	</select>
  	
- 	<!-- <select id="selectBoardList" resultMap="reviewPerBookResult">
- 		select review_no, user_id, review_written_date, review_modify_date, sub.isbn, 
-		    	review_ref, review_title, review_content, review_open, book_title, writer_name, book_img
-		from
-		(
-		    select review_no, user_id, review_written_date, review_modify_date, isbn, 
-		    	review_ref, review_title, review_content, review_open, 
-		    	rank() over(partition by isbn order by review_modify_date desc, review_no desc) rk 
-		    from review_board
-		) sub, book b
-		where sub.rk = 1 and sub.isbn=b.isbn
-         		and user_id = #{user_id}
+ 	<select id="getBoardListCount" resultType="int">
+ 		
+ 		select count(distinct isbn) from review_board where user_id=#{user_id}
+		
  	</select>
  	
- 	<resultMap type="com.book.warm.vo.BookVO" id="bookRef">
- 		<id property="isbn" column = "isbn"/>
- 		<result property="book_title" column="book_title"/>
- 		<result property="writer_name" column="writer_name"/>
- 		<result property="translator_name" column="translator_name"/>
- 		<result property="publisher_name" column="publisher_name"/>
- 		<result property="book_tot_page" column="book_tot_page"/>
- 		<result property="book_published_date" column="book_published_date"/>
- 		<result property="book_price" column="book_price"/>
- 		<result property="book_price_for_sale" column="book_price_for_sale"/>
- 		<result property="book_stock" column="book_stock"/>
- 		<result property="book_story" column="book_story"/>
- 		<result property="book_img" column="book_img"/>
- 	</resultMap>
+ 	<select id="selectBoardListWithPaging" resultType="com.book.warm.vo.ReviewMainVO">
  	
- 	<resultMap type="com.book.warm.vo.ReviewBoardVO" id="reviewPerBookResult">
- 		<id property="review_no" column="review_no"/>
- 		<result property="user_id" column="user_id"/>
- 		<result property="review_written_date" column="review_written_date"/>
- 		<result property="review_modify_date" column="review_modify_date"/>
- 		<result property="isbn" column="isbn"/>
- 		<result property="review_ref" column="review_ref"/>
- 		<result property="review_title" column="review_title"/>
- 		<result property="review_content" column="review_content"/>
- 		<result property="review_open" column="review_open"/>
- 		<association property="bookRef" />
- 	</resultMap> -->
+ 		<![CDATA[
+	 		select review_no, user_id, review_written_date, review_modify_date, isbn, review_ref, review_title, review_content, 
+			    	review_open, book_title, writer_name, book_img
+			from(
+			    select rownum rn, review_no, user_id, review_written_date, review_modify_date, b.isbn, review_ref, review_title, review_content, 
+			    review_open, book_title, writer_name, book_img
+			    from
+			            (
+			                select review_no, user_id, review_written_date, review_modify_date, isbn, 
+			                    review_ref, review_title, review_content, review_open, 
+			                    rank() over(partition by isbn order by review_modify_date desc, review_no desc) rk 
+			                from review_board
+			            ) sub, book b
+			    where sub.rk = 1 and sub.isbn=b.isbn and user_id = #{param1}
+			    and rownum <= #{param2.pageNum} * #{param2.amount} 
+			)
+			where rn > (#{param2.pageNum}-1) * #{param2.amount}
+ 		]]>
  	
+ 	</select>
  	
  	<select id="getListPerBook" resultType="com.book.warm.vo.ReviewBoardVO">
  		select * from review_board where isbn = #{param1} and user_id = #{param2} 
@@ -93,12 +79,12 @@
  	
  	</select>
  	
- 	<select id="showBookThumbnail" resultType="com.book.warm.vo.BookVO">
- 		select book_img, book_title, writer_name
+ 	<!-- <select id="showBookThumbnail" resultType="com.book.warm.vo.BookVO">
+ 		select book_img, book_title, writer_name, isbn
 		from book
 		where isbn = #{isbn} 
 		
- 	</select>
+ 	</select> -->
  	
  	<select id="selectedReview" resultType="com.book.warm.vo.ReviewBoardVO">
  		select * from review_board where review_no = #{review_no}
@@ -146,6 +132,16 @@
     		review_ref=#{review_ref}, review_open=#{review_open}
 		where user_id=#{user_id} and review_no=#{review_no}
  	</update>
+ 	
+ 	<update id="modifyReviewAdmin">
+ 		update review_board
+		set review_title='삭제된 게시글 입니다.', review_content='운영 원칙에 위반된 게시글입니다.', review_open='true'
+		where review_no=#{review_no}
+ 	</update>
+ 	<!-- 공개 설정된 리뷰 불러오기 -->
+ 	<select id="getOpenReview" resultType="com.book.warm.vo.ReviewBoardVO">
+ 		select * from review_board where review_open='checked' order by review_modify_date desc
+ 	</select>
  	
  	
  	<!-- 첨부파일 처리. 따로 mapper를 만들지 않고 여기에 추가. -->

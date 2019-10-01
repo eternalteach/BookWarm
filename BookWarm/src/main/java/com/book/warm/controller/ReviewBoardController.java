@@ -15,14 +15,11 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -35,9 +32,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.book.warm.function.RecordFunction;
+import com.book.warm.mapper.LibraryMapper;
 import com.book.warm.page.Criteria;
 import com.book.warm.page.PageDTO;
+import com.book.warm.service.RecordService;
 import com.book.warm.service.ReviewBoardService;
+import com.book.warm.vo.BookVO;
+import com.book.warm.vo.FinishedBookVO;
+import com.book.warm.vo.LogingBoardVO;
 import com.book.warm.vo.ReviewAttachFileDTO;
 import com.book.warm.vo.ReviewAttachVO;
 import com.book.warm.vo.ReviewBoardVO;
@@ -52,53 +55,49 @@ public class ReviewBoardController {
 	@Inject
 	ReviewBoardService service;
 	
+	@Inject
+	RecordService recordService;
+
+	@Inject
+	RecordFunction recordFunction;
+	
+	@Inject
+	LibraryMapper mapper;
+	
 	@GetMapping("/reviewMain")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public void recordMain(Principal principal, Model model) {
+	public void recordMain(Principal principal, Criteria cri, Model model) {
 		
-		model.addAttribute("list", service.selectBoardList(principal.getName()));
-		
+		model.addAttribute("list", service.selectBoardList(principal.getName(), cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, service.getTotal(principal.getName())));
 	}
 	
 	// 책별 감상 목록
-//	@RequestMapping("/reviewPerBook2")
-//	public String reviewPerBook2(ReviewBoardVO rbVO, Criteria cri, Model model) {
-//		
-//		model.addAttribute("list", service.getListPerBook(rbVO.getIsbn(), rbVO.getUser_id(), cri));
-//		model.addAttribute("thumbnail", service.showBookThumbnail(rbVO.getIsbn()));
-//		return "reviewPerBook2";
-//	}
-	
-	// 책별 감상 목록
 	@RequestMapping("/reviewPerBook")
-	@PreAuthorize("isAuthenticated()")
 	public String reviewPerBook(Principal principal, ReviewBoardVO rbVO, Criteria cri, Model model) {
 		
 		String user_id = principal.getName();
 		
 		List<ReviewBoardVO> reviewList = service.getListPerBook(rbVO.getIsbn(), user_id, cri);
 		
-//		for(ReviewBoardVO review:reviewList) {
-//			// 가져온 리뷰 리스트에서 리뷰 번호에 따른 첨부파일들을 rbVO에 세팅.
-//			review.setAttachList(service.getAttachList(review.getReview_no()));
-//		}
-
-		model.addAttribute("list", reviewList);
-		model.addAttribute("thumbnail", service.showBookThumbnail(rbVO.getIsbn()));
+		BookVO bookVO = service.bookInfo(rbVO.getIsbn());
+		
+		List<LogingBoardVO> logingList = recordService.getList(user_id, rbVO.getIsbn());
+		int recordNum= recordService.getCount(bookVO, user_id);
+		recordFunction.setRecordFunction(logingList, bookVO, user_id);
+		
 		int total = service.getTotal(cri,  rbVO.getIsbn(), user_id);
 		
-		System.out.println("total : " + total);
-		
-//		rbVO.setAttachList(service.getAttachList(rbVO.getReview_no()));
-//		System.out.println(rbVO.getAttachList());
-		
+		model.addAttribute("list", reviewList);
+		model.addAttribute("bookVO", bookVO);
+		model.addAttribute("recordNum", recordNum);
+		model.addAttribute("recordInfo",recordFunction);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		
 		return "reviewPerBook";
 	}
 	
 	// 감상 하나만 보기
 	@RequestMapping("/reviewSelectOne")
-	@PreAuthorize("isAuthenticated()")
 	public String reviewSelectOne(@RequestParam("review_no") int review_no, 
 									    @RequestParam("isbn") String isbn, 
 									    @ModelAttribute("cri") Criteria cri, Model model) {
@@ -110,8 +109,11 @@ public class ReviewBoardController {
 	
 	// review 작성 페이지
 	@RequestMapping("/reviewWrite")
-	public String reviewWrite(ReviewBoardVO rbVO, Model model) {
+	public String reviewWrite(Principal principal, ReviewBoardVO rbVO, Model model) {
 		
+		// 작성 페이지로 넘어갈 때 내 서재에 있는 책 목록도 함께 넘어가도록.
+		
+		model.addAttribute("myList", mapper.getMyList(principal.getName()));
 		model.addAttribute("review", rbVO);
 		
 		return "reviewWrite";
@@ -131,7 +133,6 @@ public class ReviewBoardController {
 		
 		service.registerReview(rbVO);
 		rttr.addAttribute("isbn", rbVO.getIsbn());
-		rttr.addAttribute("user_id", rbVO.getUser_id());
 		
 		return "redirect:/reviewPerBook";
 	}
@@ -340,5 +341,36 @@ public class ReviewBoardController {
 				log.error("delete file error" + e.getMessage());
 			} // end catch
 		}); // end forEach
+	}
+	
+	@GetMapping(value="/calendar",
+					produces= {
+								MediaType.APPLICATION_XML_VALUE,
+								MediaType.APPLICATION_JSON_UTF8_VALUE })
+	@ResponseBody
+	public ResponseEntity<List<FinishedBookVO>> getMyLogs(Principal principal) {
+	
+    // LogingBoard에서 로그를 읽어올 때 필요한 것은? 아이디만 있으면 전체 다 불러올 수 있음.
+	// 일단 완독한 책만 불러오자.
+	// end_date(완독여부) 값이 true면 start_date가 가장 최신인 날짜에 책 이미지를 뿌린다.
+    String user_id = principal.getName();
+	log.info("get LogingBoadVO list : " + recordService.getMyLogs(user_id));
+	
+		return new ResponseEntity<List<FinishedBookVO>>(recordService.getMyLogs(user_id), HttpStatus.OK);
+	}
+	
+	@RequestMapping("/openreview")
+	public void openReview(Model model) {
+		List<ReviewBoardVO> reviews = service.getOpenReview();
+		
+		// 리뷰 목록을 가져와서 각각의 리뷰 번호로 첨부파일 목록을 조회해 reviewVO에 세팅해준다.
+		for(ReviewBoardVO review : reviews) {
+			if(service.getAttachList(review.getReview_no())!=null) {
+				
+				review.setAttachList(service.getAttachList(review.getReview_no()));
+			}
+		}
+		
+		model.addAttribute("openreview", reviews);
 	}
 }

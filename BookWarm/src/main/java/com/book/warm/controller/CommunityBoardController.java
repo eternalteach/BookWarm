@@ -1,6 +1,8 @@
 package com.book.warm.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.book.warm.mapper.CommunityBoardMapper;
 import com.book.warm.page.Criteria;
 import com.book.warm.page.PageDTO;
+import com.book.warm.service.CommunityBoardCommentServiceImpl;
 import com.book.warm.vo.CommunityBoardVO;
 
 import lombok.extern.log4j.Log4j;
@@ -25,6 +28,9 @@ public class CommunityBoardController {
 	
 	@Inject
 	CommunityBoardMapper communityBoardMapper;
+	
+	@Inject
+	CommunityBoardCommentServiceImpl cbcservice;
 
 	@RequestMapping(value = "/communityboard", method = RequestMethod.GET)
 	public String communityBoard(Model model,@ModelAttribute("criteria") Criteria criteria) throws Exception {
@@ -39,15 +45,17 @@ public class CommunityBoardController {
 	@RequestMapping(value = "/communityboardview", method = RequestMethod.GET)
 	public String communityBoardView(Model model,CommunityBoardVO communityBoardVO,@ModelAttribute("criteria") Criteria criteria) throws Exception {
 		log.info("==================== communityBoardView() ====================");
+		communityBoardMapper.hit(communityBoardVO.getComm_no());
 		CommunityBoardVO sellectedCommunityBoardPost = communityBoardMapper.getCommunityBoardOne(communityBoardVO.getComm_no());
 		model.addAttribute("sellectedCommunityBoardPost", sellectedCommunityBoardPost);
 		return "/communityboardview";
 	}
 
-	@RequestMapping(value = "/communityboarddelete", method = RequestMethod.GET)
+	@RequestMapping(value = "/communityboarddelete", method = RequestMethod.POST)
 	public String communityBoardDelete(CommunityBoardVO communityBoardVO,RedirectAttributes rttr, @ModelAttribute("criteria") Criteria criteria) throws Exception {
 		log.info("==================== communityBoardDelete() ====================");
 		int deletePostNumber = communityBoardVO.getComm_no();
+		cbcservice.deleteAllPostComments(deletePostNumber);
 		communityBoardMapper.getCommunityBoardOneDelete(deletePostNumber);
 		rttr.addAttribute("amount",criteria.getAmount());
 		rttr.addAttribute("pageNum",criteria.getPageNum());
@@ -76,8 +84,9 @@ public class CommunityBoardController {
 		return "redirect:communityboard";
 	}
 	@RequestMapping(value = "/communityBoardSaveReplyWrite", method = RequestMethod.POST)
-	public String communityBoardSaveReplyWrite(RedirectAttributes rttr, CommunityBoardVO communityBoardVO, Criteria criteria) throws Exception {
+	public String communityBoardSaveReplyWrite(RedirectAttributes rttr, CommunityBoardVO communityBoardVO, @ModelAttribute("criteria")Criteria criteria,Principal principal) throws Exception {
 		log.info("==================== communityBoardSaveReplyWrite() ====================");
+		communityBoardVO.setUser_id(principal.getName());
 		communityBoardMapper.insertCommunityBoardReplyWrite(communityBoardVO);
 		communityBoardMapper.replyshape(communityBoardVO);
 		rttr.addAttribute("amount",criteria.getAmount());
@@ -94,8 +103,9 @@ public class CommunityBoardController {
 	}
 	
 	@RequestMapping(value = "/communityBoardSaveWrite", method = RequestMethod.POST)
-	public String communityBoardSaveWrite(CommunityBoardVO communityBoardVO) throws Exception {
+	public String communityBoardSaveWrite(CommunityBoardVO communityBoardVO,Principal principal) throws Exception {
 		log.info("==================== communityBoardSaveWrite() ====================");
+		communityBoardVO.setUser_id(principal.getName());
 		communityBoardMapper.insertCommunityBoardWrite(communityBoardVO);
 		return "redirect:communityboard";
 	}

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.book.warm.mapper.AdminMapper">
+
+	<insert id='addAdminBoardFromCommunityBoard'>
+		insert into admin_board (admin_bno, user_id,
+		board_no, board_name, board_subject, board_title, board_content,
+		board_written_time, board_modify_time, board_clicked, board_like,
+		board_group, board_step, board_indent) values
+		(admin_seq.nextval,#{user_id}, #{comm_no }, 'community',
+		#{comm_subject }, #{comm_title }, #{comm_content },
+		#{comm_written_time }, #{comm_modify_time }, #{comm_clicked },
+		#{comm_like }, #{comm_group }, #{comm_step },#{comm_indent })
+	</insert>
+
+	<insert id='addAdminBoardFromReviewBoard'>
+		insert into admin_board (admin_bno, user_id, board_no, board_name,  board_title, board_content,
+		board_written_time, board_modify_time,  isbn, board_ref, board_open) 
+		values
+		(admin_seq.nextval,#{user_id}, #{review_no}, 'review', #{review_title}, #{review_content},
+		#{review_written_date}, #{review_modify_date} , #{isbn}, #{review_ref}, #{review_open})
+	</insert>
+
+	<select id='getAdminBoard' resultType='com.book.warm.vo.AdminBoardVO'>
+	select * from admin_board
+	</select>
+	
+	<insert id='cloneAttach'>
+	insert into admin_attach (uuid, uploadpath, filename, review_no) (select uuid, uploadpath, filename, review_no from review_attach where review_no=#{review_no})
+	</insert>
+	
+	<!--  커뮤니티 보드 페이징처리된 리스트 가져오기 -->
+	<select id='getCommunityBoardListWithPaging' resultType="com.book.warm.vo.AdminBoardVO">
+		<![CDATA[
+		select admin_bno, board_no, user_id, board_subject, board_title, board_content, board_written_time, board_clicked, board_like, board_group, board_step, board_indent from(
+		select rownum rn, admin_bno, board_no, user_id, board_subject, board_title, board_content, board_written_time, board_clicked, board_like, board_group, board_step, board_indent from(
+		select * from admin_board where board_name='community'
+		  order by board_no desc)) where rn> (#{pageNum}-1)*#{amount} AND rn<=#{pageNum}*#{amount}
+				]]>
+	</select>
+	<!-- 페이징 처리 위해 게시물 총 개수 가져오기 -->
+	<select id='getNumberOfPostsOnDeletedCommunityBoard' resultType="Integer">
+		select count(*) from admin_board where board_name='community'
+	</select>
+	
+	<!--  리뷰 보드 페이징처리된 리스트 가져오기 -->
+	<select id="getReviewBoardListWithPaging" resultType="com.book.warm.vo.AdminBoardVO">
+ 		<![CDATA[
+		select admin_bno, board_no, user_id, board_written_time, board_modify_time, isbn, board_ref, board_title, board_content, board_open from(
+		select rownum rn, admin_bno, board_no, user_id, board_written_time, board_modify_time, isbn, board_ref, board_title, board_content, board_open from(
+		select * from admin_board where board_name='review'
+		  order by board_no desc)) where rn> (#{pageNum}-1)*#{amount} AND rn<=#{pageNum}*#{amount}
+				]]>
+ 	</select>
+ 	
+ 	<!-- 페이징 처리 위해 게시물 총 개수 가져오기 -->
+ 	<select id="getNumberOfPostsOnDeletedReviewBoard" resultType="Integer">
+ 		
+ 		select count(*) from admin_board where board_name='review'
+		
+ 	</select>
+	
+</mapper>

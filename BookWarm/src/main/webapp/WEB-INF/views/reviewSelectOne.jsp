@@ -634,6 +634,9 @@
 													삭제하기
 												</a>
 											</div>
+											<div style="padding:5px">
+												<button  type="button" class="btn btn-sm close" id="adminMove"><i class="fa fa-star"></i>관리자 이동</button>
+											</div>
 										</div>
 									</div>
                                 	
@@ -740,44 +743,28 @@
                                     <div class="form-group">
                                         <div class="row">
                                         	<!-- 넘겨줄 값은 감상번호와 작성자...(user_id)? -->
-                                        
                                         	<!-- 넘어온 값은 감상 작성자 id, 아래 댓글을 달 때 user_id는 로그인한 id! -->
                                         	
-                                                <!-- <input type="hidden" value="" maxlength="100" placeholder="user_id" class="form-control" name="user_id" id="name"> -->
-                                                <input type="hidden" value="${review.review_no}" maxlength="100" class="form-control" name="review_no">
-                                            
+                                            <input type="hidden" value="${review.review_no}" maxlength="100" class="form-control" name="review_no">
                                             <div class="col-sm-4">
                                                 <input type="hidden" value="${user_id}" maxlength="100" class="form-control" name="user_id" id="name" readonly>
                                             </div>
                                             
-                                        
-	                                        <!-- 이름/ 이메일/ 홈페이지 필요 없을 듯 -->
-                                            <!-- <div class="col-sm-4">
-                                                <label>Your name <span class="required">*</span></label>
-                                                <input type="text" value="" maxlength="100" placeholder="Your name" class="form-control" name="name" id="name">
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <label>Your email address <span class="required">*</span></label>
-                                                <input type="email" value="" placeholder="email address" maxlength="100" class="form-control" name="email" id="email">
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <label>Website</label>
-                                                <input type="text" value="" placeholder="Website" maxlength="100" class="form-control" name="website" id="website">
-                                            </div> -->
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                            	<!-- 지금대로면 딱히 레이블이 필요 없음 -->
-                                                <!-- <label>Comment <span class="required">*</span></label> --> 
-                                                <c:if test="${empty user_id}">
-                                                	<c:set var="read" value="readonly"/>
-                                            	</c:if>
-                                            	<%-- <c:choose>
-                                            		<c:when test="${ }"
-                                            	</c:choose> --%>
-                                                	<textarea maxlength="5000" rows="10" ${read} placeholder="댓글은 로그인한 사용자만 작성할 수 있습니다." class="form-control" name="content" id="content"></textarea>
+                                            	<c:choose>
+	                                                <c:when test="${empty user_id}">
+	                                                	<c:set var="read" value="readonly"/>
+	                                            		<c:set var="phText" value="댓글은 로그인한 사용자만 작성할 수 있습니다."/>
+	                                            	</c:when>
+                                            		<c:when test="${!empty user_id}">
+                                            			<c:set var="phText" value="댓글을 입력하세요."/>
+                                            		</c:when>
+                                            	</c:choose>
+                                                	<textarea maxlength="5000" rows="10" ${read} placeholder="${phText}" class="form-control" name="content" id="content"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -948,17 +935,23 @@
     <!-- 댓글 처리를 위한 comment.js 추가 -->
     <script type="text/javascript" src = "/warm/resources/Vertex/js/comment.js"></script>
     
+    <script type="text/javascript" src = "/warm/resources/js/admin.js"></script>
     <script type="text/javascript" >
 
+	$("#adminMove").on("click",function(){
+		let comm_no=${review.review_no};
+		alert(comm_no);
+		adminService.getReview(comm_no,function(){
+		location.reload();
+		})
+	});
+	
 	// 첨부파일 가져오기 위한 즉시 실행 함수
 	(function() {
 		var review_no = '<c:out value="${review.review_no}"/>';
 		$.getJSON("/warm/getAttachList", {review_no: review_no}, function(arr) {
-					console.log(arr);
-					// 여기서 해야할 것은, review_no을 받아서 그 글에 달려있는 첨부 파일들을 하나씩 li로 달아주는 건데..
-					// 여기가 이미지들을 담을 공간.
+			
 					var uploadImgs = $(".uploadResult");
-					/* var flex = $(".flexslider"); */
 					var str = uploadImgs.html() + "";
 					
 					$(arr).each(function(i, attach) {
@@ -975,6 +968,7 @@
 	})(); // end function
 	
         $(document).ready(function() {
+        	
 	        // showList에서 -1일 경우 원래의 태그를 실행하고,
 	        // 수정 버튼을 클릭했을 때 번호를 받아와서 
 	        // var no = -1;
@@ -1191,10 +1185,10 @@
 				}
 			}); // end of commentRegisterBtn.onclick
 			
-			//AJax spring security header
-			$(document).ajaxSend(function(e, xhr, options) {
+			//AJax spring security header - csrf disabled 됐으므로 주석처리
+			/* $(document).ajaxSend(function(e, xhr, options) {
 				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-			});
+			}); */
 		
        }); // end of document.ready
     	

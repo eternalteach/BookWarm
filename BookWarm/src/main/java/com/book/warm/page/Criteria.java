@@ -14,7 +14,7 @@ public class Criteria {
 	}
 
 	public Criteria() {
-		this(1,5);
+		this(1,6);
 	}
 
 	public int getPageNum() {

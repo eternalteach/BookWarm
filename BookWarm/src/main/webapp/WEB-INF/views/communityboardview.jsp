@@ -3,121 +3,110 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-
+<sec:authentication property="principal.username" var="user_id"/>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript" src="/warm/resources/js/logintest.js"></script>
 <%@ include file="includes/header/script-vertexEx.jsp"%>
 <link rel="stylesheet" href="resources/css/main.css" />
 </head>
 <body>
-					<div>
-						<table width="500" cellpadding="0" cellspacing="0" border="1">
-							<tr>
-								<td>Title &nbsp;
-									${sellectedCommunityBoardPost.comm_subject}&nbsp;${sellectedCommunityBoardPost.comm_title}</td>
-								<td>작성일 &nbsp; ${sellectedCommunityBoardPost.comm_written_time}</td>
-							</tr>
-							<tr>
-								<td colspan="2">작성자 &nbsp; ${sellectedCommunityBoardPost.user_id}</td>
-							</tr>
-							<tr>
-								<td colspan="2">내용</td>
-							</tr>
-							<tr>
-								<td colspan="2">${sellectedCommunityBoardPost.comm_content}</td>
-							</tr>
-							<tr>
-								<td colspan="2" align='right'><a>이 작성자의 게시글 더 보기</a> &nbsp;
-									&nbsp; &nbsp;</td>
-							</tr>
-							<tr>
-								<td colspan="2">조회수 &nbsp;
-									${sellectedCommunityBoardPost.comm_clicked} &nbsp;
-									&nbsp;좋아요&nbsp;2&nbsp;(하트)</td>
-							</tr>
-							<tr>
-								<td colspan="2">
-									<a class="submit" href="communityboardmodify">수정</a> &nbsp;&nbsp; 
-									<a class="submit" href="communityboard">목록보기</a> &nbsp;&nbsp; 
-									<a class="submit" href="communityboardreplywrite">답변</a>
-								</td>
-							</tr>
-						</table>
-						<!-- comment -->
-						<div class="comment">
-							<div class='row'>
-								<div class='col-lg-12'>
-									<div class='panel panel-default'>
-										<div class='panel-heading'>
-											<h2><i class='fa fa-comments fa-fw'></i>Comment</h2>
-										</div>
-											<div><br/></div>
-										<div class='panel-body'>
-											<ul class='chat'>
-											<!-- start comment -->
-											<li class='left clearfix' data-comm_cmt_no='12'>
-												<div>
-													<div class='header'>
-														<strong class='primary-font'>user00</strong>
-														<small class='pull-right text-muted'>2019-09-05</small>
-													</div>
-													<p>이 글을 본 당신은 행운이 가득한 사람!</p>
-												</div>
-											</li>
-											</ul>
-										</div>
-										<div class="panel-footer">
-										
-										</div>
-										<div>
-											<br/>
-											<br/>
-										</div>
-										<!-- write comment div -->
-										<div class="comment-write">
-											<div class="modal-content">
-            									<div class="modal-header">
-              										<h4 class="modal-title" id="myModalLabel">Add Comment</h4>
-            									</div>
-            								<div class="modal-body">
-              									<div class="form-group">
-                									<label>Comment</label> 
-               										<input class="form-control" name='comm_cmt_content' value='New Comment!!!!'>
-              									</div>      
-           										<div class="form-group">
-                									<label>User Name, get session</label> 
-                									<input hidden ='hidden' class="form-control" name='user_id' value='tester'>
-              									</div>
-              									<div class="form-group">
-                									<label>Comment Date 이 부분은 ajax로 비동기통신 통해 1초마다 시간 갱신되게 해보자</label> 
-               										<input class="form-control" hidden='hidden' name='comm_cmt_written_time' value='2018-01-01 13:13'>
-            									</div>
-     										</div>
-												<div class="modal-footer">
-        											<button id='commentRegisterBtn' type="button" class="btn btn-primary">Register</button>
-      											</div> 
-											</div>
-										</div>
-										
-										
-									</div>
+<%@ include file="includes/header/header-topnav.jsp"%>
+					
+<div class="container center-block">
+	<div class='row'>
+		<div class='col-lg-12'>
+			<div class='panel panel-default'>
+				<div class="comment-write">
+					<div class="modal-content">
+						<div class="modal-body" >
+							<div class="form-inline">
+								<div class="card transparent col-lg-12" style="border:none;">
+									<h4 class="modal-title">${sellectedCommunityBoardPost.comm_subject}&nbsp;${sellectedCommunityBoardPost.comm_title}</h4>
 								</div>
 							</div>
+							<div class="pull-right">
+										<span>작성일&nbsp; ${sellectedCommunityBoardPost.comm_written_time}</span>
+							</div>
 						</div>
-						<!-- end comment -->
-						<form id='pagingActionForm' method='get'>
-							<input type='text' hidden='hidden' id='pageNum' name='pageNum' value='${criteria.pageNum}'> 
-							<input type='text' hidden='hidden' id='amount' name='amount' value='${criteria.amount}'>
-							<input type='text' hidden='hidden' id='comm_no' name='comm_no' value='${sellectedCommunityBoardPost.comm_no}'>
-						</form>
+       					<div class="card transparent col-lg-12" style="border:none;">
+							<h3> <span class="blog-author minor-meta"> Posted by 
+								<span class="entry-author-link"> 
+									<span class="vcard author">
+										<span class="v-blog-item-details"> <a href="#" title="Posts by HB-Themes" rel="author">${sellectedCommunityBoardPost.user_id}</a></span>
+										</span>
+									</span>
+								</span>
+							</h3>
+         					<div class="form-group">
+         						<div class="form-control card transparent col-lg-12" style="border:none;">
+         							${sellectedCommunityBoardPost.comm_content}
+         						</div>
+         					</div>
+         					<div class="form-horizontal">
+           						<div class="form-group from-inline">
+             						<label>조회수&nbsp;${sellectedCommunityBoardPost.comm_clicked}&nbsp;&nbsp; <%-- <i class="fa fa-heart"></i> &nbsp;${sellectedCommunityBoardPost.comm_like} --%></label> 
+           						</div>   
+           						<div class="form-group from-horizentar pull-right">
+									<a class="submit" href="communityboard"><button type="button" class="btn btn-sm btn-outline-secondary">List</button></a>
+									<c:if test="${user_id==sellectedCommunityBoardPost.user_id}"><a class="submit" href="communityboardmodify"><button  type="button" class="btn btn-sm">Modify</button></a></c:if>
+									<a class="submit" href="communityboardreplywrite"><button  type="button" class="btn btn-sm btn-secondary">Reply</button></a>
+									<sec:authentication property='principal' var='pinfo'/>
+									<sec:authorize access="hasRole('ROLE_ADMIN')">
+										<button  type="button" class="btn btn-sm" id="adminMove">관리자 이동</button>
+									</sec:authorize>
+           						</div>   
+         					</div>
+						</div>
+						<!-- 댓글 추가할 곳 -->
+						<div class="col-lg-12">
+     						<div class="form-inline">
+ 								<div class='panel-heading'>
+									<h2><i class='fa fa-comments fa-fw'></i>Comment</h2>
+								</div>	
+							</div>
+							<!-- 댓글 -->
+							<div class='panel-body'>
+								<ul class='chat'>
+								<!-- start comment -->
+								</ul>
+							</div>
+							<!-- 댓글 작성부 -->
+							<div class="comment-write">
+								<div class="modal-content">
+          							<div class="modal-body">
+            							<div class="form-group">
+             								<label>Comment</label> 
+             								<input id='newComment' class="form-control" name='comm_cmt_content' placeholder='New Comment!!!!'>
+            							</div>      
+            						<div class="container col-lg-12  ">
+      									<button id='commentRegisterBtn' type="button" class="btn btn-primary pull-right">Register</button>
+          							</div>
+          									<!-- 댓글 페이징처리 -->
+          									<div class="row col-lg-12">
+     											<div class="panel-footer center"></div>
+          									</div>
+   										</div>
+								</div>
+							</div>
+						</div><!-- End Comment -->
+							<form id='pagingActionForm' method='get'>
+								<input type='text' hidden='hidden' id='pageNum' name='pageNum' value='${criteria.pageNum}'> 
+								<input type='text' hidden='hidden' id='amount' name='amount' value='${criteria.amount}'>
+								<input type='text' hidden='hidden' id='comm_no' name='comm_no' value='${sellectedCommunityBoardPost.comm_no}'>
+							</form>
 					</div>
-					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <script type="text/javascript" src="resources/js/comment.js"></script>
+<script type="text/javascript" src="resources/js/admin.js"></script>
 
 <script>
 // comment view code
@@ -127,6 +116,15 @@ $(document).ready(function(){
 	console.log("comm_noValue : "+comm_noValue);
 	var commentUL=$(".chat");
 	showList(1);
+	
+	// 관리자버튼 클릭시 게시글 이동
+	$("#adminMove").on("click",function(){
+		let comm_no=$("#comm_no").val();
+		alert(comm_no);
+		adminService.get(comm_no,function(){
+		location.reload();
+		})
+	});
 	
 	function showList(page){
 		
@@ -147,13 +145,17 @@ $(document).ready(function(){
 			if(list ==null||list.length==0){
 				return;
 			}
+			
 			for(var i=0, len=list.length||0;i<len;i++){
 				str+="<li class='left clearfix' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>";
-				str+="<div><div class='header'><strong class='primary-font'>["+list[i].comm_cmt_no+"]"+list[i].user_id+"</strong>";
-				str+="<small class='pull-right text-muted'><button id='commentModfiyBtn' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>수정</button><button id='commentRemoveBtn' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>삭제</button></small></div>";
-				str+="<small class='pull-right text-muted'>"+list[i].comm_cmt_written_time+"</small></div>";
-				/* str+="<small class='pull-right text-muted'>"+commentService.displayTime(list[i].comm_cmt_written_time)+"</small></div>"; */
-				str+="<p>"+list[i].comm_cmt_content+"</p></div></li>";
+				str+="<div class='header'><strong class='primary-font'>"+list[i].user_id+"</strong>";
+				str+="<p class='pull-right text-muted'>";
+				if('${user_id}'==list[i].user_id){
+				str+="<button id='commentModfiyBtn' class='btn close' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>수정</button><button id='commentRemoveBtn'  class='btn close' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>삭제</button>";
+				}
+				str+="</p></div>";
+				str+="<div class='header'><p class='form-inline'>"+list[i].comm_cmt_content+"</p>";
+				str+="<small class='pull-right text-muted'> 작성일 : "+list[i].comm_cmt_written_time+"</br>&nbsp;</small></div></li>";
 			}
 			
 			commentUL.html(str);
@@ -205,29 +207,24 @@ $(document).ready(function(){
 		showList(pageNum);
 	});
 	
-	var commentDiv=$(".comment");
-	var commentDivInputCommentContent=commentDiv.find("input[name='comm_cmt_content']");
-	var commentDivInputUser=commentDiv.find("input[name='user_id']");
-	var commentDivInputCommentDate=commentDiv.find("input[name='comm_cmt_written_time']");
-	
 	var commentModfiyBtn=$("#commentModfiyBtn");
 	var commentRemoveBtn=$("#commentRemoveBtn");
 	var commentRegisterBtn=$("#commentRegisterBtn");
 	
+	var newComment=$("#newComment"); // 댓글 내용
+	var boardNo=$("#comm_no");// 댓글 달 게시글 번호
 	// Registe comment At Modal
 	
 	commentRegisterBtn.on("click",function(e){
 		var comment={
-				comm_cmt_content:commentDivInputCommentContent.val(),
-				user_id:commentDivInputUser.val(),
-				comm_no:comm_noValue
+				comm_cmt_content:newComment.val(),
+				comm_no:boardNo.val()
 		};
 		commentService.add(comment,function(result){
 			alert(result);
-			commentDiv.find("input").val("");
+			newComment.val("");
 			showList(-1);
 		});
-		commentDiv.find("input").val("");
 	});
 	
 	// comment (ul) click event
@@ -237,19 +234,12 @@ $(document).ready(function(){
 		let comm_cmt_no=$(this).data("comm_cmt_no");
 		
 		commentService.get(comm_cmt_no,function(comment){
-			comm_cmt_content=comment.comm_cmt_content;
-			commentDivInputUser.val(comment.user_id);
-			commentDivInputCommentDate.val(comment.comm_cmt_written_time).attr("readonly","readonly");
-			commentDiv.data("comm_cmt_no",comment.comm_cmt_no);
-
-			// html 내용
+			// 댓글 수정 클릭시 내용 변경
 			str="";
-			str+="<div><div class='header'><strong class='primary-font'>["+comm_cmt_no+"]"+commentDivInputUser.val()+"</strong>";
-			str+="<small class='pull-right text-muted'><button id='commentModfiySaveBtn' data-comm_cmt_no='"+comm_cmt_no+"'>저장</button><button id='commentRemoveBtn' data-comm_cmt_no='"+comm_cmt_no+"'>삭제</button></small></div>";
-			str+="<small class='pull-right text-muted'>"+commentDivInputCommentDate.val()+"</small></div>";
-			str+="<textarea class='modifyCommentContent'>"+commentDivInputCommentContent.val()+"</textarea></div>";
-		
-			console.log(str);
+			str+="<div><div class='header'><strong class='primary-font'>["+comm_cmt_no+"]"+comment.user_id+"</strong>";
+			str+="<small class='pull-right text-muted'><button id='commentModfiyCancel' class='btn close' data-comm_cmt_no='"+comm_cmt_no+"'>취소</button><button id='commentModfiySaveBtn' class='btn close' data-comm_cmt_no='"+comm_cmt_no+"'>저장</button><button id='commentRemoveBtn'  class='btn close'  data-comm_cmt_no='"+comm_cmt_no+"'>삭제</button></small></div>";
+			str+="<small class='pull-right text-muted'>"+comment.comm_cmt_written_time+"</small></div>";
+			str+="<textarea class='modifyCommentContent'>"+comment.comm_cmt_content+"</textarea></div>";
 			target.html(str);
 		});
 		
@@ -259,15 +249,21 @@ $(document).ready(function(){
 	// modify save
   	$(".chat").on("click","#commentModfiySaveBtn",function(e){
   		var target = $(this).closest("li");
+  		var textarea = $(".modifyCommentContent");
+  		let comm_cmt_content = textarea.val();
 		var comm_cmt_no=$(this).data("comm_cmt_no");
-		var comment={comm_cmt_no:commentDiv.data("comm_cmt_no"),comm_cmt_content:$(".modifyCommentContent").val()};
+		var comment={comm_cmt_no:comm_cmt_no,comm_cmt_content:comm_cmt_content};
 		commentService.update(comment, function(result){
 			alert(result);
 			showList(pageNum);
 		});
-		
 	});
 	
+	// modify cancel
+  	$(".chat").on("click","#commentModfiyCancel",function(e){
+			showList(pageNum);
+		});
+
 	// remove success
   	$(".chat").on("click","#commentRemoveBtn",function(e){
 		var comm_cmt_no=$(this).data("comm_cmt_no");
@@ -343,4 +339,5 @@ $(document).ready(function(){
 		});
 	});
 </script>
-<%@ include file="includes/footer/footer-1.jsp"%>
+
+</body>

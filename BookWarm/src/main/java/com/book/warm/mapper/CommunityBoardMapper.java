@@ -13,9 +13,13 @@ public interface CommunityBoardMapper {
 
 	public CommunityBoardVO getCommunityBoardOne(int comm_no);
 
+	public int hit(int comm_no);
+
 	public Integer getCommunityBoardOneDelete(int comm_no);
 
 	public Integer modifyCommunityBoardOne(CommunityBoardVO communityBoardVO);
+	
+	public Integer modifyPostByAdmin(CommunityBoardVO communityBoardVO);
 
 	public Integer insertCommunityBoardWrite(CommunityBoardVO communityBoardVO);
 

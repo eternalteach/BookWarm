@@ -16,15 +16,15 @@ public interface ReviewBoardMapper {
 
 	public List<ReviewMainVO> selectBoardList(String user_id);
 	
+	public List<ReviewMainVO> selectBoardListWithPaging(String user_id, Criteria cri);
+	
 	public List<ReviewBoardVO> getListPerBook(String isbn, String user_id);
 	
 	public List<ReviewBoardVO> getListPerBookWithPaging(String isbn, String user_id, Criteria cri);
 
 	public BookVO showBookThumbnail(String isbn);
 
-//	public ReviewBoardVO selectedReview(int review_no, String user_id); // 리뷰 조회에 아이디는 필요 없음.
 	public ReviewBoardVO selectedReview(int review_no);
-
 	
 	public BookVO bookInfo(String isbn);
 
@@ -35,6 +35,10 @@ public interface ReviewBoardMapper {
 	public int deleteReview(ReviewBoardVO rbVO);
 
 	public int modifyReview(ReviewBoardVO rbVO);
+	
+	public int modifyReviewAdmin(ReviewBoardVO rbVO);
+	
+	public int getBoardListCount(String user_id);
 	
 	public int getTotalCount(Criteria cri, String isbn, String user_id);
 	
@@ -56,5 +60,6 @@ public interface ReviewBoardMapper {
 
 	public void changeCouponAvailable(CouponNoVO couponNoVO);
 	
+	public List<ReviewBoardVO> getOpenReview();
 
 }

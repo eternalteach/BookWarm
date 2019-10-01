@@ -101,6 +101,7 @@ public class RecordFunction {
 	}
 
 	public void setRecordFunction(List<LogingBoardVO> logingList, BookVO bookVO, String user_id) {
+		
 		log.info("====================RecordFunction INIT");
 
 		this.startPage = statisticsFunctionService.firstPage(logingList);
@@ -109,6 +110,7 @@ public class RecordFunction {
 		int bookTotalPage = bookVO.getBook_tot_page();
 		this.reading = ((double) readPageNum / (double) bookTotalPage) * 100;
 		this.logingCount = recordService.getCount(bookVO, user_id);
+
 	}
 
 }

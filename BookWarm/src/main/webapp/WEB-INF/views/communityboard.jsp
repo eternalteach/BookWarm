@@ -25,22 +25,26 @@
 					<div class="pull-right" colspan="5">
 						<a href="communityboardwrite"><button class="btn btn-sm">글작성</button></a>
 					</div>
-					<table class="table table-hover">
+					<table class="table table-hover" style="table-layout:fixed;">
 						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>날짜</th>
-							<th>조회수</th>
+							<th style="width:80px;">번호</th>
+							<th style="width:420px;">제목</th>
+							<th style="width:120px;">작성자</th>
+							<th style="width:120px;">날짜</th>
+							<!-- <th>조회수</th> -->
+							<th><i class="fa fa-heart"></i></th>
 						</tr>
 						<c:forEach items="${communityBoardList}" var="communityBoard">
 							<tr>
 								<td>${communityBoard.comm_no}</td>
-								<td><c:forEach begin="1" end="${communityBoard.comm_indent}">[re]</c:forEach>
-									<a class='move' href="${communityBoard.comm_no}">${communityBoard.comm_subject}&nbsp;${communityBoard.comm_title}</a></td>
+								<td style="width:420px;" >
+								<div class="card transparent" style="border:none;">
+								<c:forEach begin="1" end="${communityBoard.comm_indent}">[re]</c:forEach>
+									<a class='move' href="${communityBoard.comm_no}">${communityBoard.comm_subject}&nbsp;${communityBoard.comm_title}</a></div></td>
 								<td>${communityBoard.user_id}</td>
 								<td>${communityBoard.comm_written_time}</td>
 								<td>${communityBoard.comm_clicked}</td>
+								<%-- <td>${communityBoard.comm_like}</td> --%>
 							</tr>
 						</c:forEach>
 					</table>

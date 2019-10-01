@@ -16,14 +16,14 @@
 						<div class="form-group form-inline">
 							<label for="start_page" class="col-sm-4 control-label">Start Page</label>
 							<div class="col-sm-8">
-								<input type="number" id="start_page" class="col-sm-10 btn-outline-secondary" name="start_page">
+								<input type="number" min="1" max="${bookVO.book_tot_page}" id="start_page" class="col-sm-10 btn-outline-secondary" name="start_page">
 							</div>
 						</div>
 													
 						<div class="form-group form-inline">
 							<label for="end_page" class="col-sm-4 control-label">End Page</label>
 							<div class="col-sm-8">
-								<input type="number" id="end_page" class="col-sm-10 btn-outline-secondary" name="end_page">
+								<input type="number" min="1" max="${bookVO.book_tot_page}" id="end_page" class="col-sm-10 btn-outline-secondary" name="end_page">
 							</div>
 						</div>
 												

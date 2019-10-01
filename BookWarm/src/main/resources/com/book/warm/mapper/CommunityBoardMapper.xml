@@ -6,15 +6,15 @@
 	<select id='getCommunityBoardList'
 		resultType="com.book.warm.vo.CommunityBoardVO">
 		select
-		comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_group,comm_step,comm_indent
+		comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_like,comm_group,comm_step,comm_indent
 		from community_board order by comm_group desc, comm_step asc
 	</select>
 	<select id='getCommunityBoardListWithPaging'
 		resultType="com.book.warm.vo.CommunityBoardVO">
 <![CDATA[
-select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_group,comm_step,comm_indent from(
-select rownum rn, comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_group,comm_step,comm_indent from(
-select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_group,comm_step,comm_indent  from community_board
+select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_like,comm_group,comm_step,comm_indent from(
+select rownum rn, comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_like,comm_group,comm_step,comm_indent from(
+select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,comm_clicked,comm_like,comm_group,comm_step,comm_indent  from community_board
   order by comm_group desc, comm_step asc)) where rn> (#{pageNum}-1)*#{amount} AND rn<=#{pageNum}*#{amount}
 		]]>
 	</select>
@@ -27,15 +27,22 @@ select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,co
 		select count(*) from community_board
 	</select>
 	
-	<select id='getCommunityBoardOneDelete' resultType="Integer">
+	<delete id='getCommunityBoardOneDelete'>
 		delete
-		community_board where comm_no=#{comm_no}
-	</select>
+		community_board  where comm_no=#{comm_no}
+	</delete>
 
 	<update id='modifyCommunityBoardOne'>
 		update community_board SET comm_title =
 		#{comm_title},
 		comm_content=#{comm_content},comm_subject=#{comm_subject} where
+		comm_no=#{comm_no}
+	</update>
+	
+	<update id='modifyPostByAdmin'>
+		update community_board SET comm_title =
+		'삭제된 게시글 입니다.',
+		comm_content='운영 원칙에 위반된 게시글입니다.', comm_subject=' ' where
 		comm_no=#{comm_no}
 	</update>
 
@@ -63,5 +70,10 @@ select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,co
 		update community_board set comm_step=comm_step+1
 		where
 		comm_group=#{comm_group} and comm_step>#{comm_step}
+	</update>
+	<update id='hit'>
+		update community_board set comm_clicked=comm_clicked+1
+		where
+		comm_no=#{comm_no}
 	</update>
 </mapper>

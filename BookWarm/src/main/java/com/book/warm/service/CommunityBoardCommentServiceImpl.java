@@ -21,14 +21,16 @@ public class CommunityBoardCommentServiceImpl implements CommunityBoardCommentSe
 
 	@Override
 	public int register(CommunityBoardCommentVO communityBoardCommentVO) {
-		log.info("register : " + communityBoardCommentVO);
+		log.info("=============== register() ===============" );
 		return mapper.insertComment(communityBoardCommentVO);
 	}
 
 	@Override
-	public CommunityBoardCommentVO get(int comm_cmt_no) {
-		log.info("get : " + comm_cmt_no);
-		return mapper.readComment(comm_cmt_no);
+	public CommunityBoardCommentVO get(int comm_cmt_no,String user_id) {
+		log.info("=============== Get Comment ===============");
+		log.info("Get Comment No : " + comm_cmt_no);
+		log.info("user_id : " + user_id);
+		return mapper.readComment(comm_cmt_no,user_id);
 	}
 
 	@Override
@@ -53,6 +55,11 @@ public class CommunityBoardCommentServiceImpl implements CommunityBoardCommentSe
 	public CommunityCommentPageDTO getListPage(Criteria criteria, int comm_cmt_no) {
 		log.info("CommunityCommentPageDTO");
 		return new CommunityCommentPageDTO(mapper.getCountByComm_cmt_no(comm_cmt_no),mapper.getCommentListWithPaging(criteria,comm_cmt_no));
+	}
+
+	@Override
+	public int deleteAllPostComments(int comm_no) {
+		return mapper.deleteAllPostComments(comm_no);
 	}
 
 }

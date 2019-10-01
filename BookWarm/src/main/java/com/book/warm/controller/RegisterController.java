@@ -1,13 +1,12 @@
 package com.book.warm.controller;
 
-import java.sql.Timestamp;
 import java.text.ParseException;
-import java.util.Date;
 import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
-import com.book.warm.encryption.SecurityUtil;
 import com.book.warm.service.RegisterService;
 import com.book.warm.vo.UserVO;
 
@@ -103,12 +101,48 @@ public class RegisterController {
 		if(userVO==null)
 			return "redirect:/checkDuplicateRegister";
 		
-		/* ===========> 로그인 시큐리티 적용으로 비번 암호화 해제
-		 * // 비번 암호화 SecurityUtil sha2 = new SecurityUtil(); String encryptPw =
-		 * sha2.encryptSHA256(userVO.getUser_pw()); userVO.setUser_pw(encryptPw);
-		 * 
-		 * System.out.println(userVO.getUser_pw());
-		 */
+		// 비번 암호화
+//		SecurityUtil sha2 = new SecurityUtil();
+//		String encryptPw = sha2.encryptSHA256(userVO.getUser_pw());
+//		userVO.setUser_pw(encryptPw);
+//		
+		BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
+		String encryptedPw = pwEncoder.encode(userVO.getUser_pw());
+		userVO.setUser_pw(encryptedPw);
+		
+		// user_bday : String->timestamp로 변환 후 setUser_bday()하기
+//		String user_bday = req.getParameter("user_bday");
+//		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+//		Date date = null;
+//		
+//		try {
+//			date = sdf.parse(user_bday);
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		System.out.println(date);
+//		
+		System.out.println("폰번 : "+userVO.getUser_phone());		
+		
+		String str=req.getParameter("user_bday");
+		
+		System.out.println("user_bday : " + str);
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd"); 
+		java.util.Date t;
+		try {
+			t = sdf.parse(str);
+			java.sql.Date st = new java.sql.Date(t.getTime());
+			java.sql.Timestamp sts = new java.sql.Timestamp(t.getTime());
+			
+			userVO.setUser_bday(sts);
+			System.out.println("성공");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+
+		
 		// 받아온 데이터 db에 넣기
 		registerService.insertNewUser(userVO);
 		return "/registerSuccess";

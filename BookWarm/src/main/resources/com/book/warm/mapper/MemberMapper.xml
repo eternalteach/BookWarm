@@ -38,5 +38,12 @@
  			user_info ui left outer join authorities auth on ui.user_id = auth.user_id
  		where ui.user_id = #{user_id}
  	</select>
+ 	<select id="readAllUser" resultMap="memberMap">
+ 		select
+ 			ui.user_id, user_pw, user_nickname, user_name, user_bday, user_sex, user_phone, user_mail, user_zipcode,
+ 			user_addr, user_addr_detail, user_join_date, user_level, user_tot_price, user_point, authority
+ 		from
+ 			user_info ui left outer join authorities auth on ui.user_id = auth.user_id
+ 	</select>
  
  </mapper>

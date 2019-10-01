@@ -4,12 +4,23 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 읽어온 날짜를 형식에 맞게 자르기 위해 taglib 추가 -->
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-<%@ include file="./includes/header/header-from-vertex.jsp" %>
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="/warm/resources/js/logintest.js"></script>
+<%@ include file="includes/header/script-vertexEx.jsp"%>
+<link rel="stylesheet" href="resources/css/main.css" />
+</head>
+<body>
+<%@ include file="includes/header/header-topnav.jsp"%>
     
-	
+	<sec:authentication property="principal.username" var="user_id"/>
 
-    
     <div role="main" class="main">
 
         <section class="page-header" style="margin-bottom:10px">
@@ -39,22 +50,8 @@
 
                     <aside class="sidebar left-sidebar col-sm-3" style="margin-top:20px">
                     
-                    	<!-- 사이드바에 해당 책 이미지와 책 제목+작가 띄워보기. -->
-                    	
-                    	<section>
-                            <div>
-                                <ul>
-                                    <li>
-                                    	<a href="#">
-                                			<img src="${thumbnail.book_img}" style="display:block; margin:auto">
-                            			</a>
-                            		</li>
-                                    <li style="text-align:center; margin:5px">${thumbnail.book_title}</li>
-                                    <li style="text-align:center">${thumbnail.writer_name}</li>
-                                </ul>
-                            </div>
-                            
-                    	</section>
+						<!-- recode 삽입 -->
+						<%@ include file="includes/record/record.jsp"%>
                     
                     
                     
@@ -148,6 +145,7 @@
                             </div>
                         </section>
                     </aside>
+                    
 					<div class="col-sm-9 v-blog-wrap">
 
                         <div class="v-blog-items-wrap blog-standard">
@@ -158,13 +156,13 @@
                             <li class="col-sm-12" style="margin-top:10px">
                             	<div class="pull-right">
                             	
-                            	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${list[0].isbn}&user_id=${list[0].user_id}">
+                            	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${bookVO.isbn}">
 		                            	<span class="text ls-1">
 		                            		감상 더하기
 			                                <i class="icon icon-pen-3"></i>
 		                            	</span>
                             	</a><br>
-                            	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${list[0].isbn}&user_id=${list[0].user_id}">
+                            	<a class="btnPerBook" href="/warm/library">
 		                            	<span class="text ls-1">
 		                            		서재로 돌아가기
 		                            		<i class="fa fa-book"></i>
@@ -283,8 +281,8 @@
                                 	
                                 	<form id="actionForm" action="/warm/reviewPerBook" method="get">
 
-                                		<input type="hidden" name="isbn" value="${list[0].isbn}">
-                                		<input type="hidden" name="user_id" value="${list[0].user_id}">
+                                		<input type="hidden" name="isbn" value="${bookVO.isbn}">
+                                		<%-- <input type="hidden" name="user_id" value="${list[0].user_id}"> --%>
                                 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
                                 		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
                                 		
@@ -390,6 +388,96 @@
     	})();
     	
     </script>
+    
+    <script type="text/javascript">
+	jQuery(document).ready(
+			function($) {
+				$(".example-tags").select2({
+					tags : true
+				});
+
+				$("#ddFormat").datepicker({
+					prevText : '<i class="fa fa-chevron-left"></i>',
+					nextText : '<i class="fa fa-chevron-right"></i>',
+					dateFormat : "dd/mm/yy"
+				});
+
+				$("#yyFormat").datepicker({
+					prevText : '<i class="fa fa-chevron-left"></i>',
+					nextText : '<i class="fa fa-chevron-right"></i>',
+					dateFormat : "yy/mm/dd"
+				});
+
+				$("#city").combobox();
+				$("#region").combobox();
+
+				$("#slider").slider({
+					range : "min",
+					min : 10,
+					max : 100,
+					value : 80
+				});
+
+				$("#bedrooms").val($("#slider3").slider("value"));
+
+				$("#guests").change(function() {
+					guestnumber.slider("value", this.selectedIndex + 1);
+				});
+
+				$("#eq > .sliderv-wrapper").each(function() {
+					var value = parseInt($(this).text(), 10);
+					$(this).empty().slider({
+						value : value,
+						range : "min",
+						animate : true,
+						orientation : "vertical"
+					});
+				});
+
+				$("#eq2 > .sliderv-wrapper").each(function() {
+					var value = parseInt($(this).text(), 10);
+					$(this).empty().slider({
+						value : value,
+						range : "min",
+						animate : true,
+						orientation : "vertical"
+					});
+				});
+
+				var initialYear = 1980;
+				var yearTooltip = function(event, ui) {
+					var curYear = ui.value || initialYear
+					var yeartip = '<span class="slider-tip">' + curYear
+							+ '</span>';
+					$(this).find('.ui-slider-handle').html(yeartip);
+				}
+				
+				$("#slider-range").slider({
+					range : true,
+					min : 0,
+					max : $("#bookTotalPage").val(), //<--책의 토탈 페이지
+					values : [ $("#startRead").val(), $("#endRead").val() ], // <-- insert page info
+					slide : function(event, ui) {
+						$("#startRead").val("p." + ui.values[0]);
+						$("#endRead").val("p." + ui.values[1]);
+					}
+				});
+
+				$("#startRead").val("p." + $("#slider-range").slider("values", 0));
+				$("#endRead").val("p." + $("#slider-range").slider("values", 1));
+
+
+				var valtooltip = function(sliderObj, ui) {
+					val1 = '<span class="slider-tip">'
+							+ sliderObj.slider("values", 0) + '</span>';
+					val2 = '<span class="slider-tip">'
+							+ sliderObj.slider("values", 1) + '</span>';
+					sliderObj.find('.ui-slider-handle:first').html(val1);
+					sliderObj.find('.ui-slider-handle:last').html(val2);
+				};
+
+			});
+</script>
     
 
 <%@ include file="./includes/footer/footer-6 from Vertex.jsp" %>

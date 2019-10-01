@@ -11,12 +11,13 @@ public class CommunityBoardVO {
 	private Timestamp comm_written_time;
 	private Timestamp comm_modify_time;
 	private int comm_clicked;
+	private int comm_like;
 	private int comm_group;
 	private int comm_step;
 	private int comm_indent;
 	public CommunityBoardVO(int comm_no, String user_id, String comm_subject, String comm_title, String comm_content,
-			Timestamp comm_written_time, Timestamp comm_modify_time, int comm_clicked, int comm_group, int comm_step,
-			int comm_indent) {
+			Timestamp comm_written_time, Timestamp comm_modify_time, int comm_clicked, int comm_like, int comm_group,
+			int comm_step, int comm_indent) {
 		super();
 		this.comm_no = comm_no;
 		this.user_id = user_id;
@@ -26,6 +27,7 @@ public class CommunityBoardVO {
 		this.comm_written_time = comm_written_time;
 		this.comm_modify_time = comm_modify_time;
 		this.comm_clicked = comm_clicked;
+		this.comm_like = comm_like;
 		this.comm_group = comm_group;
 		this.comm_step = comm_step;
 		this.comm_indent = comm_indent;
@@ -81,6 +83,12 @@ public class CommunityBoardVO {
 	public void setComm_clicked(int comm_clicked) {
 		this.comm_clicked = comm_clicked;
 	}
+	public int getComm_like() {
+		return comm_like;
+	}
+	public void setComm_like(int comm_like) {
+		this.comm_like = comm_like;
+	}
 	public int getComm_group() {
 		return comm_group;
 	}
@@ -99,4 +107,6 @@ public class CommunityBoardVO {
 	public void setComm_indent(int comm_indent) {
 		this.comm_indent = comm_indent;
 	}
+	
+	
 }

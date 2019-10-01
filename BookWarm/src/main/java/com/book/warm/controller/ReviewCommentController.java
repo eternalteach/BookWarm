@@ -1,5 +1,8 @@
 package com.book.warm.controller;
 
+import java.security.Principal;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +33,6 @@ public class ReviewCommentController {
 	private ReviewCommentService service;
 	
 	// 댓글 입력
-	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value="/new",
 					 consumes = "application/json",
 					 produces = { MediaType.TEXT_PLAIN_VALUE })
@@ -106,6 +108,14 @@ public class ReviewCommentController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-
+	// 내 리뷰에 달린 최근 댓글 목록
+	@GetMapping(value="/recent",
+					produces= {
+								MediaType.APPLICATION_XML_VALUE,
+								MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<List<ReviewCommentVO>> getCommentsOnMyReview(Principal principal) {
+		
+		return new ResponseEntity<>(service.getCommentsOnMyReview(principal.getName()), HttpStatus.OK);
+	}
 	
 }

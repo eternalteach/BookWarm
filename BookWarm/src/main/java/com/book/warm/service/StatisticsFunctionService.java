@@ -12,11 +12,9 @@ public class StatisticsFunctionService {
 
 	public int logingPage(List<LogingBoardVO> list, BookVO bookVO) {
 		if(list.size()==-1||list.size()==0) {
-			System.out.println("list.size() : "+list.size());
 			return 0;
 		}
 		int total = bookVO.getBook_tot_page();
-
 		int[] realReadPage = new int[total]; // 책의 ?��???��?���? 0?���? 초기?��
 		for (int i = 0; i < total; i++) {
 			realReadPage[i] = 0;
@@ -41,7 +39,6 @@ public class StatisticsFunctionService {
 
 	public int firstPage(List<LogingBoardVO> list) {
 		if(list.size()==-1||list.size()==0) {
-			System.out.println("list.size() : "+list.size());
 			return 0;
 		}
 		int listSize = list.size();
@@ -56,7 +53,6 @@ public class StatisticsFunctionService {
 
 	public int endPage(List<LogingBoardVO> list) {
 		if(list.size()==-1||list.size()==0) {
-			System.out.println("list.size() : "+list.size());
 			return 0;
 		}
 		int listSize = list.size();

@@ -16,53 +16,87 @@
 </head>
 <body>
 <%@ include file="includes/header/header-topnav.jsp"%>
-					<div>
-							<form id="pagingActionForm" method="post">
-						<table width="500" cellpadding="0" cellspacing="0" border="1">
-								<tr>
-									<td>번호</td>
-									<td>${modifyCommunityBoardPost.comm_no}</td>
-								</tr>
-								<tr>
-									<td>조회수</td>
-									<td>${modifyCommunityBoardPost.comm_clicked}</td>
-								</tr>
-								<tr>
-									<td>작성자</td>
-									<td><input type="text" name="user_id" value="${modifyCommunityBoardPost.user_id}"></td>
-								</tr>
-								<tr>
-									<td>제목</td>
-									<td><input type="text" name="comm_title" value="${modifyCommunityBoardPost.comm_title}"></td>
-								</tr>
-								<tr>
-									<td>말머리</td>
-									<td><input type="text" name="comm_subject" value="${modifyCommunityBoardPost.comm_subject}"></td>
-								</tr>
-								<tr>
-									<td>내용</td>
-									<td><textarea rows="10" name="comm_content">${modifyCommunityBoardPost.comm_content}</textarea></td>
-								</tr>
-								<tr>
-									<td colspan="2"><a class="submit" href="communityBoardSaveModify"><button type="submit">저장</button></a>&nbsp;&nbsp; 
-										<a class="submit" href="communityboard">List</a> &nbsp;&nbsp; 
-										<a class="submit" href="communityboarddelete">Delete</a>
-								</tr>
-									<input type='text' hidden='hidden' id='pageNum' name='pageNum' value='${criteria.pageNum}'> 
-									<input type='text' hidden='hidden' id='amount' name='amount' value='${criteria.amount}'>
-									<input type='text' hidden='hidden' id='comm_no' name='comm_no' value='${modifyCommunityBoardPost.comm_no}'>
-						</table>
-							</form>
+
+<div class="container center-block">
+	<div class='row'>
+		<div class='col-lg-12'>
+			<div class='panel panel-default'>
+				<div class="comment-write">
+					<div class="modal-content">
+					<form id="pagingActionForm" method="post">
+						<div class="modal-body col-lg-12">
+							<div class="form-inline">
+								<textarea id="comm_subject" class="col-lg-2 " rows="1" name="comm_subject" placeholder="${modifyCommunityBoardPost.comm_subject}"></textarea>
+								<textarea id="comm_title" class="col-lg-10 " rows="1" name="comm_title" placeholder="${modifyCommunityBoardPost.comm_title}"></textarea>
+								<div id="comm_title_msg"></div>
+							</div>
+						</div>
+       					<div class="col-lg-12">
+							<h3> <span class="blog-author minor-meta"> Posted by 
+								<span class="entry-author-link"> 
+									<span class="vcard author">
+										<span class="v-blog-item-details"> <a href="#" title="Posts by HB-Themes" rel="author">${user_id}</a></span>
+										</span>
+									</span>
+								</span>
+							</h3>
+         					<div class="form-group">
+         						<div class="form-control card" style="height:400px;">
+         							<textarea id="comm_content" name="comm_content" rows="20" placeholder="${modifyCommunityBoardPost.comm_content}"></textarea>
+         						</div>
+         						<div id="comm_content_msg"></div>
+         					</div>
+         					<div class="form-horizontal">
+           						<div class="form-group from-horizentar pull-right">
+									<a href="communityBoardSaveModify"><button type="submit" class="submit btn btn-sm btn-outline-secondary">Re Record</button></a>
+									<a href="communityboard"><button type="submit" class="submit btn btn-sm btn-outline-secondary">List</button></a>
+									<a href="communityboarddelete"><button id="modifyDelete" type="submit" class="submit btn btn-sm btn-outline-secondary">Delete</button></a>
+           						</div>   
+         					</div>
+						</div>
+							<input type='text' hidden='hidden' id='pageNum' name='pageNum' value='${criteria.pageNum}'> 
+							<input type='text' hidden='hidden' id='amount' name='amount' value='${criteria.amount}'>
+							<input type='text' hidden='hidden' id='comm_no' name='comm_no' value='${modifyCommunityBoardPost.comm_no}'>
+						</form>
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+								
 <script>
 	$(document).ready(function() {
 		var pagingActionForm = $("#pagingActionForm");
+		
 		$(".submit").on("click", function(e) {
 			e.preventDefault();
-			let moveNextPage=$(this).attr("href");
+			if($(this).closest("button").attr("id")=="modifyDelete"){
+				alert("Remove");
+				let moveNextPage=$(this).closest("a").attr("href");
+				pagingActionForm.attr("action",moveNextPage);
+				pagingActionForm.submit();
+			}else{
+			if($("#comm_title").val()==''||$.trim($("#comm_title").val())==""){
+				$("#comm_title_msg").html("<span style='color:red'>제목을 입력해 주세요.</span>");
+				return;
+			}else{$("#comm_title_msg").html("")}
+			
+			if($("#comm_subject").val()==''||$.trim($("#comm_subject").val())==""){
+				$("#comm_title_msg").html("<span style='color:red'> 말머리를 선택해 주세요. </span>");
+				return;
+			}else{$("#comm_title_msg").html("")}
+			
+			if($("#comm_content").val()==''||$.trim($("#comm_content").val())==""){
+				$("#comm_content_msg").html("<span style='color:red'> 내용을 입력해 주세요. </span>");
+				return;
+			}else{$("#comm_content_msg").html("")}
+			
+			let moveNextPage=$(this).closest("a").attr("href");
 			pagingActionForm.attr("action",moveNextPage);
 			pagingActionForm.submit();
+			}
 		});
 	});
 </script>
-<%@ include file="includes/footer/footer-1.jsp"%>
+</body>

@@ -1,5 +1,7 @@
 package com.book.warm.controller;
 
+import java.security.Principal;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -31,11 +33,11 @@ public class CommunityBoardCommentController {
 	//add Comment
 	@PostMapping(value = "/new", consumes = "application/json", produces = {
 			MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> create(@RequestBody CommunityBoardCommentVO communityBoardCommentVO) {
-		log.info("CommunityBoardCommentVO : " + communityBoardCommentVO);
-		int insertCount = service.register(communityBoardCommentVO);
-		log.info("Comment INSERT COUNT : " + insertCount);
-		return insertCount == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
+	public ResponseEntity<String> registerComment(@RequestBody CommunityBoardCommentVO communityBoardCommentVO,Principal principal) {
+		log.info("=============== registerComment ===============");
+		communityBoardCommentVO.setUser_id(principal.getName());
+		log.info(communityBoardCommentVO.getComm_cmt_content());
+		return service.register(communityBoardCommentVO) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
@@ -53,9 +55,10 @@ public class CommunityBoardCommentController {
 	
 	// get comment
 	@GetMapping(value="{comm_cmt_no}", produces= {MediaType.APPLICATION_ATOM_XML_VALUE,MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<CommunityBoardCommentVO> get(@PathVariable("comm_cmt_no")int comm_cmt_no){
-	log.info("get : " + comm_cmt_no);
-	return new ResponseEntity<>(service.get(comm_cmt_no),HttpStatus.OK);
+	public ResponseEntity<CommunityBoardCommentVO> getComment(@PathVariable("comm_cmt_no")int comm_cmt_no,Principal principal){
+		log.info("==================== getComment() ====================");
+		log.info("Comment No : " + comm_cmt_no);
+	return new ResponseEntity<>(service.get(comm_cmt_no,principal.getName()),HttpStatus.OK);
 	}
 	
 	// remove comment
