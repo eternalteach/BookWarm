@@ -309,9 +309,17 @@
 			});
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
 			/* 답장하기 눌렀을때 send_id 가져오기 */
-			$(".bb").on("click", function() {
-				//alert($(this).data("send_id"));
+			$("#getMSG").on("click", ".bb", function(e) {
+				alert("다");
 				var sendId = $(this).data("send_id");
 				var temp = $("#temp");
 				var str = '';
@@ -320,7 +328,7 @@
 				alert(temp.html); */
 				temp.html(str);
 			});
-				
+	
 			/* 쪽지보내기 유효성검사 */
 				$("#sendsend").on("click", function(e){
 					e.preventDefault();
@@ -330,25 +338,25 @@
 					var formm = $("form[name='my_form']");
 					console.log("sendsend");
 					
-					if(get == "" || get == null){			       
+		if (confirm("보내시겠습니까?") == true){   
+			
+					if($.trim(get) == ""){			       
 						alert("받는 사람을 입력하세요");
-						return false;		
-					}else if(title == ""){
+						return false;
+					}else if($.trim(title) == ""){
 						alert("제목을 입력하세요");
-						return false
-					}else if(content == ""){
+						return false;
+					}else if($.trim(content) == ""){
 						alert("내용을 입력하세요");
-						return false
+						return false;
 					};
 					
-					if (confirm("보내시겠습니까?") == true){    //확인
 					    formm.submit();
-					}else{   //취소
-						
-					}
-					
-				});		
-			/* 쪽지보내기 유효성검사 끝 */
+		}else{  
+			return false;
+			}
+				
+		});		
 			
 			/* 답장하기 유효성 검사  */
 			$("#sendsubmit").on("click", function(e){
@@ -359,18 +367,18 @@
 				var contentsubmit = $("textarea[id='contentsubmit']").val();
 				console.log("sendsubmit");
 				
-				if(titlesubmit == "") {
-					alert("제목을 입력하세요");
-					return false;
-				}else if(contentsubmit == ""){
-					alert("내용을 입력하세요");
-					return false
-				};
-				
 				if (confirm("보내시겠습니까?") == true){    //확인
+					if($.trim(titlesubmit) == "") {
+						alert("제목을 입력하세요");
+						return false;
+					}else if($.trim(contentsubmit) == ""){
+						alert("내용을 입력하세요");
+						return false
+					};
+					
 					formsubmit.submit();
 				}else{   //취소
-					
+					return false;
 				}
 			});
 		
