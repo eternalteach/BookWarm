@@ -98,7 +98,6 @@
             <div class="container">
                <div class="row">
 					
-				<!-- 감상 메인 페이지에서 사이드바 안 쓸 듯 -->
                   <div class="col-md-4 left-side-sidebar pt-70" style="padding-top:50px !important;">
                      <aside class="sidebar" style="width:100%">
 						<section>
@@ -466,13 +465,22 @@
 	   			  console.log("============ 완독한 책 이미지 뿌려주기 =============");
 	   			  
 	   			  var tdObj = $(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "']");
-	   			  var str = "<div style='width:40%; display:inline-block; position:relative; vertical-align:bottom'><img style='position:absolute; cursor: pointer;' id='" + info.event.id + "' src='" + info.event.extendedProps.imageurl + "'>"; 
+	   			  var str = "<div style='width:40%; display:inline-block; position:relative; vertical-align:bottom'><img style='position:absolute; cursor: pointer;' id='" + info.event.id + "' src='" + info.event.extendedProps.imageurl + "'></div>"; 
 	   			  
 	   			  if(info.event.extendedProps.firstImg) {
 	   				  // rerender시 표지가 반복적으로 추가되지 않도록 html에 새로 뿌려준다.
 		   			  tdObj.html(str);
 	   			  } else {
+	   				  // 당일 이벤트가 3개 이상이라면 +버튼이 나타나도록 하고 싶은데
+	   				  // 기존에 title 말고 이벤트가 몇 개 이상이면 나타나던 +more은 이미지랑 영역이 겹치니까 그보다는 직접 구현하는 쪽이 좋을 듯.
+	   				  // 
 		   			  tdObj.append(str);
+	   			  }
+	   		  } else {
+	   			  // 이렇게 나오면 다른 이벤트가 있다는 얘기잖아! 이 경우에 str에 버튼을 더해주면 될 것 같은데, 문제는 여러 번 반복될 경우?
+	   			  if($(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "']").find("button")==null) {
+		   			  var str = "<div style='width:40%; display:inline-block; position:relative; vertical-align:bottom'>"; 
+	   				  
 	   			  }
 	   		  }
 	   		  
@@ -554,6 +562,9 @@
 						str += "</div></div></div></li>";
 						str += "";
 					});
+					if(str=="") {
+						str = "댓글이 없습니다.";
+					}
 					recentCmt.html(str);
 					
 		}); // end getJSON
@@ -589,19 +600,11 @@
 		}
 	};
 	
-
-</script>
-
-<script>
-
 	var actionForm = $("#actionForm");
 	
 	$(".page-link").on("click", function(e) {
 		
 		e.preventDefault();
-		
-		console.log('click');
-		
 		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 		actionForm.submit();
 	 });
