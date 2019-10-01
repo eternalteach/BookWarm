@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript" src="/warm/resources/js/record.js"></script>
 <script type="text/javascript" src="/warm/resources/js/DateJsonToJsp.js"></script>
 <section class="section-primary alternate-color b-bordered">
@@ -20,8 +21,8 @@
                                 		<img src="${bookVO.book_img}" style="display:block; margin:auto">
                             		</a>
                             	</li>
-                                <li style="text-align:center; margin:5px">${bookVO.book_title}</li>
-                                <li style="text-align:center">${bookVO.writer_name}</li>
+                                <li style="text-align:center; margin:5px"><strong>${bookVO.book_title}</strong></li>
+                                <li style="text-align:center">${fn:substring(bookVO.writer_name, 1, fn:length(bookVO.writer_name)-1)}</li>
                             </ul>
 						</div>
 					</div>

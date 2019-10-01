@@ -23,19 +23,18 @@
 
     <div role="main" class="main">
 
-        <section class="page-header" style="margin-bottom:10px">
+        <section class="page-header" style="padding:10px">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-8 text-left">
                         <span class="tob-sub-title text-color-primary d-block">OUR FEATURES</span>
                         <h1>Blog Standard</h1>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </div>
                     <div class="col-md-4">
                         <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
-                            <li><a href="./resources/Vertex/index.html">Home</a></li>
-                            <li><a href="./resources/Vertex/index.html">blog</a></li>
-                            <li class="active">Blog Standard</li>
+                            <li><a href="/warm/library?user_id=${user_id}">내 서재</a></li>
+                            <li><a href="/warm/reviewMain">감상 메인</a></li>
+                            <li class="active">${bookVO.book_title}</li>
                         </ul>
                     </div>
                 </div>
@@ -46,14 +45,10 @@
             <div class="container">
                 <div class="row">
 
-                    
-
                     <aside class="sidebar left-sidebar col-sm-3" style="margin-top:20px">
                     
 						<!-- record 삽입 -->
 						<%@ include file="includes/record/record.jsp"%>
-                    
-                    
                     
                         <section class="widget v-search-widget clearfix">
                             <form role="search" method="get" id="searchform" class="searchform" action="#">
@@ -62,7 +57,6 @@
                                 </div>
                             </form>
                         </section>
-                        
 
                         <!-- <section class="widget widget_sf_recent_custom_comments clearfix">
                             <div class="widget-heading clearfix">
@@ -147,7 +141,6 @@
                     </aside>
                     
 					<div class="col-sm-9 v-blog-wrap">
-
                         <div class="v-blog-items-wrap blog-standard">
 
                             <ul class="v-blog-items row standard-items clearfix">
@@ -177,24 +170,20 @@
 	                        <!-- 8/29 날짜 형식 변환: 달을 영어로 출력하기 위해 언어 변경, format을 필요 데이터만 필요한 형태로 변환 -->    
 	                        <fmt:setLocale value="en_US" scope="session"/>
                             <fmt:formatDate var="fmt_date" value="${vo.review_written_date}" pattern="ddMMM"/>
-                            <!-- 		작성일 혹은 수정일을 쪼개서 형식에 맞게 넣기 위한 c태그 추가 -->
-                            <c:set var="tmp_date" value="${fmt_date}"/>
                             
 								<li class="v-blog-item col-sm-12" style="margin-top:20px">
 									
                                     <div class="post-content no-thumb clearfix">
 
                                         <div class="v-post-date pull-left">
-                                            <span class="day">${fn:substring(tmp_date,0,2)}</span> <!-- 가져온 날짜 중 일에 해당하는 숫자 -->
-                                            <span class="month">${fn:substring(tmp_date,2,5)}</span>
-                                            <div class="like-holder like-button"><i class="fa fa-heart"></i>18</div>
+                                            <span class="day">${fn:substring(fmt_date,0,2)}</span> <!-- 가져온 날짜 중 일에 해당하는 숫자 -->
+                                            <span class="month">${fn:substring(fmt_date,2,5)}</span>
+                                            <div class="like-holder like-button"><i class="fa fa-heart"></i></div>
                                         </div>
                                         <div class="post-inner">
                                             <div class="post-header">
-                                                <%-- <h2 class="title"><a href="/warm/reviewSelectOne?user_id=${vo.user_id}&review_no=${vo.review_no}&isbn=${vo.isbn}">${vo.review_title}</a></h2> --%>
 												
 												<h2 class="title"><a class="move" href="${vo.review_no}">${vo.review_title}</a></h2>
-												
                                                 <div class="post-meta-info">
                                                     <span class="blog-author minor-meta">
                                                         	글쓴이
@@ -213,8 +202,8 @@
                                                         <c:if test="${vo.review_modify_date != vo.review_written_date}">
                                                         	(수정됨)
                                                         </c:if>
-                                                        </a> <span class="text-sep">|</span>
-
+                                                        </a> 
+                                                        <span class="text-sep">|</span>
                                                         <span class="comment-container minor-meta" id="${vo.review_no}">
                                                             <!-- 댓글 수가 입력될 공간 -->
                                                    		</span>
@@ -240,42 +229,27 @@
                             <nav aria-label="...">
                                 <ul class="pagination">
                                 	
-                                	 <!-- 책은 prev데이터가 없으면 아예 버튼을 노출하지 않는 거고,
-                                	 여기서는 prev 데이터가 없으면 클릭이 되지 않게 만든 것. -->
+                            
+                           			<!-- prev 데이터가 없으면 prev버튼이 비활성화 -->
+                               	 
+                                    <%-- <li class="page-item ${pageMaker.prev ? "":"disabled"} ">
+                                        <a  class="page-link" href="${pageMaker.startPage-1}">
+	                                        Previous
+	                                    </a>
+                                    </li> --%>
                                 	 
-                                	 	<!-- 이렇게 하면 prev 데이터가 없을 때 previous가 비활성화되기만 함. -->
-	                                    <%-- <li class="page-item ${pageMaker.prev ? "":"disabled"} ">
-	                                        <a  class="page-link" href="${pageMaker.startPage-1}">
-		                                        Previous
-		                                    </a>
-	                                    </li> --%>
-                                	 
-                                	 
+		                            <!-- prev데이터가 없으면 아예 버튼을 노출하지 않음 -->
                                 	<c:if test="${pageMaker.prev}">
 	                                    <li class="page-item">
-	                                        <a class="page-link" href="${pageMaker.startPage-1}">
-		                                        Previous
-		                                    </a>
+	                                        <a class="page-link" href="${pageMaker.startPage-1}">Previous</a>
 	                                    </li>
                                 	</c:if>
                                 	<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-                                	
 	                                    <li class="page-item ${pageMaker.cri.pageNum == num ? "active":"" }"><a class="page-link" href="${num}">${num}</a></li>
-	                                    
-	                                    <!-- <li class="page-item active">
-	                                        <span class="page-link">
-	                                            2
-	                                            <span class="sr-only">(current)</span>
-	                                        </span>
-	                                    </li> -->
-	                                    
                                 	</c:forEach>
-                                    
                                     <c:if test="${pageMaker.next}">
 	                                    <li class="page-item">
-		                                    <a class="page-link" href="${pageMaker.endPage+1}">
-		                                        Next
-		                                    </a>
+		                                    <a class="page-link" href="${pageMaker.endPage+1}">Next</a>
 	                                    </li>
                                 	</c:if> 
                                 	
@@ -296,54 +270,33 @@
                 </div>
             </div>
         </div>
-        
+ 
+    </div>
+    <!-- end of div main -->
+     	       
         <script type="text/javascript">
         	$(document).ready(function() {
-        		
-        		/* function encode(url) {
-        			return encodeURIComponent(url);
-        		}
-        		
-        		var tt = document.getElementById('aa').src;
-        		console.log(tt);
-        		console.log("전: " + tt);
-        		
-				document.getElementById('aa').src = '/warm/display?fileName=' + encodeURIComponent(tt);
-				
-				console.log("후: " + tt);
-				
-				var fileCallPath = encodeURIComponent("${img.uploadPath}" + "/" + "${img.uuid}" + "_" + "${img.fileName}");
-				console.log(fileCallPath); */
-        		
-				
 				
         		var actionForm = $("#actionForm");
         		
         		$(".page-link").on("click", function(e) {
         			
         			e.preventDefault();
-        			
-        			console.log('click');
-        			
         			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
         			actionForm.submit();
         		 });
         		
-        		
         		$(".move").on("click", function(e) {
         			
         			e.preventDefault();
-        			
         			actionForm.append("<input type='hidden' name='review_no' value='"+$(this).attr("href")+"'>");
         			actionForm.attr("action", "/warm/reviewSelectOne");
         			actionForm.submit();
         		}); 
         		
-        		
         		/* var result = '<c:out value="${result}"/>';
         		
         		checkModal(result);
-        		
         		history.replaceState({}, null, null);
         		
         		function checkModal(result) {
@@ -390,6 +343,7 @@
     </script>
     
     <script type="text/javascript">
+    
 	jQuery(document).ready(
 			function($) {
 				$(".example-tags").select2({
@@ -478,12 +432,8 @@
 
 			});
 </script>
-    
+
+<script src="./resources/Vertex/plugins/aos/aos.js"></script>
+<script src="./resources/Vertex/js/theme-core.js"></script>
 
 <%@ include file="./includes/footer/footer-6 from Vertex.jsp" %>
-    </div>
-
-    <script src="./resources/Vertex/plugins/aos/aos.js"></script>
-    <script src="./resources/Vertex/js/theme-core.js"></script>
-</body>
-</html>
