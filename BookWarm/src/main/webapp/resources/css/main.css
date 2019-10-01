@@ -1,8 +1,12 @@
 @charset "UTF-8";
 body{
-width:100vh;
-height:100vh}
-
+width:100vw;
+height:100vh;
+}
+.nopadding{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
 .margin-zero td, tr{
 	margin: 0px;
 	border: 0px;
@@ -26,6 +30,12 @@ height:100vh}
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+}
+.header-rabbit-left{
+	margin-left: 17%
+}
+.header-rabbit-right{
+	margin-left: 15%
 }
 .library-font{
 	font-style: italic; 
