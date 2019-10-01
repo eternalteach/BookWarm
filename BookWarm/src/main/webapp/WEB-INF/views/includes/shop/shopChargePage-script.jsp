@@ -27,7 +27,9 @@ $(document).ready(function() {
 	// 쿠폰 사용
 	$('#modal').on('click', 'button', function() {
 		var bookPrice = $('#total').val(); // 책 판매 총액
-		//bookPrice = bookPrice.substring(0, bookPrice.lastIndexOf("원"));
+		alert(bookPrice);
+		bookPrice = bookPrice.substring(0, bookPrice.lastIndexOf("원"));
+		alert(bookPrice);
 		var discounted = $(this).attr('data-abc'); // 쿠폰할인액
 		discounted = discounted/100*bookPrice; // 쿠폰할인액
 		
@@ -138,6 +140,12 @@ $(document).ready(function() {
 		}else {
 			// 폼 입력 다 했고, 환불계좌랑 휴대폰번호에도 알맞게 입력했다면 submit버튼
 			$(this).attr('type', 'submit');
+		}
+		
+		
+		var point = $('#point').val();
+		if(point=="") {
+			$('#point').attr('value', '0');
 		}
 		
 	})

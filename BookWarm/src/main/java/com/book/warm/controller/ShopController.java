@@ -179,6 +179,11 @@ public class ShopController {
 		// ordersVO 커맨드 객체로 받아온 데이터
 		String orders_payment = ordersVO.getOrders_payment(); // 결제 방법(kakao or cash)
 		int orders_total = ordersVO.getOrders_total(); // 주문 총 금액
+		int orders_pay_total = ordersVO.getOrders_pay_total(); // 총 지불 금액
+		
+		System.out.println("--------------------orders_total : " + orders_total);
+		System.out.println("--------------------orders_pay_total : " + orders_pay_total);
+		
 		String refund_account = ordersVO.getRefund_account(); // 환불 받을 계좌번호
 		String refund_bank = ordersVO.getRefund_bank(); // 환불 받을 은행
 		String coupon_no = ordersVO.getCoupon_no(); // 쿠폰
@@ -198,9 +203,10 @@ public class ShopController {
 		
 		String useCoupon = req.getParameter("useCoupon"); // 사용한 쿠폰번호
 		int usePoint = Integer.parseInt(req.getParameter("usePoint")); // 사용한 포인트
+		System.out.println("usePoint : " + usePoint);
 		int originalPoint = Integer.parseInt(req.getParameter("originalPoint")); // 원래 있던 포인트
-		int total = Integer.parseInt(req.getParameter("total")); // 책 총 판매액
-		int savePoint = (int)(total * 0.05); // 적립할 포인트
+		//int total = Integer.parseInt(req.getParameter("total")); // 책 총 판매액
+		int savePoint = (int)(orders_total * 0.05); // 적립할 포인트
 		System.out.println("savePoint : " + savePoint);
 		
 		// 사용한 쿠폰, 포인트 제거
