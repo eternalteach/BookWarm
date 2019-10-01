@@ -27,22 +27,29 @@ height:100vh}
 	margin-left: auto;
 	margin-right: auto;
 }
-
-.library-table {
-	width: 796px;
-	height: auto;
+.library-font{
+	font-style: italic; 
+	font-size:medium;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+.bookshelf-div {
+	width: 55vw;
+	height: 67vh;
 	dispay: block;
 	margin-left: auto;
 	margin-right: 10%;
 	background-color: transparent;
 	background-image: url('/warm/resources/img/library/bookshelf/bookshelf-2.png');
-	background-size: 100% 500px;
+	background-size: 100% 100%;
 }
 
 .library_emptySpace {
-	width: 37px;  
+	width: 3vw;  
 }
-
+.top-padding-3vh{
+	padding-top:3vh;
+}
 .full-img img{
 position: absolute; top:0; left: 0;
 width: 100%;
@@ -56,10 +63,11 @@ height: 100%;
 }
 
 .book-thumbnail {
-	height: 100px;
-	width: 80px;
+	height: 12.5vh;
+	width: 10vh;
 }
-
+.book-position{
+}
 * {
 	margin: 0;
 	padding: 0;
@@ -113,16 +121,39 @@ a.button {
 	right: 10px;
 	top: 10px;
 }
+.decoration-books-position{
+position: absolute; 
+left:10vw; 
+bottom:5vh;
+}
+.decoration-books{
+	width:21vw; 
+	height:30vh;
+}
 
-/* table td{
-	width : auto;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-bottom: 2px;
-    padding-top: 2px;
-    border:0px;
-	margin:0px;
-} */
+.bookshelf-position{
+	position: absolute;
+	left: 40%;bottom:19.5%;
+}
+.bookshelf-table{
+	width: 55vw;
+	height: 67vh;
+}
+.bookshelf-table-bottomSpace{
+	height: 8.6vh;
+}
+.bookshelf-table-bottom{
+	height: 1vh;
+}
+.bookshelf-table-books{
+	height: 8vh;
+}
+.bookshelf-table-booktop{
+	height: 4vh;
+}
+.bookshelf-table-topspace{
+	height: 1vh;
+}
 
 .transparent{
 	background:transparent;
