@@ -209,46 +209,6 @@
 				</c:forEach>
 
 
-                    <!--  <article class="v_blog-item">
-                        <div class="v_blog-item-inner row">
-                           <div class="v_blog-item-media col-md-5">
-                              <a href="#">
-                                 <img src="./resources/VertexEx/img/blog/x3.jpg" />
-                              </a>
-                           </div>
-                           <div class="v_blog-item-content col-md-7">
-                              <div class="v_blog-item-header">
-                                 <ul class="v_blog-item-meta">
-                                    <li class="v_blog-item-author">
-                                       <span>By </span> <a href="#">Vertex</a>
-                                    </li>
-                                    <li class="v_blog-item-date">
-                                       <time class="" datetime="2018-06-30T10:47:48+00:00">
-                                          June 14, 2018
-                                       </time>
-                                    </li>
-                                    <li class="v_blog-item-comments">No Comments</li>
-                                    <li class="v_blog-item-like-counter"><span>22 Likes</span></li>
-                                 </ul>
-
-                                 <a href="./resources/VertexEx/blog-post-standard-2.html" rel="bookmark">
-                                    <h2 class="v_blog-item-title" itemprop="name headline">How to love what you do</h2>
-                                 </a>
-                              </div>
-
-                              <div itemprop="articleBody">
-                                 <p>
-                                    Verterem repudiare no duo. Voluptua forensibus honestatis ad qui, vide atqui percipit id ius,
-                                    congue id.
-                                 </p>
-                                 <a class="v_blog-item-read-more" href="#">
-                                    <span>Read more</span>
-                                 </a>
-                              </div>
-                           </div>
-                        </div>
-                     </article> -->
-
                      <div class="row">
                         <div class="col-md-12">
                         
@@ -336,29 +296,6 @@
          <div class="eventSpace">
          	<!-- 여기에 이벤트 모달을 집어넣는다. -->
          </div>
-
-
-            <div class="copyright">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-sm-6">
-                        <p class="mb-0">© 2015-2018 Vertex. All right reserved.</p>
-                     </div>
-                     <div class="col-sm-6">
-                        <div class="clearfix pull-right">
-                           <ul class="list-inline fs-13 mb-none">
-                              <li><a href="./resources/VertexEx/pages-about.html">About</a></li>
-                              <li><a href="./resources/VertexEx/blog-grid.html">Blog</a></li>
-                              <li><a href="./resources/VertexEx/pages-contact.html">Contact</a></li>
-                              <li><a href="#">Terms</a></li>
-                              <li><a href="#">Jobs</a></li>
-                           </ul>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         
       
    </div>
    
@@ -393,22 +330,9 @@
 		  						let firstImg = false;
 	  							console.log("i: " +i);
 	  							console.log("obj.isbn: " + obj.isbn);
-	  							// 완독일을 timestamp에서 Date타입으로 변환
-	  							var logDate = new Date(obj.start_date);
-	  							// 필요한 날짜 형식으로 변환
-	  							var year = logDate.getFullYear();
-	  							var month = logDate.getMonth() + 1;
-	  							var date = logDate.getDate();
 	  							
-	  							if(month<10) {
-	  								month = '0' + month;
-	  							}
-	  							if(date<10) {
-	  								date = '0' + date;
-	  							}
-	  							
-	  							var dateFormat = year + "-" + month + "-" + date;
-	  							console.log("dateFormated: " + dateFormat);
+	  							// timestamp를 원하는 날짜 형식으로 변환하는 함수 호출
+	  							var dateFormat = tsToDate(obj.start_date);
 	  							
 	  							// 같은 날짜에 완독한 책이 존재한다면 limitCheck값만 증가시켜주고, 
 	  							// 이외의 경우 preDate에 날짜 저장 후 limitCheck 1로 초기화.
@@ -455,13 +379,14 @@
 	   	  },
 	   	  
 	   	  eventRender: function(info) {
-	   		  
 	   		  console.log("info.event.id:" + info.event.id);
 	   		  console.log("info.event.title : " + info.event.title);
 	   		  console.log("표지 : " + info.event.extendedProps.imageurl);
 	   		  console.log("info.event.extendedProps.dateFormat: " +  info.event.extendedProps.dateFormat);
 	   		  
 	   		  var tdObj = $(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "']");
+	   		  var targetDate = tsToDate(info.event.start);
+	   		  
 	   		  if(info.event.extendedProps.imageurl != '') {
 	   			  
 	   			  console.log("============ 완독한 책 이미지 뿌려주기 =============");
@@ -482,12 +407,12 @@
 	   			  if(!$(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "'] button").length) {
 	   				  console.log("button이 없는 상태");
 		   			  str += "<div style='display:inline-block; position:relative; float:right; width:20%;'>";
-		   			  str += "   <button class='plus' style='width:100%; height:20%; border:transparent; background-color:lightgray; color:white;'>+</button>";
+		   			  str += "   <button class='plus' data-toggle='modal' data-target='#" + targetDate + "' style='width:100%; height:20%; border:transparent; background-color:lightgray; color:white;'>+</button>";
 		   			  str += "</div>"; 
 		   			  tdObj.append(str); 
 	   			  }
 	   		  }
-	   		  
+	   		/* <button id="modalBtn" type="button" data-toggle="modal" data-target="#calModal">달력보기</button> */
 	   		  
 	   		  $(".fc-content-skeleton table").css("table-layout", "fixed");
 	   		  // gridMonth형에서 title은 나타나지 않도록 한다.
@@ -496,30 +421,6 @@
 	   		  /* $(".fc-content-skeleton table tbody").css("display", "");  */
 	   		  /* $(".fc-event-container").css("display", "none");  */
 	   		  
-	   		  /* var modals = '';
-	   		  
-	   		  modals += "<div class='modal fade' id='calModal' tabindex='-1' role='dialog' aria-labelledby='smallModalLabel' aria-hidden='true'>";
-	   		  modals += "    <div class='modal-content'>";
-	   		  modals += "        <div class='modal-body post-content'>";
-	   		  modals += "        	 	<div class='post-header form-header'>";
-	   		  modals += "					<div id='calendar'>";
-	   		  
-	   		  // 이 모달에 들어갈 내용: 이벤트 전부를 긁어와서 일당 읽은 책 목록을 띄운다.
-	   		  // 1. 이벤트를 외부에서도 불러올 수 있는가
-	   		  // 2. 모달을 만드는 시점은 언제. 페이지가 로딩될 때 한 번만 만들어지면 되는데, 외부에서 그렇게 불러올 수 있을지 모르겠으니까
-	   		  //    영역을 만들어서 거기에 html로 넣는 걸로 하자.(div class="eventSpace" 만듦)
-	   		  // 3. 이렇게 넣는 거면 매번 만들어도 상관이 없지. 로딩될 때마다 
-	   		  
-	   		  // 아니면 얘는 따로 처음에 완독 기록을 읽어와서 modal 만들어주면 ! ajax로.
-	   		  
-	   		  
-	   		  
-	   		  mocals += "					</div>";
-	   		  modals += "            </div>";
-	   		  modals += "        </div>";
-	   		  modals += "    </div>";
-	   		  modals += "</div>";
-	   		  $("body").append(modals); */
 	   	  },
 	   	  
 	   	  eventLimit: 0, 
@@ -568,7 +469,6 @@
  	 $("#calendar").on("click", "img", function() {
  		 location.href = "/warm/reviewPerBook?isbn=" + $(this).attr('id');
  	 });
- 	  
  	 
  	(function() {
 		 
@@ -603,34 +503,6 @@
  	 
   });
   
-//	작성한 지 24시간이 지난 댓글은 날짜로, 이내의 글은 몇 초/분/시간 전에 달았는지 알려주기
-	function displayTime(timeValue) {
-		var today = new Date();
-		var dateObj = new Date(timeValue);
-		
-		var gap = today.getTime() - timeValue;
-		var str = "";
-		
-		if(gap < (1000 * 60 * 60 * 24)) { // 24시간 이하면
-			
-			if(gap > 1000 * 60 * 60) { // 1시간 이상이면
-				return Math.round(gap/(1000*60*60)) + '시간 전';
-			} else if(gap > 1000 * 60) { // 1분 이상이면
-				return Math.round(gap/(1000*60)) + '분 전';
-			} else { // 초단위
-				return Math.round(gap/1000) + '초 전';
-			}			
-		} else {
-			
-			var yy = dateObj.getFullYear();
-			var mm = dateObj.getMonth() + 1; // getMonth() is zero-based
-			var dd = dateObj.getDate();
-			
-			return [ yy, '/', (mm > 9 ? '' : '0') + mm, '/', (dd > 9 ? '' : '0') + dd ].join('');
-			
-		}
-	};
-	
 	var actionForm = $("#actionForm");
 	
 	$(".page-link").on("click", function(e) {
@@ -639,11 +511,6 @@
 		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 		actionForm.submit();
 	 });
-	
-	$("#calendar").on("click", ".plus", function() {
-		// plus 버튼이 눌리면 해당일의 이벤트를 보여주기. 모달!
-	});
-	
 	
 	
 	$(document).ready(function() {
@@ -667,42 +534,105 @@
 						
 						$.each(data, function(i, obj){
 							
+							var finDate = tsToDate(obj.start_date);
 							if(preDate != obj.start_date) {
-								console.log("완독기록 없음 새로 만듭니다");
+								  preDate = obj.start_date;
+								  
 								  var modals = '';
 						   		  
-						   		  modals += "<div class='modal fade' id='" + obj.isbn + "' tabindex='-1' role='dialog' aria-labelledby='smallModalLabel' aria-hidden='true'>";
-						   		  modals += "    <div class='modal-content'>";
-						   		  modals += "        <div class='modal-body post-content'>";
+						   		  modals += "<div class='modal fade loglist' id='" + finDate + "' tabindex='-1' role='dialog' aria-labelledby='smallModalLabel' aria-hidden='true'>";
+						   		  modals += "    <div class='modal-content' style='max-width:300px; top:30%; left:40%;'>";
+						   		  modals += "        <div class='modal-body post-content' style='background-color:#FFFCD8'>";
 						   		  modals += "        	 	<div class='post-header form-header'>";
 						   		  modals += "					<div id='logsHere'>";
 						   		  
-						   		  modals += "					    <div>" + obj.start_date + "</div>";
+						   		  modals += "<button type='button' align='right'>x</button>";
+						   		  modals += "					    <div align='right'><strong>" + finDate + "</strong></div>";
 						   		  modals += "						<div>" + obj.book_title + "</div>";
 						   		  
-						   		  mocals += "					</div>";
+						   		  modals += "					</div>";
 						   		  modals += "            </div>";
 						   		  modals += "        </div>";
 						   		  modals += "    </div>";
 						   		  modals += "</div>";
 						   		  
-								  $("#eventSpace").html(modals);
+								  $(".eventSpace").append(modals);
 								  
 							} else {
-								console.log("완독기록 있음 데이터만 추가합니다");
 								// 같은 날 완독 기록이 있을 경우
-								$("#" + obj.isbn).find("#logsHere").append("<div>" + obj.book_title + "</div>");
+								$("#" + finDate).find("#logsHere").append("<div>" + obj.book_title + "</div>");
 							}
-						}
-				});
-		  })();
+						}); // end of $.each
+				}); // end of getJSON
+		  })(); // end of function
+		  
+	});
+	
+	$(document).click(function() {
+		
+		$(".loglist").hide();
 	});
 	
 	
+	/* $(".eventSpace").on("click", "button", function() {
+		
+		
+	}); */
 
+	$(".plus").click(function(e) {
+		
+		e.stopPropagation();
+		var num = $(this).index();
+		$(".loglist").eq(num).show();
+	});
+	
+	function tsToDate(timestamp) {
+		
+		    var tempDate = new Date(timestamp);
+		    
+			var year = tempDate.getFullYear();
+			var month = tempDate.getMonth() + 1;
+			var date = tempDate.getDate();
+			
+			if(month<10) {
+				month = '0' + month;
+			}
+			if(date<10) {
+				date = '0' + date;
+			}
+			
+			return year + "-" + month + "-" + date;
+	}
+	
+	
+//	작성한 지 24시간이 지난 댓글은 날짜로, 이내의 글은 몇 초/분/시간 전에 달았는지 알려주기
+	function displayTime(timeValue) {
+	
+		var today = new Date();
+		var dateObj = new Date(timeValue);
+		
+		var gap = today.getTime() - timeValue;
+		var str = "";
+		
+		if(gap < (1000 * 60 * 60 * 24)) { // 24시간 이하면
+			
+			if(gap > 1000 * 60 * 60) { // 1시간 이상이면
+				return Math.round(gap/(1000*60*60)) + '시간 전';
+			} else if(gap > 1000 * 60) { // 1분 이상이면
+				return Math.round(gap/(1000*60)) + '분 전';
+			} else { // 초단위
+				return Math.round(gap/1000) + '초 전';
+			}			
+		} else {
+			
+			var yy = dateObj.getFullYear();
+			var mm = dateObj.getMonth() + 1; // getMonth() is zero-based
+			var dd = dateObj.getDate();
+			
+			return [ yy, '/', (mm > 9 ? '' : '0') + mm, '/', (dd > 9 ? '' : '0') + dd ].join('');
+		}
+	};
 </script>
 
-<%-- <%@ include file="./includes/footer/footer-2.jsp"%> --%>
 
-</body>
-</html>
+<%@ include file="includes/footer/footer-1.jsp"%>

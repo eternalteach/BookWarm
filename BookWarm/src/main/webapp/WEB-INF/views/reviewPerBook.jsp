@@ -50,7 +50,7 @@
 
                     <aside class="sidebar left-sidebar col-sm-3" style="margin-top:20px">
                     
-						<!-- recode 삽입 -->
+						<!-- record 삽입 -->
 						<%@ include file="includes/record/record.jsp"%>
                     
                     
