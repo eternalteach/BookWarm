@@ -81,8 +81,66 @@
 		]]>
 	</select>
 	
+	<insert id="addOrder">
+		insert into orders(orders_no, user_id, orders_payment, orders_total, refund_account, refund_bank, orders_date, orders_pay_date, coupon_no, post_no)
+		values(ORDERS_SEQ.nextval, #{user_id}, #{orders_payment}, #{orders_total}, #{refund_account}, #{refund_bank}, SYSDATE, ${orders_pay_date}, #{coupon_no}, #{post_no})
+	</insert>
+	
+	<select id="getOrders_no" resultType="java.lang.String">
+		select ORDERS_SEQ.currval from dual
+	</select>
+	
+	<insert id="addOrderItems">
+		insert into orders_item values(ORDERS_ITEM_SEQ.nextval, #{isbn}, #{cart_cnt}, #{orders_no}, '주문완료')
+	</insert>
+	
+	<insert id="addPost">
+		insert into post
+		values(POST_SEQ.nextval, #{user_id}, #{post_name}, #{post_phone}, #{post_zipcode}, #{post_addr}, ${post_addr_detail})
+	</insert>
+	
+	<select id="getPost_no" resultType="java.lang.String">
+		select POST_SEQ.currval from dual
+	</select>
+	
+	<select id="limitDepositTime" resultType="java.lang.String">
+		SELECT TO_CHAR(orders_date+1, 'YYYY/MM/DD HH24:MI:SS')
+		FROM orders
+		where orders_no=#{orders_no}
+	</select>
+	
+	<update id="removeCoupon">
+		update coupon_no set coupon_available='f'
+		where coupon_no=#{useCoupon} and user_id=#{user_id}
+	</update>
+	
+	<update id="setUserPoint">
+		update user_info set user_point=#{point}
+		where user_id=#{user_id}
+	</update>
 	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -2,8 +2,11 @@ package com.book.warm.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.book.warm.page.Criteria;
 import com.book.warm.vo.BookVO;
+import com.book.warm.vo.CouponNoVO;
 import com.book.warm.vo.ReviewAttachVO;
 import com.book.warm.vo.ReviewBoardVO;
 import com.book.warm.vo.ReviewMainVO;
@@ -52,6 +55,11 @@ public interface ReviewBoardMapper {
 	
 	public List<ReviewAttachVO> getOldFiles();
 
+	// 매일 00시에 coupon_no테이블(coupon_available 컬럼) 갱신
+	public List<CouponNoVO> compareCouponTime();
+
+	public void changeCouponAvailable(CouponNoVO couponNoVO);
+	
 	public List<ReviewBoardVO> getOpenReview();
 
 }
