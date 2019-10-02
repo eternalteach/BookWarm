@@ -3,7 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript" src="/warm/resources/js/record.js"></script>
 <script type="text/javascript" src="/warm/resources/js/DateJsonToJsp.js"></script>
-<section class="section-primary alternate-color b-bordered">
+<section class="section-primary alternate-color b-bordered" style="min-width:170px">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
@@ -53,7 +53,12 @@
 								<a href="#modal-more-record" data-toggle="modal" ><strong class="primary-color" data-to="${recordNum}" data-plugin-options="{&quot;decimals&quot;: 0}">${recordNum}</strong></a>
 							</div>
 							<!-- open add record modal -->
-								<button type="button" class="btn" data-toggle="modal" data-target="#modal-add-record">Record Write</button>
+								
+						</div>
+						<div class="counters">
+							<div class="progress-label" style="text-align:center; height:50px">
+								<span><button type="button" class="btn" data-toggle="modal" data-target="#modal-add-record" style="margin:0">Record Write</button></span>
+							</div>
 						</div>
 					</div>
 				</div>

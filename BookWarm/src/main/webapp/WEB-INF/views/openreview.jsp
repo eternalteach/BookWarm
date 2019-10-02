@@ -24,14 +24,6 @@
             <section class="section-primary alternate-color">
                <div class="container">
 
-                  <!-- <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
-                     <li class="nav-item active" data-option-value="*"><a class="nav-link" href="#">Show All</a></li>
-                     <li class="nav-item" data-option-value=".websites"><a class="nav-link" href="#">Websites</a></li>
-                     <li class="nav-item" data-option-value=".logos"><a class="nav-link" href="#">Logos</a></li>
-                     <li class="nav-item" data-option-value=".brands"><a class="nav-link" href="#">Brands</a></li>
-                     <li class="nav-item" data-option-value=".medias"><a class="nav-link" href="#">Medias</a></li>
-                  </ul> -->
-
                   <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
                      <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
 
@@ -49,7 +41,7 @@
                               
                                	 <c:if test="${!empty review.attachList}">
                                  <div class="v_blog-item-media">
-                                    <a href="#">
+                                    <a href="/warm/reviewSelectOne?review_no=${review.review_no}&isbn=${review.isbn}">
                                     
                                        <c:set var="uploadPath" value="${fn:replace(review.attachList[0].uploadPath,bslash,slash)}"/>
                                        <c:set var="uuid" value="${review.attachList[0].uuid}"/>
@@ -77,7 +69,7 @@
                                        </a>
                                     </div>
                                     <div itemprop="articleBody">
-                                       <p style="overflow:hidden; text-overflow:ellipsis">
+                                       <p style="overflow:hidden; display: -webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:10; line-height:1.8em; max-height:18em; margin-top:15px; margin-bottom:30px">
                                           ${review.review_content}
                                        </p>
                                        <hr />
@@ -122,47 +114,5 @@
                </div>
             </section>
          </div>
-
-
-
-<script>
-
-// 여기서 가져와야 하는 첨부파일은, 뿌려지는 
-
-//첨부파일 가져오기 위한 즉시 실행 함수
-/* (function() {
-	var review_no = '<c:out value="${review.review_no}"/>';
-	$.getJSON("/warm/getAttachList", {review_no: review_no}, function(arr) {
-		
-				var uploadImgs = $(".uploadResult");
-				var str = uploadImgs.html() + "";
-				
-				$(arr).each(function(i, attach) {
-					var fileCallPath = encodeURIComponent(attach.uploadPath + "/" + attach.uuid + "_" + attach.fileName);
-					str += "<li data-path = '" + attach.uploadPath + "' data-uuid='" + attach.uuid + "' data-filename='" + attach.fileName + "'><a>";
-					str += "<img src='/warm/display?fileName=" + fileCallPath + "'>";
-					str += "</a>";
-					str += "</li>";
-				});
-				
-				uploadImgs.html(str); 
-				
-	}); // end getJSON
-})(); // end function */
-
-
-
-function encodeURL(url) {
-	url.replace("\\", "//");
-	console.log("안녕");
-	alert("encode: " + url);
-	alert("변환 후: " + encodeURIComponent(url));
-	
-	return "src=/warm/display?fileName=" + encodeURIComponent(url);
-}
-
-</script>
-
-
 
 <%@ include file="includes/footer/footer-1.jsp"%>

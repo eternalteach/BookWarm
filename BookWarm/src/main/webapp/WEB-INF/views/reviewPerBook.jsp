@@ -23,7 +23,7 @@
 
     <div role="main" class="main">
 
-        <section class="page-header" style="padding:10px; margin-top:45px">
+        <section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
             <div class="container">
                <!--  <div class="row align-items-center"> -->
                     <div class="col-md-4 pull-right">
@@ -36,9 +36,36 @@
                <!--  </div> -->
             </div>
         </section>
+        
+	</div>
+    <!-- end of div main -->
 
         <div class="v-page-wrap has-left-sidebar has-one-sidebar" style="margin-top:0px">
             <div class="container">
+            	
+            	<div class="row" style="width:100%; height:50px; text-align:right; position:relative">
+            		      <ul style="position:absolute; right:0">                     
+                            <!-- 감상 작성 버튼 추가 -->
+                            <li class="col-sm-12" style="margin-top:10px">
+                            	<div class="pull-right">
+                            	
+                            	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${bookVO.isbn}">
+		                            	<span class="text ls-1">
+		                            		감상 더하기
+			                                <i class="icon icon-pen-3"></i>
+		                            	</span>
+                            	</a><br>
+                            	<a class="btnPerBook" href="/warm/library">
+		                            	<span class="text ls-1">
+		                            		서재로 돌아가기
+		                            		<i class="fa fa-book"></i>
+		                            	</span>
+                            	</a><br>
+                            	</div>
+                            </li>
+                         </ul>    
+            	</div>
+            
                 <div class="row">
 
                     <aside class="sidebar left-sidebar col-sm-3" style="margin-top:20px">
@@ -80,7 +107,7 @@
                             <ul class="v-blog-items row standard-items clearfix">
                             
                             <!-- 감상 작성 버튼 추가 -->
-                            <li class="col-sm-12" style="margin-top:10px">
+ <%--                            <li class="col-sm-12" style="margin-top:10px">
                             	<div class="pull-right">
                             	
                             	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${bookVO.isbn}">
@@ -96,7 +123,7 @@
 		                            	</span>
                             	</a><br>
                             	</div>
-                            </li>
+                            </li> --%>
                             
                             <!-- 8/28 책별 감상 뿌리기 -->
                             <c:forEach items="${list}" var="vo">
@@ -117,7 +144,7 @@
                                         <div class="post-inner">
                                             <div class="post-header">
 												
-												<h2 class="title"><a class="move" href="${vo.review_no}">${vo.review_title}</a></h2>
+												<h2 class="title" style="overflow:hidden; text-overflow:ellipsis"><a class="move" href="${vo.review_no}">${vo.review_title}</a></h2>
                                                 <div class="post-meta-info">
                                                     <span class="blog-author minor-meta">
                                                         	글쓴이
@@ -146,7 +173,7 @@
                                                 </div>
                                             </div>
                                             <div class="v-blog-post-description">
-                                                <p>
+                                                <p style="overflow:hidden; display: -webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; line-height:1.8em; max-height:5.4em;">
                                                     ${vo.review_content}
                                                 </p>
                                             </div>
@@ -206,8 +233,7 @@
             </div>
         </div>
  
-    </div>
-    <!-- end of div main -->
+    
      	       
         <script type="text/javascript">
         	$(document).ready(function() {

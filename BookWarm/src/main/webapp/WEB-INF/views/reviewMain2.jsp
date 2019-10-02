@@ -97,27 +97,27 @@
             <div class="container">
             
                <div class="row" style="width:100%; height:50px; text-align:right; position:relative">
-           		    <ul style="position:absolute; right:0">                     
-                         <!-- 감상 작성 버튼 추가 -->
-                         <li class="col-sm-12" style="margin-top:10px">
-                           	<div class="pull-right">
-                           	
-		                    	<a class="btnPerBook" href="/warm/reviewWrite">
-		                      	<span class="text ls-1">
-		                      		감상 더하기
-		                           <i class="icon icon-pen-3"></i>
-		                      	</span>
-		                    	</a><br>
-		                    	<a class="btnPerBook" href="/warm/library">
-		                      	<span class="text ls-1">
-		                      		서재로 돌아가기
-		                      		<i class="fa fa-book"></i>
-		                      	</span>
-		                    	</a><br>
-		                    	
-	                    	</div>
-                         </li>
-                      </ul>    
+            		    <ul style="position:absolute; right:0">                     
+                            <!-- 감상 작성 버튼 추가 -->
+                            <li class="col-sm-12" style="margin-top:10px">
+                            	<div class="pull-right">
+                            	
+			                    	<a class="btnPerBook" href="/warm/reviewWrite">
+			                      	<span class="text ls-1">
+			                      		감상 더하기
+			                           <i class="icon icon-pen-3"></i>
+			                      	</span>
+			                    	</a><br>
+			                    	<a class="btnPerBook" href="/warm/library">
+			                      	<span class="text ls-1">
+			                      		서재로 돌아가기
+			                      		<i class="fa fa-book"></i>
+			                      	</span>
+			                    	</a><br>
+			                    	
+		                    	</div>
+                            </li>
+                         </ul>    
                </div>
             
                <div class="row">
@@ -153,20 +153,8 @@
                      </aside>
                      
                   </div>
-                  
-           <div style="max-width:600px !important;">
-		        <div>
-		            <div>
-		            	 <div class="post-header form-header">
-		                  	<div id='loading'>loading...</div>
-  							<div id='calendar'></div>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-                  
 
-                  <div class="col-md-4 v_blog-medium pt-70 pull-right" style="padding-top:30px !important;">
+                  <div class="col-md-8 v_blog-medium pt-70 pull-right" style="padding-top:30px !important;">
 
 
 				<c:if test="${empty list}">
@@ -290,10 +278,20 @@
             </div>
          </div>
          
-   
-    
-
-		
+         
+         <!-- Modal -->
+         <div class="modal fade" id="calModal" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+		    <div class="modal-dialog undefined" style="max-width:1000px !important;">
+		        <div class="modal-content">
+		            <div class="modal-body post-content">
+		            	 <div class="post-header form-header">
+		                  	<div id='loading'>loading...</div>
+  							<div id='calendar'></div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
          
          <div class="eventSpace">
          	<!-- 여기에 이벤트 모달을 집어넣는다. -->
