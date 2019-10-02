@@ -27,7 +27,7 @@ public class MemberTests {
 	@Inject
 	private DataSource ds;
 	
-	//@Test
+	@Test
 	public void testInsertMember() {
 		
 		String sql = "insert into user_info(user_id, user_pw, user_nickname, user_name, user_bday, user_sex, user_phone, "
@@ -83,44 +83,44 @@ public class MemberTests {
 		} // end for
 	} // end testInsertMember
 	
-	@Test
-	public void testInsertAuth() {
-		
-		String sql = "insert into authorities (user_id, authority) values(?,?)";
-		
-		for(int i=0; i<10; i++) {
-			
-			Connection con = null;
-			PreparedStatement pstmt = null;
-			
-			try {
-				
-				con = ds.getConnection();
-				pstmt = con.prepareStatement(sql);
-				
-				if(i<8) {
-					
-					pstmt.setString(1,  "user" + i);
-					pstmt.setString(2,  "ROLE_USER" );
-				} else if (i<9) {
-
-					pstmt.setString(1,  "manager" + i);
-					pstmt.setString(2,  "ROLE_MEMBER");
-				} else {
-
-					pstmt.setString(1,  "admin" + i);
-					pstmt.setString(2,  "ROLE_ADMIN");	
-				}
-				
-				pstmt.executeUpdate();
-				
-			} catch(Exception e) {
-				e.printStackTrace();
-			} finally {
-				
-				if(pstmt != null) { try {  pstmt.close(); } catch(Exception e) {} }
-				if(con != null) { try {  con.close(); } catch(Exception e) {} }
-			}
-		} // end for
-	}
+//	@Test
+//	public void testInsertAuth() {
+//		
+//		String sql = "insert into authorities (user_id, authority) values(?,?)";
+//		
+//		for(int i=0; i<10; i++) {
+//			
+//			Connection con = null;
+//			PreparedStatement pstmt = null;
+//			
+//			try {
+//				
+//				con = ds.getConnection();
+//				pstmt = con.prepareStatement(sql);
+//				
+//				if(i<8) {
+//					
+//					pstmt.setString(1,  "user" + i);
+//					pstmt.setString(2,  "ROLE_USER" );
+//				} else if (i<9) {
+//
+//					pstmt.setString(1,  "manager" + i);
+//					pstmt.setString(2,  "ROLE_MEMBER");
+//				} else {
+//
+//					pstmt.setString(1,  "admin" + i);
+//					pstmt.setString(2,  "ROLE_ADMIN");	
+//				}
+//				
+//				pstmt.executeUpdate();
+//				
+//			} catch(Exception e) {
+//				e.printStackTrace();
+//			} finally {
+//				
+//				if(pstmt != null) { try {  pstmt.close(); } catch(Exception e) {} }
+//				if(con != null) { try {  con.close(); } catch(Exception e) {} }
+//			}
+//		} // end for
+//	}
 }

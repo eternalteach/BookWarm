@@ -55,6 +55,49 @@ public class ShopBoardService {
 		shopMapper.delete(cart_no);
 	}
 	//==================================================
+
+	public void addOrder(String orders_payment, String user_id, int orders_total, String refund_account, String refund_bank,
+			String orders_pay_date, String coupon_no, String post_no) {
+		shopMapper.addOrder(orders_payment, user_id, orders_total, refund_account, refund_bank, orders_pay_date, coupon_no, post_no);
+	}
+
+	public String getOrders_no() {
+		return shopMapper.getOrders_no();
+	}
+
+	public void addOrderItems(String isbn, String cart_cnt, String orders_no) {
+		shopMapper.addOrderItems(isbn, cart_cnt, orders_no);
+	}
+
+	public void addPost(String user_id, String post_name, String post_phone, int post_zipcode, String post_addr,
+			String post_addr_detail) {
+		System.out.println("service-------------------------");
+		System.out.println("user_id : "+ user_id);
+		System.out.println("post_name : "+ post_name);
+		System.out.println("post_phone : "+ post_phone);
+		System.out.println("post_zipcode : "+ post_zipcode);
+		System.out.println("post_addr : "+ post_addr);
+		System.out.println("post_addr_detail : "+ post_addr_detail);
+		
+		shopMapper.addPost(user_id, post_name, post_phone, post_zipcode, post_addr, post_addr_detail);
+	}
+
+	public String getPost_no() {
+		return shopMapper.getPost_no();
+	}
+
+	public String limitDepositTime(String orders_no) {
+		return shopMapper.limitDepositTime(orders_no);
+	}
+
+	public void removeCoupon(String user_id, String useCoupon) {
+		shopMapper.removeCoupon(user_id, useCoupon);
+	}
+
+	public void setUserPoint(String user_id, int point) {
+		shopMapper.setUserPoint(user_id, point);
+	}
+
 	
 	
 }

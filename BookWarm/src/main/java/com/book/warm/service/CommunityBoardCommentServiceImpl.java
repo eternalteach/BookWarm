@@ -57,4 +57,9 @@ public class CommunityBoardCommentServiceImpl implements CommunityBoardCommentSe
 		return new CommunityCommentPageDTO(mapper.getCountByComm_cmt_no(comm_cmt_no),mapper.getCommentListWithPaging(criteria,comm_cmt_no));
 	}
 
+	@Override
+	public int deleteAllPostComments(int comm_no) {
+		return mapper.deleteAllPostComments(comm_no);
+	}
+
 }

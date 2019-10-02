@@ -27,10 +27,10 @@ select comm_no,user_id,comm_subject,comm_title,comm_content,comm_written_time,co
 		select count(*) from community_board
 	</select>
 	
-	<select id='getCommunityBoardOneDelete' resultType="Integer">
+	<delete id='getCommunityBoardOneDelete'>
 		delete
-		community_board where comm_no=#{comm_no}
-	</select>
+		community_board  where comm_no=#{comm_no}
+	</delete>
 
 	<update id='modifyCommunityBoardOne'>
 		update community_board SET comm_title =

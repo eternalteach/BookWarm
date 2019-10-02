@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.book.warm.mapper.UserInfoMapper">
+	<select id="getMyOrders" resultType="com.book.warm.vo.OrderListVO">
+		select t.book_price_for_sale * t.item_cnt as orders_total, o.orders_date, t.*
+		from orders o inner join (select b.book_title, b.BOOK_IMG,  oi.item_cnt, b.book_price_for_sale, oi.orders_status, oi.orders_no
+		                        from orders_item oi inner join book b
+		                        on oi.isbn = b.isbn) t
+		on o.orders_no = t.orders_no
+		where o.user_id=#{user_id}
+		order by orders_date desc
+	</select>
+	
+	<select id="getOrderList" resultType="com.book.warm.vo.OrdersVO">
+		select *
+		from orders
+		where user_id=#{user_id}
+		order by orders_date desc
+	</select>
+	
+	<select id="getOrderCnt" resultType="java.lang.Integer">
+		select count(*)
+		from orders
+		where user_id=#{user_id}
+	</select>
+	
+	<select id="getPoint" resultType="java.lang.Integer">
+		select user_point
+		from user_info
+		where user_id=#{user_id}
+	</select>
+	
+	<select id="getCouponCnt" resultType="java.lang.Integer">
+		select count(*)
+		from coupon_no
+		where user_id=#{user_id}
+		and coupon_available='t'
+	</select>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="removeUserFromAuthorities">
+		delete from authorities where user_id=#{user_id}
+	</delete>
+	<update id="removeUserFromBook_star">
+		update book_star set user_id='none' where user_id=#{user_id}
+	</update>
+	<update id="removeUserFromCart">
+		update cart set user_id='none' where user_id=#{user_id}
+	</update>
+	<update id="removeUserFromCoupon_no">
+		update coupon_no set user_id='none' where user_id=#{user_id}
+	</update>
+	<update id="removeUserFromFriend">
+		update friend set user_id='none' where user_id=#{user_id}
+	</update>
+	<update id="removeUserFromLibrary">
+		update library set user_id='none' where user_id=#{user_id}
+	</update>
+	<update id="removeUserFromLoging_board">
+		update loging_board set user_id='none' where user_id=#{user_id}
+	</update>
+	<update id="removeUserFromMsg_table1">
+		update msg_table set msg_send_id='none' where msg_send_id=#{user_id}
+	</update>
+	<update id="removeUserFromMsg_table2">
+		update msg_table set msg_get_id='none' where msg_get_id=#{user_id}
+	</update>
+	<update id="removeUserFromOrders">
+		update orders set user_id='none' where user_id=#{user_id}
+	</update>
+	<update id="removeUserFromPost">
+		update post set user_id='none' where user_id=#{user_id}
+	</update>
+	<update id="removeUserFromReview_board">
+		update review_board set user_id='none' where user_id=#{user_id}
+	</update>
+	
+	<delete id="removeUser">
+		delete from user_info where user_id=#{user_id}
+	</delete>
+	<!-- 회원탈퇴 끝 -->
+</mapper>

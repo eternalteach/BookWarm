@@ -26,8 +26,8 @@
 					<form id="pagingActionForm" method="post">
 						<div class="modal-body col-lg-12">
 							<div class="form-inline">
-								<textarea id="comm_subject"class="col-lg-2 " rows="1" name="comm_subject" placeholder="${modifyCommunityBoardPost.comm_subject}"></textarea>
-								<textarea id="comm_title"class="col-lg-10 " rows="1" name="comm_title" placeholder="${modifyCommunityBoardPost.comm_title}"></textarea>
+								<textarea id="comm_subject" class="col-lg-2 " rows="1" name="comm_subject" placeholder="${modifyCommunityBoardPost.comm_subject}"></textarea>
+								<textarea id="comm_title" class="col-lg-10 " rows="1" name="comm_title" placeholder="${modifyCommunityBoardPost.comm_title}"></textarea>
 								<div id="comm_title_msg"></div>
 							</div>
 						</div>
@@ -42,7 +42,7 @@
 							</h3>
          					<div class="form-group">
          						<div class="form-control card" style="height:400px;">
-         							<textarea  name="comm_content" rows="20" placeholder="${modifyCommunityBoardPost.comm_content}"></textarea>
+         							<textarea id="comm_content" name="comm_content" rows="20" placeholder="${modifyCommunityBoardPost.comm_content}"></textarea>
          						</div>
          						<div id="comm_content_msg"></div>
          					</div>
@@ -50,7 +50,7 @@
            						<div class="form-group from-horizentar pull-right">
 									<a href="communityBoardSaveModify"><button type="submit" class="submit btn btn-sm btn-outline-secondary">Re Record</button></a>
 									<a href="communityboard"><button type="submit" class="submit btn btn-sm btn-outline-secondary">List</button></a>
-									<a href="communityboarddelete"><button type="submit" class="submit btn btn-sm btn-outline-secondary">Delete</button></a>
+									<a href="communityboarddelete"><button id="modifyDelete" type="submit" class="submit btn btn-sm btn-outline-secondary">Delete</button></a>
            						</div>   
          					</div>
 						</div>
@@ -68,8 +68,15 @@
 <script>
 	$(document).ready(function() {
 		var pagingActionForm = $("#pagingActionForm");
+		
 		$(".submit").on("click", function(e) {
 			e.preventDefault();
+			if($(this).closest("button").attr("id")=="modifyDelete"){
+				alert("Remove");
+				let moveNextPage=$(this).closest("a").attr("href");
+				pagingActionForm.attr("action",moveNextPage);
+				pagingActionForm.submit();
+			}else{
 			if($("#comm_title").val()==''||$.trim($("#comm_title").val())==""){
 				$("#comm_title_msg").html("<span style='color:red'>제목을 입력해 주세요.</span>");
 				return;
@@ -88,6 +95,7 @@
 			let moveNextPage=$(this).closest("a").attr("href");
 			pagingActionForm.attr("action",moveNextPage);
 			pagingActionForm.submit();
+			}
 		});
 	});
 </script>

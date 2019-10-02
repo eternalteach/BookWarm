@@ -50,7 +50,6 @@
                               
                               	  <div id="list">
 		                              <c:forEach items="${list}" var="vo" varStatus="idx">
-		                              	<%-- <input type="hidden" class="cart_no" name="cart_no" value="${vo.cart_no}"> --%>
 		                              	 <!-- 한 개 기준(시작) -->
 		                                 <tr class="cart_item" id="item-${idx.count}">
 		                                  	<!-- 체크박스 -->
