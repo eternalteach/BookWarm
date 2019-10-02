@@ -35,25 +35,25 @@
 	<div class="bookshelf-position bookshelf-div">
 		<table class="margin-zero bookshelf-table">
 			<tr class="bookshelf-table-topspace">
-				<td rowspan="11" style="width: 19px;"></td><td colspan="15" style="width: 796px;"></td><td style="width: 15px;" rowspan="11"></td>
+				<td rowspan="11" class="bookshelf-table-side"></td><td colspan="15" class="bookshelf-table-centerbar"></td><td class="bookshelf-table-side" rowspan="11"></td>
 			</tr>
 			<c:forEach var="row" begin="0" end="2">
 				<tr class="bookshelf-table-booktop">
-					<td colspan="15" style="width: 796px;"></td>
+					<td colspan="15" class="bookshelf-table-centerbar"></td>
 				</tr>
 				<tr class="bookshelf-table-books">
 					<c:forEach var="colum" begin="0" end="4">
 						<td class="library_emptySpace"></td>
-						<td class="tdnum${row*4+colum} book-position"valign="bottom"align="center"></td>
+							<td class="tdnum${row*4+colum} book-position bookshelf-table-books" valign="bottom"align="center"></td>
 						<td class="library_emptySpace"></td>
 					</c:forEach>
 				</tr>
 				<tr class="bookshelf-table-bottom">
-					<td colspan="15" style="width: 796px;"></td>
+				<td colspan="15" class="bookshelf-table-centerbar"></td>
 				</tr>
 			</c:forEach>
 				<tr class="bookshelf-table-bottomSpace">
-					<td colspan="15" style="width: 796px;"></td>
+					<td colspan="15" class="bookshelf-table-bar"></td>
 				</tr>
 		</table>
 	</div>

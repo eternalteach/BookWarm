@@ -1,8 +1,6 @@
 package com.book.warm.mapper;
 
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 import com.book.warm.vo.UserVO;
 
@@ -16,5 +14,5 @@ public interface RegisterMapper {
 
 	public int checkDuplicatedNickname(@Param("user_nickname") String user_nickname);
 	
-	
+	public int addAuthenticate(String user_id); 
 }

@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<% String path1 = request.getContextPath(); %>
 
 계정 만들기 성공!<br><br>
 아이디 : ${userVO.user_id}<br>
@@ -19,4 +18,4 @@
 		
 
 
-<a href="<%=path1%>/login">로그인 하러 가기</a><br><br>
+<a href="/warm/index">로그인 하러 가기</a><br><br>

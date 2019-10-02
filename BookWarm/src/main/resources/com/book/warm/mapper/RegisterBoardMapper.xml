@@ -21,6 +21,13 @@
 		select count(*) from user_info where user_nickname=#{user_nickname}
 	</select>
 	
+	<insert id="addAuthenticate" >
+		insert into authorities (user_id, authority) values(#{user_id},'ROLE_USER')
+	</insert>
+	
+	<insert id="addMoreAuthenticate" >
+		insert into authorities (user_id, authority) values(#{user_id},#{authority})
+	</insert>
 </mapper>
 
 
