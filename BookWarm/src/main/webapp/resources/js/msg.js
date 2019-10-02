@@ -47,7 +47,7 @@ var msgservice = (function(){
 		
 		$.ajax({
 			type : 'delete',
-			url : 'msgdelete/' + msg_no,msg_get_id,
+			url : "msgdelete/" + msg_no +"/"+ msg_get_id,
 			success : function(deleteResult, status, xhr){
 				if(callback){
 					callback(deleteResult);

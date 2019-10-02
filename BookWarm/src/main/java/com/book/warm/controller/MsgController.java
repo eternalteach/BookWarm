@@ -85,7 +85,7 @@ public class MsgController {
 	}
 	
 	//쪽지삭제
-	@DeleteMapping(value= "/msgdelete/{msg_no},{msg_get_id}",
+	@DeleteMapping(value= "/msgdelete/{msg_no}/{msg_get_id}",
 				produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> msgdelete(@PathVariable("msg_no") int msg_no, Principal principal){
 		log.info("====================삭제====================================");

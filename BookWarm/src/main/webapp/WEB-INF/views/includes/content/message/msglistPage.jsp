@@ -226,7 +226,7 @@
 						 msghtml+="<div class='blog-list-content' style='margin-top: 10px;'><h6 class='special' style='text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:80px;'>";
 						 msghtml+="<a id='t' href='#' class='title' data-toggle='modal' data-target='#modalview"+msglist[i].msg_no+"' style='padding-top: 10px;'>"+msglist[i].msg_title+"</a></h6>";
 						 msghtml+="<small>보낸 사람"+msglist[i].msg_send_id+"</small>";
-						 msghtml+="<small>받는 사람 "+msglist[i].msg_get_id+"</small>";
+						 msghtml+="<small id='sendperson'>받는 사람 "+msglist[i].msg_get_id+"</small>";
 						 msghtml+="<div class='blog-list-item-excerpt'<p style='text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:70px' >"+msglist[i].msg_content+"</p></div>";
 						 msghtml+="<div class='box' style='padding-bottom: 20px;'>";
 						 msghtml+="<a class='bb' href='#modal-msgg' data-toggle='modal' data-target='#modal' data-send_id="+msglist[i].msg_send_id+">"
@@ -246,10 +246,11 @@
 				msgPageNum=targetPageNum;
 				showmsgboard(msgPageNum);
 			});
-			
+			//쪽지삭제
 			$("#getMSG").on("click", "#del", function(e) {
 				var sendidid = $(this).attr("data");
-				alert(sendidid);
+				var sendperson = $("small[id='sendperson']");
+				alert(sendperson);
 				
 				msgservice.msgdelete(sendidid, function(count){
 						if(count === "success"){
