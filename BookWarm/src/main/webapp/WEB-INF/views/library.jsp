@@ -23,11 +23,11 @@
 			<a data-toggle="modal" data-target="#modal-library" class="library-font">Search Books</a>
 			<a href="reviewMain" class="library-font">감상 메인</a>
 			<a href="shop/shoplist" class="fa fa-book fa library-font">서점</a>
-			<a href="message" class="icon-mail-2 library-font">쪽지</a>
+			<a href="message" class="icon-mail-2 library-font" style="color: white">쪽지</a>
 			<a href="customLogout" class="library-font">로그아웃</a>
 		</div>
 	</div>
-	
+		
 	<div class="decoration-books-position">
 		<img class="decoration-books" src="/warm/resources/img/library/books/books-3.png" >
 	</div>

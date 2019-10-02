@@ -22,16 +22,14 @@
 			            <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-8 text-left">
-                        <h1>쪽지함</h1>
-                        <span class="tob-sub-title text-color-primary d-block">쪽지왔는지 알림없음 걍 봐야함</span>
+                        <span class="tob-sub-title text-color-primary d-block">MESSAGE</span>
                     </div>
-                    <a href="/warm/customLogout">로그아웃</a>
-                    <!-- <div class="col-md-4">
+                   <div class="col-md-4">
                         <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
-                            <li><a href="index.html">Shortcodes</a></li>
-                            <li class="active">Elemens</li>
+                            <li><a href="message">message</a></li>
+                         
                         </ul>
-                    </div> -->
+                    </div> 
                 </div>
             </div>
 		</section>
@@ -57,8 +55,8 @@
 							<!--받은쪽지함-->
 							<div class="tab-pane active" id="counters">
 								<div class="row">
-									<div class="col-md-9 left-side-sidebar">
-										<h1>받은쪽지함&ensp;${msgcount}개</h1>
+									
+										<h1 style="margin-left: 30px">Send Message&ensp;(${msgcount}개)</h1>
 									 	<div id="getMSG">
 									 	<!-- 받은쪽지 리스트 불러오기  -->
 										</div>
@@ -67,7 +65,7 @@
 											<div class="row col-lg-12">
 												<div class="panel-footer center msgPaging"></div>
 											</div>
-										</div>
+									
 									</div>
 								</div>
 							<!--받은쪽지함 끝-->
@@ -85,7 +83,7 @@
 
 											<!-- 페이징 -->
 											<div class="row col-lg-12">
-												<div class="panel-footer center msgPaging2"></div>
+												<div class="panel-footer center msgPaging2" style="align:left;"></div>
 											</div>
 								</div>
 							</div>
@@ -103,7 +101,7 @@
 <div class="modal fade" id="modala" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
     <div class="modal-dialog undefined">
         <div class="modal-content">
-            <div class="modal-body post-content">
+            <div class="modal-body post-content1">
 				<div class="form-inline" style="width:100px" >
 						<form action="/warm/send" name="my_form">
 								<h1>쪽지보내기</h1>
@@ -111,8 +109,8 @@
 								받는 사람<input id=gett name="msg_get_id" type="text"><br><br>
 								 제목 <input id=titlee name="msg_title" type="text" ><br><br>
 						  		<textarea id=contentt name="msg_content" style="width:400px; height:300px;"></textarea><br>
-						  <input id="sendsend" type="submit" value="보내기" onsubmit="return checkForm();">
-						 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						  <button id="sendsend" type="submit" class="btn btn-outline-primary">보내기</button>
+						  <button type="button" data-dismiss="modal" class="btn btn-outline-primary">닫기</button>
 						</form>
 				</div>
             </div>
@@ -218,21 +216,21 @@
 						return;
 					}
 					 for(var i=0, len=msglist.length||0;i<len;i++){
-						 msghtml+="<div class='v-blog-recent-post' style='border: 1px dashed #bcbcbc; margin: 20px; float:left;width:250px;height:150px'>";
+						 msghtml+="<div class='v-blog-recent-post' style='border: 1px dashed #bcbcbc; margin: 20px; float:left;width:220px;height:150px'>";
 						 var date = new Date(msglist[i].msg_read_time);
 						 var month = date.getMonth()+1;
 						 var date = date.getDate();
 						 msghtml+="<div class='blog-list-item-date' style='margin-left: 10px;margin-top: 10px;'>"+date+"<span>"+month+"</span></div>";
-						 msghtml+="<div class='blog-list-content' style='margin-top: 10px;'><h6 class='special' style='text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:80px;'>";
+						 msghtml+="<div class='blog-list-content' style='margin-top: 10px;margin-left: 80px;'><h6 class='special' style='text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:80px;'>";
 						 msghtml+="<a id='t' href='#' class='title' data-toggle='modal' data-target='#modalview"+msglist[i].msg_no+"' style='padding-top: 10px;'>"+msglist[i].msg_title+"</a></h6>";
 						 msghtml+="<small>보낸 사람"+msglist[i].msg_send_id+"</small>";
 						 msghtml+="<small id='sendperson' value="+msglist[i].msg_get_id+">받는 사람 "+msglist[i].msg_get_id+"</small>";
 						 msghtml+="<div class='blog-list-item-excerpt'<p style='text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:70px' >"+msglist[i].msg_content+"</p></div>";
 						 msghtml+="<div class='box' style='padding-bottom: 20px;'>";
-						 msghtml+="<a class='bb' href='#modal-msgg' data-toggle='modal' data-target='#modal' data-send_id="+msglist[i].msg_send_id+">"
+						 msghtml+="<a class='bb' style='padding-right:10px;' href='#modal-msgg' data-toggle='modal' data-target='#modal' data-send_id="+msglist[i].msg_send_id+">"
 						 msghtml+="<i class='icon-baloon'></i>답장</a>"	
-						 msghtml+="<a id='del' href='#' data="+msglist[i].msg_no+"><i class='icon-bin-2' >삭제</i></a>"
-						 msghtml+="<i class='icon-skull-1'><a>신고</a></i></div></div></div>"
+						 msghtml+="<a id='del' href='#' data="+msglist[i].msg_no+"><i class='icon-bin-2' ></i></a>"
+						 msghtml+="</div></div></div>"
 				}
 					 msgtable.html(msghtml);
 					 pagingService.paging(msgPageNum,total,msgPaging);
@@ -291,13 +289,13 @@
 						 msghtml2+="<div class='blog-list-item-date'>"+date+"<span>"+month+"</span></div>";
 						 msghtml2+="<div class='blog-list-content'><h6 class='special'>";
 						 msghtml2+="<a id='t' href='#' class='title' data-toggle='modal' data-target='#modalview2"+msglist2[i].msg_no+"'>"+msglist2[i].msg_title+"</a></h6>";
-						
-						 msghtml2+="<small id='sendperson2'>보낸 사람"+msglist2[i].msg_send_id+"</small>";
+						 msghtml2+="<small id='sendperson2' value="+msglist2[i].msg_send_id+">보낸 사람"+msglist2[i].msg_send_id+"</small>";
+						 
 						 
 						 msghtml2+="<small>받는 사람 "+msglist2[i].msg_get_id+"</small>";
 						 msghtml2+="<div class='blog-list-item-excerpt'<p>"+msglist2[i].msg_content+"</p></div>";
 						 msghtml2+="<div class='box' style='padding-bottom: 20px;'>"
-						 msghtml2+="<a class='bb' href='#modal-msgg' data-toggle='modal' data-target='#modal' data-send_id="+msglist2[i].msg_send_id+">"
+						 msghtml2+="<a class='bb' style='padding-right:10px;' href='#modal-msgg' data-toggle='modal' data-target='#modal' data-send_id="+msglist2[i].msg_send_id+" >"
 						 msghtml2+="<a id='del2' href='#' data="+msglist2[i].msg_no+"><i class='icon-bin-2' >삭제</i></a>"
 						 msghtml2+="</div></div></div>"
 				}

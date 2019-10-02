@@ -1,10 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<sec:authentication property="principal.username" var="user_id"/>
 
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="UTF-8">
 <head>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
@@ -13,37 +15,6 @@
 
 <link rel="stylesheet" href="resources/css/main.css" />
 
-
-<link href='http://unpkg.com/@fullcalendar/core/main.css' rel='stylesheet' />
-<link href='http://unpkg.com/@fullcalendar/daygrid/main.css' rel='stylesheet' />
-<link href='http://unpkg.com/@fullcalendar/list/main.css' rel='stylesheet' />
-<script src='http://unpkg.com/@fullcalendar/core/main.js'></script>
-<script src='http://unpkg.com/@fullcalendar/interaction/main.js'></script>
-<script src='http://unpkg.com/@fullcalendar/daygrid/main.js'></script>
-<script src='http://unpkg.com/@fullcalendar/list/main.js'></script>
-
-<style>
-
-  body {
-    margin: 40px 10px;
-    padding: 0;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-    font-size: 14px;
-  }
-
-  #loading {
-    display: none;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-
-  #calendar {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  
-</style>
 <body>
 
 	<div role="main" class="main">
@@ -72,7 +43,6 @@
 					<div class="col-sm-12">
 						<div class="v-heading-v2">
 							<h3>bookwarm</h3>
-							<br><a href="/warm/shop/booklover">즐겨찾기로 이동</a>
 						</div>
 					</div>
 
@@ -217,27 +187,7 @@
 		</div>
 	</div>
 
-
-	<!-- Libs -->
-	<script src="./resources/Vertex/js/jquery.min.js"></script>
-	<script src="./resources/Vertex/js/popper.js"></script>
-	<script src="./resources/Vertex/js/bootstrap.min.js"></script>
-	<script src="./resources/Vertex/js/jquery.flexslider-min.js"></script>
-	<script src="./resources/Vertex/js/jquery.easing.js"></script>
-	<script src="./resources/Vertex/js/jquery.fitvids.js"></script>
-	<script src="./resources/Vertex/js/jquery.carouFredSel.min.js"></script>
-	<script src="./resources/Vertex/js/jquery.validate.js"></script>
-	<script src="./resources/Vertex/js/theme-plugins.js"></script>
-	<script src="./resources/Vertex/js/jquery.isotope.min.js"></script>
-	<script src="./resources/Vertex/js/imagesloaded.js"></script>
-	<script src="./resources/Vertex/js/view.min.js?auto"></script>
-	<script src="./resources/Vertex/plugins/aos/aos.js"></script>
-	<script src="./resources/Vertex/js/theme-core.js"></script>
-	<script src="./resources/Vertex/js/theme.js"></script>
-	<script src="./resources/Vertex/js/theme.init.js"></script>
-	
-	<!-- 이게있어야 스크립트 작동ㅠㅠ -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	
+
 </body>
 </html>

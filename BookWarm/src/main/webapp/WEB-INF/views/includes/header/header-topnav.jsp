@@ -51,9 +51,13 @@
 										<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#">User Info</a>
 											<ul class="dropdown-menu">
 												<li><a class="dropdown-item" href="#">My Info</a></li>
-												<li><a class="dropdown-item" href="#">Message</a></li>
+												<li><a class="dropdown-item" href="message">Message</a></li>
 											</ul>
 										</li>
+										
+										<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="customLogout" style="float:right;">로그아웃</a></li>
+										
+										
 										
 										<sec:authorize access="hasRole('ROLE_ADMIN')">
 										<!-- only access Administrator -->
@@ -73,5 +77,5 @@
             </div>
         </div>
     </header>
-    <div style="height:70px;" class="col-sm-12"></div>
+<!--     <div style="height:70px;" class="col-sm-12"></div> -->
     <!--End Header-->

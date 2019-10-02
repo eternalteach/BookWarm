@@ -12,7 +12,7 @@
 </head>
 <body style="background-color:white">
 	<div>
-		<a href="javascript:openModal('login-modal');"><img style="width:200px" src="resources/img/alice_door.png"></a>
+		<a href="javascript:openModal('login-modal');"><img style="width:500px" src="resources/img/bookwarm.png"></a>
 		<!-- 이미지 태그 클릭시 모달창으로 로그인 띄우게하기
  그 뒤 로그인 성공시 서재페이지로 이동, 비회원 미리보기는 새 창 띄워서 소개창 만들기 -->
 		<!-- 로그인 성공시 library 페이지로 이동 -->
