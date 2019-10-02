@@ -4,14 +4,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!-- 이메일 하나 당, 계정 하나 만들 수 있음 -->
 <!-- 필수입력항목 입력 안 했을 때 다음으로 못 넘어가도록 만들어주기 -->
-<% String path1 = request.getContextPath(); %>
 <div id="container" class="v-bg-color">
     <div class="padding-100 body-sign">
         <div class="container">
             <div class="row">
                 <div class="col-sm-5">
 
-                    <form class="v-signup v-register" action="<%=path1 %>/register/registerSuccess" method="post" id="form">
+                    <form class="v-signup v-register" action="/warm/register/registerSuccess" method="post" id="form">
                         <div class="form-group">
                             <h2 class="mb-2 mt-0"><strong>회원가입</strong></h2>
                         </div>

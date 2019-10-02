@@ -125,13 +125,13 @@ public class RegisterController {
 //		
 		System.out.println("폰번 : "+userVO.getUser_phone());		
 		
-		String str=req.getParameter("user_bday");
+		String str=req.getParameter("user_bday_string");
 		
-		System.out.println("user_bday : " + str);
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd"); 
 		java.util.Date t;
+		
 		try {
-			t = sdf.parse(str);
+			t = sdf.parse(str); ///////////문제 발생
 			java.sql.Date st = new java.sql.Date(t.getTime());
 			java.sql.Timestamp sts = new java.sql.Timestamp(t.getTime());
 			

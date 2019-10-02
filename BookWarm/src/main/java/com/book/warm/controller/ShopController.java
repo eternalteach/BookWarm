@@ -171,9 +171,8 @@ public class ShopController {
 	
 	// 주문 성공 >> 트랜잭션으로 묶어야함
 	@Transactional
-	@RequestMapping("successOrder")
+	@RequestMapping("/successOrder")
 	public String successOrder(Principal principal, PostVO postVO, OrdersVO ordersVO, OrdersItemVO ordersItemVO, HttpServletRequest req, Model model) {
-		
 		String user_id = principal.getName(); // 로그인한 유저 id
 		
 		// ordersVO 커맨드 객체로 받아온 데이터
@@ -181,14 +180,10 @@ public class ShopController {
 		int orders_total = ordersVO.getOrders_total(); // 주문 총 금액
 		int orders_pay_total = ordersVO.getOrders_pay_total(); // 총 지불 금액
 		
-		System.out.println("--------------------orders_total : " + orders_total);
-		System.out.println("--------------------orders_pay_total : " + orders_pay_total);
-		
 		String refund_account = ordersVO.getRefund_account(); // 환불 받을 계좌번호
 		String refund_bank = ordersVO.getRefund_bank(); // 환불 받을 은행
 		String coupon_no = ordersVO.getCoupon_no(); // 쿠폰
 		String orders_pay_date = "";
-		System.out.println("orders_total : " + orders_total);
 		
 		// postVO 커맨드 객체로 받아온 데이터
 		String post_name = postVO.getPost_name(); // 받는 사람
@@ -203,11 +198,11 @@ public class ShopController {
 		
 		String useCoupon = req.getParameter("useCoupon"); // 사용한 쿠폰번호
 		int usePoint = Integer.parseInt(req.getParameter("usePoint")); // 사용한 포인트
-		System.out.println("usePoint : " + usePoint);
 		int originalPoint = Integer.parseInt(req.getParameter("originalPoint")); // 원래 있던 포인트
-		//int total = Integer.parseInt(req.getParameter("total")); // 책 총 판매액
 		int savePoint = (int)(orders_total * 0.05); // 적립할 포인트
-		System.out.println("savePoint : " + savePoint);
+		
+		// user_tot_price에 총액 ++
+		service.addTotalPrice(user_id, orders_pay_total);
 		
 		// 사용한 쿠폰, 포인트 제거
 		service.removeCoupon(user_id, useCoupon);
