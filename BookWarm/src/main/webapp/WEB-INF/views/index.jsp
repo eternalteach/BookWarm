@@ -20,27 +20,26 @@
 	</div>	
 		<div id="modal">
 			<div class="modal-library login-modal">
-				<a href="javascript:;" class="close">X</a>
-				<p class="title">제목</p>
 				<div class="con">
+					<a href="javascript:;" class="close">X</a>
 					<%@include file="./includes/content/login/loginPage.jsp"%>
 				</div>
-				<div class='modal-footer'>
+				<!-- <div class='modal-footer'>
 					<a href="preview">사이트 미리보기</a>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	<script type="text/javascript">
 		function openModal(modalname) {
-			$("#modal").fadeIn(300);
-			$("." + modalname).fadeIn(300);
+			$("#modal").fadeIn(200);
+			$("." + modalname).fadeIn(200);
 		}
 		$(document).ready(function() {
 			$("#modal").hide();
 
 			$(".close").on('click', function() {
-				$("#modal").fadeOut(300);
-				$(".login-modal").fadeOut(300);
+				$("#modal").fadeOut(200);
+				$(".login-modal").fadeOut(200);
 			});
 
 		});

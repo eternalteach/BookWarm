@@ -11,8 +11,6 @@
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="/warm/resources/js/logintest.js"></script>
 
-
-
 <link rel="stylesheet" href="resources/css/main.css" />
 
 
@@ -24,79 +22,29 @@
 <script src='http://unpkg.com/@fullcalendar/daygrid/main.js'></script>
 <script src='http://unpkg.com/@fullcalendar/list/main.js'></script>
 
-<body>
+<style>
 
-	<!--Header-->
-	<!-- <header id="header" class="header-effect-shrink"
-		data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 120}">
-		<div class="header-body">
-			<div class="header-top">
-				<div class="header-top-container container">
-					<div class="header-row">
-						<div class="header-column justify-content-start">
-							<span class="d-none d-sm-flex align-items-center pr-3">
-							<i class="fa fa-phone mr-1"></i><a href="tel:+1234567890">Call us: <strong>123-456-7890</strong></a></span>
-							<span class="d-none d-sm-flex align-items-center ml-3"> 
-							<i class="fa fa-envelope-o mr-1"></i><a href="mailto:info@yoursite.com">info@yoursite.com</a></span>
-						</div>
-						<div class="header-column justify-content-end">
-							<ul class="nav">
-								<li class="nav-item"><a class="nav-link" href="contact-us-1.html">Contact Us</a></li>
-								<li class="nav-item"><a class="nav-link" href="page-help.html">Help</a></li>
-								<li class="nav-item"><a href="#" class="nav-link dropdown-menu-toggle" id="dropdownLanguage" 
-								data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> English<i class="fa fa-angle-down fa-sm"></i></a>
-									<ul class="dropdown-menu dropdown-menu-right dropdown-language"	aria-labelledby="dropdownLanguage">
-										<li class="menu-header">Select your language</li>
-										<li><a href="#" class="no-skin"><img src="img/blank.gif" class="flag flag-us" alt="English" />USA</a></li>
-										<li><a href="#" class="no-skin"><img src="img/blank.gif" class="flag flag-fr" alt="France" />France</a></li>
-										<li><a href="#" class="no-skin"><img src="img/blank.gif" class="flag flag-es" alt="Spain" />Spain</a></li>
-										<li><a href="#" class="no-skin"><img src="img/blank.gif" class="flag flag-de" alt="Germany" />Germany</a></li>
-									</ul></li>
-							</ul>
-							<div class="d-none d-md-block mb-0">
-								<a href="#" class="social-icon si-borderless si-facebook si-small mb-0"	title="Facebook"> 
-								<i class="si-icon-facebook"></i><i class="si-icon-facebook"></i>
-								</a> <a href="#"
-									class="social-icon si-borderless si-twitter si-small mb-0"
-									title="Twitter"> <i class="si-icon-twitter"></i> <i
-									class="si-icon-twitter"></i>
-								</a> <a href="#"
-									class="social-icon si-borderless si-instagram si-small mb-0"
-									title="Instagram"> <i class="si-icon-instagram"></i> <i
-									class="si-icon-instagram"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="header-container container">
-				<div class="header-row">
-					<div class="header-column justify-content-start">
-						<div class="header-logo">
-							<a href="index.html"> <img alt="Vertex" width="130"
-								src="./resources/Vertex/img/logo.png">
-							</a>
-						</div>
-					</div>
-					<div class="header-column justify-content-end">
-						<div class="header-nav header-nav-light-dropdown">
-							<div
-								class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1">
-								<nav class="collapse">
-									<ul class="nav flex-column flex-lg-row" id="mainNav">
-										<li class="dropdown dropdown-mega"><a
-											class="dropdown-item dropdown-toggle" href="#"> Home </a></li>
-									</ul>
-								</nav>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header> -->
-	<!--End Header-->
+  body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+
+  #loading {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  #calendar {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+</style>
+<body>
 
 	<div role="main" class="main">
 		<section class="page-header">

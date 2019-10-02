@@ -51,6 +51,7 @@ public class MsgController {
 		//보낸개수
 		int total2 = msgservice.sendTotalCount(user_id, cri);
 		model.addAttribute("total2", total2);
+		
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		
 		model.addAttribute("msgcount", msgservice.msgcount(user_id));
@@ -102,7 +103,7 @@ public class MsgController {
 		log.info("====================삭제====================================");
 		String user_id = principal.getName();
 		
-		return msgservice.msgdelete(msg_no, user_id)==1 
+		return msgservice.msgdelete2(msg_no, user_id)==1 
 				? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
