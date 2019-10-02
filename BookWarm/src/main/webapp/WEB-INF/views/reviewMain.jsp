@@ -46,33 +46,28 @@
 </style>
 
 </head>
-<body>
+<body style="margin:0">
 <%@ include file="includes/header/header-topnav.jsp"%>
 
 <sec:authentication property="principal.username" var="user_id"/>
 
 <div role="main" class="main">
-        <section class="page-header">
+
+	<section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-8 text-left">
-                        <h1>Standard Post</h1>
                     </div>
                     <div class="col-md-4">
-                    <c:if test="${user_id == review.user_id}">
                         <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
                             <li><a href="/warm/library?user_id=${user_id}">내 서재</a></li>
-                            <li><a href="#" class="oper" data-oper='list'>${book.book_title}</a></li>
-                            <li class="active">Standard Post</li>
-                            
-                            <li><a href="/warm/customLogout">로그아웃합시다ㅏㅏㅏ</a></li>
-                            
+                            <li class="active">감상 메인</li>
                         </ul>
-					</c:if>
                     </div>
                 </div>
             </div>
-        </section>
+     </section>
+	
 </div>
 
 <%-- <%@ include file="./includes/header/header-dark-dropdown.jsp"%> --%>
@@ -102,12 +97,8 @@
             <div class="container">
                <div class="row">
 					
-				<!-- 감상 메인 페이지에서 사이드바 안 쓸 듯 -->
-                  <div class="col-md-4 left-side-sidebar pt-70">
-                  
-                  	 <!-- 임시 로그아웃 -->
-					 <a href="/warm/customLogout">로그아웃</a>
-                     <aside class="sidebar">
+                  <div class="col-md-4 left-side-sidebar pt-70" style="padding-top:50px !important;">
+                     <aside class="sidebar" style="width:100%">
 						<section>
 							<div>
 								<ul>
@@ -138,28 +129,26 @@
                      
                   </div>
 
-                  <div class="col-md-8 v_blog-medium pt-70 pull-right">
+                  <div class="col-md-8 v_blog-medium pt-70 pull-right" style="padding-top:30px !important;">
                   
-                  <!-- 감상 작성 버튼 추가 -->
-                            <!-- <li class="col-sm-12" style="margin-top:10px"> -->
-                            <div class="post-content no-thumb clearfix" style="margin:20px">
-                            	<div class="pull-right">
-                            	
-                            	<a class="btnPerBook" href="/warm/reviewWrite">
-		                            	<span class="text ls-1">
-		                            		감상 더하기
-			                                <i class="icon icon-pen-3"></i>
-		                            	</span>
-                            	</a><br>
-                            	<a class="btnPerBook" href="/warm/library">
-		                            	<span class="text ls-1">
-		                            		서재로 돌아가기
-		                            		<i class="fa fa-book"></i>
-		                            	</span>
-                            	</a><br>
-                            	</div>
-                            </div>
-                            <!-- </li> -->
+                    <!-- 감상 작성 버튼 추가 -->
+                    <div class="no-thumb clearfix" style="padding-right:20px">
+                    	<div class="pull-right">
+                    	
+                    	<a class="btnPerBook" href="/warm/reviewWrite">
+                      	<span class="text ls-1">
+                      		감상 더하기
+                           <i class="icon icon-pen-3"></i>
+                      	</span>
+                    	</a><br>
+                    	<a class="btnPerBook" href="/warm/library">
+                      	<span class="text ls-1">
+                      		서재로 돌아가기
+                      		<i class="fa fa-book"></i>
+                      	</span>
+                    	</a><br>
+                    	</div>
+                    </div>
 
 				<c:if test="${empty list}">
 					등록한 감상이 없습니다.
@@ -170,43 +159,37 @@
 				
 				<c:forEach items="${list}" var="vo">
 				
-				<div class="post-content no-thumb clearfix" style="margin:20px">
+				<div class="post-content no-thumb clearfix" style="margin:20px ; padding:30px">
 				    <article class="v_blog-item">
                         <div class="v_blog-item-inner row">
                         
                            <!-- 여기가 이미지 들어가는 부분 -->
-                           <div class="v_blog-item-media col-md-2">
+                           <div class="v_blog-item-media col-md-3" style="padding-left:5%; padding-right:3%">
                               <a href="/warm/reviewPerBook?isbn=${vo.isbn}">
                                  <img class="w-100" src="${vo.book_img}"/>
                               </a>
                            </div>
                            
                            <!-- 최근 작성한 리뷰가 들어가는 부분 -->
-                           <div class="v_blog-item-content col-md-7">
+                           <div class="v_blog-item-content col-md-8" style="padding-left:5%; padding-right:3%">
                            
                               <div class="v_blog-item-header">
                                  <ul class="v_blog-item-meta" style="list-style-type: none; padding-left:0px">
-                                    <%-- <li class="v_blog-item-author">
-                                       <span>By </span> <a href="#">${vo.user_id}</a>
-                                    </li> --%>
                                     <li class="v_blog-item-date">
                                        <time class="" datetime="2018-06-30T10:47:48+00:00">
-                                          최근 감상 작성일 ${vo.review_modify_date}
+                                       	 <fmt:formatDate var="recentDate" value="${vo.review_modify_date}" pattern="yyyy년 MM월 dd일"/>
+                                          ${recentDate}에 작성하신 감상입니다.
                                        </time>
                                     </li>
-                                    <li class="v_blog-item-counter"><span>작성한 감상 n개</span></li>
+                                    <li class="v_blog-item-counter"><span>이 책에 대해 남긴 감상 2개</span></li>
                                  </ul>
-
-                                 <a href="./resources/VertexEx/blog-post-standard.html" rel="bookmark">
-                                    <h2 class="v_blog-item-title" itemprop="name headline"><%-- ${vo.review_title} --%></h2>
-                                 </a>
                               </div>
 	
                               <div itemprop="articleBody">
-                                 <p>
+                                 <p style="overflow:hidden; display: -webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; line-height:1.8em; max-height:5.4em; margin-top:15px; margin-bottom:30px">
                                  	${vo.review_content}
                                  </p>
-                                 <a class="v_blog-item-read-more" href="#">
+                                 <a class="v_blog-item-read-more" style="position:absolute; bottom:0; right:0; color:gray" href="/warm/reviewPerBook?isbn=${vo.isbn}">
                                     <span>Reviews about this book</span>
                                  </a>
                               </div>
@@ -218,46 +201,6 @@
 				</div>                     
 				</c:forEach>
 
-
-                    <!--  <article class="v_blog-item">
-                        <div class="v_blog-item-inner row">
-                           <div class="v_blog-item-media col-md-5">
-                              <a href="#">
-                                 <img src="./resources/VertexEx/img/blog/x3.jpg" />
-                              </a>
-                           </div>
-                           <div class="v_blog-item-content col-md-7">
-                              <div class="v_blog-item-header">
-                                 <ul class="v_blog-item-meta">
-                                    <li class="v_blog-item-author">
-                                       <span>By </span> <a href="#">Vertex</a>
-                                    </li>
-                                    <li class="v_blog-item-date">
-                                       <time class="" datetime="2018-06-30T10:47:48+00:00">
-                                          June 14, 2018
-                                       </time>
-                                    </li>
-                                    <li class="v_blog-item-comments">No Comments</li>
-                                    <li class="v_blog-item-like-counter"><span>22 Likes</span></li>
-                                 </ul>
-
-                                 <a href="./resources/VertexEx/blog-post-standard-2.html" rel="bookmark">
-                                    <h2 class="v_blog-item-title" itemprop="name headline">How to love what you do</h2>
-                                 </a>
-                              </div>
-
-                              <div itemprop="articleBody">
-                                 <p>
-                                    Verterem repudiare no duo. Voluptua forensibus honestatis ad qui, vide atqui percipit id ius,
-                                    congue id.
-                                 </p>
-                                 <a class="v_blog-item-read-more" href="#">
-                                    <span>Read more</span>
-                                 </a>
-                              </div>
-                           </div>
-                        </div>
-                     </article> -->
 
                      <div class="row">
                         <div class="col-md-12">
@@ -343,31 +286,9 @@
 		    </div>
 		</div>
          
-         
-
-
-
-            <div class="copyright">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-sm-6">
-                        <p class="mb-0">© 2015-2018 Vertex. All right reserved.</p>
-                     </div>
-                     <div class="col-sm-6">
-                        <div class="clearfix pull-right">
-                           <ul class="list-inline fs-13 mb-none">
-                              <li><a href="./resources/VertexEx/pages-about.html">About</a></li>
-                              <li><a href="./resources/VertexEx/blog-grid.html">Blog</a></li>
-                              <li><a href="./resources/VertexEx/pages-contact.html">Contact</a></li>
-                              <li><a href="#">Terms</a></li>
-                              <li><a href="#">Jobs</a></li>
-                           </ul>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         
+         <div class="eventSpace">
+         	<!-- 여기에 이벤트 모달을 집어넣는다. -->
+         </div>
       
    </div>
    
@@ -402,22 +323,9 @@
 		  						let firstImg = false;
 	  							console.log("i: " +i);
 	  							console.log("obj.isbn: " + obj.isbn);
-	  							// 완독일을 timestamp에서 Date타입으로 변환
-	  							var logDate = new Date(obj.start_date);
-	  							// 필요한 날짜 형식으로 변환
-	  							var year = logDate.getFullYear();
-	  							var month = logDate.getMonth() + 1;
-	  							var date = logDate.getDate();
 	  							
-	  							if(month<10) {
-	  								month = '0' + month;
-	  							}
-	  							if(date<10) {
-	  								date = '0' + date;
-	  							}
-	  							
-	  							var dateFormat = year + "-" + month + "-" + date;
-	  							console.log("dateFormated: " + dateFormat);
+	  							// timestamp를 원하는 날짜 형식으로 변환하는 함수 호출
+	  							var dateFormat = tsToDate(obj.start_date);
 	  							
 	  							// 같은 날짜에 완독한 책이 존재한다면 limitCheck값만 증가시켜주고, 
 	  							// 이외의 경우 preDate에 날짜 저장 후 limitCheck 1로 초기화.
@@ -458,33 +366,54 @@
 	   	  /* 
 	   	  eventClick: false, */
 	   	  
+	   	  viewRender: function(info) {
+	   		  console.log("viewRender!");
+	   		$(".fc-event-container").css("display", "none");
+	   	  },
+	   	  
 	   	  eventRender: function(info) {
-	   		  
 	   		  console.log("info.event.id:" + info.event.id);
 	   		  console.log("info.event.title : " + info.event.title);
 	   		  console.log("표지 : " + info.event.extendedProps.imageurl);
 	   		  console.log("info.event.extendedProps.dateFormat: " +  info.event.extendedProps.dateFormat);
 	   		  
+	   		  var tdObj = $(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "']");
+	   		  var targetDate = tsToDate(info.event.start);
+	   		  
 	   		  if(info.event.extendedProps.imageurl != '') {
 	   			  
 	   			  console.log("============ 완독한 책 이미지 뿌려주기 =============");
-	   			  
-	   			  var tdObj = $(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "']");
-	   			  var str = "<div style='width:40%; display:inline-block; position:relative;'><img style='position:absolute; vertical-align:bottom; cursor: pointer;' id='" + info.event.id + "' src='" + info.event.extendedProps.imageurl + "'>"; 
+	   			  var str = "<div style='width:40%; display:inline-block; position:relative; vertical-align:bottom'><img style='position:absolute; cursor: pointer;' id='" + info.event.id + "' src='" + info.event.extendedProps.imageurl + "'></div>"; 
 	   			  
 	   			  if(info.event.extendedProps.firstImg) {
 	   				  // rerender시 표지가 반복적으로 추가되지 않도록 html에 새로 뿌려준다.
 		   			  tdObj.html(str);
 	   			  } else {
+	   				  // 당일 이벤트가 3개 이상이라면 +버튼이 나타나도록 하고 싶은데
+	   				  // 기존에 title 말고 이벤트가 몇 개 이상이면 나타나던 +more은 이미지랑 영역이 겹치니까 그보다는 직접 구현하는 쪽이 좋을 듯.
+	   				  // 
 		   			  tdObj.append(str);
 	   			  }
+	   		  } else {
+	   			  console.log("세 번 이상의 이벤트가 존재");
+
+	   			  if(!$(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "'] button").length) {
+	   				  console.log("button이 없는 상태");
+		   			  str += "<div style='display:inline-block; position:relative; float:right; width:20%;'>";
+		   			  str += "   <button class='plus' data-toggle='modal' data-target='#" + targetDate + "' style='width:100%; height:20%; border:transparent; background-color:lightgray; color:white;'>+</button>";
+		   			  str += "</div>"; 
+		   			  tdObj.append(str); 
+	   			  }
 	   		  }
+	   		/* <button id="modalBtn" type="button" data-toggle="modal" data-target="#calModal">달력보기</button> */
 	   		  
+	   		  $(".fc-content-skeleton table").css("table-layout", "fixed");
 	   		  // gridMonth형에서 title은 나타나지 않도록 한다.
 	   		  // .fc-content-skeleton을 display를 none으로 하면 날짜까지 지워지고, tbody까지를 택하면 css가 적용되지 않는 문제.
 	   		  /* $(".fc-content-skeleton table tbody").css("display", "none"); */
 	   		  /* $(".fc-content-skeleton table tbody").css("display", "");  */
 	   		  /* $(".fc-event-container").css("display", "none");  */
+	   		  
 	   	  },
 	   	  
 	   	  eventLimit: 0, 
@@ -499,9 +428,10 @@
 	          bool ? 'block' : 'none'; */
 	         if(bool) {
 	         } else {
+	        	 
 	        	 setTimeout(function() {
 	        		 
-	        	  $(".fc-event-container").css("display", "none");
+	        	  	$(".fc-event-container").css("display", "none");
 		        	 /* $(".fc-content-skeleton table tbody").css("display", "none"); */
 	        	 }, 100);
 	         }
@@ -509,21 +439,29 @@
 	
 	  });
 		
-	  calendar.render();
+	    
+	  setTimeout(function() {
+			
+		  calendar.render();
+      }, 200);
  	  
  	  $("#modalBtn").on("click", function() { 
 	 		  
 		    setTimeout(function() {
 		    	// 처음 버튼을 눌렀을 때도 달력이 온전히 뜨도록 함
 		    	$(".fc-dayGridMonth-button").click();
+
+				calendar.updateSize();
+				$(".fc-event-container").css("display", "none");
 		    }, 200);
  	  });
  	 
+ 	// 아니면 #calendar 안에 있는 버튼이 눌리면 $(".fc-event-container").css("display", "none"); 하면 ???
+ 	  
  	  
  	 $("#calendar").on("click", "img", function() {
  		 location.href = "/warm/reviewPerBook?isbn=" + $(this).attr('id');
- 	  });
- 	  
+ 	 });
  	 
  	(function() {
 		 
@@ -540,23 +478,134 @@
 						str += "<img src='/warm/resources/Vertex/img/team/t" + (i+1) + ".png' class='avatar' height='30' width='30' />";
 						str += "</div>";
 						str += "<div class='comment-content'><div class='comment-body'>";
-						str += "<a href='warm/reviewSelectOne?review_no='" + cmt.review_no + "'>";
-						str += " <p>" + cmt.review_cmt_content + "</p></a></div>";
+						str += "<a href='warm/reviewSelectOne?review_no=" + cmt.review_no + "'>";
+						str += " <p style='overflow:hidden; text-overflow:ellipsis'>" + cmt.review_cmt_content + "</p></a></div>";
 						str += "<div class='comment-meta'>";
 						str += "<span class='comment-author'>" + cmt.user_id + "</span>";
 						str += "<span class='comment-date'>" + displayTime(cmt.review_cmt_modified_date) + "</span>";
 						str += "</div></div></div></li>";
 						str += "";
 					});
+					if(str=="") {
+						str = "댓글이 없습니다.";
+					}
 					recentCmt.html(str);
 					
 		}); // end getJSON
 	})(); // end function
- 	 
   });
+	
+	$(".recent-comments-list").on("click", "a", function(e) {
+		e.preventDefault();
+		alert($(this).attr("href"));
+	});
+		 
   
+	var actionForm = $("#actionForm");
+	
+	$(".page-link").on("click", function(e) {
+		
+		e.preventDefault();
+		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+		actionForm.submit();
+	 });
+	
+	
+	$(document).ready(function() {
+		
+		// document가 로드되면 즉시 실행 함수로 가져온 목록으로 모달을 만든다.
+	   
+	    let preDate = '';
+	   				  
+		(function() {
+			
+			$.getJSON("/warm/calendar.json",
+					function(data) {
+						// json데이터를 받아서 해야 하는 일.
+						// data의 완독일 값이 true면 events에 추가하기.
+						
+						// 모달에 뿌려야 하는 것은 책 제목과 지은이, 완독일.
+						// 날짜가 같은 데이터는 하나의 모달에 넣어야 함.
+						// 어차피 날짜 역순, 로그 역순으로 불러오고 있기 때문에
+						// preDate와 날짜가 같으면 불러온 내용만 추가하고,
+						// preDate와 날짜가 다르면 <div>로 모달 생성 후 안에 넣는 것으로.
+						
+						$.each(data, function(i, obj){
+							
+							var finDate = tsToDate(obj.start_date);
+							if(preDate != obj.start_date) {
+								  preDate = obj.start_date;
+								  
+								  var modals = '';
+						   		  
+						   		  modals += "<div class='modal fade loglist' id='" + finDate + "' tabindex='-1' role='dialog' aria-labelledby='smallModalLabel' aria-hidden='true'>";
+						   		  modals += "    <div class='modal-content' style='max-width:300px; top:30%; left:40%;'>";
+						   		  modals += "        <div class='modal-body post-content' style='background-color:#FFFCD8'>";
+						   		  modals += "        	 	<div class='post-header form-header'>";
+						   		  modals += "					<div id='logsHere'>";
+						   		  
+						   		  modals += "<button type='button' align='right'>x</button>";
+						   		  modals += "					    <div align='right'><strong>" + finDate + "</strong></div>";
+						   		  modals += "						<div>" + obj.book_title + "</div>";
+						   		  
+						   		  modals += "					</div>";
+						   		  modals += "            </div>";
+						   		  modals += "        </div>";
+						   		  modals += "    </div>";
+						   		  modals += "</div>";
+						   		  
+								  $(".eventSpace").append(modals);
+								  
+							} else {
+								// 같은 날 완독 기록이 있을 경우
+								$("#" + finDate).find("#logsHere").append("<div>" + obj.book_title + "</div>");
+							}
+						}); // end of $.each
+				}); // end of getJSON
+		  })(); // end of function
+		  
+	});
+	
+	$(document).click(function() {
+		
+		$(".loglist").hide();
+	});
+	
+	
+	/* $(".eventSpace").on("click", "button", function() {
+		
+		
+	}); */
+
+	$(".plus").click(function(e) {
+		
+		e.stopPropagation();
+		var num = $(this).index();
+		$(".loglist").eq(num).show();
+	});
+	
+	function tsToDate(timestamp) {
+		
+		    var tempDate = new Date(timestamp);
+		    
+			var year = tempDate.getFullYear();
+			var month = tempDate.getMonth() + 1;
+			var date = tempDate.getDate();
+			
+			if(month<10) {
+				month = '0' + month;
+			}
+			if(date<10) {
+				date = '0' + date;
+			}
+			
+			return year + "-" + month + "-" + date;
+	}
+	
+	
 //	작성한 지 24시간이 지난 댓글은 날짜로, 이내의 글은 몇 초/분/시간 전에 달았는지 알려주기
 	function displayTime(timeValue) {
+	
 		var today = new Date();
 		var dateObj = new Date(timeValue);
 		
@@ -579,30 +628,9 @@
 			var dd = dateObj.getDate();
 			
 			return [ yy, '/', (mm > 9 ? '' : '0') + mm, '/', (dd > 9 ? '' : '0') + dd ].join('');
-			
 		}
 	};
-
-
 </script>
 
-<script>
 
-	var actionForm = $("#actionForm");
-	
-	$(".page-link").on("click", function(e) {
-		
-		e.preventDefault();
-		
-		console.log('click');
-		
-		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-		actionForm.submit();
-	 });
-
-</script>
-
-<%-- <%@ include file="./includes/footer/footer-2.jsp"%> --%>
-
-</body>
-</html>
+<%@ include file="includes/footer/footer-1.jsp"%>
