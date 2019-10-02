@@ -22,13 +22,6 @@ public class CommonController {
 		model.addAttribute("msg", "Access Denied");
 	}
 	
-	
-	/*
-	 * @GetMapping("/home") public String home() {
-	 * 
-	 * return "index"; }
-	 */
-	
 	@GetMapping("/index")
 	public String loginInput(Principal principal, String error, String logout, Model model) {
 		

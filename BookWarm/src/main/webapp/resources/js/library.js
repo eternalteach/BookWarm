@@ -1,8 +1,8 @@
-console.log("Library Module..........................................");
+console.log("========== Library Module");
 
 var libraryService = (function() {
-	function getList(callback, error){
-		
+	function getUserBooksList(callback, error){
+		console.log("========== Library.getList()")
 		$.getJSON("library/getList.json",
 				function(data){
 			if(callback){
@@ -15,8 +15,9 @@ var libraryService = (function() {
 		});
 	}
 	
-	// remove comment
-	function remove(isbn, callback, error){
+	// delete book on library
+	function removeBookOnLibrary(isbn, callback, error){
+		console.log("========== Library.remove()")
 		$.ajax({
 			type:'delete',
 			url : 'library/delete/'+isbn,
@@ -33,7 +34,7 @@ var libraryService = (function() {
 	}
 
 	return {
-		getList:getList,
-		remove:remove
+		getUserBooksList:getUserBooksList,
+		removeBookOnLibrary:removeBookOnLibrary
 	};
 })();
