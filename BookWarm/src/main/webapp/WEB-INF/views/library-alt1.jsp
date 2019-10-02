@@ -68,8 +68,26 @@
         </div>
     </div>
 </div>
-<!-- 서재의 책 클릭시 뜨는 모달 생성되는 영역 -->
-<div id="modalDiv"></div>
+<div id="modalDiv">
+	<c:forEach var="UserBooks" items="${libraryBooks}">
+	<div class="modal fade" id="modal${UserBooks.isbn}" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+	    <div class="modal-dialog undefined">
+	        <div class="modal-content">
+	            <div class="modal-body post-content">
+					<div class="form-inline">
+						<img class="book-thumbnail" src="<c:out value="${UserBooks.list_img_src}"/>">
+						<div class="cont">
+							<a href="reviewPerBook?isbn=${UserBooks.isbn}"><h4>Review</h4></a>
+							<a href="record?isbn=${UserBooks.isbn}"><h4>Record</h4></a>
+							<button class="deleteMyBook" data-isbn="${UserBooks.isbn}">Delete</button>
+						</div>
+					</div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	</c:forEach>
+</div>
 <!-- End library Modal -->
 </body>
 <script>
@@ -116,61 +134,65 @@ $(document).ready(function(){
 	 	});
 	 }//end makeBookTable
 	
-	var modalDiv=$("#modalDiv");
-	function addBookModal(isbn){
-		console.log("========== addBookModal()")
-		bookService.getBookInfo(isbn,function(result){
-			let addModalHTML="";
-			addModalHTML+="<div class=\"modal fade\" id=modal"+result.isbn+" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"smallModalLabel\" aria-hidden=\"true\">";
-			addModalHTML+="<div class=\"modal-dialog undefined\">";
-			addModalHTML+="<div class=\"modal-content\">";
-			addModalHTML+="<div class=\"modal-body post-content\">";
-			addModalHTML+="<div class=\"form-inline\">";
-			addModalHTML+="<img class=\"book-thumbnail\" src="+result.book_img+">";
-			addModalHTML+="<div class=\"cont\">";
-			addModalHTML+="<a href=reviewPerBook?isbn="+result.isbn+"><h4>Review</h4></a>";
-			addModalHTML+="<button class=\"deleteMyBook\" data-isbn="+result.isbn+">Delete</button>";
-			addModalHTML+="</div></div></div></div></div></div>";
-			modalDiv.append(addModalHTML);
-		});
-	}
-	
-	// remove book on bookshelf
-	$(document).on("click",".deleteMyBook",function(){
- 		console.log("========== delete my book on library");
-		let isbn=$(this).closest("button").attr("data-isbn");
-		console.log("isbn : "+isbn);
-		libraryService.removeBookOnLibrary(isbn,function(result){
-			alert(result);
-			// close modal
-			$(".fade").hide();
-			showList();
-		});
-	}); // end deleteMyBook
-	
-	//searchBook Btn Event
-	$(document).on("click",".searchBtn",function(){
-		console.log("click SearchBookBtn");
-		var searchT=$('#search').val();
-		bookService.searchTitle(searchT,function(result){
-			bookService.addBookData(result);
-			makeBookTable(result);
-		});
-	});
-	
 	 $(document).ready(function(){
+		// 1. 모달 추가하는 함수 만들기
+		// 2. 페이지 시작시 불러다 붙여넣기
+		 // 모달 추가할 영역 modalDiv
+		 var modalDiv=$("#modalDiv");
+		function addBookModal(isbn){
+			console.log("========== addBookModal()")
+			
+			bookService.getBookInfo(isbn,function(result){
+				let addModalHTML="";
+				
+				addModalHTML+="<div class=\"modal fade\" id=modal"+result.isbn+" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"smallModalLabel\" aria-hidden=\"true\">";
+				addModalHTML+="<div class=\"modal-dialog undefined\">";
+				addModalHTML+="<div class=\"modal-content\">";
+				addModalHTML+="<div class=\"modal-body post-content\">";
+				addModalHTML+="<div class=\"form-inline\">";
+				addModalHTML+="<img class=\"book-thumbnail\" src="+result.book_img+">";
+				addModalHTML+="<div class=\"cont\">";
+				addModalHTML+="<a href="+result.isbn+"><h4>Review</h4></a>";
+				addModalHTML+="<a href=\"record?isbn="+result.isbn+"><h4>Record</h4></a>";
+				addModalHTML+="<button class=\"deleteMyBook\" data-isbn="+result.isbn+">Delete</button>";
+				addModalHTML+="</div></div></div></div></div></div>";
+				modalDiv.append(addModalHTML);
+			})
+			// 2. 그 안에서 str로 모달 추가
+		}
+		
 		 // 찾은 책 클릭시 추가, 삭제 이벤트
 	 	getBookTable.on("click","button",function(e){
 		 	var targetISBN = $(this).closest("tr").attr("class");
 		 	var userAddBook={isbn:targetISBN};
 		 	console.log("targetISBN"+targetISBN);
-		 	//중복검사하기
 	 		bookService.addUserBook(userAddBook,function(result){
 		 		alert(result);
 		 		showList();
 		 		addBookModal(targetISBN);
 		 		});
 	 	});
+	 	
+	 	$(".deleteMyBook").on("click",function(){
+			let isbn=$(this).closest("button").attr("data-isbn");
+			console.log("deleteMyBook.closest('button').isbn"+isbn);
+			libraryService.removeBookOnLibrary(isbn,function(result){
+				alert(result);
+				// close modal
+				$(".fade").hide();
+				showList();
+			});
+		}); // end deleteMyBook
+		
+		//searchBook Btn Event
+		$(".searchBtn").on("click",function(){
+		var searchT=$('#search').val();
+			bookService.searchTitle(searchT,function(result){
+				console.log("result : "+result);
+				bookService.addBookData(result);
+				makeBookTable(result);
+			});
+		});
 	 }); //end ready
 	 
 	
@@ -180,10 +202,7 @@ $(document).ready(function(){
 			for(let index=0;index<20;index++){
 				let bookDiv=".tdnum"+index;
 				if(index<libraryBooks.length){
-					// insert into bookImg  
-					$(bookDiv).html("<a data-toggle=\"modal\" data-target=\"#modal"+libraryBooks[index].isbn+"\"><img class=\"book-thumbnail\" src=\""+libraryBooks[index].list_img_src+"\"></a>");
-					// 저장한 책 이미지 클릭시 모달창 띄우기
-					addBookModal(libraryBooks[index].isbn);
+				$(bookDiv).html("<a data-toggle=\"modal\" data-target=\"#modal"+libraryBooks[index].isbn+"\"><img class=\"book-thumbnail\" src=\""+libraryBooks[index].list_img_src+"\"></a>");
 				}else{
 					$(bookDiv).html("");
 				}

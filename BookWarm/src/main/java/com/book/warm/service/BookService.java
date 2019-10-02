@@ -20,4 +20,9 @@ public class BookService {
 		return mapper.getBook(isbn);
 	}
 
+	public Integer checkUserBook(String isbn,String user_id) {
+		log.info("========== checkUserBook() ==========");
+		return mapper.checkUserBook(isbn,user_id);
+	}
+
 }

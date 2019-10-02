@@ -4,8 +4,6 @@ import java.security.Principal;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,13 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.book.warm.function.RecordFunction;
 import com.book.warm.mapper.AddBookDetailInfoMapper;
 import com.book.warm.mapper.LibraryMapper;
+import com.book.warm.service.BookService;
 import com.book.warm.vo.BookVO;
-import com.book.warm.vo.CommunityBoardCommentVO;
 import com.book.warm.vo.LibraryVO;
-import com.book.warm.vo.LogingBoardVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -39,6 +35,8 @@ public class LibraryController {
 	LibraryMapper mapper;
 	@Inject
 	AddBookDetailInfoMapper bookMapper;
+	@Inject
+	BookService bookService;
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String library(Principal principal, Model model) throws Exception {
@@ -105,12 +103,15 @@ public class LibraryController {
 			log.info("==================== addBook() ====================");
 			String user_id=principal.getName();
 			BookVO bookVO = (bookMapper.getBook(libraryVO.getIsbn()));
-			libraryVO.setUser_id(user_id);
-			libraryVO.setIsbn(bookVO.getIsbn());
-			libraryVO.setList_img_src(bookVO.getBook_img());
-			libraryVO.setList_type("장르01");
-			libraryVO.setList_no(19);
-			int insertCount = mapper.addMyBook(libraryVO);
+			int insertCount=0;
+			if(bookService.checkUserBook(bookVO.getIsbn(), user_id)==0) {
+				libraryVO.setUser_id(user_id);
+				libraryVO.setIsbn(bookVO.getIsbn());
+				libraryVO.setList_img_src(bookVO.getBook_img());
+				libraryVO.setList_type("장르01");
+				libraryVO.setList_no(19);
+				insertCount = mapper.addMyBook(libraryVO);
+			}
 			log.info("Comment INSERT COUNT : " + insertCount);
 			return insertCount == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
 					: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

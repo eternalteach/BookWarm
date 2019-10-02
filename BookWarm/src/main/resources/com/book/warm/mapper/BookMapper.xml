@@ -5,6 +5,9 @@
 	<select id='getBook' resultType="com.book.warm.vo.BookVO">
 		select * from Book where isbn=#{isbn}
 	</select>
+	<select id='checkUserBook' resultType="Integer">
+		select count(*) from library where isbn=#{isbn} AND user_id=#{user_id}
+	</select>
 
 	
 </mapper>

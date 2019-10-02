@@ -4,7 +4,6 @@ var bookService = (function() {
 	//add user choice book into database
 	function addUserBook(addUserBook, callback, error) {
 		console.log("========== bookService.addUserBook()");
-
 		$.ajax({
 			type : 'post',
 			url : 'library/addBook',
