@@ -53,11 +53,10 @@
 
 <div role="main" class="main">
 
-	<section class="page-header" style="padding:0; margin-bottom:10px">
+	<section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-8 text-left">
-                        <img width="100px" src="/warm/resources/img/header/red-soldier.jpg"/>
                     </div>
                     <div class="col-md-4">
                         <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
@@ -160,43 +159,37 @@
 				
 				<c:forEach items="${list}" var="vo">
 				
-				<div class="post-content no-thumb clearfix" style="margin:20px">
+				<div class="post-content no-thumb clearfix" style="margin:20px ; padding:30px">
 				    <article class="v_blog-item">
                         <div class="v_blog-item-inner row">
                         
                            <!-- 여기가 이미지 들어가는 부분 -->
-                           <div class="v_blog-item-media col-md-2">
+                           <div class="v_blog-item-media col-md-3" style="padding-left:5%; padding-right:3%">
                               <a href="/warm/reviewPerBook?isbn=${vo.isbn}">
                                  <img class="w-100" src="${vo.book_img}"/>
                               </a>
                            </div>
                            
                            <!-- 최근 작성한 리뷰가 들어가는 부분 -->
-                           <div class="v_blog-item-content col-md-7">
+                           <div class="v_blog-item-content col-md-8" style="padding-left:5%; padding-right:3%">
                            
                               <div class="v_blog-item-header">
                                  <ul class="v_blog-item-meta" style="list-style-type: none; padding-left:0px">
-                                    <%-- <li class="v_blog-item-author">
-                                       <span>By </span> <a href="#">${vo.user_id}</a>
-                                    </li> --%>
                                     <li class="v_blog-item-date">
                                        <time class="" datetime="2018-06-30T10:47:48+00:00">
-                                          최근 감상 작성일 ${vo.review_modify_date}
+                                       	 <fmt:formatDate var="recentDate" value="${vo.review_modify_date}" pattern="yyyy년 MM월 dd일"/>
+                                          ${recentDate}에 작성하신 감상입니다.
                                        </time>
                                     </li>
-                                    <li class="v_blog-item-counter"><span>작성한 감상 n개</span></li>
+                                    <li class="v_blog-item-counter"><span>이 책에 대해 남긴 감상 2개</span></li>
                                  </ul>
-
-                                 <a href="./resources/VertexEx/blog-post-standard.html" rel="bookmark">
-                                    <h2 class="v_blog-item-title" itemprop="name headline"><%-- ${vo.review_title} --%></h2>
-                                 </a>
                               </div>
 	
                               <div itemprop="articleBody">
-                                 <p>
+                                 <p style="overflow:hidden; display: -webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; line-height:1.8em; max-height:5.4em; margin-top:15px; margin-bottom:30px">
                                  	${vo.review_content}
                                  </p>
-                                 <a class="v_blog-item-read-more" href="#">
+                                 <a class="v_blog-item-read-more" style="position:absolute; bottom:0; right:0; color:gray" href="/warm/reviewPerBook?isbn=${vo.isbn}">
                                     <span>Reviews about this book</span>
                                  </a>
                               </div>
@@ -485,7 +478,7 @@
 						str += "<img src='/warm/resources/Vertex/img/team/t" + (i+1) + ".png' class='avatar' height='30' width='30' />";
 						str += "</div>";
 						str += "<div class='comment-content'><div class='comment-body'>";
-						str += "<a href='warm/reviewSelectOne?review_no='" + cmt.review_no + "'>";
+						str += "<a href='warm/reviewSelectOne?review_no=" + cmt.review_no + "'>";
 						str += " <p style='overflow:hidden; text-overflow:ellipsis'>" + cmt.review_cmt_content + "</p></a></div>";
 						str += "<div class='comment-meta'>";
 						str += "<span class='comment-author'>" + cmt.user_id + "</span>";
@@ -500,8 +493,13 @@
 					
 		}); // end getJSON
 	})(); // end function
- 	 
   });
+	
+	$(".recent-comments-list").on("click", "a", function(e) {
+		e.preventDefault();
+		alert($(this).attr("href"));
+	});
+		 
   
 	var actionForm = $("#actionForm");
 	

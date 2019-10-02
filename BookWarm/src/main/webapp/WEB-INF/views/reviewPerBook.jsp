@@ -23,21 +23,17 @@
 
     <div role="main" class="main">
 
-        <section class="page-header" style="padding:10px">
+        <section class="page-header" style="padding:10px; margin-top:45px">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-8 text-left">
-                        <span class="tob-sub-title text-color-primary d-block">OUR FEATURES</span>
-                        <h1>Blog Standard</h1>
-                    </div>
-                    <div class="col-md-4">
+               <!--  <div class="row align-items-center"> -->
+                    <div class="col-md-4 pull-right">
                         <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
                             <li><a href="/warm/library?user_id=${user_id}">내 서재</a></li>
                             <li><a href="/warm/reviewMain">감상 메인</a></li>
                             <li class="active">${bookVO.book_title}</li>
                         </ul>
                     </div>
-                </div>
+               <!--  </div> -->
             </div>
         </section>
 
@@ -57,68 +53,6 @@
                                 </div>
                             </form>
                         </section>
-
-                        <!-- <section class="widget widget_sf_recent_custom_comments clearfix">
-                            <div class="widget-heading clearfix">
-                                <h4 class="v-heading"><span>Recent Comments</span></h4>
-                            </div>
-                            <ul class="recent-comments-list">
-
-                                <li class="comment">
-                                    <div class="comment-wrap clearfix">
-                                        <div class="comment-avatar">
-                                            <img src="./resources/Vertex/img/team/t3.png" class="avatar" height="100" width="100" />
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="comment-body">
-                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
-                                                    <p>Praesent eros mauris dolor</p>
-                                                </a>
-                                            </div>
-                                            <div class="comment-meta">
-                                                <span class="comment-author">Vertex</span> <span class="comment-date">20 hours ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="comment">
-                                    <div class="comment-wrap clearfix">
-                                        <div class="comment-avatar">
-                                            <img src="./resources/Vertex/img/team/t1.png" class="avatar" height="100" width="100" />
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="comment-body">
-                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
-                                                    <p>Omnis iste natus error sit dolor </p>
-                                                </a>
-                                            </div>
-                                            <div class="comment-meta">
-                                                <span class="comment-author">Guest</span> <span class="comment-date">5 hours ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="comment">
-                                    <div class="comment-wrap clearfix">
-                                        <div class="comment-avatar">
-                                            <img src="./resources/Vertex/img/team/t4.png" class="avatar" height="100" width="100" />
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="comment-body">
-                                                <a href="./resources/Vertex/blog-standard-post.html#comments">
-                                                    <p>Sed tellus ante aliquam eget</p>
-                                                </a>
-                                            </div>
-                                            <div class="comment-meta">
-                                                <span class="comment-author">Admin</span> <span class="comment-date">2 days ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </section> -->
 
                         <section class="widget v-tag-cloud-widget clearfix">
                             <div class="widget-heading clearfix">
@@ -178,7 +112,7 @@
                                         <div class="v-post-date pull-left">
                                             <span class="day">${fn:substring(fmt_date,0,2)}</span> <!-- 가져온 날짜 중 일에 해당하는 숫자 -->
                                             <span class="month">${fn:substring(fmt_date,2,5)}</span>
-                                            <div class="like-holder like-button"><i class="fa fa-heart"></i></div>
+                                            <div class="like-holder like-button" style="cursor:default"><i class="fa fa-heart"></i></div>
                                         </div>
                                         <div class="post-inner">
                                             <div class="post-header">
@@ -198,7 +132,8 @@
                                                     <span class="text-sep">|</span>
 
                                                     <span class="blog-categories minor-meta">
-                                                        <a href="#">${vo.review_modify_date}
+                                                    <fmt:formatDate var="date" value="${vo.review_modify_date}" pattern="yyyy. MM. dd"/>
+                                                        <a href="#">${date}
                                                         <c:if test="${vo.review_modify_date != vo.review_written_date}">
                                                         	(수정됨)
                                                         </c:if>

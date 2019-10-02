@@ -661,8 +661,8 @@
                                         <span class="dropcap1">${fn:substring(review.review_content,0,2)}</span>
                                         ${fn:substring(review.review_content,2,-1)}
                                     </p> --%>
-                                    <blockquote class="pullquote">
-                                        <span style="color: #888888;">
+                                    <blockquote class="pullquote" style="word-break:break-all;">
+                                        <span style="color: #888888; width:90%">
                                             ${review.review_content}
                                         </span>
                                     </blockquote>

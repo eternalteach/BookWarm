@@ -18,10 +18,10 @@
 							<ul>
                                 <li>
                                     <a href="#">
-                                		<img src="${bookVO.book_img}" style="display:block; margin:auto">
+                                		<img src="${bookVO.book_img}" style="display:block; margin:auto; margin-bottom:15px">
                             		</a>
                             	</li>
-                                <li style="text-align:center; margin:5px"><strong>${bookVO.book_title}</strong></li>
+                                <li style="text-align:center"><strong>${bookVO.book_title}</strong></li>
                                 <li style="text-align:center">${fn:substring(bookVO.writer_name, 1, fn:length(bookVO.writer_name)-1)}</li>
                             </ul>
 						</div>
