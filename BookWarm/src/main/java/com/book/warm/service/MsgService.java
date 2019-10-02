@@ -40,6 +40,10 @@ public class MsgService {
 	public int msgdelete(int msg_no, String msg_get_id) {
 		return msgmapper.msgdelete(msg_no, msg_get_id);
 	}
+	public int msgdelete2(int msg_no, String msg_send_id) {
+		return msgmapper.msgdelete2(msg_no, msg_send_id);
+	}
+	
 	//쪽지개수
 	public int msgcount(String msg_get_id) {
 		return msgmapper.msgcount(msg_get_id);

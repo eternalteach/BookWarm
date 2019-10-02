@@ -42,9 +42,9 @@ var msgservice = (function(){
 	
 	
 	
-	//제거
+	//받은제거
 	function msgdelete(msg_no,msg_get_id,callback, error){
-		
+		console.log("받은쪽지제거")
 		$.ajax({
 			type : 'delete',
 			url : "msgdelete/" + msg_no +"/"+ msg_get_id,
@@ -61,11 +61,33 @@ var msgservice = (function(){
 		});
 		
 	}
+	//보낸쪽지제거
+	function msgdelete2(msg_no,msg_send_id,callback, error){
+		console.log("보낸쪽지제거")
+		$.ajax({
+			type : 'delete',
+			url : "msgdelete2/" + msg_no +"/"+ msg_send_id,
+			success : function(deleteResult, status, xhr){
+				if(callback){
+					callback(deleteResult);
+					console.log("보낸쪽지제거2")
+				}
+			},
+			error : function(xhr, status, er){
+				if(error){
+					error(er);
+					console.log("보낸쪽지제거3")
+				}
+			}
+		});
+		
+	}
 	
 	
 	return{
 		msgpaging:msgpaging,
 		msgpaging2:msgpaging2,
-		msgdelete:msgdelete
+		msgdelete:msgdelete,
+		msgdelete2:msgdelete2
 	};
 })();

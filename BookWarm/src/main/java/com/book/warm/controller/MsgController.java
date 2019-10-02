@@ -90,6 +90,18 @@ public class MsgController {
 	public ResponseEntity<String> msgdelete(@PathVariable("msg_no") int msg_no, Principal principal){
 		log.info("====================삭제====================================");
 		String user_id = principal.getName();
+		
+		return msgservice.msgdelete(msg_no, user_id)==1 
+				? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	//쪽지삭제
+	@DeleteMapping(value= "/msgdelete2/{msg_no}/{msg_send_id}",
+				produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> msgdelete2(@PathVariable("msg_no") int msg_no, Principal principal){
+		log.info("====================삭제====================================");
+		String user_id = principal.getName();
+		
 		return msgservice.msgdelete(msg_no, user_id)==1 
 				? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

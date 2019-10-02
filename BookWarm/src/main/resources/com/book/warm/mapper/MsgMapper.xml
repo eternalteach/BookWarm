@@ -26,6 +26,12 @@
 	where msg_no = #{msg_no}
 	and msg_get_id = #{msg_get_id}
 	</delete>
+	<!-- 보낸쪽지삭제 -->
+	<delete id="msgdelete2">
+	delete from msg_table 
+	where msg_no = #{msg_no}
+	and msg_send_id = #{msg_send_id}
+	</delete>
 	<!-- 쪽지세기 -->
 	<select id="msgcount" resultType="int">
 	select count(msg_no) 
