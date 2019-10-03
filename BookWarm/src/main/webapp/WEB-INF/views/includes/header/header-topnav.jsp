@@ -36,7 +36,7 @@
 										</li>
 										<li>
 											<a class="nopadding" href="/warm/library" style="padding-top: 0px;    padding-bottom: 0px;">
-					                           <img src="/warm/resources/img/header/Alice_rabbit03.png" style="height:120px; padding:0px; margin:5px;">
+					                           <h1 style="margin:0">BOOKWARM</h1>
 											</a>   
 										</li>
 										<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#">Books </a>
@@ -73,5 +73,5 @@
             </div>
         </div>
     </header>
-    <div style="height:90px;" class="col-sm-12"></div>
+    <div style="height:70px;" class="col-sm-12"></div>
     <!--End Header-->

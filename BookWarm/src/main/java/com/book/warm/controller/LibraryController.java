@@ -4,12 +4,11 @@ import java.security.Principal;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,13 +19,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.book.warm.function.RecordFunction;
 import com.book.warm.mapper.AddBookDetailInfoMapper;
 import com.book.warm.mapper.LibraryMapper;
 import com.book.warm.vo.BookVO;
-import com.book.warm.vo.CommunityBoardCommentVO;
 import com.book.warm.vo.LibraryVO;
-import com.book.warm.vo.LogingBoardVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -41,10 +37,14 @@ public class LibraryController {
 	AddBookDetailInfoMapper bookMapper;
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String library(Principal principal, Model model) throws Exception {
+	public String library(Authentication auth, Principal principal, Model model) throws Exception {
 		
-		System.out.println(principal);
-		System.out.println("principal.getName(): " + principal.getName());
+		System.out.println(auth.getAuthorities().size());
+		if(auth.getAuthorities().size() >= 2) {
+			return "redirect:admin";
+		}
+		
+		
 		
 		model.addAttribute("libraryBooks",mapper.getLibraryBooks(principal.getName()));
 		

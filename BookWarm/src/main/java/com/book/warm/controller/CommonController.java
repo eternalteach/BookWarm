@@ -30,10 +30,16 @@ public class CommonController {
 	 */
 	
 	@GetMapping("/index")
-	public String loginInput(Principal principal, String error, String logout, Model model) {
+	public String loginInput(Authentication auth, Principal principal, String error, String logout, Model model) {
 		
 		// 로그인이 되어 있고, 이전에 요청한 페이지가 없는 경우 library로 이동.
 		if(principal != null) {
+			
+			System.out.println(auth.getAuthorities().size());
+			if(auth.getAuthorities().size() >= 2) {
+				return "admin";
+			}
+			
 			return "library";
 		}
 		

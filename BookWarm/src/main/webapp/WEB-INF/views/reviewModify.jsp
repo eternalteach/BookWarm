@@ -60,7 +60,7 @@
                             			<table style="table-layout:fixed">
                             				<tr>
                             					<td nowrap>제목</td>
-                            					<td><input type="text" name="review_title" value="${review.review_title}"></td>
+                            					<td><input type="text" maxlength="66" name="review_title" value="${review.review_title}"></td>
                             				</tr>
                             				<tr>
                             					<td nowrap>관련 페이지</td>
@@ -74,7 +74,7 @@
                             				</tr>
                             				<tr>
                             					<td>내용</td>
-                            					<td><textarea name="review_content" style="width:100%" rows="10">${review.review_content}</textarea></td>
+                            					<td><textarea maxlength="1333" name="review_content" style="width:100%" rows="10">${review.review_content}</textarea></td>
                             				</tr>
                             				<tr>
                             					<td>첨부 이미지</td>

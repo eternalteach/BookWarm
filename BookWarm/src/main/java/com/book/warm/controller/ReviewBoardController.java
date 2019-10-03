@@ -25,6 +25,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -369,6 +370,7 @@ public class ReviewBoardController {
 		
 		// 리뷰 목록을 가져와서 각각의 리뷰 번호로 첨부파일 목록을 조회해 reviewVO에 세팅해준다.
 		for(ReviewBoardVO review : reviews) {
+			System.out.println("왜여 : " + review.getReview_no());
 			if(service.getAttachList(review.getReview_no())!=null) {
 				
 				review.setAttachList(service.getAttachList(review.getReview_no()));
@@ -376,5 +378,17 @@ public class ReviewBoardController {
 		}
 		
 		model.addAttribute("openreview", reviews);
+	}
+	
+	@GetMapping(value="/review/{reviewNo}",
+					produces = { MediaType.APPLICATION_XML_VALUE,
+									MediaType.APPLICATION_JSON_UTF8_VALUE })
+		public ResponseEntity<ReviewBoardVO> get(@PathVariable("reviewNo") String reviewNo) {
+		
+		log.info("++++++++++++++++++++++++++++review_no: " + reviewNo);
+		
+		int review_no = Integer.parseInt(reviewNo);
+		
+		return new ResponseEntity<>(service.selectedReview(review_no), HttpStatus.OK);
 	}
 }
