@@ -30,9 +30,4 @@ public class RegisterService {
 		return registerMapper.checkDuplicatedNickname(user_nickname);
 	}
 	
-	public int addAuthenticate(String user_id) {
-		return registerMapper.addAuthenticate(user_id);
-	}
-	
-	
 }

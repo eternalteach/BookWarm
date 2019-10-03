@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.book.warm.page.Criteria;
 import com.book.warm.vo.AdminBoardVO;
+import com.book.warm.vo.AuthVO;
 import com.book.warm.vo.CommunityBoardVO;
 import com.book.warm.vo.ReviewBoardVO;
 

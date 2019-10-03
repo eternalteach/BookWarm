@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.book.warm.mapper.AuthenticationMapper">
+
+	<insert id="addAuthenticationRoleUser" >
+		insert into authorities (user_id, authority) values(#{user_id},'ROLE_USER')
+	</insert>
+	
+	<insert id="addAuthenticationRoleManager" >
+		insert into authorities (user_id, authority) values(#{user_id},'ROLE_MEMBER')
+	</insert>
+	
+	<insert id="addAuthenticationRoleAdmin" >
+		insert into authorities (user_id, authority) values(#{user_id},'ROLE_ADMIN')
+	</insert>
+	
+	<delete id="removeAllAuthentication">
+		delete authorities where user_id=#{user_id}
+	</delete>
+	
+</mapper>

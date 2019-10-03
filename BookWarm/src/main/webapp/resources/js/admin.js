@@ -30,7 +30,7 @@ var adminService = (function() {
 			}
 		});
 	}
-	
+		
 	//get review list
 	function getReviewListWithPaging(pages, callback, error){
 		var reviewPageNum = pages;
@@ -72,12 +72,35 @@ var adminService = (function() {
 		});
 	}
 	
+	// modify authentication
+	function modfiyAuthentication(UserAuthentication, callback, error){
+		console.log("========== modfiyAuthentication()");
+		
+		$.ajax({
+			type:'put',
+			url:'admin/authentication',
+			data:JSON.stringify(UserAuthentication),
+			contentType:"application/json;charset=utf-8",
+			success:function(result,status,xhr){
+				if(callback){
+					callback(result);
+				}
+			},
+			error:function(xhr,status,er){
+				if(error){
+					error(er);
+				}
+			}
+		});
+	}
+	
 
 	return {
 		get:get,
 		getReview:getReview,
 		getUser:getUser,
 		getCommListWithPaging:getCommListWithPaging,
-		getReviewListWithPaging:getReviewListWithPaging
+		getReviewListWithPaging:getReviewListWithPaging,
+		modfiyAuthentication:modfiyAuthentication
 	};
 })();
