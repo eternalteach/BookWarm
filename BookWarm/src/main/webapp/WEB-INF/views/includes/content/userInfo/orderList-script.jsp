@@ -3,8 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <script>
-
-	
 	$(document).ready(function() {
 		var actionForm = $('#actionForm');
 		$('.pageLink').on('click', function(e) {

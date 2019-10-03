@@ -52,7 +52,7 @@
 									<div class="search-item-content" id="${idx.index}">
 									
 									<h3 class="search-item-caption">
-										<a href="#">주문번호 : ${list1.orders_no}</a>
+										<a href="javascript:showDetail(${list1.orders_no})">주문번호 : ${list1.orders_no}</a>
 									</h3>
 									<div class="search-item-meta">
 										<ul class="list-inline">
@@ -95,7 +95,7 @@
 	
 											<div class="search-item-meta-down">
 												<ul class="list-inline">
-													<li class="list-inline-item">${list1.orders_total}원</li>
+													<li class="list-inline-item">${list1.total_price_per_book}원</li>
 												</ul>
 												<ul class="list-inline">
 													<li class="list-inline-item" style="color: red">${list1.orders_status}</li>
@@ -145,9 +145,11 @@
 					</div>
 				</div>
 
-				<!-- orderList-side-bar include -->
 				<%@ include file="./orderList-side-bar.jsp" %>
 				<%@ include file="./orderList-script.jsp" %>
+				<%@ include file="./modal-orderList.jsp" %>
+				<%@ include file="./modal-orderList-script.jsp" %>
+				
 			</div>
 		</div>
 	</div>

@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.book.warm.mapper.UserInfoMapper;
 import com.book.warm.page.Criteria;
+import com.book.warm.vo.CouponVO;
 import com.book.warm.vo.OrderListVO;
 import com.book.warm.vo.OrdersVO;
+import com.book.warm.vo.PostVO;
 
 @Service
 public class UserInfoService {
@@ -88,6 +90,18 @@ public class UserInfoService {
 
 	public void removeUserFromReview_board(String user_id) {
 		userInfoMapper.removeUserFromReview_board(user_id);
+	}
+
+	public OrdersVO getOrderDetails(String orders_no) {
+		return userInfoMapper.getOrderDetails(orders_no);
+	}
+
+	public CouponVO getUsedCoupon(String coupon_no) {
+		return userInfoMapper.getUsedCoupon(coupon_no);
+	}
+
+	public PostVO getPostInfo(String post_no) {
+		return userInfoMapper.getPostInfo(post_no);
 	}
 
 	

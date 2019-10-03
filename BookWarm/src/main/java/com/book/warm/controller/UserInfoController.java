@@ -1,20 +1,27 @@
 package com.book.warm.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.book.warm.page.Criteria;
 import com.book.warm.page.PageDTO;
 import com.book.warm.service.UserInfoService;
+import com.book.warm.vo.CouponVO;
 import com.book.warm.vo.OrderListVO;
 import com.book.warm.vo.OrdersVO;
+import com.book.warm.vo.PostVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -90,5 +97,46 @@ public class UserInfoController {
 		
 		// 2. 로그아웃,  index로 보내준다.
 		return "redirect:customLogout";
+	}
+	
+	// 과거 주문 내역 클릭했을 때 배송정보(상세) 모달로 띄우기
+	@RequestMapping("/orderDetails")
+	@ResponseBody
+	@Transactional
+	public Map<String, Object> orderDetails(Principal principal, @Param("orders_no") String orders_no) {
+		
+		System.out.println("orders_no : " + orders_no);
+		
+		String user_id = principal.getName();
+		// 주문건에 대한 결제, 쿠폰, 배송 정보를 가져온다.
+		// 1. 결제 정보 가져오기.
+		OrdersVO order = userInfoService.getOrderDetails(orders_no);
+		
+		// 2. 쿠폰 정보 가져오기.
+		String coupon_no = order.getCoupon_no();
+		CouponVO coupon = null;
+		
+		// 쿠폰 사용해서 결제를 진행한 경우에만 쿠폰의 정보를 가져온다.
+		// 쿠폰 사용하지 않고 결제했을 경우에는 null
+		if(coupon_no != null) {
+			coupon = userInfoService.getUsedCoupon(coupon_no);
+		}
+		
+		// 3. 배송 정보 가져오기.
+		String post_no = order.getPost_no();
+		System.out.println("post_no : "+post_no);
+		PostVO post = null;
+		if(post_no != null) {
+			post = userInfoService.getPostInfo(post_no);
+		}	
+		
+		// 4. 맵으로 묶기
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("order", order);
+		map.put("coupon", coupon);
+		map.put("post", post);
+		
+		System.out.println("메서드 끝");
+		return map;
 	}
 }

@@ -3,20 +3,27 @@ package com.book.warm.vo;
 import java.sql.Timestamp;
 
 // orderList.jsp를 위한 페이지(book, orders_item, orders를 inner join)
-public class OrderListVO {
+public class OrderDetailVO {
+	private String orders_no;
+	private String user_id;
+	private String orders_payment;
 	private int orders_total;
 	private int orders_pay_total;
+	private String refund_account;
+	private String refund_bank;
 	private Timestamp orders_date;
+	private Timestamp orders_pay_date;
+	private String coupon_no;
+	private String post_no;
+	
 	private String book_title;
 	private int item_cnt;
 	private int book_price_for_sale;
-	private int total_price_per_book;
 	private String orders_status;
-	private String orders_no;
 	private String book_img;
 	
 	// constructor
-	public OrderListVO(int orders_total, Timestamp orders_date, String book_title, int item_cnt,
+	public OrderDetailVO(int orders_total, Timestamp orders_date, String book_title, int item_cnt,
 			int book_price_for_sale, String orders_status, String orders_no, int orders_pay_total) {
 		super();
 		this.orders_total = orders_total;
@@ -29,7 +36,7 @@ public class OrderListVO {
 		this.orders_pay_total = orders_pay_total;
 	}
 	
-	public OrderListVO() {
+	public OrderDetailVO() {
 		super();
 	}
 	
@@ -103,12 +110,5 @@ public class OrderListVO {
 
 	public void setOrders_pay_total(int orders_pay_total) {
 		this.orders_pay_total = orders_pay_total;
-	}
-	public int getTotal_price_per_book() {
-		return total_price_per_book;
-	}
-	
-	public void setTotal_price_per_book(int total_price_per_book) {
-		this.total_price_per_book = total_price_per_book;
 	}
 }

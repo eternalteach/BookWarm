@@ -5,8 +5,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.book.warm.page.Criteria;
+import com.book.warm.vo.CouponVO;
 import com.book.warm.vo.OrderListVO;
 import com.book.warm.vo.OrdersVO;
+import com.book.warm.vo.PostVO;
 
 public interface UserInfoMapper {
 
@@ -46,7 +48,13 @@ public interface UserInfoMapper {
 	void removeUserFromPost(@Param("user_id") String user_id);
 
 	void removeUserFromReview_board(@Param("user_id") String user_id);
+	// 회원 탈퇴 끝
+	
+	OrdersVO getOrderDetails(@Param("orders_no") String orders_no);
 
+	CouponVO getUsedCoupon(@Param("coupon_no") String coupon_no);
+
+	PostVO getPostInfo(@Param("post_no") String post_no);
 
 
 }
