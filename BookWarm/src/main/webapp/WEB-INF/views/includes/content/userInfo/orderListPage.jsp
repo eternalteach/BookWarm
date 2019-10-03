@@ -13,8 +13,7 @@
 					<h1>나의 주문 내역</h1>
 				</div>
 				<div class="col-md-4">
-					<ul
-						class="breadcrumb justify-content-start justify-content-md-end mb-0">
+					<ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
 						<li><a href="/warm/myInfo">내 정보</a></li>
 						<li class="active">나의 주문 내역</li>
 					</ul>
@@ -32,6 +31,7 @@
 
 					<div class="v-heading-v2 col-sm-8 offset-sm-2 row center-text">
 						<h4 class="v-search-result-count">총 ${cnt}건의 주문</h4>
+						<input type="hidden" id="totalOrder" value="${cnt}">
 					</div>
 
 					<div class="row" id="insertList">
@@ -39,7 +39,6 @@
 						<!-- -----------------리스트 start----------------------- -->
 						<c:set var="cnt" value="0" />
 						<c:forEach items="${list}" var="list1" varStatus="idx">
-						
 						<%-- <input type="hidden" class="orders_no" value="${list1.orders_no}"> --%>
 							
 							<!-- idx는 0부터 시작 -->
@@ -121,14 +120,23 @@
 						<div class="col-sm-10 offset-sm-1">
 							<div class="v-pagination">
 								<ul class="pagenavi bar-styling">
-									<li><a href="#" class="current" title="1">1</a></li>
-									<li><a href="#" title="2">2</a></li>
-									<li><a href="#" title="3">3</a></li>
-									<li><a href="#" title="...">...</a></li>
-									<li><a href="#" title="40">40</a></li>
-									<li><a href="#" title="41">41</a></li>
-									<li class="next"><a href="#">Next <i
-											class="fa fa-angle-right"></i></a></li>
+									<c:if test="${pageMaker.prev}">
+										<li class='prev'><a href='${pageMaker.startPage -1}'><i class='fa fa-angle-left'></i>prev</a></li>
+									</c:if>
+									
+									<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+										<li class='pageItem ${pageMaker.cri.pageNum == num ? "active":""}'><a href='${num}' class='pageLink'>${num}</a></li>
+									</c:forEach>
+									
+									<c:if test="${pageMaker.next}">
+										<li class='next'><a href='${pageMaker.endPage +1}'>next<i class='fa fa-angle-right'></i></a></li>
+									</c:if>
+									
+									
+									<form id="actionForm" action="/warm/orderList" method="get">
+										<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}" >
+										<input type="hidden" name="amount" value="${pageMaker.cri.amount}" >
+									</form>
 								</ul>
 							</div>
 						</div>
@@ -139,6 +147,7 @@
 
 				<!-- orderList-side-bar include -->
 				<%@ include file="./orderList-side-bar.jsp" %>
+				<%@ include file="./orderList-script.jsp" %>
 			</div>
 		</div>
 	</div>

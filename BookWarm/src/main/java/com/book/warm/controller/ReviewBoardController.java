@@ -77,14 +77,18 @@ public class ReviewBoardController {
 		
 		String user_id = principal.getName();
 		
+		// 한 책에 대한 리뷰를 모두 가져온다.
 		List<ReviewBoardVO> reviewList = service.getListPerBook(rbVO.getIsbn(), user_id, cri);
 		
+		// 리뷰에 해당하는 책 정보를 가져온다.
 		BookVO bookVO = service.bookInfo(rbVO.getIsbn());
 		
+		// 책 얼마나 읽었는지 등등에 대한 정보
 		List<LogingBoardVO> logingList = recordService.getList(user_id, rbVO.getIsbn());
 		int recordNum= recordService.getCount(bookVO, user_id);
 		recordFunction.setRecordFunction(logingList, bookVO, user_id);
 		
+		// 총 몇개의 리뷰가 있는지
 		int total = service.getTotal(cri,  rbVO.getIsbn(), user_id);
 		
 		model.addAttribute("list", reviewList);

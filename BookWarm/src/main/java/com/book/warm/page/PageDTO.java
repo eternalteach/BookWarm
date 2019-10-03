@@ -2,17 +2,17 @@ package com.book.warm.page;
 
 public class PageDTO {
 
-	private int startPage;
-	private int endPage;
-	private boolean prev, next;
-	private int total;
-	private Criteria cri;
+	private int startPage; // 시작하는 페이지 번호
+	private int endPage; // 마지막 페이지 번호
+	private boolean prev, next; // '<<', '>>'
+	private int total; // 총 게시물의 수
+	private Criteria cri; // 현재 페이지 번호, 한 페이지 당 보여줄 게시물 수를 담은 객체
 
 	public PageDTO(Criteria cri, int total) {
 		this.cri = cri;
 		this.total = total;
-		this.endPage = (int) (Math.ceil(cri.getPageNum() / 3.0)) * 3;
-		this.startPage = this.endPage - 2;
+		this.endPage = (int) (Math.ceil(cri.getPageNum() / 5.0)) * 5;
+		this.startPage = this.endPage - 4;
 		int realEnd = (int) (Math.ceil((total * 1.0) / cri.getAmount()));
 		if (realEnd < this.endPage) {
 			this.endPage = realEnd;

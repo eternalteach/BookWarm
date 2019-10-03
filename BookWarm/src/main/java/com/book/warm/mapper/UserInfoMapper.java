@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.book.warm.page.Criteria;
 import com.book.warm.vo.OrderListVO;
 import com.book.warm.vo.OrdersVO;
 
 public interface UserInfoMapper {
 
-	List<OrderListVO> getMyOrders(@Param("user_id") String user_id);
+	List<OrderListVO> getMyOrders(String user_id, Criteria criteria);
 
 	List<OrdersVO> getOrderList(@Param("user_id") String user_id);
 

@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.book.warm.mapper.UserInfoMapper;
+import com.book.warm.page.Criteria;
 import com.book.warm.vo.OrderListVO;
 import com.book.warm.vo.OrdersVO;
 
@@ -17,8 +18,8 @@ public class UserInfoService {
 	@Inject
 	UserInfoMapper userInfoMapper;
 
-	public List<OrderListVO> getMyOrders(String user_id) {
-		return userInfoMapper.getMyOrders(user_id);
+	public List<OrderListVO> getMyOrders(String user_id, Criteria criteria) {
+		return userInfoMapper.getMyOrders(user_id, criteria);
 	}
 
 	public List<OrdersVO> getOrderList(String user_id) {

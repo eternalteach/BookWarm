@@ -1041,9 +1041,10 @@
 		});
 			
 		showList(-1);
-				
+		
+		// 댓글 목록을 refresh해주는 함수(댓글을 보여주는 함수)
 		function showList(page) {
-				
+			commentService.getList({review_no:review_no_value, page: page || 1});
 			commentService.getList({review_no:review_no_value, page: page || 1}, function(commentCnt, list) {
 					
 				if(page == -1) {
@@ -1090,13 +1091,14 @@
 		var pageNum = 1;
 		var commentPageFooter = $(".panel-footer");
 		
+		// commentCnt : 댓글 총 갯수
 		function showReplyPage(commentCnt) {
 			
-			var endNum = Math.ceil(pageNum / 10.0) * 10;
-			var startNum = endNum - 9;
+			var endNum = Math.ceil(pageNum / 10.0) * 10; // 마지막페이지
+			var startNum = endNum - 9; // 보여질 처음 페이지 = 마지막페이지-9
 			
-			var prev = startNum != 1;
-			var next = false;
+			var prev = startNum != 1; // '<<'표시(1~10페이지가 아닌 경우에만 보인다.)
+			var next = false; // '>>'표시(처음에는 안 보이게)
 			
 			if(endNum * 10 >= commentCnt) {
 				endNum = Math.ceil(commentCnt/10.0);
@@ -1108,7 +1110,7 @@
 			
 			var str = "<ul class='pagination pull-right'>";
 			
-			if(prev) {
+			if(prev) { // 11~20페이지인 경우
 				str = "<li class='page-item'><a class='page-link' href='" + (startNum - 1) + "'>Previous</a></li>";
 			}
 			
@@ -1117,7 +1119,7 @@
 				str += "<li class='page-item " + active + " '><a class='page-link' href='" + i + "'>" + i + "</a></li>";
 			}
 			
-			if(next) {
+			if(next) { // 마지막 페이지들이 아닌 경우
 				str = "<li class='page-item'><a class='page-link' href='" + (endNum + 1) + "'>Next</a></li>";
 			}
 			

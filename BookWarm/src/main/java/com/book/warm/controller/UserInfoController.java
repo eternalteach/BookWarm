@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.book.warm.page.Criteria;
+import com.book.warm.page.PageDTO;
 import com.book.warm.service.UserInfoService;
 import com.book.warm.vo.OrderListVO;
 import com.book.warm.vo.OrdersVO;
@@ -25,11 +27,11 @@ public class UserInfoController {
 	
 	// 나의 주문 내역 페이지
 	@RequestMapping("/orderList")
-	public void orderList(Principal principal, Model model) {
+	public void orderList(Principal principal, Model model, Criteria cri) {
 		String user_id = principal.getName();
 		
 		// orders, orders_item, book테이블 join해서 받아낸 로그인한 유저의 모든 주문
-		List<OrderListVO> list = userInfoService.getMyOrders(user_id);
+		List<OrderListVO> list = userInfoService.getMyOrders(user_id, cri);
 		model.addAttribute("list", list);
 		
 		// orders테이블에 있는 모든 튜플 가져온다
@@ -39,6 +41,9 @@ public class UserInfoController {
 		// 과거 모든 주문 개수
 		int cnt = userInfoService.getOrderCnt(user_id);
 		model.addAttribute("cnt", cnt);
+		
+		// 페이징처리
+		model.addAttribute("pageMaker", new PageDTO(cri, cnt));
 	}
 	
 	// 마이 페이지(메인)
@@ -57,14 +62,13 @@ public class UserInfoController {
 		model.addAttribute("couponCnt", couponCnt);
 	}
 	
-	// 마이 페이지(메인)
+	// 마이 페이지(탈퇴)
 	@Transactional
 	@RequestMapping("/dropOut")
 	public String dropOut(Principal principal, Model model) {
 		String user_id = principal.getName();
 		
 		// 1. 받아온 아이디를 받아 쓰는 모든 테이블(db)에서 삭제
-		
 		// 1-1. authorities(권한)테이블에서는 유저 삭제
 		userInfoService.removeUserFromAuthorities(user_id);
 		
