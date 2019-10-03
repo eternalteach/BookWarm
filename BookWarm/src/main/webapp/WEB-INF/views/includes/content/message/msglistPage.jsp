@@ -86,47 +86,37 @@
 	
 <!-- 모달창 -->
 <!-- 쪽지보내기모달창 -->
-<div class="modal fade" id="modala" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
-    <div class="modal-dialog undefined">
-        <div class="modal-content" style="width: 400px; height: 300px;">
-            <div class="modal-body post-content">
-				<div class="form-inline">
-						<form action="/warm/send" name="my_form" style="width: 400px; height: 300px;">
-								<h1 style="font-size:20px; margin-top:-10px;">쪽지쓰기</h1>
-								보낸사람<input style="border: 0px;" id=sendd name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
-								받는사람<input style="border: 0px;" id=gett name="msg_get_id" type="text"><br><br>
-								 제목<input style="border: 0px;" id=titlee name="msg_title" type="text" ><br><br>
-						  		내용<textarea style="border: 0px;  resize: none;" id=contentt name="msg_content" style="width:400px; height:300px;"></textarea><br>
-						  <button id="sendsend" type="submit" class="btn btn-outline-primary">보내기</button>
-						  <button type="button" data-dismiss="modal" class="btn btn-outline-primary">닫기</button>
+	<div class="modal fade" id="modala" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+    	<div class="modal-dialog undefined">
+        	<div class="modal-content" style="width: 400px; height: 300px;">
+           		<div class="modal-body post-content" style="border: 0.5px solid #C0C0C0;">
+						<form action="/warm/send" name="my_form">
+								<h1 style="font-size:20px; margin-top:0px; padding-bottom:5px; text-align: center;">Send Message</h1>
+								보낸사람<input style="border:none; margin-left: 10px;" id=sendd name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
+								받는사람<input style="margin-left: 10px;" id=gett name="msg_get_id" type="text"><br><br>
+								제목<input style="margin-left: 20px;" id=titlee name="msg_title" type="text" ><br><br>
+						  		<textarea style="width:330px; height:200px; border: 0.5px solid #C0C0C0; resize: none;" id=contentt name="msg_content"></textarea><br>
+						 		<button id="sendsend"  style="margin-top: 10px;margin-left: 100px;" type="submit" class="btn btn-outline-secondary">보내기</button>
+						  		<button type="button" style="margin-top: 10px;" data-dismiss="modal" class="btn btn-outline-secondary">닫기</button>
 						</form>
 				</div>
             </div>
         </div>
     </div>
-</div>
-
-
-
 <!-- 답장하기 모달창  -->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
     <div class="modal-dialog undefined">
-        <div class="modal-content aa">
-            <div class="modal-body post-content">
-				<div class="form-inline" style="width:100px" >
+        <div class="modal-content" style="width: 400px; height: 300px;">
+            <div class="modal-body post-content" style="border: 0.5px solid #C0C0C0;">
 						<form id="replyModal" action="/warm/send">
-								<h1>답장하기</h1>
-								보낸사람<input id="send_id" name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
-								<div id="temp">
-								받는 사람<input name="msg_get_id" value="" readonly><br><br>
-								</div>
-								 제목 <input id="titlesubmit" name="msg_title" type="text" value="" style="padding-top: 10px"><br><br>
-						  		<textarea id="contentsubmit" name="msg_content" style="width:400px; height:300px;"></textarea><br>
-						  
-						  <input id="sendsubmit" type="submit" value="보내기">
-						 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+								<h1 style="font-size:20px; margin-top:0px; padding-bottom:5px; text-align: center;">Reply</h1>
+								보낸사람<input style="border:none; margin-left: 10px;" id="send_id" name="msg_send_id" type="text" value="${user_id}" readonly><br><br><div id="temp">
+								받는 사람<input style="margin-left: 10px;" name="msg_get_id" value="" readonly><br><br></div>
+								 제목 <input id="titlesubmit" name="msg_title" type="text" value="" style="margin-left: 20px;"><br><br>
+						  		<textarea id="contentsubmit" name="msg_content" style="width:330px; height:200px; border: 0.5px solid #C0C0C0; resize: none;"></textarea><br>
+								<input id="sendsubmit" style="margin-top: 10px;margin-left: 100px;" type="submit" value="보내기">
+						 		<button type="button" style="margin-top: 10px;" class="btn btn-outline-secondary" data-dismiss="modal">닫기</button>
 						</form>
-				</div>
             </div>
         </div>
     </div>
@@ -204,7 +194,7 @@
 						return;
 					}
 					 for(var i=0, len=msglist.length||0;i<len;i++){
-						 msghtml+="<div class='v-blog-recent-post' style='border: 2px solid #F0F8FF; margin: 20px; float:left;width:220px;height:150px'>";
+						 msghtml+="<div class='v-blog-recent-post' style='border: 0.5px dashed #C0C0C0; margin: 20px; float:left;width:220px;height:150px'>";
 						 var date = new Date(msglist[i].msg_read_time);
 						 var month = date.getMonth()+1;
 						 var date = date.getDate();
@@ -266,7 +256,7 @@
 						return;
 					}
 					 for(var i=0, len=msglist2.length||0;i<len;i++){
-						 msghtml2+="<div class='v-blog-recent-post' style='border: 2px solid #F0F8FF; margin: 20px; float:left;width:220px;height:150px'>";
+						 msghtml2+="<div class='v-blog-recent-post' style='border: 0.5px dashed #C0C0C0; margin: 20px; float:left;width:220px;height:150px'>";
 						 var date = new Date(msglist2[i].msg_read_time);
 						 var month = date.getMonth()+1;
 						 var date = date.getDate();
