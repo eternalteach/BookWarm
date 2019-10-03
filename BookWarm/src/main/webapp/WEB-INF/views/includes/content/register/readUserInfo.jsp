@@ -27,7 +27,7 @@
                         <!-- ------------------------------------------------------------------------------------------------------------ -->
                         <div class="form-group">
                             <label>아이디<span class="required">*</span></label>
-                            <input type="text" class="form-control" name="user_id" id="user_id" readonly="readonly" maxlength="50">
+                            <input type="text" class="form-control" name="user_id" id="user_id" readonly="readonly" value="${userinfo.user_id}" maxlength="50">
                             <!-- 버튼 구현 x, 문자 뜨도록 만들꺼임 -->
                             <div class="row">
                                 <div class="col-sm"><span id="idConfirmMsg"></span></div>
@@ -57,28 +57,29 @@
                         <div class="form-group">
                             <label>휴대폰 번호<span class="required">*</span></label>
                             <div class="row">
-	                            <div class="col-sm-3"><input type="text" class="form-control" id="user_phone1" maxlength="3"readonly="readonly"></div>-
-	                            <div class="col-sm-4"><input type="text" class="form-control" id="user_phone2" maxlength="4"readonly="readonly"></div>-
-	                            <div class="col-sm-4"><input type="text" class="form-control" id="user_phone3" maxlength="4"readonly="readonly"></div>
+	                            <div class="col-sm-3"><input type="text" class="form-control" id="user_phone1" maxlength="3"></div>-
+	                            <div class="col-sm-4"><input type="text" class="form-control" id="user_phone2" maxlength="4"></div>-
+	                            <div class="col-sm-4"><input type="text" class="form-control" id="user_phone3" maxlength="4"></div>
+	                            <div class="col-sm-3"><input type="text" hidden="hidden" id="user_phone" name="user_phone"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>주소<span class="required">*</span></label>
                            	<div class="row">
                            		<div class="col-sm">
-                               	   <input type="text" id="sample4_postcode" name="user_zipcode" class="form-control" placeholder="우편번호" readonly>
+                               	   <input type="text" id="sample4_postcode" name="user_zipcode" class="form-control" placeholder="우편번호">
                                 </div>
                             </div>
                              
                              <div class="row">
                                 <div class="col-sm">
-                               		<input type="text" id="sample4_roadAddress" name="user_addr" class="form-control" placeholder="도로명주소" readonly>
+                               		<input type="text" id="sample4_roadAddress" name="user_addr" class="form-control" placeholder="도로명주소" >
                                 </div>
                              </div>
                              
                              <div class="row">
                                 <div class="col-sm">
-                                   <input type="text" id="sample4_jibunAddress" class="form-control" placeholder="지번주소" readonly>
+                                   <input type="text" id="sample4_jibunAddress" class="form-control" placeholder="지번주소" >
                                 </div>
                              </div>
                                 
@@ -86,11 +87,11 @@
                                 
                              <div class="row">
                                 <div class="col-sm">
-                                   <input type="text" id="sample4_detailAddress" class="form-control" readonly="readonly">
+                                   <input type="text" id="sample4_detailAddress" name="user_addr_detail" class="form-control">
                                 </div>
 
                                 <div class="col-sm">
-                                   <input type="text" id="sample4_extraAddress" class="form-control" placeholder="참고항목" readonly>
+                                   <input type="text" id="sample4_extraAddress" class="form-control" placeholder="참고항목" >
                                 </div>
                              </div>
                         </div>
@@ -106,3 +107,50 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="/warm/resources/js/admin.js"></script>
+<script type="text/javascript" src="/warm/resources/js/DateJsonToJsp.js"></script>
+<script>
+$(document).ready(function(){
+	// ajax로 회원 아이디 검사해서 있으면 모달로 띄워주고, 없으면 없다고 띄워주기
+	let user_id=$("#user_id").val();
+	adminService.getUser(user_id,function(result){
+		$("#user_name").val(result.user_name);
+		let user_mail1=result.user_mail.split('@')[0];
+		$("#user_mail1").val(user_mail1);
+		let user_mail2=result.user_mail.split('@')[1];
+		$("#user_mail2").val(user_mail2);
+		$("#user_id").val(result.user_id);
+		//비밀번호는 어떻게할래? user_pw  user_pw
+		$("#user_nickname").val(result.user_nickname);
+		let userbday=displayTimeService.displayTime(result.user_bday);
+		userbday=userbday.split('-');
+		$("#year").val(userbday[0]);
+		$("#month").val(userbday[1]);
+		$("#day").val((userbday[2].substring(0,2)));
+		let phoneNum=result.user_phone.split('-');
+		$("#user_phone1").val(phoneNum[0]);
+		$("#user_phone2").val(phoneNum[1]);
+		$("#user_phone3").val(phoneNum[2]);
+		let user_sex='';
+		if(result.user_sex=='m'){
+			user_sex='여자';
+		}else{user_sex='남자';}
+		$("#user_sex").val(user_sex);
+		$("#sample4_postcode").val(result.user_zipcode);
+		$("#sample4_roadAddress").val(result.user_addr);
+		$("#sample4_detailAddress").val(result.user_addr_detail);
+	});
+	let submitBtn=$("#submitBtn");
+	submitBtn.on("click",function(){
+		alert("AA");
+		let user_phone="";
+		user_phone+=$("#user_phone1").val()+"-";
+		user_phone+=$("#user_phone2").val()+"-";
+		user_phone+=$("#user_phone3").val();
+		
+		$("#user_phone").val(user_phone);
+		alert("수정되었습니다.");
+		$("#form").submit();
+	});
+});
+</script>

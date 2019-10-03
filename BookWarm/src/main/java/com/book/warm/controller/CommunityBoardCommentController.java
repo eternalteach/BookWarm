@@ -31,8 +31,7 @@ public class CommunityBoardCommentController {
 	private CommunityBoardCommentService service;
 
 	//add Comment
-	@PostMapping(value = "/new", consumes = "application/json", produces = {
-			MediaType.TEXT_PLAIN_VALUE })
+	@PostMapping(value = "/new", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> registerComment(@RequestBody CommunityBoardCommentVO communityBoardCommentVO,Principal principal) {
 		log.info("=============== registerComment ===============");
 		communityBoardCommentVO.setUser_id(principal.getName());

@@ -8,11 +8,13 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.book.warm.service.UserInfoService;
 import com.book.warm.vo.OrderListVO;
 import com.book.warm.vo.OrdersVO;
+import com.book.warm.vo.UserVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -55,6 +57,20 @@ public class UserInfoController {
 		// 3. couponCnt
 		int couponCnt = userInfoService.getCouponCnt(user_id);
 		model.addAttribute("couponCnt", couponCnt);
+	}
+	
+	@RequestMapping("/modifyMyInfo")
+	public void modifyMyInfo(Principal principal,Model model) {
+		String user_id=principal.getName();
+		model.addAttribute("userinfo",userInfoService.getUserInfo(user_id));
+		
+	}
+	@PostMapping("/modifyUserInfo")
+	public String modifyUserInfo(Principal principal,UserVO userInfo) {
+		String user_id=principal.getName();
+		userInfo.setUser_id(user_id);
+		userInfoService.modifyUserInfo(userInfo);
+		return "/myInfo";
 	}
 	
 	// 마이 페이지(메인)

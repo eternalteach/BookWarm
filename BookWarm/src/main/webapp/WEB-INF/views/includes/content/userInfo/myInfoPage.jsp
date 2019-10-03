@@ -19,7 +19,6 @@
         </div>
     </section>
 
-
     <div class="v-page-wrap has-right-sidebar has-one-sidebar">
         <div class="container">
             <div class="row">

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.book.warm.vo.OrderListVO;
 import com.book.warm.vo.OrdersVO;
+import com.book.warm.vo.UserVO;
 
 public interface UserInfoMapper {
 
@@ -46,6 +47,8 @@ public interface UserInfoMapper {
 
 	void removeUserFromReview_board(@Param("user_id") String user_id);
 
+	UserVO getUserInfo(String user_id);
 
+	int modifyUserInfo(UserVO userInfo);
 
 }
