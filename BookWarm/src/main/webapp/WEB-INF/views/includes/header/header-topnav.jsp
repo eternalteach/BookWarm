@@ -55,7 +55,7 @@
 											</ul>
 										</li>
 										
-										<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="customLogout" style="float:right;">로그아웃</a></li>
+										<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="customLogout" style="float:right;">logout</a></li>
 										
 										
 										

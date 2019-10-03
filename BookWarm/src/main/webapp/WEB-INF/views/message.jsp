@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>쪽지</title>
-	<%@ include file="./includes/header/header/vertexHeader.jsp"%>
+<title>Message</title>
 </head>
 <body>
+	<%@ include file="./includes/header/header/vertexHeader.jsp"%>
 	<%@ include file="includes/header/header-topnav.jsp"%>
 	<%@ include file="./includes/content/message/msglistPage.jsp"%>
 </body>

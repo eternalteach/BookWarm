@@ -1,12 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <sec:authentication property="principal.username" var="user_id"/>
-
-
 <!DOCTYPE html>
 <html lang="UTF-8">
 <head>
@@ -15,11 +12,9 @@
 <script type="text/javascript" src="/warm/resources/js/Criteria.js"></script>
 <script type="text/javascript" src="/warm/resources/js/msg.js"></script>
 <body>
-
-
 	<div role="main" class="main">
 		<section class="page-header mb-0">
-			            <div class="container">
+			<div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-8 text-left">
                         <span class="tob-sub-title text-color-primary d-block">MESSAGE</span>
@@ -27,7 +22,6 @@
                    <div class="col-md-4">
                         <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
                             <li><a href="message">message</a></li>
-                         
                         </ul>
                     </div> 
                 </div>
@@ -37,7 +31,6 @@
 		<div class="v-page-wrap mb-0 mt-0">
 			<div class="container">
 				<div class="row v-right-sidebar-nav">
-
 					<div class="col-sm-3 v-right-sidebar-wrap pt-8">
 						<!--Tab-->
 						<ul id="myTab" class="nav v-right-sidebar-inner">
@@ -47,54 +40,45 @@
 						</ul>
 						<!--End Tab-->
 					</div>
-
 					<!--Tab Content-->
 					<div class="col-sm-9 v-sidebar-content-wrap mb-7 mt-3">
 						<div class="tab-content">
-
 							<!--받은쪽지함-->
 							<div class="tab-pane active" id="counters">
 								<div class="row">
-									
-										<h1 style="margin-left: 30px">Send Message&ensp;(${msgcount}개)</h1>
-									 	<div id="getMSG">
-									 	<!-- 받은쪽지 리스트 불러오기  -->
-										</div>
-												
-											<!-- 페이징 -->
-											<div class="row col-lg-12">
-												<div class="panel-footer center msgPaging"></div>
+									<div class="contentmessage" style="width: 830px; height: 850px;">
+										<h1 style="margin-left: 30px;margin-bottom: 0px;margin-top: 40px;">받은쪽지&ensp;(${msgcount}개)</h1>
+									 		<!-- 받은쪽지 리스트 불러오기  -->
+									 		<div id="getMSG">
 											</div>
-									
+												<!-- 페이징 -->
+												<div class="row col-lg-12" style="padding-top :10px; margin-left: 350px;">
+													<div class="panel-footer center msgPaging"></div>
+												</div>
 									</div>
 								</div>
-							<!--받은쪽지함 끝-->
-							
-							
+							</div>
 
 							<!--보낸 쪽지함-->
 							<div class="tab-pane" id="recent-posts">
 								<div class="row">
-									<div class="col-md-9">
-										<h1>보낸쪽지함&ensp;${msgcount2}개</h1>
-										<div id="sendMSG">
-										<!-- 보낸쪽지 리스트 불러오기  -->
-										</div>
-
-											<!-- 페이징 -->
-											<div class="row col-lg-12">
-												<div class="panel-footer center msgPaging2" style="align:left;"></div>
+									<div class="contentmessage" style="width: 830px; height: 850px;">
+										<h1 style="margin-left: 30px;margin-bottom: 0px;margin-top: 40px;">보낸쪽지&ensp;(${msgcount2}개)</h1>
+											<div id="sendMSG">
 											</div>
+												<!-- 페이징 -->
+												<div class="row col-lg-12" style="width: 50%;">
+													<div class="panel-footer center msgPaging2"></div>
+												</div>
+									</div>
 								</div>
 							</div>
 						</div>
-						<!--보낸쪽지함 끝 -->
+						<!--End Tab Content-->
 					</div>
-					<!--End Tab Content-->
 				</div>
 			</div>
 		</div>
-	</div>
 	
 <!-- 모달창 -->
 <!-- 쪽지보내기모달창 -->
@@ -105,10 +89,10 @@
 				<div class="form-inline" style="width:100px" >
 						<form action="/warm/send" name="my_form">
 								<h1>쪽지보내기</h1>
-								보낸사람<input id=sendd name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
-								받는 사람<input id=gett name="msg_get_id" type="text"><br><br>
-								 제목 <input id=titlee name="msg_title" type="text" ><br><br>
-						  		<textarea id=contentt name="msg_content" style="width:400px; height:300px;"></textarea><br>
+								보낸사람<input style="border: 0px;" id=sendd name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
+								받는 사람<input style="border: 0px;" id=gett name="msg_get_id" type="text"><br><br>
+								 제목 <input style="border: 0px;" id=titlee name="msg_title" type="text" ><br><br>
+						  		<textarea style="border: 0px;  resize: none;" id=contentt name="msg_content" style="width:400px; height:300px;"></textarea><br>
 						  <button id="sendsend" type="submit" class="btn btn-outline-primary">보내기</button>
 						  <button type="button" data-dismiss="modal" class="btn btn-outline-primary">닫기</button>
 						</form>
@@ -216,20 +200,20 @@
 						return;
 					}
 					 for(var i=0, len=msglist.length||0;i<len;i++){
-						 msghtml+="<div class='v-blog-recent-post' style='border: 1px dashed #bcbcbc; margin: 20px; float:left;width:220px;height:150px'>";
+						 msghtml+="<div class='v-blog-recent-post' style='border: 2px solid #F0F8FF; margin: 20px; float:left;width:220px;height:150px'>";
 						 var date = new Date(msglist[i].msg_read_time);
 						 var month = date.getMonth()+1;
 						 var date = date.getDate();
-						 msghtml+="<div class='blog-list-item-date' style='margin-left: 10px;margin-top: 10px;'>"+date+"<span>"+month+"</span></div>";
-						 msghtml+="<div class='blog-list-content' style='margin-top: 10px;margin-left: 80px;'><h6 class='special' style='text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:80px;'>";
-						 msghtml+="<a id='t' href='#' class='title' data-toggle='modal' data-target='#modalview"+msglist[i].msg_no+"' style='padding-top: 10px;'>"+msglist[i].msg_title+"</a></h6>";
+						 msghtml+="<div class='blog-list-item-date' style='margin-left: 20px;margin-top: 20px;'>"+date+"<span style='font-size:20px;'>"+month+"</span></div>";
+						 msghtml+="<div class='blog-list-content' style='margin-top: 20px;margin-left: 100px;'><h6 class='special' style='text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:80px;'>";
+						 msghtml+="<a id='t' href='#' class='title' data-toggle='modal' data-target='#modalview"+msglist[i].msg_no+"' style='padding-top: 10px; font-size=15px'>"+msglist[i].msg_title+"</a></h6>";
 						 msghtml+="<small>보낸 사람"+msglist[i].msg_send_id+"</small>";
 						 msghtml+="<small id='sendperson' value="+msglist[i].msg_get_id+">받는 사람 "+msglist[i].msg_get_id+"</small>";
-						 msghtml+="<div class='blog-list-item-excerpt'<p style='text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:70px' >"+msglist[i].msg_content+"</p></div>";
-						 msghtml+="<div class='box' style='padding-bottom: 20px;'>";
-						 msghtml+="<a class='bb' style='padding-right:10px;' href='#modal-msgg' data-toggle='modal' data-target='#modal' data-send_id="+msglist[i].msg_send_id+">"
-						 msghtml+="<i class='icon-baloon'></i>답장</a>"	
-						 msghtml+="<a id='del' href='#' data="+msglist[i].msg_no+"><i class='icon-bin-2' ></i></a>"
+						 msghtml+="<div class='blog-list-item-excerpt'<p style='text-overflow: ellipsis; display:none; overflow: hidden; white-space: nowrap; width:70px' >"+msglist[i].msg_content+"</p></div>";
+						 msghtml+="<div class='box' style='padding-top:30px; padding-left:20px;'>";
+						 msghtml+="<a class='bb' style='padding-left:s0px; padding-right:5px;' href='#modal-msgg' data-toggle='modal' data-target='#modal' data-send_id="+msglist[i].msg_send_id+">"
+						 msghtml+="<i class='icon-bubble-1'></i>답장</a>"	
+						 msghtml+="<a id='del' href='#' data="+msglist[i].msg_no+"><i class='icon-bin-2'></i>삭제</a>"
 						 msghtml+="</div></div></div>"
 				}
 					 msgtable.html(msghtml);
@@ -247,11 +231,7 @@
 			//쪽지삭제
 			$("#getMSG").on("click", "#del", function(e) {
 				var sendidid = $(this).attr("data");
-				
-				//var sendperson = $("small[id='sendperson']").val();
 				var sendperson = $("#sendperson").html();
-				
-				alert(sendperson);
 				
 				msgservice.msgdelete(sendidid, sendperson, function(count){
 						if(count === "success"){
@@ -282,7 +262,7 @@
 						return;
 					}
 					 for(var i=0, len=msglist2.length||0;i<len;i++){
-						 msghtml2+="<div class='v-blog-recent-post'>";
+						 msghtml2+="<div class='v-blog-recent-post' style='border: 2px solid #F0F8FF; margin: 20px; float:left;width:220px;height:150px'>";
 						 var date = new Date(msglist2[i].msg_read_time);
 						 var month = date.getMonth()+1;
 						 var date = date.getDate();
@@ -290,13 +270,11 @@
 						 msghtml2+="<div class='blog-list-content'><h6 class='special'>";
 						 msghtml2+="<a id='t' href='#' class='title' data-toggle='modal' data-target='#modalview2"+msglist2[i].msg_no+"'>"+msglist2[i].msg_title+"</a></h6>";
 						 msghtml2+="<small id='sendperson2' value="+msglist2[i].msg_send_id+">보낸 사람"+msglist2[i].msg_send_id+"</small>";
-						 
-						 
 						 msghtml2+="<small>받는 사람 "+msglist2[i].msg_get_id+"</small>";
 						 msghtml2+="<div class='blog-list-item-excerpt'<p>"+msglist2[i].msg_content+"</p></div>";
 						 msghtml2+="<div class='box' style='padding-bottom: 20px;'>"
 						 msghtml2+="<a class='bb' style='padding-right:10px;' href='#modal-msgg' data-toggle='modal' data-target='#modal' data-send_id="+msglist2[i].msg_send_id+" >"
-						 msghtml2+="<a id='del2' href='#' data="+msglist2[i].msg_no+"><i class='icon-bin-2' >삭제</i></a>"
+						 msghtml2+="<a id='del2' href='#' data="+msglist2[i].msg_no+"><i class='icon-bin-2' ></i>삭제</a>"
 						 msghtml2+="</div></div></div>"
 				}
 					 msgtable2.html(msghtml2);
@@ -316,11 +294,10 @@
 			$("#sendMSG").on("click", "#del2", function(e) {
 				var sendidid2 = $(this).attr("data");
 				var sendperson2 = $("#sendperson2").html();
-				alert(sendperson2);
 				
 				msgservice.msgdelete2(sendidid2, sendperson2, function(count){
 						if(count === "success"){
-							alert("보낸쪽지삭제")
+							alert("삭제하시겠습니까?")
 							showmsgboard2(msgPageNum2);
 					}
 				});

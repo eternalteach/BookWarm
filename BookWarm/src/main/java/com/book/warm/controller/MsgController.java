@@ -63,7 +63,7 @@ public class MsgController {
 	@GetMapping(value="/message/get/{page}", produces= {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<MsgTableVO>> msgpaging(@PathVariable("page")int page, Principal principal){
 		log.info("=================페이징 + 받은쪽지함 리스트 뿌리기=============================");
-		Criteria criteria = new Criteria(page, 10);
+		Criteria criteria = new Criteria(page, 9);
 		String user_id = principal.getName();
 		return new ResponseEntity<>(msgservice.msgpaging(user_id, criteria),HttpStatus.OK);
 	}
@@ -72,7 +72,7 @@ public class MsgController {
 	@GetMapping(value="/message/send/{page}", produces= {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<MsgTableVO>> msgpaging2(@PathVariable("page")int page, Principal principal){
 		log.info("=================페이징 + 보낸쪽지함 리스트 뿌리기=============================");
-		Criteria criteria = new Criteria(page, 10);
+		Criteria criteria = new Criteria(page, 9);
 		String user_id = principal.getName();
 		return new ResponseEntity<>(msgservice.msgpaging2(user_id, criteria),HttpStatus.OK);
 	}
