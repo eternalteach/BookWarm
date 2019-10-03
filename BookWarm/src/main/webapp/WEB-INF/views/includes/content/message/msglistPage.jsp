@@ -7,6 +7,10 @@
 <!DOCTYPE html>
 <html lang="UTF-8">
 <head>
+<style>
+
+</style>
+
 </head>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/warm/resources/js/Criteria.js"></script>
@@ -46,31 +50,31 @@
 							<!--받은쪽지함-->
 							<div class="tab-pane active" id="counters">
 								<div class="row">
-									<div class="contentmessage" style="width: 830px; height: 850px;">
+									<div class="contentmessage" style="width: 830px; height: 630px;">
 										<h1 style="margin-left: 30px;margin-bottom: 0px;margin-top: 40px;">받은쪽지&ensp;(${msgcount}개)</h1>
 									 		<!-- 받은쪽지 리스트 불러오기  -->
 									 		<div id="getMSG">
 											</div>
+									</div>
 												<!-- 페이징 -->
-												<div class="row col-lg-12" style="padding-top :10px; margin-left: 350px;">
+												<div class="row col-lg-12" style="padding-top :20px; margin-left: 350px;">
 													<div class="panel-footer center msgPaging"></div>
 												</div>
-									</div>
 								</div>
 							</div>
 
 							<!--보낸 쪽지함-->
 							<div class="tab-pane" id="recent-posts">
 								<div class="row">
-									<div class="contentmessage" style="width: 830px; height: 850px;">
+									<div class="contentmessage" style="width: 830px; height: 630px;">
 										<h1 style="margin-left: 30px;margin-bottom: 0px;margin-top: 40px;">보낸쪽지&ensp;(${msgcount2}개)</h1>
 											<div id="sendMSG">
 											</div>
+									</div>
 												<!-- 페이징 -->
-												<div class="row col-lg-12" style="width: 50%;">
+												<div class="row col-lg-12" style="padding-top :20px; margin-left: 350px;">
 													<div class="panel-footer center msgPaging2"></div>
 												</div>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -84,15 +88,15 @@
 <!-- 쪽지보내기모달창 -->
 <div class="modal fade" id="modala" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
     <div class="modal-dialog undefined">
-        <div class="modal-content">
-            <div class="modal-body post-content1">
-				<div class="form-inline" style="width:100px" >
-						<form action="/warm/send" name="my_form">
-								<h1>쪽지보내기</h1>
+        <div class="modal-content" style="width: 400px; height: 300px;">
+            <div class="modal-body post-content">
+				<div class="form-inline">
+						<form action="/warm/send" name="my_form" style="width: 400px; height: 300px;">
+								<h1 style="font-size:20px; margin-top:-10px;">쪽지쓰기</h1>
 								보낸사람<input style="border: 0px;" id=sendd name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
-								받는 사람<input style="border: 0px;" id=gett name="msg_get_id" type="text"><br><br>
-								 제목 <input style="border: 0px;" id=titlee name="msg_title" type="text" ><br><br>
-						  		<textarea style="border: 0px;  resize: none;" id=contentt name="msg_content" style="width:400px; height:300px;"></textarea><br>
+								받는사람<input style="border: 0px;" id=gett name="msg_get_id" type="text"><br><br>
+								 제목<input style="border: 0px;" id=titlee name="msg_title" type="text" ><br><br>
+						  		내용<textarea style="border: 0px;  resize: none;" id=contentt name="msg_content" style="width:400px; height:300px;"></textarea><br>
 						  <button id="sendsend" type="submit" class="btn btn-outline-primary">보내기</button>
 						  <button type="button" data-dismiss="modal" class="btn btn-outline-primary">닫기</button>
 						</form>
@@ -107,7 +111,7 @@
 <!-- 답장하기 모달창  -->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
     <div class="modal-dialog undefined">
-        <div class="modal-content">
+        <div class="modal-content aa">
             <div class="modal-body post-content">
 				<div class="form-inline" style="width:100px" >
 						<form id="replyModal" action="/warm/send">
@@ -132,7 +136,7 @@
 <c:forEach items="${msglist}" var="msglist">
 <div class="modal fade" id="modalview${msglist.msg_no}" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
     <div class="modal-dialog undefined">
-        <div class="modal-content">
+        <div class="modal-content aa">
             <div class="modal-body post-content">
 				<div class="form-inline" style="width:100px" >
 						<div id="titletemp">
@@ -155,7 +159,7 @@
 <c:forEach items="${msglist2}" var="msglist2">
 <div class="modal fade" id="modalview2${msglist2.msg_no}" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
     <div class="modal-dialog undefined">
-        <div class="modal-content">
+        <div class="modal-content aa">
             <div class="modal-body post-content">
 				<div class="form-inline" style="width:100px" >
 						<div id="titletemp">
@@ -209,8 +213,8 @@
 						 msghtml+="<a id='t' href='#' class='title' data-toggle='modal' data-target='#modalview"+msglist[i].msg_no+"' style='padding-top: 10px; font-size=15px'>"+msglist[i].msg_title+"</a></h6>";
 						 msghtml+="<small>보낸 사람"+msglist[i].msg_send_id+"</small>";
 						 msghtml+="<small id='sendperson' value="+msglist[i].msg_get_id+">받는 사람 "+msglist[i].msg_get_id+"</small>";
-						 msghtml+="<div class='blog-list-item-excerpt'<p style='text-overflow: ellipsis; display:none; overflow: hidden; white-space: nowrap; width:70px' >"+msglist[i].msg_content+"</p></div>";
-						 msghtml+="<div class='box' style='padding-top:30px; padding-left:20px;'>";
+						 msghtml+="<div class='blog-list-item-excerpt'<p style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap; width:70px' >"+msglist[i].msg_content+"</p></div>";
+						 msghtml+="<div class='box' style='padding-left:20px;'>";
 						 msghtml+="<a class='bb' style='padding-left:s0px; padding-right:5px;' href='#modal-msgg' data-toggle='modal' data-target='#modal' data-send_id="+msglist[i].msg_send_id+">"
 						 msghtml+="<i class='icon-bubble-1'></i>답장</a>"	
 						 msghtml+="<a id='del' href='#' data="+msglist[i].msg_no+"><i class='icon-bin-2'></i>삭제</a>"
@@ -266,14 +270,14 @@
 						 var date = new Date(msglist2[i].msg_read_time);
 						 var month = date.getMonth()+1;
 						 var date = date.getDate();
-						 msghtml2+="<div class='blog-list-item-date'>"+date+"<span>"+month+"</span></div>";
-						 msghtml2+="<div class='blog-list-content'><h6 class='special'>";
-						 msghtml2+="<a id='t' href='#' class='title' data-toggle='modal' data-target='#modalview2"+msglist2[i].msg_no+"'>"+msglist2[i].msg_title+"</a></h6>";
+						 msghtml2+="<div class='blog-list-item-date' style='margin-left: 20px;margin-top: 20px;'>"+date+"<span style='font-size:20px;'>"+month+"</span></div>";
+						 msghtml2+="<div class='blog-list-content' style='margin-top: 20px;margin-left: 100px;'><h6 class='special' style='text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:80px;'>";
+						 msghtml2+="<a id='t' href='#' class='title' data-toggle='modal' data-target='#modalview2"+msglist2[i].msg_no+"' style='padding-top: 10px; font-size=15px'>"+msglist2[i].msg_title+"</a></h6>";
 						 msghtml2+="<small id='sendperson2' value="+msglist2[i].msg_send_id+">보낸 사람"+msglist2[i].msg_send_id+"</small>";
 						 msghtml2+="<small>받는 사람 "+msglist2[i].msg_get_id+"</small>";
-						 msghtml2+="<div class='blog-list-item-excerpt'<p>"+msglist2[i].msg_content+"</p></div>";
-						 msghtml2+="<div class='box' style='padding-bottom: 20px;'>"
-						 msghtml2+="<a class='bb' style='padding-right:10px;' href='#modal-msgg' data-toggle='modal' data-target='#modal' data-send_id="+msglist2[i].msg_send_id+" >"
+						 msghtml2+="<div class='blog-list-item-excerpt'<p style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap; width:70px' >"+msglist2[i].msg_content+"</p></div>";
+						 msghtml2+="<div class='box' style='padding-left:60px;'>"
+						 msghtml2+="<a class='bb' style='padding-left:s0px; padding-right:5px;' href='#modal-msgg' data-toggle='modal' data-target='#modal' data-send_id="+msglist2[i].msg_send_id+" >"
 						 msghtml2+="<a id='del2' href='#' data="+msglist2[i].msg_no+"><i class='icon-bin-2' ></i>삭제</a>"
 						 msghtml2+="</div></div></div>"
 				}

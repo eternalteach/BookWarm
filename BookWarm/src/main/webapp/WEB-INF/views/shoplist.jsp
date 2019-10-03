@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<%@ include file="includes/header/script-vertexEx.jsp"%>
+	<%@ include file="./includes/header/header/vertexHeader.jsp"%>
 <title>책 상세정보</title>
 </head>
 <body>
