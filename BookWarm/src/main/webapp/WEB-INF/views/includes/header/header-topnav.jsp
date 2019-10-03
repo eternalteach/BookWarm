@@ -23,7 +23,6 @@
 											<ul class="dropdown-menu">
 												<li><a class="dropdown-item" href="library">My Library</a></li>
 												<li><a class="dropdown-item" href="reviewMain">My Review</a></li>
-												<li><a class="dropdown-item" href="record">My Record</a></li><!-- <span class="tip tip-primary">Landing</span> -->
 											</ul>
 										</li>
 										

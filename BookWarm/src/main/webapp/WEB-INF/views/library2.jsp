@@ -17,8 +17,7 @@
 <%@ include file="includes/header/script-vertexEx.jsp"%>
 <link rel="stylesheet" href="resources/css/main.css" />
 </head>
-<body style="background-color:#eaeaea">
-<!--  style="background-image:url('/warm/resources/img/library/background/Draft-4.png'); background-size:100% 109%; background-position:0px 0px; background-repeat:no-repeat;" -->
+<body style="background-image:url('/warm/resources/img/library/table/table-3.png'), url('/warm/resources/img/library/background/Draft-4.png'); background-size:100% 30%, 100% 109%; background-position:0px 115% ,0px 0px; background-repeat:no-repeat;">
 	<div class="header top-padding-3vh" align="center">
 		<div>
 			<a data-toggle="modal" data-target="#modal-library" class="library-font">Search Books</a>
@@ -28,14 +27,9 @@
 			<a href="customLogout" class="library-font">로그아웃</a>
 		</div>
 	</div>
-	<div>
-		<img src="/warm/resources/img/library/background/lamp2.png" style="width:12%; max-width:30%; transform:rotate(180deg);position:fixed;top:-30px; left:40px;">
-				<img src="/warm/resources/img/library/background/lamp2.png" style="width:12%; max-width:30%; transform:rotate(180deg);position:fixed;top:-80px; right:70px;">
-				<img src="/warm/resources/img/library/background/lamp3.png" style="width:12%; max-width:30%; transform:rotate(180deg);position:fixed;top:-35px; right:10px;">
-				<img src="/warm/resources/img/logo.png" style="width:10%; max-width:30%; position:fixed;top:112px; left:360px;">
-	</div>
-	<div>
-		<img src="/warm/resources/img/library/bookshelf/3.png" style="width:60%; max-width:50%; margin-top:6.3%; margin-left:25%; margin-right:auto">
+	
+	<div class="decoration-books-position">
+		<img class="decoration-books" src="/warm/resources/img/library/books/books-3.png" >
 	</div>
 	
 	<div class="bookshelf-position bookshelf-div">

@@ -13,7 +13,6 @@
 <%@ include file="includes/header/script-vertexEx.jsp"%>
 <link rel="stylesheet" href="resources/css/main.css" />
 
-
 <link href='http://unpkg.com/@fullcalendar/core/main.css' rel='stylesheet' />
 <link href='http://unpkg.com/@fullcalendar/daygrid/main.css' rel='stylesheet' />
 <link href='http://unpkg.com/@fullcalendar/list/main.css' rel='stylesheet' />
@@ -53,13 +52,13 @@
 
 <div role="main" class="main">
 
-	<section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
+	<section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-top:20px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-8 text-left">
                     </div>
                     <div class="col-md-4">
-                        <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
+                        <ul class="bar-breadcrumb justify-content-start justify-content-md-end mb-0">
                             <li><a href="/warm/library?user_id=${user_id}">내 서재</a></li>
                             <li class="active">감상 메인</li>
                         </ul>
@@ -74,31 +73,13 @@
 
 
       <div class="page has-sidebar has-right-sidebar bordered">
-
-         <!-- <section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall b-bordered bg-overlay--gradient-dark">
-
-            <div class="divimage dzsparallaxer--target w-100" style="height: 120%; background-image: url(./resources/VertexEx/img/main/slide-01.jpg);">
-            </div>
-
-            <div class="container pt-200 pb-120 text-center text-white z-index-1">
-               <div class="row">
-
-                  <div class="col-md-12">
-                     <h2 class="fs-40 fw-7 mb-15">
-                        Blog Left Sidebar
-                     </h2>
-                     <p class="section-sub-title">Build stunning fluid layout of news and sidebars</p>
-                  </div>
-               </div>
-            </div>
-         </section> -->
-
+<%-- <section class="section-primary alternate-color b-bordered" style="min-width:170px"></section> --%>
          <div class="page-inner has-left-sidebar has-one-sidebar">
             <div class="container">
             
-               <div class="row" style="width:100%; height:50px; text-align:right; position:relative">
+               <!-- <div class="row" style="width:100%; height:50px; text-align:right; position:relative">
            		    <ul style="position:absolute; right:0">                     
-                         <!-- 감상 작성 버튼 추가 -->
+                         감상 작성 버튼 추가
                          <li class="col-sm-12" style="margin-top:10px">
                            	<div class="pull-right">
                            	
@@ -118,182 +99,136 @@
 	                    	</div>
                          </li>
                       </ul>    
-               </div>
+               </div> -->
             
                <div class="row">
 					
-                  <div class="col-md-3 left-side-sidebar pt-70" style="padding-top:50px !important;">
+                  <div class="col-md-3 left-side-sidebar pt-70 alternate-color" style="padding-top:15px !important; padding-right:20px; border-right-color: transparent!important;">
                      <aside class="sidebar" style="width:100%">
-						<section>
-							<div>
+						<section style="margin:0">
+							<div style="padding:8%">
 								<ul>
-									<h4>
-										<strong>${user_id}</strong>
-										님의 독서기록
-									</h4>
+									<h3>
+										<strong><a href="#">${user_id}</a>'s Reading Log</strong>
+									</h3>
 								</ul>
-								<ul>
+								<ul style="margin:0">
 									<li>가장 최근에 서재에 담은 책: </li>
 									<li>이 달 읽은 책 수: </li>
-									<li><button id="modalBtn" type="button" data-toggle="modal" data-target="#calModal">달력보기</button></li>
 								</ul>
 							</div>
 						</section> 
 						
-						<section class="widget widget_sf_recent_custom_comments clearfix">
-                            <div class="widget-heading clearfix">
-                                <h4 class="v-heading"><span>내 글에 달린 댓글</span></h4>
-                            </div>
-                            <ul class="recent-comments-list">
-
-                            </ul>
-                        </section>
-						
-						                       
-                     </aside>
-                     
-                  </div>
-                  
-           <div style="max-width:600px !important;">
-		        <div>
-		            <div>
-		            	 <div class="post-header form-header">
-		                  	<div id='loading'>loading...</div>
-  							<div id='calendar'></div>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-                  
-
-                  <div class="col-md-4 v_blog-medium pt-70 pull-right" style="padding-top:30px !important;">
-
-
-				<c:if test="${empty list}">
-					등록한 감상이 없습니다.
-				</c:if>
+						<section style="margin:0">
+							<div class="widget-heading clearfix">
+                                <h4 class="v-heading" style="padding-left:20px"><span>Recent Reviews</span></h4>
+                            </div>		
+							<c:if test="${empty list}">
+								등록한 감상이 없습니다.
+							</c:if>
+							<!-- 책별 데이터 불러오고 그 중 가장 최근 데이터 하나만 불러오기. -->
+							<c:forEach items="${list}" var="vo">
+							
+							<div class="post-content no-thumb clearfix" style="margin:20px ; padding:30px">
+							    <article class="v_blog-item">
+			                        <div class="v_blog-item-inner row">
+			                        
+			                           <!-- 여기가 이미지 들어가는 부분 -->
+			                           <div class="v_blog-item-media col-md-3" style="padding-left:5%; padding-right:3%">
+			                              <a href="/warm/reviewPerBook?isbn=${vo.isbn}">
+			                                 <img class="w-100" src="${vo.book_img}"/>
+			                              </a>
+			                           </div>
+			                           
+			                           <!-- 최근 작성한 리뷰가 들어가는 부분 -->
+			                           <div class="v_blog-item-content col-md-8" style="padding-left:5%; padding-right:3%">
+			                           
+			                              <div class="v_blog-item-header">
+			                                 <ul class="v_blog-item-meta" style="list-style-type: none; padding-left:0px">
+			                                    <li class="v_blog-item-date">
+			                                       <time class="" datetime="2018-06-30T10:47:48+00:00">
+			                                       	 <fmt:formatDate var="recentDate" value="${vo.review_modify_date}" pattern="yyyy. MM. dd"/>
+			                                          ${recentDate}
+			                                       </time>
+			                                    </li>
+			                                 </ul>
+			                              </div>
 				
-				<!-- 블로그에 글 넣기 시도 -->
-				<!-- 책별 데이터 불러오고 그 중 가장 최근 데이터 하나만 불러오기. -->
-				
-				<c:forEach items="${list}" var="vo">
-				
-				<div class="post-content no-thumb clearfix" style="margin:20px ; padding:30px">
-				    <article class="v_blog-item">
-                        <div class="v_blog-item-inner row">
-                        
-                           <!-- 여기가 이미지 들어가는 부분 -->
-                           <div class="v_blog-item-media col-md-3" style="padding-left:5%; padding-right:3%">
-                              <a href="/warm/reviewPerBook?isbn=${vo.isbn}">
-                                 <img class="w-100" src="${vo.book_img}"/>
-                              </a>
-                           </div>
-                           
-                           <!-- 최근 작성한 리뷰가 들어가는 부분 -->
-                           <div class="v_blog-item-content col-md-8" style="padding-left:5%; padding-right:3%">
-                           
-                              <div class="v_blog-item-header">
-                                 <ul class="v_blog-item-meta" style="list-style-type: none; padding-left:0px">
-                                    <li class="v_blog-item-date">
-                                       <time class="" datetime="2018-06-30T10:47:48+00:00">
-                                       	 <fmt:formatDate var="recentDate" value="${vo.review_modify_date}" pattern="yyyy년 MM월 dd일"/>
-                                          ${recentDate}에 작성하신 감상입니다.
-                                       </time>
-                                    </li>
-                                    <li class="v_blog-item-counter"><span>이 책에 대해 남긴 감상 2개</span></li>
-                                 </ul>
-                              </div>
-	
-                              <div itemprop="articleBody">
-                                 <p style="overflow:hidden; display: -webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; line-height:1.8em; max-height:5.4em; margin-top:15px; margin-bottom:30px">
-                                 	${vo.review_content}
-                                 </p>
-                                 <a class="v_blog-item-read-more" style="position:absolute; bottom:0; right:0; color:gray" href="/warm/reviewPerBook?isbn=${vo.isbn}">
-                                    <span>Reviews about this book</span>
-                                 </a>
-                              </div>
-                              
-                           </div>
-                           
-                        </div>
-                     </article>
-				</div>                     
-				</c:forEach>
-
-
-                     <div class="row">
-                        <div class="col-md-12">
-                        
-                         <nav aria-label="...">
+			                              <div itemprop="articleBody">
+			                                 <p style="overflow:hidden; display: -webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; line-height:1.8em; max-height:3.6em; margin-top:15px; margin-bottom:30px">
+			                                 	${vo.review_content}
+			                                 </p>
+			                                 <a class="v_blog-item-read-more" style="position:absolute; bottom:0; right:0; color:gray" href="/warm/reviewPerBook?isbn=${vo.isbn}">
+			                                    <span>감상 더보기</span>
+			                                 </a>
+			                              </div>
+			                              
+			                           </div>
+			                           
+			                        </div>
+			                     </article>
+							</div>                     
+							</c:forEach>
+							<!-- 최근 리뷰 페이징 처리 -->	
+							<nav aria-label="...">
                                 <ul class="pagination">
-                                	
                         
                                 	<c:if test="${pageMaker.prev}">
-	                                    <li class="page-item">
-	                                        <a class="page-link" href="${pageMaker.startPage-1}">
-		                                        Previous
-		                                    </a>
+	                                    <li class="page-item"><a class="page-link" href="${pageMaker.startPage-1}">Previous</a>
 	                                    </li>
                                 	</c:if>
-                                	<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
                                 	
-	                                    <li class="page-item ${pageMaker.cri.pageNum == num ? "active":"" }"><a class="page-link" href="${num}">${num}</a></li>
-	                                    
-	                                    <!-- <li class="page-item active">
-	                                        <span class="page-link">
-	                                            2
-	                                            <span class="sr-only">(current)</span>
-	                                        </span>
-	                                    </li> -->
-	                                    
+                                	<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+	                                    <li class="page-item ${pageMaker.cri.pageNum == num ? "active":"" }"><a class="page-link" href="${num}">${num}</a>
+	                                    </li>
                                 	</c:forEach>
-                                    
+                                	
                                     <c:if test="${pageMaker.next}">
-	                                    <li class="page-item">
-		                                    <a class="page-link" href="${pageMaker.endPage+1}">
-		                                        Next
-		                                    </a>
+	                                    <li class="page-item"><a class="page-link" href="${pageMaker.endPage+1}">Next</a>
 	                                    </li>
                                 	</c:if> 
                                 	
                                 	<form id="actionForm" action="/warm/reviewMain" method="get">
-
                                 		<input type="hidden" name="isbn" value="${list[0].isbn}">
                                 		<input type="hidden" name="user_id" value="${list[0].user_id}">
                                 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
                                 		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
-                                		
                                 	</form>
-                                	
                                 </ul>
                             </nav>
-                            
-                           <!-- <nav aria-label="Page navigation example">
-                              <ul class="pagination">
-                                 <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                 </li>
-                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                 <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                 <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                 <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                 </li>
-                              </ul>
-                           </nav> -->
-                        </div>
-                     </div>
+						</section>
+								
+						<section class="widget widget_sf_recent_custom_comments clearfix">
+                            <div class="widget-heading clearfix">
+                                <h4 class="v-heading" style="padding-left:20px"><span>Recent Comments</span></h4>
+                            </div>
+                            <ul class="recent-comments-list">
+								<!-- 최근 댓글 영역 -->
+                            </ul>
+                        </section>
+						
+                     </aside>
                   </div>
-                  <!-- end of v_blog-medium -->
-               </div>
-               <!-- end of class row -->
-            </div>
-         </div>
-         
-   
-    
+                  
+	              <div style="max-width:800px !important; margin-top:20px; margin-left:3%">
+			          <div>
+			              <div>
+			              	 <div class="post-header form-header">
+			                  	<div id='loading'>loading...</div>
+	  							<div id='calendar'></div>
+			                 </div>
+			              </div>
+			          </div>
+			      </div>
+                  
 
-		
+               </div>
+               <!-- end of row -->
+            </div>
+            <!-- end of container -->
+         </div>
+         <!-- end of page inner -->
+   
          
          <div class="eventSpace">
          	<!-- 여기에 이벤트 모달을 집어넣는다. -->
@@ -356,9 +291,8 @@
 											id:obj.isbn,
 											title:obj.book_title, 
 											start:obj.start_date, 
-											backgroundColor:'lightgray', 
+											backgroundColor:'transparent', 
 											borderColor:'transparent',
-											textColor:'black',
 											firstImg:firstImg,
 											imageurl:obj.book_img,
 											dateFormat:dateFormat
@@ -372,13 +306,28 @@
 			   				}
 		   		});
 	   	  }, 
-	   	  /* 
-	   	  eventClick: false, */
 	   	  
-	   	  viewRender: function(info) {
-	   		  console.log("viewRender!");
-	   		$(".fc-event-container").css("display", "none");
+	   	  dayRender: function(dayRenderInfo) {
+	   		  //dayRenderInfo.el은 td를 가리킴.
+	   		  /* alert("dayRender"); */
+	   		  /* alert(dayRenderInfo.el.getElementsByTagName("a")); */
+	   		  var aa = dayRenderInfo.el.getElementsByTagName("a");
+	   		  if(aa.length != 0) {
+	   			  alert("aa.size() : " + aa.length);
+	   		  }
+	   		  
+	   		  for(var i=0; i<aa.length; i++) {
+	   			  console.log("있다면 : " + aa[i]);
+	   			  aa[i].style.display = 'none';
+	   		  }
+	   		  /* aa.each(function(i, obj) {
+	   			  obj.style.display = 'none';
+	   		  }) */
 	   	  },
+	   	  
+	   	  viewRender: (function(info) {
+	   		 $(".fc-event-container").css("display", "none");
+	   	  })(),
 	   	  
 	   	  eventRender: function(info) {
 	   		  console.log("info.event.id:" + info.event.id);
@@ -398,63 +347,44 @@
 	   				  // rerender시 표지가 반복적으로 추가되지 않도록 html에 새로 뿌려준다.
 		   			  tdObj.html(str);
 	   			  } else {
-	   				  // 당일 이벤트가 3개 이상이라면 +버튼이 나타나도록 하고 싶은데
-	   				  // 기존에 title 말고 이벤트가 몇 개 이상이면 나타나던 +more은 이미지랑 영역이 겹치니까 그보다는 직접 구현하는 쪽이 좋을 듯.
-	   				  // 
 		   			  tdObj.append(str);
 	   			  }
 	   		  } else {
-	   			  console.log("세 번 이상의 이벤트가 존재");
 
+  				  // 이벤트가 몇 개 이상이면 나타나는 +more은 이미지랑 영역이 겹치므로 
+  				  // 당일 이벤트가 3개 이상인 경우 +버튼이 나타나도록 따로 구현.
 	   			  if(!$(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "'] button").length) {
-	   				  console.log("button이 없는 상태");
+	   				  //button이 없는 상태
 		   			  str += "<div style='display:inline-block; position:relative; float:right; width:20%;'>";
 		   			  str += "   <button class='plus' data-toggle='modal' data-target='#" + targetDate + "' style='width:100%; height:20%; border:transparent; background-color:lightgray; color:white;'>+</button>";
 		   			  str += "</div>"; 
 		   			  tdObj.append(str); 
 	   			  }
 	   		  }
-	   		/* <button id="modalBtn" type="button" data-toggle="modal" data-target="#calModal">달력보기</button> */
-	   		  
-	   		  $(".fc-content-skeleton table").css("table-layout", "fixed");
 	   		  // gridMonth형에서 title은 나타나지 않도록 한다.
-	   		  // .fc-content-skeleton을 display를 none으로 하면 날짜까지 지워지고, tbody까지를 택하면 css가 적용되지 않는 문제.
-	   		  /* $(".fc-content-skeleton table tbody").css("display", "none"); */
-	   		  /* $(".fc-content-skeleton table tbody").css("display", "");  */
-	   		  /* $(".fc-event-container").css("display", "none");  */
-	   		  
+	   		  setTimeout(function() {
+	        	  	$(".fc-event-container a").css("display", "none");
+	          }, 100);
 	   	  },
 	   	  
 	   	  eventLimit: 0, 
 	   	  eventLimitText: '',
-	
 	   	  eventClick: function(info) {
 	   		  info.jsEvent.preventDefault();
-	   	  },
-	   	  
-	      loading: function(bool) {
-	        /* document.getElementById('loading').style.display =
-	          bool ? 'block' : 'none'; */
-	         if(bool) {
-	         } else {
-	        	 
-	        	 setTimeout(function() {
-	        		 
-	        	  	$(".fc-event-container").css("display", "none");
-		        	 /* $(".fc-content-skeleton table tbody").css("display", "none"); */
-	        	 }, 100);
-	         }
-	      } 
+	   	  }
 	
 	  });
 		
-	    
-	  setTimeout(function() {
+	  calendar.render();  
+	  /* setTimeout(function() {
 			
 		  calendar.render();
-      }, 200);
+		  $(".fc-dayGridMonth-button").click();
+		  calendar.updateSize();
+		  $(".fc-event-container a").css("display", "none");
+      }, 200); */
  	  
- 	  $("#modalBtn").on("click", function() { 
+ 	  /* $("#modalBtn").on("click", function() { 
 	 		  
 		    setTimeout(function() {
 		    	// 처음 버튼을 눌렀을 때도 달력이 온전히 뜨도록 함
@@ -463,11 +393,8 @@
 				calendar.updateSize();
 				$(".fc-event-container").css("display", "none");
 		    }, 200);
- 	  });
+ 	  }); */
  	 
- 	// 아니면 #calendar 안에 있는 버튼이 눌리면 $(".fc-event-container").css("display", "none"); 하면 ???
- 	  
- 	  
  	 $("#calendar").on("click", "img", function() {
  		 location.href = "/warm/reviewPerBook?isbn=" + $(this).attr('id');
  	 });
@@ -477,14 +404,13 @@
 		$.getJSON("/warm/comments/recent", function(arr) {
 			
 					// 최근 댓글 5개를 가져온다.
-					// arr에 담긴 댓글을 댓글 영역에 집어넣는다.
 					var recentCmt = $(".recent-comments-list");
 					var str = "";
 					
 					$(arr).each(function(i, cmt) {
 						str += "<li class='comment'><div class='comment-wrap clearfix'><div class='comment-wrap clearfix'>";
 						str += "<div class='comment-avatar'>";
-						str += "<img src='/warm/resources/Vertex/img/team/t" + (i+1) + ".png' class='avatar' height='30' width='30' />";
+						str += "<img src='/warm/resources/Vertex/img/team/t" + (i+1) + ".png' class='avatar' style='height:35px; width:35px' />";
 						str += "</div>";
 						str += "<div class='comment-content'><div class='comment-body'>";
 						str += "<a href='" + cmt.review_no + "'>";
@@ -519,19 +445,15 @@
 				}
 			});
 		})(reviewNo);
-	
 	});
-		 
   
 	var actionForm = $("#actionForm");
-	
 	$(".page-link").on("click", function(e) {
 		
 		e.preventDefault();
 		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 		actionForm.submit();
 	 });
-	
 	
 	$(document).ready(function() {
 		
@@ -543,14 +465,12 @@
 			
 			$.getJSON("/warm/calendar.json",
 					function(data) {
-						// json데이터를 받아서 해야 하는 일.
-						// data의 완독일 값이 true면 events에 추가하기.
+						// json데이터를 받아 data의 완독일 값이 true면 events에 추가하기.
 						
 						// 모달에 뿌려야 하는 것은 책 제목과 지은이, 완독일.
 						// 날짜가 같은 데이터는 하나의 모달에 넣어야 함.
 						// 어차피 날짜 역순, 로그 역순으로 불러오고 있기 때문에
-						// preDate와 날짜가 같으면 불러온 내용만 추가하고,
-						// preDate와 날짜가 다르면 <div>로 모달 생성 후 안에 넣는 것으로.
+						// preDate와 날짜가 같으면 불러온 내용만 추가하고, preDate와 날짜가 다르면 <div>로 모달 생성 후 안에 넣는 것으로.
 						
 						$.each(data, function(i, obj){
 							
@@ -560,16 +480,13 @@
 								  
 								  var modals = '';
 						   		  
-						   		  modals += "<div class='modal fade loglist' id='" + finDate + "' tabindex='-1' role='dialog' aria-labelledby='smallModalLabel' aria-hidden='true'>";
+						   		  modals += "<div class='modal loglist' id='" + finDate + "' tabindex='-1' role='dialog' aria-labelledby='smallModalLabel' aria-hidden='true'>";
 						   		  modals += "    <div class='modal-content' style='max-width:300px; top:30%; left:40%;'>";
 						   		  modals += "        <div class='modal-body post-content' style='background-color:#FFFCD8'>";
 						   		  modals += "        	 	<div class='post-header form-header'>";
 						   		  modals += "					<div id='logsHere'>";
-						   		  
-						   		  modals += "<button type='button' align='right'>x</button>";
 						   		  modals += "					    <div align='right'><strong>" + finDate + "</strong></div>";
 						   		  modals += "						<div>" + obj.book_title + "</div>";
-						   		  
 						   		  modals += "					</div>";
 						   		  modals += "            </div>";
 						   		  modals += "        </div>";
@@ -588,23 +505,6 @@
 		  
 	});
 	
-	$(document).click(function() {
-		
-		$(".loglist").hide();
-	});
-	
-	
-	/* $(".eventSpace").on("click", "button", function() {
-		
-		
-	}); */
-
-	$(".plus").click(function(e) {
-		
-		e.stopPropagation();
-		var num = $(this).index();
-		$(".loglist").eq(num).show();
-	});
 	
 	function tsToDate(timestamp) {
 		

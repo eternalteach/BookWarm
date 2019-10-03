@@ -27,7 +27,7 @@
             <div class="container">
                <!--  <div class="row align-items-center"> -->
                     <div class="col-md-4 pull-right">
-                        <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
+                        <ul class="bar-breadcrumb justify-content-start justify-content-md-end mb-0">
                             <li><a href="/warm/library?user_id=${user_id}">내 서재</a></li>
                             <li><a href="/warm/reviewMain">감상 메인</a></li>
                             <li class="active">${bookVO.book_title}</li>
@@ -43,32 +43,9 @@
         <div class="v-page-wrap has-left-sidebar has-one-sidebar" style="margin-top:0px">
             <div class="container">
             	
-            	<div class="row" style="width:100%; height:50px; text-align:right; position:relative">
-            		      <ul style="position:absolute; right:0">                     
-                            <!-- 감상 작성 버튼 추가 -->
-                            <li class="col-sm-12" style="margin-top:10px">
-                            	<div class="pull-right">
-                            	
-                            	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${bookVO.isbn}">
-		                            	<span class="text ls-1">
-		                            		감상 더하기
-			                                <i class="icon icon-pen-3"></i>
-		                            	</span>
-                            	</a><br>
-                            	<a class="btnPerBook" href="/warm/library">
-		                            	<span class="text ls-1">
-		                            		서재로 돌아가기
-		                            		<i class="fa fa-book"></i>
-		                            	</span>
-                            	</a><br>
-                            	</div>
-                            </li>
-                         </ul>    
-            	</div>
-            
                 <div class="row">
 
-                    <aside class="sidebar left-sidebar col-sm-3" style="margin-top:20px">
+                    <aside class="sidebar left-sidebar col-sm-3" style="padding-top:15px;">
                     
 						<!-- record 삽입 -->
 						<%@ include file="includes/record/record.jsp"%>
@@ -125,6 +102,7 @@
                             	</div>
                             </li> --%>
                             
+                            
                             <!-- 8/28 책별 감상 뿌리기 -->
                             <c:forEach items="${list}" var="vo">
                             
@@ -132,7 +110,7 @@
 	                        <fmt:setLocale value="en_US" scope="session"/>
                             <fmt:formatDate var="fmt_date" value="${vo.review_written_date}" pattern="ddMMM"/>
                             
-								<li class="v-blog-item col-sm-12" style="margin-top:20px">
+								<li class="v-blog-item col-sm-12" style="margin-top:10px">
 									
                                     <div class="post-content no-thumb clearfix">
 
@@ -187,10 +165,26 @@
 							</c:forEach>                                
 
                             </ul>
-
+                            
+            		        <ul style="position:absolute; right:0">                     
+	                            <!-- 감상 작성 버튼 추가 -->
+	                            <li class="col-sm-12">
+	                            	<div class="pull-right">
+		                            	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${bookVO.isbn}">
+			                            	<span class="text ls-1">
+			                            		감상 더하기<i class="icon icon-pen-3"></i>
+			                            	</span>
+		                            	</a>
+	                            	</div>
+	                            </li>
+	                        </ul>   
+	                        
+							<c:if test="${empty list}">
+                            	<div style="margin:150px; text-align:center">작성한 감상이 없습니다.</div>
+                            </c:if>
+                            
                             <nav aria-label="...">
                                 <ul class="pagination">
-                                	
                             
                            			<!-- prev 데이터가 없으면 prev버튼이 비활성화 -->
                                	 
@@ -215,18 +209,17 @@
 	                                    </li>
                                 	</c:if> 
                                 	
-                                	<form id="actionForm" action="/warm/reviewPerBook" method="get">
-
-                                		<input type="hidden" name="isbn" value="${bookVO.isbn}">
-                                		<%-- <input type="hidden" name="user_id" value="${list[0].user_id}"> --%>
-                                		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-                                		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
-                                		
-                                	</form>
-                                	
                                 </ul>
                             </nav>
                             
+                            <!-- 페이지 정보 등을 넘기기 위한 폼 -->
+                           	<form id="actionForm" action="/warm/reviewPerBook" method="get">
+                           		<input type="hidden" name="isbn" value="${bookVO.isbn}">
+                           		<%-- <input type="hidden" name="user_id" value="${list[0].user_id}"> --%>
+                           		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+                           		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+                           	</form>
+                           
                         </div>
                     </div>
                 </div>
