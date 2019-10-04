@@ -14,8 +14,8 @@
 <script type="text/javascript" src="/warm/resources/js/admin.js"></script>
 <script type="text/javascript" src="/warm/resources/js/DateJsonToJsp.js"></script>
 <script type="text/javascript" src="/warm/resources/js/Criteria.js"></script>
-<%@ include file="includes/header/script-vertexEx.jsp"%>
 <link rel="stylesheet" href="resources/css/main.css" />
+<%@ include file="./includes/header/header-vertexEx.jsp"%>
 </head>
 <body>
 <%@ include file="includes/header/header-topnav.jsp"%>
@@ -379,5 +379,6 @@ $(document).ready(function() {
 						});
 					});
 </script>
+<%@ include file="./includes/header/script-vertexEx.jsp"%>
 </body>
 </html>
