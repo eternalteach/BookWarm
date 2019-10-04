@@ -4,10 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/warm/resources/js/getbook.js"></script>
-<script type="text/javascript" src="/warm/resources/js/addBook.js"></script>
+<script type="text/javascript" src="/warm/resources/js/book.js"></script>
 제목 검색 : <input id='search' name='search' type='text' class="col-sm-9">
-<button class="searchBtn" onclick="getBookService.searchTitle($('#search').val());">검색</button>
+<button class="searchBtn" onclick="bookService.searchTitle($('#search').val());">검색</button>
 
 
 
@@ -72,10 +71,10 @@ let bookData="";
  	getBookTable.on("click","button",function(e){
  	var targetISBN = $(this).closest("tr").attr("class");
  	console.log("targetISBN"+targetISBN);
- 	var userAddBook={
+ 	var addUsersBook={
  			isbn:targetISBN
  	};
- 		addBookService.add(userAddBook,function(result){
+ 		bookService.addUserBook(addUsersBook,function(result){
  		alert(result);
  	
  		});

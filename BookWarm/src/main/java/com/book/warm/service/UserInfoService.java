@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.book.warm.mapper.UserInfoMapper;
@@ -13,7 +12,10 @@ import com.book.warm.vo.CouponVO;
 import com.book.warm.vo.OrderListVO;
 import com.book.warm.vo.OrdersVO;
 import com.book.warm.vo.PostVO;
+import com.book.warm.vo.UserVO;
 
+import lombok.extern.log4j.Log4j;
+@Log4j
 @Service
 public class UserInfoService {
 	
@@ -102,6 +104,16 @@ public class UserInfoService {
 
 	public PostVO getPostInfo(String post_no) {
 		return userInfoMapper.getPostInfo(post_no);
+	}
+	
+	public UserVO getUserInfo(String user_id) {
+		log.info("========== getUserInfo() ==========");
+		
+		return userInfoMapper.getUserInfo(user_id);
+	}
+
+	public int modifyUserInfo(UserVO userInfo) {
+		return userInfoMapper.modifyUserInfo(userInfo);
 	}
 
 	

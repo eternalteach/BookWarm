@@ -1,7 +1,6 @@
 package com.book.warm.controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +12,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.book.warm.mapper.AdminMapper;
 import com.book.warm.mapper.CommunityBoardMapper;
 import com.book.warm.mapper.MemberMapper;
 import com.book.warm.page.Criteria;
 import com.book.warm.page.PageDTO;
+import com.book.warm.service.AuthenticationService;
 import com.book.warm.service.ReviewBoardService;
 import com.book.warm.vo.AdminBoardVO;
+import com.book.warm.vo.AuthVO;
 import com.book.warm.vo.CommunityBoardVO;
 import com.book.warm.vo.ReviewBoardVO;
 import com.book.warm.vo.UserVO;
@@ -48,6 +51,9 @@ public class AdminController {
 	
 	@Autowired
 	CommunityBoardMapper communityBoardMapper;
+	
+	@Autowired
+	AuthenticationService authenticationService;
 	
 	@GetMapping("")
 	public void admin(Principal principal,Model model,Criteria criteria) {
@@ -116,6 +122,14 @@ public class AdminController {
 		log.info("==================== getUserID() ====================");
 		log.info("getUserID : " + user_id);
 		return new ResponseEntity<>(memberMapper.read(user_id),HttpStatus.OK);
+	}
+	// User 권한 수정하기
+	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="/authentication",consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> modifyUserAuthentication(@RequestBody AuthVO authVO){
+		log.info("========== modifyUserAuthentication()");
+		log.info(authVO.getAuthority());
+		log.info(authVO.getUser_id());
+		return authenticationService.modifyAuthentication(authVO)==1 ? new ResponseEntity<>("success",HttpStatus.OK): new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
 	}
 	
 	

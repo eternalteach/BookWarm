@@ -89,6 +89,7 @@
 	<delete id="removeUser">
 		delete from user_info where user_id=#{user_id}
 	</delete>
+	<!-- 회원탈퇴 끝 -->
 	
 	<select id="getOrderDetails" resultType="com.book.warm.vo.OrdersVO">
 		select *
@@ -108,26 +109,10 @@
 		where post_no = #{post_no}
 	</select>
 	
-	
-	
-	<!-- 아래 쿼리문때문에 안 돌아감 -->
-	<!--
-	<select id="getOrderDetails" resultType="com.book.warm.vo.OrdersVO">
-		select *
-		from orders
-		where orders_no = ${orders_no}
+	<select id="getUserInfo" resultType="com.book.warm.vo.UserVO">
+		select * from user_info where user_id=#{user_id}
 	</select>
-	
-	<select id="getUsedCoupon" resultType="com.book.warm.vo.CouponVO">
-		select *
-		from coupon
-		where coupon_no = #{coupon_no}
-	</select>
-	<select id="getPostInfo" resultType="com.book.warm.vo.postVO">
-		select *
-		from post
-		where post_no = #{post_no}
-	</select>
-	 -->
-	
+	<update id="modifyUserInfo">
+	update user_info set user_phone=#{user_phone}, user_addr=#{user_addr}, user_addr_detail=#{user_addr_detail}, user_zipcode=#{user_zipcode} where user_id=#{user_id}
+	</update>
 </mapper>

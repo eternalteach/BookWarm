@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,18 +17,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
+import com.book.warm.service.AuthenticationService;
 import com.book.warm.service.RegisterService;
 import com.book.warm.vo.UserVO;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 @RequestMapping("/register")
 public class RegisterController {
 	
 	@Inject
 	RegisterService registerService;
+	
+	@Autowired
+	AuthenticationService authenticationService;
 	
 	// 회원가입(중복 확인)페이지 띄우는 controller
 	@RequestMapping(value="/checkDuplicateRegister") 
@@ -101,29 +103,9 @@ public class RegisterController {
 		if(userVO==null)
 			return "redirect:/checkDuplicateRegister";
 		
-		// 비번 암호화
-//		SecurityUtil sha2 = new SecurityUtil();
-//		String encryptPw = sha2.encryptSHA256(userVO.getUser_pw());
-//		userVO.setUser_pw(encryptPw);
-//		
 		BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
 		String encryptedPw = pwEncoder.encode(userVO.getUser_pw());
 		userVO.setUser_pw(encryptedPw);
-		
-		// user_bday : String->timestamp로 변환 후 setUser_bday()하기
-//		String user_bday = req.getParameter("user_bday");
-//		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-//		Date date = null;
-//		
-//		try {
-//			date = sdf.parse(user_bday);
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		System.out.println(date);
-//		
-		System.out.println("폰번 : "+userVO.getUser_phone());		
 		
 		String str=req.getParameter("user_bday_string");
 		
@@ -143,8 +125,8 @@ public class RegisterController {
 		} 
 
 		
-		// 받아온 데이터 db에 넣기
-		registerService.insertNewUser(userVO);
+		registerService.insertNewUser(userVO); // add user_data
+		authenticationService.addRoleUser(userVO.getUser_id()); // add Authorities
 		return "/registerSuccess";
 	}
 	

@@ -125,8 +125,6 @@
                                 <button type="button" class="btn btn-primary pull-right no-margin-bottom no-margin-right" id="submitBtn">가입</button>
                             </div>
                         </div>
-
-                        
                     </form>
                 </div>
             </div>

@@ -4,12 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <sec:authentication property="principal.username" var="user_id"/>
-<!-- 
-	구현해야 할 것
-	1. 사용자 클릭시 사용자 세부 정보 띄우기(회원정보 불러오기)
-	2. 게시판 관리이던, 사용자 관리이던 검색으로 사용자 정보 찾아서 모달창으로 사용자 정보 띄워 정보 수정할 수 있게 하기
-
- -->
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -25,7 +19,6 @@
 </head>
 <body>
 <%@ include file="includes/header/header-topnav.jsp"%>
-
 <div class="wrapper">
 	<div class="page has-sidebar has-left-sidebar bordered">
 		<div class="page-inner alternate-color">
@@ -36,13 +29,13 @@
 							<section class="sidebar-widget">
 								<button class="administrator-BoardBtn btn sf-icon-stroke"data-Action="administrator-board"> 게시판 관리 </button>
 								<button class="administrator-UserBtn btn sf-icon-stroke" data-Action="administrator-user"> 사용자 관리 </button>
+								<button class="administrator-Userdelivery btn sf-icon-stroke" data-Action="administrator-delivery"> 입금완료 </button>
 							</section>
 						</aside>
 					</div>
 				
 					<!-- administrator-statistics -->
 					<div class="col-md-9 right-side-sidebar pt-70 ">
-					
 						<!-- administrator-board -->
 						<div id="administrator-board" class="administrator">
 							<ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
@@ -137,12 +130,20 @@
 														</ul>
 													</div>
 													<div itemprop="articleBody">
-															
-														<p class="v_blog-item-author"><span>user_name : ${user.user_name}</span></p>
-														<p class="v_blog-item-author"><span>권한 : ${user.authList.size()}</span></p>
-														<p class="v_blog-item-author"><span>record 게시글 수  : 0</span></p>
-														<p class="v_blog-item-author"><span>Review 게시글 수  : 0</span></p>
-														<p class="v_blog-item-author"><span>구매 수  : 0</span></p>
+														<div id="${user.user_id}_authenticationLevel">
+															<p class="v_blog-item-author"><span>user_name : ${user.user_name}</span></p>
+															<p class="v_blog-item-author"><span>권한 레벨 : 
+																<select onchange="javascript:modifyUserAuthentication({user_id:'${user.user_id}',authority:this.options[this.selectedIndex].value})" name="authentication">
+																    <option value="">권한 레벨 ${user.authList.size()}</option>
+																    <option value="ROLE_ADMIN">관리자(LV3)</option>
+																    <option value="ROLE_MANAGER">매니저(LV2)</option>
+																    <option value="ROLE_USER">사용자(LV1)</option>
+																</select>
+																</span></p>
+															<p class="v_blog-item-author"><span>record 게시글 수  : 0</span></p>
+															<p class="v_blog-item-author"><span>Review 게시글 수  : 0</span></p>
+															<p class="v_blog-item-author"><span>구매 수  : 0</span></p>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -156,6 +157,25 @@
 							</div>
 						</div>
 					</div>
+					<!-- End administrator-user -->
+					
+					<!-- administrator-Userdelivery -->
+						<div id="administrator-Userdelivery" class="administrator">
+							<ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
+								<li class="nav-item" data-option-value=".depositCompleted"><a class="nav-link" href="#">입금완료</a></li>
+								<li class="nav-item" data-option-value=".depositWaiting"><a class="nav-link" href="#">입금대기</a></li>
+							</ul>
+							<div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
+								<div class="row portfolio-list sort-destination" data-sort-id="portfolio">
+
+								<!-- 여기에 컨텐츠 삽입 -->
+
+								</div>
+								<div class="row col-lg-12">
+	     							<div class="panel-footer center"></div>
+	          					</div>
+							</div>
+						</div>
 					<!-- End administrator-user -->
 				</div>
 			</div>
@@ -174,6 +194,12 @@
 </div>
 
 <script>
+function modifyUserAuthentication(authentication){
+	/* userAuth={user_id:userId,authority:authentication}; */
+	adminService.modfiyAuthentication(authentication,function(result){
+		alert(result);
+		});
+	}
 $(document).ready(function() {
 	// 페이징 처리
 	var reviewPageNum=1;

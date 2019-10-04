@@ -42,25 +42,39 @@ public class MsgController {
 		log.info("유저아이디:" + user_id);
 		log.info(cri);
 		
+		model.addAttribute("msglist", msgservice.msglist(user_id));
+		model.addAttribute("msglist2", msgservice.msglist2(user_id));
 		cri.setAmount(10);
-		//model.addAttribute("msglist", msgservice.msglist(user_id));
-		int total = msgservice.getTotalCount(cri);
+		//받은개수
+		int total = msgservice.getTotalCount(user_id, cri);
 		model.addAttribute("total", total);
+		//보낸개수
+		int total2 = msgservice.sendTotalCount(user_id, cri);
+		model.addAttribute("total2", total2);
+		
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		
-		model.addAttribute("msglist2", msgservice.msglist2(user_id));
 		model.addAttribute("msgcount", msgservice.msgcount(user_id));
 		model.addAttribute("msgcount2", msgservice.msgcount2(user_id));
 		return "/message";
 	}
 	
-	//보낸쪽지리스트
-	@GetMapping(value="/message/pages/{page}", produces= {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+	//받은리스트
+	@GetMapping(value="/message/get/{page}", produces= {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<MsgTableVO>> msgpaging(@PathVariable("page")int page, Principal principal){
-		log.info("=================페이징 + 보낸쪽지함 리스트 뿌리기=============================");
-		Criteria criteria = new Criteria(page, 10);
+		log.info("=================페이징 + 받은쪽지함 리스트 뿌리기=============================");
+		Criteria criteria = new Criteria(page, 9);
 		String user_id = principal.getName();
 		return new ResponseEntity<>(msgservice.msgpaging(user_id, criteria),HttpStatus.OK);
+	}
+	
+	//보낸쪽지리스트
+	@GetMapping(value="/message/send/{page}", produces= {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<List<MsgTableVO>> msgpaging2(@PathVariable("page")int page, Principal principal){
+		log.info("=================페이징 + 보낸쪽지함 리스트 뿌리기=============================");
+		Criteria criteria = new Criteria(page, 9);
+		String user_id = principal.getName();
+		return new ResponseEntity<>(msgservice.msgpaging2(user_id, criteria),HttpStatus.OK);
 	}
 	
 	// 모달창에서 쪽지보내기
@@ -71,28 +85,28 @@ public class MsgController {
 		return "redirect:/message";
 	}
 	
-	// 쪽지 삭제
-//	@RequestMapping(value = "/msgdelete", method = RequestMethod.GET)
-//	public String msgdelete(HttpServletRequest request, RedirectAttributes rttr, Model model, MsgTableVO msgvo) {
-//		log.info("====================msgdelete========================");
-//		String num = request.getParameter("msg_no");
-//		int msg_no = Integer.parseInt(num);
-//		log.info("쪽지번호 : " + msg_no);
-//		msgservice.msgdelete(msg_no);
-//		rttr.addFlashAttribute("tab_name", request.getParameter("tab_name"));
-//		return "redirect:/message";
-//	}
-	
-//	//쪽지삭제
-	@DeleteMapping(value= "/msgdelete/{msg_no}",
+	//쪽지삭제
+	@DeleteMapping(value= "/msgdelete/{msg_no}/{msg_get_id}",
 				produces = {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> msgdelete(@PathVariable("msg_no") int msg_no){
+	public ResponseEntity<String> msgdelete(@PathVariable("msg_no") int msg_no, Principal principal){
 		log.info("====================삭제====================================");
-		return msgservice.msgdelete(msg_no)==1 
+		String user_id = principal.getName();
+		
+		return msgservice.msgdelete(msg_no, user_id)==1 
+				? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	//쪽지삭제
+	@DeleteMapping(value= "/msgdelete2/{msg_no}/{msg_send_id}",
+				produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> msgdelete2(@PathVariable("msg_no") int msg_no, Principal principal){
+		log.info("====================삭제====================================");
+		String user_id = principal.getName();
+		
+		return msgservice.msgdelete2(msg_no, user_id)==1 
 				? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 		
-//	
 	
 }

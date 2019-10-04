@@ -30,5 +30,4 @@ public class RegisterService {
 		return registerMapper.checkDuplicatedNickname(user_nickname);
 	}
 	
-	
 }

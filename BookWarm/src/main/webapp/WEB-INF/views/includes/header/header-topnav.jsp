@@ -23,7 +23,6 @@
 											<ul class="dropdown-menu">
 												<li><a class="dropdown-item" href="library">My Library</a></li>
 												<li><a class="dropdown-item" href="reviewMain">My Review</a></li>
-												<li><a class="dropdown-item" href="record">My Record</a></li><!-- <span class="tip tip-primary">Landing</span> -->
 											</ul>
 										</li>
 										
@@ -51,7 +50,7 @@
 										<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#">User Info</a>
 											<ul class="dropdown-menu">
 												<li><a class="dropdown-item" href="#">My Info</a></li>
-												<li><a class="dropdown-item" href="#">Message</a></li>
+												<li><a class="dropdown-item" href="message">Message</a></li>
 											</ul>
 										</li>
 										
@@ -73,5 +72,4 @@
             </div>
         </div>
     </header>
-    <div style="height:70px;" class="col-sm-12"></div>
     <!--End Header-->

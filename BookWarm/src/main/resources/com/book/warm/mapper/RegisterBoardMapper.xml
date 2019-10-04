@@ -20,6 +20,5 @@
 	<select id="checkDuplicatedNickname" resultType="java.lang.Integer">
 		select count(*) from user_info where user_nickname=#{user_nickname}
 	</select>
-	
 </mapper>
 		

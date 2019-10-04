@@ -9,6 +9,7 @@ import com.book.warm.vo.CouponVO;
 import com.book.warm.vo.OrderListVO;
 import com.book.warm.vo.OrdersVO;
 import com.book.warm.vo.PostVO;
+import com.book.warm.vo.UserVO;
 
 public interface UserInfoMapper {
 
@@ -55,6 +56,9 @@ public interface UserInfoMapper {
 	CouponVO getUsedCoupon(@Param("coupon_no") String coupon_no);
 
 	PostVO getPostInfo(@Param("post_no") String post_no);
+	
+	UserVO getUserInfo(String user_id);
 
+	int modifyUserInfo(UserVO userInfo);
 
 }

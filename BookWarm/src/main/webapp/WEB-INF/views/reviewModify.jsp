@@ -5,36 +5,32 @@
 <!-- 읽어온 날짜를 형식에 맞게 자르기 위해 taglib 추가 -->
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-
- <%@ include file="./includes/header/header/header-from-vertex.jsp" %>
- 
- 
- 	<script>
- 		
- 		/* $("#review_open").attr("checked", "$(review.review_open)"); */
- 		
- 	</script>
+<!DOCTYPE html>
+<html>
+<head>
+<%@ include file="includes/header/script-vertex.jsp" %>
+<link rel="stylesheet" href="resources/css/main.css" /></head>
+<body>
+<%@ include file="includes/header/header-topnav.jsp"%>
+<sec:authentication property="principal.username" var="user_id"/>
  
     <div role="main" class="main">
 
-        <section class="page-header">
+	<section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-top:-70px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-8 text-left">
-                        <span class="tob-sub-title text-color-primary d-block">OUR FEATURES</span>
-                        <h1>Blog Standard</h1>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </div>
                     <div class="col-md-4">
-                        <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
-                            <li><a href="./resources/Vertex/index.html">Home</a></li>
-                            <li><a href="./resources/Vertex/index.html">blog</a></li>
-                            <li class="active">Blog Standard</li>
+                        <ul class="bar-breadcrumb justify-content-start justify-content-md-end mb-0">
+                            <li><a href="/warm/library?user_id=${user_id}">내 서재</a></li>
+                            <li class="active"><a href="/warm/reviewMain">감상 메인</a></li>
+                            <li class="active">감상 수정</li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </section>
+     </section>
         
         <div class="v-page-wrap">
             <div class="container">
@@ -125,120 +121,7 @@
 
         <!--Footer-Wrap-->
         <div class="footer-wrap">
-            <footer>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <section class="widget">
-                                <img alt="Vertex" src="./resources/Vertex/img/logo-white.png" style="height: 40px; margin-bottom: 20px;">
-                                <p class="pull-bottom-small">
-                                    Donec quam felis, ultricies nec, pellen tesqueeu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel aliquet nec, vulputate eget aliquet nec, arcu.
-                                </p>
-                                <p>
-                                    <a href="./resources/Vertex/page-about-us-2.html">Read More →</a>
-                                </p>
-                            </section>
-                        </div>
-                        <div class="col-sm-3">
-                            <section class="widget v-twitter-widget">
-                                <div class="widget-heading">
-                                    <h4>Latest Tweets</h4>
-                                    <div class="horizontal-break"></div>
-                                </div>
-                                <ul class="v-twitter-widget">
-                                    <li>
-                                        <div class="tweet-text">
-                                            <a href="#" target="_blank">@Vertex</a>
-                                            Lorem ipsum dolor sit amet, consec adipiscing elit onvallis dignissim.
-                                        </div>
-                                        <div class="twitter_intents">
-                                            <a class="timestamp" href="#" target="_blank">3 hours ago</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="tweet-text">
-                                            <a href="#" target="_blank">@Vertex</a>
-                                            Sed blandit conval dignissim. pharetra velit eu velit et erat pharetra.
-                                        </div>
-                                        <div class="twitter_intents">
-                                            <a class="timestamp" href="#" target="_blank">5 days ago</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </section>
-                        </div>
-                        <div class="col-sm-3">
-                            <section class="widget v-recent-entry-widget">
-                                <div class="widget-heading">
-                                    <h4>Recent Posts</h4>
-                                    <div class="horizontal-break"></div>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <a href="./resources/Vertex/blog-standard-post.html">Amazing Standard Post</a>
-                                    </li>
-                                    <li>
-                                        <a href="./resources/Vertex/blog-full-width-post.html">Full Width Media Post</a>
-                                    </li>
-                                    <li>
-                                        <a href="./resources/Vertex/blog-video-post.html">Perfect Video Post</a>
-                                    </li>
-                                    <li>
-                                        <a href="./resources/Vertex/blog-slideshow-post.html">Amazing Slideshow post</a>
-                                    </li>
-                                </ul>
-                            </section>
-                        </div>
-                        <div class="col-sm-3">
-                            <section class="widget">
-                                <div class="widget-heading">
-                                    <h4>Recent Works</h4>
-                                    <div class="horizontal-break"></div>
-                                </div>
-                                <ul class="portfolio-grid">
-                                    <li>
-                                        <a href="./resources/Vertex/portfolio-single.html" class="grid-img-wrap">
-                                            <img src="./resources/Vertex/img/thumbs/project-1.jpg" />
-                                            <span class="tooltip">Phasellus enim libero<span class="arrow"></span></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="./resources/Vertex/portfolio-single.html" class="grid-img-wrap">
-                                            <img src="./resources/Vertex/img/thumbs/project-2.jpg" />
-                                            <span class="tooltip">Phasellus enim libero<span class="arrow"></span></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="./resources/Vertex/portfolio-single.html" class="grid-img-wrap">
-                                            <img src="./resources/Vertex/img/thumbs/project-3.jpg" />
-                                            <span class="tooltip">Phasellus enim<span class="arrow"></span></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="./resources/Vertex/portfolio-single.html" class="grid-img-wrap">
-                                            <img src="./resources/Vertex/img/thumbs/project-4.png" />
-                                            <span class="tooltip">Lorem Imput<span class="arrow"></span></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="./resources/Vertex/portfolio-single.html" class="grid-img-wrap">
-                                            <img src="./resources/Vertex/img/thumbs/project-5.jpg" />
-                                            <span class="tooltip">Phasellus Enim libero<span class="arrow"></span></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="./resources/Vertex/portfolio-single.html" class="grid-img-wrap">
-                                            <img src="./resources/Vertex/img/thumbs/project-6.jpg" />
-                                            <span class="tooltip">Phasellus Enim<span class="arrow"></span></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-
+    
             <div class="copyright">
                 <div class="container">
                     <p>© Copyright 2018 by Vertex. All Rights Reserved.</p>
