@@ -4,8 +4,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 public class Criteria {
 
-	private int pageNum;
-	private int amount;
+	private int pageNum; // 현재 페이지 번호 
+	private int amount; // 한 페이지 당 보여줄 게시물 수
 
 	public Criteria(int pageNum, int amount) {
 		super();

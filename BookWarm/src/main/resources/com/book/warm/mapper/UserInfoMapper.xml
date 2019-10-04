@@ -4,13 +4,22 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.book.warm.mapper.UserInfoMapper">
 	<select id="getMyOrders" resultType="com.book.warm.vo.OrderListVO">
-		select t.book_price_for_sale * t.item_cnt as orders_total, o.orders_date, t.*
-		from orders o inner join (select b.book_title, b.BOOK_IMG,  oi.item_cnt, b.book_price_for_sale, oi.orders_status, oi.orders_no
-		                        from orders_item oi inner join book b
-		                        on oi.isbn = b.isbn) t
-		on o.orders_no = t.orders_no
-		where o.user_id=#{user_id}
-		order by orders_date desc
+		<![CDATA[
+			select *
+			from (select rownum rn, o.*
+			    from (select orders_no, orders_date, user_id
+			        from orders
+	                where user_id=#{param1}
+			        order by orders_no desc) o) t1
+			inner join
+			    (select oi.orders_no, oi.orders_status, b.isbn, b.book_title, b.BOOK_IMG,  oi.item_cnt, b.book_price_for_sale, b.book_price_for_sale * oi.item_cnt as total_price_per_book
+			    from orders_item oi inner join book b
+			    on oi.isbn = b.isbn) t2
+			on t1.orders_no = t2.orders_no
+			where #{param2.amount} * (#{param2.pageNum}-1)<rn
+				and rn <= #{param2.amount} * #{param2.pageNum}
+			order by rn
+		]]>
 	</select>
 	
 	<select id="getOrderList" resultType="com.book.warm.vo.OrdersVO">
@@ -81,6 +90,25 @@
 		delete from user_info where user_id=#{user_id}
 	</delete>
 	<!-- 회원탈퇴 끝 -->
+	
+	<select id="getOrderDetails" resultType="com.book.warm.vo.OrdersVO">
+		select *
+		from orders
+		where orders_no = ${orders_no}
+	</select>
+	
+	<select id="getUsedCoupon" resultType="com.book.warm.vo.CouponVO">
+		select *
+		from coupon
+		where coupon_no = #{coupon_no}
+	</select>
+	
+	<select id="getPostInfo" resultType="com.book.warm.vo.PostVO">
+		select *
+		from post
+		where post_no = #{post_no}
+	</select>
+	
 	<select id="getUserInfo" resultType="com.book.warm.vo.UserVO">
 		select * from user_info where user_id=#{user_id}
 	</select>

@@ -113,7 +113,7 @@ public class RegisterController {
 		java.util.Date t;
 		
 		try {
-			t = sdf.parse(str); ///////////문제 발생
+			t = sdf.parse(str);
 			java.sql.Date st = new java.sql.Date(t.getTime());
 			java.sql.Timestamp sts = new java.sql.Timestamp(t.getTime());
 			
