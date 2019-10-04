@@ -59,7 +59,7 @@
 <!-- Theme CSS -->
 <link href="/warm/resources/VertexEx/css/main.css" rel="stylesheet" />
 <link href="/warm/resources/VertexEx/css/main-shortcodes.css" rel="stylesheet" />
-<link href="/warm/resources/VertexEx/css/header.css" rel="stylesheet" />
+<!-- <link href="/warm/resources/VertexEx/css/header.css" rel="stylesheet" /> --><!-- vertext 헤더 사용 -->
 <link href="/warm/resources/VertexEx/css/shop.css" rel="stylesheet" />
 <link href="/warm/resources/VertexEx/css/bg-stylish.css" rel="stylesheet" />
 <link href="/warm/resources/VertexEx/css/form-element.css" rel="stylesheet" />
@@ -100,7 +100,7 @@
 <!-- Custom JS -->
 <script src="/warm/resources/VertexEx/js/custom.js"></script>
 <!-- Theme Initialization -->
-<script src="/warm/resources/VertexEx/js/theme.js"></script>
+<!-- <script src="/warm/resources/Vertex/js/theme.js"></script> -->
 <!-- Style Swicher -->
 <link href="/warm/resources/VertexEx/vendor/style-switcher/style-switcher.css" rel="stylesheet" />
 <link href="/warm/resources/VertexEx/vendor/style-switcher/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />

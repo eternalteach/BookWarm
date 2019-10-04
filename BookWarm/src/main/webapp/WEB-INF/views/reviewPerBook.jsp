@@ -12,7 +12,6 @@
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript" src="/warm/resources/js/logintest.js"></script>
 <%@ include file="includes/header/script-vertexEx.jsp"%>
 <link rel="stylesheet" href="resources/css/main.css" />
 </head>
@@ -107,7 +106,7 @@
                             <c:forEach items="${list}" var="vo">
                             
 	                        <!-- 8/29 날짜 형식 변환: 달을 영어로 출력하기 위해 언어 변경, format을 필요 데이터만 필요한 형태로 변환 -->    
-	                        <fmt:setLocale value="en_US" scope="session"/>
+	                        <fmt:setLocale value="en_US"/>
                             <fmt:formatDate var="fmt_date" value="${vo.review_written_date}" pattern="ddMMM"/>
                             
 								<li class="v-blog-item col-sm-12" style="margin-top:10px">
@@ -390,4 +389,4 @@
 <script src="./resources/Vertex/plugins/aos/aos.js"></script>
 <script src="./resources/Vertex/js/theme-core.js"></script>
 
-<%@ include file="./includes/footer/footer-6 from Vertex.jsp" %>
+<%@ include file="includes/footer/footer-1.jsp"%>

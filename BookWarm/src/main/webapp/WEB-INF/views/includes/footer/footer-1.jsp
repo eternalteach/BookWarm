@@ -3,7 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page session="false"%>
-
+<body>
+    <script src="/warm/resources/Vertex/js/theme.js"></script>
+    <script src="/warm/resources/Vertex/js/theme.init.js"></script>
+    
 	<div class="wrapper">
 		<div class="page">
 			<footer class="footer stylelamas" id="footer-1">
@@ -14,13 +17,6 @@
 							<div class="col-sm-6">
 								<ul class="list-inline fs-13 mb-none">
 									<li><p class="mb-0 fw-6">© 2015-2018 Vertex</p></li>
-									<li><a href="pages-about.html">About</a></li>
-									<li><a href="blog-grid.html">Blog</a></li>
-									<li><a href="pages-contact.html">Contact</a></li>
-									<li><a href="#">Terms</a></li>
-									<li><a href="#">Jobs</a></li>
-									<li><a href="#">Sitemap</a></li>
-									<li><a href="#">Public Policy</a></li>
 								</ul>
 							</div>
 							<div class="col-sm-6">
