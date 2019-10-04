@@ -148,13 +148,13 @@ $(document).ready(function(){
 			
 			for(var i=0, len=list.length||0;i<len;i++){
 				str+="<li class='left clearfix' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>";
-				str+="<div class='header'><strong class='primary-font'>"+list[i].user_id+"</strong>";
+				str+="<div class='container'><strong class='primary-font'>"+list[i].user_id+"</strong>";
 				str+="<p class='pull-right text-muted'>";
 				if('${user_id}'==list[i].user_id){
 				str+="<button id='commentModfiyBtn' class='btn close' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>수정</button><button id='commentRemoveBtn'  class='btn close' data-comm_cmt_no='"+list[i].comm_cmt_no+"'>삭제</button>";
 				}
 				str+="</p></div>";
-				str+="<div class='header'><p class='form-inline'>"+list[i].comm_cmt_content+"</p>";
+				str+="<div class='container'><p class='form-inline'>"+list[i].comm_cmt_content+"</p>";
 				str+="<small class='pull-right text-muted'> 작성일 : "+list[i].comm_cmt_written_time+"</br>&nbsp;</small></div></li>";
 			}
 			
