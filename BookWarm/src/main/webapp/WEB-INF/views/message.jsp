@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Message</title>
+	<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<%@ include file="./includes/header/header/vertexHeader.jsp"%>
 </head>
 <body>
-	<%@ include file="./includes/header/header/vertexHeader.jsp"%>
 	<%@ include file="includes/header/header-topnav.jsp"%>
 	<%@ include file="./includes/content/message/msglistPage.jsp"%>
 </body>

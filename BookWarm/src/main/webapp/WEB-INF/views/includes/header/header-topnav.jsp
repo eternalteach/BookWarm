@@ -54,10 +54,6 @@
 											</ul>
 										</li>
 										
-										<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="customLogout" style="float:right;">logout</a></li>
-										
-										
-										
 										<sec:authorize access="hasRole('ROLE_ADMIN')">
 										<!-- only access Administrator -->
 										<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#">Admin </a>

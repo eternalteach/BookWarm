@@ -63,9 +63,8 @@
     <link rel="stylesheet" href="/warm/resources/Vertex/css/custom.css">
     
 
-<!-- 
 
-Vendor CSS
+
 <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/tether/tether.min.css" />
 <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/font-awesome/css/font-awesome.min.css">
@@ -76,17 +75,13 @@ Vendor CSS
 <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/magnific-popup/magnific-popup.css" />
 <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/lite-tooltip/css/litetooltip.css" />
 
-Current Page CSS
 <link href="/warm/resources/VertexEx/smartforms/Templates/css/smart-forms.css" rel="stylesheet" />
 
-Theme Custom CSS
 <link rel="stylesheet" href="/warm/resources/VertexEx/css/custom.css">
 
-Style Swicher
 <link href="/warm/resources/VertexEx/vendor/style-switcher/style-switcher.css" rel="stylesheet" />
 <link href="/warm/resources/VertexEx/vendor/style-switcher/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
 
-Theme CSS
 <link href="/warm/resources/VertexEx/css/main.css" rel="stylesheet" />
 <link href="/warm/resources/VertexEx/css/main-shortcodes.css" rel="stylesheet" />
 <link href="/warm/resources/VertexEx/css/header.css" rel="stylesheet" />
@@ -106,22 +101,17 @@ Theme CSS
 <link href="/warm/resources/VertexEx/smartforms/JavascriptTemplates/css/smart-addons.css" rel="stylesheet" />
 <link href="/warm/resources/VertexEx/smartforms/Templates/css/smart-forms.css" rel="stylesheet" />
 
-Smart Form Elements
 <script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-custom.min.js"></script>
 <script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery.placeholder.min.js"></script>
 <script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/select2.full.min.js"></script>
 <script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-combo.min.js"></script>
 
-Custom JS
 <script src="/warm/resources/VertexEx/js/custom.js"></script>
-Theme Initialization
 <script src="/warm/resources/VertexEx/js/theme.js"></script>
-Style Swicher
 <link href="/warm/resources/VertexEx/vendor/style-switcher/style-switcher.css" rel="stylesheet" />
 <link href="/warm/resources/VertexEx/vendor/style-switcher/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
-	Smart Form Elements
 <script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-custom.min.js"></script>
 <script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery.placeholder.min.js"></script>
 <script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/select2.full.min.js"></script>
 <script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-combo.min.js"></script>
- -->
+
