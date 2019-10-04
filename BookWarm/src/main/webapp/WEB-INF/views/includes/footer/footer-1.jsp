@@ -4,8 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page session="false"%>
 <body>
-    <script src="/warm/resources/Vertex/js/theme.js"></script>
-    <script src="/warm/resources/Vertex/js/theme.init.js"></script>
     
 	<div class="wrapper">
 		<div class="page">

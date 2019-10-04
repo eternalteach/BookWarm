@@ -12,7 +12,7 @@
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="/warm/resources/js/library.js"></script>
 <script type="text/javascript" src="/warm/resources/js/book.js"></script>
-<%@ include file="includes/header/script-vertexEx.jsp"%>
+<%@ include file="includes/header/header-vertexEx.jsp"%>
 <link rel="stylesheet" href="resources/css/main.css" />
 </head>
 <body style="background-color:#eaeaea">
@@ -198,3 +198,4 @@ $(document).ready(function(){
 	}
 });
 </script>
+<%@ include file="includes/header/script-vertexEx.jsp"%>
