@@ -9,8 +9,7 @@
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript" src="/warm/resources/js/logintest.js"></script>
-<%@ include file="includes/header/script-vertexEx.jsp"%>
+<%@ include file="includes/header/header-vertexEx.jsp"%>
 <link rel="stylesheet" href="resources/css/main.css" />
 
 <link href='http://unpkg.com/@fullcalendar/core/main.css' rel='stylesheet' />
@@ -50,7 +49,7 @@
 
 <sec:authentication property="principal.username" var="user_id"/>
 
-<div role="main" class="main">
+	<div role="main" class="main">
 
 	<section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-top:20px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
             <div class="container">
@@ -67,11 +66,6 @@
             </div>
      </section>
 	
-</div>
-
-<%-- <%@ include file="./includes/header/header-dark-dropdown.jsp"%> --%>
-
-
       <div class="page has-sidebar has-right-sidebar bordered">
 <%-- <section class="section-primary alternate-color b-bordered" style="min-width:170px"></section> --%>
          <div class="page-inner has-left-sidebar has-one-sidebar">
@@ -229,13 +223,15 @@
          </div>
          <!-- end of page inner -->
    
-         
-         <div class="eventSpace">
-         	<!-- 여기에 이벤트 모달을 집어넣는다. -->
-         </div>
+       </div>  
+       <!-- end of page -->
+       
+       <div class="eventSpace">
+       	<!-- 여기에 이벤트 모달을 집어넣는다. -->
+       </div>
       
-   </div>
-   
+	</div>
+	<!-- end of div main -->
    
 <script>
 
@@ -307,29 +303,12 @@
 		   		});
 	   	  }, 
 	   	  
-	   	  dayRender: function(dayRenderInfo) {
-	   		  //dayRenderInfo.el은 td를 가리킴.
-	   		  /* alert("dayRender"); */
-	   		  /* alert(dayRenderInfo.el.getElementsByTagName("a")); */
-	   		  var aa = dayRenderInfo.el.getElementsByTagName("a");
-	   		  if(aa.length != 0) {
-	   			  alert("aa.size() : " + aa.length);
-	   		  }
-	   		  
-	   		  for(var i=0; i<aa.length; i++) {
-	   			  console.log("있다면 : " + aa[i]);
-	   			  aa[i].style.display = 'none';
-	   		  }
-	   		  /* aa.each(function(i, obj) {
-	   			  obj.style.display = 'none';
-	   		  }) */
-	   	  },
-	   	  
 	   	  viewRender: (function(info) {
 	   		 $(".fc-event-container").css("display", "none");
 	   	  })(),
 	   	  
 	   	  eventRender: function(info) {
+	   		  
 	   		  console.log("info.event.id:" + info.event.id);
 	   		  console.log("info.event.title : " + info.event.title);
 	   		  console.log("표지 : " + info.event.extendedProps.imageurl);
@@ -345,16 +324,20 @@
 	   			  
 	   			  if(info.event.extendedProps.firstImg) {
 	   				  // rerender시 표지가 반복적으로 추가되지 않도록 html에 새로 뿌려준다.
+	   				  alert("여기야?: " + str);
 		   			  tdObj.html(str);
 	   			  } else {
+	   				alert("아니면 여기?: " + str);
 		   			  tdObj.append(str);
 	   			  }
 	   		  } else {
-
+					alert("여기일 가능성?: " + str);
   				  // 이벤트가 몇 개 이상이면 나타나는 +more은 이미지랑 영역이 겹치므로 
   				  // 당일 이벤트가 3개 이상인 경우 +버튼이 나타나도록 따로 구현.
+  				  alert($(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "'] button").length);
 	   			  if(!$(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "'] button").length) {
 	   				  //button이 없는 상태
+	   				  alert("여기일 가능성?: " + str);
 		   			  str += "<div style='display:inline-block; position:relative; float:right; width:20%;'>";
 		   			  str += "   <button class='plus' data-toggle='modal' data-target='#" + targetDate + "' style='width:100%; height:20%; border:transparent; background-color:lightgray; color:white;'>+</button>";
 		   			  str += "</div>"; 
@@ -554,5 +537,22 @@
 	};
 </script>
 
+<!--     <script src="./resources/Vertex/js/jquery.min.js"></script>
+    <script src="./resources/Vertex/js/popper.js"></script>
+    <script src="./resources/Vertex/js/bootstrap.min.js"></script>
+    <script src="./resources/Vertex/js/jquery.flexslider-min.js"></script>
+    <script src="./resources/Vertex/js/jquery.easing.js"></script>
+    <script src="./resources/Vertex/js/jquery.fitvids.js"></script>
+    <script src="./resources/Vertex/js/jquery.carouFredSel.min.js"></script>
+    <script src="./resources/Vertex/js/jquery.validate.js"></script>
+    <script src="./resources/Vertex/js/theme-plugins.js"></script>
+    <script src="./resources/Vertex/js/jquery.isotope.min.js"></script>
+    <script src="./resources/Vertex/js/imagesloaded.js"></script>
 
+    <script src="./resources/Vertex/js/view.min.js?auto"></script>
+    <script src="./resources/Vertex/plugins/aos/aos.js"></script>
+    <script src="./resources/Vertex/js/theme-core.js"></script> -->
+    
+
+<%@ include file="includes/header/script-vertexEx.jsp"%> 
 <%@ include file="includes/footer/footer-1.jsp"%>

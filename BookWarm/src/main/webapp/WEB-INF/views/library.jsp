@@ -12,7 +12,7 @@
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="/warm/resources/js/library.js"></script>
 <script type="text/javascript" src="/warm/resources/js/book.js"></script>
-<%@ include file="includes/header/script-vertexEx.jsp"%>
+<%@ include file="includes/header/header-vertexEx.jsp"%>
 <link rel="stylesheet" href="resources/css/main.css" />
 </head>
 <body style="background-color:#eaeaea">
@@ -55,10 +55,10 @@
 				<tr class="bookshelf-table-bottom">
 				<td colspan="15" class="bookshelf-table-centerbar"></td>
 				</tr>
-			</c:forEach>
-				<tr class="bookshelf-table-bottomSpace">
-					<td colspan="15" class="bookshelf-table-bar"></td>
-				</tr>
+			 </c:forEach>
+			 <tr class="bookshelf-table-bottomSpace">
+				<td colspan="15" class="bookshelf-table-bar"></td>
+			 </tr>
 		</table>
 	</div>
 	
@@ -198,3 +198,4 @@ $(document).ready(function(){
 	}
 });
 </script>
+<%@ include file="includes/header/script-vertexEx.jsp"%>
