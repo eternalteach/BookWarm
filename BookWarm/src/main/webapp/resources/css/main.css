@@ -3,6 +3,9 @@ body{
 width:100vw;
 height:100vh;
 }
+.veiwHeight{
+height:100vh;
+}
 .nopadding{
     padding-top: 0px;
     padding-bottom: 0px;

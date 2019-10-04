@@ -76,5 +76,5 @@
             </div>
         </div>
     </header>
-<!--     <div style="height:70px;" class="col-sm-12"></div> -->
+<div style="height:70px;" clwass="col-sm-12"></div>
     <!--End Header-->

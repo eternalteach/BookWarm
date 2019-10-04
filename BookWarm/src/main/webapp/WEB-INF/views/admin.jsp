@@ -24,7 +24,7 @@
 		<div class="page-inner alternate-color">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-3 left-side-sidebar pt-70">
+					<div class="col-md-3 left-side-sidebar pt-70 veiwHeight">
 						<aside class="sidebar">
 							<section class="sidebar-widget">
 								<button class="administrator-BoardBtn btn sf-icon-stroke"data-Action="administrator-board"> 게시판 관리 </button>
@@ -130,11 +130,11 @@
 														</ul>
 													</div>
 													<div itemprop="articleBody">
-														<div id="${user.user_id}_authenticationLevel">
+														<div id="${user.user_id}_authenticationLevel" data-userid="${user.user_id}"data-username="${user.user_name}" data-userauth="${user.authList.size()}">
 															<p class="v_blog-item-author"><span>user_name : ${user.user_name}</span></p>
 															<p class="v_blog-item-author"><span>권한 레벨 : 
-																<select onchange="javascript:modifyUserAuthentication({user_id:'${user.user_id}',authority:this.options[this.selectedIndex].value})" name="authentication">
-																    <option value="">권한 레벨 ${user.authList.size()}</option>
+																<select onchange="javascript:modifyUserAuthentication(this.options[this.selectedIndex].value)" name="authentication">
+																    <option value=""> 레벨 ${user.authList.size()}</option>
 																    <option value="ROLE_ADMIN">관리자(LV3)</option>
 																    <option value="ROLE_MANAGER">매니저(LV2)</option>
 																    <option value="ROLE_USER">사용자(LV1)</option>
@@ -142,7 +142,7 @@
 																</span></p>
 															<p class="v_blog-item-author"><span>record 게시글 수  : 0</span></p>
 															<p class="v_blog-item-author"><span>Review 게시글 수  : 0</span></p>
-															<p class="v_blog-item-author"><span>구매 수  : 0</span></p>
+															<p class="v_blog-item-author"><span>총 구매 액 : 0</span></p>
 														</div>
 													</div>
 												</div>
@@ -194,9 +194,36 @@
 </div>
 
 <script>
-function modifyUserAuthentication(authentication){
-	/* userAuth={user_id:userId,authority:authentication}; */
+var userInfoDivID="";
+var userInfoDiv="";
+var userID="";
+var userName="";
+var userAuthLevel="";
+$(document).on("click","select",function(){
+	userInfoDivID=$(this).closest("div").attr("id");
+	userID=$(this).closest("div").attr("data-userid");
+	userAuthLevel=$(this).closest("div").attr("data-userauth");
+	userName=$(this).closest("div").attr("data-username");
+	userInfoDiv=$("#"+userInfoDivID);
+});
+function modifyUserAuthentication(auth){
+	authentication={user_id:userID,authority:auth};
 	adminService.modfiyAuthentication(authentication,function(result){
+		userInfoInnerHTML="";
+		userInfoInnerHTML+="<p class=\"v_blog-item-author\"><span>user_name :"+ userID +"</span></p>";
+		userInfoInnerHTML+="<p class=\"v_blog-item-author\"><span>";
+		userInfoInnerHTML+="<select onchange=\"javascript:modifyUserAuthentication(this.options[this.selectedIndex].value)\" name=\"authentication\">";
+		userInfoInnerHTML+="<option value=\"\">수정된 권한 : "+auth.substring(5)+"</option>";
+		userInfoInnerHTML+="<option value=\"ROLE_ADMIN\">관리자(LV3)</option>";
+		userInfoInnerHTML+="<option value=\"ROLE_MANAGER\">매니저(LV2)</option>";
+		userInfoInnerHTML+="<option value=\"ROLE_USER\">사용자(LV1)</option>";
+		userInfoInnerHTML+="</select>";
+		userInfoInnerHTML+="</span></p>";
+		userInfoInnerHTML+="<p class=\"v_blog-item-author\"><span>record 게시글 수  : 0</span></p>";
+		userInfoInnerHTML+="<p class=\"v_blog-item-author\"><span>Review 게시글 수  : 0</span></p>";
+		userInfoInnerHTML+="<p class=\"v_blog-item-author\"><span>총 구매 액 : 0</span></p>";
+		
+		userInfoDiv.html(userInfoInnerHTML);
 		alert(result);
 		});
 	}
