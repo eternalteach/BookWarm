@@ -11,9 +11,6 @@
         <div class="header-body">
             <div class="header-container container">
                 <div class="header-row">  
-                    <div>
-						 
-                    </div>
                     <div class="justify-content-end center">
                         <div class="header-nav header-nav-light-dropdown">
                             <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1">
@@ -30,12 +27,12 @@
 											<ul class="dropdown-menu">
 												<li><a class="dropdown-item" href="communityboard">Community Board</a></li>
 												<li><a class="dropdown-item" href="openreview">Open Review</a></li>
-												<li><a class="dropdown-item" href="chat">Chatting</a></li>
+												<li><a class="dropdown-item" href="message">message</a></li>
 											</ul>
 										</li>
 										<li>
 											<a class="nopadding" href="/warm/library" style="padding-top: 0px;    padding-bottom: 0px;">
-					                           <h1 style="margin:0">BOOKWARM</h1>
+					                           <h1 style="margin:0;">Book & Warm</h1>
 											</a>   
 										</li>
 										<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#">Books </a>
@@ -53,11 +50,6 @@
 												<li><a class="dropdown-item" href="message">Message</a></li>
 											</ul>
 										</li>
-										
-										<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="customLogout" style="float:right;">logout</a></li>
-										
-										
-										
 										<sec:authorize access="hasRole('ROLE_ADMIN')">
 										<!-- only access Administrator -->
 										<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#">Admin </a>
@@ -76,5 +68,4 @@
             </div>
         </div>
     </header>
-<div style="height:70px;" clwass="col-sm-12"></div>
     <!--End Header-->

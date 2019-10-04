@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Vertex - Responsive HTML5 Bootstrap Template</title>
+<title>Book & Warm</title>
 <meta name="keywords" content="HTML5 Template" />
 <meta name="description" content="Vertex - Responsive HTML5 Template">
 <meta name="author" content="bootstraptemplates.net">

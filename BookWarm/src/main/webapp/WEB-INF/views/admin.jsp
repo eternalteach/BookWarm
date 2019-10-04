@@ -27,9 +27,9 @@
 					<div class="col-md-3 left-side-sidebar pt-70 veiwHeight">
 						<aside class="sidebar">
 							<section class="sidebar-widget">
-								<button class="administrator-BoardBtn btn sf-icon-stroke"data-Action="administrator-board"> 게시판 관리 </button>
-								<button class="administrator-UserBtn btn sf-icon-stroke" data-Action="administrator-user"> 사용자 관리 </button>
-								<button class="administrator-Userdelivery btn sf-icon-stroke" data-Action="administrator-delivery"> 입금완료 </button>
+								<button class="administrator-BoardBtn btn sf-icon-stroke close"data-Action="administrator-board"> 게시판 관리 </button>
+								<button class="administrator-UserBtn btn sf-icon-stroke close" data-Action="administrator-user"> 사용자 관리 </button>
+								<button class="administrator-Userdelivery btn sf-icon-stroke close" data-Action="administrator-delivery"> 입금완료 </button>
 							</section>
 						</aside>
 					</div>
@@ -140,9 +140,6 @@
 																    <option value="ROLE_USER">사용자(LV1)</option>
 																</select>
 																</span></p>
-															<p class="v_blog-item-author"><span>record 게시글 수  : 0</span></p>
-															<p class="v_blog-item-author"><span>Review 게시글 수  : 0</span></p>
-															<p class="v_blog-item-author"><span>총 구매 액 : 0</span></p>
 														</div>
 													</div>
 												</div>
