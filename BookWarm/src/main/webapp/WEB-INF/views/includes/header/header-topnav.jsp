@@ -35,7 +35,7 @@
 										</li>
 										<li>
 											<a class="nopadding" href="/warm/library" style="padding-top: 0px;    padding-bottom: 0px;">
-					                           <h1 style="margin:0">BOOKWARM</h1>
+					                           <h1 style="margin:0">BOOK & WARM</h1>
 											</a>   
 										</li>
 										<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#">Books </a>

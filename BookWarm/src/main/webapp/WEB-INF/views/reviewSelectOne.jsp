@@ -18,7 +18,7 @@
 	
     <div role="main" class="main">
 
-	<section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-top:-70px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
+	<section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-8 text-left">
