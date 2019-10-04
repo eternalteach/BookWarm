@@ -61,11 +61,4 @@ public class ShopListController {
 		return "shopproduct";
 	}
 	
-	@RequestMapping(value = "/booklover", method = RequestMethod.GET)
-	public String booklover(Principal principal, Model model) {
-		log.info("=========================== booklover ==============================");
-		String user_id =principal.getName();
-		
-		return "booklover";
-	}
 }

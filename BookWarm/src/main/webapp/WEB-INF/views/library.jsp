@@ -22,15 +22,15 @@
 			<a data-toggle="modal" data-target="#modal-library" class="library-font">Search Books</a>
 			<a href="reviewMain" class="library-font">감상 메인</a>
 			<a href="shop/shoplist" class="fa fa-book fa library-font">서점</a>
-			<a href="message" class="icon-mail-2 library-font">쪽지</a>
+			<a href="message" class="icon-mail-2 library-font" style="color: white">쪽지</a>
 			<a href="customLogout" class="library-font">로그아웃</a>
 		</div>
 	</div>
 	<div>
 		<img src="/warm/resources/img/library/background/lamp2.png" style="width:12%; max-width:30%; transform:rotate(180deg);position:fixed;top:-30px; left:40px;">
-				<img src="/warm/resources/img/library/background/lamp2.png" style="width:12%; max-width:30%; transform:rotate(180deg);position:fixed;top:-80px; right:70px;">
-				<img src="/warm/resources/img/library/background/lamp3.png" style="width:12%; max-width:30%; transform:rotate(180deg);position:fixed;top:-35px; right:10px;">
-				<img src="/warm/resources/img/logo.png" style="width:10%; max-width:30%; position:fixed;top:112px; left:360px;">
+		<img src="/warm/resources/img/library/background/lamp2.png" style="width:12%; max-width:30%; transform:rotate(180deg);position:fixed;top:-80px; right:70px;">
+		<img src="/warm/resources/img/library/background/lamp3.png" style="width:12%; max-width:30%; transform:rotate(180deg);position:fixed;top:-35px; right:10px;">
+		<img src="/warm/resources/img/logo.png" style="width:10%; max-width:30%; position:fixed;top:112px; left:360px;">
 	</div>
 	<div>
 		<img src="/warm/resources/img/library/bookshelf/3.png" style="width:60%; max-width:50%; margin-top:6.3%; margin-left:25%; margin-right:auto">
