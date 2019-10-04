@@ -246,6 +246,7 @@ comm_cmt_clicked NUMBER(10,0) DEFAULT 0,
 comm_cmt_group NUMBER(10,0),
 comm_cmt_step NUMBER(10,0),
 comm_cmt_indent NUMBER(10,0),
+comm_cmt_likeNUMBER(10,0) DEFAULT 0
 constraint pk_community_board_comment primary key(comm_cmt_no),
 constraint fk_community_board_comment FOREIGN KEY(comm_no)
            REFERENCES community_board(comm_no)
