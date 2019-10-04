@@ -2,16 +2,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<!-- 
-   <link rel="stylesheet" type="text/css"  href="css/smart-forms.css">
-   <link rel="stylesheet" type="text/css"  href="css/smart-addons.css">
-   <link rel="stylesheet" type="text/css"  href="css/font-awesome.min.css">
-	<script type="text/javascript" src="/warm/resources/VertexEx/js/jquery-1.9.1.min.js"></script>
-   <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-   <script type="text/javascript" src="js/additional-methods.min.js"></script>
-   <script type="text/javascript" src="js/smartforms-modal.min.js"></script>    
-    -->
-   
+
+<link rel="stylesheet" type="text/css"  href="/warm/resources/VertexEx/smartforms/JavascriptTemplates/css/smart-forms.css">
+<!-- <link rel="stylesheet" type="text/css"  href="/warm/resources/VertexEx/smartforms/JavascriptTemplates/css/smart-addons.css"> -->
+<link rel="stylesheet" type="text/css"  href="/warm/resources/VertexEx/smartforms/JavascriptTemplates/css/font-awesome.min.css">
+<!-- <script type="text/javascript" src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/additional-methods.min.js"></script>
+<script type="text/javascript" src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/smartforms-modal.min.js"></script>   -->
+<style>
+	#modal {
+		display:none;
+		background-color:gray;
+		position:fixed;
+		width: 365px;
+		height: 530px;
+		left: 50%;
+		top: 30%;
+	}
+</style>
 <script>
 $(document).ready(function(){
 	
@@ -72,7 +81,7 @@ $(document).ready(function(){
 						error.insertAfter(element.parent());
 			   }
 			}
-	});	 */	
+	}); */
 
 }); 
 
@@ -91,21 +100,14 @@ function showDetail(orders_no) {
 	    contentType:"application/json;charset=UTF-8",
 	    async: false,
 	    success : function(data, status, xhr) {
-	    	var getMap = data.map;
-			console.log(getMap);
+			console.log(data.order.orders_no);
+			console.log(data.post);
+			
+			
+			
 		}, error : function(){
 			console.log("error!");
 		}
 	})
-/* 	$.ajax ({
-		url : '/warm/shop/pickCoupon',
-		type : 'get',
-		dataType : 'json',
-		success : function(result) {
-			alert("data : " + result);
-		}, error : function(){
-			console.log("error!");
-		}
-	}) */
 }
 </script>     

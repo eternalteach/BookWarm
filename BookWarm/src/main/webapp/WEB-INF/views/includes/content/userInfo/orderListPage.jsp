@@ -67,7 +67,7 @@
 									<div class="search-item-content" id="${idx.index}">
 									
 									<h3 class="search-item-caption">
-										<a href="javascript:">주문번호 : ${list1.orders_no}</a>
+										<a href="javascript:showDetail(${list1.orders_no})">주문번호 : ${list1.orders_no}</a>
 									</h3>
 									<div class="search-item-meta">
 										<ul class="list-inline">
@@ -83,7 +83,7 @@
 								<ul class="v-search-items">
 									<li class="search-item">
 										<div class="search-item-img">
-											<a href="#"> <img src="${list1.book_img}"
+											<a href="/warm/shop/shopproduct?isbn=${list1.isbn}"> <img src="${list1.book_img}"
 												width="70" height="70">
 											</a>
 										</div>

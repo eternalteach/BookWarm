@@ -9,10 +9,10 @@
 			from (select rownum rn, o.*
 			    from (select orders_no, orders_date, user_id
 			        from orders
-	                where user_id='admin9'
+	                where user_id=#{param1}
 			        order by orders_no desc) o) t1
 			inner join
-			    (select oi.orders_no, oi.orders_status, b.book_title, b.BOOK_IMG,  oi.item_cnt, b.book_price_for_sale, b.book_price_for_sale * oi.item_cnt as total_price_per_book
+			    (select oi.orders_no, oi.orders_status, b.isbn, b.book_title, b.BOOK_IMG,  oi.item_cnt, b.book_price_for_sale, b.book_price_for_sale * oi.item_cnt as total_price_per_book
 			    from orders_item oi inner join book b
 			    on oi.isbn = b.isbn) t2
 			on t1.orders_no = t2.orders_no

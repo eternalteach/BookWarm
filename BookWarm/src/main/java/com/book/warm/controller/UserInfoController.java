@@ -1,7 +1,6 @@
 package com.book.warm.controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +23,7 @@ import com.book.warm.vo.OrderListVO;
 import com.book.warm.vo.OrdersVO;
 import com.book.warm.vo.PostVO;
 import com.book.warm.vo.UserVO;
+import com.google.gson.Gson;
 
 import lombok.extern.log4j.Log4j;
 
@@ -119,7 +119,7 @@ public class UserInfoController {
 	@RequestMapping("/orderDetails")
 	@ResponseBody
 	@Transactional
-	public Map<String, Object> orderDetails(Principal principal, @Param("orders_no") String orders_no) {
+	public String orderDetails(Principal principal, @Param("orders_no") String orders_no) {
 		
 		System.out.println("orders_no : " + orders_no);
 		
@@ -152,7 +152,10 @@ public class UserInfoController {
 		map.put("coupon", coupon);
 		map.put("post", post);
 		
-		System.out.println("메서드 끝");
-		return map;
+		// 5. map json으로 변환
+		Gson gson = new Gson();
+		String json = gson.toJson(map);
+		
+		return json;
 	}
 }
