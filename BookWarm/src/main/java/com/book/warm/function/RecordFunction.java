@@ -108,7 +108,7 @@ public class RecordFunction {
 		this.endPage = statisticsFunctionService.endPage(logingList);
 		this.readPageNum = statisticsFunctionService.logingPage(logingList, bookVO);
 		int bookTotalPage = bookVO.getBook_tot_page();
-		this.reading = ((double) readPageNum / (double) bookTotalPage) * 100;
+		this.reading = Math.round(((double) readPageNum / (double) bookTotalPage) * 1000)/10;
 		this.logingCount = recordService.getCount(bookVO, user_id);
 
 	}

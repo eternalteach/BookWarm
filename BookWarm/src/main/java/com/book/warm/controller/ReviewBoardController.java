@@ -85,7 +85,6 @@ public class ReviewBoardController {
 		List<LogingBoardVO> logingList = recordService.getList(user_id, rbVO.getIsbn());
 		int recordNum= recordService.getCount(bookVO, user_id);
 		recordFunction.setRecordFunction(logingList, bookVO, user_id);
-		
 		int total = service.getTotal(cri,  rbVO.getIsbn(), user_id);
 		
 		model.addAttribute("list", reviewList);
