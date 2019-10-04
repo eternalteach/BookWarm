@@ -52,12 +52,11 @@
 								<span>Record</span>&nbsp; &nbsp;
 								<a href="#modal-more-record" data-toggle="modal" ><strong class="primary-color" data-to="${recordNum}" data-plugin-options="{&quot;decimals&quot;: 0}">${recordNum}</strong></a>
 							</div>
-							<!-- open add record modal -->
-								
 						</div>
+							<!-- open add record modal -->
 						<div class="counters">
 							<div class="progress-label" style="text-align:center; height:50px">
-								<span><button type="button" class="btn" data-toggle="modal" data-target="#modal-add-record" style="margin:0">Add</button></span>
+								<span><button type="button" class="btn" data-toggle="modal" data-target="#modal-add-record" style="margin:0;">Add</button></span>
 							</div>
 						</div>
 					</div>

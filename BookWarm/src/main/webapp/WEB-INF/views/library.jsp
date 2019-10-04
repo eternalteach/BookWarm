@@ -55,10 +55,10 @@
 				<tr class="bookshelf-table-bottom">
 				<td colspan="15" class="bookshelf-table-centerbar"></td>
 				</tr>
-			</c:forEach>
-				<tr class="bookshelf-table-bottomSpace">
-					<td colspan="15" class="bookshelf-table-bar"></td>
-				</tr>
+			 </c:forEach>
+			 <tr class="bookshelf-table-bottomSpace">
+				<td colspan="15" class="bookshelf-table-bar"></td>
+			 </tr>
 		</table>
 	</div>
 	
