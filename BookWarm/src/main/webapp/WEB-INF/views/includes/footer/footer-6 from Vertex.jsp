@@ -5,8 +5,6 @@
 
 
 <body>
-<script src="/warm/resources/Vertex/js/theme.js"></script>
-    <script src="/warm/resources/Vertex/js/theme.init.js"></script>
         <!--Footer-Wrap-->
         <div class="footer-wrap">
             <div class="copyright">

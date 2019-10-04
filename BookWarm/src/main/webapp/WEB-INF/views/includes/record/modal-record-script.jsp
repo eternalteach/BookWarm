@@ -159,8 +159,8 @@
 			// user_id 와 isbn 받아오기
 			recordService.getFrontRecordInfo({user_id:user_id,isbn:isbn},function(recordInfo){
 				var str="";
-				str+="<div class='progress-label'>";
-				str+="<span>Reading</span>";
+				str+="<div class=\"progress-label\">";
+				str+="<span>"+recordInfo.reading+"% Finished</span>";
 				str+="</div>";
 				str+="<div class='progress'>";
 				str+="<div id=\"reading\" class=\"progress-bar bg-info progress-bar-striped progress-bar-animated\" data-appear-progress-animation=\""+recordInfo.reading+"%\" style=\"width:"+recordInfo.reading+"%;\"></div>";
@@ -169,12 +169,12 @@
 				str+="<div class='content-grid-item col-md-12'>";
 				str+="<div class='counters'>";
 				str+="<div class='progress-label'>";
-				str+="<span>ReadingPage</span>&nbsp; &nbsp;<strong class='primary-color' data-to=\""+recordInfo.readPageNum+"\" data-plugin-options=\"{&quot;decimals&quot;: 0}\">"+recordInfo.readPageNum+"</strong>";
+				str+="<span>Pages Read</span>&nbsp; &nbsp;<strong class='primary-color' data-to=\""+recordInfo.readPageNum+"\" data-plugin-options=\"{&quot;decimals&quot;: 0}\">"+recordInfo.readPageNum+"</strong>";
 				str+="</div>";
 				str+="</div>";
 				str+="<div class='counters'>";
 				str+="<div class='progress-label'>";
-				str+="<span>TotalPage</span>&nbsp; &nbsp;<strong class='primary-color' data-to=\""+${bookVO.book_tot_page}+"\" data-plugin-options=\"{&quot;decimals&quot;: 0}\">"+${bookVO.book_tot_page}+"</strong>";
+				str+="<span>Total Pages</span>&nbsp; &nbsp;<strong class='primary-color' data-to=\""+${bookVO.book_tot_page}+"\" data-plugin-options=\"{&quot;decimals&quot;: 0}\">"+${bookVO.book_tot_page}+"</strong>";
 				str+="</div>";
 				str+="</div>";
 				str+="<div class='counters'>";
@@ -182,7 +182,10 @@
 				str+="<span>Record</span>&nbsp; &nbsp;";
 				str+="<a href='#modal-more-record' data-toggle='modal'><strong class='primary-color' data-to=\""+recordInfo.logingCount+"\" data-plugin-options=\"{&quot;decimals&quot;: 0}\">"+recordInfo.logingCount+"</strong></a>";
 				str+="</div>";
-				str+="<button type='button' class='btn' data-toggle='modal' data-target='#modal-add-record'>Record Write</button>";
+				str+="<div class=\"counters\">";
+				str+="<div class=\"progress-label\" style=\"text-align:center; height:50px\">";
+				str+="<span><button type=\"button\" class=\"btn\" data-toggle=\"modal\" data-target=\"#modal-add-record\" style=\"margin:0;\">Add</button></span>";
+				str+="</div>";
 				str+="</div>";
 				str+="</div>";
 				frontRecordInfo.html(str);
