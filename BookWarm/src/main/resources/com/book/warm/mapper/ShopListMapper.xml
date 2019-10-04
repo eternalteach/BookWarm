@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	from book 
     	order by book_title
     	)
-   	where rownum <= 18
+   	where rownum <= 24
     ]]>
 	</select> 
 	
@@ -41,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	from book 
     	order by book_price_for_sale
     	)
-    where rownum <= 18
+    where rownum <= 24
     ]]>	
 	</select> 
 	
@@ -62,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	from book 
     	order by book_price_for_sale desc
     	)
-    where rownum <= 18
+    where rownum <= 24
     ]]>	
 	</select> 
 	

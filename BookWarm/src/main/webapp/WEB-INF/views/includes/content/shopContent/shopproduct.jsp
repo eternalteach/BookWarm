@@ -4,7 +4,39 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <sec:authentication property="principal.username" var="user_id"/>
+
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="/warm/resources/js/logintest.js"></script>
+
+<link rel="stylesheet" href="resources/css/main.css" />
+
+
 <body class="bg-white">
+
+	<div role="main" class="main">
+		<section class="page-header">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-md-8 text-left">
+					<!-- 	<span class="tob-sub-title text-color-primary d-block">LITLE BIT ABOUT US</span> -->
+						<h1>BOOK SHOP</h1>
+						<!-- <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
+					</div>
+					<div class="col-md-4">
+						<ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
+							<li><a href="shop/shoplist">BOOK SHOP</a></li>
+							<li class="active">BOOK LIST</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+	
    <div class="wrapper">
       <div class="page has-sidebar has-left-sidebar bordered single-product-wrap">
          <div class="page-inner no-border">

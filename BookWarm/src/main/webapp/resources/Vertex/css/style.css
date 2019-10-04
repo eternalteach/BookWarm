@@ -2369,7 +2369,7 @@ h4.v-line-heading:before {
 
 /* Page Header */
 .page-header {
-    background-color: #F0F8FF;
+    background-color: #EAEAEA;
     margin: 0 0 50px 0;
     min-height: 50px;
     padding: 25px 0;

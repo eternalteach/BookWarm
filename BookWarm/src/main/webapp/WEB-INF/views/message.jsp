@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Message</title>
+	<%@ include file="./includes/header/header/vertexHeader.jsp"%>
+	<%@ include file="includes/header/script-vertexEx.jsp" %>
 </head>
 <body>
-	<%@ include file="./includes/header/header/vertexHeader.jsp"%>
 	<%@ include file="includes/header/header-topnav.jsp"%>
 	<%@ include file="./includes/content/message/msglistPage.jsp"%>
 </body>
