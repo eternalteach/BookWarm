@@ -308,7 +308,7 @@
 	   	  })(),
 	   	  
 	   	  eventRender: function(info) {
-	   		  
+	   		  alert("?");
 	   		  console.log("info.event.id:" + info.event.id);
 	   		  console.log("info.event.title : " + info.event.title);
 	   		  console.log("표지 : " + info.event.extendedProps.imageurl);
@@ -316,32 +316,31 @@
 	   		  
 	   		  var tdObj = $(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "']");
 	   		  var targetDate = tsToDate(info.event.start);
+	   		  var coverStr = "";
 	   		  
 	   		  if(info.event.extendedProps.imageurl != '') {
 	   			  
 	   			  console.log("============ 완독한 책 이미지 뿌려주기 =============");
-	   			  var str = "<div style='width:40%; display:inline-block; position:relative; vertical-align:bottom'><img style='position:absolute; cursor: pointer;' id='" + info.event.id + "' src='" + info.event.extendedProps.imageurl + "'></div>"; 
+	   			coverStr = "<div style='width:40%; display:inline-block; position:relative; vertical-align:bottom'><img style='position:absolute; cursor: pointer;' id='" + info.event.id + "' src='" + info.event.extendedProps.imageurl + "'></div>"; 
 	   			  
 	   			  if(info.event.extendedProps.firstImg) {
 	   				  // rerender시 표지가 반복적으로 추가되지 않도록 html에 새로 뿌려준다.
-	   				  alert("여기야?: " + str);
-		   			  tdObj.html(str);
+		   			  tdObj.html(coverStr);
 	   			  } else {
-	   				alert("아니면 여기?: " + str);
-		   			  tdObj.append(str);
+		   			  tdObj.append(coverStr);
 	   			  }
 	   		  } else {
-					alert("여기일 가능성?: " + str);
+					alert("여기일 가능성?: " + coverStr);
   				  // 이벤트가 몇 개 이상이면 나타나는 +more은 이미지랑 영역이 겹치므로 
   				  // 당일 이벤트가 3개 이상인 경우 +버튼이 나타나도록 따로 구현.
-  				  alert($(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "'] button").length);
 	   			  if(!$(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "'] button").length) {
 	   				  //button이 없는 상태
-	   				  alert("여기일 가능성?: " + str);
-		   			  str += "<div style='display:inline-block; position:relative; float:right; width:20%;'>";
-		   			  str += "   <button class='plus' data-toggle='modal' data-target='#" + targetDate + "' style='width:100%; height:20%; border:transparent; background-color:lightgray; color:white;'>+</button>";
-		   			  str += "</div>"; 
-		   			  tdObj.append(str); 
+	   				  alert("여기 str: " + coverStr);
+	   				coverStr += "<div style='display:inline-block; position:relative; float:right; width:20%;'>";
+	   				coverStr += "   <button class='plus' data-toggle='modal' data-target='#" + targetDate + "' style='width:100%; height:20%; border:transparent; background-color:lightgray; color:white;'>+</button>";
+	   				coverStr += "</div>"; 
+		   			  tdObj.append(coverStr); 
+		   			  alert(tdObj.html());
 	   			  }
 	   		  }
 	   		  // gridMonth형에서 title은 나타나지 않도록 한다.
