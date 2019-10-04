@@ -10,15 +10,14 @@
 <link rel="stylesheet" href="./resources/css/index.css" />
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
-<body>
+<body style="background-color:white">
 	<div>
-		<a href="javascript:openModal('login-modal');"><img
-			src="resources/img/first_page/firstPage02.jpg"></a>
+		<a href="javascript:openModal('login-modal');"><img style="width:200px" src="resources/img/alice_door.png"></a>
 		<!-- 이미지 태그 클릭시 모달창으로 로그인 띄우게하기
  그 뒤 로그인 성공시 서재페이지로 이동, 비회원 미리보기는 새 창 띄워서 소개창 만들기 -->
 		<!-- 로그인 성공시 library 페이지로 이동 -->
 		<!-- 로그인 실패시 실패원인 띄우기 -->
-	</div>
+	</div>	
 		<div id="modal">
 			<div class="modal-library login-modal">
 				<a href="javascript:;" class="close">X</a>

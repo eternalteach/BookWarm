@@ -38,26 +38,20 @@ height:100vh;
 	margin-left: 15%
 }
 .library-font{
-	/* font-style: italic; 
+	font-style: italic; 
 	font-size:medium;
 	margin-right: 10px;
-	margin-left: 10px; */
+	margin-left: 10px;
 }
 .bookshelf-div {
-	/* width: 55vw;
+	width: 55vw;
 	height: 67vh;
 	dispay: block;
 	margin-left: auto;
 	margin-right: 10%;
 	background-color: transparent;
 	background-image: url('/warm/resources/img/library/bookshelf/bookshelf-2.png');
-	background-size: 100% 100%; */
-}
-.library-font{
-	font-style: italic; 
-	font-size:medium;
-	margin-right: 10px;
-	margin-left: 10px;
+	background-size: 100% 100%;
 }
 
 .library_emptySpace {
@@ -79,9 +73,8 @@ height: 100%;
 }
 
 .book-thumbnail {
-	/* height: 12.5vh;
-	width: 11vh; */
-	box-shadow: 2px 2px 5px 3px lightgray;
+	height: 12.5vh;
+	width: 11vh;
 }
 .book-position{
 }
@@ -156,11 +149,20 @@ bottom:5vh;
 	width: 55vw;
 	height: 67vh;
 }
+.bookshelf-table-bottom{
+	height: 1.2vh;
+}
 .bookshelf-table-bottomSpace{
 	height: 8.8vh;
 }
-.bookshelf-table-bottom{
-	height: 1.2vh;
+.bookshelf-table-side{
+	width:1.4vw;
+}
+.bookshelf-table-centerbar{
+	width:11vw;
+}
+.bookshelf-table-bar{
+	width:55vw;
 }
 .bookshelf-table-books{
 	height: 12vh;
@@ -172,114 +174,7 @@ bottom:5vh;
 .bookshelf-table-topspace{
 	height: 1vh;
 }
-.bookshelf-table-side{
-	width:1.4vw;}
-.bookshelf-table-centerbar{
-	width:11vw;
-}
-bookshelf-table-bar{
-	width:55vw;
-}
 
 .transparent{
 	background:transparent;
 }
-
-.bar-breadcrumb {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
-  list-style: none;
-  background-color: #f6f9fc;
-  border-radius: 0.25rem;
-}
-
-.bar-breadcrumb-item + .bar-breadcrumb-item {
-  padding-left: 0.5rem;
-}
-
-.bar-breadcrumb-item + .bar-breadcrumb-item::before {
-  display: inline-block;
-  padding-right: 0.5rem;
-  color: #8c98a4;
-  content: "/";
-}
-
-.bar-breadcrumb-item + .bar-breadcrumb-item:hover::before {
-  text-decoration: underline;
-}
-
-.bar-breadcrumb-item + .bar-breadcrumb-item:hover::before {
-  text-decoration: none;
-}
-
-.bar-breadcrumb-item.active {
-  color: #8c98a4;
-}
-/* from style.css */
-
-
-/* Page Header */
-/* .page-header {
-    background-color: #f7f7f7;
-    margin: 0 0 50px 0;
-    min-height: 50px;
-    padding: 45px 0;
-    position: relative;
-    text-align: center;
-    border-bottom: 1px solid #e6e6e6;
-} */
-
-.page-header .bar-breadcrumb {
-    background: none;
-    margin: 0 0 8px 2px;
-    padding: 0;
-    position: relative;
-    z-index: 1;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-}
-
-.page-header .bar-breadcrumb > li {
-    display: inline-block;
-    font-size: 12px;
-    text-shadow: none;
-}
-
-.page-header .bar-breadcrumb > li + li:before {
-    color: inherit;
-    opacity: 0.5;
-    font-family: 'FontAwesome';
-    content: "\f105";
-    padding: 0 7px 0 5px;
-    font-weight: 900;
-}
-
-.page-header .bar-breadcrumb.breadcrumb-valign-mid {
-    position: absolute;
-    top: 36%;
-    right: 20px;
-}
-/*Beadcrumb*/
-
-.v-page-heading .bar-breadcrumb {
-    float: right;
-    background-color: transparent;
-    margin-bottom: 0px;
-    padding: 8px 0 6px;
-    font-size: 12px;
-}
-
-.v-page-heading .bar-breadcrumb > li + li:before {
-    padding: 0 3px;
-}
-
-/*End breadcrumb*/
-
-
-/* from theme-responsive.css */
-.bar-breadcrumb { margin-right: 0; }

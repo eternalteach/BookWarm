@@ -17,73 +17,19 @@
 <body>
 <%@ include file="includes/header/header-topnav.jsp"%>
 
-
       <div class="page bordered">
-
          
          <div class="page-inner p-none">
 
             <section class="section-primary alternate-color">
                <div class="container">
 
-                  <!-- <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
-                     <li class="nav-item active" data-option-value="*"><a class="nav-link" href="#">Show All</a></li>
-                     <li class="nav-item" data-option-value=".websites"><a class="nav-link" href="#">Websites</a></li>
-                     <li class="nav-item" data-option-value=".logos"><a class="nav-link" href="#">Logos</a></li>
-                     <li class="nav-item" data-option-value=".brands"><a class="nav-link" href="#">Brands</a></li>
-                     <li class="nav-item" data-option-value=".medias"><a class="nav-link" href="#">Medias</a></li>
-                  </ul> -->
-
                   <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
                      <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
 
-                        <div class="col-lg-3 isotope-item websites">
 
-                           <article class="v_blog-item v_blog-item-related v_blog-grid v_blog_quate">
-                              <div class="v_blog-item-inner">
-                                 <div class="v_blog-item-media">
-                                    <a href="#">
-                                       <div class="v_blog-item-content">
-                                          <div class="v_blog-item-content-inner">
-
-                                             <div class="v_blog_quate-icon text-white mt-10">
-                                                <i class="fa fa-quote fa-4x"></i>
-                                             </div>
-
-                                             <div class="v_blog-item-header">
-                                                <ul class="v_blog-item-meta">
-                                                   <li class="v_blog-item-date">
-                                                      <time class="" datetime="2018-06-30T10:47:48+00:00">
-                                                         June 30, 2018
-                                                      </time>
-                                                   </li>
-                                                </ul>
-
-                                                <a href="blog-post-standard-2.html" rel="bookmark">
-                                                   <h2 class="v_blog-item-title text-white fs-30" itemprop="name headline">Quote Post Format</h2>
-                                                </a>
-                                             </div>
-
-                                             <div class="text-white o-7" itemprop="articleBody">
-                                                <p>
-                                                   Many years ago, I worked for my parents who own a video production company.
-                                                </p>
-                                                <p class="v_blog-item-author">
-                                                   <a href="#">
-                                                      <img alt="" src="/warm/resources/Vertex/img/team/t1.png">
-                                                      <span>by Jhon Dode</span>
-                                                   </a>
-                                                </p>
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <img src="" />
-                                    </a>
-                                 </div>
-                              </div>
-                           </article>
-                        </div>
-						
+                    <c:set value="\\" var="bslash"/>
+                    <c:set value="/" var="slash"/>
 						
 					<c:forEach items="${openreview}" var="review" varStatus="status">
 						<fmt:formatDate var="date" value="${review.review_modify_date}" pattern="yyyy. MM. dd"/>
@@ -95,18 +41,15 @@
                               
                                	 <c:if test="${!empty review.attachList}">
                                  <div class="v_blog-item-media">
-                                    <a href="#">
+                                    <a href="/warm/reviewSelectOne?review_no=${review.review_no}&isbn=${review.isbn}">
                                     
-                                       <c:set var="uploadPath" value="${review.attachList[0].uploadPath.replace('\\', '/')}"/>
+                                       <c:set var="uploadPath" value="${fn:replace(review.attachList[0].uploadPath,bslash,slash)}"/>
                                        <c:set var="uuid" value="${review.attachList[0].uuid}"/>
                                        <c:set var="fileName" value="${review.attachList[0].fileName}"/>
                                        <c:set var="attachM" value="${uploadPath}/${uuid}_${fileName}"/>
-                                       attachM :  ${attachM}
+                                        
+                                       <img class="w-100" src="/warm/display?fileName=${attachM}"/>
                                        
-                                       <!-- var fileCallPath = encodeURIComponent(attach.uploadPath + "/" + attach.uuid + "_" + attach.fileName) -->
-                                       <%-- <img class="w-100" src="javascript:encodeURL(${attachM});"/> --%>
-                                       
-                                       <img src='/warm/display?fileName=${attachM}'>
                                     </a>
                                  </div>
                                  </c:if>
@@ -122,11 +65,11 @@
                                        </ul>
 
                                        <a href="/warm/reviewSelectOne?review_no=${review.review_no}&isbn=${review.isbn}" rel="bookmark">
-                                          <h2 class="v_blog-item-title" itemprop="name headline">${review.review_title}</h2>
+                                          <h2 class="v_blog-item-title" itemprop="name headline" style="overflow:hidden; text-overflow:ellipsis">${review.review_title}</h2>
                                        </a>
                                     </div>
                                     <div itemprop="articleBody">
-                                       <p>
+                                       <p style="overflow:hidden; display: -webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:10; line-height:1.8em; max-height:18em; margin-top:15px; margin-bottom:30px">
                                           ${review.review_content}
                                        </p>
                                        <hr />
@@ -144,57 +87,6 @@
                            </article>
                         </div>
 					</c:forEach>	
-
-                        <div class="col-lg-3 isotope-item brands">
-                           <article class="v_blog-item v_blog-item-related v_blog-grid">
-                              <div class="v_blog-item-inner">
-                                 <div class="v_blog-item-media">
-                                    <div class="carousel-wrap">
-                                       <div class="owl-carousel owl-theme" data-plugin-options='{"items":1, "singleItem": true, "dots":false, "autoPlay": true}'>
-                                          <div>
-                                             <img alt="" class="img-responsive" src="">
-                                          </div>
-                                          <div>
-                                             <img alt="" class="img-responsive" src="">
-                                          </div>
-                                       </div>
-                                       <div class="customNavigation">
-                                          <a class="prev"><i class="fa fa-angle-left"></i></a>
-                                          <a class="next"><i class="fa fa-angle-right"></i></a>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="v_blog-item-content">
-                                    <div class="v_blog-item-header">
-                                       <ul class="v_blog-item-meta">
-                                          <li class="v_blog-item-date">
-                                             <time class="" datetime="2018-06-30T10:47:48+00:00">
-                                                June 30, 2018
-                                             </time>
-                                          </li>
-                                       </ul>
-
-                                       <a href="blog-post-standard-2.html" rel="bookmark">
-                                          <h2 class="v_blog-item-title" itemprop="name headline">This is a standard post with a images slider</h2>
-                                       </a>
-                                    </div>
-
-                                    <div itemprop="articleBody">
-                                       <p>
-                                          Many years ago, I worked for my parents who own a video production company.
-                                       </p>
-                                       <hr />
-                                       <p class="v_blog-item-author">
-                                          <a href="#">
-                                             <img alt="" src="/warm/resources/Vertex/img/team/t1.png">
-                                             <span>by Jhon Dode</span>
-                                          </a>
-                                       </p>
-                                    </div>
-                                 </div>
-                              </div>
-                           </article>
-                        </div>
 
 
                     <!--  <div class="row">
@@ -222,47 +114,5 @@
                </div>
             </section>
          </div>
-
-
-
-<script>
-
-// 여기서 가져와야 하는 첨부파일은, 뿌려지는 
-
-//첨부파일 가져오기 위한 즉시 실행 함수
-/* (function() {
-	var review_no = '<c:out value="${review.review_no}"/>';
-	$.getJSON("/warm/getAttachList", {review_no: review_no}, function(arr) {
-		
-				var uploadImgs = $(".uploadResult");
-				var str = uploadImgs.html() + "";
-				
-				$(arr).each(function(i, attach) {
-					var fileCallPath = encodeURIComponent(attach.uploadPath + "/" + attach.uuid + "_" + attach.fileName);
-					str += "<li data-path = '" + attach.uploadPath + "' data-uuid='" + attach.uuid + "' data-filename='" + attach.fileName + "'><a>";
-					str += "<img src='/warm/display?fileName=" + fileCallPath + "'>";
-					str += "</a>";
-					str += "</li>";
-				});
-				
-				uploadImgs.html(str); 
-				
-	}); // end getJSON
-})(); // end function */
-
-
-
-function encodeURL(url) {
-	url.replace("\\", "//");
-	console.log("안녕");
-	alert("encode: " + url);
-	alert("변환 후: " + encodeURIComponent(url));
-	
-	return "src=/warm/display?fileName=" + encodeURIComponent(url);
-}
-
-</script>
-
-
 
 <%@ include file="includes/footer/footer-1.jsp"%>

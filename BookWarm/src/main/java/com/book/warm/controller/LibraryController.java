@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,10 +40,14 @@ public class LibraryController {
 	BookService bookService;
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String library(Principal principal, Model model) throws Exception {
+	public String library(Authentication auth, Principal principal, Model model) throws Exception {
 		
-		System.out.println(principal);
-		System.out.println("principal.getName(): " + principal.getName());
+		System.out.println(auth.getAuthorities().size());
+		if(auth.getAuthorities().size() >= 2) {
+			return "redirect:admin";
+		}
+		
+		
 		
 		model.addAttribute("libraryBooks",mapper.getLibraryBooks(principal.getName()));
 		
