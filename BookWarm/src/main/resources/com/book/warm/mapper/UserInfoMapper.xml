@@ -90,8 +90,7 @@
 		delete from user_info where user_id=#{user_id}
 	</delete>
 	
-	<!-- 아래 쿼리문때문에 안 돌아감 -->
-	<!-- <select id="getOrderDetails" resultType="com.book.warm.vo.OrdersVO">
+	<select id="getOrderDetails" resultType="com.book.warm.vo.OrdersVO">
 		select *
 		from orders
 		where orders_no = ${orders_no}
@@ -103,10 +102,32 @@
 		where coupon_no = #{coupon_no}
 	</select>
 	
+	<select id="getPostInfo" resultType="com.book.warm.vo.PostVO">
+		select *
+		from post
+		where post_no = #{post_no}
+	</select>
+	
+	
+	
+	<!-- 아래 쿼리문때문에 안 돌아감 -->
+	<!--
+	<select id="getOrderDetails" resultType="com.book.warm.vo.OrdersVO">
+		select *
+		from orders
+		where orders_no = ${orders_no}
+	</select>
+	
+	<select id="getUsedCoupon" resultType="com.book.warm.vo.CouponVO">
+		select *
+		from coupon
+		where coupon_no = #{coupon_no}
+	</select>
 	<select id="getPostInfo" resultType="com.book.warm.vo.postVO">
 		select *
 		from post
 		where post_no = #{post_no}
-	</select> -->
+	</select>
+	 -->
 	
 </mapper>

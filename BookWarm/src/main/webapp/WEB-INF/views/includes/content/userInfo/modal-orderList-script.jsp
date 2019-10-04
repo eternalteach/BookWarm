@@ -91,7 +91,8 @@ function showDetail(orders_no) {
 	    contentType:"application/json;charset=UTF-8",
 	    async: false,
 	    success : function(data, status, xhr) {
-			alert("data : " + data);
+	    	var getMap = data.map;
+			console.log(getMap);
 		}, error : function(){
 			console.log("error!");
 		}
