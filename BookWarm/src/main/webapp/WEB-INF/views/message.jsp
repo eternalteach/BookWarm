@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Message</title>
-	<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<%@ include file="./includes/header/header/vertexHeader.jsp"%>
+	<%@ include file="includes/header/script-vertexEx.jsp" %>
 </head>
 <body>
 	<%@ include file="includes/header/header-topnav.jsp"%>

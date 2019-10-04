@@ -8,7 +8,7 @@
 <head>
 <body>
 	<div role="main" class="main">
-		<section class="page-header" style="padding-top: 100px;">
+		<section class="page-header">
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-md-8 text-left">
@@ -87,7 +87,7 @@
 												<div class="product-details" style="font-size:13px;text-align: center; padding-bottom:0px;">
 													<h3 class="product-name"><a style="font-size:15px;text-align: center;line-height:15px;">${shop.book_title}</a></h3>
 													<span class="product-posted_in">
-													<a style="font-size:15px;text-align: center;line-height:15px;" rel="tag">${shop.writer_name}&nbsp;저</a></span> 
+													<a style="font-size:15px;text-align: center;line-height:13px;" rel="tag">${shop.writer_name}&nbsp;저</a></span> 
 													<span class="product-posted_in"><a rel="tag" id="translastor_name"><%-- ${shop.translator_name}&nbsp;저 --%></a></span>
 													<span class="product-price" style="padding-bottom: 20px;"> <span class="product-amount">
 														<span class="product-price-currency" style="text-align: center;">정가&nbsp;<fmt:formatNumber value="${shop.book_price}" pattern="###,###,###" /></span>원<br>
@@ -110,12 +110,12 @@
 												<div class="product-media">
 													<div class="img-wrap first-image">
 														<a style="text-align: center;" href="shopproduct?isbn=${shop_title.isbn}">
-														<img style="max-width:80%; align:center; border:0.5px solid #EAEAEA;" src="${shop_title.book_img}"></a>
+														<img style="max-width:80%; align:center;" src="${shop_title.book_img}"></a>
 													</div>
 												</div>
 												<div class="product-details" style="font-size:13px;text-align: center; padding-bottom:0px;">
 													<h3 class="product-name"><a style="font-size:15px;text-align: center;line-height:15px;" href="shopproduct?isbn=${shop_title.isbn}">${shop_title.book_title}</a></h3>
-													<span class="product-posted_in"><a style="font-size:15px;text-align: center;line-height:15px;" rel="tag">${shop_title.writer_name}&nbsp;저</a></span>
+													<span class="product-posted_in"><a style="font-size:13px;text-align: center;line-height:15px;" rel="tag">${shop_title.writer_name}&nbsp;저</a></span>
 													<span class="product-price" style="padding-bottom: 20px;"><span class="product-amount">
 														<span class="product-price-currency" style="text-align: center;">정가&nbsp;<fmt:formatNumber value="${shop_title.book_price}" pattern="###,###,###" /></span>원<br>
 													</span>
@@ -140,7 +140,7 @@
 												</div>
 												<div class="product-details" style="font-size:13px;text-align: center; padding-bottom:0px;">
 													<h3 class="product-name"><a style="font-size:15px;text-align: center;line-height:15px;" href="shopproduct?isbn=${bookpricelist2.isbn}">${bookpricelist2.book_title}</a></h3>
-													<span class="product-posted_in"><a style="font-size:15px;text-align: center;line-height:15px;" rel="tag">${bookpricelist2.writer_name}&nbsp;저</a></span>
+													<span class="product-posted_in"><a style="font-size:13px;text-align: center;line-height:15px;" rel="tag">${bookpricelist2.writer_name}&nbsp;저</a></span>
 													<span class="product-price" style="padding-bottom: 20px;"><span class="product-amount">
 														<span class="product-price-currency" style="text-align: center;">정가&nbsp;<fmt:formatNumber value="${bookpricelist2.book_price}" pattern="###,###,###" /></span>원<br>
 													</span>
@@ -159,7 +159,6 @@
 		</div>
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
+	
 </body>
 </html>

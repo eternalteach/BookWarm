@@ -6,9 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+	<%@ include file="./includes/header/header/vertexHeader.jsp"%>
 	<%@ include file="includes/header/script-vertexEx.jsp" %>
-
-<title>책 상세정보</title>
 </head>
 <body>
 	<%@ include file="includes/header/header-topnav.jsp"%>
