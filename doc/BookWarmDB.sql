@@ -1,4 +1,32 @@
+--관리자 페이지
+create sequence admin_seq;
 
+create table admin_board(
+admin_bno number(10,0) primary key,
+user_id varchar2(20) not null,
+board_no number(10,0) not null, -- 삭제된 글 번호
+board_name varchar2(40) not null, -- 삭제된 글 게시판 이름
+board_subject varchar2(40), -- 삭제된 글 말머리
+board_title varchar2(200) not null, --삭제된 글 제목
+board_content varchar2(2000) not null, --삭제된 글 내용
+board_written_time date not null, --삭제된 글 작성일
+board_modify_time date, --삭제된 글 수정일
+board_clicked number(10,0), -- 삭제된 글 조회수
+board_like number(10,0), --삭제된 글 좋아요
+board_group number(10,0),
+board_step number(10,0),
+board_indent number(10,0),
+isbn varchar2(20),
+board_ref number(10,0),
+board_open varchar2(7)
+);
+
+create table admin_attach(
+UUID varchar2(100),
+uploadpath varchar2(200),
+filename varchar2(100),
+review_no number(10,0)
+);
 
 --------------- user ---------------(임지현)
 create table user_info(
@@ -177,6 +205,7 @@ comm_content VARCHAR2(2000) not null,
 comm_written_time DATE DEFAULT SYSDATE,
 comm_modify_time DATE DEFAULT SYSDATE,
 comm_clicked NUMBER(10,0) DEFAULT 0,
+comm_like NUMBER(10,0) DEFAULT 0,
 comm_group NUMBER(10,0),
 comm_step NUMBER(10,0),
 comm_indent NUMBER(10,0),
@@ -196,9 +225,11 @@ comm_cmt_content VARCHAR2(2000) not null,
 comm_cmt_written_time DATE DEFAULT SYSDATE,
 comm_cmt_modify_time DATE DEFAULT SYSDATE,
 comm_cmt_deleted char(1) default 'n',
+comm_cmt_clicked NUMBER(10,0) DEFAULT 0,
 comm_cmt_group NUMBER(10,0),
 comm_cmt_step NUMBER(10,0),
 comm_cmt_indent NUMBER(10,0),
+comm_cmt_likeNUMBER(10,0) DEFAULT 0
 constraint pk_community_board_comment primary key(comm_cmt_no),
 constraint fk_community_board_comment FOREIGN KEY(comm_no)
            REFERENCES community_board(comm_no)
@@ -262,34 +293,57 @@ constraint fk_coupon_no_user_id FOREIGN KEY(user_id)
            REFERENCES user_info(user_id)
 );
 
-
---결제
-create table pay(
-pay_no varchar2(20),
-pay_way varchar2(20) not null,
-pay_total number(10,0) not null,
-pay_refund_account varchar2(50) not null,
-constraint pk_pay primary key(pay_no)
+--배송지
+create sequence post_seq;
+create table post(
+    post_no varchar2(20),
+    user_id varchar2(20) not null,
+    post_name varchar2(20) not null,
+    post_phone varchar2(20) not null,
+    post_zipcode number(10,0) not null,
+    post_addr varchar2(100) not null,
+    post_addr_detail varchar2(100),
+    constraint pk_post primary key(post_no),
+    constraint fk_post_user_info FOREIGN KEY(user_id)
+               REFERENCES user_info(user_id)
 );
 
---주문
+--결제
 create sequence orders_seq;
 create table orders(
-orders_no varchar2(20),
-user_id varchar2(20) not null,
-orders_date date not null,
-isbn varchar2(20) not null,
-orders_cnt number(10,0) not null,
-orders_tot number(10,0) not null,
-orders_start_date date not null,
-orders_pay_date date not null,
-coupon_no varchar2(20),
-post_no varchar2(20),
-pay_no varchar2(20) not null,
-orders_status varchar2(10),
-constraint pk_orders primary key(orders_no),
-constraint fk_orders_pay_no FOREIGN KEY(pay_no)
-           REFERENCES pay(pay_no)
+    orders_no varchar2(20),
+    user_id varchar2(20) not null,
+    orders_payment varchar2(20) not null,
+    orders_total number(10,0) not null,
+    refund_account varchar2(50) not null,
+    refund_bank varchar2(10) not null,
+    orders_date date not null,
+    orders_pay_date date,
+    coupon_no varchar2(20),
+    post_no varchar2(20),
+    constraint pk_pay primary key(orders_no),
+    constraint fk_orders_coupon_no FOREIGN KEY(coupon_no)
+               REFERENCES coupon(coupon_no),
+    constraint fk_orders_user_info FOREIGN KEY(user_id)
+               REFERENCES user_info(user_id),
+    constraint fk_orders_post_no FOREIGN KEY(post_no)
+               REFERENCES post(post_no)
+);
+
+
+--주문
+create sequence orders_item_seq;
+create table orders_item(
+    item_no varchar2(20),
+    isbn varchar2(20) not null,
+    item_cnt number(10,0) not null,
+    orders_no varchar2(15) not null,
+    orders_status varchar2(30) not null,
+    constraint pk_orders primary key(item_no),
+    constraint fk_orders_pay_no FOREIGN KEY(orders_no)
+               REFERENCES orders(orders_no),
+    constraint fk_orders_isbn FOREIGN KEY(isbn)
+               REFERENCES book(isbn)
 );
 -- cf. 주문 테이블에 fk가 더 있을 수 있어 fk_테이블명_컬럼명 으로 fk 명명.
 
@@ -665,3 +719,5 @@ Insert into BOOK.REVIEW_COMMENT (REVIEW_CMT_NO,REVIEW_NO,USER_ID,REVIEW_CMT_CONT
 
 
                                                           
+-- user_info sample data(탈퇴한 사용자)
+insert into user_info(user_id, user_pw, user_nickname, user_name, user_bday, user_sex, user_phone, user_mail, user_zipcode, user_addr) values('none', 'none', 'none', 'none', TO_DATE('1111-11-11'), 'X', 'none', 'none', 0, 'none');
