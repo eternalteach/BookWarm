@@ -332,6 +332,7 @@ create table orders(
     user_id varchar2(20) not null,
     orders_payment varchar2(20) not null,
     orders_total number(10,0) not null,
+    orders_pay_total number(10,0) not null,
     refund_account varchar2(50) not null,
     refund_bank varchar2(10) not null,
     orders_date date not null,
