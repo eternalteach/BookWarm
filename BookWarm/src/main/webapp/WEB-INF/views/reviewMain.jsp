@@ -41,6 +41,12 @@
     margin: 0 auto;
   }
   
+  #calendar tbody td {
+  position: relative;
+  z-index: 1;
+}
+
+  
 </style>
 
 </head>
@@ -204,7 +210,7 @@
                      </aside>
                   </div>
                   
-	              <div style="max-width:800px !important; margin-top:20px; margin-left:3%">
+	              <div style="max-width:600px !important; margin-top:20px; margin-left:3%">
 			          <div>
 			              <div>
 			              	 <div class="post-header form-header">
@@ -308,7 +314,7 @@
 	   	  })(),
 	   	  
 	   	  eventRender: function(info) {
-	   		  alert("?");
+	   		 /*  alert("?"); */
 	   		  console.log("info.event.id:" + info.event.id);
 	   		  console.log("info.event.title : " + info.event.title);
 	   		  console.log("표지 : " + info.event.extendedProps.imageurl);
@@ -330,22 +336,24 @@
 		   			  tdObj.append(coverStr);
 	   			  }
 	   		  } else {
-					alert("여기일 가능성?: " + coverStr);
+					/* alert("여기일 가능성?: " + coverStr); */
   				  // 이벤트가 몇 개 이상이면 나타나는 +more은 이미지랑 영역이 겹치므로 
   				  // 당일 이벤트가 3개 이상인 경우 +버튼이 나타나도록 따로 구현.
 	   			  if(!$(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "'] button").length) {
 	   				  //button이 없는 상태
-	   				  alert("여기 str: " + coverStr);
+	   				  /* alert("여기 str: " + coverStr); */
 	   				coverStr += "<div style='display:inline-block; position:relative; float:right; width:20%;'>";
 	   				coverStr += "   <button class='plus' data-toggle='modal' data-target='#" + targetDate + "' style='width:100%; height:20%; border:transparent; background-color:lightgray; color:white;'>+</button>";
 	   				coverStr += "</div>"; 
 		   			  tdObj.append(coverStr); 
-		   			  alert(tdObj.html());
+		   			  /* alert(tdObj.html()); */
 	   			  }
 	   		  }
 	   		  // gridMonth형에서 title은 나타나지 않도록 한다.
 	   		  setTimeout(function() {
 	        	  	$(".fc-event-container a").css("display", "none");
+	        	  	$(".fc-day-top[data-date='" + info.event.extendedProps.dateFormat + "']").css("z-index", "-1");
+	        	  	$(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "'] button").css("z-index", "2");
 	          }, 100);
 	   	  },
 	   	  
@@ -536,22 +544,6 @@
 	};
 </script>
 
-<!--     <script src="./resources/Vertex/js/jquery.min.js"></script>
-    <script src="./resources/Vertex/js/popper.js"></script>
-    <script src="./resources/Vertex/js/bootstrap.min.js"></script>
-    <script src="./resources/Vertex/js/jquery.flexslider-min.js"></script>
-    <script src="./resources/Vertex/js/jquery.easing.js"></script>
-    <script src="./resources/Vertex/js/jquery.fitvids.js"></script>
-    <script src="./resources/Vertex/js/jquery.carouFredSel.min.js"></script>
-    <script src="./resources/Vertex/js/jquery.validate.js"></script>
-    <script src="./resources/Vertex/js/theme-plugins.js"></script>
-    <script src="./resources/Vertex/js/jquery.isotope.min.js"></script>
-    <script src="./resources/Vertex/js/imagesloaded.js"></script>
-
-    <script src="./resources/Vertex/js/view.min.js?auto"></script>
-    <script src="./resources/Vertex/plugins/aos/aos.js"></script>
-    <script src="./resources/Vertex/js/theme-core.js"></script> -->
-    
 
 <%@ include file="includes/header/script-vertexEx.jsp"%> 
 <%@ include file="includes/footer/footer-1.jsp"%>
