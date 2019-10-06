@@ -144,6 +144,7 @@ public class UserInfoController {
 		PostVO post = null;
 		if(post_no != null) {
 			post = userInfoService.getPostInfo(post_no);
+			// getPostInfo xml다시 보기....post객체 안 받아와지는듯!!!
 		}	
 		
 		// 4. 맵으로 묶기

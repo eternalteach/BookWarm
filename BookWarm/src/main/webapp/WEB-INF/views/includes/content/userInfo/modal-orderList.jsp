@@ -6,11 +6,10 @@
 	<a href="#" data-smart-modal="#smart-modal-validation" class="smartforms-modal-trigger">Modal Validation</a>
 </div> -->
 
-	<div class="smartforms-modal-container" id="modal">
-
+	<div class="smartforms-modal-container" id="modal" style="overflow:auto">
 		<div class="smartforms-modal-header">
-			<h3>주문 상세</h3>
-			<!-- <a href="javascript:hideModal()" class="smartforms-modal-close">&times;</a>	X버튼 ; 모달창끄기 -->
+ 			<h3>주문 상세</h3>
+			<a href="javascript:hideModal()" class="smartforms-modal-close" style="text-align:right">&times;</a> <!-- X버튼 ; 모달창끄기 -->
 		</div>
 		<!-- .smartforms-modal-header -->
 
@@ -19,78 +18,90 @@
 				<div class="smart-forms smart-container wrap-full">
 					<!-- 모달창 시작하는 부분 -->
 					<div class="form-body">
-						<a href="javascript:hideModal()" class="smartforms-modal-close">&times;</a> <!-- X버튼 ; 모달창끄기 -->
 						
 						<form method="post" action="" id="smart-form">
 							
 							<div class="frm-row section colm colm6">
-								pay 정보
+								<h4>결제 정보</h4>
 							</div>
 							<div class="frm-row">
-								<div class="section colm colm6">
-									<label class="field prepend-icon">
-										<input type="text" name="firstname" id="firstname" class="gui-input">
-										<span class="field-icon">
-											<i class="fa fa-user"></i>
-										</span>
-									</label>
+								<!-- 결제 방법 -->
+								<div class="section colm">
+									결제 방법 : <input type="text" name="orders_payment" id="orders_payment" class="gui-input">
 								</div>								
-								<!-- end section -->
 								
-								<div class="section colm colm6">
-									<label class="field prepend-icon">
-										<input type="text" name="lastname" id="lastname" class="gui-input">
-										<span class="field-icon">
-											<i class="fa fa-user"></i>
-										</span>
-									</label>
+								<!-- 주문 총액(할인받기 전 금액) -->
+								<div class="section colm">
+									주문 도서 총액 : <input type="text" name="orders_total" id="orders_total" class="gui-input">
 								</div>
-								<!-- end section -->
+								
+								<!-- 결제 금액(주문 총액-할인금액) -->
+								<div class="section colm">
+									결제 금액 : <input type="text" name="orders_pay_total" id="orders_pay_total" class="gui-input">
+								</div>
+								
+								<!-- 환불받을 계좌 -->
+								<div class="section colm">
+									환불 받을 계좌번호 : <input type="text" name="refund_account" id="refund_account" class="gui-input">
+								</div>
+								
+								<!-- 환불받을 은행 -->
+								<div class="section colm">
+									환불 받을 은행 : <input type="text" name="refund_bank" id="refund_bank" class="gui-input">
+								</div>
+								
+								<!-- 주문일 -->
+								<div class="section colm">
+									주문일 : <input type="text" name="orders_date" id="orders_date" class="gui-input">
+								</div>
+								
+								<!-- 결제일 -->
+								<div class="section colm">
+									결제일 : <input type="text" name="orders_pay_date" id="orders_pay_date" class="gui-input">
+								</div>
+							</div>
+
+
+
+							
+							<div id="coupon_area">
 							</div>
 							
-							<!-- end .frm-row section -->
+							
+							
+							
+							<div class="frm-row section colm colm6">
+								<h4>배송 정보</h4>
+							</div>
 							<div class="frm-row">
-								<div class="section colm colm6">
-									<label class="field prepend-icon"> <input type="email"
-										name="emailaddress" id="emailaddress" class="gui-input"
-										placeholder="Email address"> <span class="field-icon"><i
-											class="fa fa-envelope"></i></span>
-									</label>
+								<!-- 배송 받을 사람 이름 -->
+								<div class="section colm">
+									이름 : <input type="email" name="post_name" id="post_name" class="gui-input">
 								</div>
-								<!-- end section -->
-								<div class="section colm colm6">
-									<label class="field prepend-icon"> <input type="tel"
-										name="telephone" id="telephone" class="gui-input"
-										placeholder="Telephone number"> <span
-										class="field-icon"><i class="fa fa-phone-square"></i></span>
-									</label>
+								
+								<!-- 배송 받을 사람 전화번호 -->
+								<div class="section colm">
+									전화번호 : <input type="email" name="post_phone" id="post_phone" class="gui-input">
 								</div>
-								<!-- end section -->
+								
+								<!-- 배송 우편번호 -->
+								<div class="section colm">
+									우편 번호 : <input type="email" name="post_zipcode" id="post_zipcode" class="gui-input">
+								</div>
+								
+								<!-- 배송 주소 -->
+								<div class="section colm">
+									주소 : <input type="email" name="post_addr" id="post_addr" class="gui-input">
+								</div>
+								
+								<!-- 할인 받은 금액 -->
+								<div class="section colm">
+									<input type="email" name="post_addr_detail" id="post_addr_detail" class="gui-input">
+								</div>
+								
 							</div>
 							<!-- end .frm-row section -->
-							<div class="frm-row">
-								<div class="section colm colm6">
-									<label class="field prepend-icon"> <input type="text"
-										name="address" id="address" class="gui-input"
-										placeholder="Physical address"> <span
-										class="field-icon"><i class="fa fa-map-marker"></i></span>
-									</label>
-								</div>
-								<!-- end section -->
-								<div class="section colm colm6">
-									<label class="field select"> <select name="departments"
-										id="departments">
-											<option value="">Select Department</option>
-											<option value="Sales">Sales and Marketing</option>
-											<option value="Techical">Techical</option>
-											<option value="Management">Management</option>
-											<option value="ICT">ICT</option>
-									</select> <i class="arrow double"></i>
-									</label>
-								</div>
-								<!-- end section -->
-							</div>
-							<!-- end .frm-row section -->
+							
 							<div class="section">
 								<label class="field prepend-icon">
 									<textarea class="gui-textarea" id="sendermessage" name="sendermessage" placeholder="Your message"></textarea>
