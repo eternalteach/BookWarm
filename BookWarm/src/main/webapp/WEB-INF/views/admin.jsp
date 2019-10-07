@@ -22,7 +22,6 @@
    <!-- Vendor CSS -->
    <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/tether/tether.min.css" />
    <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/bootstrap/css/bootstrap.min.css">
-<!--    <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/font-awesome/css/font-awesome.min.css"> -->
    <link href="/warm/resources/Vertex/css/font-awesome.min.css" rel="stylesheet" />
    <link rel="stylesheet" href="/warm/resources/VertexEx/css/fonts/vertex-icons.css" />
    <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/ion-icons/css/ionicons.min.css" />
@@ -38,15 +37,15 @@
    <!-- Theme CSS -->
    <link href="/warm/resources/VertexEx/css/main.css" rel="stylesheet" />
    <link href="/warm/resources/VertexEx/css/main-shortcodes.css" rel="stylesheet" />
-<!--    <link href="/warm/resources/VertexEx/css/header.css" rel="stylesheet" /> -->
    <link href="/warm/resources/Vertex/css/header.css" rel="stylesheet" />
    <link href="/warm/resources/VertexEx/css/form-element.css" rel="stylesheet" />
    <link href="/warm/resources/VertexEx/css/animation.css" rel="stylesheet" />
-   <link href="/warm/resources/VertexEx/css/font-icons.css" rel="stylesheet" />
-   <link href="/warm/resources/VertexEx/css/blog.css" rel="stylesheet" />
+   <link href="/warm/resources/VertexEx/css/font-icons.css" rel="stylesheet" /> 
+   <link href="/warm/resources/Vertex/css/blog.css" rel="stylesheet" />
    <link href="/warm/resources/VertexEx/css/responsive.css" rel="stylesheet" />
    <link href="/warm/resources/VertexEx/css/utilities.css" rel="stylesheet" />
    <link href="/warm/resources/VertexEx/css/skins/default.css" rel="stylesheet" />
+   <link href="/warm/resources/Vertex/css/style.css" rel="stylesheet" />
 
    <!-- Theme Custom CSS -->
    <link rel="stylesheet" href="/warm/resources/VertexEx/css/custom.css">
@@ -54,7 +53,6 @@
    <!-- Style Swicher -->
    <link href="/warm/resources/VertexEx/vendor/style-switcher/style-switcher.css" rel="stylesheet" />
    <link href="/warm/resources/VertexEx/vendor/style-switcher/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
-
 
 <script type="text/javascript" src="/warm/resources/js/admin.js"></script>
 <script type="text/javascript" src="/warm/resources/js/DateJsonToJsp.js"></script>
@@ -93,8 +91,8 @@
 									<div class="isotope-item page-inner community">
 										<section class="b-bordered">
 											<div class="container">
-												<div class="row justify-content-center">
-													<div class="col-lg-12">
+												<div class="row justify-content-left">
+													<div class="col-lg-8">
 														<div class="pull-right" colspan="5">
 															<h3 class="btn btn-sm">커뮤니티 삭제된 게시물 </h3>
 														</div>
@@ -121,8 +119,8 @@
 									<div class="isotope-item page-inner review">
 										<section class="b-bordered">
 											<div class="container">
-												<div class="row justify-content-center">
-													<div class="col-lg-12">
+												<div class="row justify-content-left">
+													<div class="col-lg-8">
 														<div class="pull-right" colspan="5">
 															<h3 class="btn btn-sm">리뷰 보드 삭제된 게시물 </h3>
 														</div>
@@ -235,7 +233,6 @@
     </div>
 </div>
 
-
   <!-- Vendor -->
    <script src="/warm/resources/VertexEx/vendor/jquery/jquery.js"></script>
    <script src="/warm/resources/VertexEx/vendor/jquery/jquery.nav.js"></script>
@@ -243,7 +240,6 @@
    <script src="/warm/resources/VertexEx/vendor/jquery.appear/jquery.appear.min.js"></script>
    <script src="/warm/resources/VertexEx/vendor/jquery.easing/jquery.easing.min.js"></script>
    <script src="/warm/resources/VertexEx/vendor/jquery-cookie/jquery-cookie.min.js"></script>
-   
    <script src="/warm/resources/VertexEx/vendor/magnific-popup/jquery.magnific-popup.js"></script>
    <script src="/warm/resources/VertexEx/vendor/modernizr/modernizr.min.js"></script>
    <script src="/warm/resources/VertexEx/vendor/tether/tether.min.js"></script>
@@ -251,7 +247,6 @@
    <script src="/warm/resources/VertexEx/vendor/menuzord/menuzord.js"></script>
    <script src="/warm/resources/VertexEx/vendor/sticky/jquery.sticky.min.js"></script>
    <script src="/warm/resources/VertexEx/vendor/isotope/jquery.isotope.min.js"></script>
-   
    <script src="/warm/resources/VertexEx/vendor/respond/respond.js"></script>
    <script src="/warm/resources/VertexEx/vendor/images-loaded/imagesloaded.js"></script>
    <script src="/warm/resources/VertexEx/vendor/owl-carousel/owl.carousel.js"></script>
@@ -292,9 +287,6 @@ function modifyUserAuthentication(auth){
 		userInfoInnerHTML+="<option value=\"ROLE_USER\">사용자(LV1)</option>";
 		userInfoInnerHTML+="</select>";
 		userInfoInnerHTML+="</span></p>";
-		userInfoInnerHTML+="<p class=\"v_blog-item-author\"><span>record 게시글 수  : 0</span></p>";
-		userInfoInnerHTML+="<p class=\"v_blog-item-author\"><span>Review 게시글 수  : 0</span></p>";
-		userInfoInnerHTML+="<p class=\"v_blog-item-author\"><span>총 구매 액 : 0</span></p>";
 		
 		userInfoDiv.html(userInfoInnerHTML);
 		alert(result);
@@ -325,7 +317,7 @@ $(document).ready(function() {
 			for(var i=0, len=list.length||0;i<len;i++){
 				BoardViewHTML+="<tr><td>"+list[i].board_no+"</td><td>";
 				BoardViewHTML+="<div><div class=\"accordion v4\" id=\"accordion"+list[i].admin_bno+"\" role=\"tablist\" aria-multiselectable=\"true\">";
-				BoardViewHTML+="<div class=\"card transparent\"><div role=\"tab\" id=\"headingOne"+list[i].admin_bno+"\"><h5 class=\"mb-0\">";
+				BoardViewHTML+="<div class=\" transparent\"><div role=\"tab\" id=\"headingOne"+list[i].admin_bno+"\"><h5 class=\"mb-0\">";
 				BoardViewHTML+="<a data-toggle=\"collapse\" data-parent=\"#accordion"+list[i].admin_bno+"\" href=\"#collapseOne"+list[i].admin_bno+"\" aria-expanded=\"false\" aria-controls=\"collapseOne"+list[i].admin_bno+"\" class=\"collapsed\">";
 				for(let i=0; i<list[i].board_indent;i++){ // 보드 인덴트 수정하기
 					BoardViewHTML+="[re]";
@@ -376,7 +368,7 @@ $(document).ready(function() {
 				BoardViewHTML+="<tr><td>"+list[i].board_no+"</td><td>";
 				BoardViewHTML+="";
 				BoardViewHTML+="<div><div class=\"accordion v4\" id=\"accordion"+list[i].admin_bno+"\" role=\"tablist\" aria-multiselectable=\"true\">";
-				BoardViewHTML+="<div class=\"card transparent\"><div role=\"tab\" id=\"headingOne"+list[i].admin_bno+"\"><h5 class=\"mb-0\">";
+				BoardViewHTML+="<div class=\" transparent\"><div role=\"tab\" id=\"headingOne"+list[i].admin_bno+"\"><h5 class=\"mb-0\">";
 				BoardViewHTML+="<a data-toggle=\"collapse\" data-parent=\"#accordion"+list[i].admin_bno+"\" href=\"#collapseOne"+list[i].admin_bno+"\" aria-expanded=\"false\" aria-controls=\"collapseOne"+list[i].admin_bno+"\" class=\"collapsed\">";
 				for(let i=0; i<list[i].board_indent;i++){ // 보드 인덴트 수정하기
 					BoardViewHTML+="[re]";

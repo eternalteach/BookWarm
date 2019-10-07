@@ -2,54 +2,44 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> 
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-<link rel="stylesheet" href="./resources/css/main.css" />
 <link rel="stylesheet" href="./resources/css/index.css" />
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-</head>
+<%@ include file="includes/header/header-vertexEx.jsp"%>
+<%@ include file="includes/header/script-vertexEx.jsp"%>
+</head> 
 <body style="background-color:white">
-	<div>
-		<a href="javascript:openModal('login-modal');"><img style="width:500px" src="resources/img/bookwarm.png"></a>
-		<!-- 이미지 태그 클릭시 모달창으로 로그인 띄우게하기
- 그 뒤 로그인 성공시 서재페이지로 이동, 비회원 미리보기는 새 창 띄워서 소개창 만들기 -->
-		<!-- 로그인 성공시 library 페이지로 이동 -->
-		<!-- 로그인 실패시 실패원인 띄우기 -->
+	<div style="top:17vw; left:77vh; position:absolute;">
+		<a href="javascript:openModal('login-modal');"><img style="width:21vw" src="/warm/resources/img/background/books.png"></a>
 	</div>	
-		<div id="modal">
-			<div class="modal-library login-modal">
-				<div class="con">
-					<a href="javascript:;" class="close">X</a>
-					<%@include file="./includes/content/login/loginPage.jsp"%>
-				</div>
-				<!-- <div class='modal-footer'>
-					<a href="preview">사이트 미리보기</a>
-				</div> -->
-			</div>
-		</div>
-	<script type="text/javascript">
-		function openModal(modalname) {
-			$("#modal").fadeIn(200);
-			$("." + modalname).fadeIn(200);
-		}
-		$(document).ready(function() {
-			$("#modal").hide();
-
-			$(".close").on('click', function() {
-				$("#modal").fadeOut(200);
-				$(".login-modal").fadeOut(200);
-			});
-
-		});
+	<div style="top:29vw; left:84vh; position:absolute;">
+		<h1 style="font-family: Museo500Regular, Arial, Helvetica, Tahoma, sans-serif;font-size: 2.1vw;" >BOOK & WARM</h1>
+	</div>
 		
-		// 나중에 지우기
-		 $(document).ready(function(){
-			$("#gotolibrary").on("click",function(e){
-				/* sessionStorage.setItem('user_id', 'aaa'); */
-				$("#gotolibrary").attr("href","library");
-			});
-		}); 
-	</script>
+<div id="modal">
+         <div class="modal-library login-modal">
+            <div class="modal-content con">
+               <a href="javascript:;" class="close">X</a>
+               <%@include file="./includes/content/login/loginPage.jsp"%>
+            </div>
+         </div>
+      </div>
+ <script type="text/javascript">
+      function openModal(modalname) {
+         $("#modal").fadeIn(200);
+         $("." + modalname).fadeIn(200);
+      }
+      $(document).ready(function() {
+         $("#modal").hide();
+
+         $(".close").on('click', function() {
+            $("#modal").fadeOut(200);
+            $(".login-modal").fadeOut(200);
+         });
+      });
+   </script>
+
 </body>

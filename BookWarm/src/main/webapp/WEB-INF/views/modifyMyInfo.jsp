@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
- 	<%@ include file="./includes/header/header/vertexHeader.jsp"%>
+<title>Modify My Info</title>
+ 	<%@ include file="./includes/header/header-vertexEx.jsp"%>
 </head>
 <body>
-   <%@ include file="./includes/header/shopHeader/shopHeaderNav.jsp"%>
+<%@ include file="./includes/header/header-topnav.jsp"%>
    <div role="main" class="main">
     <section class="page-header">
         <div class="container">
@@ -30,15 +30,18 @@
         <div class="container">
             <div class="row">
 				<div class="row col-sm-9">
-					<%@ include file="./includes/content/register/readUserInfo.jsp" %>
-						<div class="v-spacer col-sm-12 v-height-standard"></div>
+					<div style="margin-left: 150px;">
+						<%@ include file="./includes/content/register/readUserInfo.jsp" %>
+						<div class="v-spacer col-sm-12 v-height-standard">
+						</div>
+					</div>
                 </div>
                <%@ include file="./includes/content/userInfo/orderList-side-bar.jsp" %>
             </div>
         </div>
     </div>
 </div>
-   <%@ include file="./includes/footer/shopFooter/shopFooterNav.jsp"%>
+   <%@ include file="./includes/header/script-vertexEx.jsp"%>
 <script type="text/javascript" src="/warm/resources/js/admin.js"></script>
 <script type="text/javascript" src="/warm/resources/js/DateJsonToJsp.js"></script>
 <script>

@@ -51,7 +51,12 @@
 										
 										<sec:authorize access="hasRole('ROLE_ADMIN')">
 										<!-- only access Administrator -->
-										<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="/warm/admin">Admin </a>
+										<li class="dropdown"><button class="dropdown-item dropdown-toggle" onClick="location.href='/warm/admin'" >Admin</button>
+										</sec:authorize>
+										
+										<sec:authorize access="hasRole('ROLE_USER')">
+										<!-- only access Administrator -->
+										<li class="dropdown"><button class="dropdown-item dropdown-toggle" onClick="location.href='/warm/customLogout'" >Logout</button>
 										</li>
 										</sec:authorize>
 									</ul>
