@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+<% String context1 = request.getContextPath(); %>
 <style>
 	#modal {
 		display:none;
@@ -20,7 +21,7 @@
 		$('#modal').fadeIn(500);
 		
 		$.ajax({
-			url : '/warm/shop/pickCoupon',
+			url : '<%=context1%>/shop/pickCoupon',
 			type : 'get',
 			dataType : 'json',
 			success : function(data) {

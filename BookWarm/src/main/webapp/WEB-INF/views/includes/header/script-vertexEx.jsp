@@ -34,8 +34,8 @@
 <!-- Custom JS -->
 <script src="/warm/resources/VertexEx/js/custom.js"></script>
 <!-- Theme Initialization -->
-<script src="/warm/resources/Vertex/js/theme.js"></script>
-<script src="/warm/resources/Vertex/js/theme.init.js"></script>
+<script src="./resources/Vertex/js/theme.js"></script>
+<script src="./resources/Vertex/js/theme.init.js"></script>
 
 <!-- Smart Form Elements -->
 <script src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-ui-custom.min.js"></script>

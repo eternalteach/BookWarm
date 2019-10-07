@@ -53,12 +53,12 @@
                         
                         <div class="v-spacer col-sm-12 v-height-standard"></div>
                         
-                        <!-- <div class="col-sm">
+                        <div class="col-sm">
 							<div class="v-heading-v2 col-sm-8 offset-sm-2 row center-text">
 								<h4 class="v-search-result-count">최근 내 리뷰</h4>
 							</div>
-							이 부분에 해랑언니 코드 넣기
-                        </div> -->
+							<!-- 이 부분에 해랑언니 코드 넣기 -->
+                        </div>
                 </div>
 
                <%@ include file="./orderList-side-bar.jsp" %>

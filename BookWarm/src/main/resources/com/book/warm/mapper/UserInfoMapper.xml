@@ -41,29 +41,11 @@
 		where user_id=#{user_id}
 	</select>
 	
-	<!-- <select id="getCouponCnt" resultType="java.lang.Integer">
+	<select id="getCouponCnt" resultType="java.lang.Integer">
 		select count(*)
 		from coupon_no
 		where user_id=#{user_id}
 		and coupon_available='t'
-	</select> -->
-	
-	<select id="getCouponCnt" resultType="java.lang.Integer">
-		<![CDATA[
-		select count(*)
-		from (select c1.user_id, c2.*
-		    from coupon_no c1 inner join coupon c2
-		    on c1.coupon_no = c2.coupon_no
-		    where c1.user_id=#{user_id}
-		        and c1.coupon_available='t' 
-		        and c2.coupon_validate>=TO_DATE(sysdate)) t1 inner join
-		    (select user_id, user_level
-		    from user_info
-		    where user_id=#{user_id}) t2
-		on t1.user_id = t2.user_id
-		where t1.coupon_req<=t2.user_level
-		order by t1.coupon_no
-		]]>
 	</select>
 	
 	<!-- 회원 탈퇴 -->
