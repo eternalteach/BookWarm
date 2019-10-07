@@ -7,15 +7,60 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript" src="/warm/resources/js/logintest.js"></script>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>Vertex - Responsive HTML5 Bootstrap Template</title>
+   <meta name="keywords" content="HTML5 Template" />
+   <meta name="description" content="Vertex - Responsive HTML5 Template">
+   <meta name="author" content="bootstraptemplates.net">
+   <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Cabin:400,600,700" rel="stylesheet">
+
+   <!-- Vendor CSS -->
+   <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/tether/tether.min.css" />
+   <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/bootstrap/css/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/font-awesome/css/font-awesome.min.css"> -->
+   <link href="/warm/resources/Vertex/css/font-awesome.min.css" rel="stylesheet" />
+   <link rel="stylesheet" href="/warm/resources/VertexEx/css/fonts/vertex-icons.css" />
+   <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/ion-icons/css/ionicons.min.css" />
+   <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/owl-carousel/owl.theme.css" />
+   <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/owl-carousel/owl.carousel.css" />
+   <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/menuzord/css/menuzord-animations.css" />
+   <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/lite-tooltip/css/litetooltip.css" />
+
+   <link href="/warm/resources/VertexEx/vendor/dzsparallaxer/dzsparallaxer.css" rel="stylesheet" />
+   <link href="/warm/resources/VertexEx/vendor/dzsparallaxer/dzsscroller/scroller.css" rel="stylesheet" />
+   <link href="/warm/resources/VertexEx/vendor/dzsparallaxer/advancedscroller/plugin.css" rel="stylesheet" />
+
+   <!-- Theme CSS -->
+   <link href="/warm/resources/VertexEx/css/main.css" rel="stylesheet" />
+   <link href="/warm/resources/VertexEx/css/main-shortcodes.css" rel="stylesheet" />
+<!--    <link href="/warm/resources/VertexEx/css/header.css" rel="stylesheet" /> -->
+   <link href="/warm/resources/Vertex/css/header.css" rel="stylesheet" />
+   <link href="/warm/resources/VertexEx/css/form-element.css" rel="stylesheet" />
+   <link href="/warm/resources/VertexEx/css/animation.css" rel="stylesheet" />
+   <link href="/warm/resources/VertexEx/css/font-icons.css" rel="stylesheet" />
+   <link href="/warm/resources/VertexEx/css/blog.css" rel="stylesheet" />
+   <link href="/warm/resources/VertexEx/css/responsive.css" rel="stylesheet" />
+   <link href="/warm/resources/VertexEx/css/utilities.css" rel="stylesheet" />
+   <link href="/warm/resources/VertexEx/css/skins/default.css" rel="stylesheet" />
+
+   <!-- Theme Custom CSS -->
+   <link rel="stylesheet" href="/warm/resources/VertexEx/css/custom.css">
+
+   <!-- Style Swicher -->
+   <link href="/warm/resources/VertexEx/vendor/style-switcher/style-switcher.css" rel="stylesheet" />
+   <link href="/warm/resources/VertexEx/vendor/style-switcher/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
+
+
 <script type="text/javascript" src="/warm/resources/js/admin.js"></script>
 <script type="text/javascript" src="/warm/resources/js/DateJsonToJsp.js"></script>
 <script type="text/javascript" src="/warm/resources/js/Criteria.js"></script>
 <link rel="stylesheet" href="resources/css/main.css" />
-<%@ include file="./includes/header/header-vertexEx.jsp"%>
+
 </head>
 <body>
 <%@ include file="includes/header/header-topnav.jsp"%>
@@ -190,6 +235,37 @@
     </div>
 </div>
 
+
+  <!-- Vendor -->
+   <script src="/warm/resources/VertexEx/vendor/jquery/jquery.js"></script>
+   <script src="/warm/resources/VertexEx/vendor/jquery/jquery.nav.js"></script>
+   <script src="/warm/resources/VertexEx/vendor/jquery/jquery.validate.js"></script>
+   <script src="/warm/resources/VertexEx/vendor/jquery.appear/jquery.appear.min.js"></script>
+   <script src="/warm/resources/VertexEx/vendor/jquery.easing/jquery.easing.min.js"></script>
+   <script src="/warm/resources/VertexEx/vendor/jquery-cookie/jquery-cookie.min.js"></script>
+   
+   <script src="/warm/resources/VertexEx/vendor/magnific-popup/jquery.magnific-popup.js"></script>
+   <script src="/warm/resources/VertexEx/vendor/modernizr/modernizr.min.js"></script>
+   <script src="/warm/resources/VertexEx/vendor/tether/tether.min.js"></script>
+   <script src="/warm/resources/VertexEx/vendor/bootstrap/js/bootstrap.min.js"></script>
+   <script src="/warm/resources/VertexEx/vendor/menuzord/menuzord.js"></script>
+   <script src="/warm/resources/VertexEx/vendor/sticky/jquery.sticky.min.js"></script>
+   <script src="/warm/resources/VertexEx/vendor/isotope/jquery.isotope.min.js"></script>
+   
+   <script src="/warm/resources/VertexEx/vendor/respond/respond.js"></script>
+   <script src="/warm/resources/VertexEx/vendor/images-loaded/imagesloaded.js"></script>
+   <script src="/warm/resources/VertexEx/vendor/owl-carousel/owl.carousel.js"></script>
+   <script src="/warm/resources/VertexEx/vendor/wow/wow.min.js"></script>
+   <script src="/warm/resources/VertexEx/vendor/lite-tooltip/js/litetooltip.js"></script>
+   <script src="/warm/resources/VertexEx/js/theme-plugins.js"></script>
+   <script src="/warm/resources/VertexEx/vendor/fitvids/fitvids.js"></script>
+
+   <!-- Theme Initialization -->
+   <script src="/warm/resources/VertexEx/js/theme.js"></script>
+   <script src="/warm/resources/Vertex/js/theme.js"></script>
+
+   <!-- Custom JS -->
+   <script src="/warm/resources/VertexEx/js/custom.js"></script>
 <script>
 var userInfoDivID="";
 var userInfoDiv="";
@@ -379,6 +455,5 @@ $(document).ready(function() {
 						});
 					});
 </script>
-<%@ include file="./includes/header/script-vertexEx.jsp"%>
 </body>
 </html>
