@@ -169,7 +169,7 @@ public class ShopController {
 	}
 	
 	
-	// 주문 성공 >> 트랜잭션으로 묶어야함
+	// 주문 성공
 	@Transactional
 	@RequestMapping("/successOrder")
 	public String successOrder(Principal principal, PostVO postVO, OrdersVO ordersVO, OrdersItemVO ordersItemVO, HttpServletRequest req, Model model) {

@@ -7,8 +7,11 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.book.warm.mapper.UserInfoMapper;
+import com.book.warm.page.Criteria;
+import com.book.warm.vo.CouponVO;
 import com.book.warm.vo.OrderListVO;
 import com.book.warm.vo.OrdersVO;
+import com.book.warm.vo.PostVO;
 import com.book.warm.vo.UserVO;
 
 import lombok.extern.log4j.Log4j;
@@ -19,8 +22,8 @@ public class UserInfoService {
 	@Inject
 	UserInfoMapper userInfoMapper;
 
-	public List<OrderListVO> getMyOrders(String user_id) {
-		return userInfoMapper.getMyOrders(user_id);
+	public List<OrderListVO> getMyOrders(String user_id, Criteria criteria) {
+		return userInfoMapper.getMyOrders(user_id, criteria);
 	}
 
 	public List<OrdersVO> getOrderList(String user_id) {
@@ -91,6 +94,18 @@ public class UserInfoService {
 		userInfoMapper.removeUserFromReview_board(user_id);
 	}
 
+	public OrdersVO getOrderDetails(String orders_no) {
+		return userInfoMapper.getOrderDetails(orders_no);
+	}
+
+	public CouponVO getUsedCoupon(String coupon_no) {
+		return userInfoMapper.getUsedCoupon(coupon_no);
+	}
+
+	public PostVO getPostInfo(String post_no) {
+		return userInfoMapper.getPostInfo(post_no);
+	}
+	
 	public UserVO getUserInfo(String user_id) {
 		log.info("========== getUserInfo() ==========");
 		

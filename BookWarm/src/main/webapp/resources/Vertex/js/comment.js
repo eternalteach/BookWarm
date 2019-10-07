@@ -27,17 +27,17 @@ var commentService = (function(){
 	}
 	
 //	댓글 불러오기
-	function getList(param, callback, error) {
+	function getList(param, callback, error) { // callback : 성공시 실행, error : 실패시 실행
 
 		var review_no = param.review_no;
 		var page = param.page || 1;
 		
 		$.getJSON("/warm/comments/pages/" + review_no + "/" + page + ".json",
-				function(data) {
-					if (callback) {
-						// callback(data); // 댓글 목록만 가져오는 경우
-						callback(data.commentCnt, data.list);
-					}
+			function(data) {
+				if (callback) {
+					// callback(data); // 댓글 목록만 가져오는 경우
+					callback(data.commentCnt, data.list);
+				}
 			}).fail(function(xhr, status, err) {
 			if(error) {
 				error();

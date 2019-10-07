@@ -41,6 +41,12 @@
     margin: 0 auto;
   }
   
+  #calendar tbody td {
+  position: relative;
+  z-index: 1;
+}
+
+  
 </style>
 
 </head>
@@ -69,7 +75,7 @@
       <div class="page has-sidebar has-right-sidebar bordered">
 <%-- <section class="section-primary alternate-color b-bordered" style="min-width:170px"></section> --%>
          <div class="page-inner has-left-sidebar has-one-sidebar">
-            <div class="container">
+            <div class="container" style="max-width:90vw!important;">
             
                <!-- <div class="row" style="width:100%; height:50px; text-align:right; position:relative">
            		    <ul style="position:absolute; right:0">                     
@@ -97,10 +103,10 @@
             
                <div class="row">
 					
-                  <div class="col-md-3 left-side-sidebar pt-70 alternate-color" style="padding-top:15px !important; padding-right:20px; border-right-color: transparent!important;">
+                  <div class="col-md-3 left-side-sidebar pt-70 " style="padding-top:15px !important; border-right-color: transparent!important;">
                      <aside class="sidebar" style="width:100%">
 						<section style="margin:0">
-							<div style="padding:8%">
+							<div style="padding:6%">
 								<ul>
 									<h3>
 										<strong><a href="#">${user_id}</a>'s Reading Log</strong>
@@ -113,7 +119,36 @@
 							</div>
 						</section> 
 						
-						<section style="margin:0">
+
+								
+						<section class="widget widget_sf_recent_custom_comments clearfix" style="padding:6%; margin:0">
+                            <div class="widget-heading clearfix">
+                                <h4 class="v-heading"><span>Recent Comments</span></h4>
+                            </div>
+                            <ul class="recent-comments-list">
+								<!-- 최근 댓글 영역 -->
+                            </ul>
+                        </section>
+						
+                     </aside>
+                  </div>
+                  
+	              <div style="max-width:650px !important; margin-top:20px; margin-left:auto; margin-right:auto">
+			          <div>
+			              <div>
+			              	 <div class="post-header form-header">
+			                  	<div id='loading'>loading...</div>
+	  							<div id='calendar'></div>
+			                 </div>
+			              </div>
+			          </div>
+			      </div>
+                  
+
+               <div class="col-md-3 right-side-sidebar pt-70 " style="padding-top:15px !important; padding-right:20px; border-right-color: transparent!important;">
+                     <aside class="sidebar" style="width:100%">
+               
+               						<section style="margin:0">
 							<div class="widget-heading clearfix">
                                 <h4 class="v-heading" style="padding-left:20px"><span>Recent Reviews</span></h4>
                             </div>		
@@ -123,7 +158,7 @@
 							<!-- 책별 데이터 불러오고 그 중 가장 최근 데이터 하나만 불러오기. -->
 							<c:forEach items="${list}" var="vo">
 							
-							<div class="post-content no-thumb clearfix" style="margin:20px ; padding:30px">
+							<div class="post-content no-thumb clearfix" style="margin:20px ; padding:30px; max-width:95%">
 							    <article class="v_blog-item">
 			                        <div class="v_blog-item-inner row">
 			                        
@@ -191,33 +226,12 @@
                                 </ul>
                             </nav>
 						</section>
-								
-						<section class="widget widget_sf_recent_custom_comments clearfix">
-                            <div class="widget-heading clearfix">
-                                <h4 class="v-heading" style="padding-left:20px"><span>Recent Comments</span></h4>
-                            </div>
-                            <ul class="recent-comments-list">
-								<!-- 최근 댓글 영역 -->
-                            </ul>
-                        </section>
-						
-                     </aside>
-                  </div>
-                  
-	              <div style="max-width:800px !important; margin-top:20px; margin-left:3%">
-			          <div>
-			              <div>
-			              	 <div class="post-header form-header">
-			                  	<div id='loading'>loading...</div>
-	  							<div id='calendar'></div>
-			                 </div>
-			              </div>
-			          </div>
-			      </div>
-                  
-
+               </aside>
+               </div>
+               
                </div>
                <!-- end of row -->
+               
             </div>
             <!-- end of container -->
          </div>
@@ -308,7 +322,7 @@
 	   	  })(),
 	   	  
 	   	  eventRender: function(info) {
-	   		  
+	   		 /*  alert("?"); */
 	   		  console.log("info.event.id:" + info.event.id);
 	   		  console.log("info.event.title : " + info.event.title);
 	   		  console.log("표지 : " + info.event.extendedProps.imageurl);
@@ -316,37 +330,38 @@
 	   		  
 	   		  var tdObj = $(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "']");
 	   		  var targetDate = tsToDate(info.event.start);
+	   		  var coverStr = "";
 	   		  
 	   		  if(info.event.extendedProps.imageurl != '') {
 	   			  
 	   			  console.log("============ 완독한 책 이미지 뿌려주기 =============");
-	   			  var str = "<div style='width:40%; display:inline-block; position:relative; vertical-align:bottom'><img style='position:absolute; cursor: pointer;' id='" + info.event.id + "' src='" + info.event.extendedProps.imageurl + "'></div>"; 
+	   			coverStr = "<div style='width:40%; display:inline-block; position:relative; vertical-align:bottom'><img style='position:absolute; cursor: pointer;' id='" + info.event.id + "' src='" + info.event.extendedProps.imageurl + "'></div>"; 
 	   			  
 	   			  if(info.event.extendedProps.firstImg) {
 	   				  // rerender시 표지가 반복적으로 추가되지 않도록 html에 새로 뿌려준다.
-	   				  alert("여기야?: " + str);
-		   			  tdObj.html(str);
+		   			  tdObj.html(coverStr);
 	   			  } else {
-	   				alert("아니면 여기?: " + str);
-		   			  tdObj.append(str);
+		   			  tdObj.append(coverStr);
 	   			  }
 	   		  } else {
-					alert("여기일 가능성?: " + str);
+					/* alert("여기일 가능성?: " + coverStr); */
   				  // 이벤트가 몇 개 이상이면 나타나는 +more은 이미지랑 영역이 겹치므로 
   				  // 당일 이벤트가 3개 이상인 경우 +버튼이 나타나도록 따로 구현.
-  				  alert($(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "'] button").length);
 	   			  if(!$(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "'] button").length) {
 	   				  //button이 없는 상태
-	   				  alert("여기일 가능성?: " + str);
-		   			  str += "<div style='display:inline-block; position:relative; float:right; width:20%;'>";
-		   			  str += "   <button class='plus' data-toggle='modal' data-target='#" + targetDate + "' style='width:100%; height:20%; border:transparent; background-color:lightgray; color:white;'>+</button>";
-		   			  str += "</div>"; 
-		   			  tdObj.append(str); 
+	   				  /* alert("여기 str: " + coverStr); */
+	   				coverStr += "<div style='display:inline-block; position:relative; float:right; width:20%;'>";
+	   				coverStr += "   <button class='plus' data-toggle='modal' data-target='#" + targetDate + "' style='width:100%; height:20%; border:transparent; background-color:lightgray; color:white;'>+</button>";
+	   				coverStr += "</div>"; 
+		   			  tdObj.append(coverStr); 
+		   			  /* alert(tdObj.html()); */
 	   			  }
 	   		  }
 	   		  // gridMonth형에서 title은 나타나지 않도록 한다.
 	   		  setTimeout(function() {
 	        	  	$(".fc-event-container a").css("display", "none");
+	        	  	$(".fc-day-top[data-date='" + info.event.extendedProps.dateFormat + "']").css("z-index", "-1");
+	        	  	$(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "'] button").css("z-index", "2");
 	          }, 100);
 	   	  },
 	   	  
@@ -391,7 +406,7 @@
 					var str = "";
 					
 					$(arr).each(function(i, cmt) {
-						str += "<li class='comment'><div class='comment-wrap clearfix'><div class='comment-wrap clearfix'>";
+						str += "<li class='comment'><div class='comment-wrap clearfix'>";
 						str += "<div class='comment-avatar'>";
 						str += "<img src='/warm/resources/Vertex/img/team/t" + (i+1) + ".png' class='avatar' style='height:35px; width:35px' />";
 						str += "</div>";
@@ -401,7 +416,7 @@
 						str += "<div class='comment-meta'>";
 						str += "<span class='comment-author'>" + cmt.user_id + "</span>";
 						str += "<span class='comment-date'>" + displayTime(cmt.review_cmt_modified_date) + "</span>";
-						str += "</div></div></div></li>";
+						str += "</div></div></li>";
 						str += "";
 					});
 					if(str=="") {
@@ -537,22 +552,6 @@
 	};
 </script>
 
-<!--     <script src="./resources/Vertex/js/jquery.min.js"></script>
-    <script src="./resources/Vertex/js/popper.js"></script>
-    <script src="./resources/Vertex/js/bootstrap.min.js"></script>
-    <script src="./resources/Vertex/js/jquery.flexslider-min.js"></script>
-    <script src="./resources/Vertex/js/jquery.easing.js"></script>
-    <script src="./resources/Vertex/js/jquery.fitvids.js"></script>
-    <script src="./resources/Vertex/js/jquery.carouFredSel.min.js"></script>
-    <script src="./resources/Vertex/js/jquery.validate.js"></script>
-    <script src="./resources/Vertex/js/theme-plugins.js"></script>
-    <script src="./resources/Vertex/js/jquery.isotope.min.js"></script>
-    <script src="./resources/Vertex/js/imagesloaded.js"></script>
-
-    <script src="./resources/Vertex/js/view.min.js?auto"></script>
-    <script src="./resources/Vertex/plugins/aos/aos.js"></script>
-    <script src="./resources/Vertex/js/theme-core.js"></script> -->
-    
 
 <%@ include file="includes/header/script-vertexEx.jsp"%> 
 <%@ include file="includes/footer/footer-1.jsp"%>

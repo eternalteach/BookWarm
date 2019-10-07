@@ -30,7 +30,7 @@ public class CommonController {
 			
 			System.out.println(auth.getAuthorities().size());
 			if(auth.getAuthorities().size() >= 2) {
-				return "admin";
+				return "redirect:admin";
 			}
 			
 			return "library";

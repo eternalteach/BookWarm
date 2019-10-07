@@ -10,13 +10,16 @@ public class OrderListVO {
 	private String book_title;
 	private int item_cnt;
 	private int book_price_for_sale;
+	private int total_price_per_book;
 	private String orders_status;
 	private String orders_no;
 	private String book_img;
+	private String isbn;
 	
 	// constructor
 	public OrderListVO(int orders_total, Timestamp orders_date, String book_title, int item_cnt,
-			int book_price_for_sale, String orders_status, String orders_no, int orders_pay_total) {
+			int book_price_for_sale, String orders_status, String orders_no, int orders_pay_total,
+			String isbn) {
 		super();
 		this.orders_total = orders_total;
 		this.orders_date = orders_date;
@@ -26,6 +29,7 @@ public class OrderListVO {
 		this.orders_status = orders_status;
 		this.orders_no = orders_no;
 		this.orders_pay_total = orders_pay_total;
+		this.isbn = isbn;
 	}
 	
 	public OrderListVO() {
@@ -103,4 +107,21 @@ public class OrderListVO {
 	public void setOrders_pay_total(int orders_pay_total) {
 		this.orders_pay_total = orders_pay_total;
 	}
+	public int getTotal_price_per_book() {
+		return total_price_per_book;
+	}
+	
+	public void setTotal_price_per_book(int total_price_per_book) {
+		this.total_price_per_book = total_price_per_book;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+	
+	
 }

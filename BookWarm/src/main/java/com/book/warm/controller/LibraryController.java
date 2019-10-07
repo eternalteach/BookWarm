@@ -43,9 +43,9 @@ public class LibraryController {
 	public String library(Authentication auth, Principal principal, Model model) throws Exception {
 		
 		System.out.println(auth.getAuthorities().size());
-		if(auth.getAuthorities().size() >= 2) {
-			return "redirect:admin";
-		}
+		/*
+		 * if(auth.getAuthorities().size() >= 2) { return "redirect:admin"; }
+		 */
 		
 		
 		
