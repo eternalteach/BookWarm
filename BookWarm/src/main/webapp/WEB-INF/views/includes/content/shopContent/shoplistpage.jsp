@@ -14,8 +14,8 @@
 					</div>
 					<div class="col-md-4">
 						<ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
-							<li><a href="shoplist">책 리스트</a></li>
-							<li class="active">Book List</li>
+							<li><a href="shoplist">책</a></li>
+							<li class="active">책 리스트</li>
 						</ul>
 					</div>
 				</div>

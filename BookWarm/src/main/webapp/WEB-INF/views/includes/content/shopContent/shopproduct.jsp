@@ -16,7 +16,7 @@
 					</div>
 					<div class="col-md-4" >
 						<ul class="breadcrumb justify-content-start justify-content-md-end mb-0" style="background-color:transparent">
-							<li><a href="shoplist">책 리스트</a></li>
+							<li><a href="shoplist">책</a></li>
 							<li class="active">책 상세정보</li>
 						</ul>
 					</div>
@@ -107,31 +107,32 @@
 			<!-- 대표저서  -->
              <section class="section-big main-color">
                <div class="container">
-                  <div class="row">
+                  <div class="row center">
                      <div class="col-md-12">
                         <h3 class="section-title" style="margin-bottom:20px;margin-left: 20px;font-size:24px;">대표 저서</h3>
                      </div>
                   </div>
 
-                  <div class="row">
-                    <c:forEach items="${bookwritername}" var="bookwriter">
-                     <div class="col-md-2">
-						<figure class="product-shadows product-item">
-                        <div class="product-shadows product-item">
-                                 <figure class="product-shadows product-item">
-                                       <div class="img-wrap first-image">
-                                         <a href="shopproduct?isbn=${bookwriter.isbn}"><img src="${bookwriter.book_img}" style="width: 130px;margin-left: 15px;"></a>
-                                       </div>
-									
-                                    <div class="product-details">
-                                       <h3 class="product-name" style="font-size: 14px;line-height:1.3em;margin-top:10px;margin-bottom:0px; text-align: center;">${bookwriter.book_title}</h3>
-                                       <div class="product-price-currency" style="text-align:center;"><fmt:formatNumber value="${bookwriter.book_price}" pattern="###,###,###" />원</div>
-                                    </div> 
-                                 </figure>
-                         </div>
-                         </figure>
-                     </div>
-                    </c:forEach>
+                  <div class="row center">
+                  	
+	                    <c:forEach items="${bookwritername}" var="bookwriter">
+	                     <div class="col-md-2">
+							<figure class="product-shadows product-item">
+	                        <div class="product-shadows product-item">
+	                                 <figure class="product-shadows product-item">
+	                                       <div class="img-wrap first-image">
+	                                         <a href="shopproduct?isbn=${bookwriter.isbn}"><img src="${bookwriter.book_img}" style="width: 130px;"></a>
+	                                       </div>
+										
+	                                    <div class="product-details">
+	                                       <h3 class="product-name" style="font-size: 14px;line-height:1.3em;margin-top:10px;margin-bottom:0px; text-align: center;">${bookwriter.book_title}</h3>
+	                                       <div class="product-price-currency" style="text-align:center;"><fmt:formatNumber value="${bookwriter.book_price}" pattern="###,###,###" />원</div>
+	                                    </div> 
+	                                 </figure>
+	                         </div>
+	                         </figure>
+	                     </div>
+	                    </c:forEach>
                  </div>
               </div>
 		    </section>
