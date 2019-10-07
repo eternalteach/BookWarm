@@ -28,8 +28,8 @@ $(document).ready(function() {
 	$('#modal').on('click', 'button', function() {
 		var bookPrice = $('#total').val(); // 책 판매 총액
 		alert(bookPrice);
-		bookPrice = bookPrice.substring(0, bookPrice.lastIndexOf("원"));
-		alert(bookPrice);
+		/* bookPrice = bookPrice.substring(0, bookPrice.lastIndexOf("원"));
+		alert(bookPrice); */
 		var discounted = $(this).attr('data-abc'); // 쿠폰할인액
 		discounted = discounted/100*bookPrice; // 쿠폰할인액
 		

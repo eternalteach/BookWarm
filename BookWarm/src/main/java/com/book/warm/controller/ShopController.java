@@ -153,6 +153,8 @@ public class ShopController {
 		// 현재 로그인한 user가 가지고 있는 쿠폰을 list로 받아온다.
 		List<CouponVO> couponList = service.getCouponList(user_id);
 		
+		System.out.println("couponList.size() : " + couponList.size());
+		
 		return couponList;
 	}
 	
@@ -173,12 +175,16 @@ public class ShopController {
 	@Transactional
 	@RequestMapping("/successOrder")
 	public String successOrder(Principal principal, PostVO postVO, OrdersVO ordersVO, OrdersItemVO ordersItemVO, HttpServletRequest req, Model model) {
+		System.out.println("successOrder()");
 		String user_id = principal.getName(); // 로그인한 유저 id
 		
 		// ordersVO 커맨드 객체로 받아온 데이터
 		String orders_payment = ordersVO.getOrders_payment(); // 결제 방법(kakao or cash)
 		int orders_total = ordersVO.getOrders_total(); // 주문 총 금액
 		int orders_pay_total = ordersVO.getOrders_pay_total(); // 총 지불 금액
+		
+		System.out.println("orders_pay_total : "+orders_pay_total);
+		System.out.println("orders_total : " + orders_total);
 		
 		String refund_account = ordersVO.getRefund_account(); // 환불 받을 계좌번호
 		String refund_bank = ordersVO.getRefund_bank(); // 환불 받을 은행

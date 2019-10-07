@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<% request.setCharacterEncoding("utf-8"); %>
+<% response.setContentType("text/html; charset=utf-8"); %>
 
 
 <link rel="stylesheet" type="text/css"  href="/warm/resources/VertexEx/smartforms/JavascriptTemplates/css/smart-forms.css">
@@ -23,68 +25,11 @@
 	}
 </style>
 <script>
-$(document).ready(function(){
-	
-	$('#modal').hide();
-	
-	/* $( "#smart-form" ).validate({
-			errorClass: "state-error",
-			validClass: "state-success",
-			errorElement: "em",
-			onkeyup: false,
-			onclick: false,
-			rules: {
-					firstname: {
-							required: true,
-							minlength: 2
-					},
-					lastname: {
-							required: true,
-							minlength: 2
-					},									
-					emailaddress: {
-							required: true,
-							email: true
-					},							
-					sendermessage: {
-							required: true,
-							minlength: 10
-					}
-			},
-			messages:{
-					firstname: {
-							required: 'Enter your first name',
-							minlength: 'Enter at least 2 characters'
-					},
-					lastname: {
-							required: 'Enter your last name',
-							minlength: 'Enter at least 2 characters'
-					},											
-					emailaddress: {
-							required: 'Enter your email address',
-							email: 'Enter a VALID email address'
-					},													
-					sendermessage: {
-							required: 'Please enter your message',
-							minlength: 'Message must be at least 10 characters'
-					}
-			},
-			highlight: function(element, errorClass, validClass) {
-					$(element).closest('.field').addClass(errorClass).removeClass(validClass);
-			},
-			unhighlight: function(element, errorClass, validClass) {
-					$(element).closest('.field').removeClass(errorClass).addClass(validClass);
-			},
-			errorPlacement: function(error, element) {
-			   if (element.is(":radio") || element.is(":checkbox")) {
-						element.closest('.option-group').after(error);
-			   } else {
-						error.insertAfter(element.parent());
-			   }
-			}
-	}); */
-
-}); 
+	$(document).ready(function(){
+		
+		$('#modal').hide();
+		
+	}); 
 
 // 모달 창 끄기
 function hideModal() {
@@ -104,6 +49,12 @@ function showDetail(orders_no) {
 	    success : function(data, status, xhr) {
 			console.log(data.order.orders_no);
 			console.log(data.post);
+			$('#post_name').attr('value', data.post.post_name);
+			$('#post_phone').attr('value', data.post.post_phone);
+			$('#post_zipcode').attr('value', data.post.post_zipcode);
+			$('#post_addr').attr('value', data.post.post_addr);
+			$('#post_addr_detail').attr('value', data.post.post_addr_detail);
+			
 			$('#orders_payment').attr('value', data.order.orders_payment);
 			$('#orders_total').attr('value', data.order.orders_total);
 			$('#orders_pay_total').attr('value', data.order.orders_pay_total);
@@ -115,30 +66,33 @@ function showDetail(orders_no) {
 			}else {
 				$('#orders_pay_date').attr('value', data.order.orders_pay_date);
 			}
-			if(data.coupon.coupon_name != null) {
-				$('#coupon_area').html("<div class='frm-row section colm colm6'>");
-				$('#coupon_area').html("<h4>사용된 쿠폰 정보</h4>");
-				$('#coupon_area').html("</div>");
-				$('#coupon_area').html("<div class='frm-row'>");
-				$('#coupon_area').html("<div class='section colm'>");
-				$('#coupon_area').html("쿠폰 이름 : <input type='text' name='coupon_name' id='coupon_name' class='gui-input'>");
-				$('#coupon_area').html("</div>");
-				$('#coupon_area').html("<div class='section colm'>");
-				$('#coupon_area').html("할인율 : <input type='email' name='coupon_discount_percent' id='coupon_discount_percent' class='gui-input'>");
-				$('#coupon_area').html("</div>");
-				$('#coupon_area').html("<div class='section colm'>");
-				$('#coupon_area').html("할인 받은 금액 : <input type='email' name='coupon_discounted_amount' id='coupon_discounted_amount' class='gui-input'>");
-				$('#coupon_area').html("</div>");
-				$('#coupon_area').html("</div>)");
-			}
-			$('#coupon_name').attr('value', data.coupon.coupon_name);
-			$('#coupon_discount_percent').attr('value', data.coupon.coupon_discount_percent);
 			
-			$('#post_name').attr('value', data.post.post_name);
-			$('#post_phone').attr('value', data.post.post_phone);
-			$('#post_zipcode').attr('value', data.post.post_zipcode);
-			$('#post_addr').attr('value', data.post.post_addr);
-			$('#post_addr_detail').attr('value', data.post.post_addr_detail);
+			if(data.coupon.coupon_name != null) {
+				let couponHTML="";
+				couponHTML += "<div class='frm-row section colm colm6'>";
+				couponHTML += "<h4>사용된 쿠폰 정보</h4>";
+				couponHTML += "</div>";
+				couponHTML += "<div class='frm-row'>";
+				couponHTML += "<div class='section colm'>";
+				couponHTML += "쿠폰 이름 : <input type='text' name='coupon_name' id='coupon_name' class='gui-input' readonly>";
+				couponHTML += "</div>";
+				couponHTML += "<div class='section colm'>";
+				couponHTML += "할인율 : <input type='email' name='coupon_discount_percent' id='coupon_discount_percent' class='gui-input' readonly>";
+				couponHTML += "</div>";
+				couponHTML += "<div class='section colm'>";
+				couponHTML += "할인 받은 금액 : <input type='email' name='coupon_discounted_amount' id='coupon_discounted_amount' class='gui-input' readonly>";
+				couponHTML += "</div>";
+				couponHTML += "</div>";
+				
+				$('#coupon_area').html(couponHTML);
+				
+				$('#coupon_name').attr('value', data.coupon.coupon_name);
+				$('#coupon_discount_percent').attr('value', data.coupon.coupon_discount_percent);
+				
+				// 얼마나 할인받았는지 계산
+				$('#coupon_discounted_amount').attr('value', data.order.orders_pay_total-data.order.orders_total);
+			}
+			
 		}, error : function(){
 			console.log("error!");
 		}
