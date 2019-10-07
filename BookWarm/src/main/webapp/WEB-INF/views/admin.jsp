@@ -48,6 +48,8 @@
    <link href="/warm/resources/VertexEx/css/utilities.css" rel="stylesheet" />
    <link href="/warm/resources/VertexEx/css/skins/default.css" rel="stylesheet" />
 
+   <link href="/warm/resources/Vertex/css/style.css" rel="stylesheet" />
+
    <!-- Theme Custom CSS -->
    <link rel="stylesheet" href="/warm/resources/VertexEx/css/custom.css">
 
@@ -292,9 +294,6 @@ function modifyUserAuthentication(auth){
 		userInfoInnerHTML+="<option value=\"ROLE_USER\">사용자(LV1)</option>";
 		userInfoInnerHTML+="</select>";
 		userInfoInnerHTML+="</span></p>";
-		userInfoInnerHTML+="<p class=\"v_blog-item-author\"><span>record 게시글 수  : 0</span></p>";
-		userInfoInnerHTML+="<p class=\"v_blog-item-author\"><span>Review 게시글 수  : 0</span></p>";
-		userInfoInnerHTML+="<p class=\"v_blog-item-author\"><span>총 구매 액 : 0</span></p>";
 		
 		userInfoDiv.html(userInfoInnerHTML);
 		alert(result);
