@@ -1,14 +1,12 @@
 ﻿   <div class="wrapper">
       <div class="page has-sidebar has-right-sidebar bordered">
-         <section class="page-header b-bordered t-bordered">
+         <section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-top:20px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
             <div class="container">
                <div class="row">
                   <div class="col-sm-12">
-                     <h1 class="title">Shop - Cart</h1>
                      <ol class="breadcrumb pull-right">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Shop</a></li>
-                        <li class="active">Cart</li>
+                        <li><a href="shoplist">책</a></li>
+                        <li class="active">장바구니</li>
                      </ol>
                   </div>
                </div>
@@ -17,7 +15,7 @@
 		<form action="/warm/shop/charge" method="get" id="sendForm">
          <div class="page-inner no-border">
 
-            <section class="section-primary main-color">
+            <section class="section-primary main-color" style="margin-bottom: 50px;">
 
                <div class="container">
 
@@ -138,7 +136,7 @@
                               </tbody>
                            </table>
 
-                           <div class="btn btn-primary d-block fs-11" id="charge">구매하기</div>
+                           <div class="btn v-btn standard lightgrey standard d-block fs-11" id="charge">구매하기</div>
                         </div>
                      </div>
                   </div>

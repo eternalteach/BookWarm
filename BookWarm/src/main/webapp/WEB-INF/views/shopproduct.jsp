@@ -10,8 +10,8 @@
 <%@ include file="includes/header/header-topnav.jsp"%>
 <%@ include file="includes/content/shopContent/shopproduct.jsp"%>
 <%@ include file="includes/header/script-vertexEx.jsp"%>
-
 </body>
+<%@ include file="includes/footer/footer-6 from Vertex.jsp"%>
 </html>
 
 

@@ -12,6 +12,6 @@
 	<%@ include file="includes/header/header-topnav.jsp"%>
 	<%@ include file="includes/content/message/msglistPage.jsp"%>
 	<%@ include file="includes/header/script-vertex.jsp"%>
-	<%@ include file="includes/footer/footer-6 from Vertex.jsp"%>
 </body>
+	<%@ include file="includes/footer/footer-6 from Vertex.jsp"%>
 </html>

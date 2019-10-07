@@ -50,7 +50,7 @@
 											</div>
 									</div>
 												<!-- 페이징 -->
-												<div class="row col-lg-12" style="padding-top :20px; margin-left: 350px;">
+												<div class="row col-lg-12" style="padding-top :20px;">
 													<div class="panel-footer center msgPaging"></div>
 												</div>
 								</div>
@@ -65,7 +65,7 @@
 											</div>
 									</div>
 												<!-- 페이징 -->
-												<div class="row col-lg-12" style="padding-top :20px; margin-left: 350px;">
+												<div class="row col-lg-12" style="padding-top :20px;">
 													<div class="panel-footer center msgPaging2"></div>
 												</div>
 								</div>
