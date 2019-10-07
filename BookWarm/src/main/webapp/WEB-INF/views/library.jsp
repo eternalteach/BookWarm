@@ -34,9 +34,11 @@
 	</div>
 	<div>
 		<!-- <img src="/warm/resources/img/library/bookshelf/bs.png" style="width:60%; max-width:50%; margin-top:6.3%; margin-left:25%; margin-right:auto"> -->
-		<img src="/warm/resources/img/library/bookshelf/bs.png" style="width:75%; max-width:75%; margin-top:-7%; margin-left:25%; margin-right:auto">
-		<img src="/warm/resources/img/library/bookshelf/bs.png" style="width:75%; max-width:75%; margin-top:-30%; margin-left:25%; margin-right:auto">
-		<img src="/warm/resources/img/library/bookshelf/bs.png" style="width:75%; max-width:75%; margin-top:-30%; margin-left:25%; margin-right:auto">
+		<!-- <img src="/warm/resources/img/library/bookshelf/bs.png" style="width:75%; max-width:75%; margin-top:-7%; margin-left:10%; margin-right:auto">
+		<img src="/warm/resources/img/library/bookshelf/bs.png" style="width:75%; max-width:75%; margin-top:-30%; margin-left:10%; margin-right:auto">
+		<img src="/warm/resources/img/library/bookshelf/bs.png" style="width:75%; max-width:75%; margin-top:-30%; margin-left:10%; margin-right:auto"> -->
+		<!-- <img src="/warm/resources/img/library/bookshelf/bs2.png" style="width:60%; max-width:75%; margin-top:6%; margin-left:20%; margin-right:auto"> -->
+		<img src="/warm/resources/img/library/bookshelf/bs3.png" style="width:60%; max-width:75%; margin-top:10%; margin-left:20%; margin-right:auto">
 	</div>
 	
 	<div class="bookshelf-position bookshelf-div">
