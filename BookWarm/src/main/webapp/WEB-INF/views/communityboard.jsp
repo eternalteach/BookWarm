@@ -18,20 +18,7 @@
 <%@ include file="includes/header/header-topnav.jsp"%>
 
 <div>
-	<section>
-		<section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-top:20px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
-	            <div class="container">
-	                <div class="row align-items-center">
-	                    <div class="col-md-8 text-left">
-	                    </div>
-	                    <div class="col-md-4">
-	                        <ul class="bar-breadcrumb justify-content-start justify-content-md-end mb-0 pull-left">
-	                            <li>Community</li>
-	                        </ul>
-	                    </div>
-	                </div>
-	            </div>
-	     </section>
+	<section class="page-header transparent text-left">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-lg-9">
