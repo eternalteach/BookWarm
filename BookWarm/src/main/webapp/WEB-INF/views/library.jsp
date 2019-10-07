@@ -14,7 +14,7 @@
 <script type="text/javascript" src="/warm/resources/js/book.js"></script>
 <%@ include file="includes/header/header-vertexEx.jsp"%>
 </head>
-<body style="background-image:url('/warm/resources/img/library/library_bookshelf.jpg'); background-size:auto 100vh; background-position:0px 0px; background-repeat:no-repeat;" >
+<body style="background-image:url('/warm/resources/img/library/library_bookshelf2.png'); background-size:107% 106%; background-position:-56.5px 0px; background-repeat:no-repeat;" >
 	<div class="header top-padding-3vh" align="center">
 		<!--<div>
 			 <a data-toggle="modal" data-target="#modal-library" class="library-font">Search Books</a>
