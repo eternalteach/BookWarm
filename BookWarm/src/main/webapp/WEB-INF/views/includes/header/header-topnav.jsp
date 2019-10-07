@@ -37,7 +37,7 @@
 										<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#">Books </a>
 											<ul class="dropdown-menu">
 												<li><a class="dropdown-item" href="/warm/shop/shoplist">shoplist</a></li>
-												<li><a class="dropdown-item" href="/warm/shop/shop-cart">cart</a></li>
+												<li><a class="dropdown-item" href="/warm/shop/cart">cart</a></li>
 												<li><a class="dropdown-item" href="#">주문내역 확인</a></li>
 											</ul>
 										</li>

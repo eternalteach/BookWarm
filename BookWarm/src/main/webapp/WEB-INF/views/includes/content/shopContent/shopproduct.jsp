@@ -5,21 +5,19 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <sec:authentication property="principal.username" var="user_id"/>
 
+
 <body class="bg-white">
 
 	<div role="main" class="main">
-		<section class="page-header" style="margin-bottom: 20px;">
+		<section class="ddd" style="padding-top:10px; padding-bottom:0px; margin-top:20px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-md-8 text-left">
-					<!-- 	<span class="tob-sub-title text-color-primary d-block">LITLE BIT ABOUT US</span> -->
-						<h1>BOOK SHOP</h1>
-						<!-- <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
 					</div>
-					<div class="col-md-4">
-						<ul class="breadcrumb justify-content-start">
-							<li><a href="shoplist">BOOK SHOP</a></li>
-							<li class="active">BOOK LIST</li>
+					<div class="col-md-4" >
+						<ul class="breadcrumb justify-content-start justify-content-md-end mb-0" style="background-color:transparent">
+							<li><a href="shoplist">책 리스트</a></li>
+							<li class="active">책 상세정보</li>
 						</ul>
 					</div>
 				</div>
@@ -30,10 +28,10 @@
       <div class="page has-sidebar has-left-sidebar bordered single-product-wrap">
          <div class="page-inner no-border">
             <div class="container single-product-inner" style="padding-top: 0px;margin-bottom: 0px;">
-               <div class="row">
-                  <div class="col-md-3">
+               <div class="row" style="margin-left: 120px;">
+                  <div class="col-md-3" style="padding-right: 30px;margin-right: 80px;margin-left: 20px;"s>
                   	<div class="img" style="padding-top: 20px;">
-                    <img src="${bookdetail.book_img}" style="width: 180px;height: 261px;">
+                    <img src="${bookdetail.book_img}" style="width: 180px;height: 261px;margin-top: 30px;">
                     </div>
                   </div>
 
@@ -42,8 +40,8 @@
                         <li><i class="fa fa-home" aria-hidden="true"></i>${bookdetail.book_title}</li>
                      </ol>
                      <div class="product-details">
-                        <h2 class="product-name"><a href="#" id="booktitle">${bookdetail.book_title}</a></h2>
-                        <div class="product-price-wrap">
+                        <h2 class="product-name">${bookdetail.book_title}</h2>
+                        <div class="product-price-wrap" style="margin-bottom: 15px;">
                            <span class="product-price">
                               <del class="product-amount"><span class="product-price-currency">정가&nbsp<fmt:formatNumber value="${bookdetail.book_price}" pattern="###,###,###" /></span>원</del><br>
                               <ins> 
@@ -53,21 +51,11 @@
                             </ins>
                            </span><br>
                            <span class="product-price-currency">
-                           <span class="product-star-rating" title="Rated 4.67 out of 5">
-                           <!-- 나중에 booksatr로 가져올거임 별점수  -->
-<!--                               <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i> -->
-                           </span>
                            </span>
                         </div>
 
                         <div class="product-summary">
-                      <%--    <c:if test="${empty bookdetail.author}">
-      					</c:if> --%>
-                         <p>${bookdetail.writer_name}&nbsp저</p>
+                         <p style="margin-bottom: 0px;">${bookdetail.writer_name}&nbsp저</p>
                           <c:if test="${bookdetail.translator_name != '[]'}">
  						 <p>${bookdetail.translator_name}&nbsp역</p>
  						 </c:if>
@@ -80,34 +68,18 @@
 									<option value="${i}">${i}</option>
 								</c:forEach>
 								</select>
-	                           <button id="cart" type="submit" 
-	                           name="isbn" value="${bookdetail.isbn }" 
-	                           class="btn v-btn standard grey standard" data-location="top">
-	                           <i class="fa fa-shopping-basket" data-location="top"></i>
+	                           <button id="cart" type="submit" name="isbn" value="${bookdetail.isbn }" class="btn btn-outline-secondary btn-sm" style="left: 10px;">                      
 	                           <span>장바구니</span>
 	                           </button>
                            </form>
                            
-							<!-- 구매로이동  -->
-                            <!-- <a href="/warm/shop/charge"><button id="pay" type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="구매로 이동" data-location="top">
-                          	<span>구매</span>
-                           </button></a>  -->
-                           
                        		<!-- 목록버튼 클릭하면 책 목록으로 이동. -->
-						    <a href="/warm/shop/shoplist"><button type="submit" class="btn v-btn standard grey standard" data-title="목록으로 이동" data-location="top">
-                          	<span>LIST</span>
+						    <a href="/warm/shop/shoplist"><button type="submit" class="btn btn-outline-secondary btn-sm" style="left: 10px;">
+                          	<span>책 리스트</span>
                            </button></a>
-                           
-                           <a class="booklover" href="#">
-                           		<i id="loveicon" class="fa fa-star-o" data-i="white"></i>
-                           </a>
                            
                      <div class="product_meta mb-40">
                            <span class="tagged_as">
-                              <!-- Tags:
-                              <a href="#" rel="tag">Sweaters</a>,
-                              <a href="#" rel="tag">Turtleneck</a>,
-                              <a href="#" rel="tag">Wool</a> --> 
                            </span>
                      </div>
 
@@ -134,13 +106,10 @@
 
 			<!-- 대표저서  -->
              <section class="section-big main-color">
-
                <div class="container">
                   <div class="row">
                      <div class="col-md-12">
-                        <h2 class="section-title mb-5 fs-26">
-                           	 대표 저서
-                        </h2>
+                        <h3 class="section-title" style="margin-bottom:20px;margin-left: 20px;font-size:24px;">대표 저서</h3>
                      </div>
                   </div>
 
@@ -150,66 +119,52 @@
 						<figure class="product-shadows product-item">
                         <div class="product-shadows product-item">
                                  <figure class="product-shadows product-item">
-                                    <div class="product-media">
                                        <div class="img-wrap first-image">
-                                         <a href="shopproduct?isbn=${bookwriter.isbn}"><img src="${bookwriter.book_img}"></a>
+                                         <a href="shopproduct?isbn=${bookwriter.isbn}"><img src="${bookwriter.book_img}" style="width: 130px;margin-left: 15px;"></a>
                                        </div>
-                                    </div>
 									
                                     <div class="product-details">
-                                       <h3 class="product-name" style="font-size: 14px;line-height:1.3em;margin-bottom: 0px;">${bookwriter.book_title}</h3>
-                                          <class="product-amount">
-                                          	 <class="product-price-currency"><fmt:formatNumber value="${bookwriter.book_price}" pattern="###,###,###" />원</class>
-                                       <div class="product-star-rating" title="Rated 4.67 out of 5">
-                                        <!--   <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i> -->
-                                       </div>
+                                       <h3 class="product-name" style="font-size: 14px;line-height:1.3em;margin-top:10px;margin-bottom:0px; text-align: center;">${bookwriter.book_title}</h3>
+                                       <div class="product-price-currency" style="text-align:center;"><fmt:formatNumber value="${bookwriter.book_price}" pattern="###,###,###" />원</div>
                                     </div> 
                                  </figure>
-                              </div>
-                              </figure>
-                             </div>
-                            </c:forEach>
                          </div>
-                         <!-- row끝 -->
-                        </div>
-		            </section> 
-				</div>
+                         </figure>
+                     </div>
+                    </c:forEach>
+                 </div>
               </div>
-         </div>
-         </div>
-   <!--       
-     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+		    </section>
+		    <!-- 대표저서 끝  --> 
+		</div>
+      </div>
+     </div>
+   </div>
+      
+     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
      <script>
  		//버튼 클릭시 이벤트
  		$(document).ready(function(){
- 			
- 		$("#cart").on("click", function(e){
-			alert("장바구니에 등록하시겠습니까?");
-			});
- 		$("#pay").on("click", function(e){
-			alert("구매로 이동하시겠습니까?");
-			
-			});
- 		});
+	 		$("#cart").on("click", function(e){
+	 			alert("장바구니에 등록하시겠습니까?");
+	 		});
  		
- 		//amount넘기기
+	 		$("#pay").on("click", function(e){
+				alert("구매로 이동하시겠습니까?");
+				
+				});
+ 			});
+ 	/* 	//amount넘기기
  		$(document).ready(function(){
  		    $("#cart_cnt").on("change", function(){
  		    	alert("안돼")
  		    	var val = $(this).val(); 		    	
  		     	var pre = $("#cart_get").attr("href");
- 		    	
  		     	console.log(pre.toString()  + val.toString());     	 
  		     	$("#cart_get").attr("href",pre.toString()  + val.toString());     	
  		        console.log($(this).val());
  		    });
- 		});
- 		
- 		
+ 		}); */
  		//즐겨찾기 기능하기
  		$(document).ready(function(){
  	 		  //흰색이 검정색으로 바뀌기

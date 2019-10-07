@@ -6,11 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Message</title>
-	<%@ include file="./includes/header/header-vertex.jsp"%>
+	<%@ include file="includes/header/header-vertex.jsp"%>
 </head>
 <body>
 	<%@ include file="includes/header/header-topnav.jsp"%>
-	<%@ include file="./includes/content/message/msglistPage.jsp"%>
-	<%@ include file="./includes/header/script-vertex.jsp"%>
+	<%@ include file="includes/content/message/msglistPage.jsp"%>
+	<%@ include file="includes/header/script-vertex.jsp"%>
+	<%@ include file="includes/footer/footer-6 from Vertex.jsp"%>
 </body>
 </html>
