@@ -10,7 +10,7 @@
 <meta name="author" content="bootstraptemplates.net">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" type="image/png" href="./resources/Vertex/img/favicon.png" />
-<link rel="stylesheet" href="resources/css/main.css" />
+<link rel="stylesheet" href="/warm/resources/css/main.css" />
 <!-- Web Fonts  -->
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
 

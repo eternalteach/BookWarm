@@ -12,7 +12,7 @@
 <link rel="shortcut icon" href="/warm/resources/VertexEx/img/favicon.png" type="image/x-icon" />
 <link rel="apple-touch-icon" href="/warm/resources/VertexEx/img/apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Cabin:400,600,700" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/main.css" />
+<link rel="stylesheet" href="/warm/resources/css/main.css" />
 <!-- Vendor CSS -->
 <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/tether/tether.min.css" />
 <link rel="stylesheet" href="/warm/resources/VertexEx/vendor/bootstrap/css/bootstrap.min.css">

@@ -27,37 +27,37 @@
 							<div class="frm-row">
 								<!-- 결제 방법 -->
 								<div class="section colm">
-									결제 방법 : <input type="text" name="orders_payment" id="orders_payment" class="gui-input">
+									결제 방법 : <input type="text" name="orders_payment" id="orders_payment" class="gui-input" readonly>
 								</div>								
 								
 								<!-- 주문 총액(할인받기 전 금액) -->
 								<div class="section colm">
-									주문 도서 총액 : <input type="text" name="orders_total" id="orders_total" class="gui-input">
+									주문 도서 총액 : <input type="text" name="orders_total" id="orders_total" class="gui-input" readonly>
 								</div>
 								
 								<!-- 결제 금액(주문 총액-할인금액) -->
 								<div class="section colm">
-									결제 금액 : <input type="text" name="orders_pay_total" id="orders_pay_total" class="gui-input">
+									결제 금액 : <input type="text" name="orders_pay_total" id="orders_pay_total" class="gui-input" readonly>
 								</div>
 								
 								<!-- 환불받을 계좌 -->
 								<div class="section colm">
-									환불 받을 계좌번호 : <input type="text" name="refund_account" id="refund_account" class="gui-input">
+									환불 받을 계좌번호 : <input type="text" name="refund_account" id="refund_account" class="gui-input" readonly>
 								</div>
 								
 								<!-- 환불받을 은행 -->
 								<div class="section colm">
-									환불 받을 은행 : <input type="text" name="refund_bank" id="refund_bank" class="gui-input">
+									환불 받을 은행 : <input type="text" name="refund_bank" id="refund_bank" class="gui-input" readonly>
 								</div>
 								
 								<!-- 주문일 -->
 								<div class="section colm">
-									주문일 : <input type="text" name="orders_date" id="orders_date" class="gui-input">
+									주문일 : <input type="text" name="orders_date" id="orders_date" class="gui-input" readonly>
 								</div>
 								
 								<!-- 결제일 -->
 								<div class="section colm">
-									결제일 : <input type="text" name="orders_pay_date" id="orders_pay_date" class="gui-input">
+									결제일 : <input type="text" name="orders_pay_date" id="orders_pay_date" class="gui-input" readonly>
 								</div>
 							</div>
 
@@ -76,44 +76,34 @@
 							<div class="frm-row">
 								<!-- 배송 받을 사람 이름 -->
 								<div class="section colm">
-									이름 : <input type="email" name="post_name" id="post_name" class="gui-input">
+									이름 : <input type="email" name="post_name" id="post_name" class="gui-input" readonly>
 								</div>
 								
 								<!-- 배송 받을 사람 전화번호 -->
 								<div class="section colm">
-									전화번호 : <input type="email" name="post_phone" id="post_phone" class="gui-input">
+									전화번호 : <input type="email" name="post_phone" id="post_phone" class="gui-input" readonly>
 								</div>
 								
 								<!-- 배송 우편번호 -->
 								<div class="section colm">
-									우편 번호 : <input type="email" name="post_zipcode" id="post_zipcode" class="gui-input">
+									우편 번호 : <input type="email" name="post_zipcode" id="post_zipcode" class="gui-input" readonly>
 								</div>
 								
 								<!-- 배송 주소 -->
 								<div class="section colm">
-									주소 : <input type="email" name="post_addr" id="post_addr" class="gui-input">
+									주소 : <input type="email" name="post_addr" id="post_addr" class="gui-input" readonly>
 								</div>
 								
 								<!-- 할인 받은 금액 -->
 								<div class="section colm">
-									<input type="email" name="post_addr_detail" id="post_addr_detail" class="gui-input">
+									<input type="email" name="post_addr_detail" id="post_addr_detail" class="gui-input" readonly>
 								</div>
 								
 							</div>
 							<!-- end .frm-row section -->
 							
-							<div class="section">
-								<label class="field prepend-icon">
-									<textarea class="gui-textarea" id="sendermessage" name="sendermessage" placeholder="Your message"></textarea>
-									<span class="field-icon">
-										<i class="fa fa-comments"></i>
-									</span>
-									<span class="input-hint">
-										<strong>DO NOT:</strong> Be negative or off topic, we expect a great comment...
-									</span>
-								</label>
-							</div>
-							<!-- end section -->
+							
+							
 							<div class="smartforms-modal-footer">
 								<button type="submit" class="button btn-primary">수정하기</button>
 							</div>

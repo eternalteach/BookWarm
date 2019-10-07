@@ -6,8 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -119,9 +123,7 @@ public class UserInfoController {
 	@RequestMapping("/orderDetails")
 	@ResponseBody
 	@Transactional
-	public String orderDetails(Principal principal, @Param("orders_no") String orders_no) {
-		
-		System.out.println("orders_no : " + orders_no);
+	public ResponseEntity<String> orderDetails(Principal principal, @Param("orders_no") String orders_no) {
 		
 		String user_id = principal.getName();
 		// 주문건에 대한 결제, 쿠폰, 배송 정보를 가져온다.
@@ -138,15 +140,16 @@ public class UserInfoController {
 			coupon = userInfoService.getUsedCoupon(coupon_no);
 		}
 		
-		// 3. 배송 정보 가져오기.
+		// 3. 배송 정보 가져오기
 		String post_no = order.getPost_no();
 		System.out.println("post_no : "+post_no);
 		PostVO post = null;
 		if(post_no != null) {
 			post = userInfoService.getPostInfo(post_no);
 			// getPostInfo xml다시 보기....post객체 안 받아와지는듯!!!
+			System.out.println("post객체 가져오기 : "+post.getPost_name());
 		}	
-		
+
 		// 4. 맵으로 묶기
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("order", order);
@@ -157,6 +160,9 @@ public class UserInfoController {
 		Gson gson = new Gson();
 		String json = gson.toJson(map);
 		
-		return json;
+		HttpHeaders resHeader = new HttpHeaders();
+		resHeader.add("Content-Type", "application/json;charset=UTF-8");
+		
+		return new ResponseEntity<String>(json, resHeader, HttpStatus.CREATED);
 	}
 }
