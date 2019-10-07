@@ -1,6 +1,4 @@
-﻿<% String path1 = request.getContextPath(); %>
-
-   <div class="wrapper">
+﻿   <div class="wrapper">
       <div class="page has-sidebar has-right-sidebar bordered">
          <section class="page-header b-bordered t-bordered">
             <div class="container">
@@ -16,7 +14,7 @@
                </div>
             </div>
          </section>
-		<form action="<%=path1%>/shop/charge" method="get" id="sendForm">
+		<form action="/warm/shop/charge" method="get" id="sendForm">
          <div class="page-inner no-border">
 
             <section class="section-primary main-color">
@@ -74,9 +72,9 @@
 											<!-- 수량 -->
 		                                    <td class="cart-product-quantity">
 		                                       <div class="form-group" name="cart_cnt">
-		                                       	  <a href="<%=path1 %>/shop/cntDown?user_id=${vo.user_id}&cart_no=${vo.cart_no}&cart_cnt=${vo.cart_cnt}">-&nbsp&nbsp&nbsp</a>
+		                                       	  <a href="/warm/shop/cntDown?user_id=${vo.user_id}&cart_no=${vo.cart_no}&cart_cnt=${vo.cart_cnt}">-&nbsp&nbsp&nbsp</a>
 		                                       	  ${vo.cart_cnt}
-		                                       	  <a href="<%=path1 %>/shop/cntUp?user_id=${vo.user_id}&cart_no=${vo.cart_no}&cart_cnt=${vo.cart_cnt}">&nbsp&nbsp&nbsp+</a>
+		                                       	  <a href="/warm/shop/cntUp?user_id=${vo.user_id}&cart_no=${vo.cart_no}&cart_cnt=${vo.cart_cnt}">&nbsp&nbsp&nbsp+</a>
 		                                          <%-- <input type="number" class="form-control cnt" value="${vo.cart_cnt}"> --%>
 		                                       </div>
 		                                    </td>
@@ -86,7 +84,7 @@
 		                                    </td>
 		                                    <!-- 쓰레기통 모양 아이콘 -->
 		                                    <td class="cart-product-remove">
-		                                       <a href="<%=path1%>/shop/removeCartItem?cart_no=${vo.cart_no}" class="remove" title="Remove this item"><i class="fa fa-trash"></i></a>
+		                                       <a href="/warm/shop/removeCartItem?cart_no=${vo.cart_no}" class="remove" title="Remove this item"><i class="fa fa-trash"></i></a>
 		                                    </td>
 		                                 </tr>
 		                                 <!-- 한 개 기준(끝) -->
