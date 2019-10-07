@@ -9,8 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="includes/header/script-vertex.jsp" %>
-<link rel="stylesheet" href="resources/css/main.css" /></head>
+<%@ include file="includes/header/header-vertex.jsp" %>
 <body>
 <%@ include file="includes/header/header-topnav.jsp"%>
 <sec:authentication property="principal.username" var="user_id"/>
@@ -127,39 +126,8 @@
          </div>
      </div>
 
-     <!--Footer-Wrap-->
-     <div class="footer-wrap">
 
-         <div class="copyright">
-             <div class="container">
-                 <p>© Copyright 2018 by Vertex. All Rights Reserved.</p>
-
-                 <div class="clearfix pull-right">
-                     <a href="#" class="social-icon si-borderless si-facebook mb-0" title="Facebook">
-                         <i class="si-icon-facebook"></i>
-                         <i class="si-icon-facebook"></i>
-                     </a>
-                     <a href="#" class="social-icon si-borderless si-twitter mb-0" title="Twitter">
-                         <i class="si-icon-twitter"></i>
-                         <i class="si-icon-twitter"></i>
-                     </a>
-                     <a href="#" class="social-icon si-borderless si-instagram mb-0" title="Instagram">
-                         <i class="si-icon-instagram"></i>
-                         <i class="si-icon-instagram"></i>
-                     </a>
-                     <a href="#" class="social-icon si-borderless si-vk mb-0" title="Vk">
-                         <i class="si-icon-vk"></i>
-                         <i class="si-icon-vk"></i>
-                     </a>
-                 </div>
-             </div>
-         </div>
-     </div>
-     <!--End Footer-Wrap-->
     </div>
-    
-    // jQuery 사용을 위해 cdn 추가
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     
     <script>
     	
@@ -329,24 +297,5 @@
     </script>
 	
 	
-
-    <!-- Libs -->
-    <script src="./resources/Vertex/js/jquery.min.js"></script>
-    <script src="./resources/Vertex/js/popper.js"></script>
-    <script src="./resources/Vertex/js/bootstrap.min.js"></script>
-    <script src="./resources/Vertex/js/jquery.flexslider-min.js"></script>
-    <script src="./resources/Vertex/js/jquery.easing.js"></script>
-    <script src="./resources/Vertex/js/jquery.fitvids.js"></script>
-    <script src="./resources/Vertex/js/jquery.carouFredSel.min.js"></script>
-    <script src="./resources/Vertex/js/jquery.validate.js"></script>
-    <script src="./resources/Vertex/js/theme-plugins.js"></script>
-    <script src="./resources/Vertex/js/jquery.isotope.min.js"></script>
-    <script src="./resources/Vertex/js/imagesloaded.js"></script>
-
-    <script src="./resources/Vertex/js/view.min.js?auto"></script>
-    <script src="./resources/Vertex/plugins/aos/aos.js"></script>
-    <script src="./resources/Vertex/js/theme-core.js"></script>
-    <script src="./resources/Vertex/js/theme.js"></script>
-    <script src="./resources/Vertex/js/theme.init.js"></script>
-</body>
-</html>
+<%@ include file="includes/header/script-vertexEx.jsp"%> 
+<%@ include file="includes/footer/footer-1.jsp"%>

@@ -75,7 +75,7 @@
       <div class="page has-sidebar has-right-sidebar bordered">
 <%-- <section class="section-primary alternate-color b-bordered" style="min-width:170px"></section> --%>
          <div class="page-inner has-left-sidebar has-one-sidebar">
-            <div class="container" style="max-width:90vw!important;">
+            <div class="container">
             
                <!-- <div class="row" style="width:100%; height:50px; text-align:right; position:relative">
            		    <ul style="position:absolute; right:0">                     
@@ -103,10 +103,10 @@
             
                <div class="row">
 					
-                  <div class="col-md-3 left-side-sidebar pt-70 " style="padding-top:15px !important; border-right-color: transparent!important;">
+                  <div class="col-md-3 left-side-sidebar pt-70 alternate-color" style="padding-top:15px !important; padding-right:20px; border-right-color: transparent!important;">
                      <aside class="sidebar" style="width:100%">
 						<section style="margin:0">
-							<div style="padding:6%">
+							<div style="padding:8%">
 								<ul>
 									<h3>
 										<strong><a href="#">${user_id}</a>'s Reading Log</strong>
@@ -119,36 +119,7 @@
 							</div>
 						</section> 
 						
-
-								
-						<section class="widget widget_sf_recent_custom_comments clearfix" style="padding:6%; margin:0">
-                            <div class="widget-heading clearfix">
-                                <h4 class="v-heading"><span>Recent Comments</span></h4>
-                            </div>
-                            <ul class="recent-comments-list">
-								<!-- 최근 댓글 영역 -->
-                            </ul>
-                        </section>
-						
-                     </aside>
-                  </div>
-                  
-	              <div style="max-width:650px !important; margin-top:20px; margin-left:auto; margin-right:auto">
-			          <div>
-			              <div>
-			              	 <div class="post-header form-header">
-			                  	<div id='loading'>loading...</div>
-	  							<div id='calendar'></div>
-			                 </div>
-			              </div>
-			          </div>
-			      </div>
-                  
-
-               <div class="col-md-3 right-side-sidebar pt-70 " style="padding-top:15px !important; padding-right:20px; border-right-color: transparent!important;">
-                     <aside class="sidebar" style="width:100%">
-               
-               						<section style="margin:0">
+						<section style="margin:0">
 							<div class="widget-heading clearfix">
                                 <h4 class="v-heading" style="padding-left:20px"><span>Recent Reviews</span></h4>
                             </div>		
@@ -158,7 +129,7 @@
 							<!-- 책별 데이터 불러오고 그 중 가장 최근 데이터 하나만 불러오기. -->
 							<c:forEach items="${list}" var="vo">
 							
-							<div class="post-content no-thumb clearfix" style="margin:20px ; padding:30px; max-width:95%">
+							<div class="post-content no-thumb clearfix" style="margin:20px ; padding:30px">
 							    <article class="v_blog-item">
 			                        <div class="v_blog-item-inner row">
 			                        
@@ -226,12 +197,33 @@
                                 </ul>
                             </nav>
 						</section>
-               </aside>
-               </div>
-               
+								
+						<section class="widget widget_sf_recent_custom_comments clearfix">
+                            <div class="widget-heading clearfix">
+                                <h4 class="v-heading" style="padding-left:20px"><span>Recent Comments</span></h4>
+                            </div>
+                            <ul class="recent-comments-list">
+								<!-- 최근 댓글 영역 -->
+                            </ul>
+                        </section>
+						
+                     </aside>
+                  </div>
+                  
+	              <div style="max-width:600px !important; margin-top:20px; margin-left:3%">
+			          <div>
+			              <div>
+			              	 <div class="post-header form-header">
+			                  	<div id='loading'>loading...</div>
+	  							<div id='calendar'></div>
+			                 </div>
+			              </div>
+			          </div>
+			      </div>
+                  
+
                </div>
                <!-- end of row -->
-               
             </div>
             <!-- end of container -->
          </div>
@@ -406,7 +398,7 @@
 					var str = "";
 					
 					$(arr).each(function(i, cmt) {
-						str += "<li class='comment'><div class='comment-wrap clearfix'>";
+						str += "<li class='comment'><div class='comment-wrap clearfix'><div class='comment-wrap clearfix'>";
 						str += "<div class='comment-avatar'>";
 						str += "<img src='/warm/resources/Vertex/img/team/t" + (i+1) + ".png' class='avatar' style='height:35px; width:35px' />";
 						str += "</div>";
@@ -416,7 +408,7 @@
 						str += "<div class='comment-meta'>";
 						str += "<span class='comment-author'>" + cmt.user_id + "</span>";
 						str += "<span class='comment-date'>" + displayTime(cmt.review_cmt_modified_date) + "</span>";
-						str += "</div></div></li>";
+						str += "</div></div></div></li>";
 						str += "";
 					});
 					if(str=="") {
