@@ -3457,7 +3457,7 @@ window.theme.fn = {
 					thumbInfoPreview;
 
 				// Add Arrows
-				$header.find('.dropdown-toggle, .dropdown-submenu > a').append($('<i />').addClass('fa fa-caret-down'));
+				$header.find('.dropdown-toggle, .dropdown-submenu > a').append($('<i />').addClass('menu-arrow'));
 
 				// Preview Thumbs
 				self.$wrapper.find('a[data-thumb-preview]').each(function() {
@@ -3507,7 +3507,7 @@ window.theme.fn = {
 				});
 
 				// Mobile Arrows
-				$header.find('.dropdown-toggle[href="#"], .dropdown-submenu a[href="#"], .dropdown-toggle[href!="#"] .fa-caret-down, .dropdown-submenu a[href!="#"] .fa-caret-down').on('click', function(e) {
+				$header.find('.dropdown-toggle[href="#"], .dropdown-submenu a[href="#"], .dropdown-toggle[href!="#"] .menu-arrow, .dropdown-submenu a[href!="#"] .menu-arrow').on('click', function(e) {
 					e.preventDefault();
 					if ($window.width() < 992) {
 						$(this).closest('li').toggleClass('opened');

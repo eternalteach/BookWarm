@@ -41,7 +41,6 @@
 												<li><a class="dropdown-item" href="#">주문내역 확인</a></li>
 											</ul>
 										</li>
-										
 										<!-- make icon -->
 										<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#">User Info</a>
 											<ul class="dropdown-menu">

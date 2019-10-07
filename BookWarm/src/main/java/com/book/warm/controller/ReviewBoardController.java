@@ -67,7 +67,7 @@ public class ReviewBoardController {
 	
 	@GetMapping("/reviewMain")
 	public void recordMain(Principal principal, Criteria cri, Model model) {
-		
+		cri.setAmount(3);
 		model.addAttribute("list", service.selectBoardList(principal.getName(), cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, service.getTotal(principal.getName())));
 	}

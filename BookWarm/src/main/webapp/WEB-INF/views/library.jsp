@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="resources/css/main.css" />
 </head>
 <body style="background-color:white">
-<!--  style="background-image:url('/warm/resources/img/library/background/Draft-4.png'); background-size:100% 109%; background-position:0px 0px; background-repeat:no-repeat;" -->
+  style="background-image:url('/warm/resources/img/library/background/Draft-4.png'); background-size:100% 109%; background-position:0px 0px; background-repeat:no-repeat;" 
 	<div class="header top-padding-3vh" align="center">
 		<div>
 			<!-- <a data-toggle="modal" data-target="#modal-library" class="library-font">Search Books</a>
