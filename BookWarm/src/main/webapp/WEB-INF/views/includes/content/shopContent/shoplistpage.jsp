@@ -5,7 +5,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <sec:authentication property="principal.username" var="user_id"/>
 
-<head>
 <body>
 	<div role="main" class="main">
 		<section class="page-header">
@@ -68,16 +67,14 @@
 								
 						</ul>
 						<!-- ul끝  -->
-
 						<div class="tab-content">
 							<div class="tab-pane fade show active" id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a00"
 								role="tabpanel" aria-labelledby="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a0">
 								<!-- shoptitlelist  -->
 								<div class="row">
 									<c:forEach items="${shoptitlelist}" var="shop">
-										<div class="col-md-2">
+										<div class="col-md-2" style="margin-top: 20px;">
 											<figure class="product-shadows product-item">
-												<%-- <p style="hidden;">&nbsp;${shop.isbn}</p> --%>
 												<div class="product-media">
 													<div class="img-wrap first-image">
 														<a style="text-align: center;" href="shopproduct?isbn=${shop.isbn}">
@@ -85,13 +82,9 @@
 													</div>
 												</div>
 												<div class="product-details" style="font-size:13px;text-align: center; padding-bottom:0px;">
-													<h3 class="product-name"><a style="font-size:15px;text-align: center;line-height:15px;">${shop.book_title}</a></h3>
-													<span class="product-posted_in">
-													<a style="font-size:15px;text-align: center;line-height:13px;" rel="tag">${shop.writer_name}&nbsp;저</a></span> 
-													<span class="product-posted_in"><a rel="tag" id="translastor_name"><%-- ${shop.translator_name}&nbsp;저 --%></a></span>
-													<span class="product-price" style="padding-bottom: 20px;"> <span class="product-amount">
+													<h3 class="product-name" style="margin-bottom: 0px;"><a style="font-size:15px;text-align: center;line-height:15px;">${shop.book_title}</a></h3>
+													<span class="product-price" style="padding-bottom: 10px;">
 														<span class="product-price-currency" style="text-align: center;">정가&nbsp;<fmt:formatNumber value="${shop.book_price}" pattern="###,###,###" /></span>원<br>
-													</span>
 													</span>	
 												</div>
 											</figure>
@@ -100,13 +93,11 @@
 								</div>
 							</div>
 							<!-- 가격순 책 불러오기  -->
-							<div class="tab-pane fade" id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11"
-								role="tabpanel" aria-labelledby="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a1">
+							<div class="tab-pane fade" id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11" role="tabpanel" aria-labelledby="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a1">
 								<div class="row">
 									<c:forEach items="${bookpricelist}" var="shop_title">
-										<div class="col-md-2">
+										<div class="col-md-2" style="margin-top: 20px;">
 											<figure class="product-shadows product-item">
-												<%-- <p style="text-align: center;" >&nbsp;${shop_title.isbn}</p> --%>
 												<div class="product-media">
 													<div class="img-wrap first-image">
 														<a style="text-align: center;" href="shopproduct?isbn=${shop_title.isbn}">
@@ -114,8 +105,7 @@
 													</div>
 												</div>
 												<div class="product-details" style="font-size:13px;text-align: center; padding-bottom:0px;">
-													<h3 class="product-name"><a style="font-size:15px;text-align: center;line-height:15px;" href="shopproduct?isbn=${shop_title.isbn}">${shop_title.book_title}</a></h3>
-													<span class="product-posted_in"><a style="font-size:13px;text-align: center;line-height:15px;" rel="tag">${shop_title.writer_name}&nbsp;저</a></span>
+													<h3 class="product-name" style="margin-bottom: 0px;"><a style="font-size:15px;text-align: center;line-height:15px;" href="shopproduct?isbn=${shop_title.isbn}">${shop_title.book_title}</a></h3>
 													<span class="product-price" style="padding-bottom: 20px;"><span class="product-amount">
 														<span class="product-price-currency" style="text-align: center;">정가&nbsp;<fmt:formatNumber value="${shop_title.book_price}" pattern="###,###,###" /></span>원<br>
 													</span>
@@ -130,7 +120,7 @@
 								 <div class="tab-pane fade " id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" role="tabpanel" aria-labelledby="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a2">
                                      <div class="row">
                                      <c:forEach items="${bookpricelist2}" var="bookpricelist2">
-										<div class="col-md-2">
+										<div class="col-md-2" style="margin-top: 20px;">
 											<figure class="product-shadows product-item">
 												<div class="product-media">
 													<div class="img-wrap first-image">
@@ -139,8 +129,8 @@
 													</div>
 												</div>
 												<div class="product-details" style="font-size:13px;text-align: center; padding-bottom:0px;">
-													<h3 class="product-name"><a style="font-size:15px;text-align: center;line-height:15px;" href="shopproduct?isbn=${bookpricelist2.isbn}">${bookpricelist2.book_title}</a></h3>
-													<span class="product-posted_in"><a style="font-size:13px;text-align: center;line-height:15px;" rel="tag">${bookpricelist2.writer_name}&nbsp;저</a></span>
+													<h3 class="product-name" style="margin-bottom: 0px;"><a style="font-size:15px;text-align: center;line-height:15px;" href="shopproduct?isbn=${bookpricelist2.isbn}">${bookpricelist2.book_title}</a></h3>
+												<%-- 	<span class="product-posted_in"><a style="font-size:13px;text-align: center;line-height:15px;" rel="tag">${bookpricelist2.writer_name}&nbsp;저</a></span> --%>
 													<span class="product-price" style="padding-bottom: 20px;"><span class="product-amount">
 														<span class="product-price-currency" style="text-align: center;">정가&nbsp;<fmt:formatNumber value="${bookpricelist2.book_price}" pattern="###,###,###" /></span>원<br>
 													</span>

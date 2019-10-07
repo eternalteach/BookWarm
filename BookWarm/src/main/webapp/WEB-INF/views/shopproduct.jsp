@@ -3,16 +3,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<!DOCTYPE html>
 <html>
 <head>
-<%@ include file="./includes/header/header/vertexHeader.jsp"%>
-<%@ include file="includes/header/script-vertexEx.jsp"%>
+<%@ include file="includes/header/header-vertexEx.jsp"%>
 </head>
 <body>
 <%@ include file="includes/header/header-topnav.jsp"%>
-<%@ include file="./includes/content/shopContent/shopproduct.jsp"%>
-
-<%@ include file="includes/footer/footer-recordwrite.jsp"%>
+<%@ include file="includes/content/shopContent/shopproduct.jsp"%>
+<%@ include file="includes/header/script-vertexEx.jsp"%>
 </body>
 </html>
 

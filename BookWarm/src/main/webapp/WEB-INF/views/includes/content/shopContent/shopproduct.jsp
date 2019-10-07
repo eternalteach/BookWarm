@@ -5,21 +5,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <sec:authentication property="principal.username" var="user_id"/>
 
-<!DOCTYPE html>
-<html lang="UTF-8">
-<head>
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript" src="/warm/resources/js/logintest.js"></script>
-
-<link rel="stylesheet" href="resources/css/main.css" />
-
-
 <body class="bg-white">
 
 	<div role="main" class="main">
-		<section class="page-header">
+		<section class="page-header" style="margin-bottom: 20px;">
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-md-8 text-left">
@@ -28,8 +17,8 @@
 						<!-- <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
 					</div>
 					<div class="col-md-4">
-						<ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
-							<li><a href="shop/shoplist">BOOK SHOP</a></li>
+						<ul class="breadcrumb justify-content-start">
+							<li><a href="shoplist">BOOK SHOP</a></li>
 							<li class="active">BOOK LIST</li>
 						</ul>
 					</div>
@@ -40,17 +29,17 @@
    <div class="wrapper">
       <div class="page has-sidebar has-left-sidebar bordered single-product-wrap">
          <div class="page-inner no-border">
-            <div class="container single-product-inner">
+            <div class="container single-product-inner" style="padding-top: 0px;margin-bottom: 0px;">
                <div class="row">
-                  <div class="col-md-4">
-                  	<div class="img">
-                    <img src="${bookdetail.book_img}">
+                  <div class="col-md-3">
+                  	<div class="img" style="padding-top: 20px;">
+                    <img src="${bookdetail.book_img}" style="width: 180px;height: 261px;">
                     </div>
                   </div>
 
-                  <div class="col-md-6">
+                  <div class="col-md-7">
                      <ol class="breadcrumb clean-breadcrumb">
-                        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i>${bookdetail.book_title}</a></li>
+                        <li><i class="fa fa-home" aria-hidden="true"></i>${bookdetail.book_title}</li>
                      </ol>
                      <div class="product-details">
                         <h2 class="product-name"><a href="#" id="booktitle">${bookdetail.book_title}</a></h2>
@@ -93,8 +82,8 @@
 								</select>
 	                           <button id="cart" type="submit" 
 	                           name="isbn" value="${bookdetail.isbn }" 
-	                           class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="장바구니로 이동" data-location="top">
-	                           <i class="fa fa-shopping-basket" data-title="장바구니로 이동" data-location="top"></i>
+	                           class="btn v-btn standard grey standard" data-location="top">
+	                           <i class="fa fa-shopping-basket" data-location="top"></i>
 	                           <span>장바구니</span>
 	                           </button>
                            </form>
@@ -105,8 +94,8 @@
                            </button></a>  -->
                            
                        		<!-- 목록버튼 클릭하면 책 목록으로 이동. -->
-						    <a href="/warm/shop/shoplist"><button type="submit" class="btn btn-outline-primary btn-md product-btn lite-tooltip" data-title="목록으로 이동" data-location="top">
-                          	<span>목록</span>
+						    <a href="/warm/shop/shoplist"><button type="submit" class="btn v-btn standard grey standard" data-title="목록으로 이동" data-location="top">
+                          	<span>LIST</span>
                            </button></a>
                            
                            <a class="booklover" href="#">
@@ -168,7 +157,7 @@
                                     </div>
 									
                                     <div class="product-details">
-                                       <h3 class="product-name"><a href="#">${bookwriter.book_title}</a></h3>
+                                       <h3 class="product-name" style="font-size: 14px;line-height:1.3em;margin-bottom: 0px;">${bookwriter.book_title}</h3>
                                           <class="product-amount">
                                           	 <class="product-price-currency"><fmt:formatNumber value="${bookwriter.book_price}" pattern="###,###,###" />원</class>
                                        <div class="product-star-rating" title="Rated 4.67 out of 5">
@@ -190,6 +179,7 @@
 		            </section> 
 				</div>
               </div>
+         </div>
          </div>
    <!--       
      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
@@ -220,40 +210,25 @@
  		});
  		
  		
- 		
  		//즐겨찾기 기능하기
  		$(document).ready(function(){
  	 		  //흰색이 검정색으로 바뀌기
- 	 		  
-     		  		
  	 		  var booklover = $(".booklover");
  	 		  
  	 		booklover.on("click", "i", function(e){
- 	 			  
  	 			 alert("하트눌름");
  	 			 var icon =  $("i[class='fa fa-star-o']");
  	 			 var item = $(this).attr("data-i");
- 	 			 
  	 			 if(item ==  "white"){
- 	 				 
  	 			 var str = "";
  	 			 str += "<i id='loveicon' class='fa fa-star' data-i='black'></i>";
  	 		  	/*  booklover.html(str); */
- 	 		  	 
  	 			 };
- 	 			 
  	 			 if(item == "black"){
- 	 				 
  	 				var str = "";
  	 	 			 str += "<i id='loveicon' class='fa fa-star-o' data-i='white'></i>";
  	 			 };
  	 	 		  	 booklover.html(str);
- 	 		  	 
- 	 			   	
- 	 		  	 
- 	 			 
- 	 			 
- 	 			 
  	 		  });
  		});
       </script>
