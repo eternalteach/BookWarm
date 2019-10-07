@@ -82,9 +82,10 @@ height: 100%;
 }
 
 .book-thumbnail {
-	/* height: 12.5vh;
-	width: 11vh; */
-	box-shadow: 2px 2px 5px 3px lightgray;
+	height: 12.5vh;
+	/* width: 11vh; */
+	box-shadow: 3px 3px 10px gray
+	;
 }
 .book-position{
 }
