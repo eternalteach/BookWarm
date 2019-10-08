@@ -338,7 +338,7 @@ create table orders(
     orders_date date not null,
     orders_pay_date date,
     coupon_no varchar2(20),
-    post_no varchar2(20),
+    post_no varchar2(20) not null,
     delivery_fee number(4,0) not null,
     discounted_point number(10,0) not null,
     constraint pk_pay primary key(orders_no),
