@@ -187,15 +187,15 @@
 						 var month = date.getMonth()+1;
 						 var date = date.getDate();
 						 msghtml+="<div class='blog-list-item-date' style='margin-left: 20px;margin-top: 20px;'>"+date+"<span style='font-size:20px;'>"+month+"</span></div>";
-						 msghtml+="<div class='blog-list-content' style='margin-top: 20px;margin-left: 100px;'><h6 class='special' style='text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:80px;'>";
+						 msghtml+="<div class='blog-list-content' style='margin-top: 20px;margin-left: 95px;'><h6 class='special' style='text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:80px;'>";
 						 msghtml+="<a id='t' href='#' class='title' data-toggle='modal' data-target='#modalview"+msglist[i].msg_no+"' style='padding-top: 10px; font-size=15px'>"+msglist[i].msg_title+"</a></h6>";
 						 msghtml+="<small>보낸 사람"+msglist[i].msg_send_id+"</small>";
 						 msghtml+="<small id='sendperson' value="+msglist[i].msg_get_id+">받는 사람 "+msglist[i].msg_get_id+"</small>";
-						 msghtml+="<div class='blog-list-item-excerpt'<p style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap; width:70px' >"+msglist[i].msg_content+"</p></div>";
-						 msghtml+="<div class='box' style='padding-left:20px;'>";
+						 msghtml+="<div class='blog-list-item-excerpt'<p style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap; width:100px' >"+msglist[i].msg_content+"</p></div>";
+						 msghtml+="<div class='box' style='padding-left:40px;'>";
 						 msghtml+="<a class='bb' style='padding-left:s0px; padding-right:5px;' href='#modal-msgg' data-toggle='modal' data-target='#modal' data-send_id="+msglist[i].msg_send_id+">"
-						 msghtml+="<i class='icon-bubble-1'></i>답장</a>"	
-						 msghtml+="<a id='del' href='#' data="+msglist[i].msg_no+"><i class='icon-bin-2'></i>삭제</a>"
+						 msghtml+="<class='icon-bubble-1'>답장</a>"	
+						 msghtml+="<a id='del' href='#' data="+msglist[i].msg_no+">삭제</a>"
 						 msghtml+="</div></div></div>"
 				}
 					 msgtable.html(msghtml);
@@ -249,14 +249,14 @@
 						 var month = date.getMonth()+1;
 						 var date = date.getDate();
 						 msghtml2+="<div class='blog-list-item-date' style='margin-left: 20px;margin-top: 20px;'>"+date+"<span style='font-size:20px;'>"+month+"</span></div>";
-						 msghtml2+="<div class='blog-list-content' style='margin-top: 20px;margin-left: 100px;'><h6 class='special' style='text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:80px;'>";
+						 msghtml2+="<div class='blog-list-content' style='margin-top: 20px;margin-left: 95px;'><h6 class='special' style='text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:80px;'>";
 						 msghtml2+="<a id='t' href='#' class='title' data-toggle='modal' data-target='#modalview2"+msglist2[i].msg_no+"' style='padding-top: 10px; font-size=15px'>"+msglist2[i].msg_title+"</a></h6>";
 						 msghtml2+="<small id='sendperson2' value="+msglist2[i].msg_send_id+">보낸 사람"+msglist2[i].msg_send_id+"</small>";
 						 msghtml2+="<small>받는 사람 "+msglist2[i].msg_get_id+"</small>";
-						 msghtml2+="<div class='blog-list-item-excerpt'<p style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap; width:70px' >"+msglist2[i].msg_content+"</p></div>";
-						 msghtml2+="<div class='box' style='padding-left:60px;'>"
-						 msghtml2+="<a class='bb' style='padding-left:s0px; padding-right:5px;' href='#modal-msgg' data-toggle='modal' data-target='#modal' data-send_id="+msglist2[i].msg_send_id+" >"
-						 msghtml2+="<a id='del2' href='#' data="+msglist2[i].msg_no+"><i class='icon-bin-2' ></i>삭제</a>"
+						 msghtml2+="<div class='blog-list-item-excerpt'<p style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap; width:100px' >"+msglist2[i].msg_content+"</p></div>";
+						 msghtml2+="<div class='box' style='padding-left:70px;'>"
+						 msghtml2+="<a class='bb' style='padding-left:0px; padding-right:5px;' href='#modal-msgg' data-toggle='modal' data-target='#modal' data-send_id="+msglist2[i].msg_send_id+" >"
+						 msghtml2+="<a id='del2' href='#' data="+msglist2[i].msg_no+">삭제</a>"
 						 msghtml2+="</div></div></div>"
 				}
 					 msgtable2.html(msghtml2);
@@ -296,7 +296,7 @@
 				var sendId = $(this).data("send_id");
 				var temp = $("#temp");
 				var str = '';
-				str += "받는 사람<input name='msg_get_id' type='text' value='" + sendId + "' readonly><br><br>"
+				str += "받는사람<input name='msg_get_id' style='border:none; margin-left: 10px;' type='text' value='" + sendId + "' readonly><br><br>"
 				/* alert(str);
 				alert(temp.html); */
 				temp.html(str);
