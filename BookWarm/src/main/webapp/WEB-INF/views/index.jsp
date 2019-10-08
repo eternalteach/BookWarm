@@ -28,6 +28,7 @@
          </div>
       </div>
  <script type="text/javascript">
+ // open Login Modal
       function openModal(modalname) {
          $("#modal").fadeIn(200);
          $("." + modalname).fadeIn(200);
