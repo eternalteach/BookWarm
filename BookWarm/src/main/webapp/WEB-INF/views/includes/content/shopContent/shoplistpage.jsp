@@ -15,7 +15,7 @@
 					<div class="col-md-4">
 						<ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
 							<li><a href="shoplist">책</a></li>
-							<li class="active">책 리스트</li>
+							<li class="active"><a href="shoplist">책 리스트</a></li>
 						</ul>
 					</div>
 				</div>
@@ -42,7 +42,7 @@
 								data-toggle="tab"
 								href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a00" role="tab"
 								aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a00"
-								aria-expanded="true">TITLE</a></li>
+								aria-expanded="true">제목순</a></li>
 								
 							<!-- 제목순 -->	
 							<li class="nav-item"><a class="nav-link"
@@ -50,7 +50,7 @@
 								data-toggle="tab"								
 								href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11" role="tab" 
 								aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11"
-								aria-expanded="true">ROW PRICE</a></li>
+								aria-expanded="true">낮은 가격순</a></li>
 							<!-- test//아직 아무것도 없음 -->
     						<li class="nav-item">
                            	 <a class="nav-link " 
@@ -59,7 +59,7 @@
                            	 href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" 
                            	 role="tab" 
                             	aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" 
-                           	 aria-expanded="true">HIGH PRICE</a>
+                           	 aria-expanded="true">높은 가격순</a>
                         	</li>
 								
 						</ul>

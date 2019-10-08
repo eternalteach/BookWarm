@@ -12,5 +12,5 @@
 	<%@ include file="includes/content/shopContent/shoplistpage.jsp"%>
 	<%@ include file="includes/header/script-vertex.jsp" %>
 </body>
-	<%@ include file="includes/footer/footer-6 from Vertex.jsp"%>
+	<%@ include file="includes/footer/footer-1.jsp"%>
 </html>

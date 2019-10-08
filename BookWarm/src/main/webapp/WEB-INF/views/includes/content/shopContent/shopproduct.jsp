@@ -17,7 +17,7 @@
 					<div class="col-md-4" >
 						<ul class="breadcrumb justify-content-start justify-content-md-end mb-0" style="background-color:transparent">
 							<li><a href="shoplist">책</a></li>
-							<li class="active">책 상세정보</li>
+							<li class="active"><a href="#">책 상세정보</a></li>
 						</ul>
 					</div>
 				</div>
