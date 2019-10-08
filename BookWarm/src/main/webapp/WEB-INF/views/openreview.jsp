@@ -64,11 +64,11 @@
                                        </ul>
 
                                        <a href="/warm/reviewSelectOne?review_no=${review.review_no}&isbn=${review.isbn}" rel="bookmark">
-                                          <h2 class="v_blog-item-title" itemprop="name headline" style="overflow:hidden; text-overflow:ellipsis">${review.review_title}</h2>
+                                          <h2 class="v_blog-item-title" itemprop="name headline" style="overflow:hidden; text-overflow:ellipsis; display: -webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; line-height:1.8em; max-height:3.6em; ">${review.review_title}</h2>
                                        </a>
                                     </div>
                                     <div itemprop="articleBody">
-                                       <p style="overflow:hidden; display: -webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:10; line-height:1.8em; max-height:18em; margin-top:15px; margin-bottom:30px">
+                                       <p style="overflow:hidden; display: -webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:5; line-height:1.8em; max-height:9em; margin-top:15px; margin-bottom:30px">
                                           ${review.review_content}
                                        </p>
                                        <hr />

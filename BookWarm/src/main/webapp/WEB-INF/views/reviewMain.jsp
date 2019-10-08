@@ -75,80 +75,16 @@
       <div class="page has-sidebar has-right-sidebar bordered">
 <%-- <section class="section-primary alternate-color b-bordered" style="min-width:170px"></section> --%>
          <div class="page-inner has-left-sidebar has-one-sidebar">
-            <div class="container" style="max-width:90vw!important;">
+            <div class="container" style="max-width:90vw!important; margin-left:11.5vw; margin-right:5vw">
             
-               <!-- <div class="row" style="width:100%; height:50px; text-align:right; position:relative">
-           		    <ul style="position:absolute; right:0">                     
-                         감상 작성 버튼 추가
-                         <li class="col-sm-12" style="margin-top:10px">
-                           	<div class="pull-right">
-                           	
-		                    	<a class="btnPerBook" href="/warm/reviewWrite">
-		                      	<span class="text ls-1">
-		                      		감상 더하기
-		                           <i class="icon icon-pen-3"></i>
-		                      	</span>
-		                    	</a><br>
-		                    	<a class="btnPerBook" href="/warm/library">
-		                      	<span class="text ls-1">
-		                      		서재로 돌아가기
-		                      		<i class="fa fa-book"></i>
-		                      	</span>
-		                    	</a><br>
-		                    	
-	                    	</div>
-                         </li>
-                      </ul>    
-               </div> -->
             
                <div class="row">
-					
-                  <div class="col-md-3 left-side-sidebar pt-70 " style="padding-top:15px !important; border-right-color: transparent!important;">
-                     <aside class="sidebar" style="width:100%">
-						<section style="margin:0">
-							<div style="padding:6%">
-								<ul>
-									<h3>
-										<strong><a href="#">${user_id}</a>'s Reading Log</strong>
-									</h3>
-								</ul>
-								<ul style="margin:0">
-									<li>가장 최근에 서재에 담은 책: </li>
-									<li>이 달 읽은 책 수: </li>
-								</ul>
-							</div>
-						</section> 
-						
-
-								
-						<section class="widget widget_sf_recent_custom_comments clearfix" style="padding:6%; margin:0">
-                            <div class="widget-heading clearfix">
-                                <h4 class="v-heading"><span>Recent Comments</span></h4>
-                            </div>
-                            <ul class="recent-comments-list">
-								<!-- 최근 댓글 영역 -->
-                            </ul>
-                        </section>
-						
-                     </aside>
-                  </div>
-                  
-	              <div style="max-width:650px !important; margin-top:20px; margin-left:auto; margin-right:auto">
-			          <div>
-			              <div>
-			              	 <div class="post-header form-header">
-			                  	<div id='loading'>loading...</div>
-	  							<div id='calendar'></div>
-			                 </div>
-			              </div>
-			          </div>
-			      </div>
-                  
-
-               <div class="col-md-3 right-side-sidebar pt-70 " style="padding-top:15px !important; padding-right:20px; border-right-color: transparent!important;">
+               
+               	  
+               <div class="col-md-2 pt-70 " style="padding-top:37px !important; padding-right:20px; border-right-color: transparent!important;">
                      <aside class="sidebar" style="width:100%">
                
-               						<section style="margin:0">
+               			<section style="margin:0">
 							<div class="widget-heading clearfix">
                                 <h4 class="v-heading" style="padding-left:20px"><span>Recent Reviews</span></h4>
                             </div>		
@@ -228,6 +164,80 @@
 						</section>
                </aside>
                </div>
+               
+               
+                  
+	              <div style="max-width:50vw !important; margin-top:20px; margin-bottom:50px">
+			          <div>
+			              <div>
+			              	 <div class="post-header form-header">
+			                  	<div id='loading'>loading...</div>
+	  							<div id='calendar'></div>
+			                 </div>
+			              </div>
+			          </div>
+			      </div>
+                  
+                  
+					
+                  <div class="col-md-2 pt-70 " style="padding-top:0px !important; border-right-color: transparent!important;">
+                     <aside class="sidebar" style="width:100%">
+                     
+                     
+                		<section style="margin:0; padding-right:3vw">
+							<!-- <div style="padding:6vw"> -->
+								<ul style="position:absolute; right:0">                     
+                       
+		                         <li style="margin-top:10px">
+		                           	<div class="pull-right">
+		                           	
+				                    	<a class="btnPerBook" href="/warm/reviewWrite">
+					                      	<span class="text ls-1">감상 더하기<i class="icon icon-pen-3"></i>
+					                      	</span>
+				                    	</a><!-- <br>
+				                    	<a class="btnPerBook" href="/warm/library">
+					                      	<span class="text ls-1">서재로 돌아가기<i class="fa fa-book"></i>
+					                      	</span>
+				                    	</a> -->
+				                    	
+			                    	</div>
+		                         </li>
+		                      </ul>    
+								
+							<!-- </div> -->
+						</section> 
+                     
+                     
+                     
+						<section style="margin:0">
+							<div style="padding-top:30%; padding-bottom:5%; padding-left:6%">
+							<div class="widget-heading clearfix">
+								<ul>
+									<h4 class="v-heading"><a href="#">${user_id}</a>'s Reading Log</h4>
+								</ul>
+							</div>
+								<ul style="margin:3%">
+									<li>가장 최근에 서재에 담은 책: </li>
+									<li>이 달 읽은 책 수: </li>
+								</ul>
+								
+							</div>
+						</section> 
+						
+
+								
+						<section class="widget widget_sf_recent_custom_comments clearfix" style="padding:6%; margin:0">
+                            <div class="widget-heading clearfix">
+                                <h4 class="v-heading"><span>Recent Comments</span></h4>
+                            </div>
+                            <ul class="recent-comments-list">
+								<!-- 최근 댓글 영역 -->
+                            </ul>
+                        </section>
+						
+                     </aside>
+                  </div>
+
                
                </div>
                <!-- end of row -->
@@ -317,12 +327,7 @@
 		   		});
 	   	  }, 
 	   	  
-	   	  viewRender: (function(info) {
-	   		 $(".fc-event-container").css("display", "none");
-	   	  })(),
-	   	  
 	   	  eventRender: function(info) {
-	   		 /*  alert("?"); */
 	   		  console.log("info.event.id:" + info.event.id);
 	   		  console.log("info.event.title : " + info.event.title);
 	   		  console.log("표지 : " + info.event.extendedProps.imageurl);
@@ -344,24 +349,19 @@
 		   			  tdObj.append(coverStr);
 	   			  }
 	   		  } else {
-					/* alert("여기일 가능성?: " + coverStr); */
   				  // 이벤트가 몇 개 이상이면 나타나는 +more은 이미지랑 영역이 겹치므로 
   				  // 당일 이벤트가 3개 이상인 경우 +버튼이 나타나도록 따로 구현.
 	   			  if(!$(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "'] button").length) {
-	   				  //button이 없는 상태
-	   				  /* alert("여기 str: " + coverStr); */
-	   				coverStr += "<div style='display:inline-block; position:relative; float:right; width:20%;'>";
+	   				coverStr += "<div style='display:inline-block; position:relative; float:right; width:20%;'><button style='width:100%; height:20%; border:transparent; background-color:lightgray;'></button></div><div style='display:inline-block; position:relative; float:right; width:20%;'>";
 	   				coverStr += "   <button class='plus' data-toggle='modal' data-target='#" + targetDate + "' style='width:100%; height:20%; border:transparent; background-color:lightgray; color:white;'>+</button>";
 	   				coverStr += "</div>"; 
-		   			  tdObj.append(coverStr); 
-		   			  /* alert(tdObj.html()); */
+		   			tdObj.append(coverStr); 
 	   			  }
 	   		  }
 	   		  // gridMonth형에서 title은 나타나지 않도록 한다.
 	   		  setTimeout(function() {
 	        	  	$(".fc-event-container a").css("display", "none");
-	        	  	$(".fc-day-top[data-date='" + info.event.extendedProps.dateFormat + "']").css("z-index", "-1");
-	        	  	$(".fc-day[data-date='" + info.event.extendedProps.dateFormat + "'] button").css("z-index", "2");
+	        	  	calendar.updateSize();
 	          }, 100);
 	   	  },
 	   	  
@@ -382,17 +382,6 @@
 		  $(".fc-event-container a").css("display", "none");
       }, 200); */
  	  
- 	  /* $("#modalBtn").on("click", function() { 
-	 		  
-		    setTimeout(function() {
-		    	// 처음 버튼을 눌렀을 때도 달력이 온전히 뜨도록 함
-		    	$(".fc-dayGridMonth-button").click();
-
-				calendar.updateSize();
-				$(".fc-event-container").css("display", "none");
-		    }, 200);
- 	  }); */
- 	 
  	 $("#calendar").on("click", "img", function() {
  		 location.href = "/warm/reviewPerBook?isbn=" + $(this).attr('id');
  	 });
@@ -414,7 +403,7 @@
 						str += "<a href='" + cmt.review_no + "'>";
 						str += " <p style='overflow:hidden; text-overflow:ellipsis'>" + cmt.review_cmt_content + "</p></a></div>";
 						str += "<div class='comment-meta'>";
-						str += "<span class='comment-author'>" + cmt.user_id + "</span>";
+						str += "<span class='comment-author'>" + cmt.user_id + "</span>&nbsp;&nbsp;&nbsp;";
 						str += "<span class='comment-date'>" + displayTime(cmt.review_cmt_modified_date) + "</span>";
 						str += "</div></div></li>";
 						str += "";
