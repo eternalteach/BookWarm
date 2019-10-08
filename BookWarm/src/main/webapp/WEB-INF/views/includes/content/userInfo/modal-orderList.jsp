@@ -18,8 +18,8 @@
 				<div class="smart-forms smart-container wrap-full">
 					<!-- 모달창 시작하는 부분 -->
 					<div class="form-body">
-						
-						<form method="post" action="" id="smart-form">
+						<!-- 수정하기 부분 나중에 구현 -->
+						<form method="post" action="/warm/modify" id="smart-form">
 							
 							<div class="frm-row section colm colm6">
 								<h4>결제 정보</h4>
@@ -33,6 +33,16 @@
 								<!-- 주문 총액(할인받기 전 금액) -->
 								<div class="section colm">
 									주문 도서 총액 : <input type="text" name="orders_total" id="orders_total" class="gui-input" readonly>
+								</div>
+								
+								<!-- 배송비 -->
+								<div class="section colm">
+									배송비 : <input type="text" name="delivery_fee" id="delivery_fee" class="gui-input" readonly>
+								</div>
+								
+								<!-- 차감된 포인트 -->
+								<div class="section colm">
+									차감된 포인트 : <input type="text" name="discounted_point" id="discounted_point" class="gui-input" readonly>
 								</div>
 								
 								<!-- 결제 금액(주문 총액-할인금액) -->

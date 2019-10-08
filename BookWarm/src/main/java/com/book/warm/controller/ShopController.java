@@ -207,6 +207,17 @@ public class ShopController {
 		int originalPoint = Integer.parseInt(req.getParameter("originalPoint")); // 원래 있던 포인트
 		int savePoint = (int)(orders_total * 0.05); // 적립할 포인트
 		
+		String delivery = req.getParameter("delivery_fee"); // 배송비
+		int delivery_fee;
+		
+		if(delivery.equals("무료")) {
+			delivery_fee = 0;
+		}else {
+			delivery_fee = 2500;
+		}
+		System.out.println("delivery_fee : "+delivery_fee);
+		
+		
 		// user_tot_price에 총액 ++
 		service.addTotalPrice(user_id, orders_pay_total);
 		
@@ -246,7 +257,7 @@ public class ShopController {
 		// 2. 배송지 번호 받아오기
 		String post_no = service.getPost_no();
 		// 3. orders테이블에 주문건 넣기
-		service.addOrder(orders_payment, user_id, orders_total, refund_account, refund_bank, orders_pay_date, coupon_no, post_no);
+		service.addOrder(orders_payment, user_id, orders_total, refund_account, refund_bank, orders_pay_date, coupon_no, post_no, orders_pay_total, delivery_fee, usePoint);
 		// 4. 주문건 번호 받아오기
 		String orders_no = service.getOrders_no();
 		// 5. orders_item테이블에 주문건 넣기
