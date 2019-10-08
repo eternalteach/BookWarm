@@ -32,8 +32,8 @@
 						<!--Tab-->
 						<ul id="myTab" class="nav v-right-sidebar-inner">
 							<li><a class="aa" href="#modal-msg" data-toggle="modal" data-target="#modala" class="nav v-right-sidebar-inner"><i class="fa fa-edit"></i>쪽지 보내기</a></li>
-							<li><a href="#counters" id="#counters" data-toggle="tab" class="active show"> <i class="fa fa-envelope-o"></i>받은쪽지함</a></li>
-							<li><a href="#recent-posts" id="#recent-posts" data-toggle="tab"><i class="fa fa-envelope-open-o"></i>보낸쪽지함</a></li>
+							<li><a href="#counters" id="#counters" data-toggle="tab" class="active show"> <i class="fa fa-envelope-o"></i>받은 메시지</a></li>
+							<li><a href="#recent-posts" id="#recent-posts" data-toggle="tab"><i class="fa fa-envelope-open-o"></i>보낸 메시지</a></li>
 						</ul>
 						<!--End Tab-->
 					</div>
@@ -44,7 +44,7 @@
 							<div class="tab-pane active" id="counters">
 								<div class="row">
 									<div class="contentmessage" style="width: 830px; height: 630px;">
-										<h1 style="margin-left: 30px;margin-bottom: 0px;margin-top: 40px;">받은쪽지&ensp;(${msgcount}개)</h1>
+										<h1 style="margin-left: 30px;margin-bottom: 0px;margin-top: 40px;">받은 메시지&ensp;(${msgcount}개)</h1>
 									 		<!-- 받은쪽지 리스트 불러오기  -->
 									 		<div id="getMSG">
 											</div>
@@ -60,7 +60,7 @@
 							<div class="tab-pane" id="recent-posts">
 								<div class="row">
 									<div class="contentmessage" style="width: 830px; height: 630px;">
-										<h1 style="margin-left: 30px;margin-bottom: 0px;margin-top: 40px;">보낸쪽지&ensp;(${msgcount2}개)</h1>
+										<h1 style="margin-left: 30px;margin-bottom: 0px;margin-top: 40px;">보낸 메시지&ensp;(${msgcount2}개)</h1>
 											<div id="sendMSG">
 											</div>
 									</div>
@@ -84,7 +84,7 @@
         	<div class="modal-content" style="width: 400px; height: 300px;">
            		<div class="modal-body post-content" style="border: 0.5px solid #EAEAEA;">
 						<form action="/warm/send" name="my_form">
-								<h1 style="font-size:20px; margin-top:0px; padding-bottom:5px; text-align: center;">Send Message</h1>
+								<h1 style="font-size:20px; margin-top:0px; padding-bottom:5px; text-align: center;">메시지 보내기</h1>
 								보낸사람<input style="border:none; margin-left: 10px;" id=sendd name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
 								받는사람<input style="margin-left: 10px;" id=gett name="msg_get_id" type="text"><br><br>
 								제목<input style="margin-left: 30px;" id=titlee name="msg_title" type="text" ><br><br>
@@ -102,7 +102,7 @@
         <div class="modal-content" style="width: 400px; height: 300px;">
             <div class="modal-body post-content" style="border: 0.5px solid #EAEAEA;">
 						<form id="replyModal" action="/warm/send">
-								<h1 style="font-size:20px; margin-top:0px; padding-bottom:5px; text-align: center;">Reply</h1>
+								<h1 style="font-size:20px; margin-top:0px; padding-bottom:5px; text-align: center;">답장하기</h1>
 								보낸사람<input style="border:none; margin-left: 10px;" id="send_id" name="msg_send_id" type="text" value="${user_id}" readonly><br><br><div id="temp">
 								받는사람<input style="border:none; margin-left: 25px;" name="msg_get_id" readonly><br><br></div>
 								 제목 <input id="titlesubmit" name="msg_title" type="text" value="" style="margin-left: 25px;"><br><br>
