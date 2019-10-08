@@ -85,7 +85,7 @@
            		<div class="modal-body post-content" style="border: 0.5px solid #EAEAEA;">
 						<form action="/warm/send" name="my_form">
 								<h1 style="font-size:20px; margin-top:0px; padding-bottom:5px; text-align: center;">메시지 보내기</h1>
-								보낸사람<input style="border:none; margin-left: 10px;" id=sendd name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
+								보낸사람<input style="margin-left: 10px;" id=sendd name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
 								받는사람<input style="margin-left: 10px;" id=gett name="msg_get_id" type="text"><br><br>
 								제목<input style="margin-left: 35px;" id=titlee name="msg_title" type="text" ><br><br>
 						  		<textarea style="width:330px; height:200px; resize: none;" id=contentt name="msg_content"></textarea><br>
@@ -102,9 +102,9 @@
         <div class="modal-content" style="width: 400px; height: 300px;">
             <div class="modal-body post-content" style="border: 0.5px solid #EAEAEA;">
 						<form id="replyModal" action="/warm/send">
-								<h1 style="font-size:20px; margin-top:0px; padding-bottom:5px; text-align: center;">답장하기</h1>
-								보낸사람<input style="border:none; margin-left: 10px;" id="send_id" name="msg_send_id" type="text" value="${user_id}" readonly><br><br><div id="temp">
-								받는사람<input style="border:none; margin-left: 25px;" name="msg_get_id" readonly><br><br></div>
+								<h1 style="font-size:20px;margin-top:20px;text-align: center;">답장하기</h1>
+								보낸사람<input style="margin-left: 10px;margin-top: 10px;" id="send_id" name="msg_send_id" type="text" value="${user_id}" readonly><br><br><div id="temp">
+								받는사람<input style="margin-left: 25px;margin-top: 10px;" name="msg_get_id" readonly><br><br></div>
 								 제목 <input id="titlesubmit" name="msg_title" type="text" value="" style="margin-left: 30px;"><br><br>
 						  		<textarea id="contentsubmit" name="msg_content" style="border:none;width:330px; height:200px; border: 0.5px solid #EAEAEA; resize: none;"></textarea><br>
 								<input id="sendsubmit" style="margin-top: 10px;margin-left: 100px;" type="submit" class="btn btn-outline-secondary" value="보내기">
@@ -122,12 +122,11 @@
         <div class="modal-content" style="width: 400px; height: 300px;">
             <div class="modal-body post-content" style="border: 0.5px solid #EAEAEA;">
 						<div id="titletemp">
-								
-								제목<input style="border:none; margin-left: 10px;" name="msg_send_id" type="text" value="${msglist.msg_title}" readonly><br><br>
+								<h1 style="font-size:20px;margin-top:20px;text-align:left;">제목 : ${msglist.msg_title}</h1>
 								<fmt:formatDate var="fmt_date3" value="${msglist.msg_read_time }" pattern="yyyy-MM-dd"/>
-								보낸사람<input style="border:none; margin-left: 10px;" name="msg_send_id" type="text" value="${msglist.msg_send_id}" readonly><br><br>
-								날짜<input style="border:none; margin-left: 10px;" name="msg_read_time" type="text" value="${fmt_date3}" readonly><br><br>
-								내용<textarea name="msg_content" style="border:none; width:330px; height:200px; resize: none;" readonly>${msglist.msg_content}</textarea><br> 
+								보낸사람<input style="margin-left: 10px;margin-top: 10px;" name="msg_send_id" type="text" value="${msglist.msg_send_id}" readonly><br>
+								날짜<input style="margin-left: 35px;margin-top: 10px;margin-bottom:10px;" name="msg_read_time" type="text" value="${fmt_date3}" readonly><br>
+								내용<textarea name="msg_content" style="width:330px; height:200px; resize: none;" readonly>${msglist.msg_content}</textarea><br> 
 						 		<button type="button" style="margin-top: 10px;margin-left: 130px;" class="btn btn-outline-secondary" data-dismiss="modal">닫기</button>
 						</div>
             </div>
@@ -143,11 +142,11 @@
         <div class="modal-content" style="width: 400px; height: 300px;">
             <div class="modal-body post-content" style="border: 0.5px solid #EAEAEA;">
 						<div id="titletemp">
-								<h1 style="font-size:20px; font-weight:bold; margin-top:20px; padding-bottom:5px; text-align: left;">${msglist2.msg_title}</h1>
+								<h1 style="font-size:20px;margin-top:20px;text-align: left;">제목 : ${msglist2.msg_title}</h1>
 								<fmt:formatDate var="fmt_date4" value="${msglist2.msg_read_time }" pattern="yyyy-MM-dd HH:mm:ss"/>
-								보낸사람<input name="msg_send_id" style="border:none; margin-left: 10px;" type="text" value="${msglist2.msg_send_id}" readonly><br><br>
-								날짜<input style="border:none; margin-left: 10px;" name="msg_read_time" type="text" value="${fmt_date4}" readonly><br><br>
-								내용<textarea name="msg_content" style="border:none; width:330px; height:200px; resize: none;" readonly>${msglist2.msg_content}</textarea><br> 
+								보낸사람<input name="msg_send_id" style="margin-left:10px;margin-top: 10px;" type="text" value="${msglist2.msg_send_id}" readonly><br>
+								날짜<input style="margin-left: 35px;margin-top: 10px;margin-bottom:10px;" name="msg_read_time" type="text" value="${fmt_date4}" readonly><br>
+								내용<textarea name="msg_content" style="width:330px; height:200px; resize: none;" readonly>${msglist2.msg_content}</textarea><br> 
 						 		<button type="button" style="margin-top: 10px;margin-left: 130px;" class="btn btn-outline-secondary" data-dismiss="modal">닫기</button>
 						</div>
 				</div>
@@ -297,7 +296,7 @@
 				var sendId = $(this).data("send_id");
 				var temp = $("#temp");
 				var str = '';
-				str += "받는사람<input name='msg_get_id' style='border:none; margin-left: 10px;' type='text' value='" + sendId + "' readonly><br><br>"
+				str += "받는사람<input name='msg_get_id' style='margin-left: 10px;' type='text' value='" + sendId + "' readonly><br><br>"
 				/* alert(str);
 				alert(temp.html); */
 				temp.html(str);

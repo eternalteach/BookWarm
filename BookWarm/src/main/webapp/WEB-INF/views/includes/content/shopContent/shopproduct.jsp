@@ -113,7 +113,7 @@
                      </div>
                   </div>
 
-                  <div class="row center">
+                  <div class="row" style="margin-top:10px;">
                   	
 	                    <c:forEach items="${bookwritername}" var="bookwriter">
 	                     <div class="col-md-2">
@@ -147,7 +147,7 @@
  		//버튼 클릭시 이벤트
  		$(document).ready(function(){
 	 		$("#cart").on("click", function(e){
-	 			/* alert("장바구니에 등록하시겠습니까?"); */
+	 			alert("장바구니에 추가되었습니다."); 
 	 		});
  		
 	 		$("#pay").on("click", function(e){
