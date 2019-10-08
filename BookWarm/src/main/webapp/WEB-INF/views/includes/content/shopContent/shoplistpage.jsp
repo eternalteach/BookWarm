@@ -22,7 +22,7 @@
 			</div>
 		</section>
 
-		<div class="v-page-wrap has-right-sidebar has-one-sidebar" style="margin-bottom: 100px;">
+		<div class="v-page-wrap has-right-sidebar has-one-sidebar" style="margin-bottom:100px;margin-top:30px;">
 			<div class="container">
 				<!--Horizontal Tab - Clean-->
 				<div class="row">

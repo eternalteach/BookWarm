@@ -25,11 +25,11 @@
 		</section>
 	
    <div class="wrapper">
-      <div class="page has-sidebar has-left-sidebar bordered single-product-wrap">
-         <div class="page-inner no-border">
+      <div class="page has-z has-left-sidebar bordered single-product-wrap">
+         <div class="no-border" style="padding-top: 10px;">
             <div class="container single-product-inner" style="padding-top: 0px;margin-bottom: 0px;">
                <div class="row" style="margin-left: 120px;">
-                  <div class="col-md-3" style="padding-right: 30px;margin-right: 80px;margin-left: 20px;"s>
+                  <div class="col-md-3" style="padding-right: 30px;margin-right: 80px;margin-left: 20px;">
                   	<div class="img" style="padding-top: 20px;">
                     <img src="${bookdetail.book_img}" style="width: 180px;height: 261px;margin-top: 30px;">
                     </div>
@@ -106,7 +106,7 @@
 
 			<!-- 대표저서  -->
              <section class="section-big main-color">
-               <div class="container">
+               <div class="container" style=" width: 830px;">
                   <div class="row center">
                      <div class="col-md-12">
                         <h3 class="section-title" style="margin-bottom:20px;margin-left: 20px;font-size:24px;">대표 저서</h3>
