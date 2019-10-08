@@ -4,7 +4,7 @@
             <div class="container">
                <div class="row">
                   <div class="col-sm-12">
-                     <ol class="breadcrumb pull-right">
+                     <ol class="bar-breadcrumb pull-right">
                         <li><a href="shoplist">책</a></li>
                         <li class="active">장바구니</li>
                      </ol>
@@ -15,7 +15,7 @@
 		<form action="/warm/shop/charge" method="get" id="sendForm">
          <div class="page-inner no-border">
 
-            <section class="section-primary main-color" style="margin-bottom: 50px;">
+            <section class="section-primary main-color nopadding" style="margin-bottom: 50px;">
 
                <div class="container">
 

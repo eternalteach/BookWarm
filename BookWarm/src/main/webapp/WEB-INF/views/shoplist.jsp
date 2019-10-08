@@ -11,6 +11,6 @@
 	<%@ include file="includes/header/header-topnav.jsp"%>
 	<%@ include file="includes/content/shopContent/shoplistpage.jsp"%>
 	<%@ include file="includes/header/script-vertex.jsp" %>
-</body>
 	<%@ include file="includes/footer/footer-1.jsp"%>
+</body>
 </html>

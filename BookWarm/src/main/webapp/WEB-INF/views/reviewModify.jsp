@@ -354,3 +354,5 @@
 
 <%@ include file="includes/header/header-vertex.jsp" %>
 <%@ include file="includes/footer/footer-1.jsp"%>
+</body>
+</html>

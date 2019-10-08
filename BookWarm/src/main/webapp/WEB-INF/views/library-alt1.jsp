@@ -89,7 +89,7 @@
 	</c:forEach>
 </div>
 <!-- End library Modal -->
-</body>
+
 <script>
 $(document).ready(function(){
 	showList();
@@ -211,3 +211,5 @@ $(document).ready(function(){
 	}
 });
 </script>
+</body>
+</html>

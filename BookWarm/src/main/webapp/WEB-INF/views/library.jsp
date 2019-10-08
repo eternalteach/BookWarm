@@ -88,7 +88,7 @@
 <!-- 서재의 책 클릭시 뜨는 모달 생성되는 영역 -->
 <div id="modalDiv"></div>
 <!-- End library Modal -->
-</body>
+
 <script>
 $(document).ready(function(){
 	showList();
@@ -210,3 +210,5 @@ $(document).ready(function(){
 });
 </script>
 <%@ include file="includes/header/script-vertexEx.jsp"%>
+</body>
+</html>

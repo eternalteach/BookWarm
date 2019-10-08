@@ -6,11 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- 	<%@ include file="./includes/header/header/vertexHeader.jsp"%>
+ 	<%@include file="./includes/header/header-vertexEx.jsp" %>
+ 	<%-- <%@include file="./includes/header/header-vertex.jsp" %> 둘 중 하나 알아서 쓰시오--%>
 </head>
 <body>
-   <%@ include file="./includes/header/shopHeader/shopHeaderNav.jsp"%>
-   <%@ include file="./includes/content/userInfo/orderListPage.jsp"%>
-   <%@ include file="./includes/footer/shopFooter/shopFooterNav.jsp"%>
+	<%@ include file="includes/header/header-topnav.jsp"%>
+	<%@ include file="./includes/content/userInfo/orderListPage.jsp"%>
+	<%@ include file="includes/footer/footer-1.jsp"%>
 </body>
 </html>

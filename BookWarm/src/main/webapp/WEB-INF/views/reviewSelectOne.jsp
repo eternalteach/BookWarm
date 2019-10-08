@@ -10,7 +10,6 @@
 <head>
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <%@ include file="includes/header/header-vertex.jsp" %>
-<link rel="stylesheet" href="resources/css/main.css" />
 </head>
 <body style="min-height:0!important;">
 <%@ include file="includes/header/header-topnav.jsp"%>
@@ -537,3 +536,5 @@
 
 <%@ include file="includes/header/script-vertex.jsp" %>
 <%@ include file="includes/footer/footer-1.jsp"%>
+</body>
+</html>

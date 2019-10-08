@@ -315,7 +315,7 @@ $(document).ready(function() {
 			
 			BoardViewHTML+="<tr><th style=\"width:80px;\">번호</th><th style=\"width:420px;\">제목</th><th style=\"width:120px;\">작성자</th><th style=\"width:120px;\">날짜</th><th style=\"width:80px;\">공개여부</th></tr>";
 			for(var i=0, len=list.length||0;i<len;i++){
-				BoardViewHTML+="<tr><td>"+list[i].board_no+"</td><td>";
+				BoardViewHTML+="<tr><td>"+list[i].board_no+"</td><td style=\"overflow:hidden; text-overflow:ellipsis;\">";
 				BoardViewHTML+="<div><div class=\"accordion v4\" id=\"accordion"+list[i].admin_bno+"\" role=\"tablist\" aria-multiselectable=\"true\">";
 				BoardViewHTML+="<div class=\" transparent\"><div role=\"tab\" id=\"headingOne"+list[i].admin_bno+"\"><h5 class=\"mb-0\">";
 				BoardViewHTML+="<a data-toggle=\"collapse\" data-parent=\"#accordion"+list[i].admin_bno+"\" href=\"#collapseOne"+list[i].admin_bno+"\" aria-expanded=\"false\" aria-controls=\"collapseOne"+list[i].admin_bno+"\" class=\"collapsed\">";
@@ -447,5 +447,6 @@ $(document).ready(function() {
 						});
 					});
 </script>
+<%@ include file="includes/footer/footer-1.jsp"%>
 </body>
 </html>

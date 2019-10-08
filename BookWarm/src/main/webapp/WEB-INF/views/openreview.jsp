@@ -11,9 +11,8 @@
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <%@ include file="includes/header/header-vertexEx.jsp"%>
-<link rel="stylesheet" href="resources/css/main.css" />
 </head>
-<body>
+<body class="v-bg-color">
 <%@ include file="includes/header/header-topnav.jsp"%>
 
       <div class="page bordered">
@@ -86,31 +85,13 @@
                            </article>
                         </div>
 					</c:forEach>	
-
-                    <!--  <div class="row">
-                        <div class="col-md-12">
-
-                           <hr class="invisible" />
-
-                           <nav aria-label="Page navigation example">
-                              <ul class="pagination justify-content-center">
-                                 <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                 </li>
-                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                 <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                 <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                 <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                 </li>
-                              </ul>
-                           </nav>
-                        </div>
-                     </div> -->
-                     
                   </div>
                </div>
             </section>
          </div>
+		</div>
 <%@ include file="includes/header/script-vertexEx.jsp"%>
 <%@ include file="includes/footer/footer-1.jsp"%>
+</body>
+</html>
+

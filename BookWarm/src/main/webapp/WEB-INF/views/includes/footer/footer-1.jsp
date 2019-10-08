@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page session="false"%>
-<body>
 	<div class="wrapper">
 		<div class="page">
 			<footer class="footer stylelamas" id="footer-1">
@@ -23,5 +21,3 @@
 			</footer>
 		</div>
 	</div>
-</body>
-</html>

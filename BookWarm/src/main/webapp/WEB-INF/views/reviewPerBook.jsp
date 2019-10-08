@@ -295,9 +295,8 @@
     	
     </script>
 
-
-<!-- <script src="./resources/Vertex/plugins/aos/aos.js"></script>
-<script src="./resources/Vertex/js/theme-core.js"></script> -->
-
 <%@ include file="includes/header/script-vertexEx.jsp"%>
 <%@ include file="includes/footer/footer-1.jsp"%>
+</body>
+</html>
+

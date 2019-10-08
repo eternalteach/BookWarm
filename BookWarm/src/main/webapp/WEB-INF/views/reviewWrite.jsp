@@ -299,3 +299,5 @@
 	
 <%@ include file="includes/header/script-vertexEx.jsp"%> 
 <%@ include file="includes/footer/footer-1.jsp"%>
+</body>
+</html>

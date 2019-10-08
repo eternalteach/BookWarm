@@ -5,18 +5,16 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <sec:authentication property="principal.username" var="user_id"/>
 
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/warm/resources/js/Criteria.js"></script>
 <script type="text/javascript" src="/warm/resources/js/msg.js"></script>
-<body>
 	<div role="main" class="main">
-		<section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-top:20px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
+		<section class="page-header no-margin no-padding">
 			<div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-8 text-left">
                     </div>
                    <div class="col-md-4">
-                        <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
+                        <ul class="bar-breadcrumb justify-content-start justify-content-md-end mb-0">
                             <li><a href="message">메세지</a></li>
                             <li class="active">메시지함</li>
                         </ul>
@@ -357,5 +355,3 @@
 		
 		});
 	</script>
-</body>
-</html>

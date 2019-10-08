@@ -15,7 +15,7 @@
 
 <h2> <sec:authentication property="principal.user.user_name" />
 		(아이디: <sec:authentication property="principal.user.user_id" />) </h2>
-<h2> 님이 넘볼 페이지가 아닙니다 돌아가세여 문의는 해랑씨에게 하세요 집에가지말란소리에요</h2>
+<h2> 이봐 여기는 님이 넘볼 페이지가 아닙니다 돌아가세여 문의는 "해에에에에랑" 씨에게 하세요. 해결할때 까지 집에가지말란소리에요</h2>
 <h2> 가진 권한 : <sec:authentication property="principal.user.authList" var="list"/></h2>
 
 

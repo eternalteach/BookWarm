@@ -89,5 +89,6 @@ $(document).ready(function(){
 	});
 });
 </script>
+<%@ include file="includes/footer/footer-1.jsp"%>
 </body>
 </html>
