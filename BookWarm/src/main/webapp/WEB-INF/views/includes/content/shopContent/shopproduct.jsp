@@ -147,7 +147,7 @@
  		//버튼 클릭시 이벤트
  		$(document).ready(function(){
 	 		$("#cart").on("click", function(e){
-	 			alert("장바구니에 등록하시겠습니까?");
+	 			/* alert("장바구니에 등록하시겠습니까?"); */
 	 		});
  		
 	 		$("#pay").on("click", function(e){
