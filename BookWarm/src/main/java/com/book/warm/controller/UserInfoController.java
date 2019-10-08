@@ -38,6 +38,7 @@ public class UserInfoController {
 	
 	@Inject
 	UserInfoService userInfoService;
+	@Inject
 	ReviewBoardService reviewBoardService;
 	
 	// 나의 주문 내역 페이지
@@ -78,8 +79,11 @@ public class UserInfoController {
 		int couponCnt = userInfoService.getCouponCnt(user_id);
 		model.addAttribute("couponCnt", couponCnt);
 		
-		// 4. 최근 내 리뷰를 리스트로 받아와서 뿌려주기
-		model.addAttribute("list", reviewBoardService.selectBoardList(principal.getName(), cri));
+		// 4. 최근 내 리뷰를 리스트로 받아온다.
+		System.out.println("1");
+		model.addAttribute("list", reviewBoardService.selectBoardList(user_id, cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, reviewBoardService.getTotal(user_id)));
+		System.out.println("2");
 	}
 	
 	@RequestMapping("/modifyMyInfo")

@@ -108,7 +108,7 @@
 									
 									<!-- 총액 -->
                                     <td class="cart-product-name">
-                                       <span class="amount color totAllItems"><strong>원</strong></span>
+                                       <span class="amount color totAllItems">원</span>
                                     </td>
                                  </tr>
                                  
@@ -130,7 +130,7 @@
 									
 									<!-- 체크한 물품 총액 -->
                                     <td class="cart-product-name">
-                                       <span class="amount subTotal">0 원</span>
+                                       <span class="amount"><strong class='subTotal'>0 원</strong></span>
                                        <input type="hidden" id="subTotal" name="subTotal" value="">
                                     </td>
                                  </tr>

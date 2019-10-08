@@ -36,7 +36,7 @@
 		})
 		
 		// 2. UI의 total, subTotal로 보여지는 부분에 뿌려준다.
-		$('.totAllItems').html("<strong>" + initTotal + "원</strong>");
+		$('.totAllItems').html(initTotal + "원");
 		$('.subTotal').html(initTotal + "원");
 		$('#subTotal').attr("value", initTotal + "원");
 		
@@ -89,7 +89,6 @@
 	function delivery() {
 		var subTotal = $('.subTotal').html();
 		var fee;
-		
 		// 배송비 -> 5만원 이상 무료
 		if(subTotal!=null && parseInt(subTotal.split("원", 1)) >= 50000) {
 			fee = "무료";

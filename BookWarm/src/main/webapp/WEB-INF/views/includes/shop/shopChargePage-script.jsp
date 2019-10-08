@@ -25,6 +25,9 @@ $(document).ready(function() {
 	$('#finalPay').html(finalPay);
 	$('#orders_pay_total').val(finalPay);
 	
+	var formDelivery = $('#formDelivery').val();
+	alert("formDelivery : " + formDelivery.substring(0, formDelivery.lastIndexOf("원")));
+	$('#formDelivery').attr("value", formDelivery.substring(0, formDelivery.lastIndexOf("원")));
 	
 	// 쿠폰 사용
 	$('#modal').on('click', 'button', function() {
@@ -142,19 +145,19 @@ $(document).ready(function() {
 			// 핸드폰번호 형식이 아닌 다른게 들어간 경우
 			alert("휴대폰 번호는 '000-0000-0000' 또는 '000-000-0000' 형식으로 입력해주세요.");
 		}else {
-			// 폼 입력 다 했고, 환불계좌랑 휴대폰번호에도 알맞게 입력했다면 submit버튼
-			$(this).attr('type', 'submit');
-		}
-		
-		
-		var point = $('#point').val();
-		if(point=="") {
-			$('#point').attr('value', '0');
-		}
+			var point = $('#point').val();
+			if(point=="") {
+				$('#point').attr('value', '0');
+			}
+	
+			$('#orders_pay_total').attr('value', $('#finalPay').text());
 
-		$('#orders_pay_total').attr('value', $('#finalPay').text());
+			$(this).attr('type', 'submit'); 
+
+		}
 		
-	})
+		
+	})  
 	
 })
 </script>
