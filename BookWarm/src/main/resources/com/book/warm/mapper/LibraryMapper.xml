@@ -14,7 +14,7 @@
 	
 	<select id='getLibraryBooks'  resultType='com.book.warm.vo.LibraryVO'>
 	<![CDATA[
-	select * from library where user_id=#{user_id} AND list_no<20 AND list_no >=0 order by list_no
+	select * from library where user_id=#{user_id} AND list_no<25 AND list_no >=0 order by list_no
 	]]>
 	</select>
 	

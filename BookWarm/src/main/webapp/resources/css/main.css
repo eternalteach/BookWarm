@@ -64,7 +64,7 @@ height:100vh;
 }
 
 .library_emptySpace {
-	width: 2.66vw;  
+	width: 0.6vw;  /* 2.66vw */
 }
 .top-padding-3vh{
 	padding-top:3vh;
@@ -143,9 +143,9 @@ a.button {
 	top: 10px;
 }
 .decoration-books-position{
-position: absolute; 
-left:10vw; 
-bottom:5vh;
+	position: absolute; 
+	left:10vw; 
+	bottom:5vh;
 }
 .decoration-books{
 	width:21vw; 
@@ -154,27 +154,28 @@ bottom:5vh;
 
 .bookshelf-position{
 	position: absolute;
-	left: 23%;bottom:23.5%;
+	left: 32.3%;
+	top:12%;
 }
 .bookshelf-table{
-	width: 55vw;
+	width: 36vw;
 	height: 67vh;
 }
 .bookshelf-table-bottomSpace{
 	height: 8.8vh;
 }
 .bookshelf-table-bottom{
-	height: 1.2vh;
+	height: 0.9vh;
 }
 .bookshelf-table-books{
 	height: 12vh;
 	width: 6vw;
 }
 .bookshelf-table-booktop{
-	height: 3.6vh;
+	height: 2.8vh;
 }
 .bookshelf-table-topspace{
-	height: 1vh;
+	height: 1.6vh;
 }
 .bookshelf-table-side{
 	width:1.4vw;}
@@ -187,6 +188,13 @@ bookshelf-table-bar{
 
 .transparent{
 	background:transparent;
+}
+
+.lib-menu {
+	font-size:4.5vw!important; 
+	color:white;
+	margin-left:1vw;
+	margin-right:1vw;
 }
 
 .bar-breadcrumb {
