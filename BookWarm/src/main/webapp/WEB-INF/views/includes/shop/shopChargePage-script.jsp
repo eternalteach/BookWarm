@@ -1,6 +1,8 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
 	String todayAll = formatter.format(new Date());
@@ -10,7 +12,7 @@
 
 <script>
 $(document).ready(function() {
-	var total = parseInt($('#total').val()); // 총 도서 금액
+	var total = parseInt($('#orders_total').val()); // 총 도서 금액
 	var delivery = $('#delivery').html(); // 배송비(2500원 or 무료)
 	var finalPay; // 최종 금액 >> 계속 사용할 변수임
 	
@@ -21,12 +23,15 @@ $(document).ready(function() {
 		finalPay = total;
 	}
 	$('#finalPay').html(finalPay);
-	$('#submitTotal').val(finalPay);
+	$('#orders_pay_total').val(finalPay);
 	
+	var formDelivery = $('#formDelivery').val();
+	alert("formDelivery : " + formDelivery.substring(0, formDelivery.lastIndexOf("원")));
+	$('#formDelivery').attr("value", formDelivery.substring(0, formDelivery.lastIndexOf("원")));
 	
 	// 쿠폰 사용
 	$('#modal').on('click', 'button', function() {
-		var bookPrice = $('#total').val(); // 책 판매 총액
+		var bookPrice = $('#orders_total').val(); // 책 판매 총액
 		alert(bookPrice);
 		/* bookPrice = bookPrice.substring(0, bookPrice.lastIndexOf("원"));
 		alert(bookPrice); */
@@ -45,7 +50,8 @@ $(document).ready(function() {
 	
 			// 전체 금액에서 빼주기(결제금액 = 결제금액-포인트 할인금액-쿠폰할인금액(discounted))
 			$('#finalPay').html(finalPay-$('#point').val()-discounted);
-			$('#submitTotal').val(finalPay-$('#point').val()-discounted);
+			$('#orders_pay_total').attr("value", finalPay-$('#point').val()-discounted);
+			alert("orders_total : "+$('#orders_pay_total').val());
 		}else {
 			alert("쿠폰 할인 금액이 총 금액을 넘어갑니다. 다른 쿠폰을 선택해주세요.");
 		}
@@ -63,10 +69,10 @@ $(document).ready(function() {
 		$('#coupon').attr('value', "");
 		
 		// 결제쪽 쿠폰할인에 0
-		var bookPrice = $('#total').val(); // 책 판매 총액
+		var bookPrice = $('#orders_total').val(); // 책 판매 총액
 		$('#discountCoupon').html(0);
 		$('#finalPay').html(finalPay-$('#point').val());
-		$('#submitPay').val(finalPay-$('#point').val());
+		$('#submitPay').attr("value", finalPay-$('#point').val());
 	})
 	
 	
@@ -93,7 +99,8 @@ $(document).ready(function() {
    				$('#discountPoint').html(point);
    				// 결제 금액에 반영
    				$('#finalPay').html(finalPay-point-$('#discountCoupon').html());
-   				$('#submitTotal').val(finalPay-point-$('#discountCoupon').html());
+   				$('#orders_pay_total').val(finalPay-point-$('#discountCoupon').html());
+   				alert("orders_pay_total : "+$('#orders_pay_total').val());
    			}else if(point<0) {
    				// 포인트 사용에 음수 입력
    				alert("0원 이상의 금액을 입력해주세요.");
@@ -138,17 +145,19 @@ $(document).ready(function() {
 			// 핸드폰번호 형식이 아닌 다른게 들어간 경우
 			alert("휴대폰 번호는 '000-0000-0000' 또는 '000-000-0000' 형식으로 입력해주세요.");
 		}else {
-			// 폼 입력 다 했고, 환불계좌랑 휴대폰번호에도 알맞게 입력했다면 submit버튼
-			$(this).attr('type', 'submit');
+			var point = $('#point').val();
+			if(point=="") {
+				$('#point').attr('value', '0');
+			}
+	
+			$('#orders_pay_total').attr('value', $('#finalPay').text());
+
+			$(this).attr('type', 'submit'); 
+
 		}
 		
 		
-		var point = $('#point').val();
-		if(point=="") {
-			$('#point').attr('value', '0');
-		}
-		
-	})
+	})  
 	
 })
 </script>

@@ -39,7 +39,8 @@ public interface ShopMapper {
 
 	public void addOrder(@Param("orders_payment") String orders_payment, @Param("user_id") String user_id, @Param("orders_total") int orders_total,
 			@Param("refund_account") String refund_account, @Param("refund_bank") String refund_bank,
-			@Param("orders_pay_date") String orders_pay_date, @Param("coupon_no") String coupon_no, @Param("post_no") String post_no);
+			@Param("orders_pay_date") String orders_pay_date, @Param("coupon_no") String coupon_no, @Param("post_no") String post_no,
+			@Param("orders_pay_total") int orders_pay_total, @Param("delivery_fee") int delivery_fee, @Param("discounted_point") int discounted_point);
 
 	public String getOrders_no();
 

@@ -82,8 +82,8 @@
 	</select>
 	
 	<insert id="addOrder">
-		insert into orders(orders_no, user_id, orders_payment, orders_total, refund_account, refund_bank, orders_date, orders_pay_date, coupon_no, post_no)
-		values(ORDERS_SEQ.nextval, #{user_id}, #{orders_payment}, #{orders_total}, #{refund_account}, #{refund_bank}, SYSDATE, ${orders_pay_date}, #{coupon_no}, #{post_no})
+		insert into orders(orders_no, user_id, orders_payment, orders_total, refund_account, refund_bank, orders_date, orders_pay_date, coupon_no, post_no, orders_pay_total, delivery_fee, discounted_point)
+		values(ORDERS_SEQ.nextval, #{user_id}, #{orders_payment}, #{orders_total}, #{refund_account}, #{refund_bank}, SYSDATE, ${orders_pay_date}, #{coupon_no}, #{post_no}, #{orders_pay_total}, #{delivery_fee}, #{discounted_point})
 	</insert>
 	
 	<select id="getOrders_no" resultType="java.lang.String">

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.book.warm.page.Criteria;
 import com.book.warm.page.PageDTO;
+import com.book.warm.service.ReviewBoardService;
 import com.book.warm.service.UserInfoService;
 import com.book.warm.vo.CouponVO;
 import com.book.warm.vo.OrderListVO;
@@ -37,6 +38,8 @@ public class UserInfoController {
 	
 	@Inject
 	UserInfoService userInfoService;
+	@Inject
+	ReviewBoardService reviewBoardService;
 	
 	// 나의 주문 내역 페이지
 	@RequestMapping("/orderList")
@@ -61,18 +64,26 @@ public class UserInfoController {
 	
 	// 마이 페이지(메인)
 	@RequestMapping("/myInfo")
-	public void myInfo(Principal principal, Model model) {
+	public void myInfo(Principal principal, Model model, Criteria cri) {
 		String user_id = principal.getName();
 		
 		// view로 보내야하는 데이터
 		// 1. user_id
 		model.addAttribute("user_id", user_id);
+		
 		// 2. point
 		int point = userInfoService.getPoint(user_id);
 		model.addAttribute("point", point);
+		
 		// 3. couponCnt
 		int couponCnt = userInfoService.getCouponCnt(user_id);
 		model.addAttribute("couponCnt", couponCnt);
+		
+		// 4. 최근 내 리뷰를 리스트로 받아온다.
+		System.out.println("1");
+		model.addAttribute("list", reviewBoardService.selectBoardList(user_id, cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, reviewBoardService.getTotal(user_id)));
+		System.out.println("2");
 	}
 	
 	@RequestMapping("/modifyMyInfo")
@@ -146,8 +157,6 @@ public class UserInfoController {
 		PostVO post = null;
 		if(post_no != null) {
 			post = userInfoService.getPostInfo(post_no);
-			// getPostInfo xml다시 보기....post객체 안 받아와지는듯!!!
-			System.out.println("post객체 가져오기 : "+post.getPost_name());
 		}	
 
 		// 4. 맵으로 묶기

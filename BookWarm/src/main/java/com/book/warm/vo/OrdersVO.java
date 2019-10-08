@@ -14,11 +14,14 @@ public class OrdersVO {
 	private String coupon_no;
 	private String post_no;
 	private int orders_pay_total;
+	private int delivery_fee;
+	private int discounted_point;
 	
 	
 	// constructor
 	public OrdersVO(String orders_no, String user_id, String orders_payment, int orders_total, String refund_account,
-			String refund_bank, Timestamp orders_date, Timestamp orders_pay_date, String coupon_no, String post_no, int orders_pay_total) {
+			String refund_bank, Timestamp orders_date, Timestamp orders_pay_date, String coupon_no, String post_no,
+			int orders_pay_total, int delivery_fee, int discounted_point) {
 		super();
 		this.orders_no = orders_no;
 		this.user_id = user_id;
@@ -31,6 +34,8 @@ public class OrdersVO {
 		this.coupon_no = coupon_no;
 		this.post_no = post_no;
 		this.orders_pay_total = orders_pay_total;
+		this.delivery_fee = delivery_fee;
+		this.discounted_point = discounted_point;
 	}
 	
 	public OrdersVO() {
@@ -126,4 +131,21 @@ public class OrdersVO {
 	public void setOrders_pay_total(int orders_pay_total) {
 		this.orders_pay_total = orders_pay_total;
 	}
+
+	public int getDelivery_fee() {
+		return delivery_fee;
+	}
+
+	public void setDelivery_fee(int delivery_fee) {
+		this.delivery_fee = delivery_fee;
+	}
+
+	public int getDiscounted_point() {
+		return discounted_point;
+	}
+
+	public void setDiscounted_point(int discounted_point) {
+		this.discounted_point = discounted_point;
+	}
+	
 }

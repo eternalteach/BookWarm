@@ -57,8 +57,8 @@ public class ShopBoardService {
 	//==================================================
 
 	public void addOrder(String orders_payment, String user_id, int orders_total, String refund_account, String refund_bank,
-			String orders_pay_date, String coupon_no, String post_no) {
-		shopMapper.addOrder(orders_payment, user_id, orders_total, refund_account, refund_bank, orders_pay_date, coupon_no, post_no);
+			String orders_pay_date, String coupon_no, String post_no, int orders_pay_total, int delivery_fee, int discounted_point) {
+		shopMapper.addOrder(orders_payment, user_id, orders_total, refund_account, refund_bank, orders_pay_date, coupon_no, post_no, orders_pay_total, delivery_fee, discounted_point);
 	}
 
 	public String getOrders_no() {

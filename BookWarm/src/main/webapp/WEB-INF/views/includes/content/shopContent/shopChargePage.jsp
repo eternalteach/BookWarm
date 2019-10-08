@@ -84,11 +84,11 @@
 	                             
 	                             <div class="frm-row">
                                     <div class="section colm colm6">
-                                       <input type="text" id="sample4_detailAddress" name="post_addr_detail1" class="gui-input" placeholder="상세주소">
+                                       <input type="text" id="sample4_detailAddress"  class="gui-input" placeholder="상세주소">
                                     </div><!-- end section -->
 
                                     <div class="section colm colm6">
-                                       <input type="text" id="sample4_extraAddress" name="post_addr_detail2" class="gui-input" placeholder="참고항목">
+                                       <input type="text" id="sample4_extraAddress" class="gui-input" placeholder="참고항목">
                                     </div><!-- end section -->
                                  </div><!-- end frm-row section -->
                                  <!-- 삽입 끝////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -160,8 +160,7 @@
                            <div class="form-header">
                               <h4 class="fs-24">Your Order</h4>
                            </div><!-- end .form-header section -->
-                           <!-- <form method="post" action="/warm/shop/successOrder" id="account2"> -->
-                              <div class="form-body pt-15">
+                               <div class="form-body pt-15">
                                  <div class="table-responsive">
                                     <table class="table cart-totals">
                                        <tbody>
@@ -191,6 +190,7 @@
 
                                              <td class="cart-product-name" colspan="4">
                                                 <span class="amount" id="delivery">${delivery}</span>
+                                                <input type="hidden" id="formDelivery" name="delivery_fee" value="${delivery}">
                                              </td>
                                           </tr>
                                           <tr class="cart_item">
@@ -216,7 +216,7 @@
 
                                              <td class="cart-product-name" colspan="4">
                                                 <span class="amount color"><strong id="finalPay">${subTotal}</strong></span>
-                                                <input type="hidden" name="orders_pay_total" id="submitTotal" value="${subTotal}">원
+                                                <input type="hidden" name="orders_pay_total" id="orders_pay_total" value="${subTotal}">원
                                                 <%-- <input type="hidden" name="orders_total" id="submitTotal" value="${subTotal}">원 --%>
                                              </td>
                                           </tr>
@@ -226,7 +226,7 @@
 
                                  <div class="spacer-t40 spacer-b30">
                                     <div class="tagline"><span> 결제 정보 </span></div><!-- .tagline -->
-                                   <input type="hidden" id="total" name="orders_total" value="${subTotal}">
+                                   <input type="hidden" id="orders_total" name="orders_total" value="${subTotal}">
                                  </div>
 
                                  <div class="section">
@@ -271,6 +271,7 @@
                               </div><!-- end .form-body section -->
                               <div class="form-footer">
                                  <button type="button" id="submit" class="btn btn-primary w-100">주문</button>
+                               <!--   <input type="submit" value="전송" id="submit" class="btn btn-primary w-100">주문</input> -->
                               </div><!-- end .form-footer section -->
                            <!-- </form> --><!-- end form -->
                         </div>
