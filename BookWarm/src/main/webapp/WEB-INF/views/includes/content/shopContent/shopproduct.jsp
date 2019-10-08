@@ -78,10 +78,10 @@
                           	<span>책 리스트</span>
                            </button></a>
                            
-                     <div class="product_meta mb-40">
-                           <span class="tagged_as">
-                           </span>
-                     </div>
+		                     <div class="product_meta mb-40">
+		                           <span class="tagged_as">
+		                           </span>
+		                     </div>
 
             		    <!-- 줄거리/목차부분  -->
                         <div class="clearfix">
