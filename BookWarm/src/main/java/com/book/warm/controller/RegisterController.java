@@ -99,7 +99,7 @@ public class RegisterController {
 		// url로 접근한 경우 >> 회원가입(중복확인)페이지로 보내버린다.
 		if(userVO==null)
 			return "redirect:/checkDuplicateRegister";
-		
+		log.info("userVO.phone : "+userVO.getUser_phone());
 		BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
 		String encryptedPw = pwEncoder.encode(userVO.getUser_pw());
 		userVO.setUser_pw(encryptedPw);
@@ -120,8 +120,6 @@ public class RegisterController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-
-		
 		registerService.insertNewUser(userVO); // add user_data
 		authenticationService.addRoleUser(userVO.getUser_id()); // add Authorities
 		return "/registerSuccess";
