@@ -14,44 +14,44 @@
 <script type="text/javascript" src="/warm/resources/js/book.js"></script>
 <%@ include file="includes/header/header-vertexEx.jsp"%>
 </head>
-<body style="background-image:url('/warm/resources/img/library/library_bookshelf2.png'); background-size:107% 106%; background-position:-56.5px 0px; background-repeat:no-repeat;" >
-	<div class="header top-padding-3vh" align="center">
-		<!--<div>
-			 <a data-toggle="modal" data-target="#modal-library" class="library-font">Search Books</a>
-			<a href="reviewMain" class="library-font">감상 메인</a>
-			<a href="shop/shoplist" class="fa fa-book fa library-font">서점</a>
-			<a href="message" class="icon-mail-2 library-font">쪽지</a>
-			<a href="customLogout" class="library-font">로그아웃</a>
+<body style="background-image:url('/warm/resources/img/library/library_bookshelf2.jpg'); background-size:107% 106%; background-position:-20px 0px; background-repeat:no-repeat;" >
+
+	<div class="header top-padding-3vh" style="position:absolute; top:7vh; left:59vw">
+		<div>
+			<a data-toggle="modal" data-target="#modal-library" class="" style="color:white; font-size:2vh"><strong>책 검색하기&nbsp;<i class="glyphicon icon icon-magnifier" style="font-size:25px!important; color:white"></i></strong></a>
 		</div>
 	</div>
-	<div>
+
+<!--	
+<div>
 		<img src="/warm/resources/img/library/background/lamp2.png" style="width:12%; max-width:30%; transform:rotate(180deg);position:fixed;top:-30px; left:40px;">
 		<img src="/warm/resources/img/library/background/lamp2.png" style="width:12%; max-width:30%; transform:rotate(180deg);position:fixed;top:-80px; right:70px;">
 		<img src="/warm/resources/img/library/background/lamp3.png" style="width:12%; max-width:30%; transform:rotate(180deg);position:fixed;top:-35px; right:10px;">
-		<img src="/warm/resources/img/logo.png" style="width:10%; max-width:30%; position:fixed;top:112px; left:360px;"> 
 	</div>
 	<div>
+		<img src="/warm/resources/img/logo.png" style="width:10%; max-width:30%; position:fixed;top:112px; left:360px;"> 
 		<img src="/warm/resources/img/library/bookshelf/bs.png" style="width:60%; max-width:50%; margin-top:6.3%; margin-left:25%; margin-right:auto">
 		<img src="/warm/resources/img/library/bookshelf/bs.png" style="width:75%; max-width:75%; margin-top:-7%; margin-left:10%; margin-right:auto">
 		<img src="/warm/resources/img/library/bookshelf/bs.png" style="width:75%; max-width:75%; margin-top:-30%; margin-left:10%; margin-right:auto">
 		<img src="/warm/resources/img/library/bookshelf/bs.png" style="width:75%; max-width:75%; margin-top:-30%; margin-left:10%; margin-right:auto">
 		<img src="/warm/resources/img/library/bookshelf/bs2.png" style="width:60%; max-width:75%; margin-top:6%; margin-left:20%; margin-right:auto">
-		<img src="/warm/resources/img/library/bookshelf/bs3.png" style="width:60%; max-width:75%; margin-top:10%; margin-left:20%; margin-right:auto"> -->
-	</div>
+		<img src="/warm/resources/img/library/bookshelf/bs3.png" style="width:60%; max-width:75%; margin-top:10%; margin-left:20%; margin-right:auto"> 
+	</div>-->
+	<!-- <img src="/warm/resources/img/library/fl.png" style="width:10%; max-width:10%; margin-top:10%; margin-left:20%; margin-right:auto">  -->
 	
 	<div class="bookshelf-position bookshelf-div">
 		<table class="margin-zero bookshelf-table">
 			<tr class="bookshelf-table-topspace">
-				<td rowspan="11" class="bookshelf-table-side"></td><td colspan="15" class="bookshelf-table-centerbar"></td><td class="bookshelf-table-side" rowspan="11"></td>
+				<td rowspan="17" class="bookshelf-table-side"></td><td colspan="15" class="bookshelf-table-centerbar"></td><td class="bookshelf-table-side" rowspan="11"></td>
 			</tr>
-			<c:forEach var="row" begin="0" end="2">
+			<c:forEach var="row" begin="0" end="4">
 				<tr class="bookshelf-table-booktop">
 					<td colspan="15" class="bookshelf-table-centerbar"></td>
 				</tr>
 				<tr class="bookshelf-table-books">
 					<c:forEach var="colum" begin="0" end="4">
 						<td class="library_emptySpace"></td>
-							<td class="tdnum${row*4+colum} book-position bookshelf-table-books" valign="bottom"align="center"></td>
+							<td class="tdnum${row*5+colum} book-position bookshelf-table-books" valign="bottom"align="center"></td>
 						<td class="library_emptySpace"></td>
 					</c:forEach>
 				</tr>
@@ -63,6 +63,14 @@
 				<td colspan="15" class="bookshelf-table-bar"></td>
 			 </tr>
 		</table>
+	
+	</div>
+	
+	<div style="position:absolute; top:76%; left:70vw; width:28vw">
+		<a href="reviewMain"><i class="lib-menu glyphicon icon icon-bookmark-2-1" style=""></i></a>
+		<a href="message"><i class="lib-menu glyphicon icon icon-plane-paper-1"></i></a>
+		<a href="shop/shoplist"><i class="lib-menu glyphicon icon icon-shopping-bag-3"></i></a>
+		<a href="customLogout"><i class="lib-menu glyphicon icon icon-log-out-1"></i></a>
 	</div>
 	
 <!-- library Modal -->
@@ -186,7 +194,7 @@ $(document).ready(function(){
 	// show library book list
 	function showList(){
 		libraryService.getUserBooksList(function(libraryBooks){
-			for(let index=0;index<20;index++){
+			for(let index=0;index<25;index++){
 				let bookDiv=".tdnum"+index;
 				if(index<libraryBooks.length){
 					// insert into bookImg  
