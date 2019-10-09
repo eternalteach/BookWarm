@@ -10,7 +10,6 @@
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <%@ include file="includes/header/header-vertexEx.jsp"%>
-<link rel="stylesheet" href="resources/css/main.css" />
 
 <link href='http://unpkg.com/@fullcalendar/core/main.css' rel='stylesheet' />
 <link href='http://unpkg.com/@fullcalendar/daygrid/main.css' rel='stylesheet' />
@@ -23,8 +22,8 @@
 <style>
 
   body {
-    margin: 40px 10px;
-    padding: 0;
+   /*  margin: 40px 10px;
+    padding: 0; */
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
     font-size: 14px;
   }
@@ -41,10 +40,10 @@
     margin: 0 auto;
   }
   
-  #calendar tbody td {
+ /*  #calendar tbody td {
   position: relative;
   z-index: 1;
-}
+} */
 
   
 </style>
@@ -166,82 +165,78 @@
                </div>
                
                
-                  
-	              <div style="max-width:50vw !important; margin-top:20px; margin-bottom:50px">
-			          <div>
-			              <div>
-			              	 <div class="post-header form-header">
-			                  	<div id='loading'>loading...</div>
-	  							<div id='calendar'></div>
-			                 </div>
-			              </div>
-			          </div>
-			      </div>
-                  
-                  
+              <!-- 달력 영역 -->
+              <div style="width:50vw !important; margin-top:20px; margin-bottom:50px">
+		          <div>
+		              <div>
+		              	 <div class="post-header form-header">
+		                  	<div id='loading'>loading...</div>
+  							<div id='calendar'></div>
+		                 </div>
+		              </div>
+		          </div>
+		      </div>
+                 
+                 
+				
+                 <div class="col-md-2 pt-70 " style="padding-top:0px !important; border-right-color: transparent!important;">
+                    <aside class="sidebar" style="width:100%">
+                    
+                    
+               		<section style="margin:0; padding-right:3vw">
+						<!-- <div style="padding:6vw"> -->
+							<ul style="position:absolute; right:0">                     
+                      
+	                         <li style="margin-top:10px">
+	                           	<div class="pull-right">
+	                           	
+			                    	<a class="btnPerBook" href="/warm/reviewWrite">
+				                      	<span class="text ls-1">감상 더하기<i class="icon icon-pen-3"></i>
+				                      	</span>
+			                    	</a><!-- <br>
+			                    	<a class="btnPerBook" href="/warm/library">
+				                      	<span class="text ls-1">서재로 돌아가기<i class="fa fa-book"></i>
+				                      	</span>
+			                    	</a> -->
+			                    	
+		                    	</div>
+	                         </li>
+	                      </ul>    
+							
+						<!-- </div> -->
+					</section> 
+                    
+                    
+                    
+					<section style="margin:0">
+						<div style="padding-top:30%; padding-bottom:5%; padding-left:6%">
+						<div class="widget-heading clearfix">
+							<ul>
+								<h4 class="v-heading"><a href="#">${user_id}</a>'s Reading Log</h4>
+							</ul>
+						</div>
+							<ul style="margin:3%">
+								<li>가장 최근에 서재에 담은 책: </li>
+								<li>이 달 읽은 책 수: </li>
+							</ul>
+							
+						</div>
+					</section> 
+							
+					<section class="widget widget_sf_recent_custom_comments clearfix" style="padding:6%; margin:0">
+                           <div class="widget-heading clearfix">
+                               <h4 class="v-heading"><span>Recent Comments</span></h4>
+                           </div>
+                           <ul class="recent-comments-list">
+							<!-- 최근 댓글 영역 -->
+                           </ul>
+                       </section>
 					
-                  <div class="col-md-2 pt-70 " style="padding-top:0px !important; border-right-color: transparent!important;">
-                     <aside class="sidebar" style="width:100%">
-                     
-                     
-                		<section style="margin:0; padding-right:3vw">
-							<!-- <div style="padding:6vw"> -->
-								<ul style="position:absolute; right:0">                     
-                       
-		                         <li style="margin-top:10px">
-		                           	<div class="pull-right">
-		                           	
-				                    	<a class="btnPerBook" href="/warm/reviewWrite">
-					                      	<span class="text ls-1">감상 더하기<i class="icon icon-pen-3"></i>
-					                      	</span>
-				                    	</a><!-- <br>
-				                    	<a class="btnPerBook" href="/warm/library">
-					                      	<span class="text ls-1">서재로 돌아가기<i class="fa fa-book"></i>
-					                      	</span>
-				                    	</a> -->
-				                    	
-			                    	</div>
-		                         </li>
-		                      </ul>    
-								
-							<!-- </div> -->
-						</section> 
-                     
-                     
-                     
-						<section style="margin:0">
-							<div style="padding-top:30%; padding-bottom:5%; padding-left:6%">
-							<div class="widget-heading clearfix">
-								<ul>
-									<h4 class="v-heading"><a href="#">${user_id}</a>'s Reading Log</h4>
-								</ul>
-							</div>
-								<ul style="margin:3%">
-									<li>가장 최근에 서재에 담은 책: </li>
-									<li>이 달 읽은 책 수: </li>
-								</ul>
-								
-							</div>
-						</section> 
-						
+                    </aside>
+                 </div>
 
-								
-						<section class="widget widget_sf_recent_custom_comments clearfix" style="padding:6%; margin:0">
-                            <div class="widget-heading clearfix">
-                                <h4 class="v-heading"><span>Recent Comments</span></h4>
-                            </div>
-                            <ul class="recent-comments-list">
-								<!-- 최근 댓글 영역 -->
-                            </ul>
-                        </section>
-						
-                     </aside>
-                  </div>
-
-               
                </div>
                <!-- end of row -->
-               
             </div>
             <!-- end of container -->
          </div>
