@@ -65,7 +65,7 @@
 		                                    </td>
 											<!-- 수량 -->
 		                                    <td class="cart-product-quantity">
-		                                       <div class="form-group" name="cart_cnt">
+		                                       <div class="form-group center" name="cart_cnt">
 		                                       	  <a href="/warm/shop/cntDown?user_id=${vo.user_id}&cart_no=${vo.cart_no}&cart_cnt=${vo.cart_cnt}">-&nbsp&nbsp&nbsp</a>
 		                                       	  ${vo.cart_cnt}
 		                                       	  <a href="/warm/shop/cntUp?user_id=${vo.user_id}&cart_no=${vo.cart_no}&cart_cnt=${vo.cart_cnt}">&nbsp&nbsp&nbsp+</a>

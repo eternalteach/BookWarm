@@ -6,7 +6,6 @@
 <sec:authentication property="principal.username" var="user_id"/>
 
 
-<body class="bg-white">
 
 	<div role="main" class="main">
 		<section class="ddd" style="padding-top:10px; padding-bottom:0px; margin-top:20px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
@@ -188,4 +187,3 @@
  	 		  });
  		});
       </script>
-</body>

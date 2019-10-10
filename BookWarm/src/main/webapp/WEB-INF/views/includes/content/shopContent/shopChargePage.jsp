@@ -6,11 +6,9 @@
             <div class="container">
                <div class="row">
                   <div class="col-sm-12">
-                     <h1 class="title">Shop - Checkout</h1>
-                     <ol class="breadcrumb pull-right">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Shop</a></li>
-                        <li class="active">Checkout</li>
+                     <ol class="bar-breadcrumb justify-content-start justify-content-md-end mb-0">
+                        <li><a href="shoplist">책</a></li>
+                        <li class="cart">구매하기</li>
                      </ol>
                   </div>
                </div>
@@ -118,7 +116,7 @@
                                     </div>
                                     <div class="section colm">
 	                                    <label class="field">
-	                                    	<a href="javascript:pickCoupon()"><button type="button" class="btn btn-primary" id="pickCoupon">쿠폰적용</button></a>
+	                                    	<a href="javascript:pickCoupon()"><button type="button" class="btn v-btn standard lightgrey standard" id="pickCoupon">쿠폰적용</button></a>
 	                                    	<button type="button" class="btn btn-primary" id="cancleCoupon">쿠폰적용 취소</button>
 	                                    </label>
                                    	</div>
