@@ -36,9 +36,6 @@
                   </div>
 
                   <div class="col-md-7">
-                     <ol class="breadcrumb clean-breadcrumb">
-                        <li><i class="fa fa-home" aria-hidden="true"></i>${bookdetail.book_title}</li>
-                     </ol>
                      <div class="product-details">
                         <h2 class="product-name">${bookdetail.book_title}</h2>
                         <div class="product-price-wrap" style="margin-bottom: 15px;">
@@ -174,5 +171,16 @@
 			}
 		});
 	});
+	
+	$(document).ready(function(){
+ 		$("#cart").on("click", function(e){
+ 			if(confirm("장바구니에 추가하시겠습니까?") == true){
+			document.form.submit();
+ 			}else{
+ 				e.preventDefault();
+ 			}
+ 		});
+ 		
+ 		});
 </script>
 </body>

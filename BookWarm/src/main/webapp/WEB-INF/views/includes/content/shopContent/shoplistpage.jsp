@@ -14,7 +14,7 @@
 					<div class="col-md-4">
 						<ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
 							<li><a href="shoplist">책</a></li>
-							<li class="active"><a href="shoplist">책 리스트</a></li>
+							<li class="active">책 리스트</li>
 						</ul>
 					</div>
 				</div>
@@ -87,7 +87,7 @@
 													</div>
 												</div>
 												<div class="product-details" style="font-size:13px;text-align: center; padding-bottom:0px;">
-													<h3 class="product-name" style="margin-bottom: 0px;"><a style="font-size:15px;text-align: center;line-height:15px;">${shop.book_title}</a></h3>
+													<h3 class="product-name" style="margin-bottom: 0px;"><a style="font-size:15px;text-align: center;line-height:20px;">${shop.book_title}</a></h3>
 													<span class="product-price" style="padding-bottom: 10px;">
 														<span class="product-price-currency" style="text-align: center;">정가&nbsp;<fmt:formatNumber value="${shop.book_price}" pattern="###,###,###" /></span>원<br>
 													</span>	
@@ -110,7 +110,7 @@
 													</div>
 												</div>
 												<div class="product-details" style="font-size:13px;text-align: center; padding-bottom:0px;">
-													<h3 class="product-name" style="margin-bottom: 0px;"><a style="font-size:15px;text-align: center;line-height:15px;" href="shopproduct?isbn=${shop_title.isbn}">${shop_title.book_title}</a></h3>
+													<h3 class="product-name" style="margin-bottom: 0px;"><a style="font-size:15px;text-align:center;line-height:20px;" href="shopproduct?isbn=${shop_title.isbn}">${shop_title.book_title}</a></h3>
 													<span class="product-price" style="padding-bottom: 20px;"><span class="product-amount">
 														<span class="product-price-currency" style="text-align: center;">정가&nbsp;<fmt:formatNumber value="${shop_title.book_price}" pattern="###,###,###" /></span>원<br>
 													</span>
@@ -134,7 +134,7 @@
 													</div>
 												</div>
 												<div class="product-details" style="font-size:13px;text-align: center; padding-bottom:0px;">
-													<h3 class="product-name" style="margin-bottom: 0px;"><a style="font-size:15px;text-align: center;line-height:15px;" href="shopproduct?isbn=${bookpricelist2.isbn}">${bookpricelist2.book_title}</a></h3>
+													<h3 class="product-name" style="margin-bottom: 0px;"><a style="font-size:15px;text-align: center;line-height:20px;" href="shopproduct?isbn=${bookpricelist2.isbn}">${bookpricelist2.book_title}</a></h3>
 												<%-- 	<span class="product-posted_in"><a style="font-size:13px;text-align: center;line-height:15px;" rel="tag">${bookpricelist2.writer_name}&nbsp;저</a></span> --%>
 													<span class="product-price" style="padding-bottom: 20px;"><span class="product-amount">
 														<span class="product-price-currency" style="text-align: center;">정가&nbsp;<fmt:formatNumber value="${bookpricelist2.book_price}" pattern="###,###,###" /></span>원<br>
@@ -159,7 +159,7 @@
 													</div>
 												</div>
 												<div class="product-details" style="font-size:13px;text-align: center; padding-bottom:0px;">
-													<h3 class="product-name" style="margin-bottom: 0px;"><a style="font-size:15px;text-align: center;line-height:15px;" href="shopproduct?isbn=${booklike.isbn}">${booklike.book_title}</a></h3>
+													<h3 class="product-name" style="margin-bottom: 0px;"><a style="font-size:15px;text-align: center;line-height:20px;" href="shopproduct?isbn=${booklike.isbn}">${booklike.book_title}</a></h3>
 												<%-- 	<span class="product-posted_in"><a style="font-size:13px;text-align: center;line-height:15px;" rel="tag">${bookpricelist2.writer_name}&nbsp;저</a></span> --%>
 													<span class="product-price" style="padding-bottom: 20px;"><span class="product-amount">
 														<span class="product-price-currency" style="text-align: center;">정가&nbsp;<fmt:formatNumber value="${booklike.book_price}" pattern="###,###,###" /></span>원<br>
