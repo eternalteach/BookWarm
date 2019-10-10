@@ -9,7 +9,7 @@
 	</insert>
 	
 	<insert id="addAuthenticationRoleManager" >
-		insert into authorities (user_id, authority) values(#{user_id},'ROLE_MEMBER')
+		insert into authorities (user_id, authority) values(#{user_id},'ROLE_MANAGER')
 	</insert>
 	
 	<insert id="addAuthenticationRoleAdmin" >

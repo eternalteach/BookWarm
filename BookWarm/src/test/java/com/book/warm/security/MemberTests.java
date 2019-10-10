@@ -105,7 +105,7 @@ public class MemberTests {
 //				} else if (i<9) {
 //
 //					pstmt.setString(1,  "manager" + i);
-//					pstmt.setString(2,  "ROLE_MEMBER");
+//					pstmt.setString(2,  "ROLE_MANAGER");
 //				} else {
 //
 //					pstmt.setString(1,  "admin" + i);
