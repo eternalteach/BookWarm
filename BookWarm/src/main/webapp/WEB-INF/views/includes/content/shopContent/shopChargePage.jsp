@@ -63,8 +63,8 @@
                                     </div>
                                     <div class="section colm colm4">
 	                                    <label class="field prepend-icon">
-	                                    	<span class="field-icon"><i class="fa fa-map-marker"></i></span>
-	                                    	<input type="button" class="btn btn-primary" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+	                                    	<span class="field-icon"></span>
+	                                    	<input type="button" class="btn v-btn standard lightgrey standard" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
 	                                    </label>
                                    	</div>
 	                             </div>
@@ -117,7 +117,7 @@
                                     <div class="section colm">
 	                                    <label class="field">
 	                                    	<a href="javascript:pickCoupon()"><button type="button" class="btn v-btn standard lightgrey standard" id="pickCoupon">쿠폰적용</button></a>
-	                                    	<button type="button" class="btn btn-primary" id="cancleCoupon">쿠폰적용 취소</button>
+	                                    	<button type="button" class="btn v-btn standard lightgrey standard" id="cancleCoupon">쿠폰적용 취소</button>
 	                                    </label>
                                    	</div>
 	                             </div>
@@ -133,7 +133,7 @@
                                     </div>
                                     <div class="section colm">
 	                                    <label class="field">
-	                                    	<input type="button" class="btn btn-primary" id="applyPoint" value="사용하기">
+	                                    	<input type="button" class="btn v-btn standard lightgrey standard" id="applyPoint" value="사용하기">
 	                                    </label>
                                    	</div>
                                     <div class="section colm">
@@ -182,7 +182,7 @@
 							   			  </c:forEach>
 							   			  
                                           <tr class="cart_item">
-                                             <td class="cart-product-name">
+                                             <td class="cart-product-name" style="width: 74px;">
                                                 <strong>배송비</strong>
                                              </td>
 
@@ -192,7 +192,7 @@
                                              </td>
                                           </tr>
                                           <tr class="cart_item">
-                                             <td class="cart-product-name">
+                                             <td class="cart-product-name" style="width: 74px;">
                                                 <strong>할인</strong>
                                              </td>
                                              <td class="cart-product-name" colspan="4">
@@ -208,7 +208,7 @@
                                              </td>
                                           </tr>
                                           <tr class="cart_item">
-                                             <td class="cart-product-name">
+                                             <td class="cart-product-name" style="width: 100px;">
                                                 <strong>결제 금액</strong>
                                              </td>
 
@@ -268,7 +268,7 @@
     						<!-- ///////////////////////////////// -->                                                         
                               </div><!-- end .form-body section -->
                               <div class="form-footer">
-                                 <button type="button" id="submit" class="btn btn-primary w-100">주문</button>
+                                 <button type="button" id="submit" class="btn v-btn standard lightgrey standard">주문</button>
                                <!--   <input type="submit" value="전송" id="submit" class="btn btn-primary w-100">주문</input> -->
                               </div><!-- end .form-footer section -->
                            <!-- </form> --><!-- end form -->
