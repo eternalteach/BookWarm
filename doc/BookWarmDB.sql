@@ -131,6 +131,11 @@ constraint fk_book_star_user_id FOREIGN KEY(user_id)
                 REFERENCES user_info(user_id)
 );
 
+create table book_like( --기범 191010 추가
+user_id varchar2(20) references user_info(user_id),
+isbn varchar2(20) references book(isbn),
+like_book varchar2(10)
+);
 
 --독서감상테이블 감상번호 시퀀스
 create sequence review_board_seq;
