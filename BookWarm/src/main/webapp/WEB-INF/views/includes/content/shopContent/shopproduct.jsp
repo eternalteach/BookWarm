@@ -5,7 +5,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <sec:authentication property="principal.username" var="user_id"/>
 
-<script type="text/javascript" src="/warm/resources/js/BookLike.js"></script>
 
 
 
@@ -82,34 +81,7 @@
                           	<i class="fa fa-heart" aria-hidden="true"></i>
                            </button>
                            
-                           <script>
-                	 			var isbn=$("#isbn").val();
-                	 			bookLike={isbn:isbn};
-                	 			
-                        	  $(document).on("click","#bookLikeBtn",function(){
-                	 			bookLikeService.addBookLike(bookLike,function(result){
-                	 				$("#bookLikeBtn").html("좋아요 취소");
-                	 				$("#bookLikeBtn").attr("id","bookDisLikeBtn");
-                	 			});
-                        	  });
-                        	  
-                        	  $(document).on("click","#bookDisLikeBtn",function(){
-                	 			bookLikeService.removeBookLikeAboutISBN(isbn,function(result){
-                	 				$("#bookDisLikeBtn").html("<i class=\"fa fa-heart\" aria-hidden=\"true\"></i>");
-                	 				$("#bookDisLikeBtn").attr("id","bookLikeBtn");
-                	 			});
-                        	  });
-                        	  
-                        	  $(document).ready(function(){
-                        		  bookLikeService.checkBookLikeAboutISBN(isbn,function(result){
-                       				console.log("check Book Like : " + result);
-                       				if(result=='1'){
-	                   					$("#bookLikeBtn").html("좋아요 취소");
-	                   	 				$("#bookLikeBtn").attr("id","bookDisLikeBtn");
-                      				}
-                        		  });
-                        	  });
-                           </script>
+                           
 		                     <div class="product_meta mb-40">
 		                           <span class="tagged_as">
 		                           </span>
@@ -173,50 +145,34 @@
       </div>
      </div>
    </div>
-      
-     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-     <script>
- 		//버튼 클릭시 이벤트
- 		$(document).ready(function(){
-	 		$("#cart").on("click", function(e){
-	 			/* alert("장바구니에 추가되었습니다!");  */
-	 		});
- 			
-	 		$("#pay").on("click", function(e){
-				alert("구매로 이동하시겠습니까?");
-				
-				});
- 			});
- 	/* 	//amount넘기기
- 		$(document).ready(function(){
- 		    $("#cart_cnt").on("change", function(){
- 		    	alert("안돼")
- 		    	var val = $(this).val(); 		    	
- 		     	var pre = $("#cart_get").attr("href");
- 		     	console.log(pre.toString()  + val.toString());     	 
- 		     	$("#cart_get").attr("href",pre.toString()  + val.toString());     	
- 		        console.log($(this).val());
- 		    });
- 		}); */
- 		//즐겨찾기 기능하기
- 		$(document).ready(function(){
- 	 		  //흰색이 검정색으로 바뀌기
- 	 		  var booklover = $(".booklover");
- 	 		  
- 	 		booklover.on("click", "i", function(e){
- 	 			 alert("하트눌름");
- 	 			 var icon =  $("i[class='fa fa-star-o']");
- 	 			 var item = $(this).attr("data-i");
- 	 			 if(item ==  "white"){
- 	 			 var str = "";
- 	 			 str += "<i id='loveicon' class='fa fa-star' data-i='black'></i>";
- 	 		  	/*  booklover.html(str); */
- 	 			 };
- 	 			 if(item == "black"){
- 	 				var str = "";
- 	 	 			 str += "<i id='loveicon' class='fa fa-star-o' data-i='white'></i>";
- 	 			 };
- 	 	 		  	 booklover.html(str);
- 	 		  });
- 		});
-      </script>
+<script type="text/javascript" src="/warm/resources/js/BookLike.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+	
+	var isbn=$("#isbn").val();
+	bookLike={isbn:isbn};
+	$(document).on("click","#bookLikeBtn",function(){
+		bookLikeService.addBookLike(bookLike,function(result){
+		$("#bookLikeBtn").html("좋아요 취소");
+		$("#bookLikeBtn").attr("id","bookDisLikeBtn");
+		});
+	});
+                  	  
+	$(document).on("click","#bookDisLikeBtn",function(){
+		bookLikeService.removeBookLikeAboutISBN(isbn,function(result){
+			$("#bookDisLikeBtn").html("<i class=\"fa fa-heart\" aria-hidden=\"true\"></i>");
+			$("#bookDisLikeBtn").attr("id","bookLikeBtn");
+		});
+	});
+                  	  
+	$(document).ready(function(){
+		bookLikeService.checkBookLikeAboutISBN(isbn,function(result){
+		console.log("check Book Like : " + result);
+			if(result=='1'){
+				$("#bookLikeBtn").html("좋아요 취소");
+				$("#bookLikeBtn").attr("id","bookDisLikeBtn");
+			}
+		});
+	});
+</script>
+</body>

@@ -9,7 +9,7 @@
 <meta name="description" content="Vertex - Responsive HTML5 Template">
 <meta name="author" content="bootstraptemplates.net">
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link rel="shortcut icon" href="/warm/resources/VertexEx/img/favicon.png" type="image/x-icon" />
+<link rel="shortcut icon" href="/warm/resources/img/header/Alice_rabbit03.png" type="image/x-icon" />
 <link rel="apple-touch-icon" href="/warm/resources/VertexEx/img/apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Cabin:400,600,700" rel="stylesheet">
 <link rel="stylesheet" href="/warm/resources/css/main.css" />
