@@ -123,13 +123,13 @@ $(document).ready(function(){
 			let addModalHTML="";
 			addModalHTML+="<div class=\"modal fade\" id=modal"+result.isbn+" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"smallModalLabel\" aria-hidden=\"true\">";
 			addModalHTML+="<div class=\"modal-dialog undefined\">";
-			addModalHTML+="<div class=\"modal-content\">";
+			addModalHTML+="<div class=\"modal-content\" style=\"width:295px;top:9.5vh; left:40vw;\">";
 			addModalHTML+="<div class=\"modal-body post-content\">";
-			addModalHTML+="<div class=\"form-inline\">";
+			addModalHTML+="<div class=\"form-inline post-content\">";
 			addModalHTML+="<img class=\"book-thumbnail\" src="+result.book_img+">";
-			addModalHTML+="<div class=\"cont\">";
-			addModalHTML+="<a href=reviewPerBook?isbn="+result.isbn+"><h4>Review</h4></a>";
-			addModalHTML+="<button class=\"deleteMyBook\" data-isbn="+result.isbn+">Delete</button>";
+			addModalHTML+="<div class=\"modal-body\">";
+			addModalHTML+="<a href=\"reviewPerBook?isbn="+result.isbn+"\"><h4>Review</h4></a>";
+			addModalHTML+="<a href=\"\" class=\"deleteMyBook\" data-isbn="+result.isbn+"><h4>Delete</h4></a>";
 			addModalHTML+="</div></div></div></div></div></div>";
 			modalDiv.append(addModalHTML);
 		});
@@ -138,7 +138,7 @@ $(document).ready(function(){
 	// remove book on bookshelf
 	$(document).on("click",".deleteMyBook",function(){
  		console.log("========== delete my book on library");
-		let isbn=$(this).closest("button").attr("data-isbn");
+		let isbn=$(this).closest("a").attr("data-isbn");
 		console.log("isbn : "+isbn);
 		libraryService.removeBookOnLibrary(isbn,function(result){
 			alert(result);
