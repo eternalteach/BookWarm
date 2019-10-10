@@ -230,7 +230,7 @@ $(document).ready(function(){
 		commentService.get(comm_cmt_no,function(comment){
 			// 댓글 수정 클릭시 내용 변경
 			str="";
-			str+="<div><div class='header'><strong class='primary-font'>["+comm_cmt_no+"]"+comment.user_id+"</strong>";
+			str+="<div><div class='header col-sm-12'><strong class='primary-font'>["+comm_cmt_no+"]"+comment.user_id+"</strong>";
 			str+="<small class='pull-right text-muted'><button id='commentModfiyCancel' class='btn close' data-comm_cmt_no='"+comm_cmt_no+"'>취소</button><button id='commentModfiySaveBtn' class='btn close' data-comm_cmt_no='"+comm_cmt_no+"'>저장</button><button id='commentRemoveBtn'  class='btn close'  data-comm_cmt_no='"+comm_cmt_no+"'>삭제</button></small></div>";
 			str+="<small class='pull-right text-muted'>"+comment.comm_cmt_written_time+"</small></div>";
 			str+="<textarea class='modifyCommentContent'>"+comment.comm_cmt_content+"</textarea></div>";
