@@ -53,7 +53,7 @@
 									<c:if test="${user_id==sellectedCommunityBoardPost.user_id}"><a class="submit" href="communityboardmodify"><button  type="button" class="btn btn-sm">Modify</button></a></c:if>
 									<a class="submit" href="communityboardreplywrite"><button  type="button" class="btn btn-sm btn-secondary">Reply</button></a>
 									<sec:authentication property='principal' var='pinfo'/>
-									<sec:authorize access="hasRole('ROLE_ADMIN')">
+									<sec:authorize access="hasRole('ROLE_MANAGER')">
 										<button  type="button" class="btn btn-sm" id="adminMove">관리자 이동</button>
 									</sec:authorize>
            						</div>   

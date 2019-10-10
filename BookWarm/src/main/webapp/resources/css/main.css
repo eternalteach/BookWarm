@@ -304,9 +304,6 @@ bookshelf-table-bar{
     text-align: center;
     border-bottom: 1px solid #e6e6e6;
 } */
-.page-height {
-	height:64.5vh;
-}
 .page-header .bar-breadcrumb {
     background: none;
     margin: 0 0 8px 2px;

@@ -178,7 +178,6 @@
 															<p class="v_blog-item-author"><span>권한 레벨 : 
 																<select onchange="javascript:modifyUserAuthentication(this.options[this.selectedIndex].value)" name="authentication">
 																    <option value=""> 레벨 ${user.authList.size()}</option>
-																    <option value="ROLE_ADMIN">관리자(LV3)</option>
 																    <option value="ROLE_MANAGER">매니저(LV2)</option>
 																    <option value="ROLE_USER">사용자(LV1)</option>
 																</select>

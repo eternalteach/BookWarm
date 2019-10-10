@@ -49,7 +49,7 @@
 											</ul>
 										</li>
 										
-										<sec:authorize access="hasRole('ROLE_ADMIN')">
+										<sec:authorize access="hasRole('ROLE_MANAGER')">
 										<!-- only access Administrator -->
 										<li class="dropdown"><button class="dropdown-item dropdown-toggle" onClick="location.href='/warm/admin'" >Admin</button>
 										</sec:authorize>

@@ -16,7 +16,7 @@
 <body>
 <%@ include file="includes/header/header-topnav.jsp"%>
 
-<div class="page-height" style="padding:30px;">
+<div style="padding:30px;">
 	<section class="transparent text-left">
 		<div class="container">
 			<div class="row justify-content-center">

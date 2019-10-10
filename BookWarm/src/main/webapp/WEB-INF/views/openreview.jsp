@@ -15,7 +15,7 @@
 <body class="v-bg-color">
 <%@ include file="includes/header/header-topnav.jsp"%>
 
-      <div class="page bordered page-height">
+      <div class="page bordered">
          
          <div class="page-inner p-none">
 
@@ -86,6 +86,7 @@
                         </div>
 					</c:forEach>	
                   </div>
+               </div>
                </div>
             </section>
          </div>
