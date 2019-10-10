@@ -1,5 +1,5 @@
 ﻿   <div class="wrapper">
-      <div class="page page-height has-sidebar has-right-sidebar bordered">
+      <div class="page has-sidebar has-right-sidebar bordered">
          <section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-top:20px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
             <div class="container">
                <div class="row">
