@@ -80,7 +80,7 @@
                           	<span>책 리스트</span>
                            </button></a>
 						   <button type="button" id="bookLikeBtn" class="btn btn-outline-secondary btn-sm" style="left: 10px;">
-                          	<span>좋아요</span>
+                          	<i class="fa fa-heart" aria-hidden="true"></i>
                            </button>
                            
                            <script>
@@ -96,9 +96,19 @@
                         	  
                         	  $(document).on("click","#bookDisLikeBtn",function(){
                 	 			bookLikeService.removeBookLikeAboutISBN(isbn,function(result){
-                	 				$("#bookDisLikeBtn").html("좋아요");
+                	 				$("#bookDisLikeBtn").html("<i class=\"fa fa-heart\" aria-hidden=\"true\"></i>");
                 	 				$("#bookDisLikeBtn").attr("id","bookLikeBtn");
                 	 			});
+                        	  });
+                        	  
+                        	  $(document).ready(function(){
+                        		  bookLikeService.checkBookLikeAboutISBN(isbn,function(result){
+                       				console.log("check Book Like : " + result);
+                       				if(result=='1'){
+	                   					$("#bookLikeBtn").html("좋아요 취소");
+	                   	 				$("#bookLikeBtn").attr("id","bookDisLikeBtn");
+                      				}
+                        		  });
                         	  });
                            </script>
 		                     <div class="product_meta mb-40">
