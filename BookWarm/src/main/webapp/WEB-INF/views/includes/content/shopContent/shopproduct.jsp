@@ -5,6 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <sec:authentication property="principal.username" var="user_id"/>
 
+<script type="text/javascript" src="/warm/resources/js/BookLike.js"></script>
+
 
 <body class="bg-white">
 
@@ -72,12 +74,33 @@
 	                           <span>장바구니</span>
 	                           </button>
                            </form>
-                           
+                           <input type="text" id="isbn" value="${bookdetail.isbn }" hidden="hidden">
                        		<!-- 목록버튼 클릭하면 책 목록으로 이동. -->
 						    <a href="/warm/shop/shoplist"><button type="submit" class="btn btn-outline-secondary btn-sm" style="left: 10px;">
                           	<span>책 리스트</span>
                            </button></a>
+						   <button type="button" id="bookLikeBtn" class="btn btn-outline-secondary btn-sm" style="left: 10px;">
+                          	<span>좋아요</span>
+                           </button>
                            
+                           <script>
+                	 			var isbn=$("#isbn").val();
+                	 			bookLike={isbn:isbn};
+                	 			
+                        	  $(document).on("click","#bookLikeBtn",function(){
+                	 			bookLikeService.addBookLike(bookLike,function(result){
+                	 				$("#bookLikeBtn").html("좋아요 취소");
+                	 				$("#bookLikeBtn").attr("id","bookDisLikeBtn");
+                	 			});
+                        	  });
+                        	  
+                        	  $(document).on("click","#bookDisLikeBtn",function(){
+                	 			bookLikeService.removeBookLikeAboutISBN(isbn,function(result){
+                	 				$("#bookDisLikeBtn").html("좋아요");
+                	 				$("#bookDisLikeBtn").attr("id","bookLikeBtn");
+                	 			});
+                        	  });
+                           </script>
 		                     <div class="product_meta mb-40">
 		                           <span class="tagged_as">
 		                           </span>
@@ -147,7 +170,7 @@
  		//버튼 클릭시 이벤트
  		$(document).ready(function(){
 	 		$("#cart").on("click", function(e){
-	 			alert("장바구니에 추가되었습니다."); 
+	 			alert("장바구니에 추가되었습니다!"); 
 	 		});
  		
 	 		$("#pay").on("click", function(e){

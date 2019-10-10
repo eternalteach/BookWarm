@@ -60,10 +60,10 @@
 <link rel="stylesheet" href="resources/css/main.css" />
 
 </head>
-<body>
+<body class="v-bg-color">
 <%@ include file="includes/header/header-topnav.jsp"%>
 <div class="wrapper">
-	<div class="page has-sidebar has-left-sidebar bordered">
+	<div class="page has-sidebar has-left-sidebar bordered" style="overflow:auto; overflow-x:hidden;">
 		<div class="page-inner alternate-color">
 			<div class="container">
 				<div class="row">
@@ -447,6 +447,8 @@ $(document).ready(function() {
 						});
 					});
 </script>
+<section>
 <%@ include file="includes/footer/footer-1.jsp"%>
+</section>
 </body>
 </html>
