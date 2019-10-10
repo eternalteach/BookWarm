@@ -22,8 +22,6 @@
 <style>
 
   body {
-   /*  margin: 40px 10px;
-    padding: 0; */
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
     font-size: 14px;
   }
@@ -39,12 +37,6 @@
     max-width: 900px;
     margin: 0 auto;
   }
-  
- /*  #calendar tbody td {
-  position: relative;
-  z-index: 1;
-} */
-
   
 </style>
 
@@ -468,7 +460,7 @@
 						   		  modals += "        	 	<div class='post-header form-header'>";
 						   		  modals += "					<div id='logsHere'>";
 						   		  modals += "					    <div align='right'><strong>" + finDate + "</strong></div>";
-						   		  modals += "						<div>" + obj.book_title + "</div>";
+						   		  modals += "						<div><a href='/warm/reviewPerBook?isbn=" + obj.isbn + "'>- " + obj.book_title + "</a></div>";
 						   		  modals += "					</div>";
 						   		  modals += "            </div>";
 						   		  modals += "        </div>";
@@ -479,7 +471,7 @@
 								  
 							} else {
 								// 같은 날 완독 기록이 있을 경우
-								$("#" + finDate).find("#logsHere").append("<div>" + obj.book_title + "</div>");
+								$("#" + finDate).find("#logsHere").append("<div><a href='/warm/reviewPerBook?isbn=" + obj.isbn + "'>- " + obj.book_title + "</a></div>");
 							}
 						}); // end of $.each
 				}); // end of getJSON

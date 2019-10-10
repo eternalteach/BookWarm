@@ -67,7 +67,7 @@
 		<div class="page-inner alternate-color">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-3 left-side-sidebar pt-70 veiwHeight">
+					<div class="col-md-3 left-side-sidebar pt-70 viewHeight">
 						<aside class="sidebar">
 							<section class="sidebar-widget">
 								<button class="administrator-BoardBtn btn sf-icon-stroke close"data-Action="administrator-board"> 게시판 관리 </button>

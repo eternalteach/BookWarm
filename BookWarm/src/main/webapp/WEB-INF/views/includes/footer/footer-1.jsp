@@ -4,17 +4,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 	<div class="wrapper">
 		<div class="page">
-			<footer class="footer stylelamas" id="footer-1">
-				<div class="copyright">
-					<div class="container">
-						<div class="row">
-							<div class="col-sm-6">
-								<ul class="list-inline fs-13 mb-none">
-									<li><p class="mb-0 fw-6">© 2019 Book & Warm</p></li><br>
-									<li><p class="mb-0 fw-6">Captain Bookwarm _ GB</p></li><br>
-								</ul>
-									<img src="/warm/resources/img/책장군.png" style="width:100px; margin-left:200px">
-							</div>
+			<footer class="footer" style="padding-top:15px!important; padding-bottom:15px!important;">
+				<div class="container">
+					<div class="row">
+						<div>
+							<img src="/warm/resources/img/generalB.png" style="width:100px; ">
+						</div>
+						<div class="col-sm-8 pull-right">
+							<ul class="list-inline fs-13 mb-none">
+								<li><p class="mb-0 fw-6">Copyright © Book & Warm. All rights reserved.</p></li><br>
+								<!-- <li><p class="mb-0 fw-6">Captain Bookworm _ GB</p></li><br>
+								<li><p class="mb-0 fw-6">Crew&nbsp;&nbsp;&nbsp;_&nbsp;&nbsp;&nbsp;JH&nbsp;&nbsp;·&nbsp;&nbsp;KU&nbsp;&nbsp;·&nbsp;&nbsp;HR</p></li><br> -->
+							</ul>
 						</div>
 					</div>
 				</div>
