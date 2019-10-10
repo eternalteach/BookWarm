@@ -32,7 +32,7 @@
 							</div>
 						</div>
        					<div class="card transparent col-lg-12" style="border:none;">
-							<h3> <span class="blog-author minor-meta"> Posted by 
+							<h3 class="margin-10px"> <span class="blog-author minor-meta"> Posted by 
 								<span class="entry-author-link"> 
 									<span class="vcard author">
 										<span class="v-blog-item-details"> <a href="#" title="Posts by HB-Themes" rel="author">${sellectedCommunityBoardPost.user_id}</a></span>
@@ -41,14 +41,11 @@
 								</span>
 							</h3>
          					<div class="form-group">
-         						<div class="form-control card transparent col-lg-12" style="border:none;">
-         							${sellectedCommunityBoardPost.comm_content}
+         						<div class="transparent col-lg-12">
+         							<textarea class="padding-10px bg-white"name="comm_content" rows="20" placeholder="${sellectedCommunityBoardPost.comm_content}" readonly="readonly"></textarea>
          						</div>
          					</div>
          					<div class="form-horizontal">
-           						<div class="form-group from-inline">
-             						<label>조회수&nbsp;${sellectedCommunityBoardPost.comm_clicked}&nbsp;&nbsp; <%-- <i class="fa fa-heart"></i> &nbsp;${sellectedCommunityBoardPost.comm_like} --%></label> 
-           						</div>   
            						<div class="form-group from-horizentar pull-right">
 									<a class="submit" href="communityboard"><button type="button" class="btn btn-sm btn-outline-secondary">List</button></a>
 									<c:if test="${user_id==sellectedCommunityBoardPost.user_id}"><a class="submit" href="communityboardmodify"><button  type="button" class="btn btn-sm">Modify</button></a></c:if>
@@ -63,7 +60,7 @@
 						<!-- 댓글 추가할 곳 -->
 						<div class="col-lg-12">
      						<div class="form-inline">
- 								<div class='panel-heading'>
+ 								<div class='panel-heading margin-20px'>
 									<h2><i class='fa fa-comments fa-fw'></i>Comment</h2>
 								</div>	
 							</div>
