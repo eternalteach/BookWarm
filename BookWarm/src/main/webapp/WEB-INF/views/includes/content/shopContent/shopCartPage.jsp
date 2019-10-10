@@ -53,7 +53,7 @@
 		                                    </td>
 											<!-- 책 이미지(사진) -->
 		                                    <td class="cart-product-thumbnail">
-		                                       <a href="#"><img width="64" height="64" src="${vo.book_img}"></a>
+		                                       <a href="#"><img width="64" height="64" src="${vo.book_img}" onerror="this.src='/warm/resources/img/책장군2.png'"></a>
 		                                    </td>
 											<!-- 제품명(책 제목) -->
 		                                    <td class="cart-product-name">

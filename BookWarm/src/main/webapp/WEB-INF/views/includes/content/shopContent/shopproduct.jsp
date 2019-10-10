@@ -30,7 +30,7 @@
                <div class="row" style="margin-left: 120px;">
                   <div class="col-md-3" style="padding-right: 30px;margin-right: 80px;margin-left: 20px;">
                   	<div class="img" style="padding-top: 20px;">
-                    <img src="${bookdetail.book_img}" style="width: 180px;height: 261px;margin-top: 30px;">
+                    <img src="${bookdetail.book_img}" style="width: 180px;height: 261px;margin-top: 30px;" onerror="this.src='/warm/resources/img/책장군2.png'">
                     </div>
                   </div>
 
@@ -120,7 +120,7 @@
 	                        <div class="product-shadows product-item">
 	                                 <figure class="product-shadows product-item">
 	                                       <div class="img-wrap first-image">
-	                                         <a href="shopproduct?isbn=${bookwriter.isbn}"><img src="${bookwriter.book_img}" style="width: 130px;"></a>
+	                                         <a href="shopproduct?isbn=${bookwriter.isbn}"><img src="${bookwriter.book_img}" style="width: 130px;" onerror="this.src='/warm/resources/img/책장군2.png'"></a>
 	                                       </div>
 										
 	                                    <div class="product-details">

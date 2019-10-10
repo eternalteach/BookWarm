@@ -74,7 +74,7 @@
 												<div class="product-media">
 													<div class="img-wrap first-image">
 														<a style="text-align: center;" href="shopproduct?isbn=${shop.isbn}">
-														<img style="max-width:80%; align:center;" src="${shop.book_img}"></a>
+														<img style="max-width:80%; align:center;" src="${shop.book_img}"  onerror="this.src='/warm/resources/img/책장군2.png'"></a>
 													</div>
 												</div>
 												<div class="product-details" style="font-size:13px;text-align: center; padding-bottom:0px;">
@@ -97,7 +97,7 @@
 												<div class="product-media">
 													<div class="img-wrap first-image">
 														<a style="text-align: center;" href="shopproduct?isbn=${shop_title.isbn}">
-														<img style="max-width:80%; align:center;" src="${shop_title.book_img}"></a>
+														<img style="max-width:80%; align:center;" src="${shop_title.book_img}" onerror="this.src='/warm/resources/img/책장군2.png'"></a>
 													</div>
 												</div>
 												<div class="product-details" style="font-size:13px;text-align: center; padding-bottom:0px;">
@@ -121,7 +121,7 @@
 												<div class="product-media">
 													<div class="img-wrap first-image">
 														<a style="text-align: center;" href="shopproduct?isbn=${bookpricelist2.isbn}">
-														<img style="max-width:80%; align:center;" src="${bookpricelist2.book_img}"></a>
+														<img style="max-width:80%; align:center;" src="${bookpricelist2.book_img}" onerror="this.src='/warm/resources/img/책장군2.png'"></a>
 													</div>
 												</div>
 												<div class="product-details" style="font-size:13px;text-align: center; padding-bottom:0px;">
