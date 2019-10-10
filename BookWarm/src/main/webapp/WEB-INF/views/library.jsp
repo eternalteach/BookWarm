@@ -14,44 +14,44 @@
 <script type="text/javascript" src="/warm/resources/js/book.js"></script>
 <%@ include file="includes/header/header-vertexEx.jsp"%>
 </head>
-<body style="background-image:url('/warm/resources/img/library/library_bookshelf2.jpg'); background-size:107% 106%; background-position:-20px 0px; background-repeat:no-repeat;" >
+<body style="background-image:url('/warm/resources/img/library/library_bookshelf2.jpg'); background-size:100% 100%; background-position:0px 0px; background-repeat:no-repeat;" >
 
-	<div class="header top-padding-3vh" style="position:absolute; top:7vh; left:59vw">
+	<div style="position:absolute; top:9vh; left:59vw">
 		<div>
-			<a data-toggle="modal" data-target="#modal-library" class="" style="color:white; font-size:2vh"><strong>책 검색하기&nbsp;<i class="glyphicon icon icon-magnifier" style="font-size:25px!important; color:white"></i></strong></a>
+			<a data-toggle="modal" data-target="#modal-library" style="color:white; font-size:2vh"><strong>책 검색하기&nbsp;<i class="glyphicon icon icon-magnifier" style="font-size:25px!important; color:white"></i></strong></a>
 		</div>
 	</div>
-	
 	<div class="bookshelf-position bookshelf-div">
 		<table class="margin-zero bookshelf-table">
 			<tr class="bookshelf-table-topspace">
-				<td rowspan="17" class="bookshelf-table-side"></td><td colspan="15" class="bookshelf-table-centerbar"></td><td class="bookshelf-table-side" rowspan="11"></td>
+				<td rowspan="17" class="bookshelf-table-left-side"></td><td colspan="5" class="bookshelf-table-centerbar"></td><td class="bookshelf-table-right-side" rowspan="17"></td>
 			</tr>
 			<c:forEach var="row" begin="0" end="4">
-				<tr class="bookshelf-table-booktop">
-					<td colspan="15" class="bookshelf-table-centerbar"></td>
+				<tr class="bookshelf-table-booktop-${row}">
+					<td colspan="5" class="bookshelf-table-centerbar"></td>
 				</tr>
-				<tr class="bookshelf-table-books">
+				<tr>
 					<c:forEach var="colum" begin="0" end="4">
-						<td class="library_emptySpace"></td>
+						<td class="tdnum${row*5+colum} book-position bookshelf-table-books_col${colum}" valign="bottom"align="center"></td>
+						<%-- <td class="library_emptySpace_col${colum}"></td>
 							<td class="tdnum${row*5+colum} book-position bookshelf-table-books" valign="bottom"align="center"></td>
-						<td class="library_emptySpace"></td>
+						<td class="library_emptySpace_col${colum}"></td> --%>
 					</c:forEach>
 				</tr>
 				<tr class="bookshelf-table-bottom">
-				<td colspan="15" class="bookshelf-table-centerbar"></td>
+				<td colspan="5" class="bookshelf-table-centerbar"></td>
 				</tr>
 			 </c:forEach>
 			 <tr class="bookshelf-table-bottomSpace">
-				<td colspan="15" class="bookshelf-table-bar"></td>
+				<td colspan="7" class="bookshelf-table-bar"></td>
 			 </tr>
 		</table>
 	
 	</div>
 	
 	<div style="position:absolute; top:76%; left:70vw; width:28vw">
-		<a href="reviewMain"><i class="lib-menu glyphicon icon icon-bookmark-2-1" style=""></i></a>
 		<a href="message"><i class="lib-menu glyphicon icon icon-plane-paper-1"></i></a>
+		<a href="reviewMain"><i class="lib-menu glyphicon icon icon-bookmark-2-1" style=""></i></a>
 		<a href="shop/shoplist"><i class="lib-menu glyphicon icon icon-shopping-bag-3"></i></a>
 		<a href="customLogout"><i class="lib-menu glyphicon icon icon-log-out-1"></i></a>
 	</div>
