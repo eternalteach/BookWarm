@@ -166,16 +166,16 @@
                                              <td class="cart-product-name"></td>
                                              <td class="cart-product-name"><strong>상품명</strong></td>
 			                           		 <td class="cart-product-name"><strong>가격</strong></td>
-			                           		 <td class="cart-product-name"><strong>수량</strong></td>
+			                           		 <td class="cart-product-name" style="padding-left:0px;padding-right:0px;text-align: center;"><strong>수량</strong></td>
 			                           		 <td class="cart-product-name"><strong>합계</strong></td>
                                           </tr>
                                           <c:forEach items="${list}" var="list">
 				                             <tr>
-				                           	 	<td class="cart-product-name amount"><img width="50" height="50" src="${list.book_img}"></td>
-				                           	 	<td class="cart-product-name amount">${list.book_title}</td>
-				                           		<td class="cart-product-name amount">${list.book_price_for_sale}원</td>
-				                           		<td class="cart-product-name amount">${list.cart_cnt}</td>
-				                           		<td class="cart-product-name amount">${list.total}원</td>
+				                           	 	<td class="cart-product-name amount"><img width="70" height="50" src="${list.book_img}" onerror="this.src='/warm/resources/img/책장군2.png'"></td>
+				                           	 	<td class="cart-product-name amount" style="line-height:150%;margin-top:20px;width: 124px;">${list.book_title}</td>
+				                           		<td class="cart-product-name amount" style="padding-left:0px;padding-right:0px;">${list.book_price_for_sale}원</td>
+				                           		<td class="cart-product-name amount" >${list.cart_cnt}</td>
+				                           		<td class="cart-product-name amount" style="padding-left:0px;padding-right:0px;padding-right:0px;">${list.total}원</td>
 				                             	<input type="hidden" name="isbn" value="${list.isbn}">
 				                             	<input type="hidden" name="cart_cnt" value="${list.cart_cnt}">
 				                             </tr>
