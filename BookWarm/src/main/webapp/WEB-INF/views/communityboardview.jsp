@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
+<%@ include file="./includes/header/script-vertexEx.jsp"%>
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <%@ include file="./includes/header/header-vertexEx.jsp"%>
@@ -15,7 +16,7 @@
 <%@ include file="includes/header/header-topnav.jsp"%>
 					
 <div class="container center-block">
-	<div class='row'>
+	<div class='row margin-20px'>
 		<div class='col-lg-12'>
 			<div class='panel panel-default'>
 				<div class="comment-write">
@@ -27,7 +28,7 @@
 								</div>
 							</div>
 							<div class="pull-right">
-										<span>작성일&nbsp; ${sellectedCommunityBoardPost.comm_written_time}</span>
+								<span>작성일&nbsp; ${sellectedCommunityBoardPost.comm_written_time}</span>
 							</div>
 						</div>
        					<div class="card transparent col-lg-12" style="border:none;">
@@ -73,7 +74,7 @@
 								</ul>
 							</div>
 							<!-- 댓글 작성부 -->
-							<div class="comment-write">
+							<div class="comment-write margin-20px">
 								<div class="modal-content">
           							<div class="modal-body">
             							<div class="form-group">
@@ -126,12 +127,9 @@ $(document).ready(function(){
 	
 	function showList(page){
 		
-		console.log("show list" + page);
-		
+		console.log("show list page : " + page);
 		commentService.getList({comm_no:comm_noValue,page:page||1},function(commentCnt,list){
-			
-			console.log("commentCnt: " +commentCnt);
-			console.log("list"+list);
+			console.log("commentCnt :  " +commentCnt);
 
 			if(page==-1){
 				pageNum==Math.ceil(commentCnt/10.0);
@@ -140,7 +138,8 @@ $(document).ready(function(){
 			}
 			
 			var str="";
-			if(list ==null||list.length==0){
+			if(list ==null||list.length==0||list==undefined){
+				commentUL.html(str);
 				return;
 			}
 			
@@ -337,7 +336,7 @@ $(document).ready(function(){
 		});
 	});
 </script>
-<%@ include file="./includes/header/script-vertexEx.jsp"%>
+
 <%@ include file="includes/footer/footer-1.jsp"%>
 </body>
 

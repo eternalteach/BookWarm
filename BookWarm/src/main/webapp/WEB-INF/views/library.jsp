@@ -129,7 +129,7 @@ $(document).ready(function(){
 			addModalHTML+="<img class=\"book-thumbnail\" src="+result.book_img+">";
 			addModalHTML+="<div class=\"modal-body\">";
 			addModalHTML+="<a href=\"reviewPerBook?isbn="+result.isbn+"\"><h4>Review</h4></a>";
-			addModalHTML+="<a href=\"\" class=\"deleteMyBook\" data-isbn="+result.isbn+"><h4>Delete</h4></a>";
+			addModalHTML+="<a class=\"deleteMyBook\" data-isbn="+result.isbn+"><h4>Delete</h4></a>";
 			addModalHTML+="</div></div></div></div></div></div>";
 			modalDiv.append(addModalHTML);
 		});

@@ -37,7 +37,7 @@
 							<tr>
 								<td>${communityBoard.comm_no}</td>
 								<td style="width:420px;" >
-								<div class="card transparent" style="border:none;">
+								<div class="no-border">
 								<c:forEach begin="1" end="${communityBoard.comm_indent}">[re]</c:forEach>
 									<a class='move' href="${communityBoard.comm_no}">${communityBoard.comm_subject}&nbsp;${communityBoard.comm_title}</a></div></td>
 								<td>${communityBoard.user_id}</td>

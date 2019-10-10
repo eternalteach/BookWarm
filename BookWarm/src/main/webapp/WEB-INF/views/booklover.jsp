@@ -12,7 +12,6 @@
 <body>
 <%-- 	<%@ include file="includes/header/header-topnav.jsp"%> --%>
 	<%@ include file="./includes/content/shopContent/booklover.jsp"%>
-	<%-- <%@ include file="./includes/footer/shopFooter/shopFooterNav.jsp"%>	 --%>
 	<%@ include file="includes/footer/footer-1.jsp"%>
 </body>
 </html>

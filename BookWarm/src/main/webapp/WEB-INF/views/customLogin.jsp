@@ -6,6 +6,5 @@
 </head>
 <body>
 	<%@include file="./includes/content/login/loginPage.jsp" %>
-	<%@include file="./includes/footer/loginFooter/loginFooterNav.jsp" %>
 </body>
 </html>

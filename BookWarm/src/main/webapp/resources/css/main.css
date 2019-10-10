@@ -72,7 +72,12 @@ height:100vh;
 	margin-right: 10pxf;
 	margin-left: 10px;
 }
-
+.no-border{
+	border:none;
+}
+.margin-20px{
+	margin:20px;
+}
 /* .library_emptySpace_col0 {
 	width: 1.1vw;
 }
