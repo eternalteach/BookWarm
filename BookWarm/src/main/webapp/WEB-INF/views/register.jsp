@@ -161,7 +161,6 @@
 		} else {
 			$(this).attr('type', 'submit');
 		}
-		alert("phone : "+phone);
 	});
    });
    
