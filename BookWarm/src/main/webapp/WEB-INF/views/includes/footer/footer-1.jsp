@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-	<div class="wrapper footer-wrap">
+	<div class="wrapper">
 		<div class="page">
 			<footer class="footer" style="padding-top:15px!important; padding-bottom:15px!important;">
 				<div class="container">

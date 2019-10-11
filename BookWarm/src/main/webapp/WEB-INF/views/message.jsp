@@ -12,6 +12,7 @@
 	<%@ include file="includes/header/header-vertex.jsp"%>
 </head>
 <body>
+<div class="footer-wrap"> 
 	<%@ include file="includes/header/header-topnav.jsp"%>
 	<div role="main" class="main">
 		<section class="page-header no-margin no-padding">
@@ -80,7 +81,7 @@
 				</div>
 			</div>
 		</div>
-	
+	</div>
 <!-- 모달창 -->
 <!-- 쪽지보내기모달창 -->
 	<div class="modal fade" id="modala" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">

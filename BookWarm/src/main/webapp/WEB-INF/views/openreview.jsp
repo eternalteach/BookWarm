@@ -15,7 +15,7 @@
 <body class="v-bg-color">
 <%@ include file="includes/header/header-topnav.jsp"%>
 
-      <div class="page bordered">
+      <div class="page bordered footer-wrap">
          
          <div class="page-inner p-none">
 

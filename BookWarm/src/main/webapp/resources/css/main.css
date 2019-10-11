@@ -18,7 +18,7 @@ html{
 .footer-wrap {
 min-height: 100%;
 position: relative;
-padding-bottom: 19px; /* footer height */
+padding-bottom: 19px; footer height
 }
 
 body{
@@ -27,11 +27,12 @@ height:100%;
 }
 
 footer {
-position: absolute;
-bottom: 0;
+position: relative;
+bottom:0;
 left: 0;
 right: 0;
 }
+
 .viewHeight{
 height:100vh;
 }

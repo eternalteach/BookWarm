@@ -9,6 +9,7 @@
  	<%@ include file="./includes/header/header-vertexEx.jsp"%>
 </head>
 <body>
+<div class="footer-wrap">
 <%@ include file="./includes/header/header-topnav.jsp"%>
    <div role="main" class="main">
     <section class="page-header">
@@ -40,6 +41,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
    <%@ include file="./includes/header/script-vertexEx.jsp"%>
 <script type="text/javascript" src="/warm/resources/js/admin.js"></script>
