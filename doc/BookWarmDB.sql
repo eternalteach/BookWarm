@@ -328,7 +328,7 @@ create table orders(
     post_no varchar2(20) not null,
     delivery_fee number(4,0) not null,
     discounted_point number(10,0) not null,
-    constraint pk_pay primary key(orders_no),
+    constraint pk_orders primary key(orders_no),
     constraint fk_orders_coupon_no FOREIGN KEY(coupon_no)
                REFERENCES coupon(coupon_no),
     constraint fk_orders_user_info FOREIGN KEY(user_id)
@@ -346,7 +346,7 @@ create table orders_item(
     item_cnt number(10,0) not null,
     orders_no varchar2(15) not null,
     orders_status varchar2(30) not null,
-    constraint pk_orders primary key(item_no),
+    constraint pk_orders_item primary key(item_no),
     constraint fk_orders_pay_no FOREIGN KEY(orders_no)
                REFERENCES orders(orders_no),
     constraint fk_orders_isbn FOREIGN KEY(isbn)
