@@ -19,10 +19,8 @@
 
 	<section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-8 text-left">
-                    </div>
-                    <div class="col-md-4">
+                    
+                    <div class="col-md-8 pull-right">
                     	<c:if test="${user_id == review.user_id}">
                         <ul class="bar-breadcrumb justify-content-start justify-content-md-end mb-0">
                             <li><a href="/warm/library?user_id=${user_id}">내 서재</a></li>
@@ -32,7 +30,6 @@
                         </ul>
 						</c:if>
                     </div>
-                </div>
             </div>
      </section>
 
@@ -98,8 +95,8 @@
                                 	
                             </form>
 							</div>
-                            <div class="post-info clearfix" style="z-index:1">
-                                <span class="vcard author">
+                            <div class="post-info clearfix text-right" style="z-index:1">
+                                <span class="author">
                                 	
                                 	<fmt:formatDate var="written_date" value="${review.review_written_date}" pattern="yyyy. MM. dd"/>
                                 

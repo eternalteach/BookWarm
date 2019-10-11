@@ -175,13 +175,13 @@
 													<div itemprop="articleBody">
 														<div id="${user.user_id}_authenticationLevel" data-userid="${user.user_id}"data-username="${user.user_name}" data-userauth="${user.authList.size()}">
 															<p class="v_blog-item-author"><span>user_name : ${user.user_name}</span></p>
-															<p class="v_blog-item-author"><span>권한 레벨 : 
+															<c:if test="${user.authList.size()!=3}"><p class="v_blog-item-author"><span>권한 레벨 : 
 																<select onchange="javascript:modifyUserAuthentication(this.options[this.selectedIndex].value)" name="authentication">
 																    <option value=""> 레벨 ${user.authList.size()}</option>
 																    <option value="ROLE_MANAGER">매니저(LV2)</option>
 																    <option value="ROLE_USER">사용자(LV1)</option>
 																</select>
-																</span></p>
+																</span></p></c:if>
 														</div>
 													</div>
 												</div>
