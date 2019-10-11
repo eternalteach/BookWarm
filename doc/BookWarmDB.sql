@@ -3,9 +3,9 @@
 create table authorities (
     user_id varchar2(20) not null,
     authority varchar2(50) not null,
-    constraint fk_authorities foreign key(username) references user_info(user_id)
+    constraint fk_authorities foreign key(user_id) references user_info(user_id)
 );
-create unique index idx_auth on authorities(username, authority);
+create unique index idx_auth on authorities(user_id, authority);
 
 --관리자 페이지
 create sequence admin_seq;
