@@ -128,7 +128,7 @@ public class UserInfoController {
 		// 1-3. <user_info>에서 유저 삭제
 		userInfoService.removeUser(user_id);
 		
-		// 2. 로그아웃,  index로 보내준다.
+		// 2. 로그아웃, index로 보내준다.
 		return "redirect:customLogout";
 	}
 	
