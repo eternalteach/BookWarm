@@ -20,4 +20,9 @@ public interface LibraryMapper {
 	public int deleteMyBook(@Param("user_id")String user_id, @Param("isbn")String isbn);
 	
 	public List<BookVO> getMyList(String user_id);
+	
+	public List<LibraryVO> getMyBooks(String user_id);
+
+	public int reAddLibrary(@Param("user_id")String user_id, @Param("isbn")String isbn);
+	
 }

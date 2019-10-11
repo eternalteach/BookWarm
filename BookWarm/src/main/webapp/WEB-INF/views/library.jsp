@@ -54,6 +54,7 @@
 		<a href="reviewMain"><i class="lib-menu glyphicon icon icon-bookmark-2-1" style=""></i></a>
 		<a href="shop/shoplist"><i class="lib-menu glyphicon icon icon-shopping-bag-3"></i></a>
 		<a href="customLogout"><i class="lib-menu glyphicon icon icon-log-out-1"></i></a>
+		<a id="modal-library-list-btn" data-toggle="modal" data-target="#modal-library-list" style="color:white; font-size:2vh"><strong>과거 책 리스트 보기&nbsp;<i class="glyphicon icon icon-magnifier" style="font-size:25px!important; color:white"></i></strong></a>
 	</div>
 	
 <!-- library Modal -->
@@ -68,12 +69,56 @@
         </div>
     </div>
 </div>
+
+<!-- library Modal -->
+<div class="modal fade" id="modal-library-list" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+    <div class="modal-dialog undefined">
+        <div class="modal-content">
+            <div class="modal-body post-content">
+             	<div id="past-library-list"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- 서재의 책 클릭시 뜨는 모달 생성되는 영역 -->
 <div id="modalDiv"></div>
 <!-- End library Modal -->
 
 <script>
+$("#modal-library-list-btn").on("click",function(){
+	showPastList();
+});
+
+function showPastList(){
+	libraryService.getMyBooks(function(result){
+		let addModalHTML="";
+		let addPastBookInfoHTML="";
+		addPastBookInfoHTML+="<div class=\"form-inline\">";
+		for(let index=0;index<result.length;index++){
+			addPastBookInfoHTML+="<div class='card center no-border'>";
+			addPastBookInfoHTML+="<a href=\"reviewPerBook?isbn="+result[index].isbn+"\"><img class=\"book-thumbnail\" src=\""+result[index].list_img_src+"\"></a>";
+			addPastBookInfoHTML+="<button class='btn btn-sm deletePastBook close' data-isbn='"+result[index].isbn+"'>삭제</button>";
+			addPastBookInfoHTML+="<button class='btn btn-sm addOnLibrary close' data-isbn='"+result[index].isbn+"'>등록</button>";
+			addPastBookInfoHTML+="</div>";
+		}
+		addModalHTML+=addPastBookInfoHTML;
+		$("#past-library-list").html(addModalHTML);
+	});
+}
+$(document).on("click",".deletePastBook",function(){
+	let isbn=$(this).closest("button").attr("data-isbn");
+	libraryService.removeMyBook(isbn);
+	showPastList();
+});
+
+
 $(document).ready(function(){
+$(document).on("click",".addOnLibrary",function(){
+	let isbn=$(this).closest("button").attr("data-isbn");
+	libraryService.reAddBookOnLibrary(isbn);
+	showList();
+});
 	showList();
 	let bookData="";
 	var getBookTable=$("#getBookTable");

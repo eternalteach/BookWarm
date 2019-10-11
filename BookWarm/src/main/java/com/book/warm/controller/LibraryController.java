@@ -42,13 +42,6 @@ public class LibraryController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String library(Authentication auth, Principal principal, Model model) throws Exception {
 		
-		System.out.println(auth.getAuthorities().size());
-		/*
-		 * if(auth.getAuthorities().size() >= 2) { return "redirect:admin"; }
-		 */
-		
-		
-		
 		model.addAttribute("libraryBooks",mapper.getLibraryBooks(principal.getName()));
 		
 		return "library";
@@ -72,6 +65,14 @@ public class LibraryController {
 		String user_id=principal.getName();
 		return new ResponseEntity<>(mapper.getLibraryBooks(user_id), HttpStatus.OK);
 	}
+
+	@GetMapping(value = "/getMyBooks", produces = { MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<List<LibraryVO>> getMyBooks(Principal principal, Model model) {
+		log.info("==================== getMyBoks() ====================");
+		String user_id=principal.getName();
+		return new ResponseEntity<>(mapper.getMyBooks(user_id), HttpStatus.OK);
+	}
 	
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
@@ -91,35 +92,54 @@ public class LibraryController {
 		String user_id=principal.getName();
 		return mapper.deleteMyBook(user_id,isbn)==1 ? new ResponseEntity<>("success",HttpStatus.OK):new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-	
-	// modify comment
-	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="/modify/{isbn}",consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE})
+
+	// delete
+	@DeleteMapping(value="/modify/{isbn}", produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> modify(@PathVariable("isbn")String isbn,Principal principal){
 		log.info("==================== modify() ====================");
 		String user_id=principal.getName();
 		return mapper.deleteLibraryList(user_id,isbn)==1 ? new ResponseEntity<>("success",HttpStatus.OK):new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-		
+	// readd
+	@DeleteMapping(value="/readd/{isbn}", produces= {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> reAdd(@PathVariable("isbn")String isbn,Principal principal){
+		log.info("==================== reAdd() ====================");
+		String user_id=principal.getName();
+		return mapper.reAddLibrary(user_id,isbn)==1 ? new ResponseEntity<>("success",HttpStatus.OK):new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	/*
+	 * // modify comment
+	 * 
+	 * @RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH},
+	 * value="/modify/{isbn}",consumes="application/json", produces=
+	 * {MediaType.TEXT_PLAIN_VALUE}) public ResponseEntity<String>
+	 * modify2(@PathVariable("isbn")String isbn,Principal principal){
+	 * log.info("==================== modify() ===================="); String
+	 * user_id=principal.getName(); return mapper.deleteLibraryList(user_id,isbn)==1
+	 * ? new ResponseEntity<>("success",HttpStatus.OK):new
+	 * ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); }
+	 */
 	
 	//add Comment
-		@PostMapping(value = "/addBook", consumes = "application/json", produces = {
-				MediaType.TEXT_PLAIN_VALUE })
-		public ResponseEntity<String> addBook(Principal principal,@RequestBody LibraryVO libraryVO) {
-			log.info("==================== addBook() ====================");
-			String user_id=principal.getName();
-			BookVO bookVO = (bookMapper.getBook(libraryVO.getIsbn()));
-			int insertCount=0;
-			if(bookService.checkUserBook(bookVO.getIsbn(), user_id)==0) {
-				libraryVO.setUser_id(user_id);
-				libraryVO.setIsbn(bookVO.getIsbn());
-				libraryVO.setList_img_src(bookVO.getBook_img());
-				libraryVO.setList_type("장르01");
-				libraryVO.setList_no(19);
-				insertCount = mapper.addMyBook(libraryVO);
-			}
-			log.info("Comment INSERT COUNT : " + insertCount);
-			return insertCount == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
-					: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	@PostMapping(value = "/addBook", consumes = "application/json", produces = {
+			MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<String> addBook(Principal principal,@RequestBody LibraryVO libraryVO) {
+		log.info("==================== addBook() ====================");
+		String user_id=principal.getName();
+		BookVO bookVO = (bookMapper.getBook(libraryVO.getIsbn()));
+		int insertCount=0;
+		if(bookService.checkUserBook(bookVO.getIsbn(), user_id)==0) {
+			libraryVO.setUser_id(user_id);
+			libraryVO.setIsbn(bookVO.getIsbn());
+			libraryVO.setList_img_src(bookVO.getBook_img());
+			libraryVO.setList_type("장르01");
+			libraryVO.setList_no(19);
+			insertCount = mapper.addMyBook(libraryVO);
 		}
+		log.info("Comment INSERT COUNT : " + insertCount);
+		return insertCount == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 
 }
