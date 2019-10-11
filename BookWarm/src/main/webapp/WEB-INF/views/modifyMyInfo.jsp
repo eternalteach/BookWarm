@@ -9,21 +9,20 @@
  	<%@ include file="./includes/header/header-vertexEx.jsp"%>
 </head>
 <body>
+<div class="footer-wrap">
 <%@ include file="./includes/header/header-topnav.jsp"%>
    <div role="main" class="main">
-    <section class="page-header">
+    <section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-top:20px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-8 text-left">
-                    <h1>내 정보</h1>
-                </div>
-                <div class="col-md-4">
-                    <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
-                        <li><a href="index.html">내 정보</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+			<div class="row align-items-center">
+				<div class="col-sm">
+                     <ol class="bar-breadcrumb justify-content-start justify-content-md-end mb-0">
+                        <li>내 정보</li>
+                        <li>내 정보 수정</li>
+                     </ol>
+                  </div>
+			</div>
+		</div>
     </section>
 
     <div class="v-page-wrap has-right-sidebar has-one-sidebar">
@@ -40,6 +39,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
    <%@ include file="./includes/header/script-vertexEx.jsp"%>
 <script type="text/javascript" src="/warm/resources/js/admin.js"></script>

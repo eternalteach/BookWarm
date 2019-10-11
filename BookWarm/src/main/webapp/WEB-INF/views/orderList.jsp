@@ -10,8 +10,10 @@
  	<%-- <%@include file="./includes/header/header-vertex.jsp" %> 둘 중 하나 알아서 쓰시오--%>
 </head>
 <body>
+<div class="footer-wrap">
 	<%@ include file="includes/header/header-topnav.jsp"%>
 	<%@ include file="./includes/content/userInfo/orderListPage.jsp"%>
+</div>
 	<%@ include file="includes/footer/footer-1.jsp"%>
 </body>
 </html>

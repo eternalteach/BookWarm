@@ -62,7 +62,7 @@
 </head>
 <body class="v-bg-color">
 <%@ include file="includes/header/header-topnav.jsp"%>
-<div class="wrapper">
+<div class="wrapper footer-wrap">
 	<div class="page has-sidebar has-left-sidebar bordered" style="overflow:auto; overflow-x:hidden;">
 		<div class="page-inner alternate-color">
 			<div class="container">

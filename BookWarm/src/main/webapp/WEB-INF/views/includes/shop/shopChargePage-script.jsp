@@ -17,7 +17,7 @@ $(document).ready(function() {
 	var finalPay; // 최종 금액 >> 계속 사용할 변수임
 	
 	// 결제 금액에 총 도서 금액 + 배송비 넣기
-	if(delivery == "2500원") {
+	if(delivery == "2500") {
 		finalPay = total+2500;
 	}else {
 		finalPay = total;
@@ -26,22 +26,22 @@ $(document).ready(function() {
 	$('#orders_pay_total').val(finalPay);
 	
 	var formDelivery = $('#formDelivery').val();
-	if(formDelivery=='무료') {
-		$('#formDelivery').attr(parseInt('0'));
-	}else {
-		$('#formDelivery').attr("value", formDelivery.substring(0, formDelivery.lastIndexOf("원")));
-	}
+	$('#formDelivery').attr("value", parseInt(delivery));
 	
 	// 쿠폰 사용
 	$('#modal').on('click', 'button', function() {
-		var bookPrice = $('#orders_total').val(); // 책 판매 총액
-		alert(bookPrice);
+		var bookPrice = parseInt($('#orders_total').val()); // 책 판매 총액
 		/* bookPrice = bookPrice.substring(0, bookPrice.lastIndexOf("원"));
 		alert(bookPrice); */
 		var discounted = $(this).attr('data-abc'); // 쿠폰할인액
 		discounted = discounted/100*bookPrice; // 쿠폰할인액
 		
-		if(finalPay-$('#point').val() >= discounted) {
+		var pointDiscount = $('#point').val();
+		if(pointDiscount=="") {
+			pointDiscount = parseInt("0");
+		}
+		
+		if(finalPay-pointDiscount >= discounted) {
 			// 도서총합계+배송비-포인트할인 >= 쿠폰할인
 			
 			// 할인 및 적립	>> 쿠폰 input 부분에 사용쿠폰 이름
@@ -89,6 +89,7 @@ $(document).ready(function() {
 		if(numExp.test(point)) {
 			// 받아온 값이 숫자면 parseInt 해준다.
 			point  = parseInt(point);
+			
 			if(availablePoint<point) {
      			// 가용포인트<사용하려는 포인트 -> 경고창
    				alert("가용 포인트는 "+availablePoint+"p 입니다.");
@@ -102,7 +103,7 @@ $(document).ready(function() {
    				// 결제 금액에 반영
    				$('#finalPay').html(finalPay-point-$('#discountCoupon').html());
    				$('#orders_pay_total').val(finalPay-point-$('#discountCoupon').html());
-   				alert("orders_pay_total : "+$('#orders_pay_total').val());
+   				//alert("orders_pay_total : "+$('#orders_pay_total').val());
    			}else if(point<0) {
    				// 포인트 사용에 음수 입력
    				alert("0원 이상의 금액을 입력해주세요.");
@@ -153,7 +154,11 @@ $(document).ready(function() {
 			}
 	
 			$('#orders_pay_total').attr('value', $('#finalPay').text());
-
+			
+			var orders_tot = $('#orders_total').val();
+			orders_tot = orders_tot.substring(0, orders_tot.lastIndexOf("원"));
+			$('#orders_total').attr('value', orders_tot);
+			
 			$(this).attr('type', 'submit'); 
 
 		}
