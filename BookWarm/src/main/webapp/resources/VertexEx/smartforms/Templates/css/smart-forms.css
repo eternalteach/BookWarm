@@ -391,7 +391,7 @@
 .smart-forms .gui-textarea,
 .smart-forms .select > select,
 .smart-forms .select-multiple select {
-   background: #fff;
+   background: #EAEAEA;
    position: relative;
    vertical-align: top;
    border: 1px solid #e2e2e2;

@@ -26,8 +26,11 @@ $(document).ready(function() {
 	$('#orders_pay_total').val(finalPay);
 	
 	var formDelivery = $('#formDelivery').val();
-	alert("formDelivery : " + formDelivery.substring(0, formDelivery.lastIndexOf("원")));
-	$('#formDelivery').attr("value", formDelivery.substring(0, formDelivery.lastIndexOf("원")));
+	if(formDelivery=='무료') {
+		$('#formDelivery').attr(parseInt('0'));
+	}else {
+		$('#formDelivery').attr("value", formDelivery.substring(0, formDelivery.lastIndexOf("원")));
+	}
 	
 	// 쿠폰 사용
 	$('#modal').on('click', 'button', function() {
@@ -86,7 +89,6 @@ $(document).ready(function() {
 		if(numExp.test(point)) {
 			// 받아온 값이 숫자면 parseInt 해준다.
 			point  = parseInt(point);
-		
 			if(availablePoint<point) {
      			// 가용포인트<사용하려는 포인트 -> 경고창
    				alert("가용 포인트는 "+availablePoint+"p 입니다.");

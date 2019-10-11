@@ -1,8 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
    <div class="wrapper">
       <div class="page has-sidebar has-right-sidebar bordered">
-
-         <section class="page-header b-bordered t-bordered">
+		<section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-top:20px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
             <div class="container">
                <div class="row">
                   <div class="col-sm-12">
@@ -91,14 +90,14 @@
                                  </div><!-- end frm-row section -->
                                  <!-- 삽입 끝////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-                                 <div class="section">
+                                 <!-- <div class="section">
                                     <label class="field option option-yellow">
                                        <input type="checkbox" checked>
-<!--                                        <input type="checkbox" name="info" checked> -->
+                                       <input type="checkbox" name="info" checked>
                                        <span class="checkbox"></span>
                                        Save my information <em class="small-text fine-grey"> (No worries, its secure) </em>
                                     </label>
-                                 </div><!-- end section -->
+                                 </div> --><!-- end section -->
 								 
 								 <hr class="invisible" />
 		                         <div class="spacer-b30">
@@ -237,10 +236,10 @@
                                        <span class="radio"></span> 무통장입금
                                     </label>
 
-                                    <label class="field option option-yellow">
+                                    <!-- <label class="field option option-yellow">
                                        <input type="radio" id="kakao" name="orders_payment" class="payment" value="kakao">
                                        <span class="radio"></span> 카카오페이
-                                    </label>
+                                    </label> -->
                                  </div><!-- end section -->
 							 <!-- ///////////////////////////////// -->
 							 <div class="spacer-t40 spacer-b30">

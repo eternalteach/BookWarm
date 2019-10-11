@@ -15,8 +15,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.book.warm.page.Criteria;
@@ -174,4 +176,39 @@ public class UserInfoController {
 		
 		return new ResponseEntity<String>(json, resHeader, HttpStatus.CREATED);
 	}
+	
+	@RequestMapping("/searchCoupon")
+	@ResponseBody
+	public CouponVO searchCoupon(@RequestParam("coupon_no") String coupon_no) {
+		System.out.println("searchCoupon()");
+		CouponVO couponVO = userInfoService.getCoupon(coupon_no);
+		return couponVO;
+	}
+	
+	// 선택한 쿠폰 내 계정에 등록
+	@RequestMapping("/selectCoupon")
+	public String selectCoupon(Principal principal, @RequestParam("coupon_no") String coupon_no) {
+		System.out.println("selectCoupon()");
+		String user_id = principal.getName();
+		
+		// 1. coupon_no 테이블에 선택한 쿠폰 등록
+		userInfoService.setCoupon(user_id, coupon_no);
+		
+		return "redirect:myInfo";
+	}
+//	
+//	// 선택한 쿠폰 내 계정에 등록
+//	@RequestMapping("/selectCoupon")
+//	@ResponseBody
+//	public int selectCoupon(Principal principal, @RequestParam("coupon_no") String coupon_no) {
+//		System.out.println("selectCoupon()");
+//		String user_id = principal.getName();
+//		
+//		// 1. coupon_no 테이블에 선택한 쿠폰 등록
+//		userInfoService.setCoupon(user_id, coupon_no);
+//		
+//		// myInfo.jsp페이지에 있는 쿠폰 개수 받아온다.
+//		int couponCnt = userInfoService.getCouponCnt(user_id);
+//		return couponCnt;
+//	}
 }

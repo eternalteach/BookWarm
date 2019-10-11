@@ -880,7 +880,7 @@ http://doptiq.com/smart-forms/
 .smartforms-modal-header{
 	position:relative;
 	padding:15px 20px;
-	background-color:#4EBD4A;
+	background-color:#DBDBDB;
 	color:#fff;
 }
 
@@ -949,7 +949,7 @@ http://doptiq.com/smart-forms/
 	width: 60px;
 	height: 100%;
 	line-height: 60px;
-	background:#4EBD4A;
+	background:#DBDBDB;
 	opacity: 1;
 	filter: alpha(opacity=100);	
 	font-family: Arial, Baskerville, monospace;    
