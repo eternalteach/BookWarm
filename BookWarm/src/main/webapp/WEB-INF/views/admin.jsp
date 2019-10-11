@@ -67,7 +67,7 @@
 		<div class="page-inner alternate-color">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-3 left-side-sidebar pt-70 veiwHeight">
+					<div class="col-md-3 left-side-sidebar pt-70 viewHeight">
 						<aside class="sidebar">
 							<section class="sidebar-widget">
 								<button class="administrator-BoardBtn btn sf-icon-stroke close"data-Action="administrator-board"> 게시판 관리 </button>
@@ -82,8 +82,8 @@
 						<!-- administrator-board -->
 						<div id="administrator-board" class="administrator">
 							<ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
-								<li class="nav-item" data-option-value=".community"><a class="nav-link" href="#">Community Board</a></li>
-								<li class="nav-item" data-option-value=".review"><a class="nav-link" href="#">Review</a></li>
+								<li id="communityLi"class="nav-item" data-option-value=".community"><a class="nav-link" href="#">Community Board</a></li>
+								<li id="reviewLi"class="nav-item" data-option-value=".review"><a  class="nav-link" href="#">Review</a></li>
 							</ul>
 							<div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
 								<div class="row portfolio-list sort-destination" data-sort-id="portfolio">
@@ -178,7 +178,6 @@
 															<p class="v_blog-item-author"><span>권한 레벨 : 
 																<select onchange="javascript:modifyUserAuthentication(this.options[this.selectedIndex].value)" name="authentication">
 																    <option value=""> 레벨 ${user.authList.size()}</option>
-																    <option value="ROLE_ADMIN">관리자(LV3)</option>
 																    <option value="ROLE_MANAGER">매니저(LV2)</option>
 																    <option value="ROLE_USER">사용자(LV1)</option>
 																</select>
@@ -412,12 +411,11 @@ $(document).ready(function() {
 					});
 					
 					$("#searchUserBtn").on("click",function(){
+						alert();
 						let searchID=$("#searchUser").val();
-						alert("Click SearchUserBtn ID : "+searchID);
-						
+						  
 						// ajax로 회원 아이디 검사해서 있으면 모달로 띄워주고, 없으면 없다고 띄워주기
 						adminService.getUser(searchID,function(result){
-							alert(result.user_id);
 							$("#user_name").val(result.user_name);
 							let user_mail1=result.user_mail.split('@')[0];
 							$("#user_mail1").val(user_mail1);
@@ -428,7 +426,6 @@ $(document).ready(function() {
 							$("#user_nickname").val(result.user_nickname);
 							let userbday=displayTimeService.displayTime(result.user_bday);
 							userbday=userbday.split('-');
-							alert(userbday[0]+"userbday[0]");
 							$("#year").val(userbday[0]);
 							$("#month").val(userbday[1]);
 							$("#day").val((userbday[2].substring(0,2)));
@@ -445,7 +442,17 @@ $(document).ready(function() {
 							$("#sample4_roadAddress").val(result.user_addr);
 							$("#sample4_detailAddress").val(result.user_addr_detail);
 						});
+						e.preventdefault();  
 					});
+					
+	$(".administrator-BoardBtn").on("click",function(){
+		$(".community").show();
+		$(".review").hide();
+	});
+	$("#reviewLi").on("click",function(){
+		$(".community").show();
+		$(".review").show();
+	});
 </script>
 <section>
 <%@ include file="includes/footer/footer-1.jsp"%>

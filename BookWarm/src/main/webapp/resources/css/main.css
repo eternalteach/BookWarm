@@ -1,9 +1,23 @@
 @charset "UTF-8";
+
+
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap');
+
+
+* {
+	font-family: 'Nanum Gothic', sans-serif, monospace;
+}
+
+p {
+	font-family: 'Nanum Gothic', sans-serif, monospace;
+}
+
+
 body{
 width:100vw;
 height:100vh;
 }
-.veiwHeight{
+.viewHeight{
 height:100vh;
 }
 .nopadding{
@@ -16,12 +30,6 @@ height:100vh;
 	margin: 0px;
 	border: 0px;
 	padding:0px;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-top: 0px;
-    border:0px;
-	margin:0px;
 }
 .center {
 	display: block;
@@ -61,13 +69,36 @@ height:100vh;
 .library-font{
 	font-style: italic; 
 	font-size:medium;
-	margin-right: 10px;
+	margin-right: 10pxf;
 	margin-left: 10px;
 }
-
-.library_emptySpace {
-	width: 0.6vw;  /* 2.66vw */
+.no-border{
+	border:none;
 }
+.margin-20px{
+	margin:20px;
+}
+.margin-10px{
+	margin:10px;
+}
+.padding-10px{
+	padding:10px;
+}
+/* .library_emptySpace_col0 {
+	width: 1.1vw;
+}
+.library_emptySpace_col1 {
+	width: 1.2vw;
+}
+.library_emptySpace_col2 {
+	width: 1.26vw;
+}
+.library_emptySpace_col3 {
+	width: 1.13vw;
+}
+.library_emptySpace_col4 {
+	width: 1.13vw;
+} */
 .top-padding-3vh{
 	padding-top:3vh;
 }
@@ -84,9 +115,10 @@ height: 100%;
 }
 
 .book-thumbnail {
-	height: 12.5vh;
-	/* width: 11vh; */
-	box-shadow: 3px 3px 10px gray
+	height: 10.1vh;
+	width: 3.7vw;
+	/* box-shadow: 3px 3px 10px gray */
+	box-shadow: inset 0 0 10px 10px #000;
 	;
 }
 .book-position{
@@ -144,7 +176,7 @@ a.button {
 	right: 10px;
 	top: 10px;
 }
-.decoration-books-position{
+/* .decoration-books-position{
 	position: absolute; 
 	left:10vw; 
 	bottom:5vh;
@@ -152,37 +184,74 @@ a.button {
 .decoration-books{
 	width:21vw; 
 	height:30vh;
-}
+} */
 
 .bookshelf-position{
 	position: absolute;
-	left: 32.3%;
-	top:12%;
+	left: 33.55vw;
+	top:12.3vh;
 }
 .bookshelf-table{
-	width: 36vw;
+	width: 31.4vw;
 	height: 67vh;
 }
 .bookshelf-table-bottomSpace{
-	height: 8.8vh;
+	height: 0.7vh;
 }
 .bookshelf-table-bottom{
 	height: 0.9vh;
 }
-.bookshelf-table-books{
-	height: 12vh;
-	width: 6vw;
+.bookshelf-table-books_col0 {
+	width:3.7vw;
+	padding-left:1.3vw!important;
+	padding-right:1.28vw!important;
 }
-.bookshelf-table-booktop{
-	height: 2.8vh;
+.bookshelf-table-books_col1 {
+	width:3.7vw;
+	padding-left:1.4vw!important;
+	padding-right:1.13vw!important;
+}
+.bookshelf-table-books_col2 {
+	width:3.7vw;
+	padding-left:1.29vw!important;
+	padding-right:1.29vw!important;
+}
+.bookshelf-table-books_col3 {
+	width:3.7vw;
+	padding-left:1.3vw!important;
+	padding-right:1.28vw!important;
+}
+.bookshelf-table-books_col4 {
+	width:3.7vw;
+	padding-left:1.3vw!important;
+	padding-right:1.23vw!important;
+}
+.bookshelf-table-booktop-0{
+	height: 3.4vh;
+}
+.bookshelf-table-booktop-1{
+	height: 4.2vh;
+}
+.bookshelf-table-booktop-2{
+	height: 4.15vh;
+}
+.bookshelf-table-booktop-3{
+	height: 4.3vh;
+}
+.bookshelf-table-booktop-4{
+	height: 3.2vh;
 }
 .bookshelf-table-topspace{
-	height: 1.6vh;
+	height: 1.5vh;
 }
-.bookshelf-table-side{
-	width:1.4vw;}
+.bookshelf-table-left-side{
+	width:0.5vw;
+}
+.bookshelf-table-right-side{
+	width:0.5vw;
+}
 .bookshelf-table-centerbar{
-	width:11vw;
+	width:30.4vw;
 }
 bookshelf-table-bar{
 	width:55vw;
@@ -246,9 +315,6 @@ bookshelf-table-bar{
     text-align: center;
     border-bottom: 1px solid #e6e6e6;
 } */
-.page-height {
-	height:64.5vh;
-}
 .page-header .bar-breadcrumb {
     background: none;
     margin: 0 0 8px 2px;

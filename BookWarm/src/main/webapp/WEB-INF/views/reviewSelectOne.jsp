@@ -88,9 +88,11 @@
 													삭제하기
 												</a>
 											</div>
+											<sec:authorize access="hasRole('ROLE_MANAGER')">
 											<div style="padding:5px">
 												<button  type="button" class="btn btn-sm close" id="adminMove"><i class="fa fa-star"></i>관리자 이동</button>
 											</div>
+											</sec:authorize>
 										</div>
 									</div>
                                 	

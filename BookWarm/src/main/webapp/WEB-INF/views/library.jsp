@@ -14,46 +14,47 @@
 <script type="text/javascript" src="/warm/resources/js/book.js"></script>
 <%@ include file="includes/header/header-vertexEx.jsp"%>
 </head>
-<body style="background-image:url('/warm/resources/img/library/library_bookshelf2.jpg'); background-size:107% 106%; background-position:-20px 0px; background-repeat:no-repeat;" >
+<body style="background-image:url('/warm/resources/img/library/library_bookshelf2.jpg'); background-size:100% 100%; background-position:0px 0px; background-repeat:no-repeat;" >
 
-	<div class="header top-padding-3vh" style="position:absolute; top:7vh; left:59vw">
+	<div style="position:absolute; top:9vh; left:59vw">
 		<div>
-			<a data-toggle="modal" data-target="#modal-library" class="" style="color:white; font-size:2vh"><strong>책 검색하기&nbsp;<i class="glyphicon icon icon-magnifier" style="font-size:25px!important; color:white"></i></strong></a>
+			<a data-toggle="modal" data-target="#modal-library" style="color:white; font-size:2vh"><strong>책 검색하기&nbsp;<i class="glyphicon icon icon-magnifier" style="font-size:25px!important; color:white"></i></strong></a>
 		</div>
 	</div>
-	
 	<div class="bookshelf-position bookshelf-div">
 		<table class="margin-zero bookshelf-table">
 			<tr class="bookshelf-table-topspace">
-				<td rowspan="17" class="bookshelf-table-side"></td><td colspan="15" class="bookshelf-table-centerbar"></td><td class="bookshelf-table-side" rowspan="11"></td>
+				<td rowspan="17" class="bookshelf-table-left-side"></td><td colspan="5" class="bookshelf-table-centerbar"></td><td class="bookshelf-table-right-side" rowspan="17"></td>
 			</tr>
 			<c:forEach var="row" begin="0" end="4">
-				<tr class="bookshelf-table-booktop">
-					<td colspan="15" class="bookshelf-table-centerbar"></td>
+				<tr class="bookshelf-table-booktop-${row}">
+					<td colspan="5" class="bookshelf-table-centerbar"></td>
 				</tr>
-				<tr class="bookshelf-table-books">
+				<tr>
 					<c:forEach var="colum" begin="0" end="4">
-						<td class="library_emptySpace"></td>
+						<td class="tdnum${row*5+colum} book-position bookshelf-table-books_col${colum}" valign="bottom"align="center"></td>
+						<%-- <td class="library_emptySpace_col${colum}"></td>
 							<td class="tdnum${row*5+colum} book-position bookshelf-table-books" valign="bottom"align="center"></td>
-						<td class="library_emptySpace"></td>
+						<td class="library_emptySpace_col${colum}"></td> --%>
 					</c:forEach>
 				</tr>
 				<tr class="bookshelf-table-bottom">
-				<td colspan="15" class="bookshelf-table-centerbar"></td>
+				<td colspan="5" class="bookshelf-table-centerbar"></td>
 				</tr>
 			 </c:forEach>
 			 <tr class="bookshelf-table-bottomSpace">
-				<td colspan="15" class="bookshelf-table-bar"></td>
+				<td colspan="7" class="bookshelf-table-bar"></td>
 			 </tr>
 		</table>
 	
 	</div>
 	
 	<div style="position:absolute; top:76%; left:70vw; width:28vw">
-		<a href="reviewMain"><i class="lib-menu glyphicon icon icon-bookmark-2-1" style=""></i></a>
 		<a href="message"><i class="lib-menu glyphicon icon icon-plane-paper-1"></i></a>
+		<a href="reviewMain"><i class="lib-menu glyphicon icon icon-bookmark-2-1" style=""></i></a>
 		<a href="shop/shoplist"><i class="lib-menu glyphicon icon icon-shopping-bag-3"></i></a>
 		<a href="customLogout"><i class="lib-menu glyphicon icon icon-log-out-1"></i></a>
+		<a id="modal-library-list-btn" data-toggle="modal" data-target="#modal-library-list" style="color:white; font-size:2vh"><strong>과거 책 리스트 보기&nbsp;<i class="glyphicon icon icon-magnifier" style="font-size:25px!important; color:white"></i></strong></a>
 	</div>
 	
 <!-- library Modal -->
@@ -68,12 +69,56 @@
         </div>
     </div>
 </div>
+
+<!-- library Modal -->
+<div class="modal fade" id="modal-library-list" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+    <div class="modal-dialog undefined">
+        <div class="modal-content">
+            <div class="modal-body post-content">
+             	<div id="past-library-list"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- 서재의 책 클릭시 뜨는 모달 생성되는 영역 -->
 <div id="modalDiv"></div>
 <!-- End library Modal -->
 
 <script>
+$("#modal-library-list-btn").on("click",function(){
+	showPastList();
+});
+
+function showPastList(){
+	libraryService.getMyBooks(function(result){
+		let addModalHTML="";
+		let addPastBookInfoHTML="";
+		addPastBookInfoHTML+="<div class=\"form-inline\">";
+		for(let index=0;index<result.length;index++){
+			addPastBookInfoHTML+="<div class='card center no-border'>";
+			addPastBookInfoHTML+="<a href=\"reviewPerBook?isbn="+result[index].isbn+"\"><img class=\"book-thumbnail\" src=\""+result[index].list_img_src+"\"></a>";
+			addPastBookInfoHTML+="<button class='btn btn-sm deletePastBook close' data-isbn='"+result[index].isbn+"'>삭제</button>";
+			addPastBookInfoHTML+="<button class='btn btn-sm addOnLibrary close' data-isbn='"+result[index].isbn+"'>등록</button>";
+			addPastBookInfoHTML+="</div>";
+		}
+		addModalHTML+=addPastBookInfoHTML;
+		$("#past-library-list").html(addModalHTML);
+	});
+}
+$(document).on("click",".deletePastBook",function(){
+	let isbn=$(this).closest("button").attr("data-isbn");
+	libraryService.removeMyBook(isbn);
+	showPastList();
+});
+
+
 $(document).ready(function(){
+$(document).on("click",".addOnLibrary",function(){
+	let isbn=$(this).closest("button").attr("data-isbn");
+	libraryService.reAddBookOnLibrary(isbn);
+	showList();
+});
 	showList();
 	let bookData="";
 	var getBookTable=$("#getBookTable");
@@ -123,13 +168,13 @@ $(document).ready(function(){
 			let addModalHTML="";
 			addModalHTML+="<div class=\"modal fade\" id=modal"+result.isbn+" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"smallModalLabel\" aria-hidden=\"true\">";
 			addModalHTML+="<div class=\"modal-dialog undefined\">";
-			addModalHTML+="<div class=\"modal-content\">";
+			addModalHTML+="<div class=\"modal-content\" style=\"width:295px;top:9.5vh; left:40vw;\">";
 			addModalHTML+="<div class=\"modal-body post-content\">";
-			addModalHTML+="<div class=\"form-inline\">";
+			addModalHTML+="<div class=\"form-inline post-content\">";
 			addModalHTML+="<img class=\"book-thumbnail\" src="+result.book_img+">";
-			addModalHTML+="<div class=\"cont\">";
-			addModalHTML+="<a href=reviewPerBook?isbn="+result.isbn+"><h4>Review</h4></a>";
-			addModalHTML+="<button class=\"deleteMyBook\" data-isbn="+result.isbn+">Delete</button>";
+			addModalHTML+="<div class=\"modal-body\">";
+			addModalHTML+="<a href=\"reviewPerBook?isbn="+result.isbn+"\"><h4>Review</h4></a>";
+			addModalHTML+="<a class=\"deleteMyBook\" data-isbn="+result.isbn+"><h4>Delete</h4></a>";
 			addModalHTML+="</div></div></div></div></div></div>";
 			modalDiv.append(addModalHTML);
 		});
@@ -138,7 +183,7 @@ $(document).ready(function(){
 	// remove book on bookshelf
 	$(document).on("click",".deleteMyBook",function(){
  		console.log("========== delete my book on library");
-		let isbn=$(this).closest("button").attr("data-isbn");
+		let isbn=$(this).closest("a").attr("data-isbn");
 		console.log("isbn : "+isbn);
 		libraryService.removeBookOnLibrary(isbn,function(result){
 			alert(result);

@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
+<%@ include file="./includes/header/script-vertexEx.jsp"%>
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <%@ include file="./includes/header/header-vertexEx.jsp"%>
@@ -88,7 +89,6 @@
 	});
 </script>
 
-<%@ include file="./includes/header/script-vertexEx.jsp"%>
 <%@ include file="includes/footer/footer-1.jsp"%>
 </body>
 </html>
