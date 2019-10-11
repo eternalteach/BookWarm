@@ -126,6 +126,7 @@
 							</div>                     
 							</c:forEach>
 							<!-- 최근 리뷰 페이징 처리 -->	
+							<div>
 							<nav aria-label="...">
                                 <ul class="pagination">
                         
@@ -135,7 +136,7 @@
                                 	</c:if>
                                 	
                                 	<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-	                                    <li class="page-item ${pageMaker.cri.pageNum == num ? "active":"" }"><a class="page-link" href="${num}">${num}</a>
+	                                    <li class="page-item ${pageMaker.cri.pageNum == num ? 'active':'' }"><a class="page-link" href="${num}">${num}</a>
 	                                    </li>
                                 	</c:forEach>
                                 	
@@ -152,8 +153,9 @@
                                 	</form>
                                 </ul>
                             </nav>
+                            </div>
 						</section>
-               </aside>
+               		</aside>
                </div>
                
                
@@ -176,32 +178,31 @@
                     
                     
                		<section style="margin:0; padding-right:3vw">
-						<!-- <div style="padding:6vw"> -->
+						<span>
 							<ul style="position:absolute; right:0">                     
                       
 	                         <li style="margin-top:10px">
 	                           	<div class="pull-right">
-	                           	
 			                    	<a class="btnPerBook" href="/warm/reviewWrite">
 				                      	<span class="text ls-1">감상 더하기<i class="icon icon-pen-3"></i>
 				                      	</span>
-			                    	</a><!-- <br>
+			                    	</a>
+			                    	<!-- <br>
 			                    	<a class="btnPerBook" href="/warm/library">
 				                      	<span class="text ls-1">서재로 돌아가기<i class="fa fa-book"></i>
 				                      	</span>
 			                    	</a> -->
-			                    	
 		                    	</div>
 	                         </li>
 	                      </ul>    
 							
-						<!-- </div> -->
+						</span>
 					</section> 
                     
                     
                     
-					<section style="margin:0">
-						<div style="padding-top:30%; padding-bottom:5%; padding-left:6%">
+					<section style="margin:0;margin-top:7vh">
+						<div style="padding-bottom:5%; padding-left:6%">
 						<div class="widget-heading clearfix">
 							<ul>
 								<h4 class="v-heading"><a href="#">${user_id}</a>'s Reading Log</h4>
@@ -361,13 +362,6 @@
 	  });
 		
 	  calendar.render();  
-	  /* setTimeout(function() {
-			
-		  calendar.render();
-		  $(".fc-dayGridMonth-button").click();
-		  calendar.updateSize();
-		  $(".fc-event-container a").css("display", "none");
-      }, 200); */
  	  
  	 $("#calendar").on("click", "img", function() {
  		 location.href = "/warm/reviewPerBook?isbn=" + $(this).attr('id');

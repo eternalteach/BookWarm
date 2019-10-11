@@ -7,15 +7,14 @@
 			<footer class="footer" style="padding-top:15px!important; padding-bottom:15px!important;">
 				<div class="container">
 					<div class="row">
-						<div>
-							<img src="/warm/resources/img/generalB.png" style="width:100px; ">
+						<div class="nopadding mb-0 my-auto" style="width:50px; background-image:url(/warm/resources/img/happyGeneralB.png); background-size:30px auto; background-position:center; height:40px; background-repeat:no-repeat">
 						</div>
-						<div class="col-sm-8 pull-right">
+						<div class="col-sm-4 nopadding my-auto">
 							<ul class="list-inline fs-13 mb-none">
-								<li><p class="mb-0 fw-6">Copyright © Book & Warm. All rights reserved.</p></li><br>
-								<!-- <li><p class="mb-0 fw-6">Captain Bookworm _ GB</p></li><br>
-								<li><p class="mb-0 fw-6">Crew&nbsp;&nbsp;&nbsp;_&nbsp;&nbsp;&nbsp;JH&nbsp;&nbsp;·&nbsp;&nbsp;KU&nbsp;&nbsp;·&nbsp;&nbsp;HR</p></li><br> -->
+								<li><p class="mb-0 fw-6 my-auto">Copyright © Book & Warm. All rights reserved.</p></li>
 							</ul>
+						</div>
+						<div class="col-sm-7 mb-0 noppading" style="margin-left:auto; margin-right:0; background-image:url(/warm/resources/img/generalB3.png); background-size:auto 20px; background-position:center; width:100%; height:50px; background-repeat:no-repeat;">
 						</div>
 					</div>
 				</div>
