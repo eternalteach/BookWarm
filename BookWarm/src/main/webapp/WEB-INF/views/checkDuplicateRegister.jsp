@@ -29,7 +29,7 @@
 							<span class="field-icon"><i class="ion-ios-email-outline"></i></span>
 						</label>
 					</div><!-- end section -->
-					<button type="button" class="button btn-secondary" id="chkDuplicatedBtn">Next</button>
+					<button type="submit" class="button btn-secondary" id="chkDuplicatedBtn">Next</button>
 				</div><!-- end .form-body section -->
 			</form>
 		</div><!-- end .smart-forms section -->
@@ -38,7 +38,7 @@
    	$(document).ready(function() {
    		var message = $('#msg');
    		if(message.val()=='true') {
-   			alert("id, pwê° ì´ë¯¸ ì¡´ì¬íë ì ì ìëë¤.");
+   			alert("이미 존재하는 유저입니다.");
    		}
    		
    		$('#chkDuplicatedBtn').on('click', function(e) {
@@ -46,10 +46,11 @@
    			var user_mail = $('#user_mail').val();
    			var mailExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
    			if(user_name=="" || user_mail=="") {
-   				alert("모든 폼을 채워주세요.");
-   				//e.preventDefault();
-   			}else if(user_mail.split('.').length!=2 || !mailExp.test(user_name)) {
-   				alert("메일을 다시 입력해주세요.");
+   				alert("모든 폼을 채워주세요");
+   				e.preventDefault();
+   			}else if(user_mail.split('.').length!=2 || !mailExp.test(user_mail)) {
+   				alert("메일을 다시 입력해주세요");
+   				e.preventDefault();
    			}else {
    				$(this).attr('type', 'submit');
    			}
