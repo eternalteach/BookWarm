@@ -90,7 +90,7 @@ constraint fk_book_clause FOREIGN KEY(isbn)
 );
 
 ------------------내 서재------------------------------------
-
+create sequence library_list_seq;
 create table library(
 user_id varchar2(20) not null,
 list_no number(10,0) default 1,
