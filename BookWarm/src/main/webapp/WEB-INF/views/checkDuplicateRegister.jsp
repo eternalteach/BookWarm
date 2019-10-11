@@ -29,32 +29,27 @@
 							<span class="field-icon"><i class="ion-ios-email-outline"></i></span>
 						</label>
 					</div><!-- end section -->
-					<button type="submit" class="button btn-secondary" id="chkDuplicatedBtn">Next</button>
+					<button type="button" class="button btn-secondary" id="chkDuplicatedBtn">Next</button>
 				</div><!-- end .form-body section -->
 			</form>
 		</div><!-- end .smart-forms section -->
 	</div>
 <script>
    	$(document).ready(function() {
-   		// ì¤ë³µë©ì¸ì§ ë°ìì¤ê¸°
    		var message = $('#msg');
    		if(message.val()=='true') {
    			alert("id, pwê° ì´ë¯¸ ì¡´ì¬íë ì ì ìëë¤.");
    		}
    		
-   		// ì ì¡ ë²í¼ í´ë¦­ì >> ëª¨ë  ì°½ ì ì±ìì ¸ìì¼ë©´ ê²½ê³ ì°½
-   		$('#chkDuplicatedBtn').on('click', function() {
+   		$('#chkDuplicatedBtn').on('click', function(e) {
    			var user_name = $('#user_name').val();
    			var user_mail = $('#user_mail').val();
    			var mailExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
    			if(user_name=="" || user_mail=="") {
-   				alert("ëª¨ë  í¼ì ìì±í´ì£¼ì¸ì.");
+   				alert("모든 폼을 채워주세요.");
+   				//e.preventDefault();
    			}else if(user_mail.split('.').length!=2 || !mailExp.test(user_name)) {
-    			// ì´ë©ì¼ ì§ì  ìë ¥íê¸° ì íì ê²½ê³ ì°½
-    			// 1. @ë·ë¶ë¶ì ooo.ooo ííë¡ ì ëì´ìëê²½ì°
-    			// 2. í¹ë¬¸ ë¤ì´ê° ê²½ì°
-    			// 3. íê¸ ë¤ì´ê° ê²½ì°
-   				alert("ì´ë©ì¼ ì£¼ìì íìì´ ìëª» ëììµëë¤.");
+   				alert("메일을 다시 입력해주세요.");
    			}else {
    				$(this).attr('type', 'submit');
    			}
