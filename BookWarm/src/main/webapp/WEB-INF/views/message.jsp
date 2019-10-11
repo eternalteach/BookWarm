@@ -221,7 +221,7 @@
 				
 				msgservice.msgdelete(sendidid, sendperson, function(count){
 						if(count === "success"){
-							alert("받은쪽지삭제")
+							alert("삭제하겠습니다.")
 							showmsgboard(msgPageNum);
 					}
 				});
@@ -285,7 +285,7 @@
 				
 				msgservice.msgdelete2(sendidid2, sendperson2, function(count){
 						if(count === "success"){
-							alert("삭제하시겠습니까?")
+							alert("삭제하겠습니다.")
 							showmsgboard2(msgPageNum2);
 					}
 				});
