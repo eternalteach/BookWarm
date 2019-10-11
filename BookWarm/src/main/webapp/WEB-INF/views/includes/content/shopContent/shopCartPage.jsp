@@ -5,8 +5,8 @@
                <div class="row">
                   <div class="col-sm-12">
                      <ol class="bar-breadcrumb pull-right">
-                        <li><a href="shoplist">책</a></li>
-                        <li class="active">장바구니</li>
+                        <li>서점</li>
+                        <li>장바구니</li>
                      </ol>
                   </div>
                </div>

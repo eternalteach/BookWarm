@@ -21,8 +21,6 @@
                     </div>
                    <div class="col-md-4">
                         <ul class="bar-breadcrumb justify-content-start justify-content-md-end mb-0">
-                            <li><a href="message">메세지</a></li>
-                            <li class="active">메시지함</li>
                         </ul>
                     </div> 
                 </div>

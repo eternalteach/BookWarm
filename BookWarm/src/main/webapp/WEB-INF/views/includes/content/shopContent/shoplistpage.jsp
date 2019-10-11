@@ -15,12 +15,6 @@
 				<div class="row align-items-center">
 					<div class="col-md-8 text-left">
 					</div>
-					<div class="col-md-4">
-						<ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
-							<li>책</li>
-							<li class="active">책 리스트</li>
-						</ul>
-					</div>
 				</div>
 			</div>
 		</section>

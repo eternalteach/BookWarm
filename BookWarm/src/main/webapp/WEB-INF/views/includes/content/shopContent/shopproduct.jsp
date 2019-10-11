@@ -15,10 +15,10 @@
 					<div class="col-md-8 text-left">
 					</div>
 					<div class="col-md-4" >
-						<ul class="breadcrumb justify-content-start justify-content-md-end mb-0" style="background-color:transparent">
-							<li><a href="shoplist">책</a></li>
-							<li class="active">책 상세정보</li>
-						</ul>
+						<ol class="breadcrumb justify-content-start justify-content-md-end mb-0" style="background-color:transparent">
+							<li>서점</li>
+							<li>책 상세정보</li>
+						</ol>
 					</div>
 				</div>
 			</div>
