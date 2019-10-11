@@ -356,9 +356,9 @@ create table orders_item(
     orders_no varchar2(15) not null,
     orders_status varchar2(30) not null,
     constraint pk_orders_item primary key(item_no),
-    constraint fk_orders_pay_no FOREIGN KEY(orders_no)
+    constraint fk_orders_item_pay_no FOREIGN KEY(orders_no)
                REFERENCES orders(orders_no),
-    constraint fk_orders_isbn FOREIGN KEY(isbn)
+    constraint fk_orders_item_isbn FOREIGN KEY(isbn)
                REFERENCES book(isbn)
 );
 -- cf. 주문 테이블에 fk가 더 있을 수 있어 fk_테이블명_컬럼명 으로 fk 명명.
