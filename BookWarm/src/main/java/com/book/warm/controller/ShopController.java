@@ -139,8 +139,9 @@ public class ShopController {
 
 		model.addAttribute("list", list);
 		model.addAttribute("subTotal", subTotal);
-		model.addAttribute("delivery", delivery);
 		model.addAttribute("userVO", userVO);
+		model.addAttribute("delivery", delivery);
+		
 		System.out.println("subTotal" + subTotal);
 		return "/shop-charge";
 	}
