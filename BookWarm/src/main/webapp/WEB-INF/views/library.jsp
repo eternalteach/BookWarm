@@ -30,7 +30,7 @@
 				<tr class="bookshelf-table-booktop-${row}">
 					<td colspan="5" class="bookshelf-table-centerbar"></td>
 				</tr>
-				<tr>
+				<tr class="books-row">
 					<c:forEach var="colum" begin="0" end="4">
 						<td class="tdnum${row*5+colum} book-position bookshelf-table-books_col${colum}" valign="bottom"align="center"></td>
 						<%-- <td class="library_emptySpace_col${colum}"></td>
@@ -46,15 +46,15 @@
 				<td colspan="7" class="bookshelf-table-bar"></td>
 			 </tr>
 		</table>
-	
 	</div>
+	<a id="modal-library-list-btn" data-toggle="modal" data-target="#modal-library-list" style="position:absolute; left:66vw; top:45vh"><strong><i class="glyphicon icon icon-add-1" style="color:white; font-size:3vw!important"></i></strong></a>
 	
-	<div style="position:absolute; top:76%; left:70vw; width:28vw">
+	<div style="position:absolute; top:76%; left:68vw; width:30vw">
 		<a href="message"><i class="lib-menu glyphicon icon icon-plane-paper-1"></i></a>
-		<a href="reviewMain"><i class="lib-menu glyphicon icon icon-bookmark-2-1" style=""></i></a>
+		<a href="myInfo"><i class="lib-menu glyphicon icon icon-user-1"></i></a>
+		<a href="reviewMain"><i class="lib-menu glyphicon icon icon-bookmark-2-1"></i></a>
 		<a href="shop/shoplist"><i class="lib-menu glyphicon icon icon-shopping-bag-3"></i></a>
 		<a href="customLogout"><i class="lib-menu glyphicon icon icon-log-out-1"></i></a>
-		<a id="modal-library-list-btn" data-toggle="modal" data-target="#modal-library-list" style="color:white; font-size:2vh"><strong>과거 책 리스트 보기&nbsp;<i class="glyphicon icon icon-magnifier" style="font-size:25px!important; color:white"></i></strong></a>
 	</div>
 	
 <!-- library Modal -->

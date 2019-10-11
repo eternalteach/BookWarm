@@ -12,7 +12,6 @@ p {
 	font-family: 'Nanum Gothic', sans-serif, monospace;
 }
 
-
 body{
 width:100vw;
 height:100vh;
@@ -30,6 +29,9 @@ height:100vh;
 	margin: 0px;
 	border: 0px;
 	padding:0px;
+}
+.books-row{
+	height:10.1vh
 }
 .center {
 	display: block;
@@ -240,7 +242,7 @@ bookshelf-table-bar{
 }
 
 .lib-menu {
-	font-size:4.5vw!important; 
+	font-size:3.8vw!important; 
 	color:white;
 	margin-left:1vw;
 	margin-right:1vw;
