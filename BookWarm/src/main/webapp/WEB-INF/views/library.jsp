@@ -60,7 +60,7 @@
 <!-- library Modal -->
 <div class="modal fade" id="modal-library" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
     <div class="modal-dialog undefined">
-        <div class="modal-content">
+        <div class="modal-content"  style="left:-63vh;">
             <div class="modal-body post-content">
              		  제목 검색 : <input id='search' name='search' type='text' class="col-sm-9">
 				<button class="searchBtn">검색</button>
@@ -152,7 +152,7 @@ $(document).on("click",".addOnLibrary",function(){
 					}else if (fieldInfo.field=="datetime"){
 					td.html( row[fieldInfo.field].substring(0,10));
 					} else if (fieldInfo.field=="title"){
-						td.html("<button class='search-books'>"+row[fieldInfo.field]+"</button>");
+						td.html("<button class='search-books card'>"+row[fieldInfo.field]+"</button>");
 					}else{
 					td.html( row[fieldInfo.field]);
 					}
@@ -168,7 +168,7 @@ $(document).on("click",".addOnLibrary",function(){
 			let addModalHTML="";
 			addModalHTML+="<div class=\"modal fade\" id=modal"+result.isbn+" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"smallModalLabel\" aria-hidden=\"true\">";
 			addModalHTML+="<div class=\"modal-dialog undefined\">";
-			addModalHTML+="<div class=\"modal-content\" style=\"width:295px;top:9.5vh; left:40vw;\">";
+			addModalHTML+="<div class=\"modal-content\" style=\"width:320px;top:9.5vh; left:33vw;\">";
 			addModalHTML+="<div class=\"modal-body post-content\">";
 			addModalHTML+="<div class=\"form-inline post-content\">";
 			addModalHTML+="<img class=\"book-thumbnail\" src="+result.book_img+">";
