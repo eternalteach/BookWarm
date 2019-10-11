@@ -1,11 +1,4 @@
 
--- 권한 테이블
-create table authorities (
-    user_id varchar2(20) not null,
-    authority varchar2(50) not null,
-    constraint fk_authorities foreign key(user_id) references user_info(user_id)
-);
-create unique index idx_auth on authorities(user_id, authority);
 
 --관리자 페이지
 create sequence admin_seq;
@@ -56,7 +49,16 @@ user_tot_price number(15,0),
 user_point number(10,0),
 enabled	char(1 byte) default '1',
 constraint pk_user_info primary key(user_id)
-);                     
+);       
+
+
+-- 권한 테이블
+create table authorities (
+    user_id varchar2(20) not null,
+    authority varchar2(50) not null,
+    constraint fk_authorities foreign key(user_id) references user_info(user_id)
+);
+create unique index idx_auth on authorities(user_id, authority);
 -------------------- book --------------------
 
 create table book(
@@ -492,6 +494,16 @@ values('manager','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3
 
 insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
 values('admin','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','관리자','관리자',TO_DATE('1994-2-24'),'m', '010-2822-1231', 'ggg@naver.com', 15133, '서울특별시 영등포구 영등포동1가',0,1000, 3, sysdate);
+
+insert into authorities (user_id, authority) values('admin','ROLE_ADMIN');
+insert into authorities (user_id, authority) values('admin','ROLE_MANAGER');
+insert into authorities (user_id, authority) values('admin','ROLE_USER');
+insert into authorities (user_id, authority) values('manager','ROLE_MANAGER');
+insert into authorities (user_id, authority) values('manager','ROLE_USER');
+insert into authorities (user_id, authority) values('xyrho','ROLE_USER');
+insert into authorities (user_id, authority) values('eternalTeach','ROLE_USER');
+insert into authorities (user_id, authority) values('hrhr','ROLE_USER');
+insert into authorities (user_id, authority) values('ljh','ROLE_USER');
 
 commit;
 
