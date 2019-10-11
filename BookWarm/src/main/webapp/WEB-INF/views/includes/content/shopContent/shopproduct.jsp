@@ -87,10 +87,8 @@
             		    <!-- 줄거리/목차부분  -->
                         <div class="clearfix">
                            <div class="tab-wrap clean-tab">
-                               <h1 style="font-size:20px;margin-bottom:0px;">줄거리</h1>
-                              <div class="tab-content">
-                                    <p style="border:1px solid #EAEAEA;">${bookdetail.book_story}</p>
-                              </div> 
+                               <h1 style="font-size:20px;margin-bottom:5px;">줄거리</h1>
+                                    <p style="border-top:0.5px solid #77838f;padding-top:5px;">${bookdetail.book_story}</p>
                            </div>
                         </div>
                        <!-- 줄거리/목차 끝  -->
@@ -116,7 +114,7 @@
 	                        <div class="product-shadows product-item">
 	                                 <figure class="product-shadows product-item">
 	                                       <div class="img-wrap first-image">
-	                                         <a href="shopproduct?isbn=${bookwriter.isbn}"><img src="${bookwriter.book_img}" style="width: 130px;" onerror="this.src='/warm/resources/img/책장군2.png'"></a>
+	                                         <a href="shopproduct?isbn=${bookwriter.isbn}"><img src="${bookwriter.book_img}" style="width:130px;height:177px" onerror="this.src='/warm/resources/img/책장군2.png'"></a>
 	                                       </div>
 										
 	                                    <div class="product-details">

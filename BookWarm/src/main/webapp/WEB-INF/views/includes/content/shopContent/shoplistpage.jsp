@@ -167,7 +167,7 @@
 												<div class="product-media">
 													<div class="img-wrap first-image">
 														<a style="text-align: center;" href="shopproduct?isbn=${booklike.isbn}">
-														<img style="max-width:80%; align:center;" src="${booklike.book_img}" onerror="this.src='/warm/resources/img/책장군2.png'"></a>
+														<img style="max-width:80%; align:center;height:177px" src="${booklike.book_img}" onerror="this.src='/warm/resources/img/책장군2.png'"></a>
 													</div>
 												</div>
 												<div class="product-details" style="text-align:center;">
