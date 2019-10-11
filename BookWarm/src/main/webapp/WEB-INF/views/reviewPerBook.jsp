@@ -23,7 +23,7 @@
         <section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
             <div class="container">
                <!--  <div class="row align-items-center"> -->
-                    <div class="col-md-4 pull-right">
+                    <div class="col-md-8 pull-right">
                         <ul class="bar-breadcrumb justify-content-start justify-content-md-end mb-0">
                             <li><a href="/warm/library?user_id=${user_id}">내 서재</a></li>
                             <li><a href="/warm/reviewMain">감상 메인</a></li>
