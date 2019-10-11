@@ -56,4 +56,8 @@ public class RecordService {
 		log.info("========== getMyLogs) ==========");
 		return mapper.getMyLogs(user_id);
 	}
+
+	public Integer getCPM() {
+		return mapper.getCPM();
+	}
 }

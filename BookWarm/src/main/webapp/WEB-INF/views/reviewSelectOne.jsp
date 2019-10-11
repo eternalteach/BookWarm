@@ -112,20 +112,18 @@
 
                             <section class="article-body-wrap">
 
-                                <div class="body-text clearfix">
-                                	
+                                <div class="body-text clearfix pre">${review.review_content}</div>
+                                
                                     <!-- 첫 글자만 크게 출력하고 나머지 내용은 보통 글씨로 나오는 형식 -->
                                     <%-- <p>
                                         <span class="dropcap1">${fn:substring(review.review_content,0,2)}</span>
                                         ${fn:substring(review.review_content,2,-1)}
                                     </p> --%>
-                                    <blockquote class="pullquote" style="word-break:break-all;">
+                                    <%-- <blockquote class="pullquote" style="word-break:break-all;">
                                         <span style="color: #888888; width:90%">
-                                            ${review.review_content}
+                                            <pre>${review.review_content}</pre>
                                         </span>
-                                    </blockquote>
-                                    
-                                </div>
+                                    </blockquote> --%>
 
 							   <!-- 태그 -->
                                <!--  <div class="tags-link-wrap clearfix">
@@ -137,40 +135,6 @@
                                     </div>
                                 </div> -->
 
-                                <div class="si-share clearfix">
-                                    <span>Share this Post:</span>
-                                    <div>
-                         
-										<a href="javascript:shareStory()">
-											<img src="https://developers.kakao.com/sdk/js/resources/story/icon_small.png"/>
-										</a>
-                                        <a href="#" class="social-icon si-borderless si-text-color si-facebook" title="Facebook">
-                                            <i class="si-icon-facebook"></i>
-                                            <i class="si-icon-facebook"></i>
-                                        </a>
-                                        <a href="#" class="social-icon si-borderless si-text-color si-twitter" title="Twitter">
-                                            <i class="si-icon-twitter"></i>
-                                            <i class="si-icon-twitter"></i>
-                                        </a>
-                                        <a href="#" class="social-icon si-borderless si-text-color si-pinterest" title="Pinterst">
-                                            <i class="si-icon-pinterest"></i>
-                                            <i class="si-icon-pinterest"></i>
-                                        </a>
-                                        <a href="#" class="social-icon si-borderless si-text-color si-gplus" title="Google Plus">
-                                            <i class="si-icon-gplus"></i>
-                                            <i class="si-icon-gplus"></i>
-                                        </a>
-                                        <a href="#" class="social-icon si-borderless si-text-color si-rss" title="RSS">
-                                            <i class="si-icon-rss"></i>
-                                            <i class="si-icon-rss"></i>
-                                        </a>
-                                        <a href="#" class="social-icon si-borderless si-text-color si-email3" title="Email">
-                                            <i class="si-icon-email3"></i>
-                                            <i class="si-icon-email3"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                
                             </section>
 							
                             <div class="comments-wrap">
@@ -293,7 +257,7 @@
 						cmt_str += "<button data-oper='save'  data-review_cmt_no='" + data.review_cmt_no+"' style='font-size:0.6em; background-color:transparent; border:none'>저장&nbsp;</button>";
 						cmt_str += "<button data-oper='cancel'  data-review_cmt_no='" + data.review_cmt_no+"' style='font-size:0.6em; background-color:transparent; border:none'>취소</button>";
 						cmt_str += "	</div>";
-						cmt_str += "<textarea maxlength='166' class='form-control' name='content' id='content'>" + data.review_cmt_content + "</textarea>";
+						cmt_str += "<textarea maxlength='166' class='form-control' name='content' id='content' cols='72' rows='3'>" + data.review_cmt_content + "</textarea>";
 						target.html(cmt_str); 
 						//$(this).closest("li").html(cmt_str); 
 					});
@@ -363,7 +327,7 @@
 					}
 					
 					str += "	</div>";
-					str += "		<p style='word-break:break-all' data-review_cmt_no='" + list[i].review_cmt_no + "'>" + list[i].review_cmt_content + "</p></div></li>";
+					str += "		<p class='pre' style='word-break:break-all; padding:0; color:#444444' data-review_cmt_no='" + list[i].review_cmt_no + "'>" + list[i].review_cmt_content + "</p></div></li>";
 					
 				}
 				// 댓글 수 표시

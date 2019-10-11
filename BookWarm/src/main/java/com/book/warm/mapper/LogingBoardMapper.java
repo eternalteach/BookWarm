@@ -25,4 +25,6 @@ public interface LogingBoardMapper {
 	public BookVO getBookVO(String isbn);
 	
 	public List<FinishedBookVO> getMyLogs(String user_id);
+
+	public int getCPM();
 }
