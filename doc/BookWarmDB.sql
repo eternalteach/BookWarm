@@ -300,7 +300,7 @@ constraint pk_coupon primary key(coupon_no)
 create table coupon_no(
 coupon_no varchar2(15) not null,
 user_id varchar2(20) not null,
-coupon_available char(1) default 'y',
+coupon_available char(1) default 't',
 constraint fk_coupon_no_coupon_no FOREIGN KEY(coupon_no)
            REFERENCES coupon(coupon_no),
 constraint fk_coupon_no_user_id FOREIGN KEY(user_id)
