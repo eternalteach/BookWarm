@@ -17,7 +17,7 @@
 					<div class="col-md-4" >
 						<ul class="breadcrumb justify-content-start justify-content-md-end mb-0" style="background-color:transparent">
 							<li><a href="shoplist">책</a></li>
-							<li class="active"><a href="#">책 상세정보</a></li>
+							<li class="active">책 상세정보</li>
 						</ul>
 					</div>
 				</div>
@@ -87,15 +87,9 @@
             		    <!-- 줄거리/목차부분  -->
                         <div class="clearfix">
                            <div class="tab-wrap clean-tab">
-                              <ul class="nav nav-tabs" role="tablist">
-                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#About" role="tab">줄거리</a>
-                                 </li>
-                              </ul>
+                               <h1 style="font-size:20px;margin-bottom:0px;">줄거리</h1>
                               <div class="tab-content">
-                                 <div class="tab-pane active" id="About" role="tabpanel">
-                                    <p>${bookdetail.book_story}</p>
-                                 </div>
+                                    <p style="border:1px solid #EAEAEA;">${bookdetail.book_story}</p>
                               </div> 
                            </div>
                         </div>
@@ -126,7 +120,9 @@
 	                                       </div>
 										
 	                                    <div class="product-details">
-	                                       <h3 class="product-name" style="font-size: 14px;line-height:1.3em;margin-top:10px;margin-bottom:0px; text-align: center;">${bookwriter.book_title}</h3>
+	                                       <h3 class="product-name" style="font-size:15px;text-align:center;overflow: hidden;text-overflow: ellipsis;
+													display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;word-wrap:break-word; 
+													line-height: 1.4em;height: 2.7em; margin-top: 10px;margin-bottom:0px;">${bookwriter.book_title}</h3>
 	                                       <div class="product-price-currency" style="text-align:center;"><fmt:formatNumber value="${bookwriter.book_price}" pattern="###,###,###" />원</div>
 	                                    </div> 
 	                                 </figure>

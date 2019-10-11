@@ -127,7 +127,7 @@
 								<fmt:formatDate var="fmt_date3" value="${msglist.msg_read_time }" pattern="yyyy-MM-dd"/>
 								보낸사람<input style="margin-left: 10px;margin-top: 10px;" name="msg_send_id" type="text" value="${msglist.msg_send_id}" readonly><br>
 								날짜<input style="margin-left: 35px;margin-top: 10px;margin-bottom:10px;" name="msg_read_time" type="text" value="${fmt_date3}" readonly><br>
-								내용<textarea name="msg_content" style="width:330px; height:200px; resize: none;" readonly>${msglist.msg_content}</textarea><br> 
+								내용<textarea name="msg_content" style="font-size: 16px;width:330px; height:200px; resize: none;" readonly>${msglist.msg_content}</textarea><br> 
 						 		<button type="button" style="margin-top: 10px;margin-left: 130px;" class="btn btn-outline-secondary" data-dismiss="modal">닫기</button>
 						</div>
             </div>
@@ -147,7 +147,7 @@
 								<fmt:formatDate var="fmt_date4" value="${msglist2.msg_read_time }" pattern="yyyy-MM-dd HH:mm:ss"/>
 								보낸사람<input name="msg_send_id" style="margin-left:10px;margin-top: 10px;" type="text" value="${msglist2.msg_send_id}" readonly><br>
 								날짜<input style="margin-left: 35px;margin-top: 10px;margin-bottom:10px;" name="msg_read_time" type="text" value="${fmt_date4}" readonly><br>
-								내용<textarea name="msg_content" style="width:330px; height:200px; resize: none;" readonly>${msglist2.msg_content}</textarea><br> 
+								내용<textarea name="msg_content" style="width:330px; height:200px; resize: none;font-size: 15px;" readonly>${msglist2.msg_content}</textarea><br> 
 						 		<button type="button" style="margin-top: 10px;margin-left: 130px;" class="btn btn-outline-secondary" data-dismiss="modal">닫기</button>
 						</div>
 				</div>
@@ -251,9 +251,9 @@
 						 var date = date.getDate();
 						 msghtml2+="<div class='blog-list-item-date' style='margin-left: 20px;margin-top: 20px;'>"+date+"<span style='font-size:20px;'>"+month+"</span></div>";
 						 msghtml2+="<div class='blog-list-content' style='margin-top: 20px;margin-left: 95px;'><h6 class='special' style='text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:80px;'>";
-						 msghtml2+="<a id='t' href='#' class='title' data-toggle='modal' data-target='#modalview2"+msglist2[i].msg_no+"' style='padding-top: 10px; font-size=15px'>"+msglist2[i].msg_title+"</a></h6>";
-						 msghtml2+="<small id='sendperson2' value="+msglist2[i].msg_send_id+">보낸 사람"+msglist2[i].msg_send_id+"</small>";
-						 msghtml2+="<small>받는 사람 "+msglist2[i].msg_get_id+"</small>";
+						 msghtml2+="<a id='t' href='#' class='title' data-toggle='modal' data-target='#modalview2"+msglist2[i].msg_no+"' style='padding-top:10px;font-size=18px'>"+msglist2[i].msg_title+"</a></h6>";
+						 msghtml2+="<small id='sendperson2' value="+msglist2[i].msg_send_id+">보낸사람 "+msglist2[i].msg_send_id+"</small>";
+						 msghtml2+="<small>받는사람 "+msglist2[i].msg_get_id+"</small>";
 						 msghtml2+="<div class='blog-list-item-excerpt'<p style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap; width:100px' >"+msglist2[i].msg_content+"</p></div>";
 						 msghtml2+="<div class='box' style='padding-left:70px;'>"
 						 msghtml2+="<a class='bb' style='padding-left:0px; padding-right:5px;' href='#modal-msgg' data-toggle='modal' data-target='#modal' data-send_id="+msglist2[i].msg_send_id+" >"
