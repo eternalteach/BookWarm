@@ -126,7 +126,7 @@
 							</div>                     
 							</c:forEach>
 							<!-- 최근 리뷰 페이징 처리 -->	
-							<div>
+							<div style="padding-left:20px">
 							<nav aria-label="...">
                                 <ul class="pagination">
                         
@@ -173,7 +173,7 @@
                  
                  
 				
-                 <div class="col-md-2 pt-70 " style="padding-top:0px !important; border-right-color: transparent!important;">
+                 <div class="col-md-2 pt-60 " style="padding-top:0px !important; border-right-color: transparent!important;">
                     <aside class="sidebar" style="width:100%">
                     
                     
@@ -205,12 +205,11 @@
 						<div style="padding-bottom:5%; padding-left:6%">
 						<div class="widget-heading clearfix">
 							<ul>
-								<h4 class="v-heading"><a href="#">${user_id}</a>'s Reading Log</h4>
+								<h4 class="v-heading"><a href="#">${user_id}</a>'s Log Main</h4>
 							</ul>
 						</div>
 							<ul style="margin:3%">
-								<li>가장 최근에 서재에 담은 책: </li>
-								<li>이 달 읽은 책 수: </li>
+								<li id="logCPM"></li>
 							</ul>
 							
 						</div>
@@ -366,6 +365,26 @@
  	 $("#calendar").on("click", "img", function() {
  		 location.href = "/warm/reviewPerBook?isbn=" + $(this).attr('id');
  	 });
+ 	 
+ 	 /* getlogCPM(); */
+ 	 
+ 	 // 이 달 읽은 책 수 가져오기
+ 	/* function getlogCPM(logCPM, callback, error) {
+ 		
+		var logCPM = $("#logCPM"); 
+			
+		$.get("/warm/logCPM", function(result) {
+			if(callback) {
+			console.log("여기");
+			console.log(result);
+			logCPM.html("이 달 읽은 책 총 " + result + "권");
+				
+			}
+			
+		});
+ 		
+ 	}
+ 	  */
  	 
  	(function() {
 		 

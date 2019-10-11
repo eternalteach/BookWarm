@@ -117,5 +117,5 @@ public class ReviewCommentController {
 		
 		return new ResponseEntity<>(service.getCommentsOnMyReview(principal.getName()), HttpStatus.OK);
 	}
-	
+
 }

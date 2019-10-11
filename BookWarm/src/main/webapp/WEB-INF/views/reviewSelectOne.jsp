@@ -133,40 +133,6 @@
                                     </div>
                                 </div> -->
 
-                                <div class="si-share clearfix">
-                                    <span>Share this Post:</span>
-                                    <div>
-                         
-										<a href="javascript:shareStory()">
-											<img src="https://developers.kakao.com/sdk/js/resources/story/icon_small.png"/>
-										</a>
-                                        <a href="#" class="social-icon si-borderless si-text-color si-facebook" title="Facebook">
-                                            <i class="si-icon-facebook"></i>
-                                            <i class="si-icon-facebook"></i>
-                                        </a>
-                                        <a href="#" class="social-icon si-borderless si-text-color si-twitter" title="Twitter">
-                                            <i class="si-icon-twitter"></i>
-                                            <i class="si-icon-twitter"></i>
-                                        </a>
-                                        <a href="#" class="social-icon si-borderless si-text-color si-pinterest" title="Pinterst">
-                                            <i class="si-icon-pinterest"></i>
-                                            <i class="si-icon-pinterest"></i>
-                                        </a>
-                                        <a href="#" class="social-icon si-borderless si-text-color si-gplus" title="Google Plus">
-                                            <i class="si-icon-gplus"></i>
-                                            <i class="si-icon-gplus"></i>
-                                        </a>
-                                        <a href="#" class="social-icon si-borderless si-text-color si-rss" title="RSS">
-                                            <i class="si-icon-rss"></i>
-                                            <i class="si-icon-rss"></i>
-                                        </a>
-                                        <a href="#" class="social-icon si-borderless si-text-color si-email3" title="Email">
-                                            <i class="si-icon-email3"></i>
-                                            <i class="si-icon-email3"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                
                             </section>
 							
                             <div class="comments-wrap">

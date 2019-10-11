@@ -391,4 +391,13 @@ public class ReviewBoardController {
 		
 		return new ResponseEntity<>(service.selectedReview(review_no), HttpStatus.OK);
 	}
+	
+	
+	@GetMapping(value="/logCPM",
+			produces = { MediaType.APPLICATION_XML_VALUE})
+	public ResponseEntity<String> getCPM() {
+		System.out.println("||||||||||||||||||||||||||||||"+recordService.getCPM());
+	return new ResponseEntity<>(recordService.getCPM().toString(), HttpStatus.OK);
+	}
+	
 }
