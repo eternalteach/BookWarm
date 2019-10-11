@@ -54,6 +54,7 @@ user_join_date date default sysdate,
 user_level number(1) default '1',
 user_tot_price number(15,0),
 user_point number(10,0),
+enabled	char(1 byte) default '1',
 constraint pk_user_info primary key(user_id)
 );                     
 -------------------- book --------------------
@@ -158,7 +159,7 @@ review_modify_date date default sysdate,
 isbn varchar2(20) not null,
 review_ref number(10,0),
 review_title varchar2(200) not null,
-review_content varchar2(2000) not null,
+review_content varchar2(4000) not null,
 review_open varchar2(7),
 constraint pk_review_board primary key(review_no),
 constraint fk_review_board FOREIGN KEY(user_id)
@@ -173,7 +174,7 @@ create table review_comment(
     review_cmt_no number(10,0),
     review_no number(10,0) not null,
     user_id varchar2(20) not null,
-    review_cmt_content varchar2(200) not null,
+    review_cmt_content varchar2(500) not null,
     review_cmt_written_date date default sysdate,
     review_cmt_modified_date date default sysdate,
     CONSTRAINT pk_review_comment primary key (review_cmt_no),
