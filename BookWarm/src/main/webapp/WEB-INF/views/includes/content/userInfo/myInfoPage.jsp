@@ -33,7 +33,7 @@
                                     <h3>${user_id}님</h3>
                                 </div>
                                 <div class="author-bio-text">
-                                    <p><a href="/warm/customLogout"><button type="button">로그아웃</button></a></p>
+                                    <p><a href="/warm/customLogout"><button type="button" class="btn v-btn standard lightgrey standard">로그아웃</button></a></p>
                                 </div>
                             </div>
                             <div class="author-bio">
@@ -46,7 +46,7 @@
                                     <h3>쿠폰 : <a href="javascript:pickCoupon()" id="pickCoupon">${couponCnt}개</a></h3>
                                 </div>
                                 <div class="author-bio-text">
-                                    <p><a href="javascript:setCoupon()" id="setCoupon">쿠폰 등록</a></p>
+                                    <p><a href="javascript:enrollCouponNo()" id="setCoupon">쿠폰 등록</a></p>
                                 </div>
                             </div>
                         </div>
@@ -147,4 +147,5 @@
 
 
 <%@ include file="./couponList.jsp" %>
+<%@ include file="./setCoupon.jsp" %>
 <%@ include file="./modal-myInfo-script.jsp" %>

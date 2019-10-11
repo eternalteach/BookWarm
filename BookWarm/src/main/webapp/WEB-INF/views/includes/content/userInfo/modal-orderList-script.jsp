@@ -93,7 +93,6 @@ function showDetail(orders_no) {
 				$('#coupon_name').attr('value', data.coupon.coupon_name);
 				
 				var coupon_discount_percent = data.coupon.coupon_discount_percent+"%";
-				alert(coupon_discount_percent);
 				$('#coupon_discount_percent').attr('value', coupon_discount_percent);
 				
 				// 얼마나 할인받았는지 계산

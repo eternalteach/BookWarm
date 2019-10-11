@@ -18,7 +18,7 @@
 	// 쿠폰 선택 버튼 눌렀을 때 실행
 	function pickCoupon() {
 		$('#modal').fadeIn(500);
-		
+	
 		$.ajax({
 			url : '/warm/shop/pickCoupon',
 			type : 'get',
@@ -27,21 +27,53 @@
 				// data(쿠폰 객체를 담은 list)를 받아와서 couponList.jsp페이지에 값을 넘겨줘야함.
 				var couponList = data;
 				var str = "";
-				str += "** 쿠폰페이지 **<br>";
-				str += "보유 쿠폰<br><br><br>";
+				str += "<div class='smartforms-modal-header'>";
+	 			str += "<h3>내 쿠폰</h3>";
+				str += "<a href='javascript:hideModal()' class='smartforms-modal-close' style='text-align:right'>&times;</a>";
+				str += "</div>";
 				
+				str += "<div class='smartforms-modal-body'>";
+				str += "<div class='smart-wrap'>";
+				str += "<div class='smart-forms smart-container wrap-full'>";
+				str += "<div class='form-body'>";
+				str += "<div class='frm-row'>";
 				for(var i=0; i<couponList.length; i++) {
+					str += "<div class='author-info-wrap clearfix col-sm-12' style='margin-top: 0px;'>"
+					str += "<div class='section'>";
 					str += "쿠폰 번호 : "+couponList[i].coupon_no+"<br>";
+					str += "</div>";
+					str += "<div class='section'>";
 					str += "쿠폰 이름 : "+couponList[i].coupon_name+"<br>";
-					str += "이 쿠폰을 사용 할 수 있는 회원 level : ";
-					for(var j=couponList[i].coupon_req; j<3; j++) {
-						str = str + j + ", ";
+					str += "</div>";
+					str += "<div class='section'>";
+					str += "쿠폰 사용 가능 회원 level : ";
+					for(var j=couponList[i].coupon_req; j<=3; j++) {
+						if(j==3) {
+							str = str + j;
+						}else {
+							str = str + j + ", ";
+						}
 					}
-					str += "<br>"+couponList[i].coupon_use_req+"이상 구매시 사용 가능<br>";
+					str += "</div>";
+					str += "<div class='section'>";
+					str += couponList[i].coupon_use_req+"이상 구매시 사용 가능";
+					str += "</div>";
+					str += "<div class='section'>";
 					str += "할인율 : "+couponList[i].coupon_discount_percent+"<br>";
-					str += "유효기간 : "+couponList[i].coupon_validate+"<br>";
-					str += "<button type='button' class='select' data-abc="+couponList[i].coupon_discount_percent+" id='"+couponList[i].coupon_no+"' value='"+couponList[i].coupon_no+"'>선택</button><br>";
+					str += "</div>";
+					str += "<div class='section'>";
+					str += "유효기간 : "+couponList[i].coupon_validate;
+					str += "</div>";
+					str += "<div class='smartforms-modal-footer'>";
+					str += "<button type='button' class='select btn v-btn standard lightgrey standard' data-abc="+couponList[i].coupon_discount_percent+" id='"+couponList[i].coupon_no+"' value='"+couponList[i].coupon_no+"'>선택</button><br>";
+					str += "<br>";
+					str += "</div>";
+					str += "</div><br>";
 				}
+				str += "</div>";
+				str += "</div>";
+				str += "</div>";
+				str += "</div>";
 				
 				// 할인 및 적립>쿠폰 창에 쿠폰 이름 입력
 				$('#modal').html(str);
@@ -56,4 +88,9 @@
 		$("#modal").hide();
 	});
 	
+	// 모달 창 끄기
+	function hideModal() {
+		$('#modal').fadeOut();
+	}
+
 </script>

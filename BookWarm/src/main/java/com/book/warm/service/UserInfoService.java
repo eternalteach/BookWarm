@@ -116,6 +116,14 @@ public class UserInfoService {
 		return userInfoMapper.modifyUserInfo(userInfo);
 	}
 
+	public CouponVO getCoupon(String coupon_no) {
+		return userInfoMapper.getCoupon(coupon_no);
+	}
+
+	public void setCoupon(String user_id, String coupon_no) {
+		userInfoMapper.setCoupon(user_id, coupon_no);
+	}
+
 	
 
 	
