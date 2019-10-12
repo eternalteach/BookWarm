@@ -66,19 +66,80 @@
       <div class="page has-sidebar has-right-sidebar bordered">
 <%-- <section class="section-primary alternate-color b-bordered" style="min-width:170px"></section> --%>
          <div class="page-inner has-left-sidebar has-one-sidebar">
-            <div class="container" style="max-width:90vw!important; margin-left:11.5vw; margin-right:5vw">
+            <div class="container" style="max-width:90vw!important; margin-left:10vw; margin-right:10vw">
             
             
                <div class="row">
                
+                 <div class="col-md-2 pt-60 " style="padding-top:0px !important; border-right-color: transparent!important;">
+                    <aside class="sidebar" style="width:100%">
+                    
+					<section style="margin:0;margin-top:3vh">
+						<div class="" style="padding-bottom:5%; padding-left:6%">
+							<div class="widget-heading clearfix">
+								<ul>
+									<h4 class="v-heading"><a href="#">${user_id}</a>'s Log Main</h4>
+									<li class="ml-4">막 서재에 담았어요!<br></li>
+									<li id="libNewbie" class="mt-1 ml-6"></li>
+								</ul>
+								<ul class="" style="margin:3%">
+									<li class="ml-3">이 달 펼친 책 : <h4 class="mb-0 list-inline-item" id="logCPM"></h4> 권</li>
+									<li class="ml-1">이 달 다 읽은 책 : <h4 class="mb-0 list-inline-item" id="logCPM_F"></h4> 권</li>
+								</ul>
+							</div>
+						</div>
+					</section> 
+							
+					<section class="widget widget_sf_recent_custom_comments clearfix" style="padding:6%; margin:0">
+                           <div class="widget-heading clearfix">
+                               <h4 class="v-heading"><span>Recent Comments</span></h4>
+                           </div>
+                           <ul class="recent-comments-list">
+							<!-- 최근 댓글 영역 -->
+                           </ul>
+                       </section>
+					
+                    </aside>
+                 </div>
                	  
-               <div class="col-md-2 pt-70 " style="padding-top:37px !important; padding-right:20px; border-right-color: transparent!important;">
+               
+               
+               
+              <!-- 달력 영역 -->
+              <div style="width:50vw !important; margin-top:20px; margin-bottom:50px">
+		          <div>
+		              <div>
+		              	 <div class="post-header form-header">
+		                  	<div id='loading'>loading...</div>
+  							<div id='calendar'></div>
+		                 </div>
+		              </div>
+		          </div>
+		      </div>
+                 <div class="col-md-2 pt-70 " style="padding-top:3vh !important; padding-right:20px; border-right-color: transparent!important;">
                      <aside class="sidebar" style="width:100%">
                
-               			<section style="margin:0">
+               			<section class="m-0">
 							<div class="widget-heading clearfix">
+                                <a class="btnPerBook pull-right" href="/warm/reviewWrite">
+					                      	<span class="text ls-1">작성하기<i class="icon icon-pen-3"></i>
+					                      	</span>
+				                </a>
                                 <h4 class="v-heading" style="padding-left:20px"><span>Recent Reviews</span></h4>
-                            </div>		
+                            </div>	
+                            <!-- <div>
+								<ul style="position:absolute; right:0">                     
+		                         <li style="margin-top:10px">
+		                           	<div class="pull-right">
+				                    	<a class="btnPerBook" href="/warm/reviewWrite">
+					                      	<span class="text ls-1">감상 더하기<i class="icon icon-pen-3"></i>
+					                      	</span>
+				                    	</a>
+			                    	</div>
+		                         </li>
+		                      	</ul>    
+							</span> -->
+                            	
 							<c:if test="${empty list}">
 								등록한 감상이 없습니다.
 							</c:if>
@@ -157,75 +218,8 @@
 						</section>
                		</aside>
                </div>
-               
-               
-              <!-- 달력 영역 -->
-              <div style="width:50vw !important; margin-top:20px; margin-bottom:50px">
-		          <div>
-		              <div>
-		              	 <div class="post-header form-header">
-		                  	<div id='loading'>loading...</div>
-  							<div id='calendar'></div>
-		                 </div>
-		              </div>
-		          </div>
-		      </div>
-                 
                  
 				
-                 <div class="col-md-2 pt-60 " style="padding-top:0px !important; border-right-color: transparent!important;">
-                    <aside class="sidebar" style="width:100%">
-                    
-                    
-               		<section style="margin:0; padding-right:3vw">
-						<span>
-							<ul style="position:absolute; right:0">                     
-                      
-	                         <li style="margin-top:10px">
-	                           	<div class="pull-right">
-			                    	<a class="btnPerBook" href="/warm/reviewWrite">
-				                      	<span class="text ls-1">감상 더하기<i class="icon icon-pen-3"></i>
-				                      	</span>
-			                    	</a>
-			                    	<!-- <br>
-			                    	<a class="btnPerBook" href="/warm/library">
-				                      	<span class="text ls-1">서재로 돌아가기<i class="fa fa-book"></i>
-				                      	</span>
-			                    	</a> -->
-		                    	</div>
-	                         </li>
-	                      </ul>    
-							
-						</span>
-					</section> 
-                    
-                    
-                    
-					<section style="margin:0;margin-top:7vh">
-						<div style="padding-bottom:5%; padding-left:6%">
-						<div class="widget-heading clearfix">
-							<ul>
-								<h4 class="v-heading"><a href="#">${user_id}</a>'s Log Main</h4>
-							</ul>
-						</div>
-							<ul style="margin:3%">
-								<li id="logCPM"></li>
-							</ul>
-							
-						</div>
-					</section> 
-							
-					<section class="widget widget_sf_recent_custom_comments clearfix" style="padding:6%; margin:0">
-                           <div class="widget-heading clearfix">
-                               <h4 class="v-heading"><span>Recent Comments</span></h4>
-                           </div>
-                           <ul class="recent-comments-list">
-							<!-- 최근 댓글 영역 -->
-                           </ul>
-                       </section>
-					
-                    </aside>
-                 </div>
 
                </div>
                <!-- end of row -->
@@ -269,6 +263,11 @@
 	  						var events = [];
 	  						let preDate = '';
 	  						let limitCheck = 0;
+	  						let logCPM_F = 0;
+	  						var nowFormat = tsToDate();
+	  						// 이번 달에 완독한 책의 수를 세어야 함. ajax로 받아오는 것은 내가 완독한 책 전부.
+	  						// 내가 받아온 목록의 연, 월이 sysdate의 연, 월과 일치하면 ++를 해준다. 0으로 시작해서 for문을 도는 동안 하나씩 ++.
+	  						// 반영하는 것은 for문을 다 돌았을 때.
 	  						
 	  						$.each(data, function(i, obj){
 		  						let firstImg = false;
@@ -277,6 +276,9 @@
 	  							
 	  							// timestamp를 원하는 날짜 형식으로 변환하는 함수 호출
 	  							var dateFormat = tsToDate(obj.start_date);
+	  							// 완독 기록의 연월이 현재 연월과 같으면 logCPM_F ++;
+	  							if(dateFormat.substring(0,7) == nowFormat.substring(0,7))
+	  								logCPM_F++;
 	  							
 	  							// 같은 날짜에 완독한 책이 존재한다면 limitCheck값만 증가시켜주고, 
 	  							// 이외의 경우 preDate에 날짜 저장 후 limitCheck 1로 초기화.
@@ -306,6 +308,8 @@
 										}
 								);
 	  						});
+	  						// 이 달 완독한 책 수를 표시
+	  						$("#logCPM_F").html(logCPM_F);
 	   						successCallback(events);
 		   				}).fail(function(xhr, status, err) {
 			   				if(err) {
@@ -360,61 +364,12 @@
 	
 	  });
 		
-	  calendar.render();  
+	 calendar.render();  
  	  
  	 $("#calendar").on("click", "img", function() {
  		 location.href = "/warm/reviewPerBook?isbn=" + $(this).attr('id');
  	 });
  	 
- 	 /* getlogCPM(); */
- 	 
- 	 // 이 달 읽은 책 수 가져오기
- 	/* function getlogCPM(logCPM, callback, error) {
- 		
-		var logCPM = $("#logCPM"); 
-			
-		$.get("/warm/logCPM", function(result) {
-			if(callback) {
-			console.log("여기");
-			console.log(result);
-			logCPM.html("이 달 읽은 책 총 " + result + "권");
-				
-			}
-			
-		});
- 		
- 	}
- 	  */
- 	 
- 	(function() {
-		 
-		$.getJSON("/warm/comments/recent", function(arr) {
-			
-					// 최근 댓글 5개를 가져온다.
-					var recentCmt = $(".recent-comments-list");
-					var str = "";
-					
-					$(arr).each(function(i, cmt) {
-						str += "<li class='comment'><div class='comment-wrap clearfix'>";
-						str += "<div class='comment-avatar'>";
-						str += "<img src='/warm/resources/Vertex/img/team/t" + (i+1) + ".png' class='avatar' style='height:35px; width:35px' />";
-						str += "</div>";
-						str += "<div class='comment-content'><div class='comment-body'>";
-						str += "<a href='" + cmt.review_no + "'>";
-						str += " <p style='overflow:hidden; text-overflow:ellipsis'>" + cmt.review_cmt_content + "</p></a></div>";
-						str += "<div class='comment-meta'>";
-						str += "<span class='comment-author'>" + cmt.user_id + "</span>&nbsp;&nbsp;&nbsp;";
-						str += "<span class='comment-date'>" + displayTime(cmt.review_cmt_modified_date) + "</span>";
-						str += "</div></div></li>";
-						str += "";
-					});
-					if(str=="") {
-						str = "댓글이 없습니다.";
-					}
-					recentCmt.html(str);
-					
-		}); // end getJSON
-	})(); // end function
   });
 	
 	$(".recent-comments-list").on("click", "a", function(e) {
@@ -443,14 +398,13 @@
 	 });
 	
 	$(document).ready(function() {
-		
-		// document가 로드되면 즉시 실행 함수로 가져온 목록으로 모달을 만든다.
 	   
 	    let preDate = '';
-	   				  
+	    // document가 로드되면 즉시 실행 함수로 필요한 정보들을 가져와 뿌린다.
 		(function() {
 			
-			$.getJSON("/warm/calendar.json",
+				// 가져온 완독 목록을 바탕으로 모달을 만든다.
+				$.getJSON("/warm/calendar.json",
 					function(data) {
 						// json데이터를 받아 data의 완독일 값이 true면 events에 추가하기.
 						
@@ -487,15 +441,62 @@
 								$("#" + finDate).find("#logsHere").append("<div><a href='/warm/reviewPerBook?isbn=" + obj.isbn + "'>- " + obj.book_title + "</a></div>");
 							}
 						}); // end of $.each
-				}); // end of getJSON
+				}); // end of making modals
+				
+				
+				// 서재에 가장 최근 등록된 책을 가져온다.
+		 		$.getJSON("/warm/libNewbie", function(result) {
+		 			var libNewbie = $("#libNewbie");
+		 			if(result.book_img == null) {
+		 				result.book_img = "/warm/resources/img/happyGeneralB_dark.png";
+		 			}
+		 			var libNewbieStr = "<a href=/warm/reviewPerBook?isbn="+ result.isbn +"><img style='width:80px' src='" + result.book_img+ "'></a>"
+		 			libNewbie.html(libNewbieStr);
+		 		});
+			 	// 이 달 읽은 책 수를 가져온다.
+		 		$.getJSON("/warm/logCPM", function(result) {
+					 var logCPM = $("#logCPM");  
+					 logCPM.html($(result)[0]);
+				});
+			 	 
+				// 최근 댓글 5개를 가져온다.
+		 		$.getJSON("/warm/comments/recent", function(arr) {
+					
+					var recentCmt = $(".recent-comments-list");
+					var str = "";
+					
+					$(arr).each(function(i, cmt) {
+						str += "<li class='comment'><div class='comment-wrap clearfix'>";
+						str += "<div class='comment-avatar'>";
+						str += "<img src='/warm/resources/Vertex/img/team/t" + (i+1) + ".png' class='avatar' style='height:35px; width:35px' />";
+						str += "</div>";
+						str += "<div class='comment-content'><div class='comment-body'>";
+						str += "<a href='" + cmt.review_no + "'>";
+						str += " <p style='overflow:hidden; text-overflow:ellipsis'>" + cmt.review_cmt_content + "</p></a></div>";
+						str += "<div class='comment-meta'>";
+						str += "<span class='comment-author'>" + cmt.user_id + "</span>&nbsp;&nbsp;&nbsp;";
+						str += "<span class='comment-date'>" + displayTime(cmt.review_cmt_modified_date) + "</span>";
+						str += "</div></div></li>";
+						str += "";
+					});
+					if(str=="") {
+						str = "댓글이 없습니다.";
+					}
+					recentCmt.html(str);
+					
+				}); // get Recent Comments
+				
 		  })(); // end of function
 		  
 	});
 	
-	
 	function tsToDate(timestamp) {
-		
-		    var tempDate = new Date(timestamp);
+			
+			if(typeof timestamp == 'undefined') {
+				var tempDate = new Date();
+			} else {
+		    	var tempDate = new Date(timestamp);
+			}
 		    
 			var year = tempDate.getFullYear();
 			var month = tempDate.getMonth() + 1;

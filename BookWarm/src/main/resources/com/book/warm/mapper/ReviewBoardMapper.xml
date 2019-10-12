@@ -184,6 +184,12 @@
 		and user_id=#{user_id}
 	</update>
 	
-	
+	<select id="getLibNewbie" resultType="com.book.warm.vo.BookVO">
+		<!-- 가장 최근 서재에 담은 책의 표지와 isbn을 가져온다. -->
+		select isbn, book_img from (
+		    select b.isbn, b.book_img, rank() over(order by list_added_date desc) rk from library l, book b
+		    where user_id = #{user_id} and l.isbn = b.isbn)
+		where rk = 1
+	</select>
 	
  </mapper>

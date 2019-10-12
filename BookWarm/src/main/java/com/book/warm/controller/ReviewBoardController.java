@@ -395,9 +395,16 @@ public class ReviewBoardController {
 	
 	@GetMapping(value="/logCPM",
 			produces = { MediaType.APPLICATION_XML_VALUE})
-	public ResponseEntity<String> getCPM() {
-		System.out.println("||||||||||||||||||||||||||||||"+recordService.getCPM());
-	return new ResponseEntity<>(recordService.getCPM().toString(), HttpStatus.OK);
+	public ResponseEntity<String> getCPM(Principal principal) {
+		return new ResponseEntity<>(""+recordService.getCPM(principal.getName()), HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/libNewbie",
+			produces = { MediaType.APPLICATION_XML_VALUE,
+						MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<BookVO> getLibNewbie(Principal principal) {
+		log.info("왔나요??????????????????" + service.getLibNewbie(principal.getName()));
+		return new ResponseEntity<>(service.getLibNewbie(principal.getName()), HttpStatus.OK);
 	}
 	
 }

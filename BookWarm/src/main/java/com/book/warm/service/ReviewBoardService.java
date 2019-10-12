@@ -137,5 +137,9 @@ public class ReviewBoardService {
 		return mapper.getOpenReview();
 	}
 
+	public BookVO getLibNewbie(String user_id) {
+		return mapper.getLibNewbie(user_id);
+	}
+
 
 }
