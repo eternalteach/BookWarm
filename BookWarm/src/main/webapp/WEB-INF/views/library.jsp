@@ -14,12 +14,10 @@
 <script type="text/javascript" src="/warm/resources/js/book.js"></script>
 <%@ include file="includes/header/header-vertexEx.jsp"%>
 </head>
-<body style="background-image:url('/warm/resources/img/library/library_bookshelf2.jpg'); background-size:100% 100%; background-position:0px 0px; background-repeat:no-repeat;" >
+<body style="overflow:auto; background-image:url('/warm/resources/img/library/library_bookshelf2.jpg'); background-size:100% 100%; background-position:0px 0px; background-repeat:no-repeat;" >
 
-	<div style="position:absolute; top:9vh; left:59vw">
-		<div>
-			<a data-toggle="modal" data-target="#modal-library" style="color:white; font-size:2vh"><strong>책 검색하기&nbsp;<i class="glyphicon icon icon-magnifier" style="font-size:25px!important; color:white"></i></strong></a>
-		</div>
+	<div style="position:absolute; top:8vh; left:58.5vw; ">
+		<a data-toggle="modal" data-target="#modal-library" style="cursor:pointer; color:white; font-size:1.3vw"><strong>책 검색하기&nbsp;<i class="glyphicon icon icon-magnifier" style="font-size:1.5vw!important; color:white"></i></strong></a>
 	</div>
 	<div class="bookshelf-position bookshelf-div">
 		<table class="margin-zero bookshelf-table">
@@ -47,14 +45,14 @@
 			 </tr>
 		</table>
 	</div>
-	<a id="modal-library-list-btn" data-toggle="modal" data-target="#modal-library-list" style="position:absolute; left:66vw; top:45vh"><strong><i class="glyphicon icon icon-add-1" style="color:white; font-size:3vw!important"></i></strong></a>
+	<a id="modal-library-list-btn" title="서재 모두 보기" data-toggle="modal" data-target="#modal-library-list" style="cursor:pointer; position:absolute; left:67.5vw; top:45vh"><strong><i class="glyphicon icon icon-add-1" style="color:white; font-size:2.5vw!important;"></i></strong></a>
 	
-	<div style="position:absolute; top:76%; left:68vw; width:30vw">
-		<a href="message"><i class="lib-menu glyphicon icon icon-plane-paper-1"></i></a>
-		<a href="myInfo"><i class="lib-menu glyphicon icon icon-user-1"></i></a>
-		<a href="reviewMain"><i class="lib-menu glyphicon icon icon-bookmark-2-1"></i></a>
-		<a href="shop/shoplist"><i class="lib-menu glyphicon icon icon-shopping-bag-3"></i></a>
-		<a href="customLogout"><i class="lib-menu glyphicon icon icon-log-out-1"></i></a>
+	<div style="position:absolute; top:76vh; left:68vw; width:31vw">
+		<a href="message" title="메시지"><i class="lib-menu glyphicon icon icon-plane-paper-1"></i></a>
+		<a href="myInfo" title="내 정보"><i class="lib-menu glyphicon icon icon-user-1"></i></a>
+		<a href="reviewMain" title="감상 메인"><i class="lib-menu glyphicon icon icon-bookmark-2-1"></i></a>
+		<a href="shop/shoplist" title="서점"><i class="lib-menu glyphicon icon icon-shopping-bag-3"></i></a>
+		<a href="customLogout" title="로그아웃"><i class="lib-menu glyphicon icon icon-log-out-1"></i></a>
 	</div>
 	
 <!-- library Modal -->

@@ -26,17 +26,7 @@
     font-size: 14px;
   }
 
-  #loading {
-    display: none;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
 
-  #calendar {
-    max-width: 900px;
-    margin: 0 auto;
-  }
   
 </style>
 
@@ -71,26 +61,47 @@
             
                <div class="row">
                
-                 <div class="col-md-2 pt-60 " style="padding-top:0px !important; border-right-color: transparent!important;">
-                    <aside class="sidebar" style="width:100%">
+                 <div class="col-md-2 pt-0" style="border-right-color: transparent!important;">
+                    <aside class="sidebar w-100">
                     
-					<section style="margin:0;margin-top:3vh">
+					<section class="m-0 mt-4">
 						<div class="" style="padding-bottom:5%; padding-left:6%">
 							<div class="widget-heading clearfix">
 								<ul>
 									<h4 class="v-heading"><a href="#">${user_id}</a>'s Log Main</h4>
-									<li class="ml-4">막 서재에 담았어요!<br></li>
-									<li id="libNewbie" class="mt-1 ml-6"></li>
+									
+									<c:choose>
+										<c:when test="${empty libNewbie}">
+											<li class="ml-4 mt-1">서재가 비어있습니다.<br></li>
+											<li id="libNewbie" class="mt-1 ml-6">	
+											<a href="/warm/library" title="책 담으러 가기"><i style="font-size:5vw!important;" class="glyphicon icon icon-book-3"></i></a>
+											</li>
+										</c:when>
+										<c:when test="${!empty libNewbie && libNewbie.book_img == null}">
+											<li class="ml-4 mt-1">막 서재에 담았어요!<br></li>
+											<li id="libNewbie" class="mt-1 ml-6">
+											<c:set var="imgSrc" value="/warm/resources/img/happyGeneralB_dark.png"/>
+											<a href="/warm/reviewPerBook?isbn=${libNewbie.isbn}" title="기록하러 가기"><img style="width:80px" src="${imgSrc}"></a>
+											</li>
+										</c:when>	
+										<c:when test="${!empty libNewbie && libNewbie.book_img != null}">
+											<li class="ml-4 mt-1">막 서재에 담았어요!<br></li>
+											<li id="libNewbie" class="mt-1 ml-6">
+											<a href="/warm/reviewPerBook?isbn=${libNewbie.isbn}" title="기록하러 가기"><img style="width:80px" src="${libNewbie.book_img}"></a>
+											</li>
+										</c:when>
+									</c:choose>
+									
 								</ul>
-								<ul class="" style="margin:3%">
-									<li class="ml-3">이 달 펼친 책 : <h4 class="mb-0 list-inline-item" id="logCPM"></h4> 권</li>
+								<ul class="m-2">
+									<li class="ml-3">이 달 펼친 책 : <h4 class="mb-0 list-inline-item">${logCPM}</h4> 권</li>
 									<li class="ml-1">이 달 다 읽은 책 : <h4 class="mb-0 list-inline-item" id="logCPM_F"></h4> 권</li>
 								</ul>
 							</div>
 						</div>
 					</section> 
 							
-					<section class="widget widget_sf_recent_custom_comments clearfix" style="padding:6%; margin:0">
+					<section class="widget widget_sf_recent_custom_comments clearfix m-0" style="padding:6%">
                            <div class="widget-heading clearfix">
                                <h4 class="v-heading"><span>Recent Comments</span></h4>
                            </div>
@@ -110,43 +121,32 @@
 		          <div>
 		              <div>
 		              	 <div class="post-header form-header">
-		                  	<div id='loading'>loading...</div>
   							<div id='calendar'></div>
 		                 </div>
 		              </div>
 		          </div>
 		      </div>
-                 <div class="col-md-2 pt-70 " style="padding-top:3vh !important; padding-right:20px; border-right-color: transparent!important;">
-                     <aside class="sidebar" style="width:100%">
+		      
+		      
+                 <div class="col-md-2 pt-0 pr-2" style="border-right-color: transparent!important;">
+                     <aside class="sidebar w-100">
                
-               			<section class="m-0">
+               			<section class="m-0 mt-4">
 							<div class="widget-heading clearfix">
-                                <a class="btnPerBook pull-right" href="/warm/reviewWrite">
-					                      	<span class="text ls-1">작성하기<i class="icon icon-pen-3"></i>
-					                      	</span>
+                                <h4 class="v-heading pl-4"><span>Recent Reviews</span></h4>
+                                <a class="pull-right" href="/warm/reviewWrite">
+			                      	<span class="text ls-1">작성하기<i class="icon icon-pen-3"></i></span>
 				                </a>
-                                <h4 class="v-heading" style="padding-left:20px"><span>Recent Reviews</span></h4>
                             </div>	
-                            <!-- <div>
-								<ul style="position:absolute; right:0">                     
-		                         <li style="margin-top:10px">
-		                           	<div class="pull-right">
-				                    	<a class="btnPerBook" href="/warm/reviewWrite">
-					                      	<span class="text ls-1">감상 더하기<i class="icon icon-pen-3"></i>
-					                      	</span>
-				                    	</a>
-			                    	</div>
-		                         </li>
-		                      	</ul>    
-							</span> -->
+                            
                             	
 							<c:if test="${empty list}">
-								등록한 감상이 없습니다.
+								<p class="text-center pt-8">등록한 감상이 없습니다.</p>
 							</c:if>
 							<!-- 책별 데이터 불러오고 그 중 가장 최근 데이터 하나만 불러오기. -->
 							<c:forEach items="${list}" var="vo">
 							
-							<div class="post-content no-thumb clearfix" style="margin:20px ; padding:30px; max-width:95%">
+							<div class="post-content no-thumb clearfix m-2 ml-3 mr-0 p-3" style="max-width:95%">
 							    <article class="v_blog-item">
 			                        <div class="v_blog-item-inner row">
 			                        
@@ -442,23 +442,8 @@
 							}
 						}); // end of $.each
 				}); // end of making modals
+
 				
-				
-				// 서재에 가장 최근 등록된 책을 가져온다.
-		 		$.getJSON("/warm/libNewbie", function(result) {
-		 			var libNewbie = $("#libNewbie");
-		 			if(result.book_img == null) {
-		 				result.book_img = "/warm/resources/img/happyGeneralB_dark.png";
-		 			}
-		 			var libNewbieStr = "<a href=/warm/reviewPerBook?isbn="+ result.isbn +"><img style='width:80px' src='" + result.book_img+ "'></a>"
-		 			libNewbie.html(libNewbieStr);
-		 		});
-			 	// 이 달 읽은 책 수를 가져온다.
-		 		$.getJSON("/warm/logCPM", function(result) {
-					 var logCPM = $("#logCPM");  
-					 logCPM.html($(result)[0]);
-				});
-			 	 
 				// 최근 댓글 5개를 가져온다.
 		 		$.getJSON("/warm/comments/recent", function(arr) {
 					
@@ -472,7 +457,7 @@
 						str += "</div>";
 						str += "<div class='comment-content'><div class='comment-body'>";
 						str += "<a href='" + cmt.review_no + "'>";
-						str += " <p style='overflow:hidden; text-overflow:ellipsis'>" + cmt.review_cmt_content + "</p></a></div>";
+						str += " <p style='overflow:hidden; display: -webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:1; line-height:1.8em; max-height:1.8em; '>" + cmt.review_cmt_content + "</p></a></div>";
 						str += "<div class='comment-meta'>";
 						str += "<span class='comment-author'>" + cmt.user_id + "</span>&nbsp;&nbsp;&nbsp;";
 						str += "<span class='comment-date'>" + displayTime(cmt.review_cmt_modified_date) + "</span>";
@@ -480,7 +465,7 @@
 						str += "";
 					});
 					if(str=="") {
-						str = "댓글이 없습니다.";
+						str = "<p class='pl-5 pt-8'>댓글이 없습니다.</p>";
 					}
 					recentCmt.html(str);
 					

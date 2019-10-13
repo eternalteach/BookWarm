@@ -185,11 +185,11 @@ a.button {
 
 .bookshelf-position{
 	position: absolute;
-	left: 33.55vw;
+	left: 34vw;
 	top:12.3vh;
 }
 .bookshelf-table{
-	width: 31.4vw;
+	width: 31.7vw;
 	height: 67vh;
 }
 .bookshelf-table-bottomSpace{
@@ -199,29 +199,29 @@ a.button {
 	height: 0.9vh;
 }
 .bookshelf-table-books_col0 {
-	width:3.7vw;
-	padding-left:1.3vw!important;
-	padding-right:1.28vw!important;
+	width:3.5vw;
+	padding-left:1.32vw!important;
+	padding-right:1.32vw!important;
 }
 .bookshelf-table-books_col1 {
-	width:3.7vw;
-	padding-left:1.4vw!important;
-	padding-right:1.13vw!important;
+	width:3.5vw;
+	padding-left:1.32vw!important;
+	padding-right:1.32vw!important;
 }
 .bookshelf-table-books_col2 {
-	width:3.7vw;
-	padding-left:1.29vw!important;
-	padding-right:1.29vw!important;
+	width:3.5vw;
+	padding-left:1.32vw!important;
+	padding-right:1.32vw!important;
 }
 .bookshelf-table-books_col3 {
-	width:3.7vw;
-	padding-left:1.3vw!important;
-	padding-right:1.28vw!important;
+	width:3.5vw;
+	padding-left:1.32vw!important;
+	padding-right:1.32vw!important;
 }
 .bookshelf-table-books_col4 {
-	width:3.7vw;
-	padding-left:1.3vw!important;
-	padding-right:1.23vw!important;
+	width:3.5vw;
+	padding-left:1.32vw!important;
+	padding-right:1.32vw!important;
 }
 .bookshelf-table-booktop-0{
 	height: 3.4vh;
@@ -372,4 +372,10 @@ bookshelf-table-bar{
     white-space: pre-wrap;
     -ms-word-wrap: break-word;
     word-wrap: break-word;
+}
+
+/* reviewMain calendar */
+#calendar {
+  max-width: 900px;
+  margin: 0 auto;
 }

@@ -68,6 +68,8 @@ public class ReviewBoardController {
 	@GetMapping("/reviewMain")
 	public void recordMain(Principal principal, Criteria cri, Model model) {
 		cri.setAmount(3);
+		model.addAttribute("libNewbie", service.getLibNewbie(principal.getName()));
+		model.addAttribute("logCPM", recordService.getCPM(principal.getName()));
 		model.addAttribute("list", service.selectBoardList(principal.getName(), cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, service.getTotal(principal.getName())));
 	}
@@ -390,21 +392,6 @@ public class ReviewBoardController {
 		int review_no = Integer.parseInt(reviewNo);
 		
 		return new ResponseEntity<>(service.selectedReview(review_no), HttpStatus.OK);
-	}
-	
-	
-	@GetMapping(value="/logCPM",
-			produces = { MediaType.APPLICATION_XML_VALUE})
-	public ResponseEntity<String> getCPM(Principal principal) {
-		return new ResponseEntity<>(""+recordService.getCPM(principal.getName()), HttpStatus.OK);
-	}
-	
-	@GetMapping(value="/libNewbie",
-			produces = { MediaType.APPLICATION_XML_VALUE,
-						MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<BookVO> getLibNewbie(Principal principal) {
-		log.info("왔나요??????????????????" + service.getLibNewbie(principal.getName()));
-		return new ResponseEntity<>(service.getLibNewbie(principal.getName()), HttpStatus.OK);
 	}
 	
 }
