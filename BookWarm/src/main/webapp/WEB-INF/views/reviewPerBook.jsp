@@ -20,7 +20,7 @@
 
     <div role="main" class="main">
 
-        <section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
+        <section class="page-header pb-0 pt-2 mt-2 mb-2" style="border-bottom-color:transparent; background-color:transparent">
             <div class="container">
                <!--  <div class="row align-items-center"> -->
                     <div class="col-md-8 pull-right">
@@ -37,7 +37,7 @@
 	</div>
     <!-- end of div main -->
 
-        <div class="v-page-wrap has-left-sidebar has-one-sidebar" style="margin-top:0px">
+        <div class="v-page-wrap has-left-sidebar has-one-sidebar mt-0">
             <div class="container">
             	
                 <div class="row">
@@ -55,50 +55,12 @@
                             </form>
                         </section>
 
-                        <section class="widget v-tag-cloud-widget clearfix">
-                            <div class="widget-heading clearfix">
-                                <h4 class="v-heading"><span>Tags</span></h4>
-                            </div>
-                            <div class="tagcloud">
-                                <ul class='wp-tag-cloud'>
-                                    <li><a href="#">CSS 3</a></li>
-                                    <li><a href="#">HTML 5</a></li>
-                                    <li><a href="#">Lifestyle</a></li>
-                                    <li><a href="#">Mobile</a></li>
-                                    <li><a href="#">News</a></li>
-                                    <li><a href="#">PHP</a></li>
-                                    <li><a href="#">Social</a></li>
-                                    <li><a href="#">video</a></li>
-                                    <li><a href="#">WordPress</a></li>
-                                </ul>
-                            </div>
-                        </section>
                     </aside>
                     
 					<div class="col-sm-9 v-blog-wrap">
                         <div class="v-blog-items-wrap blog-standard">
 
                             <ul class="v-blog-items row standard-items clearfix">
-                            
-                            <!-- 감상 작성 버튼 추가 -->
- <%--                            <li class="col-sm-12" style="margin-top:10px">
-                            	<div class="pull-right">
-                            	
-                            	<a class="btnPerBook" href="/warm/reviewWrite?isbn=${bookVO.isbn}">
-		                            	<span class="text ls-1">
-		                            		감상 더하기
-			                                <i class="icon icon-pen-3"></i>
-		                            	</span>
-                            	</a><br>
-                            	<a class="btnPerBook" href="/warm/library">
-		                            	<span class="text ls-1">
-		                            		서재로 돌아가기
-		                            		<i class="fa fa-book"></i>
-		                            	</span>
-                            	</a><br>
-                            	</div>
-                            </li> --%>
-                            
                             
                             <!-- 8/28 책별 감상 뿌리기 -->
                             <c:forEach items="${list}" var="vo">
