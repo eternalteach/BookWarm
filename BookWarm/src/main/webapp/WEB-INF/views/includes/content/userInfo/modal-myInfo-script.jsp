@@ -27,7 +27,7 @@
 				var couponList = data;
 				var str = "";
 				str += "<div class='smartforms-modal-header'>";
-	 			str += "<h3>내 쿠폰</h3>";
+	 			str += "<h3 style='padding-top:10px;'>내 쿠폰</h3>";
 				str += "<a href='javascript:hideModal()' class='smartforms-modal-close' style='text-align:right'>&times;</a>";
 				str += "</div>";
 				
