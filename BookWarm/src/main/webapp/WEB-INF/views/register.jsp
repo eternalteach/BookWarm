@@ -8,8 +8,10 @@
 </head>
 
 <body>
+<div class="footer-wrap">
 	<%@ include file="./includes/addressAPI/getAddress.jsp" %>
 	<%@ include file="./includes/content/register/registerPage.jsp" %>
+</div>
 	<script>
    $(document).ready(function() {
    	var dt = new Date();
