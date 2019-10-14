@@ -7,62 +7,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 제목순으로 책 불러오기 -->
 	<select id="shoptitlelist" resultType="com.book.warm.vo.BookListVO">
-<!-- 	<![CDATA[
-	select book.isbn, book.book_title, book.writer_name, book.translator_name, book.publisher_name, book.book_tot_page, book.book_published_date, 
-           book.book_price, book.book_price_for_sale, book.book_stock, book.book_story, book.book_img, authors.author
-    from book, authors
-    where book.isbn = authors.isbn
-    and rownum <= 18
-    order by book.book_title
-    ]]>  -->
     <![CDATA[	
     select * from (
     	select * 
     	from book 
     	order by book_title
     	)
-   	where rownum <= 24
+   	where rownum <= 12
     ]]>
 	</select> 
 	
 	
 	<!-- 가격순(저렴한 순)으로 불러오기  -->
 	<select id="bookpricelist" resultType="com.book.warm.vo.BookListVO">
-<!-- 	<![CDATA[
-	select book.isbn, book.book_title, book.writer_name, book.translator_name, book.publisher_name, book.book_tot_page, book.book_published_date, 
-           book.book_price, book.book_price_for_sale, book.book_stock, book.book_story, book.book_img, authors.author
-    from book, authors
-    where book.isbn = authors.isbn
-    order by book.book_price_for_sale
-    ]]>  -->
     <![CDATA[	
     select * from  (
     	select * 
     	from book 
     	order by book_price_for_sale
     	)
-    where rownum <= 24
+    where rownum <= 12
     ]]>	
 	</select> 
 	
 	
 	<!-- 높은 가격순 -->
 	<select id="bookpricelist2" resultType="com.book.warm.vo.BookListVO">
-<!-- 	<![CDATA[
-	select book.isbn, book.book_title, book.writer_name, book.translator_name, book.publisher_name, book.book_tot_page, book.book_published_date, 
-           book.book_price, book.book_price_for_sale, book.book_stock, book.book_story, book.book_img, authors.author
-    from book, authors
-    where book.isbn = authors.isbn
-    and rownum <= 18
-    order by book.book_price_for_sale desc
-    ]]>  -->	
     <![CDATA[	
     select * from  (
     	select * 
     	from book 
     	order by book_price_for_sale desc
     	)
-    where rownum <= 24
+    where rownum <= 12
     ]]>	
 	</select> 
 	
@@ -92,13 +69,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<!-- 책에 대한 별 점수 가져오기  -->
-	<select id="bookstar" resultType="com.book.warm.vo.BookVO">
-	select b.isbn, b.book_title, bs.user_id, bs.star
-	from book b, book_star bs
-	where b.isbn = bs.isbn
-	and b.isbn = #{isbn} 
-	and bs.user_id = #{user_id}
-	and bs.star = #{star};
+	<select id="booklike" resultType="com.book.warm.vo.BookLikeVO2">
+	select b.*, bk.user_id, bk.like_book
+	from book b inner join book_like bk
+	on b.isbn = bk.isbn
+	where bk.user_id = #{user_id}
+	order by like_book
 	</select>
 
 </mapper>

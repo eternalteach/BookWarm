@@ -9,9 +9,9 @@
         <div class="container">
             <div class="row">
 				<form class="v-signup v-register" action="modifyUserInfo" method="post" id="form">
-					<div class="form-group">
-						<h2 class="mb-2 mt-0"><strong>회원 정보</strong></h2>
-					</div>
+					<!-- <div class="form-group">
+						<h2 class="mb-2 mt-0"><strong>내 정보 수정</strong></h2>
+					</div> -->
 					<div class="form-group">
 						<label for="user_name">이름<span class="required">*</span></label>
 						<input type="text" class="form-control" name="user_name" id="user_name" maxlength="100" readonly="readonly"> 
@@ -53,33 +53,42 @@
 							<input type="text" hidden="hidden" id="user_phone" name="user_phone">
 						</div>
 					</div>
-					<div class="form-group">
-						<label>주소<span class="required">*</span></label>
-						<div class="row">
-							<div class="col-sm">
-							<input type="text" id="sample4_postcode" name="user_zipcode" class="form-control col-sm-3" placeholder="우편번호">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm">
-							<input type="text" id="sample4_roadAddress" name="user_addr" class="form-control" placeholder="도로명주소" >
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm">
-							<input type="text" id="sample4_jibunAddress" class="form-control" placeholder="지번주소" >
-						</div>
-					</div>
-					<span id="guide" style="color:#999;display:none"></span>
-						<div class="row">
-							<div class="col-sm">
-								<input type="text" id="sample4_detailAddress" name="user_addr_detail" class="form-control">
+					<div class="frm-row">
+					<div class="form-body pl-0 smart-forms colm">
+						<div class="form-group">
+							<label>주소<span class="required">*</span></label>
+							<div class="row">
+								<div class="col-sm">
+									<input type="text" id="sample4_postcode" name="user_zipcode" class="form-control col-sm" placeholder="우편번호" readonly>
+								</div>
+								<div class="col-sm">
+									<button type="button" class="btn btn-sm no-margin-bottom no-margin-right" onclick="sample4_execDaumPostcode()">우편번호 찾기</button>
+								</div>
 							</div>
-							<div class="col-sm">
-								<input type="text" id="sample4_extraAddress" class="form-control" placeholder="참고항목" >
+							
+							
+							<div class="row">
+								<div class="col-sm">
+									<input type="text" id="sample4_roadAddress" name="user_addr" class="form-control" placeholder="도로명주소" >
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm">
+									<input type="text" id="sample4_jibunAddress" class="form-control" placeholder="지번주소" >
+								</div>
+							</div>
+							<span id="guide" style="color:#999;display:none"></span>
+							<div class="row">
+								<div class="col-sm">
+									<input type="text" id="sample4_detailAddress" name="user_addr_detail" class="form-control">
+								</div>
+								<div class="col-sm">
+									<input type="text" id="sample4_extraAddress" class="form-control" placeholder="참고항목" >
+								</div>
 							</div>
 						</div>
-					</div>
+                    </div>
+					
 					<c:if test="${user_id==userinfo.user_id}">
 						<div class="row">
 							<div class="col-4 pull-right">

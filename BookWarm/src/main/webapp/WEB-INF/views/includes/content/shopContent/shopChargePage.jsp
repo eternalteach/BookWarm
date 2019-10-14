@@ -1,16 +1,13 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
    <div class="wrapper">
       <div class="page has-sidebar has-right-sidebar bordered">
-
-         <section class="page-header b-bordered t-bordered">
+		<section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-top:20px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
             <div class="container">
                <div class="row">
                   <div class="col-sm-12">
-                     <h1 class="title">Shop - Checkout</h1>
-                     <ol class="breadcrumb pull-right">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Shop</a></li>
-                        <li class="active">Checkout</li>
+                     <ol class="bar-breadcrumb justify-content-start justify-content-md-end mb-0">
+                        <li><a href="shoplist">책</a></li>
+                        <li class="cart">구매하기</li>
                      </ol>
                   </div>
                </div>
@@ -55,8 +52,8 @@
                                     </label>
                                  </div><!-- end section --><br>
 
+	                           	<!-- 삽입 시작////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
                                  <div class="frm-row">
-                                   	<!-- 삽입 시작////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
                                    	<div class="section colm colm8">
                                    		<label class="field prepend-icon">
                                     	   <input type="text" id="sample4_postcode" name="post_zipcode" class="gui-input" placeholder="우편번호">
@@ -65,8 +62,8 @@
                                     </div>
                                     <div class="section colm colm4">
 	                                    <label class="field prepend-icon">
-	                                    	<span class="field-icon"><i class="fa fa-map-marker"></i></span>
-	                                    	<input type="button" class="btn btn-primary" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+	                                    	<span class="field-icon"></span>
+	                                    	<input type="button" class="btn v-btn standard lightgrey standard" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
 	                                    </label>
                                    	</div>
 	                             </div>
@@ -93,14 +90,14 @@
                                  </div><!-- end frm-row section -->
                                  <!-- 삽입 끝////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-                                 <div class="section">
+                                 <!-- <div class="section">
                                     <label class="field option option-yellow">
                                        <input type="checkbox" checked>
-<!--                                        <input type="checkbox" name="info" checked> -->
+                                       <input type="checkbox" name="info" checked>
                                        <span class="checkbox"></span>
                                        Save my information <em class="small-text fine-grey"> (No worries, its secure) </em>
                                     </label>
-                                 </div><!-- end section -->
+                                 </div> --><!-- end section -->
 								 
 								 <hr class="invisible" />
 		                         <div class="spacer-b30">
@@ -118,8 +115,8 @@
                                     </div>
                                     <div class="section colm">
 	                                    <label class="field">
-	                                    	<a href="javascript:pickCoupon()"><button type="button" class="btn btn-primary" id="pickCoupon">쿠폰적용</button></a>
-	                                    	<button type="button" class="btn btn-primary" id="cancleCoupon">쿠폰적용 취소</button>
+	                                    	<a href="javascript:pickCoupon()"><button type="button" class="btn v-btn standard lightgrey standard" id="pickCoupon">쿠폰적용</button></a>
+	                                    	<button type="button" class="btn v-btn standard lightgrey standard" id="cancleCoupon">쿠폰적용 취소</button>
 	                                    </label>
                                    	</div>
 	                             </div>
@@ -135,7 +132,7 @@
                                     </div>
                                     <div class="section colm">
 	                                    <label class="field">
-	                                    	<input type="button" class="btn btn-primary" id="applyPoint" value="사용하기">
+	                                    	<input type="button" class="btn v-btn standard lightgrey standard" id="applyPoint" value="사용하기">
 	                                    </label>
                                    	</div>
                                     <div class="section colm">
@@ -168,49 +165,49 @@
                                              <td class="cart-product-name"></td>
                                              <td class="cart-product-name"><strong>상품명</strong></td>
 			                           		 <td class="cart-product-name"><strong>가격</strong></td>
-			                           		 <td class="cart-product-name"><strong>수량</strong></td>
+			                           		 <td class="cart-product-name" style="padding-left:0px;padding-right:0px;text-align: center;"><strong>수량</strong></td>
 			                           		 <td class="cart-product-name"><strong>합계</strong></td>
                                           </tr>
                                           <c:forEach items="${list}" var="list">
 				                             <tr>
-				                           	 	<td class="cart-product-name amount"><img width="50" height="50" src="${list.book_img}"></td>
-				                           	 	<td class="cart-product-name amount">${list.book_title}</td>
-				                           		<td class="cart-product-name amount">${list.book_price_for_sale}원</td>
-				                           		<td class="cart-product-name amount">${list.cart_cnt}</td>
-				                           		<td class="cart-product-name amount">${list.total}원</td>
+				                           	 	<td class="cart-product-name amount"><img width="70" height="50" src="${list.book_img}" onerror="this.src='/warm/resources/img/책장군2.png'"></td>
+				                           	 	<td class="cart-product-name amount" style="line-height:150%;margin-top:20px;width: 124px;">${list.book_title}</td>
+				                           		<td class="cart-product-name amount" style="padding-left:0px;padding-right:0px;">${list.book_price_for_sale}원</td>
+				                           		<td class="cart-product-name amount" >${list.cart_cnt}</td>
+				                           		<td class="cart-product-name amount" style="padding-left:0px;padding-right:0px;padding-right:0px;">${list.total}원</td>
 				                             	<input type="hidden" name="isbn" value="${list.isbn}">
 				                             	<input type="hidden" name="cart_cnt" value="${list.cart_cnt}">
 				                             </tr>
 							   			  </c:forEach>
 							   			  
                                           <tr class="cart_item">
-                                             <td class="cart-product-name">
+                                             <td class="cart-product-name" style="width: 74px;">
                                                 <strong>배송비</strong>
                                              </td>
 
                                              <td class="cart-product-name" colspan="4">
-                                                <span class="amount" id="delivery">${delivery}</span>
+                                                <span class="amount" id="delivery">${delivery}</span> 원
                                                 <input type="hidden" id="formDelivery" name="delivery_fee" value="${delivery}">
                                              </td>
                                           </tr>
                                           <tr class="cart_item">
-                                             <td class="cart-product-name">
+                                             <td class="cart-product-name" style="width: 74px;">
                                                 <strong>할인</strong>
                                              </td>
                                              <td class="cart-product-name" colspan="4">
-                                                -<span class="amount" id="discountPoint">0</span>(포인트 할인)
+                                                -<span class="amount" id="discountPoint">0</span> 원(포인트 할인)
                                              </td>
                                           </tr>
                                           <tr class="cart_item">
                                           	 <td class="cart-product-name">
                                              </td>
                                           	 <td class="cart-product-name" colspan="4">
-                                             	-<span class="amount" id="discountCoupon">0</span>(쿠폰 할인)
+                                             	-<span class="amount" id="discountCoupon">0</span> 원(쿠폰 할인)
                                              	<input type="hidden" name="coupon_no" id="submitCoupon">
                                              </td>
                                           </tr>
                                           <tr class="cart_item">
-                                             <td class="cart-product-name">
+                                             <td class="cart-product-name" style="width: 100px;">
                                                 <strong>결제 금액</strong>
                                              </td>
 
@@ -239,10 +236,10 @@
                                        <span class="radio"></span> 무통장입금
                                     </label>
 
-                                    <label class="field option option-yellow">
+                                    <!-- <label class="field option option-yellow">
                                        <input type="radio" id="kakao" name="orders_payment" class="payment" value="kakao">
                                        <span class="radio"></span> 카카오페이
-                                    </label>
+                                    </label> -->
                                  </div><!-- end section -->
 							 <!-- ///////////////////////////////// -->
 							 <div class="spacer-t40 spacer-b30">
@@ -270,7 +267,7 @@
     						<!-- ///////////////////////////////// -->                                                         
                               </div><!-- end .form-body section -->
                               <div class="form-footer">
-                                 <button type="button" id="submit" class="btn btn-primary w-100">주문</button>
+                                 <button type="button" id="submit" class="btn v-btn standard lightgrey standard">주문</button>
                                <!--   <input type="submit" value="전송" id="submit" class="btn btn-primary w-100">주문</input> -->
                               </div><!-- end .form-footer section -->
                            <!-- </form> --><!-- end form -->

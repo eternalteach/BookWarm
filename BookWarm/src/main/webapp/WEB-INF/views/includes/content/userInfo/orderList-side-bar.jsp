@@ -14,9 +14,22 @@
 			<li><a href="/warm/myInfo">내 정보</a></li>
 			<li><a href="/warm/modifyMyInfo">내 정보 수정</a></li>
 			<li><a href="/warm/orderList">나의 주문 내역</a></li>
-			<!-- <li><a href="#">내가 좋아한 도서</a></li> -->
-			<li><a href="/warm/dropOut">탈퇴하기</a></li>
+			<li id="out"><a href="/warm/dropOut">탈퇴하기</a></li>
 		</ul>
 	</section>
 </aside>
 
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#out").on("click", function(e){
+			if(confirm("탈퇴하시겠습니까?") == true){
+	 			
+				}else{
+	 				e.preventDefault(e);
+	 			}
+		});
+	});
+
+</script>

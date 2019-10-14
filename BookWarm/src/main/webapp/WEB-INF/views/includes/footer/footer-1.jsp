@@ -4,17 +4,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 	<div class="wrapper">
 		<div class="page">
-			<footer class="footer stylelamas" id="footer-1">
-				<div class="copyright">
-					<div class="container">
-						<div class="row">
-							<div class="col-sm-6">
-								<ul class="list-inline fs-13 mb-none">
-									<li><p class="mb-0 fw-6">© 2019 Book & Warm</p></li><br>
-									<li><p class="mb-0 fw-6">Captain Bookwarm _ GB</p></li><br>
-								</ul>
-									<img src="/warm/resources/img/책장군.png" style="width:100px; margin-left:200px">
-							</div>
+			<footer class="footer" style="padding-top:15px!important; padding-bottom:15px!important;">
+				<div class="container">
+					<div class="row">
+						<div class="nopadding mb-0 my-auto" style="width:50px; background-image:url(/warm/resources/img/happyGeneralB.png); background-size:30px auto; background-position:center; height:40px; background-repeat:no-repeat">
+						</div>
+						<div class="col-sm-4 nopadding my-auto">
+							<ul class="list-inline fs-13 mb-none">
+								<li><p class="mb-0 fw-6 my-auto">Copyright © Book & Warm. All rights reserved.</p></li>
+							</ul>
+						</div>
+						<div class="col-sm-7 mb-0 noppading" style="margin-left:auto; margin-right:0; background-image:url(/warm/resources/img/generalB3.png); background-size:auto 20px; background-position:center; width:100%; height:50px; background-repeat:no-repeat;">
 						</div>
 					</div>
 				</div>

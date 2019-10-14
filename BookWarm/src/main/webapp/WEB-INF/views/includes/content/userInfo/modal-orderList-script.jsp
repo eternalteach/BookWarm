@@ -34,12 +34,13 @@
 // 모달 창 끄기
 function hideModal() {
 	$('#modal').fadeOut();
+	//$('body').css("overflow", "auto");
 }
 
 // 모달 창 클릭시 발생하는 이벤트
 function showDetail(orders_no) {
 	$('#modal').fadeIn(500);
-	$('body').css("overflow", "hidden");
+	//$('body').css("overflow", "hidden");
 	$.ajax ({
 		type: "get",
 	    url : '/warm/orderDetails?orders_no='+orders_no,
@@ -93,7 +94,6 @@ function showDetail(orders_no) {
 				$('#coupon_name').attr('value', data.coupon.coupon_name);
 				
 				var coupon_discount_percent = data.coupon.coupon_discount_percent+"%";
-				alert(coupon_discount_percent);
 				$('#coupon_discount_percent').attr('value', coupon_discount_percent);
 				
 				// 얼마나 할인받았는지 계산
@@ -101,7 +101,7 @@ function showDetail(orders_no) {
 			}
 			
 			// 적립금 검사
-			if(data.coupon.coupon_name != null) {
+			if(data.coupon != null) {
 				let couponHTML="";
 				couponHTML += "<div class='frm-row section colm colm6'>";
 				couponHTML += "<h4>사용된 쿠폰 정보</h4>";

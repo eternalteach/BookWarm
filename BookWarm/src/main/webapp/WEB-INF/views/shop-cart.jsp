@@ -5,12 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 	<%@ include file="./includes/header/header-vertexEx.jsp"%>
+<title>Shop</title>
 </head>
 <body>
+<div class="footer-wrap">
 	<%@ include file="./includes/header/header-topnav.jsp"%>
 	<%@ include file="./includes/content/shopContent/shopCartPage.jsp"%>
+</div>
 	<%@ include file="./includes/header/script-vertexEx.jsp"%>
 	<%@ include file="./includes/shop/shopCartPage-script.jsp"%>
 	<%@ include file="./includes/footer/footer-1.jsp"%>	

@@ -5,8 +5,8 @@
                <div class="row">
                   <div class="col-sm-12">
                      <ol class="bar-breadcrumb pull-right">
-                        <li><a href="shoplist">책</a></li>
-                        <li class="active">장바구니</li>
+                        <li>서점</li>
+                        <li>장바구니</li>
                      </ol>
                   </div>
                </div>
@@ -53,7 +53,7 @@
 		                                    </td>
 											<!-- 책 이미지(사진) -->
 		                                    <td class="cart-product-thumbnail">
-		                                       <a href="#"><img width="64" height="64" src="${vo.book_img}"></a>
+		                                       <a href="#"><img width="64" height="64" src="${vo.book_img}" onerror="this.src='/warm/resources/img/책장군2.png'"></a>
 		                                    </td>
 											<!-- 제품명(책 제목) -->
 		                                    <td class="cart-product-name">
@@ -65,7 +65,7 @@
 		                                    </td>
 											<!-- 수량 -->
 		                                    <td class="cart-product-quantity">
-		                                       <div class="form-group" name="cart_cnt">
+		                                       <div class="form-group center" name="cart_cnt">
 		                                       	  <a href="/warm/shop/cntDown?user_id=${vo.user_id}&cart_no=${vo.cart_no}&cart_cnt=${vo.cart_cnt}">-&nbsp&nbsp&nbsp</a>
 		                                       	  ${vo.cart_cnt}
 		                                       	  <a href="/warm/shop/cntUp?user_id=${vo.user_id}&cart_no=${vo.cart_no}&cart_cnt=${vo.cart_cnt}">&nbsp&nbsp&nbsp+</a>

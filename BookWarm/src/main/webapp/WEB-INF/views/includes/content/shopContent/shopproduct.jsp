@@ -6,7 +6,7 @@
 <sec:authentication property="principal.username" var="user_id"/>
 
 
-<body class="bg-white">
+
 
 	<div role="main" class="main">
 		<section class="ddd" style="padding-top:10px; padding-bottom:0px; margin-top:20px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
@@ -15,10 +15,10 @@
 					<div class="col-md-8 text-left">
 					</div>
 					<div class="col-md-4" >
-						<ul class="breadcrumb justify-content-start justify-content-md-end mb-0" style="background-color:transparent">
-							<li><a href="shoplist">책</a></li>
-							<li class="active"><a href="#">책 상세정보</a></li>
-						</ul>
+						<ol class="breadcrumb justify-content-start justify-content-md-end mb-0" style="background-color:transparent">
+							<li>서점</li>
+							<li>책 상세정보</li>
+						</ol>
 					</div>
 				</div>
 			</div>
@@ -31,14 +31,11 @@
                <div class="row" style="margin-left: 120px;">
                   <div class="col-md-3" style="padding-right: 30px;margin-right: 80px;margin-left: 20px;">
                   	<div class="img" style="padding-top: 20px;">
-                    <img src="${bookdetail.book_img}" style="width: 180px;height: 261px;margin-top: 30px;">
+                    <img src="${bookdetail.book_img}" style="width: 180px;height: 261px;margin-top: 30px;" onerror="this.src='/warm/resources/img/책장군2.png'">
                     </div>
                   </div>
 
                   <div class="col-md-7">
-                     <ol class="breadcrumb clean-breadcrumb">
-                        <li><i class="fa fa-home" aria-hidden="true"></i>${bookdetail.book_title}</li>
-                     </ol>
                      <div class="product-details">
                         <h2 class="product-name">${bookdetail.book_title}</h2>
                         <div class="product-price-wrap" style="margin-bottom: 15px;">
@@ -72,11 +69,15 @@
 	                           <span>장바구니</span>
 	                           </button>
                            </form>
-                           
+                           <input type="text" id="isbn" value="${bookdetail.isbn }" hidden="hidden">
                        		<!-- 목록버튼 클릭하면 책 목록으로 이동. -->
 						    <a href="/warm/shop/shoplist"><button type="submit" class="btn btn-outline-secondary btn-sm" style="left: 10px;">
                           	<span>책 리스트</span>
                            </button></a>
+						   <button type="button" id="bookLikeBtn" class="btn btn-outline-secondary btn-sm" style="left: 10px;">
+                          	<i class="fa fa-heart" aria-hidden="true"></i>
+                           </button>
+                           
                            
 		                     <div class="product_meta mb-40">
 		                           <span class="tagged_as">
@@ -86,16 +87,8 @@
             		    <!-- 줄거리/목차부분  -->
                         <div class="clearfix">
                            <div class="tab-wrap clean-tab">
-                              <ul class="nav nav-tabs" role="tablist">
-                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#About" role="tab">줄거리</a>
-                                 </li>
-                              </ul>
-                              <div class="tab-content">
-                                 <div class="tab-pane active" id="About" role="tabpanel">
-                                    <p>${bookdetail.book_story}</p>
-                                 </div>
-                              </div> 
+                               <h1 style="font-size:20px;margin-bottom:5px;">줄거리</h1>
+                                    <p style="border-top:0.5px solid #77838f;padding-top:5px;">${bookdetail.book_story}</p>
                            </div>
                         </div>
                        <!-- 줄거리/목차 끝  -->
@@ -121,11 +114,13 @@
 	                        <div class="product-shadows product-item">
 	                                 <figure class="product-shadows product-item">
 	                                       <div class="img-wrap first-image">
-	                                         <a href="shopproduct?isbn=${bookwriter.isbn}"><img src="${bookwriter.book_img}" style="width: 130px;"></a>
+	                                         <a href="shopproduct?isbn=${bookwriter.isbn}"><img src="${bookwriter.book_img}" style="width:130px;height:177px" onerror="this.src='/warm/resources/img/책장군2.png'"></a>
 	                                       </div>
 										
 	                                    <div class="product-details">
-	                                       <h3 class="product-name" style="font-size: 14px;line-height:1.3em;margin-top:10px;margin-bottom:0px; text-align: center;">${bookwriter.book_title}</h3>
+	                                       <h3 class="product-name" style="font-size:15px;text-align:center;overflow: hidden;text-overflow: ellipsis;
+													display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;word-wrap:break-word; 
+													line-height: 1.4em;height: 2.7em; margin-top: 10px;margin-bottom:0px;">${bookwriter.book_title}</h3>
 	                                       <div class="product-price-currency" style="text-align:center;"><fmt:formatNumber value="${bookwriter.book_price}" pattern="###,###,###" />원</div>
 	                                    </div> 
 	                                 </figure>
@@ -141,51 +136,45 @@
       </div>
      </div>
    </div>
-      
-     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-     <script>
- 		//버튼 클릭시 이벤트
- 		$(document).ready(function(){
-	 		$("#cart").on("click", function(e){
-	 			alert("장바구니에 추가되었습니다."); 
-	 		});
- 		
-	 		$("#pay").on("click", function(e){
-				alert("구매로 이동하시겠습니까?");
-				
-				});
- 			});
- 	/* 	//amount넘기기
- 		$(document).ready(function(){
- 		    $("#cart_cnt").on("change", function(){
- 		    	alert("안돼")
- 		    	var val = $(this).val(); 		    	
- 		     	var pre = $("#cart_get").attr("href");
- 		     	console.log(pre.toString()  + val.toString());     	 
- 		     	$("#cart_get").attr("href",pre.toString()  + val.toString());     	
- 		        console.log($(this).val());
- 		    });
- 		}); */
- 		//즐겨찾기 기능하기
- 		$(document).ready(function(){
- 	 		  //흰색이 검정색으로 바뀌기
- 	 		  var booklover = $(".booklover");
- 	 		  
- 	 		booklover.on("click", "i", function(e){
- 	 			 alert("하트눌름");
- 	 			 var icon =  $("i[class='fa fa-star-o']");
- 	 			 var item = $(this).attr("data-i");
- 	 			 if(item ==  "white"){
- 	 			 var str = "";
- 	 			 str += "<i id='loveicon' class='fa fa-star' data-i='black'></i>";
- 	 		  	/*  booklover.html(str); */
- 	 			 };
- 	 			 if(item == "black"){
- 	 				var str = "";
- 	 	 			 str += "<i id='loveicon' class='fa fa-star-o' data-i='white'></i>";
- 	 			 };
- 	 	 		  	 booklover.html(str);
- 	 		  });
+<script type="text/javascript" src="/warm/resources/js/BookLike.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+	
+	var isbn=$("#isbn").val();
+	bookLike={isbn:isbn};
+	$(document).on("click","#bookLikeBtn",function(){
+		bookLikeService.addBookLike(bookLike,function(result){
+		$("#bookLikeBtn").html("좋아요 취소");
+		$("#bookLikeBtn").attr("id","bookDisLikeBtn");
+		});
+	});
+                  	  
+	$(document).on("click","#bookDisLikeBtn",function(){
+		bookLikeService.removeBookLikeAboutISBN(isbn,function(result){
+			$("#bookDisLikeBtn").html("<i class=\"fa fa-heart\" aria-hidden=\"true\"></i>");
+			$("#bookDisLikeBtn").attr("id","bookLikeBtn");
+		});
+	});
+                  	  
+	$(document).ready(function(){
+		bookLikeService.checkBookLikeAboutISBN(isbn,function(result){
+		console.log("check Book Like : " + result);
+			if(result=='1'){
+				$("#bookLikeBtn").html("좋아요 취소");
+				$("#bookLikeBtn").attr("id","bookDisLikeBtn");
+			}
+		});
+	});
+	
+	$(document).ready(function(){
+ 		$("#cart").on("click", function(e){
+ 			if(confirm("장바구니에 추가하시겠습니까?") == true){
+			document.form.submit();
+ 			}else{
+ 				e.preventDefault();
+ 			}
  		});
-      </script>
+ 		
+ 		});
+</script>
 </body>

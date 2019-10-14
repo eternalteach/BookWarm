@@ -85,7 +85,7 @@
 
 
 .smart-forms .smart-link {
-   color: #7cbf34;
+   color: #444;
    text-decoration: none;
 }
 
@@ -105,7 +105,6 @@
    position: relative;
    padding: 0 15px;
    background: #fff;
-   color: #7cbf34;
    top: -10px;
 }
 
@@ -175,7 +174,7 @@
 /* @header themes :: primary + lite 
 ---------------------------------------------- */
 .smart-forms .header-primary {
-   background-color: #7cbf34;
+   background-color: #444;
    border-top: 1px solid #A7D065;
    border-bottom: 5px solid #3c9b39;
 }
@@ -188,7 +187,7 @@
 
 .smart-forms .header-lite:before {
    content: "";
-   background-color: #7cbf34;
+   background-color: #444;
    position: absolute;
    height: 8px;
    z-index: 1;
@@ -392,7 +391,7 @@
 .smart-forms .gui-textarea,
 .smart-forms .select > select,
 .smart-forms .select-multiple select {
-   background: #fff;
+   background: #EAEAEA;
    position: relative;
    vertical-align: top;
    border: 1px solid #e2e2e2;
@@ -561,7 +560,7 @@
 .smart-forms .select-multiple select:focus {
    color: #3c3c3c;
    background: #fff;
-   border: 1px solid #7cbf34;
+   border: 1px solid #444;
    outline: none;
 }
 
@@ -581,18 +580,18 @@
 
 .smart-forms .gui-input:focus ~ .field-icon i,
 .smart-forms .gui-textarea:focus ~ .field-icon i {
-   color: #7cbf34;
+   color: #444;
 }
 
 .smart-forms .select-multiple select:focus,
 .smart-forms .gui-input:focus ~ .input-hint,
 .smart-forms .gui-textarea:focus ~ .input-hint,
 .smart-forms .file .gui-file:focus + .gui-input {
-   border-color: #7cbf34;
+   border-color: #444;
 }
 
 .smart-forms .select > select:focus + .arrow {
-   color: #7cbf34;
+   color: #444;
 }
 
 
@@ -623,7 +622,7 @@
    margin-right: 4px;
    background: #fff;
    display: inline-block;
-   border: 3px solid #e2e2e2;
+   border: 3px solid #444;
    margin-bottom: 0;
    margin-top: 0;
    height: 21px;
@@ -654,7 +653,7 @@
    left: 4px;
    width: 5px;
    height: 3px;
-   border: solid #7cbf34;
+   border: solid #444;
    -webkit-border-width: 0 0 3px 3px;
    -moz-border-width: 0 0 3px 3px;
    border-width: 0 0 3px 3px;
@@ -667,7 +666,7 @@
 
 .smart-forms input:checked + .checkbox,
 .smart-forms input:checked + .radio {
-   border: 3px solid #7cbf34;
+   border: 3px solid #444;
 }
 
 .smart-forms .radio {
@@ -681,7 +680,7 @@
    margin: 4px;
    width: 7px;
    height: 7px;
-   background: #7cbf34;
+   background: #444;
    -webkit-border-radius: 10px;
    -moz-border-radius: 10px;
    -o-border-radius: 10px;
@@ -693,22 +692,22 @@
 -------------------------------------------------- */
 .smart-forms input:hover + .checkbox,
 .smart-forms input:hover + .radio {
-   border-color: #6BC868;
+   border-color: #444;
 }
 
 /* @radio + checkbox :focus state 
 --------------------------------------------------- */
 .smart-forms input:focus + .checkbox,
 .smart-forms input:focus + .radio {
-   border-color: #7cbf34;
+   border-color: #444;
 }
 
 .smart-forms input:focus + .radio:before {
-   background: #7cbf34;
+   background: #444;
 }
 
 .smart-forms input:focus + .checkbox:before {
-   border-color: #7cbf34;
+   border-color: #444;
 }
 
 /* @toggle switch elements 
@@ -798,8 +797,8 @@
 /* @toggle switch normal state 
 --------------------------------------------------------------- */
 .smart-forms .switch > input:checked + .switch-label {
-   border-color: #7cbf34;
-   background: #7cbf34;
+   border-color: #444;
+   background: #444;
    padding-left: 33px;
    color: white;
    border-radius: 50px;
@@ -858,7 +857,7 @@
 }
 
 .smart-forms .switch-round > input:checked + .switch-label:after {
-   color: #7cbf34;
+   color: #444;
 }
 
 /* Smart-options 
@@ -933,7 +932,7 @@
 
 .smart-forms .option > input:checked + .smart-option {
    border-color: #33a72f;
-   background: #7cbf34;
+   background: #444;
    color: white;
 }
 
@@ -1151,7 +1150,7 @@
 
 
 .smart-forms .modern-switch input:checked + .switch-toggle {
-   background: #7cbf34;
+   background: #444;
 }
 
 .smart-forms .modern-switch input:checked + .switch-toggle::before {
@@ -1254,7 +1253,7 @@
 /* @buttons :hover, :active states 
 ---------------------------------------------------------------- */
 .smart-forms .button:hover {
-   color: #243140;
+   color: #444;
    background: #E8E8E8;
 }
 
@@ -1285,12 +1284,12 @@
 /* @primary button theme
 -------------------------------------------- */
 .smart-forms .btn-primary {
-   background-color: #7cbf34;
+   background-color: #444;
 }
 
 .smart-forms .btn-primary:hover,
 .smart-forms .btn-primary:focus {
-   background-color: #6bc868;
+   background-color: #444;
 }
 
 .smart-forms .btn-primary:active {
@@ -1493,7 +1492,7 @@
 
 .smart-forms .facebook:hover,
 .smart-forms .facebook:focus {
-   background-color: #25385F;
+   background-color: #444;
 }
 
 .smart-forms .twitter:hover,
@@ -1585,7 +1584,7 @@
 .smart-forms .rating:hover .rating-star:hover,
 .smart-forms .rating:hover .rating-star:hover ~ .rating-star,
 .smart-forms .rating-input:checked ~ .rating-star {
-   color: #7cbf34;
+   color: #444;
 }
 
 .smart-forms .rating-star,
@@ -2324,7 +2323,7 @@
    position: absolute;
    text-decoration: none;
    cursor: pointer;
-   color: #7cbf34;
+   color: #444;
    top: 20.5%;
 }
 
@@ -2340,7 +2339,7 @@
    margin: 0 2.3em;
    line-height: 1.8em;
    text-align: center;
-   color: #7cbf34;
+   color: #444;
 }
 
 .ui-datepicker .ui-datepicker-title select {
@@ -2407,7 +2406,7 @@
 .ui-monthpicker .ui-datepicker-today a:hover,
 .ui-datepicker .ui-datepicker-current-day a {
    font-weight: 700;
-   background: #7cbf34 !important;
+   background: #444 !important;
    color: #fff;
 }
 
@@ -2524,7 +2523,7 @@
    height: 21px;
    cursor: default;
    background: #fff;
-   border: 3px solid #7cbf34;
+   border: 3px solid #444;
    -webkit-border-radius: 20px;
    -moz-border-radius: 20px;
    -o-border-radius: 20px;
@@ -2540,7 +2539,7 @@
    width: 7px;
    height: 7px;
    position: absolute;
-   background-color: #7cbf34;
+   background-color: #444;
    -webkit-border-radius: 10px;
    -moz-border-radius: 10px;
    -o-border-radius: 10px;
@@ -2557,7 +2556,7 @@
    display: block;
    border: 0;
    background-position: 0 0;
-   background-color: #7cbf34;
+   background-color: #444;
 }
 
 .smart-forms .ui-slider.ui-state-disabled .ui-slider-handle,
@@ -2972,7 +2971,7 @@
 /* @progress bar themes
 ----------------------------------------------------------- */
 .smart-forms .bar-primary > .bar {
-   background-color: #7cbf34;
+   background-color: #444;
 }
 
 .smart-forms .bar-blue > .bar {
@@ -3375,7 +3374,7 @@
 }
 
 .smart-forms .selected-box h4 {
-   color: #7cbf34;
+   color: #444;
 }
 
 .smart-forms .price-box h4 sup {
@@ -3421,7 +3420,7 @@
    -ms-transform: rotate(45deg);
    -o-transform: rotate(45deg);
    transform: rotate(45deg);
-   background: #7cbf34;
+   background: #444;
    letter-spacing: 4px;
    text-align: center;
    position: relative;
@@ -3482,7 +3481,7 @@
 
 .smart-forms .refresh-captcha {
    position: absolute;
-   background: #7cbf34;
+   background: #444;
    border: 3px solid #3C9B39;
    -webkit-border-radius: 30px;
    -moz-border-radius: 30px;

@@ -32,7 +32,6 @@ public class CommonController {
 			if(auth.getAuthorities().size() >= 2) {
 				return "redirect:admin";
 			}
-			
 			return "library";
 		}
 		

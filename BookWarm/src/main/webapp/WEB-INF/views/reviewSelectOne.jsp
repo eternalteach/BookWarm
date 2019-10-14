@@ -10,6 +10,7 @@
 <head>
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <%@ include file="includes/header/header-vertex.jsp" %>
+<title> Review </title>
 </head>
 <body style="min-height:0!important;">
 <%@ include file="includes/header/header-topnav.jsp"%>
@@ -17,12 +18,10 @@
 	
     <div role="main" class="main">
 
-	<section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
+	<section class="page-header pb-0 pt-2 mt-2 mb-2" style="border-bottom-color:transparent; background-color:transparent">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-8 text-left">
-                    </div>
-                    <div class="col-md-4">
+                    
+                    <div class="col-md-8 pull-right">
                     	<c:if test="${user_id == review.user_id}">
                         <ul class="bar-breadcrumb justify-content-start justify-content-md-end mb-0">
                             <li><a href="/warm/library?user_id=${user_id}">내 서재</a></li>
@@ -32,7 +31,6 @@
                         </ul>
 						</c:if>
                     </div>
-                </div>
             </div>
      </section>
 
@@ -88,16 +86,18 @@
 													삭제하기
 												</a>
 											</div>
+											<sec:authorize access="hasRole('ROLE_MANAGER')">
 											<div style="padding:5px">
 												<button  type="button" class="btn btn-sm close" id="adminMove"><i class="fa fa-star"></i>관리자 이동</button>
 											</div>
+											</sec:authorize>
 										</div>
 									</div>
                                 	
                             </form>
 							</div>
-                            <div class="post-info clearfix" style="z-index:1">
-                                <span class="vcard author">
+                            <div class="post-info clearfix text-right" style="z-index:1">
+                                <span class="author">
                                 	
                                 	<fmt:formatDate var="written_date" value="${review.review_written_date}" pattern="yyyy. MM. dd"/>
                                 
@@ -110,20 +110,18 @@
 
                             <section class="article-body-wrap">
 
-                                <div class="body-text clearfix">
-                                	
+                                <div class="body-text clearfix pre">${review.review_content}</div>
+                                
                                     <!-- 첫 글자만 크게 출력하고 나머지 내용은 보통 글씨로 나오는 형식 -->
                                     <%-- <p>
                                         <span class="dropcap1">${fn:substring(review.review_content,0,2)}</span>
                                         ${fn:substring(review.review_content,2,-1)}
                                     </p> --%>
-                                    <blockquote class="pullquote" style="word-break:break-all;">
+                                    <%-- <blockquote class="pullquote" style="word-break:break-all;">
                                         <span style="color: #888888; width:90%">
-                                            ${review.review_content}
+                                            <pre>${review.review_content}</pre>
                                         </span>
-                                    </blockquote>
-                                    
-                                </div>
+                                    </blockquote> --%>
 
 							   <!-- 태그 -->
                                <!--  <div class="tags-link-wrap clearfix">
@@ -135,40 +133,6 @@
                                     </div>
                                 </div> -->
 
-                                <div class="si-share clearfix">
-                                    <span>Share this Post:</span>
-                                    <div>
-                         
-										<a href="javascript:shareStory()">
-											<img src="https://developers.kakao.com/sdk/js/resources/story/icon_small.png"/>
-										</a>
-                                        <a href="#" class="social-icon si-borderless si-text-color si-facebook" title="Facebook">
-                                            <i class="si-icon-facebook"></i>
-                                            <i class="si-icon-facebook"></i>
-                                        </a>
-                                        <a href="#" class="social-icon si-borderless si-text-color si-twitter" title="Twitter">
-                                            <i class="si-icon-twitter"></i>
-                                            <i class="si-icon-twitter"></i>
-                                        </a>
-                                        <a href="#" class="social-icon si-borderless si-text-color si-pinterest" title="Pinterst">
-                                            <i class="si-icon-pinterest"></i>
-                                            <i class="si-icon-pinterest"></i>
-                                        </a>
-                                        <a href="#" class="social-icon si-borderless si-text-color si-gplus" title="Google Plus">
-                                            <i class="si-icon-gplus"></i>
-                                            <i class="si-icon-gplus"></i>
-                                        </a>
-                                        <a href="#" class="social-icon si-borderless si-text-color si-rss" title="RSS">
-                                            <i class="si-icon-rss"></i>
-                                            <i class="si-icon-rss"></i>
-                                        </a>
-                                        <a href="#" class="social-icon si-borderless si-text-color si-email3" title="Email">
-                                            <i class="si-icon-email3"></i>
-                                            <i class="si-icon-email3"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                
                             </section>
 							
                             <div class="comments-wrap">
@@ -291,7 +255,7 @@
 						cmt_str += "<button data-oper='save'  data-review_cmt_no='" + data.review_cmt_no+"' style='font-size:0.6em; background-color:transparent; border:none'>저장&nbsp;</button>";
 						cmt_str += "<button data-oper='cancel'  data-review_cmt_no='" + data.review_cmt_no+"' style='font-size:0.6em; background-color:transparent; border:none'>취소</button>";
 						cmt_str += "	</div>";
-						cmt_str += "<textarea maxlength='166' class='form-control' name='content' id='content'>" + data.review_cmt_content + "</textarea>";
+						cmt_str += "<textarea maxlength='166' class='form-control' name='content' id='content' cols='72' rows='3'>" + data.review_cmt_content + "</textarea>";
 						target.html(cmt_str); 
 						//$(this).closest("li").html(cmt_str); 
 					});
@@ -361,7 +325,7 @@
 					}
 					
 					str += "	</div>";
-					str += "		<p style='word-break:break-all' data-review_cmt_no='" + list[i].review_cmt_no + "'>" + list[i].review_cmt_content + "</p></div></li>";
+					str += "		<p class='pre' style='word-break:break-all; padding:0; color:#444444' data-review_cmt_no='" + list[i].review_cmt_no + "'>" + list[i].review_cmt_content + "</p></div></li>";
 					
 				}
 				// 댓글 수 표시

@@ -8,14 +8,15 @@
 <html lang="kr">
 <head>
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <%@ include file="./includes/header/header-vertexEx.jsp"%>
+<title> Community </title>
 </head>
 <body>
+<div class="footer-wrap">
 <%@ include file="includes/header/header-topnav.jsp"%>
 					
 <div class="container center-block">
-	<div class='row'>
+	<div class='row margin-20px'>
 		<div class='col-lg-12'>
 			<div class='panel panel-default'>
 				<div class="comment-write">
@@ -27,11 +28,11 @@
 								</div>
 							</div>
 							<div class="pull-right">
-										<span>작성일&nbsp; ${sellectedCommunityBoardPost.comm_written_time}</span>
+								<span>작성일&nbsp; ${sellectedCommunityBoardPost.comm_written_time}</span>
 							</div>
 						</div>
        					<div class="card transparent col-lg-12" style="border:none;">
-							<h3> <span class="blog-author minor-meta"> Posted by 
+							<h3 class="margin-10px"> <span class="blog-author minor-meta"> Posted by 
 								<span class="entry-author-link"> 
 									<span class="vcard author">
 										<span class="v-blog-item-details"> <a href="#" title="Posts by HB-Themes" rel="author">${sellectedCommunityBoardPost.user_id}</a></span>
@@ -40,20 +41,17 @@
 								</span>
 							</h3>
          					<div class="form-group">
-         						<div class="form-control card transparent col-lg-12" style="border:none;">
-         							${sellectedCommunityBoardPost.comm_content}
+         						<div class="transparent col-lg-12">
+         							<textarea class="padding-10px bg-white"name="comm_content" rows="20" placeholder="${sellectedCommunityBoardPost.comm_content}" readonly="readonly"></textarea>
          						</div>
          					</div>
          					<div class="form-horizontal">
-           						<div class="form-group from-inline">
-             						<label>조회수&nbsp;${sellectedCommunityBoardPost.comm_clicked}&nbsp;&nbsp; <%-- <i class="fa fa-heart"></i> &nbsp;${sellectedCommunityBoardPost.comm_like} --%></label> 
-           						</div>   
            						<div class="form-group from-horizentar pull-right">
 									<a class="submit" href="communityboard"><button type="button" class="btn btn-sm btn-outline-secondary">List</button></a>
 									<c:if test="${user_id==sellectedCommunityBoardPost.user_id}"><a class="submit" href="communityboardmodify"><button  type="button" class="btn btn-sm">Modify</button></a></c:if>
 									<a class="submit" href="communityboardreplywrite"><button  type="button" class="btn btn-sm btn-secondary">Reply</button></a>
 									<sec:authentication property='principal' var='pinfo'/>
-									<sec:authorize access="hasRole('ROLE_ADMIN')">
+									<sec:authorize access="hasRole('ROLE_MANAGER')">
 										<button  type="button" class="btn btn-sm" id="adminMove">관리자 이동</button>
 									</sec:authorize>
            						</div>   
@@ -62,7 +60,7 @@
 						<!-- 댓글 추가할 곳 -->
 						<div class="col-lg-12">
      						<div class="form-inline">
- 								<div class='panel-heading'>
+ 								<div class='panel-heading margin-20px'>
 									<h2><i class='fa fa-comments fa-fw'></i>Comment</h2>
 								</div>	
 							</div>
@@ -73,7 +71,7 @@
 								</ul>
 							</div>
 							<!-- 댓글 작성부 -->
-							<div class="comment-write">
+							<div class="comment-write margin-20px">
 								<div class="modal-content">
           							<div class="modal-body">
             							<div class="form-group">
@@ -102,7 +100,7 @@
 		</div>
 	</div>
 </div>
-
+</div>
 <script type="text/javascript" src="resources/js/comment.js"></script>
 <script type="text/javascript" src="resources/js/admin.js"></script>
 
@@ -126,12 +124,9 @@ $(document).ready(function(){
 	
 	function showList(page){
 		
-		console.log("show list" + page);
-		
+		console.log("show list page : " + page);
 		commentService.getList({comm_no:comm_noValue,page:page||1},function(commentCnt,list){
-			
-			console.log("commentCnt: " +commentCnt);
-			console.log("list"+list);
+			console.log("commentCnt :  " +commentCnt);
 
 			if(page==-1){
 				pageNum==Math.ceil(commentCnt/10.0);
@@ -140,7 +135,8 @@ $(document).ready(function(){
 			}
 			
 			var str="";
-			if(list ==null||list.length==0){
+			if(list ==null||list.length==0||list==undefined){
+				commentUL.html(str);
 				return;
 			}
 			
@@ -234,7 +230,7 @@ $(document).ready(function(){
 		commentService.get(comm_cmt_no,function(comment){
 			// 댓글 수정 클릭시 내용 변경
 			str="";
-			str+="<div><div class='header'><strong class='primary-font'>["+comm_cmt_no+"]"+comment.user_id+"</strong>";
+			str+="<div><div class='header col-sm-12'><strong class='primary-font'>["+comm_cmt_no+"]"+comment.user_id+"</strong>";
 			str+="<small class='pull-right text-muted'><button id='commentModfiyCancel' class='btn close' data-comm_cmt_no='"+comm_cmt_no+"'>취소</button><button id='commentModfiySaveBtn' class='btn close' data-comm_cmt_no='"+comm_cmt_no+"'>저장</button><button id='commentRemoveBtn'  class='btn close'  data-comm_cmt_no='"+comm_cmt_no+"'>삭제</button></small></div>";
 			str+="<small class='pull-right text-muted'>"+comment.comm_cmt_written_time+"</small></div>";
 			str+="<textarea class='modifyCommentContent'>"+comment.comm_cmt_content+"</textarea></div>";
@@ -338,6 +334,7 @@ $(document).ready(function(){
 	});
 </script>
 <%@ include file="./includes/header/script-vertexEx.jsp"%>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <%@ include file="includes/footer/footer-1.jsp"%>
 </body>
 

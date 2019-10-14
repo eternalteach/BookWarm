@@ -5,18 +5,15 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <sec:authentication property="principal.username" var="user_id"/>
 
-<body>
+<style>
+
+</style>
+
 	<div role="main" class="main">
 		<section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-top:20px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-md-8 text-left">
-					</div>
-					<div class="col-md-4">
-						<ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
-							<li><a href="shoplist">책</a></li>
-							<li class="active"><a href="shoplist">책 리스트</a></li>
-						</ul>
 					</div>
 				</div>
 			</div>
@@ -36,7 +33,7 @@
 					<div class="col-sm-12">
 						<ul class="nav nav-tabs nav-tabs-default nav-tabs-centered "
 							role="tablist">
-							<!-- isbn순 -->
+							<!-- 제목순 -->
 							<li class="nav-item"><a class="nav-link active" 
 								id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a0" 
 								data-toggle="tab"
@@ -44,23 +41,32 @@
 								aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a00"
 								aria-expanded="true">제목순</a></li>
 								
-							<!-- 제목순 -->	
+							<!-- 낮은가격 -->	
 							<li class="nav-item"><a class="nav-link"
 								id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a1"
 								data-toggle="tab"								
 								href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11" role="tab" 
 								aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11"
 								aria-expanded="true">낮은 가격순</a></li>
-							<!-- test//아직 아무것도 없음 -->
+								
+							<!-- 높은 가격 -->
     						<li class="nav-item">
-                           	 <a class="nav-link " 
+                           	 <a class="nav-link" 
                            	 id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a2" 
-                           	 data-toggle="tab" 
+                           	 data-toggle="tab"
                            	 href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" 
-                           	 role="tab" 
-                            	aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" 
-                           	 aria-expanded="true">높은 가격순</a>
+                           	 role="tab" aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" aria-expanded="true">높은 가격순</a>
                         	</li>
+                        	
+                        	<!-- 좋아한 책  -->
+                        	 <li class="nav-item">
+                           	 <a class="nav-link" 
+                           	 id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a3" 
+                           	 data-toggle="tab"
+                           	 href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a33" 
+                           	 role="tab" aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a33" aria-expanded="true">좋아요</a>
+                        	</li>
+                        	
 								
 						</ul>
 						<!-- ul끝  -->
@@ -75,13 +81,16 @@
 												<div class="product-media">
 													<div class="img-wrap first-image">
 														<a style="text-align: center;" href="shopproduct?isbn=${shop.isbn}">
-														<img style="max-width:80%; align:center;" src="${shop.book_img}"></a>
+														<img style="max-width:80%;align:center;height:177px;" src="${shop.book_img}"  onerror="this.src='/warm/resources/img/책장군2.png'"></a>
 													</div>
 												</div>
-												<div class="product-details" style="font-size:13px;text-align: center; padding-bottom:0px;">
-													<h3 class="product-name" style="margin-bottom: 0px;"><a style="font-size:15px;text-align: center;line-height:15px;">${shop.book_title}</a></h3>
+												<div class="product-details" style="text-align:center;">
+													<h3 class="product-name" style="margin-bottom: 0px;">
+													<a style="font-size:15px;text-align:center;overflow: hidden;text-overflow: ellipsis;
+													display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;word-wrap:break-word; 
+													line-height: 1.4em;height: 2.7em;" href="shopproduct?isbn=${shop.isbn}">${shop.book_title}</a></h3>
 													<span class="product-price" style="padding-bottom: 10px;">
-														<span class="product-price-currency" style="text-align: center;">정가&nbsp;<fmt:formatNumber value="${shop.book_price}" pattern="###,###,###" /></span>원<br>
+														<span class="product-price-currency">정가&nbsp;<fmt:formatNumber value="${shop.book_price}" pattern="###,###,###" /></span>원<br>
 													</span>	
 												</div>
 											</figure>
@@ -98,13 +107,16 @@
 												<div class="product-media">
 													<div class="img-wrap first-image">
 														<a style="text-align: center;" href="shopproduct?isbn=${shop_title.isbn}">
-														<img style="max-width:80%; align:center;" src="${shop_title.book_img}"></a>
+														<img style="max-width:80%; align:center;height:177px" src="${shop_title.book_img}" onerror="this.src='/warm/resources/img/책장군2.png'"></a>
 													</div>
 												</div>
-												<div class="product-details" style="font-size:13px;text-align: center; padding-bottom:0px;">
-													<h3 class="product-name" style="margin-bottom: 0px;"><a style="font-size:15px;text-align: center;line-height:15px;" href="shopproduct?isbn=${shop_title.isbn}">${shop_title.book_title}</a></h3>
+												<div class="product-details" style="text-align:center;">
+													<h3 class="product-name" style="margin-bottom: 0px;">
+													<a style="font-size:15px;text-align:center;overflow: hidden;text-overflow: ellipsis;
+													display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;word-wrap:break-word; 
+													line-height: 1.4em;height: 2.7em;" href="shopproduct?isbn=${shop_title.isbn}">${shop_title.book_title}</a></h3>
 													<span class="product-price" style="padding-bottom: 20px;"><span class="product-amount">
-														<span class="product-price-currency" style="text-align: center;">정가&nbsp;<fmt:formatNumber value="${shop_title.book_price}" pattern="###,###,###" /></span>원<br>
+														<span class="product-price-currency">정가&nbsp;<fmt:formatNumber value="${shop_title.book_price}" pattern="###,###,###" /></span>원<br>
 													</span>
 													</span>
 												</div>
@@ -122,14 +134,43 @@
 												<div class="product-media">
 													<div class="img-wrap first-image">
 														<a style="text-align: center;" href="shopproduct?isbn=${bookpricelist2.isbn}">
-														<img style="max-width:80%; align:center;" src="${bookpricelist2.book_img}"></a>
+														<img style="max-width:80%; align:center;height:177px" src="${bookpricelist2.book_img}" onerror="this.src='/warm/resources/img/책장군2.png'"></a>
 													</div>
 												</div>
-												<div class="product-details" style="font-size:13px;text-align: center; padding-bottom:0px;">
-													<h3 class="product-name" style="margin-bottom: 0px;"><a style="font-size:15px;text-align: center;line-height:15px;" href="shopproduct?isbn=${bookpricelist2.isbn}">${bookpricelist2.book_title}</a></h3>
-												<%-- 	<span class="product-posted_in"><a style="font-size:13px;text-align: center;line-height:15px;" rel="tag">${bookpricelist2.writer_name}&nbsp;저</a></span> --%>
+												<div class="product-details" style="text-align:center;">
+													<h3 class="product-name" style="margin-bottom: 0px;">
+													<a style="font-size:15px;text-align:center;overflow: hidden;text-overflow: ellipsis;
+													display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;word-wrap:break-word; 
+													line-height: 1.4em;height: 2.7em;" href="shopproduct?isbn=${bookpricelist2.isbn}">${bookpricelist2.book_title}</a></h3>
 													<span class="product-price" style="padding-bottom: 20px;"><span class="product-amount">
-														<span class="product-price-currency" style="text-align: center;">정가&nbsp;<fmt:formatNumber value="${bookpricelist2.book_price}" pattern="###,###,###" /></span>원<br>
+														<span class="product-price-currency">정가&nbsp;<fmt:formatNumber value="${bookpricelist2.book_price}" pattern="###,###,###" /></span>원<br>
+													</span>
+													</span>
+													</div>
+												</figure>
+											</div>
+										</c:forEach>
+                                    </div>
+                                </div>
+                                <!-- 좋아요순 -->
+                                <div class="tab-pane fade " id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a33" role="tabpanel" aria-labelledby="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a3">
+                                     <div class="row">
+                                     <c:forEach items="${booklike}" var="booklike">
+										<div class="col-md-2" style="margin-top: 20px;">
+											<figure class="product-shadows product-item">
+												<div class="product-media">
+													<div class="img-wrap first-image">
+														<a style="text-align: center;" href="shopproduct?isbn=${booklike.isbn}">
+														<img style="max-width:80%; align:center;height:177px" src="${booklike.book_img}" onerror="this.src='/warm/resources/img/책장군2.png'"></a>
+													</div>
+												</div>
+												<div class="product-details" style="text-align:center;">
+													<h3 class="product-name" style="margin-bottom: 0px;">
+													<a style="font-size:15px;text-align:center;overflow: hidden;text-overflow: ellipsis;
+													display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;word-wrap:break-word; 
+													line-height: 1.4em;height: 2.7em;" href="shopproduct?isbn=${booklike.isbn}">${booklike.book_title}</a></h3>
+													<span class="product-price" style="padding-bottom: 20px;"><span class="product-amount">
+														<span class="product-price-currency">정가&nbsp;<fmt:formatNumber value="${booklike.book_price}" pattern="###,###,###" /></span>원<br>
 													</span>
 													</span>
 													</div>
@@ -146,6 +187,3 @@
 		</div>
 	</div>
 
-	
-</body>
-</html>

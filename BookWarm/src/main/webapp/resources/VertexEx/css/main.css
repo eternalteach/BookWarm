@@ -944,7 +944,7 @@ ul.i-list .icon-content .title {
 .page-header .breadcrumb > li + li:before,
 .page-header .breadcrumb a {
    font-size: 12px;
-   color: #999999;
+
 }
 
 .page-header.page-header-center .breadcrumb a {
@@ -958,7 +958,6 @@ ul.i-list .icon-content .title {
 .page-header.small .breadcrumb > li + li:before,
 .page-header.small .breadcrumb a {
    font-size: 11px;
-   color: #999999;
 }
 
 .breadcrumb > li + li:before {
@@ -1039,7 +1038,6 @@ ul.i-list .icon-content .title {
 .breadcrumb > li {
    display: inline-block;
    font-size: 12px;
-   color: #999999;
 }
 
 .breadcrumb > li:after {

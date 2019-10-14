@@ -130,7 +130,22 @@
 	<select id="getUserInfo" resultType="com.book.warm.vo.UserVO">
 		select * from user_info where user_id=#{user_id}
 	</select>
+	
 	<update id="modifyUserInfo">
-	update user_info set user_phone=#{user_phone}, user_addr=#{user_addr}, user_addr_detail=#{user_addr_detail}, user_zipcode=#{user_zipcode} where user_id=#{user_id}
+		update user_info set user_phone=#{user_phone}, user_addr=#{user_addr}, user_addr_detail=#{user_addr_detail}, user_zipcode=#{user_zipcode} where user_id=#{user_id}
 	</update>
+	
+	<select id="getCoupon" resultType="com.book.warm.vo.CouponVO">
+		<![CDATA[
+			select *
+			from (select * from coupon where coupon_no=#{coupon_no})
+			where coupon_validate>sysdate
+		]]>
+	</select>
+	
+	<insert id="setCoupon">
+		insert into coupon_no(user_id, coupon_no) values(#{user_id}, #{coupon_no})
+	</insert>
+	
+	
 </mapper>

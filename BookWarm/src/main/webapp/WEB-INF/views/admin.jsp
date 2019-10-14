@@ -9,9 +9,9 @@
 <head>
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <title>Vertex - Responsive HTML5 Bootstrap Template</title>
+   <title>Administrator</title>
    <meta name="keywords" content="HTML5 Template" />
-   <meta name="description" content="Vertex - Responsive HTML5 Template">
+   <meta name="description" content="BOOK & WARM">
    <meta name="author" content="bootstraptemplates.net">
    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
@@ -60,14 +60,14 @@
 <link rel="stylesheet" href="resources/css/main.css" />
 
 </head>
-<body>
+<body class="v-bg-color">
 <%@ include file="includes/header/header-topnav.jsp"%>
-<div class="wrapper">
-	<div class="page has-sidebar has-left-sidebar bordered">
+<div class="wrapper footer-wrap">
+	<div class="page has-sidebar has-left-sidebar bordered" style="overflow:auto; overflow-x:hidden;">
 		<div class="page-inner alternate-color">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-3 left-side-sidebar pt-70 veiwHeight">
+					<div class="col-md-3 left-side-sidebar pt-70 viewHeight">
 						<aside class="sidebar">
 							<section class="sidebar-widget">
 								<button class="administrator-BoardBtn btn sf-icon-stroke close"data-Action="administrator-board"> 게시판 관리 </button>
@@ -82,8 +82,8 @@
 						<!-- administrator-board -->
 						<div id="administrator-board" class="administrator">
 							<ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
-								<li class="nav-item" data-option-value=".community"><a class="nav-link" href="#">Community Board</a></li>
-								<li class="nav-item" data-option-value=".review"><a class="nav-link" href="#">Review</a></li>
+								<li id="communityLi"class="nav-item" data-option-value=".community"><a class="nav-link" href="#">Community Board</a></li>
+								<li id="reviewLi"class="nav-item" data-option-value=".review"><a  class="nav-link" href="#">Review</a></li>
 							</ul>
 							<div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
 								<div class="row portfolio-list sort-destination" data-sort-id="portfolio">
@@ -175,14 +175,13 @@
 													<div itemprop="articleBody">
 														<div id="${user.user_id}_authenticationLevel" data-userid="${user.user_id}"data-username="${user.user_name}" data-userauth="${user.authList.size()}">
 															<p class="v_blog-item-author"><span>user_name : ${user.user_name}</span></p>
-															<p class="v_blog-item-author"><span>권한 레벨 : 
+															<c:if test="${user.authList.size()!=3}"><p class="v_blog-item-author"><span>권한 레벨 : 
 																<select onchange="javascript:modifyUserAuthentication(this.options[this.selectedIndex].value)" name="authentication">
 																    <option value=""> 레벨 ${user.authList.size()}</option>
-																    <option value="ROLE_ADMIN">관리자(LV3)</option>
 																    <option value="ROLE_MANAGER">매니저(LV2)</option>
 																    <option value="ROLE_USER">사용자(LV1)</option>
 																</select>
-																</span></p>
+																</span></p></c:if>
 														</div>
 													</div>
 												</div>
@@ -304,7 +303,7 @@ $(document).ready(function() {
 	function showReviewBoard(page){
 		adminService.getReviewListWithPaging(page,function(list){
 			if(page==-1){
-				reviewPageNum==Math.ceil(delReviewPostsCnt/10.0);
+				reviewPageNum=Math.ceil(delReviewPostsCnt/10.0);
 				showReviewBoard(reviewPageNum);
 				return;
 			}
@@ -354,7 +353,7 @@ $(document).ready(function() {
 	function showCommBoard(page){
 		adminService.getCommListWithPaging(page,function(list){
 			if(page==-1){
-				commPageNum==Math.ceil(delCommunityPostsCnt/10.0);
+				commPageNum=Math.ceil(delCommunityPostsCnt/10.0);
 				showCommBoard(commPageNum);
 				return;
 			}
@@ -412,12 +411,11 @@ $(document).ready(function() {
 					});
 					
 					$("#searchUserBtn").on("click",function(){
+						alert();
 						let searchID=$("#searchUser").val();
-						alert("Click SearchUserBtn ID : "+searchID);
-						
+						  
 						// ajax로 회원 아이디 검사해서 있으면 모달로 띄워주고, 없으면 없다고 띄워주기
 						adminService.getUser(searchID,function(result){
-							alert(result.user_id);
 							$("#user_name").val(result.user_name);
 							let user_mail1=result.user_mail.split('@')[0];
 							$("#user_mail1").val(user_mail1);
@@ -428,7 +426,6 @@ $(document).ready(function() {
 							$("#user_nickname").val(result.user_nickname);
 							let userbday=displayTimeService.displayTime(result.user_bday);
 							userbday=userbday.split('-');
-							alert(userbday[0]+"userbday[0]");
 							$("#year").val(userbday[0]);
 							$("#month").val(userbday[1]);
 							$("#day").val((userbday[2].substring(0,2)));
@@ -445,8 +442,20 @@ $(document).ready(function() {
 							$("#sample4_roadAddress").val(result.user_addr);
 							$("#sample4_detailAddress").val(result.user_addr_detail);
 						});
+						e.preventdefault();  
 					});
+					
+	$(".administrator-BoardBtn").on("click",function(){
+		$(".community").show();
+		$(".review").hide();
+	});
+	$("#reviewLi").on("click",function(){
+		$(".community").show();
+		$(".review").show();
+	});
 </script>
+<section>
 <%@ include file="includes/footer/footer-1.jsp"%>
+</section>
 </body>
 </html>

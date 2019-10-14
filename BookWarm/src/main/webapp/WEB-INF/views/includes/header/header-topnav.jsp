@@ -36,20 +36,20 @@
 										</li>
 										<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#">Books </a>
 											<ul class="dropdown-menu">
-												<li><a class="dropdown-item" href="/warm/shop/shoplist">shoplist</a></li>
-												<li><a class="dropdown-item" href="/warm/shop/cart">cart</a></li>
-												<li><a class="dropdown-item" href="#">주문내역 확인</a></li>
+												<li><a class="dropdown-item" href="/warm/shop/shoplist">Book Shop</a></li>
+												<li><a class="dropdown-item" href="/warm/shop/cart">Cart</a></li>
 											</ul>
 										</li>
 										<!-- make icon -->
 										<li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#">User Info</a>
 											<ul class="dropdown-menu">
 												<li><a class="dropdown-item" href="/warm/myInfo">My Info</a></li>
+												<li><a class="dropdown-item" href="/warm/orderList">My Orders</a></li>
 												<li><a class="dropdown-item" href="/warm/message">Message</a></li>
 											</ul>
 										</li>
 										
-										<sec:authorize access="hasRole('ROLE_ADMIN')">
+										<sec:authorize access="hasRole('ROLE_MANAGER')">
 										<!-- only access Administrator -->
 										<li class="dropdown"><button class="dropdown-item dropdown-toggle" onClick="location.href='/warm/admin'" >Admin</button>
 										</sec:authorize>

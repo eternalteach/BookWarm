@@ -46,4 +46,9 @@ select /*INDEX_DESC(loging_board pk_board)*/ rownum rn, write_no, start_page, en
 		order by start_date desc, write_no desc
 	</select>
 	
+	<select id="getCPM" resultType="int">
+		select count(distinct isbn) from loging_board 
+		where user_id=#{user_id} and to_char(start_date, 'yyyy-mm') = to_char(sysdate, 'yyyy-mm')
+	</select>
+	
 </mapper>

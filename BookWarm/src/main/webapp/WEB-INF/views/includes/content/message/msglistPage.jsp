@@ -80,13 +80,13 @@
 	<div class="modal fade" id="modala" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
     	<div class="modal-dialog undefined">
         	<div class="modal-content" style="width: 400px; height: 300px;">
-           		<div class="modal-body post-content" style="border: 0.5px solid #EAEAEA;">
+           		<div class="modal-body post-content">
 						<form action="/warm/send" name="my_form">
-								<h1 style="font-size:20px; margin-top:0px; padding-bottom:5px; text-align: center;">메시지 보내기</h1>
-								보낸사람<input style="margin-left: 10px;" id=sendd name="msg_send_id" type="text" value="${user_id}" readonly><br><br>
-								받는사람<input style="margin-left: 10px;" id=gett name="msg_get_id" type="text"><br><br>
-								제목<input style="margin-left: 35px;" id=titlee name="msg_title" type="text" ><br><br>
-						  		<textarea style="width:330px; height:200px; resize: none;" id=contentt name="msg_content"></textarea><br>
+								<h1 style="font-size:20px; margin-top:10px; padding-bottom:5px; text-align: center;">메시지 보내기</h1>
+								보낸사람<input style="margin-left: 10px;margin-bottom:10px;" id=sendd name="msg_send_id" type="text" value="${user_id}" readonly><br>
+								받는사람<input style="margin-left: 10px;margin-bottom:10px;" id=gett name="msg_get_id" type="text"><br>
+								제목<input style="margin-left: 36px;margin-bottom:10px;" id=titlee name="msg_title" type="text" ><br>
+						  		내용<textarea style="width:330px; height:200px; resize: none;" id=contentt name="msg_content"></textarea><br>
 						 		<button id="sendsend"  style="margin-top: 10px;margin-left: 100px;" type="submit" class="btn btn-outline-secondary">보내기</button>
 						  		<button type="button" style="margin-top: 10px;" data-dismiss="modal" class="btn btn-outline-secondary">닫기</button>
 						</form>
@@ -94,17 +94,19 @@
             </div>
         </div>
     </div>
+    
+    
 <!-- 답장하기 모달창  -->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
     <div class="modal-dialog undefined">
         <div class="modal-content" style="width: 400px; height: 300px;">
-            <div class="modal-body post-content" style="border: 0.5px solid #EAEAEA;">
+            <div class="modal-body post-content">
 						<form id="replyModal" action="/warm/send">
-								<h1 style="font-size:20px;margin-top:20px;text-align: center;">답장하기</h1>
-								보낸사람<input style="margin-left: 10px;margin-top: 10px;" id="send_id" name="msg_send_id" type="text" value="${user_id}" readonly><br><br><div id="temp">
-								받는사람<input style="margin-left: 25px;margin-top: 10px;" name="msg_get_id" readonly><br><br></div>
-								 제목 <input id="titlesubmit" name="msg_title" type="text" value="" style="margin-left: 30px;"><br><br>
-						  		<textarea id="contentsubmit" name="msg_content" style="border:none;width:330px; height:200px; border: 0.5px solid #EAEAEA; resize: none;"></textarea><br>
+								<h1 style="font-size:20px;margin-top:10px;text-align:center;">답장하기</h1>
+								보낸사람<input style="margin-left: 10px;margin-bottom:10px;margin-top:10px;" id="send_id" name="msg_send_id" type="text" value="${user_id}" readonly><br>
+								<div id="temp" style="height: 34px;">받는사람<input style="margin-left: 25px;margin-top: 10px;" name="msg_get_id" readonly></div>
+								 제목 <input id="titlesubmit" name="msg_title" type="text" value="" style="margin-left:33px;margin-bottom: 10px;"><br>
+						  		내용<textarea id="contentsubmit" name="msg_content" style="border:none;width:330px; height:200px; border: 0.5px solid #EAEAEA; resize: none;"></textarea><br>
 								<input id="sendsubmit" style="margin-top: 10px;margin-left: 100px;" type="submit" class="btn btn-outline-secondary" value="보내기">
 						 		<button type="button" style="margin-top: 10px;" class="btn btn-outline-secondary" data-dismiss="modal">닫기</button>
 						</form>
@@ -113,18 +115,19 @@
     </div>
 </div>
 
+
 <!-- 제목눌렀을때 내용 불러오는 모달창  -->
 <c:forEach items="${msglist}" var="msglist">
 <div class="modal fade" id="modalview${msglist.msg_no}" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
     <div class="modal-dialog undefined">
         <div class="modal-content" style="width: 400px; height: 300px;">
-            <div class="modal-body post-content" style="border: 0.5px solid #EAEAEA;">
-						<div id="titletemp">
+            <div class="modal-body post-content">
+						<div id="titletemp" >
 								<h1 style="font-size:20px;margin-top:20px;text-align:left;">제목 : ${msglist.msg_title}</h1>
 								<fmt:formatDate var="fmt_date3" value="${msglist.msg_read_time }" pattern="yyyy-MM-dd"/>
 								보낸사람<input style="margin-left: 10px;margin-top: 10px;" name="msg_send_id" type="text" value="${msglist.msg_send_id}" readonly><br>
 								날짜<input style="margin-left: 35px;margin-top: 10px;margin-bottom:10px;" name="msg_read_time" type="text" value="${fmt_date3}" readonly><br>
-								내용<textarea name="msg_content" style="width:330px; height:200px; resize: none;" readonly>${msglist.msg_content}</textarea><br> 
+								내용<textarea name="msg_content" style="font-size: 16px;width:330px; height:200px; resize: none;" readonly>${msglist.msg_content}</textarea><br> 
 						 		<button type="button" style="margin-top: 10px;margin-left: 130px;" class="btn btn-outline-secondary" data-dismiss="modal">닫기</button>
 						</div>
             </div>
@@ -138,13 +141,13 @@
 <div class="modal fade" id="modalview2${msglist2.msg_no}" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
     <div class="modal-dialog undefined">
         <div class="modal-content" style="width: 400px; height: 300px;">
-            <div class="modal-body post-content" style="border: 0.5px solid #EAEAEA;">
+            <div class="modal-body post-content">
 						<div id="titletemp">
 								<h1 style="font-size:20px;margin-top:20px;text-align: left;">제목 : ${msglist2.msg_title}</h1>
 								<fmt:formatDate var="fmt_date4" value="${msglist2.msg_read_time }" pattern="yyyy-MM-dd HH:mm:ss"/>
 								보낸사람<input name="msg_send_id" style="margin-left:10px;margin-top: 10px;" type="text" value="${msglist2.msg_send_id}" readonly><br>
 								날짜<input style="margin-left: 35px;margin-top: 10px;margin-bottom:10px;" name="msg_read_time" type="text" value="${fmt_date4}" readonly><br>
-								내용<textarea name="msg_content" style="width:330px; height:200px; resize: none;" readonly>${msglist2.msg_content}</textarea><br> 
+								내용<textarea name="msg_content" style="width:330px; height:200px; resize: none;font-size: 15px;" readonly>${msglist2.msg_content}</textarea><br> 
 						 		<button type="button" style="margin-top: 10px;margin-left: 130px;" class="btn btn-outline-secondary" data-dismiss="modal">닫기</button>
 						</div>
 				</div>
@@ -171,7 +174,7 @@
 			function showmsgboard(page){
 				msgservice.msgpaging(page,function(msglist){
 					if(page==-1){
-						msgPageNum==Math.ceil(total/10.0);
+						msgPageNum=Math.ceil(total/10.0);
 						showmsgboard(msgPageNum);
 						return;
 					}
@@ -215,7 +218,6 @@
 				
 				msgservice.msgdelete(sendidid, sendperson, function(count){
 						if(count === "success"){
-							alert("받은쪽지삭제")
 							showmsgboard(msgPageNum);
 					}
 				});
@@ -248,9 +250,9 @@
 						 var date = date.getDate();
 						 msghtml2+="<div class='blog-list-item-date' style='margin-left: 20px;margin-top: 20px;'>"+date+"<span style='font-size:20px;'>"+month+"</span></div>";
 						 msghtml2+="<div class='blog-list-content' style='margin-top: 20px;margin-left: 95px;'><h6 class='special' style='text-overflow: ellipsis;overflow: hidden; white-space: nowrap; width:80px;'>";
-						 msghtml2+="<a id='t' href='#' class='title' data-toggle='modal' data-target='#modalview2"+msglist2[i].msg_no+"' style='padding-top: 10px; font-size=15px'>"+msglist2[i].msg_title+"</a></h6>";
-						 msghtml2+="<small id='sendperson2' value="+msglist2[i].msg_send_id+">보낸 사람"+msglist2[i].msg_send_id+"</small>";
-						 msghtml2+="<small>받는 사람 "+msglist2[i].msg_get_id+"</small>";
+						 msghtml2+="<a id='t' href='#' class='title' data-toggle='modal' data-target='#modalview2"+msglist2[i].msg_no+"' style='padding-top:10px;font-size=18px'>"+msglist2[i].msg_title+"</a></h6>";
+						 msghtml2+="<small id='sendperson2' value="+msglist2[i].msg_send_id+">보낸사람 "+msglist2[i].msg_send_id+"</small>";
+						 msghtml2+="<small>받는사람 "+msglist2[i].msg_get_id+"</small>";
 						 msghtml2+="<div class='blog-list-item-excerpt'<p style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap; width:100px' >"+msglist2[i].msg_content+"</p></div>";
 						 msghtml2+="<div class='box' style='padding-left:70px;'>"
 						 msghtml2+="<a class='bb' style='padding-left:0px; padding-right:5px;' href='#modal-msgg' data-toggle='modal' data-target='#modal' data-send_id="+msglist2[i].msg_send_id+" >"
@@ -277,17 +279,10 @@
 				
 				msgservice.msgdelete2(sendidid2, sendperson2, function(count){
 						if(count === "success"){
-							alert("삭제하시겠습니까?")
 							showmsgboard2(msgPageNum2);
 					}
 				});
 			});
-			
-			
-			
-			
-			
-			
 			
 			/* 답장하기 눌렀을때 send_id 가져오기 */
 			$("#getMSG").on("click", ".bb", function(e) {

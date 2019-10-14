@@ -4,12 +4,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Vertex - Responsive HTML5 Bootstrap Template</title>
+<title>BOOK & WARM</title>
 <meta name="keywords" content="HTML5 Template" />
-<meta name="description" content="Vertex - Responsive HTML5 Template">
+<meta name="description" content="Responsive">
 <meta name="author" content="bootstraptemplates.net">
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link rel="shortcut icon" href="/warm/resources/VertexEx/img/favicon.png" type="image/x-icon" />
+<link rel="shortcut icon" href="/warm/resources/img/header/Alice_rabbit03.png" type="image/x-icon" />
 <link rel="apple-touch-icon" href="/warm/resources/VertexEx/img/apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Cabin:400,600,700" rel="stylesheet">
 <link rel="stylesheet" href="/warm/resources/css/main.css" />
@@ -72,4 +72,4 @@
 <link href="/warm/resources/VertexEx/vendor/style-switcher/style-switcher.css" rel="stylesheet" />
 <link href="/warm/resources/VertexEx/vendor/style-switcher/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
 
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

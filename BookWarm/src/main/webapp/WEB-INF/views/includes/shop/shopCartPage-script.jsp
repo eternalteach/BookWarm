@@ -44,6 +44,7 @@
 		
 		
 		
+		
 		// 체크박스 클릭할 때마다 검사
 		var chkbox = $('.chkbox');
 		chkbox.on('click', function() {
@@ -89,14 +90,16 @@
 	function delivery() {
 		var subTotal = $('.subTotal').html();
 		var fee;
+		var deliveryFee;
 		// 배송비 -> 5만원 이상 무료
 		if(subTotal!=null && parseInt(subTotal.split("원", 1)) >= 50000) {
 			fee = "무료";
+			deliveryFee = "0";
 		}else {
-			fee = "2500원";
+			deliveryFee = "2500";
 		}
 		$('.delivery').html(fee);
-		$('#delivery').attr('value', fee);
+		$('#delivery').attr('value', deliveryFee);
 	}
 	
 </script>

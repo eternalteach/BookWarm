@@ -6,11 +6,14 @@
 <head>
 <meta charset="UTF-8">
 	<%@ include file="includes/header/header-vertex.jsp"%>
+	<title> Shop </title>
 </head>
 <body>
+<div class="footer-wrap">
 	<%@ include file="includes/header/header-topnav.jsp"%>
 	<%@ include file="includes/content/shopContent/shoplistpage.jsp"%>
-	<%@ include file="includes/header/script-vertex.jsp" %>
+</div>
 	<%@ include file="includes/footer/footer-1.jsp"%>
+	<%@ include file="includes/header/script-vertex.jsp" %>
 </body>
 </html>

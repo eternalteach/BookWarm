@@ -10,6 +10,7 @@
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <%@ include file="includes/header/header-vertexEx.jsp"%>
 <%@ include file="includes/header/script-vertexEx.jsp"%>
+<title> BOOK & WARM </title>
 </head> 
 <body style="background-color:white">
 	<div style="top:17vw; left:77vh; position:absolute;">
