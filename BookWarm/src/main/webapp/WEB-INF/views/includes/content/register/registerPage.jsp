@@ -118,17 +118,10 @@
 					</div><!-- end section -->
 					<div class="section">
 						<label class="field prepend-icon">
-							<input type="text" id="sample4_extraAddress" class="form-control" placeholder="참고항목" readonly>
+							<input type="text" id="sample4_extraAddress" class="form-control" placeholder="참고항목" >
 							<span class="field-icon"></span>
 						</label>
 					</div><!-- end section -->
-					
-					
-					
-					
-					
-					
-					
 					
 					<div class="pull-right">
 						<button type="button" class="btn pull-right no-margin-bottom no-margin-right" id="submitBtn"><span class="col-lg-4"></span>회원가입<span class="col-lg-4"></span></button>
