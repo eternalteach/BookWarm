@@ -110,6 +110,7 @@
 							<span class="field-icon"></span>
 						</label>
 					</div><!-- end section -->
+					<span id="guide" style="color:#999;display:none"></span>
 					<div class="section">
 						<label class="field prepend-icon">
 							<input type="text" id="sample4_detailAddress" class="form-control" placeholder="상세주소">
