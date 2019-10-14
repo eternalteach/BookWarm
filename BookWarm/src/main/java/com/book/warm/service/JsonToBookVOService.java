@@ -29,7 +29,7 @@ public class JsonToBookVOService {
 		int addBookNum = 0;
 		int bookDataNum = parsingJson.getDocuments().size();
 		for (int BookCnt = 0; BookCnt < bookDataNum; BookCnt++) {
-			String isbnTo13Char = parsingJson.getDocuments().get(BookCnt).getIsbn().split(" ")[1];
+			String isbnTo13Char = getSubIsbn(parsingJson.getDocuments().get(BookCnt).getIsbn());
 			if (mapper.getBook(isbnTo13Char) == null) {
 				String book_title = replaceJSTL(parsingJson.getDocuments().get(BookCnt).getTitle());
 				String writer_name = replaceJSTL(parsingJson.getDocuments().get(BookCnt).getAuthors().toString());
@@ -54,6 +54,11 @@ public class JsonToBookVOService {
 			}
 		}
 		return addBookNum;
+	}
+	public String getSubIsbn(String isbn) {
+		if(isbn.length()<=13) {return isbn;}else {
+			return isbn.split(" ")[1];
+		}
 	}
 
 	public String replaceJSTL(String jstl) {

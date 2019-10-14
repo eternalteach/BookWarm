@@ -82,8 +82,16 @@
 <!-- End library Modal -->
 
 <script>
+$(document).ready(function(){
 $("#modal-library-list-btn").on("click",function(){
 	showPastList();
+});
+
+$(document).on("click",".deletePastBook",function(){
+	let isbn=$(this).closest("button").attr("data-isbn");
+	libraryService.removeMyBook(isbn,function(){
+		showPastList();
+	});
 });
 
 function showPastList(){
@@ -101,16 +109,10 @@ function showPastList(){
 		}
 		addModalHTML+=addPastBookInfoHTML;
 		$("#past-library-list").html(addModalHTML);
+		showList();
 	});
 }
-$(document).on("click",".deletePastBook",function(){
-	let isbn=$(this).closest("button").attr("data-isbn");
-	libraryService.removeMyBook(isbn);
-	showPastList();
-});
 
-
-$(document).ready(function(){
 $(document).on("click",".addOnLibrary",function(){
 	let isbn=$(this).closest("button").attr("data-isbn");
 	libraryService.reAddBookOnLibrary(isbn);
