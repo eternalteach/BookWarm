@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<div class="smartforms-modal-container" id="setCouponModal" style="overflow:autopadding-left:0px;padding-right:0px;padding-left:0px;height: 200px;">
+<div class="smartforms-modal-container modal1" id="setCouponModal" style="overflow:auto">
 	<div class='smartforms-modal-header'>
 		<h3 style="margin-top:10px;">쿠폰등록</h3>
 		<a href='javascript:hideModal()' class='smartforms-modal-close' style='text-align:left;width: 40px;height:50px;margin-top:5px;'>X</a>

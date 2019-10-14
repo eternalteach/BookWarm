@@ -82,7 +82,8 @@
 	
 	// 모달 창 끄기
 	function hideModal() {
-		$('#setCouponModal').fadeOut();
+		//$('#setCouponModal').fadeOut();
+		$('.modal1').fadeOut();
 	}
 	
 	// 쿠폰 등록 modal open
