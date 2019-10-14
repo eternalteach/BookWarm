@@ -43,7 +43,7 @@
                                     <h3>쿠폰 : <a href="javascript:pickCoupon()" id="pickCoupon">${couponCnt}개</a></h3>
                                 </div>
                                 <div class="author-bio-text">
-                                    <p><a href="javascript:enrollCouponNo()" id="setCoupon">쿠폰 등록</a></p>
+                                    <p><a href="javascript:enrollCouponNo()" id="setCoupon">쿠폰등록</a></p>
                                 </div>
                             </div>
                         </div>
