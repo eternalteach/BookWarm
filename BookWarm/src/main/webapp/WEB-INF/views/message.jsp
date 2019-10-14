@@ -178,7 +178,7 @@
 			function showmsgboard(page){
 				msgservice.msgpaging(page,function(msglist){
 					if(page==-1){
-						msgPageNum==Math.ceil(total/10.0);
+						msgPageNum=Math.ceil(total/10.0);
 						showmsgboard(msgPageNum);
 						return;
 					}
