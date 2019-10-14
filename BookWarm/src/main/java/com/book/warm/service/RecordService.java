@@ -57,7 +57,7 @@ public class RecordService {
 		return mapper.getMyLogs(user_id);
 	}
 
-	public Integer getCPM() {
-		return mapper.getCPM();
+	public int getCPM(String user_id) {
+		return mapper.getCPM(user_id);
 	}
 }

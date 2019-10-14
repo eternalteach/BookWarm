@@ -58,6 +58,7 @@
 							<div class="widget-heading clearfix">
 								<ul>
 									<h4 class="v-heading"><a href="/warm/myInfo">${user_id}</a>'s Log Main</h4>
+								
 								</ul>	
 								<ul class="text-center w-75 pt-1">
 									
@@ -94,9 +95,10 @@
                            <div class="widget-heading clearfix">
                                <h4 class="v-heading"><span>Recent Comments</span></h4>
                            </div>
-						   <!-- 최근 댓글 영역 -->
-                           <ul class="recent-comments-list"></ul>
-                    </section>
+                           <ul class="recent-comments-list">
+							<!-- 최근 댓글 영역 -->
+                           </ul>
+                       </section>
 					
                     </aside>
                  </div>
@@ -115,8 +117,8 @@
 		          </div>
 		      </div>
 		      
-		      <!-- 최근 리뷰 영역 -->
-              <div class="col-md-2 pt-0 pr-2" style="border-right-color: transparent!important;">
+		      
+                 <div class="col-md-2 pt-0 pr-2" style="border-right-color: transparent!important;">
                      <aside class="sidebar w-100">
                
                			<section class="m-0 mt-4">
@@ -127,11 +129,82 @@
 				                </a>
                             </div>	
                             
+                            	
+							<c:if test="${empty list}">
+								<p class="text-center pt-8">등록한 감상이 없습니다.</p>
+							</c:if>
 							<!-- 책별 데이터 불러오고 그 중 가장 최근 데이터 하나만 불러오기. -->
-							<div id="recentReview"></div>
+							<c:forEach items="${list}" var="vo">
 							
+							<div id="recentReview" class="post-content no-thumb clearfix ml-4 mr-0 mb-4 p-3" style="max-width:95%">
+							    <article class="v_blog-item">
+			                        <div class="v_blog-item-inner row">
+			                        
+			                           <!-- 여기가 이미지 들어가는 부분 -->
+			                           <div class="v_blog-item-media col-md-3" style="padding-left:5%; padding-right:3%">
+			                              <a href="/warm/reviewPerBook?isbn=${vo.isbn}">
+			                                 <img class="w-100" src="${vo.book_img}"/>
+			                              </a>
+			                           </div>
+			                           
+			                           <!-- 최근 작성한 리뷰가 들어가는 부분 -->
+			                           <div class="v_blog-item-content col-md-8" style="padding-left:5%; padding-right:3%">
+			                           
+			                              <div class="v_blog-item-header">
+			                                 <ul class="v_blog-item-meta pl-0" style="list-style-type: none">
+			                                    <li class="v_blog-item-date">
+			                                       <time class="" datetime="2018-06-30T10:47:48+00:00">
+			                                       	 <fmt:formatDate var="recentDate" value="${vo.review_modify_date}" pattern="yyyy. MM. dd"/>
+			                                          ${recentDate}
+			                                       </time>
+			                                    </li>
+			                                 </ul>
+			                              </div>
+				
+			                              <div itemprop="articleBody">
+			                                 <p style="overflow:hidden; display: -webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; line-height:1.8em; max-height:3.6em; margin-top:15px; margin-bottom:30px">
+			                                 	${vo.review_content}
+			                                 </p>
+			                                 <a class="v_blog-item-read-more" style="position:absolute; bottom:0; right:0; color:gray" href="/warm/reviewPerBook?isbn=${vo.isbn}">
+			                                    <span>감상 더보기</span>
+			                                 </a>
+			                              </div>
+			                              
+			                           </div>
+			                           
+			                        </div>
+			                     </article>
+							</div>                     
+							</c:forEach>
 							<!-- 최근 리뷰 페이징 처리 -->	
-							<div id="pagingArea" class="ml-4 mr-0"></div>
+							<div class="ml-4 mr-0">
+							<nav aria-label="...">
+                                <ul class="pagination">
+                        
+                                	<c:if test="${pageMaker.prev}">
+	                                    <li class="page-item"><a class="page-link" href="${pageMaker.startPage-1}"><</a>
+	                                    </li>
+                                	</c:if>
+                                	
+                                	<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+	                                    <li class="page-item ${pageMaker.cri.pageNum == num ? 'active':'' }"><a class="page-link" href="${num}">${num}</a>
+	                                    </li>
+                                	</c:forEach>
+                                	
+                                    <c:if test="${pageMaker.next}">
+	                                    <li class="page-item"><a class="page-link" href="${pageMaker.endPage+1}">></a>
+	                                    </li>
+                                	</c:if> 
+                                	
+                                	<form id="actionForm" action="/warm/reviewMain" method="get">
+                                		<input type="hidden" name="isbn" value="${list[0].isbn}">
+                                		<input type="hidden" name="user_id" value="${list[0].user_id}">
+                                		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+                                		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+                                	</form>
+                                </ul>
+                            </nav>
+                            </div>
 						</section>
                		</aside>
                </div>
@@ -389,119 +462,8 @@
 				}); // get Recent Comments
 				
 		  })(); // end of function
-	
-		// 최근 리뷰 ajax로 페이징 처리.
-		// 페이징에 필요한 것들: 리뷰 수, 페이지 번호, criteria(한 페이지에 몇 개씩 표시할 것인가), pagingDTO(페이지는 한 번에 몇 개까지 보여줄 것인가).
-		// ajax로 보내야 하는 건 페이지 번호. 받는 건 해당 페이지 범위에 속하는 리뷰 3개.
-		// 데이터를 받을 때 변경되어야 하는 것은 리뷰 영역.
-		
-		var pageNum = 1;
-		var recentReview = $("#recentReview");
-		// 리뷰 총 개수는 이 화면에서 변경될 일이 없으므로 처음에 모델에 담아온 값을 쓰기로 한다.
-		var reviewCnt = ${total};
-		var pagingArea = $("#pagingArea");
-		reviewPaging(pageNum, reviewCnt, recentReview);
-		showRecentReview(-1);
-		
-		function showRecentReview(page) {
-			
-			(function(reviewCnt, page) {
-				getRecentReviewsWithPaging(page, function(list) {
-					if(page==-1) {
-						pageNum = Math.ceil(reviewCnt/5.0);
-						showRecentReview(pageNum);
-						return;
-					}
-					if(list == null || list.length == 0) {
-						recentReview.html("<p class=\"text-center pt-8\">작성된 리뷰가 없습니다.</p>");
-						return;
-					}
-					var recentReviewStr = "";
-					
-					for(var i=0, len = list.length||0; i<len; i++) {
-						
-						recentReviewStr += "<div class='post-content no-thumb clearfix ml-4 mr-0 mb-4 p-3' style='max-width:95%'>";
-						recentReviewStr += "    <article class='v_blog-item'>";
-						recentReviewStr += "        <div class=\"v_blog-item-inner row\">";
-		
-						/* 이미지 들어가는 부분 */
-						recentReviewStr += "           <div class=\"v_blog-item-media col-md-3\" style=\"padding-left:5%; padding-right:3%\">";
-						recentReviewStr += "              <a href=\"/warm/reviewPerBook?isbn=" + list[i].isbn + "\">";
-						recentReviewStr += "                 <img class=\"w-100\" src=\"" + list[i].book_img + "\"></a></div>";
-						
-						/* 최근 작성한 리뷰가 들어가는 부분 */
-						recentReviewStr += "           <div class=\"v_blog-item-content col-md-8\" style=\"padding-left:5%; padding-right:3%\">";
-						recentReviewStr += "              <div class=\"v_blog-item-header\">";
-						recentReviewStr += "                 <ul class=\"v_blog-item-meta pl-0\" style=\"list-style-type: none\">";
-						recentReviewStr += "                    <li class=\"v_blog-item-date\">";
-						recentReviewStr += "                       <time datetime=\"2018-06-30T10:47:48+00:00\">";
-						recentReviewStr += "                       	" + new Date(list[i].review_modify_date).toLocaleDateString();
-						recentReviewStr += "                       </time></li></ul></div>";
-						
-						recentReviewStr += "              <div itemprop=\"articleBody\">";
-						recentReviewStr += "                 <p style=\"overflow:hidden; display: -webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; line-height:1.8em; max-height:3.6em; margin-top:15px; margin-bottom:30px\">";
-						recentReviewStr += "                 	" + list[i].review_content + "</p>";
-						recentReviewStr += "                 <a class=\"v_blog-item-read-more\" style=\"position:absolute; bottom:0; right:0; color:gray\" href=\"/warm/reviewPerBook?isbn=" + list[i].isbn + "\">";
-						recentReviewStr += "                    <span>감상 더보기</span></a></div></div></div></article></div>   ";
-					}
-					recentReview.html(recentReviewStr);
-					reviewPaging(page, reviewCnt, pagingArea);
-				});
-			})(reviewCnt, page);
-			
-		}
-		
-		function getRecentReviewsWithPaging(page, callback, error) {
-			
-			$.getJSON("/warm/recentReviews/pages/" + page + ".json", function(list) {
-				
-				callback(list);
-			}).fail(function(xhr, status, err) {
-				if(error)
-					error();
-			});
-		}
-		
-		function reviewPaging(pageNum, reviewCnt, pagingArea) {
-			
-			var endNum = Math.ceil(pageNum/3.0)*3;
-			var startNum = endNum - 2;
-			
-			var prev = startNum != 1;
-			var next = false;
-			
-			if(endNum * 3 >= reviewCnt) {
-				endNum = Math.ceil(reviewCnt/3.0);
-			}
-			
-			if(endNum * 3 < reviewCnt) {
-				next = true;
-			}
-			
-			var str = "<ul class='pagination'>";
-			
-			if(prev) {
-				str += "<li class='page-item'><a class='page-link' href='"+(startNum-1)+"'><</a></li>";
-			}
-			for(var i=startNum; i<=endNum; i++) {
-				var active = pageNum == i? "active": "";
-				str += "<li class='page-item " + active + "'><a class='page-link' href='" + i + "'>" + i + "</a></li>";
-			}
-			if(next) {
-				str += "<li class='page-item'><a class='page-link' href='"+(endNum+1)+"'>></a></li>";
-			}
-			str += "</ul></div>";
-			pagingArea.html(str);
-		}
-		
-		pagingArea.on("click", "a", function(e) {
-			e.preventDefault();
-			showRecentReview($(this).attr("href"));
-		});
+		  
 	});
-	
-	
-	
 	
 	function tsToDate(timestamp) {
 			

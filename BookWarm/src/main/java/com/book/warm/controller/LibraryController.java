@@ -69,7 +69,7 @@ public class LibraryController {
 	@GetMapping(value = "/getMyBooks", produces = { MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public ResponseEntity<List<LibraryVO>> getMyBooks(Principal principal, Model model) {
-		log.info("==================== getMyBoks() ====================");
+		log.info("==================== getMyBooks() ====================");
 		String user_id=principal.getName();
 		return new ResponseEntity<>(mapper.getMyBooks(user_id), HttpStatus.OK);
 	}
@@ -108,19 +108,6 @@ public class LibraryController {
 		return mapper.reAddLibrary(user_id,isbn)==1 ? new ResponseEntity<>("success",HttpStatus.OK):new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	/*
-	 * // modify comment
-	 * 
-	 * @RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH},
-	 * value="/modify/{isbn}",consumes="application/json", produces=
-	 * {MediaType.TEXT_PLAIN_VALUE}) public ResponseEntity<String>
-	 * modify2(@PathVariable("isbn")String isbn,Principal principal){
-	 * log.info("==================== modify() ===================="); String
-	 * user_id=principal.getName(); return mapper.deleteLibraryList(user_id,isbn)==1
-	 * ? new ResponseEntity<>("success",HttpStatus.OK):new
-	 * ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); }
-	 */
-	
 	//add Comment
 	@PostMapping(value = "/addBook", consumes = "application/json", produces = {
 			MediaType.TEXT_PLAIN_VALUE })
@@ -134,7 +121,6 @@ public class LibraryController {
 			libraryVO.setIsbn(bookVO.getIsbn());
 			libraryVO.setList_img_src(bookVO.getBook_img());
 			libraryVO.setList_type("장르01");
-			libraryVO.setList_no(19);
 			insertCount = mapper.addMyBook(libraryVO);
 		}
 		log.info("Comment INSERT COUNT : " + insertCount);

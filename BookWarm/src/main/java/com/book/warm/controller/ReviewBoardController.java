@@ -45,6 +45,7 @@ import com.book.warm.vo.LogingBoardVO;
 import com.book.warm.vo.ReviewAttachFileDTO;
 import com.book.warm.vo.ReviewAttachVO;
 import com.book.warm.vo.ReviewBoardVO;
+import com.book.warm.vo.ReviewMainVO;
 
 import lombok.extern.log4j.Log4j;
 import net.coobird.thumbnailator.Thumbnailator;
@@ -66,10 +67,10 @@ public class ReviewBoardController {
 	LibraryMapper mapper;
 	
 	@GetMapping("/reviewMain")
-	public void recordMain(Principal principal, Criteria cri, Model model) {
-		cri.setAmount(3);
-		model.addAttribute("list", service.selectBoardList(principal.getName(), cri));
-		model.addAttribute("pageMaker", new PageDTO(cri, service.getTotal(principal.getName())));
+	public void recordMain(Principal principal, Model model) {
+		model.addAttribute("libNewbie", service.getLibNewbie(principal.getName()));
+		model.addAttribute("logCPM", recordService.getCPM(principal.getName()));
+		model.addAttribute("total", service.getTotal(principal.getName()));
 	}
 	
 	// 책별 감상 목록
@@ -355,8 +356,6 @@ public class ReviewBoardController {
 	@ResponseBody
 	public ResponseEntity<List<FinishedBookVO>> getMyLogs(Principal principal) {
 	
-    // LogingBoard에서 로그를 읽어올 때 필요한 것은? 아이디만 있으면 전체 다 불러올 수 있음.
-	// 일단 완독한 책만 불러오자.
 	// end_date(완독여부) 값이 true면 start_date가 가장 최신인 날짜에 책 이미지를 뿌린다.
     String user_id = principal.getName();
 	log.info("get LogingBoadVO list : " + recordService.getMyLogs(user_id));
@@ -370,13 +369,10 @@ public class ReviewBoardController {
 		
 		// 리뷰 목록을 가져와서 각각의 리뷰 번호로 첨부파일 목록을 조회해 reviewVO에 세팅해준다.
 		for(ReviewBoardVO review : reviews) {
-			System.out.println("왜여 : " + review.getReview_no());
 			if(service.getAttachList(review.getReview_no())!=null) {
-				
 				review.setAttachList(service.getAttachList(review.getReview_no()));
 			}
 		}
-		
 		model.addAttribute("openreview", reviews);
 	}
 	
@@ -385,19 +381,23 @@ public class ReviewBoardController {
 									MediaType.APPLICATION_JSON_UTF8_VALUE })
 		public ResponseEntity<ReviewBoardVO> get(@PathVariable("reviewNo") String reviewNo) {
 		
-		log.info("++++++++++++++++++++++++++++review_no: " + reviewNo);
-		
-		int review_no = Integer.parseInt(reviewNo);
+			int review_no = Integer.parseInt(reviewNo);
 		
 		return new ResponseEntity<>(service.selectedReview(review_no), HttpStatus.OK);
 	}
 	
+	// 최근 리뷰 페이징
+	@GetMapping(value="/recentReviews/pages/{page}",
+			produces= {
+						MediaType.APPLICATION_XML_VALUE,
+						MediaType.APPLICATION_JSON_UTF8_VALUE })
+	@ResponseBody
+	public ResponseEntity<List<ReviewMainVO>> getRecentReviewWithPaging(@PathVariable("page") int page, Principal principal) {
 	
-	@GetMapping(value="/logCPM",
-			produces = { MediaType.APPLICATION_XML_VALUE})
-	public ResponseEntity<String> getCPM() {
-		System.out.println("||||||||||||||||||||||||||||||"+recordService.getCPM());
-	return new ResponseEntity<>(recordService.getCPM().toString(), HttpStatus.OK);
+		Criteria cri = new Criteria(page ,3);
+		String user_id = principal.getName();
+	
+	return new ResponseEntity<List<ReviewMainVO>>(service.selectBoardList(user_id, cri), HttpStatus.OK);
 	}
 	
 }

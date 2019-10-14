@@ -21,18 +21,27 @@
 
             <section class="section-primary alternate-color">
                <div class="container">
+ 				  <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
+                     <li class="nav-item active" data-option-value="*"><a class="nav-link" href="#">전체 보기</a></li>
+                     <li class="nav-item" data-option-value=".wordsOnly"><a class="nav-link" href="#">감상글</a></li>
+                     <li class="nav-item" data-option-value=".images"><a class="nav-link" href="#">감상글(사진)</a></li>
+                  </ul>
 
                   <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
-                     <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
-
+                    <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
 
                     <c:set value="\\" var="bslash"/>
                     <c:set value="/" var="slash"/>
 						
 					<c:forEach items="${openreview}" var="review" varStatus="status">
 						<fmt:formatDate var="date" value="${review.review_modify_date}" pattern="yyyy. MM. dd"/>
+                        
+                        <c:set var="ifImg" value="wordsOnly"/>
+                        <c:if test="${!empty review.attachList}">
+                        	<c:set var="ifImg" value="images"/>
+                        </c:if>
                                 
-						<div class="col-lg-3 isotope-item websites">
+						<div class="col-lg-3 isotope-item ${ifImg}">
 
                            <article class="v_blog-item v_blog-item-related v_blog-grid">
                               <div class="v_blog-item-inner">
@@ -91,7 +100,18 @@
             </section>
          </div>
 		</div>
-<%@ include file="includes/header/script-vertexEx.jsp"%>
+		
+<%@ include file="includes/header/script-vertexEx2.jsp"%>
+
+<script>
+
+	$('.masonary-post-wrap').isotope({
+        itemSelector: '.masonary-post-item',
+        percentPosition: true
+    });
+     
+</script>
+
 <%@ include file="includes/footer/footer-1.jsp"%>
 </body>
 </html>

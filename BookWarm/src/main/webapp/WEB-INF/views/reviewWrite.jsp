@@ -16,7 +16,7 @@
  
     <div role="main" class="main">
 
-	<section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-top:-70px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
+	<section class="page-header pb-0 pt-2 mt-2 mb-2" style="border-bottom-color:transparent; background-color:transparent">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-8 text-left">
@@ -41,13 +41,13 @@
 		             <div class="v-blog-items-wrap blog-standard">
 		
 		                 <ul class="v-blog-items row standard-items clearfix">
-		                 	<li>
+		                 	<li class="w-75">
 		                 		<!-- 작성 페이지. -->
 		                 		<form action="register" method="POST">
 									<input type="hidden" name="user_id" value="${user_id}">
 									<!-- 작성 시간과 수정 시간은 알아서 데이터 입력시에 들어가니 여기엔 필요 없음 -->
 		                 		
-		                 			<table style="table-layout:fixed">
+		                 			<table class="w-100">
 		                 				<tr>
 		                 					<td>책</td>
 		                 					<td>
@@ -108,7 +108,7 @@
 		                 				</tr>
 		                 				<tr>
 		                 					<td></td>
-		                 					<td>
+		                 					<td class="pull-right">
 		                  					<button type='submit' class="btn btn-outline-secondary">
 							                   	<span class="text ls-1">등록하기<i class="icon icon-pen-3"></i>
 							                    </span>    
