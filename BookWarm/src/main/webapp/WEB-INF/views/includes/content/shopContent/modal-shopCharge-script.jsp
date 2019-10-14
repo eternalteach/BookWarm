@@ -10,7 +10,7 @@
 		height: 530px;
 		padding-left: 15px;
 		padding-right: 15px;
-		left: 50%;
+		left: 30%;
 		top: 30%;
 	}
 </style>
