@@ -28,13 +28,13 @@
 				var str = "";
 				str += "<div class='smartforms-modal-header'>";
 	 			str += "<h3 style='padding-top:10px;'>내 쿠폰</h3>";
-				str += "<a href='javascript:hideModal()' class='smartforms-modal-close' style='text-align:right'>&times;</a>";
+				str += "<a href='javascript:hideModal()' class='smartforms-modal-close' style='text-align:left;width:30px;height:20px;margin-top: 5px;'>&times;</a>";
 				str += "</div>";
 				
 				str += "<div class='smartforms-modal-body'>";
 				str += "<div class='smart-wrap'>";
 				str += "<div class='smart-forms smart-container wrap-full'>";
-				str += "<div class='form-body'>";
+				str += "<div class='form-body' style='padding-top: 20px;'>";
 				str += "<div class='frm-row'>";
 				for(var i=0; i<couponList.length; i++) {
 					str += "<div class='author-info-wrap clearfix col-sm-12' style='margin-top: 0px;'>"
