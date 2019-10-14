@@ -9,9 +9,9 @@
         <div class="container">
             <div class="row">
 				<form class="v-signup v-register" action="modifyUserInfo" method="post" id="form">
-					<div class="form-group">
-						<h2 class="mb-2 mt-0"><strong>회원 정보</strong></h2>
-					</div>
+					<!-- <div class="form-group">
+						<h2 class="mb-2 mt-0"><strong>내 정보 수정</strong></h2>
+					</div> -->
 					<div class="form-group">
 						<label for="user_name">이름<span class="required">*</span></label>
 						<input type="text" class="form-control" name="user_name" id="user_name" maxlength="100" readonly="readonly"> 

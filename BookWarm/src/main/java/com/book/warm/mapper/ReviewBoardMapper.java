@@ -62,4 +62,6 @@ public interface ReviewBoardMapper {
 	
 	public List<ReviewBoardVO> getOpenReview();
 
+	public BookVO getLibNewbie(String user_id);
+
 }

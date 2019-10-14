@@ -17,7 +17,7 @@
 	
     <div role="main" class="main">
 
-	<section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
+	<section class="page-header pb-0 pt-2 mt-2 mb-2" style="border-bottom-color:transparent; background-color:transparent">
             <div class="container">
                     
                     <div class="col-md-8 pull-right">

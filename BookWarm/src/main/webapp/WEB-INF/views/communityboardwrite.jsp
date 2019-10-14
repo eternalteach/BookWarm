@@ -20,11 +20,11 @@
 			<div class='panel panel-default'>
 				<div class="comment-write">
 					<div class="modal-content">
-					<form action="communityBoardSaveWrite" method="post">
+					<form id="pagingActionForm" action="communityBoardSaveWrite" method="post">
 						<div class="modal-body col-lg-12">
 							<div class="form-inline">
-								<textarea class="col-lg-2 " rows="1" name="comm_subject" placeholder="말머리"></textarea>
-								<textarea class="col-lg-10 " rows="1" name="comm_title" placeholder="Title"></textarea>
+								<textarea id="comm_subject" class="col-lg-2 " rows="1" name="comm_subject" placeholder="말머리"></textarea>
+								<textarea id="comm_title" class="col-lg-10 " rows="1" name="comm_title" placeholder="Title"></textarea>
 								<div id="comm_title_msg"></div>
 							</div>
 						</div>
@@ -39,13 +39,13 @@
 							</h3>
          					<div class="form-group">
          						<div class="form-control card" style="height:400px;">
-         							<textarea  name="comm_content" rows="20" placeholder="Content"></textarea>
+         							<textarea id="comm_content" name="comm_content" rows="20" placeholder="Content"></textarea>
          						</div>
          						<div id="comm_content_msg"></div>
          					</div>
          					<div class="form-horizontal">
            						<div class="form-group from-horizentar pull-right">
-									<button type="submit" class="btn btn-sm btn-outline-secondary">Record</button>
+									<button type="submit" class="submit btn btn-sm btn-outline-secondary">Record</button>
 									<a href="communityboard"><button type="button" class="btn btn-sm btn-outline-secondary">List</button></a>
            						</div>   
          					</div>

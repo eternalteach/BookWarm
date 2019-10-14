@@ -56,7 +56,7 @@
 					}
 					str += "</div>";
 					str += "<div class='section'>";
-					str += couponList[i].coupon_use_req+"이상 구매시 사용 가능";
+					str += couponList[i].coupon_use_req+"원 이상 구매시 사용 가능";
 					str += "</div>";
 					str += "<div class='section'>";
 					str += "할인율 : "+couponList[i].coupon_discount_percent+"<br>";

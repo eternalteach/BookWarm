@@ -186,7 +186,7 @@
                                              </td>
 
                                              <td class="cart-product-name" colspan="4">
-                                                <span class="amount" id="delivery">${delivery}</span>
+                                                <span class="amount" id="delivery">${delivery}</span> 원
                                                 <input type="hidden" id="formDelivery" name="delivery_fee" value="${delivery}">
                                              </td>
                                           </tr>
@@ -195,14 +195,14 @@
                                                 <strong>할인</strong>
                                              </td>
                                              <td class="cart-product-name" colspan="4">
-                                                -<span class="amount" id="discountPoint">0</span>(포인트 할인)
+                                                -<span class="amount" id="discountPoint">0</span> 원(포인트 할인)
                                              </td>
                                           </tr>
                                           <tr class="cart_item">
                                           	 <td class="cart-product-name">
                                              </td>
                                           	 <td class="cart-product-name" colspan="4">
-                                             	-<span class="amount" id="discountCoupon">0</span>(쿠폰 할인)
+                                             	-<span class="amount" id="discountCoupon">0</span> 원(쿠폰 할인)
                                              	<input type="hidden" name="coupon_no" id="submitCoupon">
                                              </td>
                                           </tr>

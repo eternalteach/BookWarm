@@ -62,7 +62,7 @@
 </head>
 <body class="v-bg-color">
 <%@ include file="includes/header/header-topnav.jsp"%>
-<div class="wrapper">
+<div class="wrapper footer-wrap">
 	<div class="page has-sidebar has-left-sidebar bordered" style="overflow:auto; overflow-x:hidden;">
 		<div class="page-inner alternate-color">
 			<div class="container">
@@ -303,7 +303,7 @@ $(document).ready(function() {
 	function showReviewBoard(page){
 		adminService.getReviewListWithPaging(page,function(list){
 			if(page==-1){
-				reviewPageNum==Math.ceil(delReviewPostsCnt/10.0);
+				reviewPageNum=Math.ceil(delReviewPostsCnt/10.0);
 				showReviewBoard(reviewPageNum);
 				return;
 			}
@@ -353,7 +353,7 @@ $(document).ready(function() {
 	function showCommBoard(page){
 		adminService.getCommListWithPaging(page,function(list){
 			if(page==-1){
-				commPageNum==Math.ceil(delCommunityPostsCnt/10.0);
+				commPageNum=Math.ceil(delCommunityPostsCnt/10.0);
 				showCommBoard(commPageNum);
 				return;
 			}

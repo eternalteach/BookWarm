@@ -7,9 +7,7 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-<%@ include file="./includes/header/script-vertexEx.jsp"%>
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <%@ include file="./includes/header/header-vertexEx.jsp"%>
 </head>
 <body>
@@ -20,11 +18,11 @@
 			<div class='panel panel-default'>
 				<div class="comment-write">
 					<div class="modal-content">
-					<form action="communityBoardSaveReplyWrite" method="post">
+					<form id="pagingActionForm" action="communityBoardSaveReplyWrite" method="post">
 						<div class="modal-body col-lg-12">
 							<div class="form-inline">
-								<textarea class="col-lg-2 " rows="1" name="comm_subject" placeholder="${replyWriteCommunityBoardPost.comm_subject}"></textarea>
-								<textarea class="col-lg-10 " rows="1" name="comm_title" placeholder="${replyWriteCommunityBoardPost.comm_title}"></textarea>
+								<textarea id="comm_subject" class="col-lg-2 " rows="1" name="comm_subject" placeholder="${replyWriteCommunityBoardPost.comm_subject}"></textarea>
+								<textarea id="comm_title" class="col-lg-10 " rows="1" name="comm_title" placeholder="${replyWriteCommunityBoardPost.comm_title}"></textarea>
 								<div id="comm_title_msg"></div>
 							</div>
 						</div>
@@ -39,13 +37,13 @@
 							</h3>
          					<div class="form-group">
          						<div class="form-control card" style="height:400px;">
-         							<textarea  name="comm_content" rows="20" placeholder="${replyWriteCommunityBoardPost.comm_content}"></textarea>
+         							<textarea id="comm_content" name="comm_content" rows="20" placeholder="${replyWriteCommunityBoardPost.comm_content}"></textarea>
          						</div>
          						<div id="comm_content_msg"></div>
          					</div>
          					<div class="form-horizontal">
            						<div class="form-group from-horizentar pull-right">
-									<button type="submit" class="btn btn-sm btn-outline-secondary">Record</button>
+									<button type="submit" class="btn btn-sm btn-outline-secondary submit">Record</button>
 									<a href="communityboard"><button type="button" class="btn btn-sm btn-outline-secondary">List</button></a>
            						</div>   
          					</div>
@@ -88,7 +86,8 @@
 		});
 	});
 </script>
-
+<%@ include file="./includes/header/script-vertexEx.jsp"%>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <%@ include file="includes/footer/footer-1.jsp"%>
 </body>
 </html>
