@@ -11,6 +11,8 @@
 <%@ include file="./includes/header/header-vertexEx.jsp"%>
 </head>
 <body>
+<div class="footer-wrap">
+
 <%@ include file="includes/header/header-topnav.jsp"%>
 
 <div class="container center-block">
@@ -60,7 +62,7 @@
 		</div>
 	</div>
 </div>
-								
+</div>					
 <script>
 	$(document).ready(function() {
 		var pagingActionForm = $("#pagingActionForm");

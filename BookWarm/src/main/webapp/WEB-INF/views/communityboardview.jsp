@@ -11,6 +11,7 @@
 <%@ include file="./includes/header/header-vertexEx.jsp"%>
 </head>
 <body>
+<div class="footer-wrap">
 <%@ include file="includes/header/header-topnav.jsp"%>
 					
 <div class="container center-block">
@@ -98,7 +99,7 @@
 		</div>
 	</div>
 </div>
-
+</div>
 <script type="text/javascript" src="resources/js/comment.js"></script>
 <script type="text/javascript" src="resources/js/admin.js"></script>
 
