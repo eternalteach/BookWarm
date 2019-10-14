@@ -15,7 +15,7 @@
  
     <div role="main" class="main">
 
-	<section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-top:-70px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
+	<section class="page-header pb-0 pt-2 mt-2 mb-2" style="border-bottom-color:transparent; background-color:transparent">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-8 text-left">
@@ -35,13 +35,13 @@
             <div class="container">
                 <div class="row">
                     
-					<div class="col-sm-9 v-blog-wrap" style="margin:auto; position:relative">
+					<div class="col-sm-12 v-blog-wrap" style="margin-left:10%; margin-right:10%; position:relative">
 
                         <div class="v-blog-items-wrap blog-standard">
 
                             <ul class="v-blog-items row standard-items clearfix">
                             	
-                            	<li>
+                            	<li class="w-75">
                         
                             		<!-- 작성 페이지. -->
                             		<form id="operForm" action="modify">
@@ -52,7 +52,7 @@
                             			<input type="hidden" name="amount" value="${cri.amount}">
 										<!-- 작성 시간과 수정 시간은 알아서 데이터 입력시에 들어가니 여기엔 필요 없음 -->
 
-                            			<table style="table-layout:fixed">
+                            			<table class="w-100">
                             				<tr>
                             					<td nowrap>제목</td>
                             					<td><input type="text" maxlength="66" name="review_title" value="${review.review_title}"></td>
@@ -90,7 +90,7 @@
                             				</tr>
                             				<tr>
                             					<td></td>
-                            					<td>
+                            					<td class="pull-right">
 	                            					<button class="btn btn-outline-secondary" data-oper='modify' >
 								                      	<span class="text ls-1">
 						                            		저장하기
@@ -118,35 +118,6 @@
             </div>
         </div>
 
-        <!--Footer-Wrap-->
-        <div class="footer-wrap">
-    
-            <div class="copyright">
-                <div class="container">
-                    <p>© Copyright 2018 by Vertex. All Rights Reserved.</p>
-
-                    <div class="clearfix pull-right">
-                        <a href="#" class="social-icon si-borderless si-facebook mb-0" title="Facebook">
-                            <i class="si-icon-facebook"></i>
-                            <i class="si-icon-facebook"></i>
-                        </a>
-                        <a href="#" class="social-icon si-borderless si-twitter mb-0" title="Twitter">
-                            <i class="si-icon-twitter"></i>
-                            <i class="si-icon-twitter"></i>
-                        </a>
-                        <a href="#" class="social-icon si-borderless si-instagram mb-0" title="Instagram">
-                            <i class="si-icon-instagram"></i>
-                            <i class="si-icon-instagram"></i>
-                        </a>
-                        <a href="#" class="social-icon si-borderless si-vk mb-0" title="Vk">
-                            <i class="si-icon-vk"></i>
-                            <i class="si-icon-vk"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--End Footer-Wrap-->
     </div>
     
     
@@ -352,7 +323,7 @@
     
     </script>
 
-<%@ include file="includes/header/header-vertex.jsp" %>
+<%@ include file="includes/header/script-vertex.jsp" %>
 <%@ include file="includes/footer/footer-1.jsp"%>
 </body>
 </html>
