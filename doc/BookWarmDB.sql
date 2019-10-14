@@ -430,7 +430,33 @@ constraint pk_curation primary key(curation_no)
                 
                 
                 
-                
+-- user_info 더미데이터(5개)
+
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('pgb','$2a$10$8rx/0KgjY/J7WwqP2xJRCO.K3bwYqTT.rjHyVie.f3mArxMYnkB9a','선생','박기범',TO_DATE('1990-12-13'),'m', '010-1234-5678', 'bookwarm@naver.com', 12345, '서울특별시 영등포구 양평동1가',0,1000, 1, sysdate);
+
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('hrhr','$2a$10$Pf2tI.8becc.eBreTIyrY.5zkikdr4vmsR/FGz0V/WU1iHmMLRwim','김해랑','IamHRHR',TO_DATE('1991-5-15'),'m', '010-1212-1212', 'HRHR@naver.com', 12245, '서울특별시 영등포구 당산동1가',0,700, 1, sysdate);
+
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('ljh','$2a$10$8VZlTh949fODH.lCHm9EQ.Kfs6lqZL176N5LA4T4QTssAi2KlGMdO','임지현','LJH',TO_DATE('1994-8-3'),'m', '010-1111-1231', 'ljh@naver.com', 11145, '서울특별시 영등포구 문래동5가',0,20000, 1, sysdate);
+
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('babyky','$2a$10$BVKueOFq23M8QIa/khPlHe8rPYHiEfiR967TJ6Saj.Tc1FDGA3XNO','양경운','BabyKY',TO_DATE('1990-4-5'),'m', '010-1212-1111', 'yky@naver.com', 55555, '서울특별시 영등포구 양평동5가',0,2000, 3, sysdate);
+
+insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
+values('admin','$2a$10$xeIZZeXf0IMaPQw7vdtMXuONxqtKFqcl3Rt1nsJXryU06EPljJhNa','관리자','관리자',TO_DATE('1994-2-24'),'m', '010-2822-1231', 'ggg@naver.com', 15133, '서울특별시 영등포구 영등포동1가',0,1000, 3, sysdate);
+
+insert into authorities (user_id, authority) values('admin','ROLE_ADMIN');
+insert into authorities (user_id, authority) values('admin','ROLE_MANAGER');
+insert into authorities (user_id, authority) values('admin','ROLE_USER');
+insert into authorities (user_id, authority) values('babyky','ROLE_MANAGER');
+insert into authorities (user_id, authority) values('babyky','ROLE_USER');
+insert into authorities (user_id, authority) values('pgb','ROLE_USER');
+insert into authorities (user_id, authority) values('hrhr','ROLE_USER');
+insert into authorities (user_id, authority) values('ljh','ROLE_USER');
+
+commit;                
                 
                 
                 
@@ -472,40 +498,7 @@ values('10','책10','작가10','출판사10','3100',50, '/warm/resources/img/isb
 commit;
 
 
--- user_info 더미데이터(7개)
 
-insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
-values('xyrho','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','선생','박기범',TO_DATE('1990-12-13'),'m', '010-1234-5678', 'bookwarm@naver.com', 12345, '서울특별시 영등포구 양평동1가',0,1000, 1, sysdate);
-
-insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
-values('eternalTeach','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','수학자','박수리',TO_DATE('1990-1-10'),'m', '010-1111-1234', 'ilovebook@naver.com', 12312, '서울특별시 영등포구 양평동2가',0,500, 2, sysdate);
-
-insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
-values('hrhr','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','김해랑','IamHRHR',TO_DATE('1991-5-15'),'m', '010-1212-1212', 'HRHR@naver.com', 12245, '서울특별시 영등포구 당산동1가',0,700, 1, sysdate);
-
-insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
-values('ljh','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','임지현','LJH',TO_DATE('1994-8-3'),'m', '010-1111-1231', 'ljh@naver.com', 11145, '서울특별시 영등포구 문래동5가',0,20000, 1, sysdate);
-
-insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
-values('babyky','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','양경운','BabyKY',TO_DATE('1990-4-5'),'m', '010-1212-1111', 'yky@naver.com', 55555, '서울특별시 영등포구 양평동5가',0,2000, 3, sysdate);
-
-insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
-values('manager','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','매니저','매니저',TO_DATE('1994-2-20'),'m', '010-2222-1231', 'manager@naver.com', 12333, '서울특별시 영등포구 문래동1가',0,500, 2, sysdate);
-
-insert into user_info(USER_ID, USER_PW, USER_NICKNAME, USER_NAME, USER_BDAY, USER_SEX, USER_PHONE, USER_MAIL, USER_ZIPCODE, USER_ADDR, USER_TOT_PRICE, USER_POINT, USER_LEVEL, USER_JOIN_DATE)
-values('admin','932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef','관리자','관리자',TO_DATE('1994-2-24'),'m', '010-2822-1231', 'ggg@naver.com', 15133, '서울특별시 영등포구 영등포동1가',0,1000, 3, sysdate);
-
-insert into authorities (user_id, authority) values('admin','ROLE_ADMIN');
-insert into authorities (user_id, authority) values('admin','ROLE_MANAGER');
-insert into authorities (user_id, authority) values('admin','ROLE_USER');
-insert into authorities (user_id, authority) values('manager','ROLE_MANAGER');
-insert into authorities (user_id, authority) values('manager','ROLE_USER');
-insert into authorities (user_id, authority) values('xyrho','ROLE_USER');
-insert into authorities (user_id, authority) values('eternalTeach','ROLE_USER');
-insert into authorities (user_id, authority) values('hrhr','ROLE_USER');
-insert into authorities (user_id, authority) values('ljh','ROLE_USER');
-
-commit;
 
 -- cart 테이블 sample data
 insert into cart
