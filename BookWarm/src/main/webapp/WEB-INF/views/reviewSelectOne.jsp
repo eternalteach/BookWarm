@@ -10,6 +10,7 @@
 <head>
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <%@ include file="includes/header/header-vertex.jsp" %>
+<title> Review </title>
 </head>
 <body style="min-height:0!important;">
 <%@ include file="includes/header/header-topnav.jsp"%>

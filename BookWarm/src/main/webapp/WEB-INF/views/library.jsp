@@ -13,6 +13,7 @@
 <script type="text/javascript" src="/warm/resources/js/library.js"></script>
 <script type="text/javascript" src="/warm/resources/js/book.js"></script>
 <%@ include file="includes/header/header-vertexEx.jsp"%>
+<title> Library </title>
 </head>
 <body style="overflow:auto; background-image:url('/warm/resources/img/library/library_bookshelf2.jpg'); background-size:100% 100%; background-position:0px 0px; background-repeat:no-repeat;" >
 

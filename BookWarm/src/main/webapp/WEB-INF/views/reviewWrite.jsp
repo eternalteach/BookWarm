@@ -10,6 +10,8 @@
 <html>
 <head>
 <%@ include file="includes/header/header-vertex.jsp" %>
+<title> Review </title>
+</head>
 <body>
 <%@ include file="includes/header/header-topnav.jsp"%>
 <sec:authentication property="principal.username" var="user_id"/>

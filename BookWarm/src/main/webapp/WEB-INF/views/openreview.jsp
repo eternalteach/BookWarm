@@ -11,6 +11,7 @@
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <%@ include file="includes/header/header-vertexEx.jsp"%>
+<title> Open Review </title>
 </head>
 <body class="v-bg-color">
 <%@ include file="includes/header/header-topnav.jsp"%>

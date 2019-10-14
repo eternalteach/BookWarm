@@ -12,6 +12,7 @@
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <%@ include file="includes/header/header-vertexEx.jsp"%>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<title> Review </title>
 </head>
 <body>
 <%@ include file="includes/header/header-topnav.jsp"%>
