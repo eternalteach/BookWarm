@@ -115,7 +115,7 @@
                                     </div>
                                     <div class="section colm">
 	                                    <label class="field">
-	                                    	<a href="javascript:pickCoupon()"><button type="button" class="btn v-btn standard lightgrey standard" id="pickCoupon">쿠폰적용</button></a>
+	                                    	<a href="javascript:pickCoupon(${subTotal})"><button type="button" class="btn v-btn standard lightgrey standard" id="pickCoupon">쿠폰적용</button></a>
 	                                    	<button type="button" class="btn v-btn standard lightgrey standard" id="cancleCoupon">쿠폰적용 취소</button>
 	                                    </label>
                                    	</div>
@@ -214,7 +214,6 @@
                                              <td class="cart-product-name" colspan="4">
                                                 <span class="amount color"><strong id="finalPay">${subTotal}</strong></span>
                                                 <input type="hidden" name="orders_pay_total" id="orders_pay_total" value="${subTotal}">원
-                                                <%-- <input type="hidden" name="orders_total" id="submitTotal" value="${subTotal}">원 --%>
                                              </td>
                                           </tr>
                                        </tbody>

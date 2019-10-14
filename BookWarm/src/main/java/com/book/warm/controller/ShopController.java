@@ -185,8 +185,8 @@ public class ShopController {
 		int orders_total = ordersVO.getOrders_total(); // 주문 총 금액
 		int orders_pay_total = ordersVO.getOrders_pay_total(); // 총 지불 금액
 
-		System.out.println("orders_pay_total : " + orders_pay_total);
-		System.out.println("orders_total : " + orders_total);
+		System.out.println("orders_pay_total : " + orders_pay_total); // 총 지불금액(총 도서금액-할인 총액)
+		System.out.println("orders_total : " + orders_total); // 총 도서 금액
 
 		String refund_account = ordersVO.getRefund_account(); // 환불 받을 계좌번호
 		String refund_bank = ordersVO.getRefund_bank(); // 환불 받을 은행

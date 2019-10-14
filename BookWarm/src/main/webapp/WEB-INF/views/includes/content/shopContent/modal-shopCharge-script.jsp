@@ -16,7 +16,7 @@
 </style>
 <script>
 	// 쿠폰 선택 버튼 눌렀을 때 실행
-	function pickCoupon() {
+	function pickCoupon(tot) {
 		$('#modal').fadeIn(500);
 	
 		$.ajax({
