@@ -4,6 +4,6 @@
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 
 <!-- <div id="modal" class="smartforms-modal-container"> -->
-<div class="smartforms-modal-container" id="modal" style="overflow:auto">
+<div class="smartforms-modal-container" id="modal" style="overflow:auto;position:absolute;display:block;padding-left:0px;padding-right:0px;">
 </div>
 
