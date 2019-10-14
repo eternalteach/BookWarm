@@ -82,7 +82,22 @@
 		})
 		
 		$('#charge').on('click', function() {
-			$('#sendForm').submit();
+			var chkbox = $('.chkbox'); // 체크박스들을 가져온다.
+			var cntChkbox = 0; // 체크된 책의 개수
+			chkbox.each(function(index, item) {
+				// 체크가 되어있는 것이 있다면
+				if ($(item).prop('checked') == true) {
+					cntChkbox += 1;
+				}
+			})
+			
+			// 체크박스 하나도 클릭 안한 경우 & 장바구니에 아무것도 없는 경우 >> 경고창
+			if(cntChkbox == 0) {
+				alert("구매하려는 물품이 없습니다.");
+			}else {
+				$('#sendForm').submit();
+			}
+			
 		})
 		
 	})

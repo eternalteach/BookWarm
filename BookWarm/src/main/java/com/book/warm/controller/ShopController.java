@@ -120,6 +120,7 @@ public class ShopController {
 		log.info("=================removeCartItem()==========================");
 
 		String subTotal = req.getParameter("subTotal"); // 체크한 물품 총액
+		subTotal = subTotal.substring(0, subTotal.length()-1); // "원"을 제거한 총 도서 금액
 		String delivery = req.getParameter("delivery"); // 배송비(2500원 or 무료)
 		String cart_no[] = req.getParameterValues("cart_no"); // 장바구니에 담아둔 책 cart_no
 		String user_id = principal.getName(); // 로그인한 유저의 아이디 받아온다.
@@ -149,28 +150,30 @@ public class ShopController {
 	// 쿠폰 고르기창
 	@RequestMapping(value = "/pickCoupon")
 	@ResponseBody
-	public List<CouponVO> pickCoupon(Principal principal, Model model) {
+	public List<CouponVO> pickCoupon(Principal principal, @ModelAttribute("coupon_use_req") String coupon_use_req, Model model) {
 		String user_id = principal.getName();
 
 		// 현재 로그인한 user가 가지고 있는 쿠폰을 list로 받아온다.
-		List<CouponVO> couponList = service.getCouponList(user_id);
+		List<CouponVO> couponList = service.getCouponList(user_id, Integer.parseInt(coupon_use_req));
+		
+		// coupon_use_req를 받아온 coupon_use_req를 확인
 
 		System.out.println("couponList.size() : " + couponList.size());
 
 		return couponList;
 	}
 
-	// 쿠폰 선택
-	@RequestMapping("/useCoupon")
-	public String useCoupon(Principal principal, HttpServletRequest req, Model model) {
-		String user_id = principal.getName();
-
-		// 현재 로그인한 user가 가지고 있는 쿠폰을 list로 받아온다.
-		List<CouponVO> couponList = service.getCouponList(user_id);
-		model.addAttribute("couponList", couponList);
-
-		return "/couponList";
-	}
+//	// 쿠폰 선택
+//	@RequestMapping("/useCoupon")
+//	public String useCoupon(Principal principal, HttpServletRequest req, Model model) {
+//		String user_id = principal.getName();
+//
+//		// 현재 로그인한 user가 가지고 있는 쿠폰을 list로 받아온다.
+//		List<CouponVO> couponList = service.getCouponList(user_id, 0);
+//		model.addAttribute("couponList", couponList);
+//
+//		return "/couponList";
+//	}
 
 	// 주문 성공
 	@Transactional

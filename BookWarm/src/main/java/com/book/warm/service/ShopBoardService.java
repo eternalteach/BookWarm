@@ -37,8 +37,8 @@ public class ShopBoardService {
 		return shopMapper.getUserInfo(user_id);
 	}
 
-	public List<CouponVO> getCouponList(String user_id) {
-		return shopMapper.getCouponList(user_id);
+	public List<CouponVO> getCouponList(String user_id, int coupon_use_req) {
+		return shopMapper.getCouponList(user_id, coupon_use_req);
 	}
 	
 	//====================추가코드==========================

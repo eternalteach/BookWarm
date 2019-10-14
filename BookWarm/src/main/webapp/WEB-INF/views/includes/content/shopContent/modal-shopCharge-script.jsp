@@ -16,11 +16,11 @@
 </style>
 <script>
 	// 쿠폰 선택 버튼 눌렀을 때 실행
-	function pickCoupon(tot) {
+	function pickCoupon(coupon_use_req) {
 		$('#modal').fadeIn(500);
 	
 		$.ajax({
-			url : '/warm/shop/pickCoupon',
+			url : '/warm/shop/pickCoupon?coupon_use_req='+coupon_use_req,
 			type : 'get',
 			dataType : 'json',
 			success : function(data) {

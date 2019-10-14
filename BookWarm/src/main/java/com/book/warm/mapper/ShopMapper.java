@@ -28,7 +28,7 @@ public interface ShopMapper {
 
 	public UserVO getUserInfo(@Param("user_id") String user_id);
 
-	public List<CouponVO> getCouponList(@Param("user_id") String user_id);
+	public List<CouponVO> getCouponList(@Param("user_id") String user_id, @Param("coupon_use_req") int coupon_use_req);
 	
 	//=================추가코드==========================================
 	public void insertcart(CartJoinBookVO cartvo);
