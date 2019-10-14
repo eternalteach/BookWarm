@@ -5,10 +5,9 @@
 <!-- <div class="smartforms-px">
 	<a href="#" data-smart-modal="#smart-modal-validation" class="smartforms-modal-trigger">Modal Validation</a>
 </div> -->
-
 	<div class="smartforms-modal-container" id="modal" style="overflow:auto">
 		<div class="smartforms-modal-header">
- 			<h3 style="padding-top: 10px;">주문상세</h3>
+ 			<h3 style="padding-top:15px;">주문상세</h3>
 			<a href="javascript:hideModal()" class="smartforms-modal-close" style="text-align:center;padding-top:10px;">&times;</a> <!-- X버튼 ; 모달창끄기 -->
 		</div>
 		<!-- .smartforms-modal-header -->
@@ -81,7 +80,7 @@
 							
 							
 							<div class="frm-row section colm colm6">
-								<h4 style="text-align:center;font-style:bold;margin-bottom:5px;">배송 정보</h4>
+								<h4 style="text-align:center;font-style:bold;margin-bottom:5px;margin-top:10px;border-top:1px solid #EAEAEA;padding-top:10px;">배송정보</h4>
 							</div>
 							<div class="frm-row">
 								<!-- 배송 받을 사람 이름 -->
@@ -115,11 +114,12 @@
 							
 							
 							<div class="smartforms-modal-footer">
-								<button type="submit" class="btn v-btn standard lightgrey standard" style="margin-left:75px;">수정하기</button>
+								<button type="submit" class="btn v-btn standard lightgrey standard" style="margin-left:75px;">수정</button>
 							</div>
 							<!-- end .form-footer section -->
 						</form>
 					</div>
+	</div>
 					<!-- end .form-body section -->
 				</div>
 				<!-- end .smart-forms section -->
