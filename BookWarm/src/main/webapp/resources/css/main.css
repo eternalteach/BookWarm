@@ -47,6 +47,9 @@ height:100vh;
 	border: 0px;
 	padding:0px;
 }
+.books-row{
+	height:10.1vh
+}
 .center {
 	display: block;
 	margin-left: auto;
@@ -256,7 +259,7 @@ bookshelf-table-bar{
 }
 
 .lib-menu {
-	font-size:4.5vw!important; 
+	font-size:3.8vw!important; 
 	color:white;
 	margin-left:1vw;
 	margin-right:1vw;
