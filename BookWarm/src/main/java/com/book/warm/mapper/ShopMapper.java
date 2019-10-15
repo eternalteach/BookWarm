@@ -59,5 +59,8 @@ public interface ShopMapper {
 	public void setUserPoint(@Param("user_id") String user_id, @Param("point") int point);
 
 	public void addTotalPrice(@Param("user_id") String user_id, @Param("orders_pay_total") int orders_pay_total);
+
+	public String getBookTitles(@Param("isbn") String isbn);
+
 	
 }

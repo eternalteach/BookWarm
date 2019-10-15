@@ -1,6 +1,7 @@
 package com.book.warm.controller;
 
 import java.security.Principal;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,7 +125,7 @@ public class ShopController {
 		String delivery = req.getParameter("delivery"); // 배송비(2500원 or 무료)
 		String cart_no[] = req.getParameterValues("cart_no"); // 장바구니에 담아둔 책 cart_no
 		String user_id = principal.getName(); // 로그인한 유저의 아이디 받아온다.
-
+		
 		List<CartJoinBookVO> list = new ArrayList<CartJoinBookVO>();
 		CartJoinBookVO cartJoinBookVO;
 
@@ -151,14 +152,15 @@ public class ShopController {
 	@RequestMapping(value = "/pickCoupon")
 	@ResponseBody
 	public List<CouponVO> pickCoupon(Principal principal, @ModelAttribute("coupon_use_req") String coupon_use_req, Model model) {
+		System.out.println("pickCoupon()");
 		String user_id = principal.getName();
 
 		// 현재 로그인한 user가 가지고 있는 쿠폰을 list로 받아온다.
 		List<CouponVO> couponList = service.getCouponList(user_id, Integer.parseInt(coupon_use_req));
 		
-		// coupon_use_req를 받아온 coupon_use_req를 확인
-
-		System.out.println("couponList.size() : " + couponList.size());
+		for(int i=0; i<couponList.size(); i++) {
+			couponList.get(i).setCoupon_validate_string(couponList.get(i).getCoupon_validate().toString().substring(0, 10));
+		}
 
 		return couponList;
 	}
@@ -208,6 +210,8 @@ public class ShopController {
 		}
 
 		String useCoupon = req.getParameter("useCoupon"); // 사용한 쿠폰번호
+		System.out.println("useCoupon : "+useCoupon);
+		System.out.println("usePoint : "+req.getParameter("usePoint"));
 		int usePoint = Integer.parseInt(req.getParameter("usePoint")); // 사용한 포인트
 		int originalPoint = Integer.parseInt(req.getParameter("originalPoint")); // 원래 있던 포인트
 		int savePoint = (int) (orders_total * 0.05); // 적립할 포인트
@@ -233,8 +237,15 @@ public class ShopController {
 
 		// req로 받아온 데이터
 		String isbn[] = req.getParameterValues("isbn"); // 구매한 모든 책들의 isbn
+		String book_title[] = req.getParameterValues("book_title"); // 구매한 모든 책들의 책 제목
 		String cart_cnt[] = req.getParameterValues("cart_cnt"); // 구매한 책 각각의 수량
-
+		
+		for(int i=0; i<book_title.length; i++) {
+			System.out.println("book_title : "+book_title[i]);
+		}
+		
+		model.addAttribute("book_title", book_title);
+		
 		// 배열 -> 리스트
 		List<String> isbnList = new ArrayList<String>();
 		List<String> cart_cntList = new ArrayList<String>();
@@ -264,12 +275,19 @@ public class ShopController {
 				post_no, orders_pay_total, delivery_fee, usePoint);
 		// 4. 주문건 번호 받아오기
 		String orders_no = service.getOrders_no();
-		// 5. orders_item테이블에 주문건 넣기
+		
+//		List<String> bookTitles = new ArrayList<String>(); // isbn에 따른 책 제목 담을 List<String>변수
 		for (int i = 0; i < isbn.length; i++) {
+			// 5. orders_item테이블에 주문건 넣기
 			service.addOrderItems(isbn[i], cart_cnt[i], orders_no);
 		}
-
-		model.addAttribute("isbn", isbn);
+		// 7. cart테이블에서 구매 목록 삭제
+		String[] cart_no = req.getParameterValues("cart_no");
+		for(int i=0; i<book_title.length; i++) {
+			service.delete(Integer.parseInt(cart_no[i]));
+		}
+		// model.addAttribute("isbn", isbn);
+//		model.addAttribute("book_title", book_title);
 		model.addAttribute("cart_cnt", cart_cnt);
 
 		// 주문한 시간으로부터 24시간 입금하지 않으면 주문 자동 취소

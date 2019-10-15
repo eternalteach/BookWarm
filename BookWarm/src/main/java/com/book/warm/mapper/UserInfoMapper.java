@@ -61,8 +61,13 @@ public interface UserInfoMapper {
 
 	int modifyUserInfo(UserVO userInfo);
 
-	CouponVO getCoupon(@Param("coupon_no") String coupon_no);
+	CouponVO getCoupon(@Param("user_id") String user_id, @Param("coupon_no") String coupon_no);
 
 	void setCoupon(@Param("user_id") String user_id, @Param("coupon_no") String coupon_no);
+
+	int getUserLevel(@Param("user_id") String user_id);
+
+	CouponVO chkHaveCoupon(@Param("coupon_no") String coupon_no, @Param("user_id") String user_id);
+
 
 }

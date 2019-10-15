@@ -125,6 +125,11 @@
 		where user_id=#{user_id}
 	</update>
 	
+	<select id="getBookTitles" resultType="java.lang.String">
+		select book_title from book
+		where isbn=#{isbn}
+	</select>
+	
 </mapper>
 
 

@@ -94,6 +94,12 @@ public class ShopBoardService {
 		shopMapper.addTotalPrice(user_id, orders_pay_total);
 	}
 
+	public String getBookTitles(String isbn) {
+		return shopMapper.getBookTitles(isbn);
+	}
+
+
+
 	
 	
 }

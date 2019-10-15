@@ -1,6 +1,7 @@
 package com.book.warm.controller;
 
 import java.security.Principal;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.book.warm.mapper.MemberMapper;
 import com.book.warm.page.Criteria;
@@ -78,19 +80,22 @@ public class UserInfoController {
 		// 1. user_id
 		model.addAttribute("user_id", user_id);
 		
-		// 2. point
+		// 2. user level
+		int user_level = userInfoService.getUserLevel(user_id);
+		model.addAttribute("user_level", user_level);
+		
+		// 3. point
 		int point = userInfoService.getPoint(user_id);
 		model.addAttribute("point", point);
 		
-		// 3. couponCnt
+		// 4. couponCnt
 		int couponCnt = userInfoService.getCouponCnt(user_id);
 		model.addAttribute("couponCnt", couponCnt);
 		
-		// 4. 최근 내 리뷰를 리스트로 받아온다.
-		System.out.println("1");
+		// 5. 최근 내 리뷰를 리스트로 받아온다.
 		model.addAttribute("list", reviewBoardService.selectBoardList(user_id, cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, reviewBoardService.getTotal(user_id)));
-		System.out.println("2");
+		
 	}
 	
 	@RequestMapping("/modifyMyInfo")
@@ -184,20 +189,31 @@ public class UserInfoController {
 	
 	@RequestMapping("/searchCoupon")
 	@ResponseBody
-	public CouponVO searchCoupon(@RequestParam("coupon_no") String coupon_no) {
+	public CouponVO searchCoupon(Principal principal,@RequestParam("coupon_no") String coupon_no) {
 		System.out.println("searchCoupon()");
-		CouponVO couponVO = userInfoService.getCoupon(coupon_no);
+		String user_id = principal.getName();
+		CouponVO couponVO = userInfoService.getCoupon(user_id, coupon_no);
+		couponVO.setCoupon_validate_string(couponVO.getCoupon_validate().toString().substring(0, 10));
 		return couponVO;
 	}
 	
 	// 선택한 쿠폰 내 계정에 등록
 	@RequestMapping("/selectCoupon")
-	public String selectCoupon(Principal principal, @RequestParam("coupon_no") String coupon_no) {
+	public String selectCoupon(Principal principal, @RequestParam("coupon_no") String coupon_no, RedirectAttributes rttr) {
 		System.out.println("selectCoupon()");
 		String user_id = principal.getName();
 		
-		// 1. coupon_no 테이블에 선택한 쿠폰 등록
-		userInfoService.setCoupon(user_id, coupon_no);
+		// user이 선택한 쿠폰을 가지고 있는지 확인
+		CouponVO couponVO = userInfoService.chkHaveCoupon(coupon_no, user_id);
+		
+		if(couponVO == null) {
+			// 선택한 쿠폰을 user가 가지고 있지 않다면
+			// coupon_no 테이블에 선택한 쿠폰 등록
+			userInfoService.setCoupon(user_id, coupon_no);
+		}else { 
+			// 이미 가지고 있는 쿠폰이라면 
+			rttr.addFlashAttribute("msg", "이미 보유하고 있는 쿠폰입니다.");
+		}
 		
 		return "redirect:myInfo";
 	}

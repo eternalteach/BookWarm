@@ -27,7 +27,7 @@
                             </div>
                             <div class="author-bio">
                                 <div class="author-name">
-                                    <h3>${user_id}님</h3>
+                                    <h3>${user_id}님 (level : ${user_level})</h3>
                                 </div>
                                 <div class="author-bio-text">
                                     <p><a href="/warm/customLogout"><button type="button" class="btn v-btn standard lightgrey standard">로그아웃</button></a></p>
@@ -44,6 +44,7 @@
                                 </div>
                                 <div class="author-bio-text">
                                     <p><a href="javascript:enrollCouponNo()" id="setCoupon">쿠폰등록</a></p>
+                                    <p id="setMsg" style="color:red">${msg}</p>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +56,6 @@
 								<h4 class="v-search-result-count">최근 내 리뷰</h4>
 							</div>
 							
-							<!-- -------------------------해랑언니 코드------------------------- -->
 							<section style="margin:0">
 							<c:if test="${empty list}">
 								등록한 감상이 없습니다.
@@ -131,7 +131,6 @@
                                 </ul>
                             </nav>
 						</section>
-						<!-- -------------------------/해랑언니 코드------------------------- -->
                 	</div>
                 </div>
 
