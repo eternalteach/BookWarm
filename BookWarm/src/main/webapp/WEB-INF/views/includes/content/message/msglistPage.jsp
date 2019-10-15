@@ -174,7 +174,7 @@
 			function showmsgboard(page){
 				msgservice.msgpaging(page,function(msglist){
 					if(page==-1){
-						msgPageNum==Math.ceil(total/10.0);
+						msgPageNum=Math.ceil(total/10.0);
 						showmsgboard(msgPageNum);
 						return;
 					}
@@ -218,7 +218,6 @@
 				
 				msgservice.msgdelete(sendidid, sendperson, function(count){
 						if(count === "success"){
-							alert("받은쪽지삭제")
 							showmsgboard(msgPageNum);
 					}
 				});
@@ -280,7 +279,6 @@
 				
 				msgservice.msgdelete2(sendidid2, sendperson2, function(count){
 						if(count === "success"){
-							alert("삭제하시겠습니까?")
 							showmsgboard2(msgPageNum2);
 					}
 				});

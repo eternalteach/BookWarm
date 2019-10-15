@@ -4,9 +4,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Vertex - Responsive HTML5 Bootstrap Template</title>
+<title>BOOK & WARM</title>
 <meta name="keywords" content="HTML5 Template" />
-<meta name="description" content="Vertex - Responsive HTML5 Template">
+<meta name="description" content="Responsive">
 <meta name="author" content="bootstraptemplates.net">
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="shortcut icon" href="/warm/resources/img/header/Alice_rabbit03.png" type="image/x-icon" />

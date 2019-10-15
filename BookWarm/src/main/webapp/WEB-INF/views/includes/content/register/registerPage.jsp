@@ -89,7 +89,10 @@
 				</div><!-- end section -->
 				<div class="form-group">
 					<label>주소<span class="required">*</span></label>
-					<div class="section from-inline">
+					
+					
+					
+					<div class="section form-inline">
 						<label class="field prepend-icon">
 							<input type="text" id="sample4_postcode" name="user_zipcode" class="btn-sm col-md-6 pull-left" placeholder="우편번호" readonly><span style="margin:10px;"> </span>
 							<button type="button" class="btn btn-sm no-margin-bottom no-margin-right" onclick="sample4_execDaumPostcode()">우편번호 찾기</button>
@@ -107,6 +110,7 @@
 							<span class="field-icon"></span>
 						</label>
 					</div><!-- end section -->
+					<span id="guide" style="color:#999;display:none"></span>
 					<div class="section">
 						<label class="field prepend-icon">
 							<input type="text" id="sample4_detailAddress" class="form-control" placeholder="상세주소">
@@ -115,10 +119,11 @@
 					</div><!-- end section -->
 					<div class="section">
 						<label class="field prepend-icon">
-							<input type="text" id="sample4_extraAddress" class="form-control" placeholder="참고항목" readonly>
+							<input type="text" id="sample4_extraAddress" class="form-control" placeholder="참고항목" >
 							<span class="field-icon"></span>
 						</label>
 					</div><!-- end section -->
+					
 					<div class="pull-right">
 						<button type="button" class="btn pull-right no-margin-bottom no-margin-right" id="submitBtn"><span class="col-lg-4"></span>회원가입<span class="col-lg-4"></span></button>
 					</div>

@@ -116,13 +116,6 @@ public class AdminController {
 		return new ResponseEntity<>(adminMapper.getReviewBoardListWithPaging(criteria),HttpStatus.OK);
 	}
 	
-	// USER 정보 받아오기
-	@GetMapping(value="/user/{user_id}", produces= {MediaType.APPLICATION_ATOM_XML_VALUE,MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<UserVO> getUserID(@PathVariable("user_id")String user_id){
-		log.info("==================== getUserID() ====================");
-		log.info("getUserID : " + user_id);
-		return new ResponseEntity<>(memberMapper.read(user_id),HttpStatus.OK);
-	}
 	// User 권한 수정하기
 	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="/authentication",consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> modifyUserAuthentication(@RequestBody AuthVO authVO){

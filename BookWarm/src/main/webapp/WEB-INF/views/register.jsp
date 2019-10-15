@@ -4,11 +4,14 @@
 <head>
 	<%@ include file="./includes/header/header-vertexEx.jsp" %>
 	<%@ include file="./includes/header/script-vertexEx.jsp" %>
+	<title> Register </title>
 </head>
 
 <body>
+<div class="footer-wrap">
 	<%@ include file="./includes/addressAPI/getAddress.jsp" %>
 	<%@ include file="./includes/content/register/registerPage.jsp" %>
+</div>
 	<script>
    $(document).ready(function() {
    	var dt = new Date();
@@ -157,12 +160,10 @@
 			alert("중복된 닉네임이 존재합니다. 다른 닉네임을 등록해주세요.");
 		} else if(!phoneExp.test(phone)) {
 			// 폰번호에 3-4-4 자리수로 넣지 않은 경우
-			alert(phone);
 			alert("휴대폰 번호를 잘못 입력했습니다. 다시 한번 확인해주세요.");
 		} else {
 			$(this).attr('type', 'submit');
 		}
-		alert("phone : "+phone);
 	});
    });
    
@@ -207,6 +208,5 @@
 	})
 }
 </script>
-<%@ include file="includes/footer/footer-1.jsp"%>
 </body>
 </html>

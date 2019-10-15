@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 	<%@ include file="includes/header/header-vertex.jsp"%>
+	<title> Shop </title>
 </head>
 <body>
 <div class="footer-wrap">

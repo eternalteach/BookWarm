@@ -61,7 +61,7 @@ var adminService = (function() {
 	}
 	
 	function getUser(user_id,callback,error){
-		$.get("admin/user/"+user_id+".json",function(result){
+		$.get("user/"+user_id+".json",function(result){
 			if(callback){
 				callback(result);
 			}

@@ -22,8 +22,6 @@
                     </div>
                    <div class="col-md-4">
                         <ul class="bar-breadcrumb justify-content-start justify-content-md-end mb-0">
-                            <li><a href="message">메세지</a></li>
-                            <li class="active">메시지함</li>
                         </ul>
                     </div> 
                 </div>
@@ -178,7 +176,7 @@
 			function showmsgboard(page){
 				msgservice.msgpaging(page,function(msglist){
 					if(page==-1){
-						msgPageNum==Math.ceil(total/10.0);
+						msgPageNum=Math.ceil(total/10.0);
 						showmsgboard(msgPageNum);
 						return;
 					}
@@ -222,7 +220,7 @@
 				
 				msgservice.msgdelete(sendidid, sendperson, function(count){
 						if(count === "success"){
-							alert("받은쪽지삭제")
+							alert("삭제하겠습니다.")
 							showmsgboard(msgPageNum);
 					}
 				});
@@ -286,7 +284,7 @@
 				
 				msgservice.msgdelete2(sendidid2, sendperson2, function(count){
 						if(count === "success"){
-							alert("삭제하시겠습니까?")
+							alert("삭제하겠습니다.")
 							showmsgboard2(msgPageNum2);
 					}
 				});

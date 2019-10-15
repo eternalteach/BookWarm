@@ -9,8 +9,11 @@
 <head>
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <%@ include file="./includes/header/header-vertexEx.jsp"%>
+<title> Community </title>
 </head>
 <body>
+<div class="footer-wrap">
+
 <%@ include file="includes/header/header-topnav.jsp"%>
 
 <div class="container center-block">
@@ -60,7 +63,7 @@
 		</div>
 	</div>
 </div>
-								
+</div>					
 <script>
 	$(document).ready(function() {
 		var pagingActionForm = $("#pagingActionForm");

@@ -9,9 +9,9 @@
 <head>
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <title>Vertex - Responsive HTML5 Bootstrap Template</title>
+   <title>Administrator</title>
    <meta name="keywords" content="HTML5 Template" />
-   <meta name="description" content="Vertex - Responsive HTML5 Template">
+   <meta name="description" content="BOOK & WARM">
    <meta name="author" content="bootstraptemplates.net">
    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
@@ -303,7 +303,7 @@ $(document).ready(function() {
 	function showReviewBoard(page){
 		adminService.getReviewListWithPaging(page,function(list){
 			if(page==-1){
-				reviewPageNum==Math.ceil(delReviewPostsCnt/10.0);
+				reviewPageNum=Math.ceil(delReviewPostsCnt/10.0);
 				showReviewBoard(reviewPageNum);
 				return;
 			}
@@ -353,7 +353,7 @@ $(document).ready(function() {
 	function showCommBoard(page){
 		adminService.getCommListWithPaging(page,function(list){
 			if(page==-1){
-				commPageNum==Math.ceil(delCommunityPostsCnt/10.0);
+				commPageNum=Math.ceil(delCommunityPostsCnt/10.0);
 				showCommBoard(commPageNum);
 				return;
 			}

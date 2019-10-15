@@ -15,12 +15,6 @@
 				<div class="row align-items-center">
 					<div class="col-md-8 text-left">
 					</div>
-					<div class="col-md-4">
-						<ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
-							<li>책</li>
-							<li class="active">책 리스트</li>
-						</ul>
-					</div>
 				</div>
 			</div>
 		</section>
@@ -167,7 +161,7 @@
 												<div class="product-media">
 													<div class="img-wrap first-image">
 														<a style="text-align: center;" href="shopproduct?isbn=${booklike.isbn}">
-														<img style="max-width:80%; align:center;" src="${booklike.book_img}" onerror="this.src='/warm/resources/img/책장군2.png'"></a>
+														<img style="max-width:80%; align:center;height:177px" src="${booklike.book_img}" onerror="this.src='/warm/resources/img/책장군2.png'"></a>
 													</div>
 												</div>
 												<div class="product-details" style="text-align:center;">

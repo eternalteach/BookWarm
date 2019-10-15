@@ -10,7 +10,7 @@
 		height: 530px;
 		padding-left: 15px;
 		padding-right: 15px;
-		left: 50%;
+		left: 30%;
 		top: 30%;
 	}
 </style>
@@ -28,14 +28,14 @@
 				var couponList = data;
 				var str = "";
 				str += "<div class='smartforms-modal-header'>";
-	 			str += "<h3>내 쿠폰</h3>";
-				str += "<a href='javascript:hideModal()' class='smartforms-modal-close' style='text-align:right'>&times;</a>";
+	 			str += "<h3 style='padding-top:10px;padding-left:10px;'>내쿠폰</h3>";
+				str += "<a href='javascript:hideModal()' class='smartforms-modal-close' style='text-align:center;height:30px;margin-top:5px;'>&times;</a>";
 				str += "</div>";
 				
 				str += "<div class='smartforms-modal-body'>";
 				str += "<div class='smart-wrap'>";
 				str += "<div class='smart-forms smart-container wrap-full'>";
-				str += "<div class='form-body'>";
+				str += "<div class='form-body' style='padding-top:20px;'>";
 				str += "<div class='frm-row'>";
 				for(var i=0; i<couponList.length; i++) {
 					str += "<div class='author-info-wrap clearfix col-sm-12' style='margin-top: 0px;'>"

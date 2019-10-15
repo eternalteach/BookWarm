@@ -9,8 +9,10 @@
 <head>
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <%@ include file="./includes/header/header-vertexEx.jsp"%>
+<title> Community </title>
 </head>
 <body>
+<div class="footer-wrap">
 <%@ include file="includes/header/header-topnav.jsp"%>
 <div class="container center-block">
 	<div class='row'>
@@ -25,30 +27,30 @@
 								<textarea id="comm_title" class="col-lg-10 " rows="1" name="comm_title" placeholder="Title"></textarea>
 								<div id="comm_title_msg"></div>
 							</div>
-						</div>
-       					<div class="col-lg-12">
-							<h3> <span class="blog-author minor-meta"> Posted by 
-								<span class="entry-author-link"> 
-									<span class="vcard author">
-										<span class="v-blog-item-details"> <a href="#" title="Posts by HB-Themes" rel="author">${user_id}</a></span>
+	       					<div class="col-lg-12">
+								<h3> <span class="blog-author minor-meta"> Posted by 
+									<span class="entry-author-link"> 
+										<span class="vcard author">
+											<span class="v-blog-item-details"> <a href="#" title="Posts by HB-Themes" rel="author">${user_id}</a></span>
+											</span>
 										</span>
 									</span>
-								</span>
-							</h3>
-         					<div class="form-group">
-         						<div class="form-control card" style="height:400px;">
-         							<textarea id="comm_content" name="comm_content" rows="20" placeholder="Content"></textarea>
-         						</div>
-         						<div id="comm_content_msg"></div>
-         					</div>
-         					<div class="form-horizontal">
-           						<div class="form-group from-horizentar pull-right">
-									<button type="submit" class="submit btn btn-sm btn-outline-secondary">Record</button>
-									<a href="communityboard"><button type="button" class="btn btn-sm btn-outline-secondary">List</button></a>
-           						</div>   
-         					</div>
+								</h3>
+	         					<div class="form-group">
+	         						<div class="form-control card" style="height:400px;">
+	         							<textarea id="comm_content" name="comm_content" rows="20" placeholder="Content"></textarea>
+	         						</div>
+	         						<div id="comm_content_msg"></div>
+	         					</div>
+	         					<div class="form-horizontal">
+	           						<div class="form-group from-horizentar pull-right">
+										<button type="submit" class="submit btn btn-sm btn-outline-secondary">Record</button>
+										<a href="communityboard"><button type="button" class="btn btn-sm btn-outline-secondary">List</button></a>
+	           						</div>   
+	         					</div>
+							</div>
+							</form>
 						</div>
-						</form>
 					</div>
 				</div>
 			</div>

@@ -5,6 +5,7 @@
 <html>
 <head>
 <%@ include file="includes/header/header-vertexEx.jsp"%>
+<title> Shop </title>
 </head>
 <body>
 <%@ include file="includes/header/header-topnav.jsp"%>
