@@ -43,7 +43,6 @@
 			 </tr>
 		</table>
 	</div>
-	<!-- <a id="modal-library-list-btn" title="서재 모두 보기" data-toggle="modal" data-target="#modal-library-list" style="cursor:pointer; position:absolute; left:67.5vw; top:45vh"><strong><i class="glyphicon icon icon-add-1" style="color:white; font-size:2.5vw!important;"></i></strong></a>-->
 	<a id="modal-library-list-btn" title="담은 책 모두 보기" data-toggle="modal" data-target="#modal-library-list" style="cursor:pointer; position:absolute; left:35.3vw; top:76.3vh"><strong><i class="glyphicon icon icon-document-box-1" style="color:white; font-size:5vw!important;"></i></strong></a>
 
 	<div style="position:absolute; top:79vh; left:68vw; width:31vw">

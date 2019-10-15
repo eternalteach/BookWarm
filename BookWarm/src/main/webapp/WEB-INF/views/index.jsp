@@ -21,14 +21,14 @@
 	</div>
 		
 <div id="modal">
-         <div class="modal-library login-modal">
-            <div class="modal-content con">
-               <a href="javascript:;" class="close">X</a>
-               <%@include file="./includes/content/login/loginPage.jsp"%>
-            </div>
-         </div>
+   <div class="modal-library login-modal">
+      <div class="modal-content con">
+         <a href="javascript:;" class="close">X</a>
+         <%@include file="./includes/content/login/loginPage.jsp"%>
       </div>
- <script type="text/javascript">
+   </div>
+</div>
+<script type="text/javascript">
  // open Login Modal
       function openModal(modalname) {
          $("#modal").fadeIn(200);
