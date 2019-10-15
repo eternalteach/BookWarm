@@ -10,6 +10,7 @@
 </head>
 
 <body>
+<%@ include file="./includes/loading/page-loading.jsp"%>
 	<div class="smart-wrap" style="position:absolute; left:35vw; top:5vh;">
 		<div class="smart-forms smart-container wrap-3">
 			<div class="form-header header-primary">

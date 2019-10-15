@@ -19,7 +19,7 @@
 	<div class='row margin-20px'>
 		<div class='col-lg-12'>
 			<div class='panel panel-default'>
-				<div class="comment-write">
+				<div class="comment-write" style="margin:30px">
 					<div class="modal-content">
 						<div class="modal-body" >
 							<div class="form-inline">

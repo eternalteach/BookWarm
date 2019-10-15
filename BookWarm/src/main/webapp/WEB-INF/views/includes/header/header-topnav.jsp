@@ -6,7 +6,7 @@
 
 <!-- body안에 넣기 -->
 <!--Header-->
-
+<div class="page-loading"></div>
     <header id="header" class="header-narrow header-full-width" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 70}">
         <div class="header-body">
             <div class="header-container container">
@@ -69,3 +69,9 @@
         </div>
     </header>
     <!--End Header-->
+    <script src="/warm/resources/VertexEx/vendor/jquery/jquery.js"></script>
+    <script>
+    $(window).load(function(){
+        $(".page-loading").fadeOut();
+    });
+    </script>

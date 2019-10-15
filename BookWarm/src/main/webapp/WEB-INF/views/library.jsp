@@ -16,7 +16,7 @@
 <title> Library </title>
 </head>
 <body style="overflow:auto; background-image:url('/warm/resources/img/library/library_bookshelf2.jpg'); background-size:100% 100%; background-position:0px 0px; background-repeat:no-repeat;" >
-
+<div class="page-loading"></div>
 	<div style="position:absolute; top:8vh; left:58.5vw; ">
 		<a data-toggle="modal" data-target="#modal-library" style="cursor:pointer; color:white; font-size:1.3vw"><strong>책 검색하기&nbsp;<i class="glyphicon icon icon-magnifier" style="font-size:1.5vw!important; color:white"></i></strong></a>
 	</div>
@@ -43,7 +43,6 @@
 			 </tr>
 		</table>
 	</div>
-	<!-- <a id="modal-library-list-btn" title="서재 모두 보기" data-toggle="modal" data-target="#modal-library-list" style="cursor:pointer; position:absolute; left:67.5vw; top:45vh"><strong><i class="glyphicon icon icon-add-1" style="color:white; font-size:2.5vw!important;"></i></strong></a>-->
 	<a id="modal-library-list-btn" title="담은 책 모두 보기" data-toggle="modal" data-target="#modal-library-list" style="cursor:pointer; position:absolute; left:35.3vw; top:76.3vh"><strong><i class="glyphicon icon icon-document-box-1" style="color:white; font-size:5vw!important;"></i></strong></a>
 
 	<div style="position:absolute; top:79vh; left:68vw; width:31vw">
@@ -103,6 +102,9 @@ function showPastList(){
 		for(let index=0;index<result.length;index++){
 			var addedDate = new Date(result[index].list_added_date).toLocaleDateString();
 			addPastBookInfoHTML+="<div class='card center no-border'>";
+			if(result[index].list_img_src == null) {
+				result[index].list_img_src = "/warm/resources/img/happyGeneralB_dark3.png";
+			}
 			addPastBookInfoHTML+="<a title='등록일: " + addedDate + "' href=\"reviewPerBook?isbn="+result[index].isbn+"\"><img class=\"book-thumbnail\" src=\""+result[index].list_img_src+"\"></a>";
 			addPastBookInfoHTML+="<button class='btn btn-sm addOnLibrary close m-0 pt-3 pb-1' data-isbn='"+result[index].isbn+"'>등록</button>";
 			addPastBookInfoHTML+="<button class='btn btn-sm deletePastBook close m-0 pt-1 pb-3' data-isbn='"+result[index].isbn+"'>삭제</button>";
@@ -126,6 +128,7 @@ $(document).on("click",".addOnLibrary",function(){
 	// 책 데이터 받아오면 받은걸로 테이블 만들기
 	function makeBookTable(bookData){
 		console.log("makeBookTable에서 받은 "+bookData);
+		console.log(bookData);
 		 let option = [
 	 	    {field:"isbn"},
 	 	    {field:"thumbnail"},
@@ -147,14 +150,17 @@ $(document).on("click",".addOnLibrary",function(){
 				} else {
 					var td = $("<td>").appendTo(tr);
 					if(fieldInfo.field=="thumbnail"){
-					var img=$("<img class='bookCover'>").appendTo(td);
-					img.attr("src", src=row[fieldInfo.field]);
+						var img=$("<img class='bookCover'>").appendTo(td);
+						if(row[fieldInfo.field] == "") {
+							row[fieldInfo.field] = "/warm/resources/img/happyGeneralB_dark3.png";
+						}
+						img.attr("src", src=row[fieldInfo.field]);
 					}else if (fieldInfo.field=="datetime"){
-					td.html( row[fieldInfo.field].substring(0,10));
+						td.html( row[fieldInfo.field].substring(0,10));
 					} else if (fieldInfo.field=="title"){
 						td.html("<button class='search-books card'>"+row[fieldInfo.field]+"</button>");
 					}else{
-					td.html( row[fieldInfo.field]);
+						td.html( row[fieldInfo.field]);
 					}
 				}
 	 	    });
@@ -171,6 +177,9 @@ $(document).on("click",".addOnLibrary",function(){
 			addModalHTML+="<div class=\"modal-content\" style=\"width:320px;top:9.5vh; left:33vw;\">";
 			addModalHTML+="<div class=\"modal-body post-content\">";
 			addModalHTML+="<div class=\"form-inline post-content\">";
+			if(result.book_img == "") {
+				result.book_img = "/warm/resources/img/happyGeneralB_dark3.png";
+			}
 			addModalHTML+="<img class=\"book-thumbnail\" src="+result.book_img+">";
 			addModalHTML+="<div class=\"modal-body\">";
 			addModalHTML+="<a href=\"reviewPerBook?isbn="+result.isbn+"\"><h4>Review</h4></a>";
@@ -231,6 +240,9 @@ $(document).on("click",".addOnLibrary",function(){
 				}
 				if(index<libraryBooks.length){
 					// insert into bookImg  
+					if(libraryBooks[index].list_img_src == null) {
+						libraryBooks[index].list_img_src = "/warm/resources/img/happyGeneralB_dark3.png";
+					}
 					$(bookDiv).html("<a style='cursor:pointer' data-toggle=\"modal\" data-target=\"#modal"+libraryBooks[index].isbn+"\"><img class=\"book-thumbnail\" src=\""+libraryBooks[index].list_img_src+"\"></a>");
 					// 저장한 책 이미지 클릭시 모달창 띄우기
 					addBookModal(libraryBooks[index].isbn);
@@ -243,5 +255,10 @@ $(document).on("click",".addOnLibrary",function(){
 });
 </script>
 <%@ include file="includes/header/script-vertexEx.jsp"%>
+    <script>
+    $(window).load(function(){
+        $(".page-loading").fadeOut();
+    });
+    </script>
 </body>
 </html>

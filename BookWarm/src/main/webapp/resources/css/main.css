@@ -14,6 +14,16 @@ p {
 html{
 	height: 100%;
 }
+.page-loading{
+    width:100%;
+    height:100%;
+    position:fixed;
+    left:41vw;
+    top:35vh;
+    background-image:url('/warm/resources/img/loading/Spinner.gif');
+    background-repeat:no-repeat;
+    z-index:3000; /* 이 값으로 레이어의 위치를 조정합니다. */
+}
 
 .footer-wrap {
 min-height: 100%;
@@ -63,16 +73,6 @@ height:100vh;
 	margin-left: auto;
 	margin-right: auto;
 }
-.bookshelf-div {
-	/* width: 55vw;
-	height: 67vh;
-	dispay: block;
-	margin-left: auto;
-	margin-right: 10%;
-	background-color: transparent;
-	background-image: url('/warm/resources/img/library/bookshelf/bookshelf-2.png');
-	background-size: 100% 100%; */
-}
 .library-font{
 	font-style: italic; 
 	font-size:medium;
@@ -91,21 +91,6 @@ height:100vh;
 .padding-10px{
 	padding:10px;
 }
-/* .library_emptySpace_col0 {
-	width: 1.1vw;
-}
-.library_emptySpace_col1 {
-	width: 1.2vw;
-}
-.library_emptySpace_col2 {
-	width: 1.26vw;
-}
-.library_emptySpace_col3 {
-	width: 1.13vw;
-}
-.library_emptySpace_col4 {
-	width: 1.13vw;
-} */
 .top-padding-3vh{
 	padding-top:3vh;
 }
@@ -298,19 +283,6 @@ bookshelf-table-bar{
 .bar-breadcrumb-item.active {
   color: #8c98a4;
 }
-/* from style.css */
-
-
-/* Page Header */
-/* .page-header {
-    background-color: #f7f7f7;
-    margin: 0 0 50px 0;
-    min-height: 50px;
-    padding: 45px 0;
-    position: relative;
-    text-align: center;
-    border-bottom: 1px solid #e6e6e6;
-} */
 .page-header .bar-breadcrumb {
     background: none;
     margin: 0 0 8px 2px;

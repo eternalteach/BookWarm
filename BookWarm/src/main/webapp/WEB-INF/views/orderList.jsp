@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <title> Order List</title>
  	<%@include file="./includes/header/header-vertexEx.jsp" %>
- 	<%-- <%@include file="./includes/header/header-vertex.jsp" %> 둘 중 하나 알아서 쓰시오--%>
+<link rel="stylesheet" href="/warm/resources/VertexEx/smartforms/JavascriptTemplates/css/smart-forms.css">
+ 	
 </head>
 <body>
 <div class="footer-wrap">

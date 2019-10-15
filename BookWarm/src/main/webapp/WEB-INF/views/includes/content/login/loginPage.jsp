@@ -33,5 +33,6 @@
                                  <div class="form-footer center">
                                     <button type="submit" class="button btn-sm btn-outline-secondary">Login</button>
                                     <a href="/warm/register/checkDuplicateRegister"><button type="button" class="button btn-sm btn-outline-secondary">Register</button></a>
+                                    <a href="/warm/preview"><button type="button" class="button btn-sm btn-outline-secondary">Preview</button></a>
                                  </div><!-- end .form-footer section -->
                               </form>
