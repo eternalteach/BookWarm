@@ -8,6 +8,7 @@
 </head>
 
 <body>
+<%@ include file="./includes/loading/page-loading.jsp"%>
 <div class="footer-wrap">
 	<%@ include file="./includes/addressAPI/getAddress.jsp" %>
 	<%@ include file="./includes/content/register/registerPage.jsp" %>

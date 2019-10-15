@@ -16,7 +16,7 @@
 <title> Library </title>
 </head>
 <body style="overflow:auto; background-image:url('/warm/resources/img/library/library_bookshelf2.jpg'); background-size:100% 100%; background-position:0px 0px; background-repeat:no-repeat;" >
-
+<div class="page-loading"></div>
 	<div style="position:absolute; top:8vh; left:58.5vw; ">
 		<a data-toggle="modal" data-target="#modal-library" style="cursor:pointer; color:white; font-size:1.3vw"><strong>책 검색하기&nbsp;<i class="glyphicon icon icon-magnifier" style="font-size:1.5vw!important; color:white"></i></strong></a>
 	</div>
@@ -255,5 +255,10 @@ $(document).on("click",".addOnLibrary",function(){
 });
 </script>
 <%@ include file="includes/header/script-vertexEx.jsp"%>
+    <script>
+    $(window).load(function(){
+        $(".page-loading").fadeOut();
+    });
+    </script>
 </body>
 </html>

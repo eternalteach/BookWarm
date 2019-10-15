@@ -25,14 +25,12 @@
 		</div>
     </section>
 
-    <div class="v-page-wrap has-right-sidebar has-one-sidebar">
+    <div class="v-page-wrap has-one-sidebar">
         <div class="container">
             <div class="row">
-				<div class="row col-sm-9">
-					<div style="margin-left: 150px;">
+				<div class="row col-lg-12">
+					<div style="margin: 100px; margin-top:0px;">
 						<%@ include file="./includes/content/register/readUserInfo.jsp" %>
-						<div class="v-spacer col-sm-12 v-height-standard">
-						</div>
 					</div>
                 </div>
                <%@ include file="./includes/content/userInfo/orderList-side-bar.jsp" %>

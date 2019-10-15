@@ -19,7 +19,7 @@
 
 </head>
 <body class="v-bg-color" style="overflow:auto; width:100%!important; height:100%!important">
-
+<%@ include file="./includes/loading/page-loading.jsp"%>
 <div>
 	<button class="btn v-btn standard grey" type="button" onclick="location.href='/warm/index'" style="position:absolute; top:10vh; left:76vw; z-index:1050">돌아가기 <i class="glyphicon icon icon-arrow-undo"></i></button>
 </div>
