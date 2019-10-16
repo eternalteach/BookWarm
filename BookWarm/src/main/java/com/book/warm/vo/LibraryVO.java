@@ -9,9 +9,14 @@ public class LibraryVO {
 	private String list_type;
 	private String isbn;
 	private Timestamp list_added_date;
+	private double star_point;
+	
+	public LibraryVO() {
+		super();
+	}
 
 	public LibraryVO(String user_id, int list_no, String list_img_src, String list_type, String isbn,
-			Timestamp list_added_date) {
+			Timestamp list_added_date, double star_point) {
 		super();
 		this.user_id = user_id;
 		this.list_no = list_no;
@@ -19,10 +24,7 @@ public class LibraryVO {
 		this.list_type = list_type;
 		this.isbn = isbn;
 		this.list_added_date = list_added_date;
-	}
-
-	public LibraryVO() {
-		super();
+		this.star_point = star_point;
 	}
 
 	public String getUser_id() {
@@ -72,5 +74,16 @@ public class LibraryVO {
 	public void setList_added_date(Timestamp list_added_date) {
 		this.list_added_date = list_added_date;
 	}
+
+	public double getStar_point() {
+		return star_point;
+	}
+
+	public void setStar_point(double star_point) {
+		this.star_point = star_point;
+	}
+
+	
+	
 
 }

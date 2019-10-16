@@ -45,4 +45,12 @@
 		select * from library where user_id= #{user_id} order by list_added_date desc
 	</select>
 	
+	<select id="getSP" resultType="double">
+		select star_point from library where user_id=#{user_id} and isbn=#{isbn}
+	</select>
+	
+	<update id="modifySP">
+		update library set star_point = #{star_point} where user_id = #{user_id} and isbn = #{isbn}
+	</update>
+	
 </mapper>

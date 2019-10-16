@@ -32,6 +32,17 @@
                                 <li style="text-align:center"><strong>${bookVO.book_title}</strong></li>
                                 <li style="text-align:center">${fn:substring(bookVO.writer_name, 1, fn:length(bookVO.writer_name)-1)}</li>
                             </ul>
+                            <!-- <ul class="star text-center">
+                            	<li><a>★</a><a>★</a><a>★</a><a>★</a><a>★</a></li>
+                            </ul> -->
+                            <p class="star text-center">
+                            	<!-- <img src="/warm/resources/img/star.png"> -->
+                            	<a class="on" id="star1.0">★</a>
+                            	<a class="on" id="star2.0">★</a>
+                            	<a class="on" id="star3.0">★</a>
+                            	<a class="on" id="star4.0">★</a>
+                            	<a class="on" id="star5.0">★</a>
+                            </p>
 						</div>
 					</div>
 				</article>
