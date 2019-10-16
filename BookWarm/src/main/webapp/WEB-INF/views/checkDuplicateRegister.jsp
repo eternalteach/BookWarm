@@ -7,7 +7,7 @@
 <title> Register</title>
 </head>
 <body class="v-bg-color">
-	<div class="smart-wrap" style="position:absolute; left:35vw; top:30vh;">
+	<div class="smart-wrap" style="position:absolute; left:38vw; top:26vh;">
 		<div class="smart-forms smart-container wrap-3">
 			<div class="form-header header-primary">
 				<h4><i class="fa fa-sign-in"></i>BOOK & WARM</h4>
@@ -46,11 +46,20 @@
    			var user_name = $('#user_name').val();
    			var user_mail = $('#user_mail').val();
    			var mailExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+   			let frontEmail=user_mail.split('@')[0];
+   			let backEmail=user_mail.split('@')[1];
+   			
    			if(user_name=="" || user_mail=="") {
    				alert("모든 폼을 채워주세요");
    				e.preventDefault();
-   			}else if(user_mail.split('.').length!=2 || !mailExp.test(user_mail)) {
+   			}else if(!(backEmail.split('.').length==2 || backEmail.split('.').length==3) || user_mail.match(mailExp)==null) {
    				alert("메일을 다시 입력해주세요");
+   				console.log("backEmail.split('.').length : "+backEmail.split('.').length);
+   				console.log("(backEmail.split('.').length==2 || backEmail.split('.').length==3) : "+(backEmail.split('.').length==2 || backEmail.split('.').length==3));
+   				console.log("mailExp.test(frontEmail) : "+mailExp.test(frontEmail));
+   				console.log("mailExp.test(backEmail.split('.')[0]) : "+mailExp.test(backEmail.split('.')[0])+backEmail.split('.')[0]);
+   				console.log("mailExp.test(backEmail.split('.')[1]) : "+mailExp.test(backEmail.split('.')[1])+backEmail.split('.')[1]);
+   				console.log("mailExp.test(backEmail.split('.')[2]) : "+mailExp.test(backEmail.split('.')[2])+backEmail.split('.')[2]);
    				e.preventDefault();
    			}else {
    				$(this).attr('type', 'submit');
