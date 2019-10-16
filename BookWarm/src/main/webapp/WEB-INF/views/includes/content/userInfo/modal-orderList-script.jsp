@@ -91,32 +91,6 @@ function showDetail(orders_no) {
 				$('#coupon_discounted_amount').attr('value', data.order.orders_pay_total-data.order.orders_total);
 			}
 			
-			// 적립금 검사
-			if(data.coupon != null) {
-				let couponHTML="";
-				couponHTML += "<div class='frm-row section colm colm6'>";
-				couponHTML += "<h4>사용된 쿠폰 정보</h4>";
-				couponHTML += "</div>";
-				couponHTML += "<div class='frm-row'>";
-				couponHTML += "<div class='section colm'>";
-				couponHTML += "쿠폰 이름 : <input type='text' name='coupon_name' id='coupon_name' class='gui-input' readonly>";
-				couponHTML += "</div>";
-				couponHTML += "<div class='section colm'>";
-				couponHTML += "할인율 : <input type='email' name='coupon_discount_percent' id='coupon_discount_percent' class='gui-input' readonly>";
-				couponHTML += "</div>";
-				couponHTML += "<div class='section colm'>";
-				couponHTML += "할인 받은 금액 : <input type='email' name='coupon_discounted_amount' id='coupon_discounted_amount' class='gui-input' readonly>";
-				couponHTML += "</div>";
-				couponHTML += "</div>";
-				
-				$('#coupon_area').html(couponHTML);
-				
-				$('#coupon_name').attr('value', data.coupon.coupon_name);
-				$('#coupon_discount_percent').attr('value', data.coupon.coupon_discount_percent);
-				
-				// 얼마나 할인받았는지 계산
-				$('#coupon_discounted_amount').attr('value', data.order.orders_pay_total-data.order.orders_total);
-			}
 			
 		}, error : function(){
 			console.log("error!");

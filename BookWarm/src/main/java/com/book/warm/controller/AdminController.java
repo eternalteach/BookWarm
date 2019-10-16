@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.book.warm.mapper.AdminMapper;
 import com.book.warm.mapper.CommunityBoardMapper;
@@ -22,10 +23,13 @@ import com.book.warm.mapper.MemberMapper;
 import com.book.warm.page.Criteria;
 import com.book.warm.page.PageDTO;
 import com.book.warm.service.AuthenticationService;
+import com.book.warm.service.OrdersStatusService;
 import com.book.warm.service.ReviewBoardService;
 import com.book.warm.vo.AdminBoardVO;
 import com.book.warm.vo.AuthVO;
 import com.book.warm.vo.CommunityBoardVO;
+import com.book.warm.vo.OrdersItemVO;
+import com.book.warm.vo.OrdersStatusVO;
 import com.book.warm.vo.ReviewBoardVO;
 import com.book.warm.vo.UserVO;
 
@@ -55,6 +59,9 @@ public class AdminController {
 	@Autowired
 	AuthenticationService authenticationService;
 	
+	@Autowired
+	OrdersStatusService ordersStatusService;
+	
 	@GetMapping("")
 	public void admin(Principal principal,Model model,Criteria criteria) {
 		log.info("================ admin() ===============");
@@ -74,6 +81,31 @@ public class AdminController {
 		model.addAttribute("reviewBoardList", adminMapper.getReviewBoardListWithPaging(criteria));
 		model.addAttribute("reviewPageMaker", new PageDTO(criteria, numberOfPostsOnReviewBoard));
 		model.addAttribute("numberOfPostsOnReviewBoard", numberOfPostsOnReviewBoard);
+		
+		// 주문 상태
+		List<OrdersStatusVO> status = adminMapper.getOrdersStatus();
+		
+		for(int i=0; i<status.size(); i++) {
+			switch(status.get(i).getOrders_status()) {
+				case "주문 완료":
+					status.get(i).setOrders_status_num(1);
+					break;
+				case "배송 준비중":
+					status.get(i).setOrders_status_num(2);
+					break;
+				case "배송중":
+					status.get(i).setOrders_status_num(3);
+					break;
+				case "배송 완료":
+					status.get(i).setOrders_status_num(4);
+					break;
+				case "미입금 취소":
+					status.get(i).setOrders_status_num(5);
+					break;
+			}
+		}
+		model.addAttribute("orders_status", status);
+		
 	}
 	
 	// community 게시글 이동처리
@@ -123,6 +155,18 @@ public class AdminController {
 		log.info(authVO.getAuthority());
 		log.info(authVO.getUser_id());
 		return authenticationService.modifyAuthentication(authVO)==1 ? new ResponseEntity<>("success",HttpStatus.OK): new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
+	}
+	
+	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="/modifyOrdersStatus",consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> modifyOrdersStatus(@RequestBody OrdersStatusVO ordersStatusVO){
+		log.info("========== modifyOrdersStatus()");
+		log.info(ordersStatusVO.getOrders_no()); // 바꿀 대상의 orders_no
+		log.info(ordersStatusVO.getOrders_status()); // 바꾸려는 상태
+		
+		ordersStatusService.modifyOrdersStatus(ordersStatusVO);
+		
+		
+		return ordersStatusService.modifyOrdersStatus(ordersStatusVO)==1 ? new ResponseEntity<>("success",HttpStatus.OK): new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
 	}
 	
 	

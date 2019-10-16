@@ -90,7 +90,7 @@ public class FileCheckTask {
 		System.out.println("----------coupon_no테이블 갱신 완료----------");
 	}
 	
-	@Scheduled(fixedDelay=1000)
+	//@Scheduled(fixedDelay=1000)
 	@Transactional
 	public void updateOrdersStatus() throws Exception {
 		// 매 초마다 orders_item테이블(orders_status 컬럼) 갱신

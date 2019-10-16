@@ -195,6 +195,66 @@
 	          					</div>
 							</div>
 						</div>
+						
+						
+						
+						
+						<!-- administrator-delivery -->
+						<div id="administrator-delivery" class="administrator">
+							<ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
+								<li class="nav-item active" data-option-value="*"><a class="nav-link" href="#">Show All</a></li>
+								<li class="nav-item" data-option-value=".authNum1"><a class="nav-link" href="#">주문 완료</a></li>
+								<li class="nav-item" data-option-value=".authNum2"><a class="nav-link" href="#">배송 준비중</a></li>
+								<li class="nav-item" data-option-value=".authNum3"><a class="nav-link" href="#">배송중</a></li>
+								<li class="nav-item" data-option-value=".authNum4"><a class="nav-link" href="#">배송 완료</a></li>
+								<li class="nav-item" data-option-value=".authNum5"><a class="nav-link" href="#">미입금 취소</a></li>
+								<!-- <li class="nav-item" data-option-value=".authNum1"><a class="nav-link" href="#">보류</a></li>
+								<li class="nav-item" data-option-value=".authNum1"><a class="nav-link" href="#">품절</a></li> -->
+								<li class="nav-item" >
+									<input type="text" class="nav-link"  style="text-transform: lowercase;" id="searchUser" name="searchUser" placeholder=" 사용자 검색"><button id="searchUserBtn"type="button" class="btn-sm nav-link" data-toggle="modal" data-target="#openUserInfo">검색</button>
+								</li>
+							</ul>
+							<div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
+								<div class="row portfolio-list sort-destination" data-sort-id="portfolio">
+									<c:forEach items="${orders_status}" var="status">
+									
+									<div class="col-lg-4 isotope-item authNum${status.orders_status_num}">
+										<article class="v_blog-item v_blog-item-related v_blog-grid">
+											<div class="v_blog-item-inner">
+												<div class="v_blog-item-content">
+													<div class="v_blog-item-header">
+														<ul class="v_blog-item-meta">
+															<li class="v_blog-item-date">
+																<h2 class="v_blog-item-title" itemprop="name headline">${status.orders_no}</h2><!-- 주문 번호 -->
+															</li>
+														</ul>
+													</div>
+													<div itemprop="articleBody">
+														<div id="${status.orders_no}_ordersStatus" data-status="${status.orders_status}" data-ordersNo="${status.orders_no}">
+															<p class="v_blog-item-author"><span>주문자 : ${status.user_id}</span></p>
+															<p class="v_blog-item-author"><span>주문 상태 : 
+																<select onchange="javascript:modifyOrdersStatus1(this.options[this.selectedIndex].value)">
+																    <option value=""> ${status.orders_status}</option>
+																    <option value="successOrder">주문 완료</option>
+																    <option value="prepare">배송 준비중</option>
+																    <option value="delivery">배송중</option>
+																    <option value="done">배송 완료</option>
+																    <option value="cancle">미입금 취소</option>
+																</select>
+																</span></p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</article>
+									</div>
+									</c:forEach>
+								</div>
+								<div class="row col-lg-12">
+	     							<div class="panel-footer center"></div>
+	          					</div>
+							</div>
+						</div>
 					</div>
 					<!-- End administrator-user -->
 					
@@ -266,13 +326,19 @@ var userInfoDiv="";
 var userID="";
 var userName="";
 var userAuthLevel="";
+var ordersNo="";
+var status="";
+
 $(document).on("click","select",function(){
 	userInfoDivID=$(this).closest("div").attr("id");
 	userID=$(this).closest("div").attr("data-userid");
 	userAuthLevel=$(this).closest("div").attr("data-userauth");
 	userName=$(this).closest("div").attr("data-username");
+	ordersNo=$(this).closest("div").attr("data-ordersNo");
+	status=$(this).closest("div").attr("data-status");
 	userInfoDiv=$("#"+userInfoDivID);
 });
+
 function modifyUserAuthentication(auth){
 	authentication={user_id:userID,authority:auth};
 	adminService.modfiyAuthentication(authentication,function(result){
@@ -289,8 +355,59 @@ function modifyUserAuthentication(auth){
 		
 		userInfoDiv.html(userInfoInnerHTML);
 		alert(result);
-		});
-	}
+	});
+}
+
+// function의 매개변수에는 변화시키려는 status를 보낸다.
+function modifyOrdersStatus1(changeStatus){
+	alert("변경!");
+	var changeStatus = {orders_no:ordersNo,orders_status:changeStatus};
+	adminService.modifyOrdersStatus1(changeStatus,function(result){
+		str="";
+		str+="<p class=\"v_blog-item-author\"><span>user_name :"+ userID +"</span></p>";
+		str+="<p class=\"v_blog-item-author\"><span>";
+		str+="<select onchange=\"javascript:modifyOrdersStatus1(this.options[this.selectedIndex].value)\">";
+		str+="<option value=\"\">수정된 주문 상태 : "+orders_status+"</option>";
+		str+="<option value=\"successOrder\">주문 완료</option>";
+		str+="<option value=\"prepare\">배송 준비중</option>";
+		str+="<option value=\"delivery\">배송중</option>";
+		str+="<option value=\"done\">배송 완료</option>";
+		str+="<option value=\"cancle\">미입금 취소</option>";
+		str+="</select>";
+		str+="</span></p>";
+		
+		userInfoDiv.html(str);
+		alert(result);
+	});
+	/* $.ajax({
+		url : "/warm/admin/modifyOrdersStatus?orders_status="+changeStatus+"&orders_no="+ordersNo,
+		type : 'get',
+		dataType : 'json',
+		success : function(data) {
+			alert("변경 성공");
+			
+		}, error : function() {
+			console.log("error!");
+		}
+	}) */
+	
+	str="";
+	str+="<p class=\"v_blog-item-author\"><span>user_name :"+ userID +"</span></p>";
+	str+="<p class=\"v_blog-item-author\"><span>";
+	str+="<select onchange=\"javascript:modifyOrdersStatus1(this.options[this.selectedIndex].value)\">";
+	str+="<option value=\"\">수정된 주문 상태 : "+changeStatus+"</option>";
+	str+="<option value=\"successOrder\">주문 완료</option>";
+	str+="<option value=\"prepare\">배송 준비중</option>";
+	str+="<option value=\"delivery\">배송중</option>";
+	str+="<option value=\"done\">배송 완료</option>";
+	str+="<option value=\"cancle\">미입금 취소</option>";
+	str+="</select>";
+	str+="</span></p>";
+	
+	userInfoDiv.html(str);
+	
+}
+
 $(document).ready(function() {
 	// 페이징 처리
 	var reviewPageNum=1;

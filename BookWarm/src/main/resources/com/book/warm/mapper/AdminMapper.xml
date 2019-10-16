@@ -57,9 +57,16 @@
  	
  	<!-- 페이징 처리 위해 게시물 총 개수 가져오기 -->
  	<select id="getNumberOfPostsOnDeletedReviewBoard" resultType="Integer">
- 		
  		select count(*) from admin_board where board_name='review'
-		
+ 	</select>
+	
+ 	<select id="getOrdersStatus" resultType="com.book.warm.vo.OrdersStatusVO">
+ 		select oi.*, o.user_id
+		from orders o inner join (select orders_no, orders_status
+		                        from orders_item
+		                        group by orders_no, orders_status) oi
+		on o.orders_no = oi.orders_no
+		order by orders_date desc
  	</select>
 	
 </mapper>

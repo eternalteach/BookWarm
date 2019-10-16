@@ -92,7 +92,7 @@
 	</select>
 	
 	<insert id="addOrderItems">
-		insert into orders_item values(ORDERS_ITEM_SEQ.nextval, #{isbn}, #{cart_cnt}, #{orders_no}, '주문완료')
+		insert into orders_item values(ORDERS_ITEM_SEQ.nextval, #{isbn}, #{cart_cnt}, #{orders_no}, '주문 완료')
 	</insert>
 	
 	<insert id="addPost">

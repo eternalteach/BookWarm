@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.book.warm.page.Criteria;
 import com.book.warm.vo.AdminBoardVO;
-import com.book.warm.vo.AuthVO;
 import com.book.warm.vo.CommunityBoardVO;
+import com.book.warm.vo.OrdersStatusVO;
 import com.book.warm.vo.ReviewBoardVO;
 
 public interface AdminMapper {
@@ -25,4 +25,6 @@ public interface AdminMapper {
 	public List<AdminBoardVO> getCommunityBoardListWithPaging(Criteria criteria);
 
 	public List<AdminBoardVO> getReviewBoardListWithPaging(Criteria criteria);
+
+	public List<OrdersStatusVO> getOrdersStatus();
 }
