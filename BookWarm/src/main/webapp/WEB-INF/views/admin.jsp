@@ -195,6 +195,57 @@
 	          					</div>
 							</div>
 						</div>
+						
+						
+						
+						<!-- 입금완료 확인 -->
+						<div id="administrator-delivery" class="administrator">
+							<ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
+								<li class="nav-item active" data-option-value="*"><a class="nav-link" href="#">Show All</a></li>
+								<li class="nav-item" data-option-value=".authNum3"><a class="nav-link" href="#">입금확인 미완료</a></li>
+								<li class="nav-item" data-option-value=".authNum2"><a class="nav-link" href="#">임금확인 완료</a></li>
+								<li class="nav-item" data-option-value=".authNum1"><a class="nav-link" href="#">배송완료</a></li>
+								<li class="nav-item" >
+									<input type="text" class="nav-link"  style="text-transform: lowercase;" id="searchUser" name="searchUser" placeholder=" 사용자 검색"><button id="searchUserBtn"type="button" class="btn-sm nav-link" data-toggle="modal" data-target="#openUserInfo">검색</button>
+								</li>
+							</ul>
+							<div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
+								<div class="row portfolio-list sort-destination" data-sort-id="portfolio">
+									<c:forEach items="${userList}" var="user">
+									<div class="col-lg-4 isotope-item authNum${user.authList.size()}"><!-- 여기에 정렬할 클래스명  넣기 <------------- -->
+										<article class="v_blog-item v_blog-item-related v_blog-grid">
+											<div class="v_blog-item-inner">
+												<div class="v_blog-item-content">
+													<div class="v_blog-item-header">
+														<ul class="v_blog-item-meta">
+															<li class="v_blog-item-date">
+																<h2 class="v_blog-item-title" itemprop="name headline">${user.user_id}</h2>
+															</li>
+														</ul>
+													</div>
+													<div itemprop="articleBody">
+														<div id="${user.user_id}_authenticationLevel" data-userid="${user.user_id}"data-username="${user.user_name}" data-userauth="${user.authList.size()}">
+															<p class="v_blog-item-author"><span>user_name : ${user.user_name}</span></p>
+															<c:if test="${user.authList.size()!=3}"><p class="v_blog-item-author"><span>권한 레벨 : 
+																<select onchange="javascript:modifyUserAuthentication(this.options[this.selectedIndex].value)" name="authentication">
+																    <option value=""> 레벨 ${user.authList.size()}</option>
+																    <option value="ROLE_MANAGER">매니저(LV2)</option>
+																    <option value="ROLE_USER">사용자(LV1)</option>
+																</select>
+																</span></p></c:if>
+														</div>
+													</div>
+												</div>
+											</div>
+										</article>
+									</div>
+									</c:forEach>
+								</div>
+								<div class="row col-lg-12">
+	     							<div class="panel-footer center"></div>
+	          					</div>
+							</div>
+						</div>
 					</div>
 					<!-- End administrator-user -->
 					

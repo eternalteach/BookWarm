@@ -24,7 +24,7 @@
 						<div class="modal-body" >
 							<div class="form-inline">
 								<div class="card transparent col-lg-12" style="border:none;">
-									<h4 class="modal-title">${sellectedCommunityBoardPost.comm_subject}&nbsp;${sellectedCommunityBoardPost.comm_title}</h4>
+									<h4 class="modal-title">[${sellectedCommunityBoardPost.comm_subject}]&nbsp;${sellectedCommunityBoardPost.comm_title}</h4>
 								</div>
 							</div>
 							<div class="pull-right">
