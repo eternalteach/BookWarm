@@ -192,4 +192,19 @@
 		where rk = 1
 	</select>
 	
+	<select id="getExpiredOrders" resultType="java.lang.String">
+	<![CDATA[
+		SELECT orders_no
+		FROM orders
+		where orders_date+1<sysdate
+	]]>
+	</select>
+	
+	<update id="updateOrdersStatus" parameterType="java.lang.String">
+		update orders_item
+		set orders_status = '미입금 취소'
+		where orders_no = #{orders_no}
+		and orders_status = '주문완료'
+	</update>
+	
  </mapper>

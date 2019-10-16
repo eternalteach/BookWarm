@@ -154,10 +154,7 @@ $(document).ready(function() {
 			}
 	
 			$('#orders_pay_total').attr('value', $('#finalPay').text());
-			
-			var orders_tot = $('#orders_total').val();
-			orders_tot = orders_tot.substring(0, orders_tot.lastIndexOf("원"));
-			$('#orders_total').attr('value', orders_tot);
+			$('#discountPointSubmit').attr('value', $('#discountPoint').html());
 			
 			$(this).attr('type', 'submit'); 
 

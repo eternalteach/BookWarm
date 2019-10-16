@@ -28,7 +28,7 @@ public interface ShopMapper {
 
 	public UserVO getUserInfo(@Param("user_id") String user_id);
 
-	public List<CouponVO> getCouponList(@Param("user_id") String user_id);
+	public List<CouponVO> getCouponList(@Param("user_id") String user_id, @Param("coupon_use_req") int coupon_use_req);
 	
 	//=================추가코드==========================================
 	public void insertcart(CartJoinBookVO cartvo);
@@ -59,5 +59,8 @@ public interface ShopMapper {
 	public void setUserPoint(@Param("user_id") String user_id, @Param("point") int point);
 
 	public void addTotalPrice(@Param("user_id") String user_id, @Param("orders_pay_total") int orders_pay_total);
+
+	public String getBookTitles(@Param("isbn") String isbn);
+
 	
 }

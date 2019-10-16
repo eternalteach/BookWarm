@@ -70,6 +70,7 @@
 			    from coupon_no c1 inner join coupon c2
 			    on c1.coupon_no = c2.coupon_no
 			    where c1.user_id=#{user_id} 
+			    	and c2.coupon_use_req<=#{coupon_use_req}
 			        and c1.coupon_available='t' 
 			        and c2.coupon_validate>=TO_DATE(sysdate)) t1 inner join
 			    (select user_id, user_level
@@ -123,6 +124,11 @@
 		update user_info set user_tot_price = user_tot_price + #{orders_pay_total}
 		where user_id=#{user_id}
 	</update>
+	
+	<select id="getBookTitles" resultType="java.lang.String">
+		select book_title from book
+		where isbn=#{isbn}
+	</select>
 	
 </mapper>
 

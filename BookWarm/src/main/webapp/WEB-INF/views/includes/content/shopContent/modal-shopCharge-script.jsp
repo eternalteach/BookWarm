@@ -16,11 +16,11 @@
 </style>
 <script>
 	// 쿠폰 선택 버튼 눌렀을 때 실행
-	function pickCoupon() {
+	function pickCoupon(coupon_use_req) {
 		$('#modal').fadeIn(500);
 	
 		$.ajax({
-			url : '/warm/shop/pickCoupon',
+			url : '/warm/shop/pickCoupon?coupon_use_req='+coupon_use_req,
 			type : 'get',
 			dataType : 'json',
 			success : function(data) {
@@ -62,7 +62,7 @@
 					str += "할인율 : "+couponList[i].coupon_discount_percent+"<br>";
 					str += "</div>";
 					str += "<div class='section'>";
-					str += "유효기간 : "+couponList[i].coupon_validate;
+					str += "유효기간 : "+couponList[i].coupon_validate_string;
 					str += "</div>";
 					str += "<div class='smartforms-modal-footer'>";
 					str += "<button type='button' class='select btn v-btn standard lightgrey standard' data-abc="+couponList[i].coupon_discount_percent+" id='"+couponList[i].coupon_no+"' value='"+couponList[i].coupon_no+"'>선택</button><br>";

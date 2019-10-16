@@ -115,7 +115,7 @@
                                     </div>
                                     <div class="section colm">
 	                                    <label class="field">
-	                                    	<a href="javascript:pickCoupon()"><button type="button" class="btn v-btn standard lightgrey standard" id="pickCoupon">쿠폰적용</button></a>
+	                                    	<a href="javascript:pickCoupon(${subTotal})"><button type="button" class="btn v-btn standard lightgrey standard" id="pickCoupon">쿠폰적용</button></a>
 	                                    	<button type="button" class="btn v-btn standard lightgrey standard" id="cancleCoupon">쿠폰적용 취소</button>
 	                                    </label>
                                    	</div>
@@ -127,7 +127,8 @@
                                  	</div>
                                    	<div class="section colm">
                                    		<label class="field">
-                                    	   <input type="text" id="point" name="usePoint" class="gui-input" placeholder="적립금">
+                                    	   <input type="text" id="point" class="gui-input" placeholder="적립금">
+<!--                                     	   <input type="text" id="point" name="usePoint" class="gui-input" placeholder="적립금"> -->
 	                                    </label>
                                     </div>
                                     <div class="section colm">
@@ -176,6 +177,8 @@
 				                           		<td class="cart-product-name amount" >${list.cart_cnt}</td>
 				                           		<td class="cart-product-name amount" style="padding-left:0px;padding-right:0px;padding-right:0px;">${list.total}원</td>
 				                             	<input type="hidden" name="isbn" value="${list.isbn}">
+				                             	<input type="hidden" name="cart_no" value="${list.cart_no}">
+				                             	<input type="hidden" name="book_title" value="${list.book_title}">
 				                             	<input type="hidden" name="cart_cnt" value="${list.cart_cnt}">
 				                             </tr>
 							   			  </c:forEach>
@@ -196,6 +199,7 @@
                                              </td>
                                              <td class="cart-product-name" colspan="4">
                                                 -<span class="amount" id="discountPoint">0</span> 원(포인트 할인)
+                                                <input type="hidden" id="discountPointSubmit" name="usePoint">
                                              </td>
                                           </tr>
                                           <tr class="cart_item">
@@ -214,7 +218,6 @@
                                              <td class="cart-product-name" colspan="4">
                                                 <span class="amount color"><strong id="finalPay">${subTotal}</strong></span>
                                                 <input type="hidden" name="orders_pay_total" id="orders_pay_total" value="${subTotal}">원
-                                                <%-- <input type="hidden" name="orders_total" id="submitTotal" value="${subTotal}">원 --%>
                                              </td>
                                           </tr>
                                        </tbody>
