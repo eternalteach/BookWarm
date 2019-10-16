@@ -5,7 +5,6 @@ import java.util.List;
 import com.book.warm.page.Criteria;
 import com.book.warm.vo.BookVO;
 import com.book.warm.vo.CouponNoVO;
-import com.book.warm.vo.OrdersVO;
 import com.book.warm.vo.ReviewAttachVO;
 import com.book.warm.vo.ReviewBoardVO;
 import com.book.warm.vo.ReviewMainVO;
@@ -66,5 +65,7 @@ public interface ReviewBoardMapper {
 	public List<String> getExpiredOrders();
 
 	public void updateOrdersStatus(String orders_no);
+
+	public void deleteCmt(int review_no);
 
 }
