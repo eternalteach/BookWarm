@@ -111,6 +111,7 @@
 			fee = "무료";
 			deliveryFee = "0";
 		}else {
+			fee = "2500원";
 			deliveryFee = "2500";
 		}
 		$('.delivery').html(fee);
