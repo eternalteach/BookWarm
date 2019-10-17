@@ -16,8 +16,8 @@
 				<article class="v_blog-item">
 					<div class="v_blog-item-inner row">
 						<div class="v_blog-item-media col-md-12">
-							<ul>
-                                <li>
+							<ul class="mb-3">
+                                <li class="mt-2 mb-3">
                                     <a href="#">
                                     	<c:choose>
                                     		<c:when test="${!empty bookVO.book_img}">
@@ -32,22 +32,22 @@
                                 <li style="text-align:center"><strong>${bookVO.book_title}</strong></li>
                                 <li style="text-align:center">${fn:substring(bookVO.writer_name, 1, fn:length(bookVO.writer_name)-1)}</li>
                             </ul>
-                            <p class="star text-center mb-0">
+                            <p class="star text-center mb-1">
                             	<a class="on" id="star1">★</a>
                             	<a class="on" id="star2">★</a>
                             	<a class="on" id="star3">★</a>
                             	<a class="on" id="star4">★</a>
                             	<a class="on" id="star5">★</a>
                             </p>
-                            <div class="text-center explArea m-0"></div>
+                            <div class="text-center explArea m-1"></div>
 						</div>
 					</div>
 				</article>
-				<div class="progress-bars v2 frontRecordInfo">
-					<div class="progress-label">
+				<div class="progress-bars v2 frontRecordInfo mt-6">
+					<div class="progress-label col-md-12" style="width:80%">
 						<span>${recordInfo.reading}% Finished</span>
 					</div>
-					<div class="progress">
+					<div class="progress mx-auto" style="width:90%">
 						<div id="reading" class="progress-bar bg-info progress-bar-striped progress-bar-animated" data-appear-progress-animation="${recordInfo.reading}%"></div>
 						<span class="progress-bar-tooltip">${recordInfo.reading}%</span>
 					</div>
@@ -71,7 +71,7 @@
 						</div>
 							<!-- open add record modal -->
 						<div class="counters">
-							<div class="progress-label" style="text-align:center; height:50px">
+							<div class="progress-label mt-4" style="text-align:center; height:50px">
 								<span><button type="button" class="btn" data-toggle="modal" data-target="#modal-add-record" style="margin:0;">Add</button></span>
 							</div>
 						</div>

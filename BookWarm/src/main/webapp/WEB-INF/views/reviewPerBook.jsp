@@ -71,13 +71,13 @@
 						<!-- record 삽입 -->
 						<%@ include file="includes/record/record.jsp"%>
                     
-                        <section class="widget v-search-widget clearfix">
+                        <%-- <section class="widget v-search-widget clearfix">
                             <form role="search" method="get" id="searchform" class="searchform" action="#">
                                 <div class="form-group">
                                     <input class="form-control" type="text" value="" name="s" id="s" placeholder="Search" />
                                 </div>
                             </form>
-                        </section>
+                        </section> --%>
 
                     </aside>
                     
@@ -241,11 +241,11 @@
             	function getStarPnt(isbn, callback, error) {
            			$.get("/warm/library/getSP/" + bookIsbn, function(result) {
            				if(result == "0.0") {
-           					explArea.html("<h4 class='sp_num m-0'>0.0</h4>별점을 기록할 수 있습니다.");
+           					explArea.html("<h4 class='sp_num m-1'>0.0</h4>별점을 기록할 수 있습니다.");
            				} else {
            					var starId = "#star" + (result.substring(0,1)); 
            					$(starId).removeClass("on").prevAll("a").removeClass("on");
-           					explArea.html("<h4 class='sp_num m-0'>" + result +" </h4>");
+           					explArea.html("<h4 class='sp_num m-1'>" + result +" </h4>");
            				}
 
            			}).fail(function(xhr, status, err) {
@@ -272,7 +272,7 @@
         					data : JSON.stringify(starPoint),
         					contentType : "application/json; charset=utf-8",
         					success : function(result, status, xhr) {
-        						alert(star_point);
+        						alert("새로운 별점이 반영되었습니다.");
         						getStarPnt(bookIsbn);
         					},
         					error : function(xhr, status, er) {

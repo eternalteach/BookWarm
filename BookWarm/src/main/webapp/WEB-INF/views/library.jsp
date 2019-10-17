@@ -47,7 +47,12 @@
 
 	<div style="position:absolute; top:79vh; left:68vw; width:31vw">
 		<a href="message" title="메시지"><i class="lib-menu glyphicon icon icon-plane-paper-1"></i></a>
-		<a href="myInfo" title="내 정보"><i class="lib-menu glyphicon icon icon-user-1"></i></a>
+		<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')">
+			<a href="admin" title="관리자"><i class="lib-menu glyphicon icon icon-user-1"></i></a>
+		</sec:authorize>
+		<sec:authorize access="!hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')">
+			<a href="myInfo" title="내 정보"><i class="lib-menu glyphicon icon icon-user-1"></i></a>
+		</sec:authorize>
 		<a href="reviewMain" title="감상 메인"><i class="lib-menu glyphicon icon icon-bookmark-2-1"></i></a>
 		<a href="shop/shoplist" title="서점"><i class="lib-menu glyphicon icon icon-shopping-bag-3"></i></a>
 		<a href="customLogout" title="로그아웃"><i class="lib-menu glyphicon icon icon-log-out-1"></i></a>
