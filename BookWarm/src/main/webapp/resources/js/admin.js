@@ -94,6 +94,25 @@ var adminService = (function() {
 		});
 	}
 	
+	function modifyOrdersStatus1(changeStatus, callback, error) {
+		console.log("========== modifyOrdersStatus1()");
+		$.ajax({
+			type:'put',
+			url:'/warm/admin/modifyOrdersStatus',
+			data:JSON.stringify(changeStatus),
+			contentType:"application/json;charset=utf-8",
+			success:function(result,status,xhr){
+				if(callback){
+					callback(result);
+				}
+			}, error:function(xhr,status,er){
+				if(error){
+					error(er);
+				}
+			}
+		})
+	}
+	
 
 	return {
 		get:get,
@@ -101,6 +120,7 @@ var adminService = (function() {
 		getUser:getUser,
 		getCommListWithPaging:getCommListWithPaging,
 		getReviewListWithPaging:getReviewListWithPaging,
-		modfiyAuthentication:modfiyAuthentication
+		modfiyAuthentication:modfiyAuthentication,
+		modifyOrdersStatus1:modifyOrdersStatus1
 	};
 })();

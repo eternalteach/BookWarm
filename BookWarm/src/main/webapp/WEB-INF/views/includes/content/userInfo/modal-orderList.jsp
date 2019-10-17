@@ -2,9 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<!-- <div class="smartforms-px">
-	<a href="#" data-smart-modal="#smart-modal-validation" class="smartforms-modal-trigger">Modal Validation</a>
-</div> -->
 	<div class="smartforms-modal-container" id="modal" style="overflow:auto">
 		<div class="smartforms-modal-header">
  			<h3 style="padding-top:15px;">주문상세</h3>
@@ -17,9 +14,6 @@
 				<div class="smart-forms smart-container wrap-full">
 					<!-- 모달창 시작하는 부분 -->
 					<div class="form-body" style="background-color:white;padding-top:20px;">
-						<!-- 수정하기 부분 나중에 구현 -->
-						<form method="post" action="/warm/modify" id="smart-form">
-							
 							<div class="frm-row section colm colm6">
 								<h4 style="text-align:center;font-style:bold;margin-bottom:5px;">결제정보</h4>
 							</div>
@@ -70,56 +64,54 @@
 								</div>
 							</div>
 
-
-
 							
 							<div id="coupon_area">
 							</div>
 							
 							
-							
-							
-							<div class="frm-row section colm colm6">
-								<h4 style="text-align:center;font-style:bold;margin-bottom:5px;margin-top:10px;border-top:1px solid #EAEAEA;padding-top:10px;">배송정보</h4>
-							</div>
-							<div class="frm-row">
-								<!-- 배송 받을 사람 이름 -->
-								<div class="section colm" >
-									이름 : <input type="email" name="post_name" id="post_name" class="gui-input" readonly style="margin-top:5px;width:272px;">
+							<form method="post" action="/warm/modify" id="smart-form">
+								<div class="frm-row section colm colm6">
+									<h4 style="text-align:center;font-style:bold;margin-bottom:5px;margin-top:10px;border-top:1px solid #EAEAEA;padding-top:10px;">배송정보</h4>
 								</div>
-								
-								<!-- 배송 받을 사람 전화번호 -->
-								<div class="section colm">
-									전화번호 : <input type="email" name="post_phone" id="post_phone" class="gui-input" readonly style="margin-top:5px;width:272px;">
+								<div class="frm-row">
+									<!-- 배송 받을 사람 이름 -->
+									<div class="section colm" >
+										이름 : <input type="email" name="post_name" id="post_name" class="gui-input" readonly style="margin-top:5px;width:272px;">
+									</div>
+									
+									<!-- 배송 받을 사람 전화번호 -->
+									<div class="section colm">
+										전화번호 : <input type="email" name="post_phone" id="post_phone" class="gui-input" readonly style="margin-top:5px;width:272px;">
+									</div>
+									
+									<!-- 배송 우편번호 -->
+									<div class="section colm">
+										우편 번호 : <input type="email" name="post_zipcode" id="post_zipcode" class="gui-input" readonly style="margin-top:5px;width:272px;">
+									</div>
+									
+									<!-- 배송 주소 -->
+									<div class="section colm">
+										주소 : <input type="email" name="post_addr" id="post_addr" class="gui-input" readonly style="margin-top:5px;width:272px;">
+									</div>
+									
+									<!-- 할인 받은 금액 -->
+									<div class="section colm">
+										<input type="email" name="post_addr_detail" id="post_addr_detail" class="gui-input" readonly style="margin-top:5px;width:272px;">
+									</div>
+									
 								</div>
+								<!-- end .frm-row section -->
 								
-								<!-- 배송 우편번호 -->
-								<div class="section colm">
-									우편 번호 : <input type="email" name="post_zipcode" id="post_zipcode" class="gui-input" readonly style="margin-top:5px;width:272px;">
+								
+								
+								<div class="smartforms-modal-footer">
+									<button type="button" name="modify" value="false" class="btn v-btn standard lightgrey standard" style="margin-left:75px;">배송 정보 수정</button>
+									<button type="button" name="cancle" value="false" class="btn v-btn standard lightgrey standard" style="margin-left:75px;">주문 취소</button>
 								</div>
-								
-								<!-- 배송 주소 -->
-								<div class="section colm">
-									주소 : <input type="email" name="post_addr" id="post_addr" class="gui-input" readonly style="margin-top:5px;width:272px;">
-								</div>
-								
-								<!-- 할인 받은 금액 -->
-								<div class="section colm">
-									<input type="email" name="post_addr_detail" id="post_addr_detail" class="gui-input" readonly style="margin-top:5px;width:272px;">
-								</div>
-								
-							</div>
-							<!-- end .frm-row section -->
-							
-							
-							
-							<div class="smartforms-modal-footer">
-								<button type="submit" class="btn v-btn standard lightgrey standard" style="margin-left:75px;">수정</button>
-							</div>
-							<!-- end .form-footer section -->
-						</form>
+								<!-- end .form-footer section -->
+							</form>
 					</div>
-	</div>
+				</div>
 					<!-- end .form-body section -->
 				</div>
 				<!-- end .smart-forms section -->
