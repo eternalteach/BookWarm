@@ -18,30 +18,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select> 
 	
 	
-	<!-- 가격순(저렴한 순)으로 불러오기  -->
+	<!-- 별점순  -->
 	<select id="bookpricelist" resultType="com.book.warm.vo.BookListVO">
-    <![CDATA[	
+<!--     <![CDATA[	
     select * from  (
     	select * 
     	from book 
     	order by book_price_for_sale
     	)
     where rownum <= 12
+    and book_price_for_sale not in(0)
+    ]]>	 -->
+    <![CDATA[
+	select * from (select * from (select isbn, avg(star_point) av
+					from library 
+					group by isbn 
+					order by av desc) 
+	where rownum <= 12)a, book b
+	where a.isbn = b.isbn
+	order by av desc
     ]]>	
 	</select> 
 	
-	
-	<!-- 높은 가격순 -->
-	<select id="bookpricelist2" resultType="com.book.warm.vo.BookListVO">
+	<!-- 베스트셀러(좋아요 많이 카운트 된 순서) -->
+	<select id="bookpricelist2" resultType="com.book.warm.vo.BookLikeVO2">
     <![CDATA[	
-    select * from  (
-    	select * 
-    	from book 
-    	order by book_price_for_sale desc
-    	)
-    where rownum <= 12
+	select * from (select * from (
+					SELECT ISBN, COUNT(ISBN) cnt
+					FROM BOOK_LIKE
+					GROUP BY ISBN
+					ORDER BY COUNT(ISBN) DESC)
+					where rownum <= 12) a, book b
+	where a.isbn = b.isbn
+	order by cnt desc
     ]]>	
 	</select> 
+	
+	<!-- 좋아요 선택한 목록 가져오기  -->
+	<select id="booklike" resultType="com.book.warm.vo.BookLikeVO2">
+	select b.*, bk.user_id, bk.like_book
+	from book b inner join book_like bk
+	on b.isbn = bk.isbn
+	where bk.user_id = #{user_id}
+	order by like_book
+	</select>
 	
 	<!-- isbn으로 책 상세정보 불러오기   -->
 	<select id="bookdetail" resultType="com.book.warm.vo.BookListVO">
@@ -68,13 +88,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	]]> 
 	</select>
 
-	<!-- 책에 대한 별 점수 가져오기  -->
-	<select id="booklike" resultType="com.book.warm.vo.BookLikeVO2">
-	select b.*, bk.user_id, bk.like_book
-	from book b inner join book_like bk
-	on b.isbn = bk.isbn
-	where bk.user_id = #{user_id}
-	order by like_book
-	</select>
 
+	<!--  -->
 </mapper>

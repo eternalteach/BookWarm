@@ -27,7 +27,7 @@ public class ShopListService {
 	}
 	
 	//가격(비싼순)
-	public List<BookListVO> bookpricelist2() throws Exception{
+	public List<BookLikeVO2> bookpricelist2() throws Exception{
 		return shoplistmapper.bookpricelist2();
 	}
 	

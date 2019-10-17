@@ -51,7 +51,7 @@ var bookService = (function() {
 
 			$.ajax({
 				type : 'post',
-				url : 'book/bookinfo',
+				url : '/warm/book/bookinfo',
 				data : JSON.stringify(bookData),
 				contentType : "application/json;charset=utf-8",
 				success : function(result, status, xhr) {

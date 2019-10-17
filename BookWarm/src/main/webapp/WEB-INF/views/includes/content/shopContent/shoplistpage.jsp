@@ -5,16 +5,27 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <sec:authentication property="principal.username" var="user_id"/>
 
-<style>
-
-</style>
+<head>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="/warm/resources/js/library.js"></script>
+<script type="text/javascript" src="/warm/resources/js/book.js"></script>
+</head>
 
 	<div role="main" class="main">
-		<section class="page-header" style="padding-top:10px; padding-bottom:0px; margin-top:20px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
+		<section class="page-header" style="padding-top:20px; margin-top:20px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
 			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-md-8 text-left">
-					</div>
+				<div class="row align-items" style="margin-left:900px;">
+<!-- 						<div class="aa" style="width:1000px;font-size:15px;">
+							<a data-toggle="modal" data-target="#bookshop"><strong>책 검색하기&nbsp;</strong></a>
+						</div> -->
+                                <div class="form-group">
+                                    <input class="form-control" type="text" value="" name="books" id="booki" placeholder="Search" />
+                                </div>
+                                    <i class="icon icon-magnifier fa-lg" id="booksearch" data-toggle="modal" data-target="#bookshop" 
+                                    	style="padding-left: 0px;width:40px;padding-top:10px;border:0.5px solid #EAEAEA;height: 41px;"></i>
+                                    	
 				</div>
 			</div>
 		</section>
@@ -39,7 +50,7 @@
 								data-toggle="tab"
 								href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a00" role="tab"
 								aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a00"
-								aria-expanded="true">제목순</a></li>
+								aria-expanded="true">베스트셀러</a></li>
 								
 							<!-- 낮은가격 -->	
 							<li class="nav-item"><a class="nav-link"
@@ -47,15 +58,15 @@
 								data-toggle="tab"								
 								href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11" role="tab" 
 								aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11"
-								aria-expanded="true">낮은 가격순</a></li>
+								aria-expanded="true">제목순</a></li>
 								
-							<!-- 높은 가격 -->
+							<!-- 베스트셀러 -->
     						<li class="nav-item">
                            	 <a class="nav-link" 
                            	 id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a2" 
                            	 data-toggle="tab"
                            	 href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" 
-                           	 role="tab" aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" aria-expanded="true">높은 가격순</a>
+                           	 role="tab" aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" aria-expanded="true">별점순</a>
                         	</li>
                         	
                         	<!-- 좋아한 책  -->
@@ -64,7 +75,7 @@
                            	 id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a3" 
                            	 data-toggle="tab"
                            	 href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a33" 
-                           	 role="tab" aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a33" aria-expanded="true">좋아요</a>
+                           	 role="tab" aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a33" aria-expanded="true">나의 좋아요</a>
                         	</li>
                         	
 								
@@ -73,9 +84,9 @@
 						<div class="tab-content">
 							<div class="tab-pane fade show active" id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a00"
 								role="tabpanel" aria-labelledby="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a0">
-								<!-- shoptitlelist  -->
+								<!-- 베스트셀러  -->
 								<div class="row">
-									<c:forEach items="${shoptitlelist}" var="shop">
+									<c:forEach items="${bookpricelist2}" var="shop">
 										<div class="col-md-2" style="margin-top: 20px;">
 											<figure class="product-shadows product-item">
 												<div class="product-media">
@@ -98,10 +109,10 @@
 									</c:forEach>
 								</div>
 							</div>
-							<!-- 가격순 책 불러오기  -->
+							<!-- 제목순  -->
 							<div class="tab-pane fade" id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a11" role="tabpanel" aria-labelledby="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a1">
 								<div class="row">
-									<c:forEach items="${bookpricelist}" var="shop_title">
+									<c:forEach items="${shoptitlelist}" var="shop_title">
 										<div class="col-md-2" style="margin-top: 20px;">
 											<figure class="product-shadows product-item">
 												<div class="product-media">
@@ -125,10 +136,10 @@
 									</c:forEach>
 								</div>
 							</div>
-							<!-- 높은 가격순   -->
+							<!-- 낮은 가격순-->
 								 <div class="tab-pane fade " id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" role="tabpanel" aria-labelledby="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a2">
                                      <div class="row">
-                                     <c:forEach items="${bookpricelist2}" var="bookpricelist2">
+                                     <c:forEach items="${bookpricelist}" var="bookpricelist2">
 										<div class="col-md-2" style="margin-top: 20px;">
 											<figure class="product-shadows product-item">
 												<div class="product-media">
@@ -152,7 +163,7 @@
 										</c:forEach>
                                     </div>
                                 </div>
-                                <!-- 좋아요순 -->
+                                <!-- 나의 좋아요순 -->
                                 <div class="tab-pane fade " id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a33" role="tabpanel" aria-labelledby="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a3">
                                      <div class="row">
                                      <c:forEach items="${booklike}" var="booklike">
@@ -186,4 +197,79 @@
 			</div>
 		</div>
 	</div>
+
+<!-- library Modal -->
+<div class="modal fade" id="bookshop" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+    <div class="modal-dialog undefined">
+        <div class="modal-content">
+            <div class="modal-body post-content">
+				 <div id="getBookTable"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+//searchBook Btn Event
+$(document).on("click","#booksearch",function(){
+	console.log	("북샵에서 책 검색");
+	var searchT=$('#booki').val();
+	bookService.searchTitle(searchT,function(result){
+		bookService.addBookData(result);
+		makeBookTable(result);
+	});
+});
+//책 클릭시 상세페이지로 이동하기
+$(document).ready(function(){
+	getBookTable.on("click", "button", function(e){
+		var targetISBN = $(this).closest("tr").attr("class");
+		console.log("targetISBN : "+targetISBN);
+		location.href="shopproduct?isbn=" + targetISBN;
+	});
+});
+
+
+
+
+let bookData="";
+var getBookTable=$("#getBookTable");
+
+function makeBookTable(bookData){
+	console.log("makeBookTable에서 받은 "+bookData);
+	 let option = [
+ 	    {field:"isbn"},
+ 	    {field:"thumbnail"},
+ 	    {field:"title"},
+ 	    {field:"authors"},
+ 	    {field:"datetime"}
+ 	];
+
+ 	getBookTable.html("");
+ 	var table = $("<table class='tmp'>").appendTo(getBookTable);
+ 	
+  	$.each( bookData.documents, function( index, row) {
+		var tr = $("<tr>").appendTo(table);
+		let isbn="";
+		$.each( option, function( i, fieldInfo ) {
+			if(fieldInfo.field=="isbn"){
+				tr.attr("class",row[fieldInfo.field].substring(11));
+				isbn=row[fieldInfo.field].substring(11);
+			} else {
+				var td = $("<td>").appendTo(tr);
+				if(fieldInfo.field=="thumbnail"){
+				var img=$("<img class='bookCover'>").appendTo(td);
+				img.attr("src", src=row[fieldInfo.field]);
+				}else if (fieldInfo.field=="datetime"){
+				td.html( row[fieldInfo.field].substring(0,10));
+				} else if (fieldInfo.field=="title"){
+					td.html("<button class='search-books card'>"+row[fieldInfo.field]+"</button>");
+				}else{
+				td.html( row[fieldInfo.field]);
+				}
+			}
+ 	    });
+ 	});
+ }//end makeBookTable
+ 
+</script>
 
