@@ -71,13 +71,13 @@
 						<!-- record 삽입 -->
 						<%@ include file="includes/record/record.jsp"%>
                     
-                        <section class="widget v-search-widget clearfix">
+                        <%-- <section class="widget v-search-widget clearfix">
                             <form role="search" method="get" id="searchform" class="searchform" action="#">
                                 <div class="form-group">
                                     <input class="form-control" type="text" value="" name="s" id="s" placeholder="Search" />
                                 </div>
                             </form>
-                        </section>
+                        </section> --%>
 
                     </aside>
                     
@@ -272,7 +272,7 @@
         					data : JSON.stringify(starPoint),
         					contentType : "application/json; charset=utf-8",
         					success : function(result, status, xhr) {
-        						alert(star_point);
+        						alert("새로운 별점이 반영되었습니다.");
         						getStarPnt(bookIsbn);
         					},
         					error : function(xhr, status, er) {
