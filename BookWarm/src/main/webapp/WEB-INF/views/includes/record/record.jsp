@@ -37,11 +37,11 @@
                             </ul> -->
                             <p class="star text-center">
                             	<!-- <img src="/warm/resources/img/star.png"> -->
-                            	<a class="on" id="star1.0">★</a>
-                            	<a class="on" id="star2.0">★</a>
-                            	<a class="on" id="star3.0">★</a>
-                            	<a class="on" id="star4.0">★</a>
-                            	<a class="on" id="star5.0">★</a>
+                            	<a class="on" id="star1">★</a>
+                            	<a class="on" id="star2">★</a>
+                            	<a class="on" id="star3">★</a>
+                            	<a class="on" id="star4">★</a>
+                            	<a class="on" id="star5">★</a>
                             </p>
 						</div>
 					</div>

@@ -258,12 +258,10 @@
         		
         	});
         </script>
-        
     <!-- 댓글 처리를 위한 comment.js 추가 -->
     <script type="text/javascript" src = "/warm/resources/Vertex/js/comment.js"></script>
     
     <script>
-    	
     	// 댓글 수를 표시하기 위한 즉시실행함수.
     	var cmtCntArr = $(".comment-container");
     	(function() {
@@ -289,8 +287,8 @@
    				if(result == "0.0") {
    					starArea.append("<h4 class='sp_num m-0'>0.0</h4>별점을 기록할 수 있습니다.");
    				} else {
-   					var starId = "#star" + result;
-   					$(starId).prevAll().addClass("on");
+   					var starId = "#star" + (result.substring(0,1)); 
+   					$(starId).removeClass("on").prevAll("a").removeClass("on");
    				}
 
    			}).fail(function(xhr, status, err) {
