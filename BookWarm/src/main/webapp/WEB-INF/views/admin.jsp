@@ -360,13 +360,12 @@ function modifyUserAuthentication(auth){
 
 // function의 매개변수에는 변화시키려는 status를 보낸다.
 function modifyOrdersStatus1(changeStatus){
-	alert("changeStatus : "+changeStatus);
 	var changeStatus1 = {orders_no:ordersNo,orders_status:changeStatus};
 	adminService.modifyOrdersStatus1(changeStatus1,function(result){
-		str="";
+		var str="";
 		str+="<p class=\"v_blog-item-author\"><span>주문자 :"+ userID +"</span></p>";
 		str+="<p class=\"v_blog-item-author\"><span>";
-		str+="<select onchange=\"javascript:modifyOrdersStatus1(this.options[this.selectedIndex].innerHTMl)\">";
+		str+="<select onchange=\"javascript:modifyOrdersStatus1(this.options[this.selectedIndex].innerHTML)\">";
 		str+="<option value=\"\">수정된 주문 상태 : "+changeStatus+"</option>";
 		str+="<option>주문 완료</option>";
 		str+="<option>배송 준비중</option>";
@@ -377,34 +376,8 @@ function modifyOrdersStatus1(changeStatus){
 		str+="</span></p>";
 		
 		userInfoDiv.html(str);
-		alert(result);
 	});
-	/* $.ajax({
-		url : "/warm/admin/modifyOrdersStatus?orders_status="+changeStatus+"&orders_no="+ordersNo,
-		type : 'get',
-		dataType : 'json',
-		success : function(data) {
-			alert("변경 성공");
-			
-		}, error : function() {
-			console.log("error!");
-		}
-	}) */
 	
-	str="";
-	str+="<p class=\"v_blog-item-author\"><span>user_name :"+ userID +"</span></p>";
-	str+="<p class=\"v_blog-item-author\"><span>";
-	str+="<select onchange=\"javascript:modifyOrdersStatus1(this.options[this.selectedIndex].innerHTML)\">";
-	str+="<option value=\"\">수정된 주문 상태 : "+changeStatus+"</option>";
-	str+="<option>주문 완료</option>";
-	str+="<option>배송 준비중</option>";
-	str+="<option>배송중</option>";
-	str+="<option>배송 완료</option>";
-	str+="<option>미입금 취소</option>";
-	str+="</select>";
-	str+="</span></p>";
-	
-	userInfoDiv.html(str);
 	
 }
 

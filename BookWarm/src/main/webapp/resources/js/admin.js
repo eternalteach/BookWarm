@@ -96,14 +96,12 @@ var adminService = (function() {
 	
 	function modifyOrdersStatus1(changeStatus, callback, error) {
 		console.log("========== modifyOrdersStatus1()");
-		alert("변경변경");
 		$.ajax({
 			type:'put',
 			url:'/warm/admin/modifyOrdersStatus',
 			data:JSON.stringify(changeStatus),
 			contentType:"application/json;charset=utf-8",
 			success:function(result,status,xhr){
-				alert("변경 성공");
 				if(callback){
 					callback(result);
 				}
@@ -114,24 +112,6 @@ var adminService = (function() {
 			}
 		})
 	}
-	
-	/*function modifyOrdersStatus1(changeStatus, ordersNo) {
-		console.log("========== modifyOrdersStatus1()");
-		alert("변경변경");
-		$.ajax({
-			url : '/warm/admin/modifyOrdersStatus?orders_status='+changestatus+'&ordersNo='+ordersNo,
-			type : 'get',
-			dataType : 'json',
-			success : function(data) {
-				alert("변경 성공");
-				
-			}, error : function() {
-				console.log("error!");
-			}
-		})
-		
-		
-	}*/
 	
 
 	return {
