@@ -17,7 +17,7 @@
 					<div class="v_blog-item-inner row">
 						<div class="v_blog-item-media col-md-12">
 							<ul class="mb-3">
-                                <li>
+                                <li class="mt-2 mb-3">
                                     <a href="#">
                                     	<c:choose>
                                     		<c:when test="${!empty bookVO.book_img}">
