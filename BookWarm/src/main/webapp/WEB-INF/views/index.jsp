@@ -10,6 +10,7 @@
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <%@ include file="includes/header/header-vertexEx.jsp"%>
 <%@ include file="includes/header/script-vertexEx.jsp"%>
+<title> BOOK & WARM </title>
 </head> 
 <body style="background-color:white">
 	<div style="top:17vw; left:77vh; position:absolute;">
@@ -20,14 +21,14 @@
 	</div>
 		
 <div id="modal">
-         <div class="modal-library login-modal">
-            <div class="modal-content con">
-               <a href="javascript:;" class="close">X</a>
-               <%@include file="./includes/content/login/loginPage.jsp"%>
-            </div>
-         </div>
+   <div class="modal-library login-modal">
+      <div class="modal-content con">
+         <a href="javascript:;" class="close">X</a>
+         <%@include file="./includes/content/login/loginPage.jsp"%>
       </div>
- <script type="text/javascript">
+   </div>
+</div>
+<script type="text/javascript">
  // open Login Modal
       function openModal(modalname) {
          $("#modal").fadeIn(200);

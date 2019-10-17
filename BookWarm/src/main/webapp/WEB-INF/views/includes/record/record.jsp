@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript" src="/warm/resources/js/record.js"></script>
 <script type="text/javascript" src="/warm/resources/js/DateJsonToJsp.js"></script>
@@ -18,7 +19,14 @@
 							<ul>
                                 <li>
                                     <a href="#">
-                                		<img src="${bookVO.book_img}" style="display:block; margin:auto; margin-bottom:15px">
+                                    	<c:choose>
+                                    		<c:when test="${!empty bookVO.book_img}">
+	                                    		<img src="${bookVO.book_img}" style="display:block; margin:auto; margin-bottom:15px">
+                                    		</c:when>
+                                    		<c:when test="${empty bookVO.book_img}">
+	                                    		<img class="w-50" src="/warm/resources/img/happyGeneralB_dark3.png" style="display:block; margin:auto; margin-bottom:15px">
+                                    		</c:when>
+                                    	</c:choose>
                             		</a>
                             	</li>
                                 <li style="text-align:center"><strong>${bookVO.book_title}</strong></li>

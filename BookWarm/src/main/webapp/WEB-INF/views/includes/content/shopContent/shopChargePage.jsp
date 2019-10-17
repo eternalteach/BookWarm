@@ -52,8 +52,8 @@
                                     </label>
                                  </div><!-- end section --><br>
 
+	                           	<!-- 삽입 시작////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
                                  <div class="frm-row">
-                                   	<!-- 삽입 시작////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
                                    	<div class="section colm colm8">
                                    		<label class="field prepend-icon">
                                     	   <input type="text" id="sample4_postcode" name="post_zipcode" class="gui-input" placeholder="우편번호">

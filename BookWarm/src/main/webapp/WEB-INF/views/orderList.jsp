@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title> Order List</title>
  	<%@include file="./includes/header/header-vertexEx.jsp" %>
  	<%-- <%@include file="./includes/header/header-vertex.jsp" %> 둘 중 하나 알아서 쓰시오--%>
 </head>

@@ -42,6 +42,7 @@
 </div>
 </div>
    <%@ include file="./includes/header/script-vertexEx.jsp"%>
+   <%@ include file="./includes/addressAPI/getAddress.jsp"%>
 <script type="text/javascript" src="/warm/resources/js/admin.js"></script>
 <script type="text/javascript" src="/warm/resources/js/DateJsonToJsp.js"></script>
 <script>

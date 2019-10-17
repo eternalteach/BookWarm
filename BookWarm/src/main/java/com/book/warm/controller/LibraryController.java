@@ -108,19 +108,6 @@ public class LibraryController {
 		return mapper.reAddLibrary(user_id,isbn)==1 ? new ResponseEntity<>("success",HttpStatus.OK):new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	/*
-	 * // modify comment
-	 * 
-	 * @RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH},
-	 * value="/modify/{isbn}",consumes="application/json", produces=
-	 * {MediaType.TEXT_PLAIN_VALUE}) public ResponseEntity<String>
-	 * modify2(@PathVariable("isbn")String isbn,Principal principal){
-	 * log.info("==================== modify() ===================="); String
-	 * user_id=principal.getName(); return mapper.deleteLibraryList(user_id,isbn)==1
-	 * ? new ResponseEntity<>("success",HttpStatus.OK):new
-	 * ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); }
-	 */
-	
 	//add Comment
 	@PostMapping(value = "/addBook", consumes = "application/json", produces = {
 			MediaType.TEXT_PLAIN_VALUE })

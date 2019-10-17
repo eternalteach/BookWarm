@@ -9,15 +9,17 @@
 <head>
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <%@ include file="./includes/header/header-vertexEx.jsp"%>
+<title> Community </title>
 </head>
 <body>
+<div class="footer-wrap">
 <%@ include file="includes/header/header-topnav.jsp"%>
 					
 <div class="container center-block">
 	<div class='row margin-20px'>
 		<div class='col-lg-12'>
 			<div class='panel panel-default'>
-				<div class="comment-write">
+				<div class="comment-write" style="margin:30px">
 					<div class="modal-content">
 						<div class="modal-body" >
 							<div class="form-inline">
@@ -98,7 +100,7 @@
 		</div>
 	</div>
 </div>
-
+</div>
 <script type="text/javascript" src="resources/js/comment.js"></script>
 <script type="text/javascript" src="resources/js/admin.js"></script>
 

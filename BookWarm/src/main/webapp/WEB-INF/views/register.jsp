@@ -4,11 +4,14 @@
 <head>
 	<%@ include file="./includes/header/header-vertexEx.jsp" %>
 	<%@ include file="./includes/header/script-vertexEx.jsp" %>
+	<title> Register </title>
 </head>
 
 <body>
+<div class="footer-wrap">
 	<%@ include file="./includes/addressAPI/getAddress.jsp" %>
 	<%@ include file="./includes/content/register/registerPage.jsp" %>
+</div>
 	<script>
    $(document).ready(function() {
    	var dt = new Date();
@@ -205,6 +208,5 @@
 	})
 }
 </script>
-<%@ include file="includes/footer/footer-1.jsp"%>
 </body>
 </html>

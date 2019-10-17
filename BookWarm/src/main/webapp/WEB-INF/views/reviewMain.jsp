@@ -18,7 +18,7 @@
 <script src='http://unpkg.com/@fullcalendar/interaction/main.js'></script>
 <script src='http://unpkg.com/@fullcalendar/daygrid/main.js'></script>
 <script src='http://unpkg.com/@fullcalendar/list/main.js'></script>
-
+<title> review Main </title>
 </head>
 <body class="m-0">
 <%@ include file="includes/header/header-topnav.jsp"%>
@@ -68,14 +68,14 @@
 											<a href="/warm/library" title="책 담으러 가기"><i style="font-size:5vw!important;" class="glyphicon icon icon-book-3"></i></a>
 											</li>
 										</c:when>
-										<c:when test="${!empty libNewbie && libNewbie.book_img == null}">
+										<c:when test="${!empty libNewbie && empty libNewbie.book_img}">
 											<li class="mt-1 mb-2">막 서재에 담았어요!<br></li>
 											<li id="libNewbie" class="mt-1">
-											<c:set var="imgSrc" value="/warm/resources/img/happyGeneralB_dark.png"/>
-											<a href="/warm/reviewPerBook?isbn=${libNewbie.isbn}" title="기록하러 가기"><img style="width:80px" src="${imgSrc}"></a>
+											<c:set var="imgSrc" value="/warm/resources/img/happyGeneralB_dark3.png"/>
+											<a href="/warm/reviewPerBook?isbn=${libNewbie.isbn}" title="${libNewbie.book_title}"><img style="width:80px" src="${imgSrc}"></a>
 											</li>
 										</c:when>	
-										<c:when test="${!empty libNewbie && libNewbie.book_img != null}">
+										<c:when test="${!empty libNewbie && !empty libNewbie.book_img}">
 											<li class="mt-1 mb-2">막 서재에 담았어요!<br></li>
 											<li id="libNewbie" class="mt-1">
 											<a href="/warm/reviewPerBook?isbn=${libNewbie.isbn}" title="기록하러 가기"><img style="width:80px" src="${libNewbie.book_img}"></a>
@@ -131,7 +131,7 @@
 							<div id="recentReview"></div>
 							
 							<!-- 최근 리뷰 페이징 처리 -->	
-							<div id="pagingArea" class="ml-4 mr-0"></div>
+							<div id="pagingArea" class="ml-4 mr-0 mb-4 p-3"></div>
 						</section>
                		</aside>
                </div>
@@ -408,7 +408,7 @@
 			(function(reviewCnt, page) {
 				getRecentReviewsWithPaging(page, function(list) {
 					if(page==-1) {
-						pageNum = Math.ceil(reviewCnt/5.0);
+						pageNum = Math.ceil(reviewCnt/3.0);
 						showRecentReview(pageNum);
 						return;
 					}
@@ -478,7 +478,7 @@
 				next = true;
 			}
 			
-			var str = "<ul class='pagination'>";
+			var str = "<ul class='pagination px-2'>";
 			
 			if(prev) {
 				str += "<li class='page-item'><a class='page-link' href='"+(startNum-1)+"'><</a></li>";

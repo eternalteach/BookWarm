@@ -4,6 +4,7 @@
 <head>
 <%@ include file="includes/header/header-vertexEx.jsp"%>
 <%@ include file="includes/header/script-vertexEx.jsp"%>
+<title> Register</title>
 </head>
 <body class="v-bg-color">
 	<div class="smart-wrap" style="position:absolute; left:35vw; top:30vh;">

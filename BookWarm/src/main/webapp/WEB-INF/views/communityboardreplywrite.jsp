@@ -9,15 +9,17 @@
 <head>
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <%@ include file="./includes/header/header-vertexEx.jsp"%>
+<title> Community </title>
 </head>
 <body>
+<div class="footer-wrap">
 <%@ include file="includes/header/header-topnav.jsp"%>
 <div class="container center-block">
 	<div class='row'>
 		<div class='col-lg-12'>
 			<div class='panel panel-default'>
-				<div class="comment-write">
-					<div class="modal-content">
+				<div class="comment-write" style="margin:30px">
+					<div class="modal-content" style="padding:30px">
 					<form id="pagingActionForm" action="communityBoardSaveReplyWrite" method="post">
 						<div class="modal-body col-lg-12">
 							<div class="form-inline">
@@ -60,6 +62,7 @@
 		</div>
 	</div>
 </div>
+</div>
 <script>
 	$(document).ready(function() {
 		var pagingActionForm = $("#pagingActionForm");
@@ -71,7 +74,7 @@
 			}else{$("#comm_title_msg").html("")}
 			
 			if($("#comm_subject").val()==''||$.trim($("#comm_subject").val())==""){
-				$("#comm_title_msg").html("<span style='color:red'> 말머리를 선택해 주세요. </span>");
+				$("#comm_title_msg").html("<span style='color:red'> 말머리를 입력해 주세요. </span>");
 				return;
 			}else{$("#comm_title_msg").html("")}
 			
@@ -80,6 +83,9 @@
 				return;
 			}else{$("#comm_content_msg").html("")}
 			
+			let commSubject=$("#comm_subject").val();
+			commSubject="["+commSubject+"]";
+			$("#comm_subject").val(commSubject);
 			let moveNextPage=$(this).closest("a").attr("href");
 			pagingActionForm.attr("action",moveNextPage);
 			pagingActionForm.submit();
