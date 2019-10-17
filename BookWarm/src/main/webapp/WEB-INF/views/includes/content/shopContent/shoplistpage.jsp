@@ -14,14 +14,18 @@
 </head>
 
 	<div role="main" class="main">
-		<section class="page-header" style="padding-top:20px; padding-bottom:0px; margin-top:20px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
+		<section class="page-header" style="padding-top:20px; margin-top:20px; margin-bottom:10px; border-bottom-color:transparent; background-color:transparent">
 			<div class="container">
-				<div class="row align-items">
-					<div class="col-md-8 text-right">
-						<div class="aa" style="width:1000px;font-size:15px;">
+				<div class="row align-items" style="margin-left:900px;">
+<!-- 						<div class="aa" style="width:1000px;font-size:15px;">
 							<a data-toggle="modal" data-target="#bookshop"><strong>책 검색하기&nbsp;</strong></a>
-						</div>
-					</div>
+						</div> -->
+                                <div class="form-group">
+                                    <input class="form-control" type="text" value="" name="books" id="booki" placeholder="Search" />
+                                </div>
+                                    <i class="icon icon-magnifier fa-lg" id="booksearch" data-toggle="modal" data-target="#bookshop" 
+                                    	style="padding-left: 0px;width:40px;padding-top:10px;border:0.5px solid #EAEAEA;height: 41px;"></i>
+                                    	
 				</div>
 			</div>
 		</section>
@@ -62,7 +66,7 @@
                            	 id="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a2" 
                            	 data-toggle="tab"
                            	 href="#TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" 
-                           	 role="tab" aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" aria-expanded="true">낮은 가격순</a>
+                           	 role="tab" aria-controls="TabId_65bc62a8-988b-4121-b45f-8f5645399c8a22" aria-expanded="true">별점순</a>
                         	</li>
                         	
                         	<!-- 좋아한 책  -->
@@ -199,8 +203,6 @@
     <div class="modal-dialog undefined">
         <div class="modal-content">
             <div class="modal-body post-content">
-             		  제목검색 : <input id='booksearch' name='booksearch' type='text' class="col-sm-9">
-				<button class="booksearchbtn">검색</button>
 				 <div id="getBookTable"></div>
             </div>
         </div>
@@ -209,13 +211,28 @@
 
 <script>
 //searchBook Btn Event
-$(document).on("click",".booksearchbtn",function(){
-	var searchT=$('#booksearch').val();
+$(document).on("click","#booksearch",function(){
+	console.log	("북샵에서 책 검색");
+	var searchT=$('#booki').val();
 	bookService.searchTitle(searchT,function(result){
 		bookService.addBookData(result);
 		makeBookTable(result);
 	});
 });
+//책 클릭시 상세페이지로 이동하기
+$(document).ready(function(){
+	getBookTable.on("click", "button", function(e){
+		var targetISBN = $(this).closest("tr").attr("class");
+		console.log("targetISBN : "+targetISBN);
+		location.href="shopproduct?isbn=" + targetISBN;
+	});
+});
+
+
+
+
+let bookData="";
+var getBookTable=$("#getBookTable");
 
 function makeBookTable(bookData){
 	console.log("makeBookTable에서 받은 "+bookData);
@@ -253,19 +270,6 @@ function makeBookTable(bookData){
  	    });
  	});
  }//end makeBookTable
-
-$(document).ready(function(){
-	$(document).on("click",".addOnLibrary",function(){
-		let isbn=$(this).closest("button").attr("data-isbn");
-		libraryService.reAddBookOnLibrary(isbn);
-		showList();
-	});
-		showList();
-		let bookData="";
-		var getBookTable=$("#getBookTable");
-		
-		// 책 데이터 받아오면 받은걸로 테이블 만들기
-
-});
+ 
 </script>
 
