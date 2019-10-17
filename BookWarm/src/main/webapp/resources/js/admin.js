@@ -99,7 +99,7 @@ var adminService = (function() {
 		alert("변경변경");
 		$.ajax({
 			type:'put',
-			url:'admin/modifyOrdersStatus',
+			url:'/warm/admin/modifyOrdersStatus',
 			data:JSON.stringify(changeStatus),
 			contentType:"application/json;charset=utf-8",
 			success:function(result,status,xhr){

@@ -18,8 +18,8 @@ public class OrdersStatusService {
 	OrdersStatusMapper ordersStatusMapper;
 
 	public int modifyOrdersStatus(OrdersStatusVO ordersStatusVO) {
-		log.info("========== modifyOrdersStatus()");
-		log.info("ordersStatusVO.modifyOrdersStatus()"+ordersStatusVO.getOrders_status());
+		log.info("========== (service)modifyOrdersStatus()");
+		log.info("ordersStatusVO.modifyOrdersStatus() : "+ordersStatusVO.getOrders_status());
 		return ordersStatusMapper.modifyStatus(ordersStatusVO);
 	}
 

@@ -230,16 +230,16 @@
 														</ul>
 													</div>
 													<div itemprop="articleBody">
-														<div id="${status.orders_no}_ordersStatus" data-status="${status.orders_status}" data-ordersNo="${status.orders_no}">
+														<div id="${status.orders_no}_ordersStatus" data-status="${status.orders_status}" data-ordersNo="${status.orders_no}" data-userid="${status.user_id}">
 															<p class="v_blog-item-author"><span>주문자 : ${status.user_id}</span></p>
 															<p class="v_blog-item-author"><span>주문 상태 : 
-																<select onchange="javascript:modifyOrdersStatus1(this.options[this.selectedIndex].value)">
+																<select onchange="javascript:modifyOrdersStatus1(this.options[this.selectedIndex].innerHTML)">
 																    <option value=""> ${status.orders_status}</option>
-																    <option value="successOrder">주문 완료</option>
-																    <option value="prepare">배송 준비중</option>
-																    <option value="delivery">배송중</option>
-																    <option value="done">배송 완료</option>
-																    <option value="cancle">미입금 취소</option>
+																    <option>주문 완료</option>
+																    <option>배송 준비중</option>
+																    <option>배송중</option>
+																    <option>배송 완료</option>
+																    <option>미입금 취소</option>
 																</select>
 																</span></p>
 														</div>
@@ -360,19 +360,19 @@ function modifyUserAuthentication(auth){
 
 // function의 매개변수에는 변화시키려는 status를 보낸다.
 function modifyOrdersStatus1(changeStatus){
-	alert("변경!");
-	var changeStatus = {orders_no:ordersNo,orders_status:changeStatus};
-	adminService.modifyOrdersStatus1(changeStatus,function(result){
+	alert("changeStatus : "+changeStatus);
+	var changeStatus1 = {orders_no:ordersNo,orders_status:changeStatus};
+	adminService.modifyOrdersStatus1(changeStatus1,function(result){
 		str="";
-		str+="<p class=\"v_blog-item-author\"><span>user_name :"+ userID +"</span></p>";
+		str+="<p class=\"v_blog-item-author\"><span>주문자 :"+ userID +"</span></p>";
 		str+="<p class=\"v_blog-item-author\"><span>";
-		str+="<select onchange=\"javascript:modifyOrdersStatus1(this.options[this.selectedIndex].value)\">";
-		str+="<option value=\"\">수정된 주문 상태 : "+orders_status+"</option>";
-		str+="<option value=\"successOrder\">주문 완료</option>";
-		str+="<option value=\"prepare\">배송 준비중</option>";
-		str+="<option value=\"delivery\">배송중</option>";
-		str+="<option value=\"done\">배송 완료</option>";
-		str+="<option value=\"cancle\">미입금 취소</option>";
+		str+="<select onchange=\"javascript:modifyOrdersStatus1(this.options[this.selectedIndex].innerHTMl)\">";
+		str+="<option value=\"\">수정된 주문 상태 : "+changeStatus+"</option>";
+		str+="<option>주문 완료</option>";
+		str+="<option>배송 준비중</option>";
+		str+="<option>배송중</option>";
+		str+="<option>배송 완료</option>";
+		str+="<option>미입금 취소</option>";
 		str+="</select>";
 		str+="</span></p>";
 		
@@ -394,13 +394,13 @@ function modifyOrdersStatus1(changeStatus){
 	str="";
 	str+="<p class=\"v_blog-item-author\"><span>user_name :"+ userID +"</span></p>";
 	str+="<p class=\"v_blog-item-author\"><span>";
-	str+="<select onchange=\"javascript:modifyOrdersStatus1(this.options[this.selectedIndex].value)\">";
+	str+="<select onchange=\"javascript:modifyOrdersStatus1(this.options[this.selectedIndex].innerHTML)\">";
 	str+="<option value=\"\">수정된 주문 상태 : "+changeStatus+"</option>";
-	str+="<option value=\"successOrder\">주문 완료</option>";
-	str+="<option value=\"prepare\">배송 준비중</option>";
-	str+="<option value=\"delivery\">배송중</option>";
-	str+="<option value=\"done\">배송 완료</option>";
-	str+="<option value=\"cancle\">미입금 취소</option>";
+	str+="<option>주문 완료</option>";
+	str+="<option>배송 준비중</option>";
+	str+="<option>배송중</option>";
+	str+="<option>배송 완료</option>";
+	str+="<option>미입금 취소</option>";
 	str+="</select>";
 	str+="</span></p>";
 	

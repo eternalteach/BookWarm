@@ -86,6 +86,7 @@ public class AdminController {
 		List<OrdersStatusVO> status = adminMapper.getOrdersStatus();
 		
 		for(int i=0; i<status.size(); i++) {
+			System.out.println("주문 상태 : "+status.get(i).getOrders_status());
 			switch(status.get(i).getOrders_status()) {
 				case "주문 완료":
 					status.get(i).setOrders_status_num(1);
@@ -160,13 +161,14 @@ public class AdminController {
 	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="/modifyOrdersStatus",consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> modifyOrdersStatus(@RequestBody OrdersStatusVO ordersStatusVO){
 		log.info("========== modifyOrdersStatus()");
-		log.info(ordersStatusVO.getOrders_no()); // 바꿀 대상의 orders_no
-		log.info(ordersStatusVO.getOrders_status()); // 바꾸려는 상태
+		log.info("orders_no : " + ordersStatusVO.getOrders_no()); // 바꿀 대상의 orders_no
+		log.info("orders_status : " + ordersStatusVO.getOrders_status()); // 바꾸려는 상태
 		
-		ordersStatusService.modifyOrdersStatus(ordersStatusVO);
+		int modify = ordersStatusService.modifyOrdersStatus(ordersStatusVO);
 		
+		log.info("ordersStatusService.modifyOrdersStatus(ordersStatusVO) : "+modify);
 		
-		return ordersStatusService.modifyOrdersStatus(ordersStatusVO)==1 ? new ResponseEntity<>("success",HttpStatus.OK): new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
+		return modify>=1 ? new ResponseEntity<>("success",HttpStatus.OK): new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
 	}
 	
 	
