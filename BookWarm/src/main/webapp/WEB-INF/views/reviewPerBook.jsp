@@ -233,29 +233,58 @@
         			actionForm.submit();
         		}); 
         		
-        		/* var result = '<c:out value="${result}"/>';
-        		
-        		checkModal(result);
-        		history.replaceState({}, null, null);
-        		
-        		function checkModal(result) {
-        			
-        			if(result === '' || history.state) {
-        				return;
-        			}
-        			
-        			if(parseInt(result) > 0) {
-        				$(".modal-body").html(
-        						"게시글 " + parseInt(result) + " 번이 등록되었습니다.");
-        			}
-        			
-        			$("#myModal").modal("show");
-        		}
-        		
-        		$("#regBtn").on("click", function() {
-        			self.location = "/board/register";
-        		}); */
-        		
+        		var bookIsbn = "${bookVO.isbn}";
+           		var explArea = $(".explArea");
+            	getStarPnt(bookIsbn);
+            	// 별점을 조회하기 위한 함수
+            	
+            	function getStarPnt(isbn, callback, error) {
+           			$.get("/warm/library/getSP/" + bookIsbn, function(result) {
+           				if(result == "0.0") {
+           					explArea.html("<h4 class='sp_num m-0'>0.0</h4>별점을 기록할 수 있습니다.");
+           				} else {
+           					var starId = "#star" + (result.substring(0,1)); 
+           					$(starId).removeClass("on").prevAll("a").removeClass("on");
+           					explArea.html("<h4 class='sp_num m-0'>" + result +" </h4>");
+           				}
+
+           			}).fail(function(xhr, status, err) {
+           				if(error) {
+           					error();
+           				}
+           			});
+            	}
+            	
+            	$(".star a").on("click", function() {
+            		$(".star a").addClass("on");
+            		$(this).removeClass("on").prevAll("a").removeClass("on");
+            		
+            		var star_point = $(this).attr("id").substring(4,7);
+            		// 별 클릭시 별점값이 수정되도록 함
+            		update({
+        				isbn : bookIsbn,
+        				star_point : star_point
+        			});
+            		function update(starPoint, callback, error) { 
+        				$.ajax({
+        					type : 'put',
+        					url : '/warm/library/modifySP/' + bookIsbn + '/' + star_point,
+        					data : JSON.stringify(starPoint),
+        					contentType : "application/json; charset=utf-8",
+        					success : function(result, status, xhr) {
+        						alert(star_point);
+        						getStarPnt(bookIsbn);
+        					},
+        					error : function(xhr, status, er) {
+        						if(error) {
+        							error(er);
+        						}
+        					}
+        				 }); 
+         			}
+            		
+            		
+            	});
         	});
         </script>
     <!-- 댓글 처리를 위한 comment.js 추가 -->
@@ -276,72 +305,6 @@
     		});
     		
     	})();
-    	
-   		var bookIsbn = "${bookVO.isbn}";
-    	getStarPnt(bookIsbn);
-    	// 별점을 조회하기 위한 함수
-    	
-    	function getStarPnt(isbn, callback, error) {
-    		var starArea = $(".star");
-   			$.get("/warm/library/getSP/" + bookIsbn, function(result) {
-   				if(result == "0.0") {
-   					starArea.append("<h4 class='sp_num m-0'>0.0</h4>별점을 기록할 수 있습니다.");
-   				} else {
-   					var starId = "#star" + (result.substring(0,1)); 
-   					$(starId).removeClass("on").prevAll("a").removeClass("on");
-   				}
-
-   			}).fail(function(xhr, status, err) {
-   				if(error) {
-   					error();
-   				}
-   			});
-    	}
-    	
-    	$(".star a").on("click", function() {
-    		$(".star a").addClass("on");
-    		$(this).removeClass("on").prevAll("a").removeClass("on");
-    		
-    		var star_point = $(this).attr("id").substring(4,7);
-    		// 별 클릭시 별점값이 수정되도록 함
-    	/* 	function getRecentReviewsWithPaging(page, callback, error) {
-			
-			$.getJSON("/warm/recentReviews/pages/" + page + ".json", function(list) {
-				
-				callback(list);
-			}).fail(function(xhr, status, err) {
-				if(error)
-					error();
-			});
-		} */
-    		update({
-				
-				isbn : bookIsbn,
-				star_point : star_point
-			});
-    		function update(starPoint, callback, error) { 
-			alert(star_point);
-				$.ajax({
-					type : 'put',
-					url : '/warm/library/modifySP/' + bookIsbn + '/' + star_point,
-					data : JSON.stringify(starPoint),
-					contentType : "application/json; charset=utf-8",
-					success : function(result, status, xhr) {
-						if(callback) {
-							callback(result);
-						}
-					},
-					error : function(xhr, status, er) {
-						if(error) {
-							error(er);
-						}
-					}
-				 }); 
- 	}
-    		
-    		// 수정 후 별점 재조회
-    		getStarPnt(bookIsbn);
-    	});
     	
     </script>
 
