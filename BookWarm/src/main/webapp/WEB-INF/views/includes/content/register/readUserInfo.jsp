@@ -8,7 +8,7 @@
     <div class="body-sign">
         <div class="container">
             <div class="row">
-				<form class="v-signup v-register" action="modifyUserInfo" method="post" id="form">
+				<form class="v-signup v-register" action="/warm/myInfo" method="post" id="form">
 					<!-- <div class="form-group">
 						<h2 class="mb-2 mt-0"><strong>내 정보 수정</strong></h2>
 					</div> -->
@@ -48,8 +48,8 @@
 						<label>휴대폰 번호<span class="required">*</span></label>
 						<div class="form-inline">
 							<input type="text" class="form-control col-sm-2" id="user_phone1" maxlength="3"><div style="margin:15px;">-</div>
-							<input type="text" class="form-control col-sm-2" id="user_phone2" maxlength="4"><div style="margin:15px;">-</div>
-							<input type="text" class="form-control col-sm-2" id="user_phone3" maxlength="4">
+							<input type="text" class="form-control col-sm-3" id="user_phone2" maxlength="4"><div style="margin:15px;">-</div>
+							<input type="text" class="form-control col-sm-3" id="user_phone3" maxlength="4">
 							<input type="text" hidden="hidden" id="user_phone" name="user_phone">
 						</div>
 					</div>
@@ -69,12 +69,12 @@
 							
 							<div class="row">
 								<div class="col-sm">
-									<input type="text" id="sample4_roadAddress" name="user_addr" class="form-control" placeholder="도로명주소" >
+									<input type="text" id="sample4_roadAddress" name="user_addr" class="form-control" placeholder="도로명주소" readonly>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-sm">
-									<input type="text" id="sample4_jibunAddress" class="form-control" placeholder="지번주소" >
+									<input type="text" id="sample4_jibunAddress" class="form-control" placeholder="지번주소" readonly>
 								</div>
 							</div>
 							<span id="guide" style="color:#999;display:none"></span>
@@ -83,7 +83,7 @@
 									<input type="text" id="sample4_detailAddress" name="user_addr_detail" class="form-control">
 								</div>
 								<div class="col-sm">
-									<input type="text" id="sample4_extraAddress" class="form-control" placeholder="참고항목" >
+									<input type="text" id="sample4_extraAddress" class="form-control" placeholder="참고항목" readonly>
 								</div>
 							</div>
 						</div>

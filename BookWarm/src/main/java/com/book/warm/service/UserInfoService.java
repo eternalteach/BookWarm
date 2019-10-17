@@ -1,5 +1,6 @@
 package com.book.warm.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -116,13 +117,24 @@ public class UserInfoService {
 		return userInfoMapper.modifyUserInfo(userInfo);
 	}
 
-	public CouponVO getCoupon(String coupon_no) {
-		return userInfoMapper.getCoupon(coupon_no);
+	public CouponVO getCoupon(String user_id, String coupon_no) {
+		return userInfoMapper.getCoupon(user_id, coupon_no);
 	}
 
 	public void setCoupon(String user_id, String coupon_no) {
 		userInfoMapper.setCoupon(user_id, coupon_no);
 	}
+
+	public int getUserLevel(String user_id) {
+		// TODO Auto-generated method stub
+		return userInfoMapper.getUserLevel(user_id);
+	}
+
+	public CouponVO chkHaveCoupon(String coupon_no, String user_id) {
+		return userInfoMapper.chkHaveCoupon(coupon_no, user_id);
+	}
+
+
 
 	
 

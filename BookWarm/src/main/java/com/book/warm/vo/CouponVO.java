@@ -9,6 +9,7 @@ public class CouponVO {
 	private int coupon_use_req;
 	private int coupon_discount_percent;
 	private Timestamp coupon_validate;
+	private String coupon_validate_string; // coupon_validate 컬럼을 string으로 변환해서 넣을 것
 	
 	public CouponVO(String coupon_no, String coupon_name, int coupon_req, int coupon_use_req,
 			int coupon_discount_percent, Timestamp coupon_validate) {
@@ -22,6 +23,13 @@ public class CouponVO {
 	}
 	public CouponVO() {
 		super();
+	}
+	
+	public String getCoupon_validate_string() {
+		return coupon_validate_string;
+	}
+	public void setCoupon_validate_string(String coupon_validate_string) {
+		this.coupon_validate_string = coupon_validate_string;
 	}
 	public String getCoupon_no() {
 		return coupon_no;

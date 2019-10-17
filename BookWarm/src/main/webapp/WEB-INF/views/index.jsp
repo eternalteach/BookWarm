@@ -13,6 +13,15 @@
 <title> BOOK & WARM </title>
 </head> 
 <body style="background-color:white">
+<!-- 화면로딩페이지 -->
+<div class="page-loading"></div>
+<script src="/warm/resources/VertexEx/vendor/jquery/jquery.js"></script>
+<script>
+$(window).load(function(){
+    $(".page-loading").fadeOut();
+});
+</script>
+<!-- End 화면로딩페이지 -->
 	<div style="top:17vw; left:77vh; position:absolute;">
 		<a href="javascript:openModal('login-modal');"><img style="width:21vw" src="/warm/resources/img/background/books.png"></a>
 	</div>	

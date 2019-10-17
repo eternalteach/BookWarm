@@ -78,6 +78,8 @@ public class ReviewBoardService {
 	@Transactional
 	public int deleteReview(ReviewBoardVO rbVO) {
 		log.info("=============== deleteReview() ===============");
+		// review 삭제시 해당 글에 달린 댓글을 먼저 삭제
+		mapper.deleteCmt(rbVO.getReview_no());
 		// review 삭제시 첨부파일도 함께 삭제
 		mapper.deleteAll(rbVO.getReview_no());
 		return mapper.deleteReview(rbVO);

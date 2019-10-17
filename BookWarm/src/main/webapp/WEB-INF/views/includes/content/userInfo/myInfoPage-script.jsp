@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 
-<div class="smartforms-modal-container modal1" id="modal" style="overflow:auto;padding-left:0px;padding-right:0px;">
-</div>
-
+<script>
+	$(document).ready(function() {
+		$('#setMsg').html($('#msg').val());
+	})
+</script>

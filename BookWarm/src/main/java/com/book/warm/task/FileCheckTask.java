@@ -13,9 +13,11 @@ import javax.inject.Inject;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.book.warm.mapper.ReviewBoardMapper;
 import com.book.warm.vo.CouponNoVO;
+import com.book.warm.vo.OrdersVO;
 import com.book.warm.vo.ReviewAttachVO;
 
 import lombok.extern.log4j.Log4j;
@@ -86,5 +88,19 @@ public class FileCheckTask {
 		}
 		
 		System.out.println("----------coupon_no테이블 갱신 완료----------");
+	}
+	
+	//@Scheduled(fixedDelay=1000)
+	@Transactional
+	public void updateOrdersStatus() throws Exception {
+		// 매 초마다 orders_item테이블(orders_status 컬럼) 갱신
+		
+		// 1. 주문한 시간보다 24시간 넘는 주문건 가져온다.
+		List<String> orders_no = mapper.getExpiredOrders();
+		
+		// 2. 그 주문건에 관련된 orders_item의 orders_status컬럼을 '미입금 취소'로 바꾼다.('주문완료'인 것만)
+		for(int i=0; i<orders_no.size(); i++) {
+			mapper.updateOrdersStatus(orders_no.get(i));
+		}
 	}
 }

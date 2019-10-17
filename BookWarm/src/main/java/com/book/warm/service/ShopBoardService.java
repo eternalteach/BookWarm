@@ -37,8 +37,8 @@ public class ShopBoardService {
 		return shopMapper.getUserInfo(user_id);
 	}
 
-	public List<CouponVO> getCouponList(String user_id) {
-		return shopMapper.getCouponList(user_id);
+	public List<CouponVO> getCouponList(String user_id, int coupon_use_req) {
+		return shopMapper.getCouponList(user_id, coupon_use_req);
 	}
 	
 	//====================추가코드==========================
@@ -93,6 +93,12 @@ public class ShopBoardService {
 	public void addTotalPrice(String user_id, int orders_pay_total) {
 		shopMapper.addTotalPrice(user_id, orders_pay_total);
 	}
+
+	public String getBookTitles(String isbn) {
+		return shopMapper.getBookTitles(isbn);
+	}
+
+
 
 	
 	

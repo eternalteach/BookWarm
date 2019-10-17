@@ -4,15 +4,6 @@
 <% request.setCharacterEncoding("utf-8"); %>
 <% response.setContentType("text/html; charset=utf-8"); %>
 
-
-<link rel="stylesheet" type="text/css"  href="/warm/resources/VertexEx/smartforms/JavascriptTemplates/css/smart-forms.css">
-<!-- <link rel="stylesheet" type="text/css"  href="/warm/resources/VertexEx/smartforms/JavascriptTemplates/css/smart-addons.css"> -->
-<link rel="stylesheet" type="text/css"  href="/warm/resources/VertexEx/smartforms/JavascriptTemplates/css/font-awesome.min.css">
-<!-- <script type="text/javascript" src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/additional-methods.min.js"></script>
-<script type="text/javascript" src="/warm/resources/VertexEx/smartforms/JavascriptTemplates/js/smartforms-modal.min.js"></script>   -->
-
 <style>
 	#modal {
 		display:none;

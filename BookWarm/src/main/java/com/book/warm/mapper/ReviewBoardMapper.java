@@ -2,8 +2,6 @@ package com.book.warm.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.book.warm.page.Criteria;
 import com.book.warm.vo.BookVO;
 import com.book.warm.vo.CouponNoVO;
@@ -63,5 +61,11 @@ public interface ReviewBoardMapper {
 	public List<ReviewBoardVO> getOpenReview();
 
 	public BookVO getLibNewbie(String user_id);
+
+	public List<String> getExpiredOrders();
+
+	public void updateOrdersStatus(String orders_no);
+
+	public void deleteCmt(int review_no);
 
 }

@@ -24,5 +24,9 @@ public interface LibraryMapper {
 	public List<LibraryVO> getMyBooks(String user_id);
 
 	public int reAddLibrary(@Param("user_id")String user_id, @Param("isbn")String isbn);
+
+	public double getSP(@Param("user_id")String user_id, @Param("isbn")String isbn);
+
+	public int modifySP(@Param("isbn")String isbn, @Param("star_point")String star_point, @Param("user_id")String user_id);
 	
 }

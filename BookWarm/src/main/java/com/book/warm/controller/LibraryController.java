@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,7 @@ import com.book.warm.mapper.LibraryMapper;
 import com.book.warm.service.BookService;
 import com.book.warm.vo.BookVO;
 import com.book.warm.vo.LibraryVO;
+import com.book.warm.vo.ReviewCommentVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -128,4 +130,32 @@ public class LibraryController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
+	// get star_point
+	@GetMapping(value="/getSP/{isbn}", produces= {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> getSP(@PathVariable("isbn")String isbn, Principal principal){
+		log.info("==================== getSP() ====================");
+		String user_id=principal.getName();
+		String sp = "" + mapper.getSP(user_id,isbn);
+		return new ResponseEntity<>(sp,HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH },
+						  value = "/modifySP/{isbn}/{star_point}",
+						  consumes = "application/json",
+						  produces = { MediaType.TEXT_PLAIN_VALUE,
+									MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<String> modify(
+			@PathVariable("isbn") String isbn,
+			@PathVariable("star_point") String star_point,
+			Principal principal) {
+		
+		
+		log.info("isbn: " + isbn);
+		log.info("star_point: " + star_point);
+		
+		return mapper.modifySP(isbn, star_point, principal.getName()) == 1
+				? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
 }

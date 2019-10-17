@@ -83,9 +83,6 @@
 				return;
 			}else{$("#comm_content_msg").html("")}
 			
-			let commSubject=$("#comm_subject").val();
-			commSubject="["+commSubject+"]";
-			$("#comm_subject").val(commSubject);
 			let moveNextPage=$(this).closest("a").attr("href");
 			pagingActionForm.attr("action",moveNextPage);
 			pagingActionForm.submit();

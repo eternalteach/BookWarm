@@ -15,11 +15,12 @@
 </style>
 <script>
 	// 쿠폰 선택 버튼 눌렀을 때 실행
-	function pickCoupon() {
+	function pickCoupon(coupon_use_req) {
+		hideModal();
 		$('#modal').fadeIn(500);
 	
 		$.ajax({
-			url : '/warm/shop/pickCoupon',
+			url : '/warm/shop/pickCoupon?coupon_use_req=999999',
 			type : 'get',
 			dataType : 'json',
 			success : function(data) {
@@ -55,13 +56,13 @@
 					}
 					str += "</div>";
 					str += "<div class='section'>";
-					str += couponList[i].coupon_use_req+"이상 구매시 사용 가능";
+					str += couponList[i].coupon_use_req+"원 이상 구매시 사용 가능";
 					str += "</div>";
 					str += "<div class='section'>";
-					str += "할인율 : "+couponList[i].coupon_discount_percent+"<br>";
+					str += "할인율 : "+couponList[i].coupon_discount_percent+"%<br>";
 					str += "</div>";
 					str += "<div class='section'>";
-					str += "유효기간 : "+couponList[i].coupon_validate;
+					str += "유효기간 : "+couponList[i].coupon_validate_string;
 					str += "</div>";
 					str += "</div><br>";
 				}
@@ -83,16 +84,20 @@
 	// 모달 창 끄기
 	function hideModal() {
 		//$('#setCouponModal').fadeOut();
+		$('#showCoupons').html('');
+		$('#couponNo').prop('value','');
 		$('.modal1').fadeOut();
 	}
 	
 	// 쿠폰 등록 modal open
 	function enrollCouponNo() {
+		hideModal();
 		$('#setCouponModal').fadeIn(500);
 	}
 	
 	// 입력받은 쿠폰 번호를 모달에 띄우기
 	function searchCoupon(couponNo) {
+		$('#showCoupons').html('');
 		$.ajax({
 			url : '/warm/searchCoupon?coupon_no='+couponNo,
 			type : 'get',
@@ -121,13 +126,13 @@
 					}
 					str += "</div>";
 					str += "<div class='section'>";
-					str += data.coupon_use_req+"이상 구매시 사용 가능";
+					str += data.coupon_use_req+"원 이상 구매시 사용 가능";
 					str += "</div>";
 					str += "<div class='section'>";
-					str += "할인율 : "+data.coupon_discount_percent+"<br>";
+					str += "할인율 : "+data.coupon_discount_percent+"%<br>";
 					str += "</div>";
 					str += "<div class='section'>";
-					str += "유효기간 : "+data.coupon_validate;
+					str += "유효기간 : "+data.coupon_validate_string;
 					str += "</div><br>";
 					str += "<div class='smartforms-modal-footer'>";
 					str += "<form action='/warm/selectCoupon'>";

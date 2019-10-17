@@ -25,14 +25,12 @@
 		</div>
     </section>
 
-    <div class="v-page-wrap has-right-sidebar has-one-sidebar">
+    <div class="v-page-wrap has-one-sidebar">
         <div class="container">
             <div class="row">
-				<div class="row col-sm-9">
-					<div style="margin-left: 150px;">
+				<div class="row col-lg-12">
+					<div style="margin: 100px; margin-top:0px;">
 						<%@ include file="./includes/content/register/readUserInfo.jsp" %>
-						<div class="v-spacer col-sm-12 v-height-standard">
-						</div>
 					</div>
                 </div>
                <%@ include file="./includes/content/userInfo/orderList-side-bar.jsp" %>
@@ -79,14 +77,28 @@ $(document).ready(function(){
 	
 	let submitBtn=$("#submitBtn");
 	submitBtn.on("click",function(){
-		let user_phone="";
-		user_phone+=$("#user_phone1").val()+"-";
-		user_phone+=$("#user_phone2").val()+"-";
-		user_phone+=$("#user_phone3").val();
 		
-		$("#user_phone").val(user_phone);
-		alert("수정되었습니다.");
-		$("#form").submit();
+		var user_phone1 = $("#user_phone1").val();
+		var user_phone2 = $("#user_phone2").val();
+		var user_phone3 = $("#user_phone3").val();
+		
+		let user_phone=user_phone1+"-"+user_phone2+"-"+user_phone3;
+		
+		var zipcode = $("#sample4_postcode").val();
+		var addr = $("#sample4_roadAddress").val();
+		
+		var phoneExp = /^\d{3}-\d{3,4}-\d{4}$/; // 폰번호 정규식
+		
+		if(!phoneExp.test(user_phone)) {
+			alert("입력하신 휴대폰 번호가 잘못 되었습니다.")
+		}else if(zipcode==''||addr=='') {
+			alert("모든 양식을 완성해주세요.");
+		}else {
+			
+			$("#user_phone").val(user_phone);
+			alert("수정되었습니다.");
+			$("#form").submit();
+		}
 	});
 });
 </script>

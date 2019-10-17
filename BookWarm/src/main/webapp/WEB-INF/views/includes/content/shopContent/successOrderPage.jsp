@@ -37,9 +37,9 @@
 						<p>주소 : (우편번호 : ${postVO.post_zipcode}) ${postVO.post_addr} ${postVO.post_addr_detail}</p><br>
 						
 						<p><strong>** 주문 도서 **</strong></p>
-						<c:forEach items="${isbn}" var="isbn" varStatus="idx">
+						<c:forEach items="${book_title}" var="book_title1" varStatus="idx">
 							<!-- <p>도서명 수량 표기</p> -->
-							<p>${isbn}, ${cart_cnt[idx.index]}권</p>
+							<p>${book_title1}, ${cart_cnt[idx.index]}권</p>
 						</c:forEach>
 						<p>총 도서 금액 : ${ordersVO.orders_total}</p>
 						<p>총 지불 금액 : ${ordersVO.orders_pay_total}</p>

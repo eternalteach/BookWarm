@@ -137,15 +137,44 @@
 	
 	<select id="getCoupon" resultType="com.book.warm.vo.CouponVO">
 		<![CDATA[
+			select * 
+			from coupon
+			where coupon_no=#{coupon_no}
+			and (select user_level
+			from user_info
+			where user_id=#{user_id})>=coupon_req
+		]]>
+	</select>
+<!-- 	<select id="getCoupon" resultType="com.book.warm.vo.CouponVO">
+		<![CDATA[
 			select *
 			from (select * from coupon where coupon_no=#{coupon_no})
 			where coupon_validate>sysdate
 		]]>
-	</select>
+	</select> -->
 	
 	<insert id="setCoupon">
 		insert into coupon_no(user_id, coupon_no) values(#{user_id}, #{coupon_no})
 	</insert>
+	
+	<select id="getUserLevel" resultType="java.lang.Integer">
+		select user_level from user_info where user_id=#{user_id}
+	</select>
+	
+	<select id="chkHaveCoupon" resultType="com.book.warm.vo.CouponVO">
+		select * from coupon_no
+		where coupon_no=#{coupon_no} and user_id=#{user_id}
+	</select>
+	
+	<select id="chkCouponValidate" resultType="com.book.warm.vo.CouponVO">
+		<![CDATA[
+			select *
+			from (select *
+			    from coupon
+			    where coupon_validate<=sysdate)
+			where coupon_no=${coupon_no}
+		]]>
+	</select>
 	
 	
 </mapper>

@@ -12,13 +12,13 @@
                                     <div class="section">
                                        <label class="field prepend-icon"> <!-- 아이디 입력하는 부분 -->
                                           <span class="field-icon col-sm-2"><i class="fa fa-user"></i></span>
-                                          <input type="text" name="username" id="username" class="gui-input col-sm-8" placeholder="Enter username" value="admin9">
+                                          <input type="text" name="username" id="username" class="gui-input col-sm-8" placeholder="Enter user id">
                                        </label>
                                     </div><!-- end section -->
                                     <div class="section">
                                        <label class="field prepend-icon"> <!-- 비밀번호 입력하는 부분 -->
                                           <span class="field-icon col-sm-2"><i class="fa fa-lock"></i></span>
-                                          <input type="password" name="password" id="user_pw" class="gui-input col-sm-8" placeholder="Enter password" value="123123123">
+                                          <input type="password" name="password" id="user_pw" class="gui-input col-sm-8" placeholder="Enter password" >
                                        </label>
                                     </div><!-- end section -->
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

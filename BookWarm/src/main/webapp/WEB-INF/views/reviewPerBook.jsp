@@ -13,6 +13,29 @@
 <%@ include file="includes/header/header-vertexEx.jsp"%>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title> Review </title>
+
+<style>
+
+.star a {
+	font-size:large;
+	cursor:pointer;
+}
+.on {
+	font-size:large;
+	cursor:pointer;
+	color:lightgray!important
+}
+.sp_num {
+	color:#0CB4CE
+}
+/* .star_half img {
+	font-size:large;
+	position:absolute;
+	clip-path:inset(0,50%,0,0);
+} */
+
+</style>
+
 </head>
 <body>
 <%@ include file="includes/header/header-topnav.jsp"%>
@@ -210,37 +233,64 @@
         			actionForm.submit();
         		}); 
         		
-        		/* var result = '<c:out value="${result}"/>';
-        		
-        		checkModal(result);
-        		history.replaceState({}, null, null);
-        		
-        		function checkModal(result) {
-        			
-        			if(result === '' || history.state) {
-        				return;
-        			}
-        			
-        			if(parseInt(result) > 0) {
-        				$(".modal-body").html(
-        						"게시글 " + parseInt(result) + " 번이 등록되었습니다.");
-        			}
-        			
-        			$("#myModal").modal("show");
-        		}
-        		
-        		$("#regBtn").on("click", function() {
-        			self.location = "/board/register";
-        		}); */
-        		
+        		var bookIsbn = "${bookVO.isbn}";
+           		var explArea = $(".explArea");
+            	getStarPnt(bookIsbn);
+            	// 별점을 조회하기 위한 함수
+            	
+            	function getStarPnt(isbn, callback, error) {
+           			$.get("/warm/library/getSP/" + bookIsbn, function(result) {
+           				if(result == "0.0") {
+           					explArea.html("<h4 class='sp_num m-0'>0.0</h4>별점을 기록할 수 있습니다.");
+           				} else {
+           					var starId = "#star" + (result.substring(0,1)); 
+           					$(starId).removeClass("on").prevAll("a").removeClass("on");
+           					explArea.html("<h4 class='sp_num m-0'>" + result +" </h4>");
+           				}
+
+           			}).fail(function(xhr, status, err) {
+           				if(error) {
+           					error();
+           				}
+           			});
+            	}
+            	
+            	$(".star a").on("click", function() {
+            		$(".star a").addClass("on");
+            		$(this).removeClass("on").prevAll("a").removeClass("on");
+            		
+            		var star_point = $(this).attr("id").substring(4,7);
+            		// 별 클릭시 별점값이 수정되도록 함
+            		update({
+        				isbn : bookIsbn,
+        				star_point : star_point
+        			});
+            		function update(starPoint, callback, error) { 
+        				$.ajax({
+        					type : 'put',
+        					url : '/warm/library/modifySP/' + bookIsbn + '/' + star_point,
+        					data : JSON.stringify(starPoint),
+        					contentType : "application/json; charset=utf-8",
+        					success : function(result, status, xhr) {
+        						alert(star_point);
+        						getStarPnt(bookIsbn);
+        					},
+        					error : function(xhr, status, er) {
+        						if(error) {
+        							error(er);
+        						}
+        					}
+        				 }); 
+         			}
+            		
+            		
+            	});
         	});
         </script>
-        
     <!-- 댓글 처리를 위한 comment.js 추가 -->
     <script type="text/javascript" src = "/warm/resources/Vertex/js/comment.js"></script>
     
     <script>
-    	
     	// 댓글 수를 표시하기 위한 즉시실행함수.
     	var cmtCntArr = $(".comment-container");
     	(function() {
