@@ -27,19 +27,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	order by book_price_for_sale
     	)
     where rownum <= 12
+    and book_price_for_sale not in(0)
     ]]>	
 	</select> 
 	
 	
-	<!-- 높은 가격순 -->
-	<select id="bookpricelist2" resultType="com.book.warm.vo.BookListVO">
+	<!-- 좋아요 많은 누른 순서대로 -->
+	<select id="bookpricelist2" resultType="com.book.warm.vo.BookLikeVO2">
     <![CDATA[	
-    select * from  (
-    	select * 
-    	from book 
-    	order by book_price_for_sale desc
-    	)
-    where rownum <= 12
+	select * from (select * from (
+					SELECT ISBN, COUNT(ISBN) cnt
+					FROM BOOK_LIKE
+					GROUP BY ISBN
+					ORDER BY COUNT(ISBN) DESC)
+					where rownum <= 12) a, book b
+	where a.isbn = b.isbn
+	order by cnt desc
     ]]>	
 	</select> 
 	

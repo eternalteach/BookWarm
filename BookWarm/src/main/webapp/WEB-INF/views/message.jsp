@@ -47,7 +47,7 @@
 							<div class="tab-pane active" id="counters">
 								<div class="row">
 									<div class="contentmessage" style="width: 830px; height: 630px;">
-										<h1 style="margin-left: 30px;margin-bottom: 0px;margin-top: 40px;">받은 메시지&ensp;(${msgcount}개)</h1>
+										<h1 style="margin-left: 30px;margin-bottom: 0px;margin-top: 40px;">받은 메시지&ensp;</h1>
 									 		<!-- 받은쪽지 리스트 불러오기  -->
 									 		<div id="getMSG">
 											</div>
@@ -63,7 +63,7 @@
 							<div class="tab-pane" id="recent-posts">
 								<div class="row">
 									<div class="contentmessage" style="width: 830px; height: 630px;">
-										<h1 style="margin-left: 30px;margin-bottom: 0px;margin-top: 40px;">보낸 메시지&ensp;(${msgcount2}개)</h1>
+										<h1 style="margin-left: 30px;margin-bottom: 0px;margin-top: 40px;">보낸 메시지&ensp;</h1>
 											<div id="sendMSG">
 											</div>
 									</div>
@@ -182,6 +182,7 @@
 					}
 					let msghtml ="";
 					if(msglist==null || msglist.length==0){
+						msgtable.html(msghtml);
 						return;
 					}
 					 for(var i=0, len=msglist.length||0;i<len;i++){
@@ -220,7 +221,6 @@
 				
 				msgservice.msgdelete(sendidid, sendperson, function(count){
 						if(count === "success"){
-							alert("삭제하겠습니다.")
 							showmsgboard(msgPageNum);
 					}
 				});

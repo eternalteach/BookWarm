@@ -15,7 +15,7 @@ public interface ShopListMapper {
 	//bookprice(저렴) tnstj
 	public List<BookListVO> bookpricelist();
 	//(고가)
-	public List<BookListVO> bookpricelist2();
+	public List<BookLikeVO2> bookpricelist2();
 	//좋아하는 순
 	public List<BookLikeVO2> booklike(@Param("user_id") String user_id);
 	//book detail(상세정보) 불러오기
