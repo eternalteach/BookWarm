@@ -15,6 +15,11 @@
 <body style="min-height:0!important;">
 <%@ include file="includes/header/header-topnav.jsp"%>
 <sec:authentication property="principal.username" var="user_id"/>
+
+<sec:authorize access="hasRole('ROLE_MANAGER')">
+	<c:set var="chkAdmin" value="true"/>
+</sec:authorize>
+
 	
     <div role="main" class="main">
 
@@ -68,7 +73,7 @@
 									<div class="panel-group" style="position:relative">
 										<div class="panel-heading" style="text-align:right; margin-bottom:10px">
 											<span class="text ls-1" style="font-size:25px; padding:8px">
-												<c:if test="${user_id == review.user_id}">
+												<c:if test="${user_id == review.user_id || chkAdmin == true}">
 										  			<a data-toggle="collapse" href="#collapse1" style="color:gray">… </a>
 										  		</c:if>
 											</span>	
