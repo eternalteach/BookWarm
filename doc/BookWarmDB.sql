@@ -110,6 +110,7 @@ list_img_src varchar2(500),
 list_type varchar2(10) default 'basic',
 isbn varchar2(20) not null,
 list_added_date date default sysdate,
+star_point number(2,1) default 0.0,  -- 10/16 별점 컬럼 추가
 constraint fk_library FOREIGN KEY(user_id)
            REFERENCES user_info(user_id)
 );
