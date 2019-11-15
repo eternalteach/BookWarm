@@ -89,9 +89,9 @@
 	
 	function delivery() {
 		var subTotal = $('.subTotal').html();
-		var fee;
+		var fee = '2500원';
 		var deliveryFee;
-		// 배송비 -> 5만원 이상 무료
+		// 배송비 -> 5만원 이상 deliveryFee무료
 		if(subTotal!=null && parseInt(subTotal.split("원", 1)) >= 50000) {
 			fee = "무료";
 			deliveryFee = "0";
